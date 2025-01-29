@@ -1,0 +1,25 @@
+from pathlib import Path
+import chardet
+
+CHAPTERS = Path(r"chapters")
+
+for chapter in CHAPTERS.iterdir():
+    # Detect the file encoding
+    with open(chapter, 'rb') as f:
+        raw_data = f.read()
+        detected_encoding = chardet.detect(raw_data)['encoding']
+
+    # Read using the detected encoding
+    with open(chapter, encoding=detected_encoding) as f:
+        data = f.read()
+
+    data = data.split("\n")
+    new_data = [f"<h1>{data[1]}</h1>"]
+    for d in data[1:]:
+        if d.strip():
+            new_data.append(f"<p>{d}</p>")
+
+    # Write back using the original encoding
+    with open(chapter, 'w', encoding=detected_encoding) as f:
+        print(f"writing to {chapter.stem} with encoding {detected_encoding}")
+        f.write("".join(new_data))
