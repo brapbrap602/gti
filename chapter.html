@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter Navigation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .nav-buttons a {
+            padding: 10px 20px;
+            background: #0366d6;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .nav-buttons a:hover {
+            background: #0255b3;
+        }
+        .content {
+            margin: 40px 0;
+        }
+        #toc {
+            margin: 20px 0;
+        }
+        #toc a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        #toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <a href="#" id="prevBtn">Previous 10 Pages</a>
+        <a href="#" id="nextBtn">Next 10 Pages</a>
+    </div>
+
+    <div class="content">
+        <!-- Content will be loaded here -->
+    </div>
+
+    <div class="nav-buttons">
+        <a href="#" id="prevBtnBottom">Previous 10 Pages</a>
+        <a href="#" id="nextBtnBottom">Next 10 Pages</a>
+    </div>
+
+    <script>
+        // Add this at the beginning of both files' scripts
+        const chapters = Array.from({length: 2000}, (_, i) => `chapter_${i + 1}.html`);
+
+        // This will be populated with your chapter file names
+        const chapters = [];
+        const chaptersPerPage = 10;
+        let currentStartIndex = 0;
+
+        async function loadChapters(startIndex) {
+            const endIndex = Math.min(startIndex + chaptersPerPage, chapters.length);
+            const content = document.querySelector('.content');
+            content.innerHTML = '';
+
+            for (let i = startIndex; i < endIndex; i++) {
+                try {
+                    const response = await fetch(`chapters/${chapters[i]}`);
+                    const text = await response.text();
+                    const div = document.createElement('div');
+                    div.innerHTML = text;
+                    content.appendChild(div);
+                } catch (error) {
+                    console.error(`Error loading chapter ${chapters[i]}:`, error);
+                }
+            }
+        }
+
+        function updateNavigation() {
+            const prevBtns = document.querySelectorAll('#prevBtn, #prevBtnBottom');
+            const nextBtns = document.querySelectorAll('#nextBtn, #nextBtnBottom');
+
+            prevBtns.forEach(btn => {
+                btn.style.visibility = currentStartIndex > 0 ? 'visible' : 'hidden';
+                btn.onclick = () => {
+                    currentStartIndex = Math.max(0, currentStartIndex - chaptersPerPage);
+                    loadChapters(currentStartIndex);
+                    updateNavigation();
+                };
+            });
+
+            nextBtns.forEach(btn => {
+                btn.style.visibility = currentStartIndex + chaptersPerPage < chapters.length ? 'visible' : 'hidden';
+                btn.onclick = () => {
+                    currentStartIndex = Math.min(chapters.length - chaptersPerPage, currentStartIndex + chaptersPerPage);
+                    loadChapters(currentStartIndex);
+                    updateNavigation();
+                };
+            });
+        }
+
+        // Initialize navigation
+        updateNavigation();
+    </script>
+</body>
+</html>

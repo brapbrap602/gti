@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table of Contents</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .toc {
+            margin: 20px 0;
+        }
+        .toc a {
+            color: #0366d6;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Table of Contents</h1>
+    <div class="toc" id="toc">
+        <!-- TOC will be generated here -->
+    </div>
+
+    <script>
+            // Add this at the beginning of both files' scripts
+        const chapters = Array.from({length: 2000}, (_, i) => `chapter_${i + 1}.html`);
+        // This will be populated with your chapter file names
+        const chapters = [];
+        const chaptersPerPage = 10;
+
+        function generateTOC() {
+            const toc = document.getElementById('toc');
+
+            for (let i = 0; i < chapters.length; i += chaptersPerPage) {
+                const endIndex = Math.min(i + chaptersPerPage, chapters.length);
+                const link = document.createElement('a');
+                link.href = `chapter.html?start=${i}`;
+                link.textContent = `Chapters ${i + 1} - ${endIndex}`;
+                toc.appendChild(link);
+            }
+        }
+
+        // Generate TOC when page loads
+        generateTOC();
+    </script>
+</body>
+</html>
