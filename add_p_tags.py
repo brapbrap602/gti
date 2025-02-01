@@ -36,6 +36,56 @@ def main():
             print(f"writing to {chapter.stem} with encoding {detected_encoding}")
             f.write("".join(new_data))
 
-
+"""
+Dharma Treasure
+Ganyang crystal
+Dry sun quartz
+Dry sun crystal
+Dry yang quartz.
+dry yang crystal
+sun yang crystal
+Qianyang crystal
+Sun essence crystal
+Ganyang quartz
+Shadow guards
+Cloud artifact 
+Star disk
+Astrolabe 
+Cloud device
+Cloud disk 
+Cloud vessel
+Cloud tool
+Star disk cloud tool
+Ebony sword 
+Ebony Wood sword
+Ebony
+Foundation building stage
+Ziji
+Core formation
+Jindan stage
+Gold core
+Malignant spirit
+Malevolent spirit
+Devilish energy
+Malevolent qi
+demonic qi
+Yama banner
+Ten directions Yama banner
+Ten directions demon subjugation banner
+Asura banner
+Ten specters banner
+Ten directions Hades formation 
+Divine sense
+Divine consciousness 
+Spectre corpse
+Corpse fiend
+Corpse of evil
+Evil corpse 
+Ghoul corpse
+Corpse demon
+Savage corpse
+Ancient immortal battlefield
+Ancient celestial battlefield 
+"""
 if __name__ == "__main__":
     main()
