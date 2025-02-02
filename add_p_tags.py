@@ -23,15 +23,20 @@ def get_data(chapter):
     with open(chapter, encoding=detected_encoding, errors="replace") as f:
         data = f.read()
 
-    return data
+    return data, detected_encoding
 
 
 def main():
-    for chapter in CHAPTERS.iterdir():
-        data = get_data(chapter)
+    sorted_files = sorted(CHAPTERS.iterdir(), key=lambda f: f.stat().st_mtime, reverse=True)
+    for chapter in sorted_files:
+        data, detected_encoding = get_data(chapter)
 
         data = data.split("\n")
-        title = data[1]
+        try:
+            title = data[1]
+        except Exception:
+            print('err', chapter)
+            continue
         new_data = [f"<h1>{title}</h1>"]
         for d in data[1:]:
             if d.strip() and d.strip().lower() != title.strip().lower():
@@ -95,15 +100,4 @@ Ancient immortal battlefield
 Ancient celestial battlefield 
 """
 if __name__ == "__main__":
-    # main()
-    for chapter in CHAPTERS.iterdir():
-        if int(chapter.stem.split('_')[1]) < 315:
-            data = get_data(chapter)
-            ch_count = 0
-            data = data.split("<p>")
-            for d in data:
-                if "chapter" in d.lower():
-                    ch_count += 1
-
-            if ch_count > 1:
-                print(f"found {ch_count=} at {chapter}")
+    main()
