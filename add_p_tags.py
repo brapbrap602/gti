@@ -16,13 +16,19 @@ def get_encoding(chapter):
     return detected_encoding
 
 
+def get_data(chapter):
+    # Detect the file encoding
+    detected_encoding = get_encoding(chapter)
+    # Read using the detected encoding
+    with open(chapter, encoding=detected_encoding, errors="replace") as f:
+        data = f.read()
+
+    return data
+
+
 def main():
     for chapter in CHAPTERS.iterdir():
-        # Detect the file encoding
-        detected_encoding = get_encoding(chapter)
-        # Read using the detected encoding
-        with open(chapter, encoding=detected_encoding, errors="replace") as f:
-            data = f.read()
+        data = get_data(chapter)
 
         data = data.split("\n")
         title = data[1]
@@ -35,6 +41,7 @@ def main():
         with open(chapter, "w", encoding=detected_encoding, errors="replace") as f:
             print(f"writing to {chapter.stem} with encoding {detected_encoding}")
             f.write("".join(new_data))
+
 
 """
 Dharma Treasure
@@ -88,4 +95,15 @@ Ancient immortal battlefield
 Ancient celestial battlefield 
 """
 if __name__ == "__main__":
-    main()
+    # main()
+    for chapter in CHAPTERS.iterdir():
+        if int(chapter.stem.split('_')[1]) < 315:
+            data = get_data(chapter)
+            ch_count = 0
+            data = data.split("<p>")
+            for d in data:
+                if "chapter" in d.lower():
+                    ch_count += 1
+
+            if ch_count > 1:
+                print(f"found {ch_count=} at {chapter}")
