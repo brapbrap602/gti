@@ -17,9 +17,7 @@ def get_encoding(chapter):
 
 
 def get_data(chapter):
-    # Detect the file encoding
     detected_encoding = get_encoding(chapter)
-    # Read using the detected encoding
     with open(chapter, encoding=detected_encoding, errors="replace") as f:
         data = f.read()
 
