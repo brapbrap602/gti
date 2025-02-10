@@ -60,27 +60,34 @@
     </div>
 
     <script>
-        const chapters = Array.from({length: 2000}, (_, i) => `chapter_${i + 345}.html`);
+        const chapters = Array.from({length: 2000}, (_, i) => `chapter_${i + 500}.html`);
 
         const chaptersPerPage = 10;
         let currentStartIndex = 0;
 
-        async function loadChapters(startIndex) {
+        function loadChapters(startIndex) {
             const endIndex = Math.min(startIndex + chaptersPerPage, chapters.length);
             const content = document.querySelector('.content');
             content.innerHTML = '';
 
+            const fetchPromises = [];
+
             for (let i = startIndex; i < endIndex; i++) {
-                try {
-                    const response = await fetch(`chapters/${chapters[i]}`);
-                    const text = await response.text();
-                    const div = document.createElement('div');
-                    div.innerHTML = text;
-                    content.appendChild(div);
-                } catch (error) {
-                    console.error(`Error loading chapter ${chapters[i]}:`, error);
-                }
+                const promise = fetch(`chapters/${chapters[i]}`)
+                    .then(response => response.text())
+                    .then(text => {
+                        const div = document.createElement('div');
+                        div.innerHTML = text;
+                        content.appendChild(div);
+                    })
+                    .catch(error => {
+                        console.error(`Error loading chapter ${chapters[i]}:`, error);
+                    });
+
+                fetchPromises.push(promise);
             }
+
+            return Promise.all(fetchPromises);
         }
 
         function updateNavigation() {
