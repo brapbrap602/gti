@@ -61,7 +61,7 @@
 
     <script>
     // Configuration
-    const chapters = Array.from({length: 2200}, (_, i) => `chapter_${i + 530}.html`);
+    const chapters = Array.from({length: 2200}, (_, i) => `chapter_${i + 580}.html`);
     const chaptersPerPage = 10;
     let currentStartIndex = 0;
     let isLoading = false;
@@ -108,11 +108,6 @@
                     div.innerHTML = text;
                     div.setAttribute('data-chapter-index', i);
                     div.className = 'chapter-container';
-
-                    // Add chapter number for better navigation
-                    const chapterHeader = document.createElement('h2');
-                    chapterHeader.textContent = `Chapter ${i + 530}`;
-                    div.prepend(chapterHeader);
 
                     content.appendChild(div);
                 } catch (error) {
@@ -264,12 +259,6 @@
         background: #cc0000;
     }
 
-    .chapter-container {
-        margin: 20px 0;
-        padding: 20px;
-        border: 1px solid #e0e0e0;
-        border-radius: 4px;
-    }
 </style>
 </body>
 </html>
