@@ -25,7 +25,9 @@ def get_data(chapter):
 
 
 def main():
-    sorted_files = sorted(CHAPTERS.iterdir(), key=lambda f: f.stat().st_mtime, reverse=True)
+    sorted_files = sorted(
+        CHAPTERS.iterdir(), key=lambda f: f.stat().st_mtime, reverse=True
+    )
     for chapter in sorted_files:
         data, detected_encoding = get_data(chapter)
 
@@ -33,7 +35,7 @@ def main():
         try:
             title = data[1]
         except Exception:
-            print('err', chapter)
+            print("err", chapter)
             continue
         new_data = [f"<h1>{title}</h1>"]
         for d in data[1:]:
