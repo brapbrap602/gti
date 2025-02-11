@@ -60,60 +60,216 @@
     </div>
 
     <script>
-        const chapters = Array.from({length: 2000}, (_, i) => `chapter_${i + 500}.html`);
+    // Configuration
+    const chapters = Array.from({length: 2200}, (_, i) => `chapter_${i + 530}.html`);
+    const chaptersPerPage = 10;
+    let currentStartIndex = 0;
+    let isLoading = false;
 
-        const chaptersPerPage = 10;
-        let currentStartIndex = 0;
+    // Loading state management
+    function setLoadingState(loading) {
+        isLoading = loading;
+        document.querySelectorAll('#prevBtn, #prevBtnBottom, #nextBtn, #nextBtnBottom')
+            .forEach(btn => btn.disabled = loading);
 
-        function loadChapters(startIndex) {
-            const endIndex = Math.min(startIndex + chaptersPerPage, chapters.length);
-            const content = document.querySelector('.content');
+        const loadingIndicator = document.querySelector('.loading-indicator') ||
+            (() => {
+                const div = document.createElement('div');
+                div.className = 'loading-indicator';
+                div.textContent = 'Loading chapters...';
+                return div;
+            })();
+
+        if (loading) {
+            document.querySelector('.content').prepend(loadingIndicator);
+        } else {
+            loadingIndicator.remove();
+        }
+    }
+
+    // Enhanced chapter loading with progress tracking
+    async function loadChapters(startIndex) {
+        if (isLoading) return; // Prevent multiple simultaneous loads
+
+        const endIndex = Math.min(startIndex + chaptersPerPage, chapters.length);
+        const content = document.querySelector('.content');
+
+        try {
+            setLoadingState(true);
             content.innerHTML = '';
 
-            const fetchPromises = [];
-
             for (let i = startIndex; i < endIndex; i++) {
-                const promise = fetch(`chapters/${chapters[i]}`)
-                    .then(response => response.text())
-                    .then(text => {
-                        const div = document.createElement('div');
-                        div.innerHTML = text;
-                        content.appendChild(div);
-                    })
-                    .catch(error => {
-                        console.error(`Error loading chapter ${chapters[i]}:`, error);
-                    });
+                try {
+                    const response = await fetch(`chapters/${chapters[i]}`);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-                fetchPromises.push(promise);
+                    const text = await response.text();
+                    const div = document.createElement('div');
+                    div.innerHTML = text;
+                    div.setAttribute('data-chapter-index', i);
+                    div.className = 'chapter-container';
+
+                    // Add chapter number for better navigation
+                    const chapterHeader = document.createElement('h2');
+                    chapterHeader.textContent = `Chapter ${i + 530}`;
+                    div.prepend(chapterHeader);
+
+                    content.appendChild(div);
+                } catch (error) {
+                    console.error(`Error loading chapter ${chapters[i]}:`, error);
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'error-message';
+                    errorDiv.innerHTML = `
+                        <h3>Error Loading Chapter ${i + 530}</h3>
+                        <p>Failed to load chapter. Please try again later.</p>
+                        <button onclick="retryChapter(${i})">Retry</button>
+                    `;
+                    errorDiv.setAttribute('data-chapter-index', i);
+                    content.appendChild(errorDiv);
+                }
             }
-
-            return Promise.all(fetchPromises);
+        } catch (error) {
+            console.error('Error in chapter loading process:', error);
+            content.innerHTML = '<div class="error-message">Failed to load chapters. Please refresh the page.</div>';
+        } finally {
+            setLoadingState(false);
+            // Scroll to top after loading new chapters
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
+    }
 
-        function updateNavigation() {
-            const prevBtns = document.querySelectorAll('#prevBtn, #prevBtnBottom');
-            const nextBtns = document.querySelectorAll('#nextBtn, #nextBtnBottom');
+    // Retry loading a specific chapter
+    async function retryChapter(index) {
+        const errorDiv = document.querySelector(`[data-chapter-index="${index}"]`);
+        if (!errorDiv) return;
 
-            prevBtns.forEach(btn => {
-                btn.style.visibility = currentStartIndex > 0 ? 'visible' : 'hidden';
-                btn.onclick = () => {
-                    currentStartIndex = Math.max(0, currentStartIndex - chaptersPerPage);
-                    loadChapters(currentStartIndex);
-                    updateNavigation();
-                };
-            });
+        try {
+            errorDiv.className = 'loading';
+            errorDiv.textContent = 'Retrying...';
 
-            nextBtns.forEach(btn => {
-                btn.style.visibility = currentStartIndex + chaptersPerPage < chapters.length ? 'visible' : 'hidden';
-                btn.onclick = () => {
-                    currentStartIndex = Math.min(chapters.length - chaptersPerPage, currentStartIndex + chaptersPerPage);
-                    loadChapters(currentStartIndex);
-                    updateNavigation();
-                };
-            });
+            const response = await fetch(`chapters/${chapters[index]}`);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+            const text = await response.text();
+            const div = document.createElement('div');
+            div.innerHTML = text;
+            div.setAttribute('data-chapter-index', index);
+            div.className = 'chapter-container';
+
+            const chapterHeader = document.createElement('h2');
+            chapterHeader.textContent = `Chapter ${index + 530}`;
+            div.prepend(chapterHeader);
+
+            errorDiv.replaceWith(div);
+        } catch (error) {
+            console.error(`Retry failed for chapter ${chapters[index]}:`, error);
+            errorDiv.className = 'error-message';
+            errorDiv.innerHTML = `
+                <h3>Error Loading Chapter ${index + 530}</h3>
+                <p>Retry failed. Please try again later.</p>
+                <button onclick="retryChapter(${index})">Retry Again</button>
+            `;
         }
+    }
 
+    // Enhanced navigation with debouncing
+    function updateNavigation() {
+        const prevBtns = document.querySelectorAll('#prevBtn, #prevBtnBottom');
+        const nextBtns = document.querySelectorAll('#nextBtn, #nextBtnBottom');
+
+        prevBtns.forEach(btn => {
+            btn.style.visibility = currentStartIndex > 0 ? 'visible' : 'hidden';
+            btn.disabled = isLoading;
+            btn.onclick = async () => {
+                if (isLoading) return;
+                currentStartIndex = Math.max(0, currentStartIndex - chaptersPerPage);
+                await loadChapters(currentStartIndex);
+                updateNavigation();
+                updateURL();
+            };
+        });
+
+        nextBtns.forEach(btn => {
+            btn.style.visibility = currentStartIndex + chaptersPerPage < chapters.length ? 'visible' : 'hidden';
+            btn.disabled = isLoading;
+            btn.onclick = async () => {
+                if (isLoading) return;
+                currentStartIndex = Math.min(chapters.length - chaptersPerPage, currentStartIndex + chaptersPerPage);
+                await loadChapters(currentStartIndex);
+                updateNavigation();
+                updateURL();
+            };
+        });
+    }
+
+    // URL management for better navigation
+    function updateURL() {
+        const params = new URLSearchParams(window.location.search);
+        params.set('page', Math.floor(currentStartIndex / chaptersPerPage) + 1);
+        window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
+    }
+
+    // Initialize from URL parameters
+    function initializeFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const page = parseInt(params.get('page')) || 1;
+        currentStartIndex = (page - 1) * chaptersPerPage;
+        loadChapters(currentStartIndex);
         updateNavigation();
-    </script>
+    }
+
+    // Add keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (isLoading) return;
+
+        if (e.key === 'ArrowLeft' && currentStartIndex > 0) {
+            document.querySelector('#prevBtn').click();
+        } else if (e.key === 'ArrowRight' && currentStartIndex + chaptersPerPage < chapters.length) {
+            document.querySelector('#nextBtn').click();
+        }
+    });
+
+    // Initialize the page
+    initializeFromURL();
+</script>
+
+<style>
+    .loading-indicator {
+        padding: 20px;
+        text-align: center;
+        background: #f5f5f5;
+        border-radius: 4px;
+        margin: 10px 0;
+    }
+
+    .error-message {
+        padding: 20px;
+        background: #fff3f3;
+        border: 1px solid #ffcdd2;
+        border-radius: 4px;
+        margin: 10px 0;
+    }
+
+    .error-message button {
+        margin-top: 10px;
+        padding: 5px 15px;
+        background: #ff4444;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .error-message button:hover {
+        background: #cc0000;
+    }
+
+    .chapter-container {
+        margin: 20px 0;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+    }
+</style>
 </body>
 </html>
