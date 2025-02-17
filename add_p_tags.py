@@ -1,3 +1,4 @@
+import time
 from pathlib import Path
 import chardet
 from concurrent.futures import ThreadPoolExecutor
@@ -38,15 +39,17 @@ def process_chapter(chapter):
     # Write back using the original encoding
     with open(chapter, "w", encoding=detected_encoding, errors="replace") as f:
         print(f"writing to {chapter.stem} with encoding {detected_encoding}")
-        f.write("".join(new_data))
+        f.write("".join(new_data).replace("Qin桑", "Qin Sang").replace("Qin桑", "Qin Sang"))
 
 
 def main():
-    sorted_files = sorted(
-        CHAPTERS.iterdir(), key=lambda f: f.stat().st_mtime, reverse=True
-    )
+    five_minutes_ago = time.time() - 300  # 5 minutes in seconds
+    recent_files = [
+        f for f in CHAPTERS.iterdir() if f.stat().st_mtime >= five_minutes_ago
+    ]
+    print(f"Found {len(recent_files)}")
     with ThreadPoolExecutor() as executor:
-        executor.map(process_chapter, sorted_files)
+        executor.map(process_chapter, recent_files)
 
 
 if __name__ == "__main__":
