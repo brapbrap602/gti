@@ -43,7 +43,7 @@ def process_chapter(chapter):
 
 
 def main():
-    five_minutes_ago = time.time() - 300  # 5 minutes in seconds
+    five_minutes_ago = time.time() - 300000  # 5 minutes in seconds
     recent_files = [
         f for f in CHAPTERS.iterdir() if f.stat().st_mtime >= five_minutes_ago
     ]
