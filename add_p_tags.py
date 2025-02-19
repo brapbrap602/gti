@@ -27,18 +27,23 @@ def get_data(chapter):
 def process_chapter(chapter):
     data, detected_encoding = get_data(chapter)
     data = data.split("\n")
+    title = None
     try:
-        title = data[1]
+        for d in (data[1], data[0]):
+            if d.strip() and 'chapter' in d.lower():
+                title = d
     except Exception:
         print("err", chapter)
         return  # Skip processing this chapter
+    if not title:
+        raise SystemExit
     new_data = [f"<h1>{title}</h1>"]
     for d in data[1:]:
         if d.strip() and d.strip().lower() != title.strip().lower():
             new_data.append(f"<p>{d}</p>")
 
     with open(chapter, "w", encoding=detected_encoding, errors="replace") as f:
-        print(f"writing to {chapter.stem} with encoding {detected_encoding}")
+        print(f"writing to {chapter.stem}")
         f.write("".join(new_data).replace("Qin桑", "Qin Sang").replace("Qin桑", "Qin Sang"))
 
 
@@ -50,7 +55,7 @@ def main():
     print(f"Found {len(recent_files)}")
     with ThreadPoolExecutor() as executor:
         executor.map(process_chapter, recent_files)
-
+    # process_chapter(Path(r'C:\Users\HT\Documents\code\github_pages\chapters\chapter_1501.html'))
 
 if __name__ == "__main__":
     main()
