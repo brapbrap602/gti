@@ -36,14 +36,14 @@ def process_chapter(chapter):
     for d in data[1:]:
         if d.strip() and d.strip().lower() != title.strip().lower():
             new_data.append(f"<p>{d}</p>")
-    # Write back using the original encoding
+
     with open(chapter, "w", encoding=detected_encoding, errors="replace") as f:
         print(f"writing to {chapter.stem} with encoding {detected_encoding}")
         f.write("".join(new_data).replace("Qin桑", "Qin Sang").replace("Qin桑", "Qin Sang"))
 
 
 def main():
-    five_minutes_ago = time.time() - 300000  # 5 minutes in seconds
+    five_minutes_ago = time.time() - 30000  # 5 minutes in seconds
     recent_files = [
         f for f in CHAPTERS.iterdir() if f.stat().st_mtime >= five_minutes_ago
     ]
