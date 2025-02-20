@@ -32,11 +32,12 @@ def process_chapter(chapter):
         for d in (data[1], data[0]):
             if d.strip() and 'chapter' in d.lower():
                 title = d
+            else:
+                title = data[0]
     except Exception:
         print("err", chapter)
         return  # Skip processing this chapter
-    if not title:
-        raise SystemExit
+
     new_data = [f"<h1>{title}</h1>"]
     for d in data[1:]:
         if d.strip() and d.strip().lower() != title.strip().lower():
@@ -48,14 +49,15 @@ def process_chapter(chapter):
 
 
 def main():
-    five_minutes_ago = time.time() - 300000  # 5 minutes in seconds
+    five_minutes_ago = time.time() - 300000
     recent_files = [
         f for f in CHAPTERS.iterdir() if f.stat().st_mtime >= five_minutes_ago
     ]
     print(f"Found {len(recent_files)}")
     with ThreadPoolExecutor() as executor:
         executor.map(process_chapter, recent_files)
-    # process_chapter(Path(r'C:\Users\HT\Documents\code\github_pages\chapters\chapter_1501.html'))
+    # p = r"C:\Users\HT\Documents\code\github_pages\chapters\chapter_1410.html"
+    # process_chapter(Path(p))
 
 if __name__ == "__main__":
     main()
