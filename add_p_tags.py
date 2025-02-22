@@ -50,10 +50,12 @@ def process_chapter(chapter):
 
 
 def main():
-    five_minutes_ago = time.time() - 300000
+    five_minutes_ago = time.time() - 50000
     recent_files = [
         f for f in CHAPTERS.iterdir() if f.stat().st_mtime >= five_minutes_ago
     ]
+    # for f in recent_files:
+    #     process_chapter(f)
     print(f"Found {len(recent_files)}")
     with ThreadPoolExecutor() as executor:
         executor.map(process_chapter, recent_files)
