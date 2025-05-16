@@ -13,7 +13,7 @@
     --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     --font-serif: 'Georgia', 'Times New Roman', Times, serif; /* For dropcaps or specific elements */
   
-    --content-max-width: 800px;
+    --content-max-width: 1000px;
     --base-spacing: 1rem; /* Approx 16px */
   }
   
