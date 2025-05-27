@@ -1,214 +1,216 @@
 /* style.css */
 
 :root {
-    --bg-color: #181a1b; /* Slightly warmer dark gray */
-    --bg-color-light: #282c2e; /* Lighter surface for TOC */
-    --text-color: #dcdcdc; /* Light gray for text */
-    --heading-color: #ffffff; /* White for main headings */
-    --link-color: #61afef; /* Clear, accessible blue for links */
-    --link-hover-color: #82c0ff; /* Brighter blue for hover */
-    --border-color: #3e4446; /* Subtle border color */
-    --accent-color: #98c379; /* A calm green for accents (dropcap, TOC title) */
-  
-    --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-    --font-serif: 'Georgia', 'Times New Roman', Times, serif; /* For dropcaps or specific elements */
-  
-    --content-max-width: 1000px;
-    --base-spacing: 1rem; /* Approx 16px */
-  }
-  
-  /* General Reset and Base Styles */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html {
-    scroll-behavior: smooth; /* For smooth scrolling to anchors */
-    font-size: 100%; /* Base font size */
-  }
-  
-  body {
-    font-family: var(--font-primary);
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.7; /* Improved readability */
-    padding: calc(var(--base-spacing) * 1.5); /* Padding around the whole page content */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center the main content blocks */
-  }
-  
-  /* Optional: Main Book Title (if added to HTML) */
-  .book-title {
-    font-size: 2.8em;
-    font-weight: 700;
-    text-align: center;
-    color: var(--heading-color);
-    margin-bottom: calc(var(--base-spacing) * 2.5);
-    width: 100%;
-    max-width: var(--content-max-width);
-  }
-  
-  /* Table of Contents Container */
-  #calibre_link-0 {
-    background-color: var(--bg-color-light);
-    padding: calc(var(--base-spacing) * 1.5) calc(var(--base-spacing) * 2);
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    max-width: var(--content-max-width);
-    margin-bottom: calc(var(--base-spacing) * 3); /* Space after TOC */
-  }
-  
-  /* "Table of Contents" Heading */
-  h2.calibre1 {
-    font-size: 1.8em;
-    color: var(--accent-color); /* Accent color for TOC title */
-    margin-top: 0;
-    margin-bottom: calc(var(--base-spacing) * 1.2);
-    padding-bottom: calc(var(--base-spacing) * 0.6);
-    border-bottom: 2px solid var(--border-color);
-    font-weight: 600;
-  }
-  
-  ul.level {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  li.calibre2 {
-    margin-bottom: calc(var(--base-spacing) * 0.6);
-  }
-  
-  li.calibre2:last-child {
-    margin-bottom: 0;
-  }
-  
-  /* TOC Links */
-  a.pcalibre, a.calibre3 {
-    color: var(--link-color);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease-in-out, padding-left 0.2s ease-in-out;
-    display: block;
-    padding: calc(var(--base-spacing) * 0.3) 0;
-    border-radius: 4px; /* Subtle rounding for hover state if padding added */
-  }
-  
-  a.pcalibre:hover, a.calibre3:hover,
-  a.pcalibre:focus, a.calibre3:focus {
-    color: var(--link-hover-color);
-    padding-left: calc(var(--base-spacing) * 0.5); /* Indent on hover/focus */
-    background-color: rgba(255, 255, 255, 0.03); /* Very subtle hover background */
-  }
-  
-  /* Chapter Container (div.calibre with ID calibre_link-XXX) */
-  div.calibre[id^="calibre_link-"]:not(#calibre_link-0) {
-    width: 100%;
-    max-width: var(--content-max-width);
-    margin-bottom: calc(var(--base-spacing) * 2.5); /* Space below each chapter */
-    padding-top: calc(var(--base-spacing) * 2);   /* Padding above chapter title, below border */
-    border-top: 1px dashed var(--border-color);
-    scroll-margin-top: calc(var(--base-spacing) * 1.5); /* Offset for anchor links */
-  }
-  
-  /* Remove border-top and adjust padding for the first chapter if it immediately follows the TOC */
-  #calibre_link-0 + div.calibre[id^="calibre_link-"] {
+  --bg-color: #181a1b; /* Slightly warmer dark gray */
+  --bg-color-light: #282c2e; /* Lighter surface for TOC */
+  --text-color: #dcdcdc; /* Light gray for text */
+  --heading-color: #ffffff; /* White for main headings */
+  --link-color: #61afef; /* Clear, accessible blue for links */
+  --link-hover-color: #82c0ff; /* Brighter blue for hover */
+  --border-color: #3e4446; /* Subtle border color */
+  --accent-color: #98c379; /* A calm green for accents (dropcap, TOC title) */
+
+  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-serif: 'Georgia', 'Times New Roman', Times, serif; /* For dropcaps or specific elements */
+
+  --content-max-width: 1000px;
+  --base-spacing: 1rem; /* Approx 16px */
+}
+
+/* General Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* For smooth scrolling to anchors */
+  font-size: 100%; /* Base font size */
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.7; /* Improved readability */
+  padding: calc(var(--base-spacing) * 1.5); /* Padding around the whole page content */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the main content blocks */
+}
+
+/* Optional: Main Book Title (if added to HTML) */
+.book-title {
+  font-size: 2.8em;
+  font-weight: 700;
+  text-align: center;
+  color: var(--heading-color);
+  margin-bottom: calc(var(--base-spacing) * 2.5);
+  width: 100%;
+  max-width: var(--content-max-width);
+}
+
+/* Table of Contents Container */
+#calibre_link-0 {
+  background-color: var(--bg-color-light);
+  padding: calc(var(--base-spacing) * 1.5) calc(var(--base-spacing) * 2);
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-bottom: calc(var(--base-spacing) * 3); /* Space after TOC */
+}
+
+/* "Table of Contents" Heading */
+h2.calibre1 {
+  font-size: 1.8em;
+  color: var(--accent-color); /* Accent color for TOC title */
+  margin-top: 0;
+  margin-bottom: calc(var(--base-spacing) * 1.2);
+  padding-bottom: calc(var(--base-spacing) * 0.6);
+  border-bottom: 2px solid var(--border-color);
+  font-weight: 600;
+}
+
+ul.level {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li.calibre2 {
+  margin-bottom: calc(var(--base-spacing) * 0.6);
+}
+
+li.calibre2:last-child {
+  margin-bottom: 0;
+}
+
+/* TOC Links */
+a.pcalibre, a.calibre3 {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out, padding-left 0.2s ease-in-out;
+  display: block;
+  padding: calc(var(--base-spacing) * 0.3) 0;
+  border-radius: 4px; /* Subtle rounding for hover state if padding added */
+}
+
+a.pcalibre:hover, a.calibre3:hover,
+a.pcalibre:focus, a.calibre3:focus {
+  color: var(--link-hover-color);
+  padding-left: calc(var(--base-spacing) * 0.5); /* Indent on hover/focus */
+  background-color: rgba(255, 255, 255, 0.03); /* Very subtle hover background */
+}
+
+/* Chapter Container (div.calibre with ID calibre_link-XXX) */
+div.calibre[id^="calibre_link-"]:not(#calibre_link-0) {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-bottom: calc(var(--base-spacing) * 2.5); /* Space below each chapter */
+  padding-top: calc(var(--base-spacing) * 2);   /* Padding above chapter title, below border */
+  border-top: 1px dashed var(--border-color);
+  scroll-margin-top: calc(var(--base-spacing) * 1.5); /* Offset for anchor links */
+}
+
+/* Remove border-top and adjust padding for the first chapter if it immediately follows the TOC */
+#calibre_link-0 + div.calibre[id^="calibre_link-"] {
+  border-top: none;
+  padding-top: 0;
+}
+/* If there's a .book-title h1 before TOC, this selector will still work for TOC + first chapter */
+.book-title + #calibre_link-0 + div.calibre[id^="calibre_link-"] {
     border-top: none;
     padding-top: 0;
-  }
-  /* If there's a .book-title h1 before TOC, this selector will still work for TOC + first chapter */
-  .book-title + #calibre_link-0 + div.calibre[id^="calibre_link-"] {
-      border-top: none;
-      padding-top: 0;
-  }
-  
-  
-  /* Inner div within chapter sections */
-  .calibre4 {
-    /* Typically no specific styling needed if parent handles layout */
-  }
-  
-  /* Chapter Titles */
-  h2.calibre5 {
-    font-size: 2.1em;
-    color: var(--heading-color);
-    font-weight: 600;
-    margin-top: 0; /* Space is handled by parent's padding-top */
-    margin-bottom: calc(var(--base-spacing) * 1.5);
-    line-height: 1.3;
-    /* text-align: center; */ /* Optional: center chapter titles */
-  }
-  
-  /* Paragraphs */
-  p.calibre6, p.calibre7 {
-    margin-bottom: calc(var(--base-spacing) * 1.1);
-    font-size: 1em; /* Standard paragraph font size */
-    /* text-align: justify; */ /* Can be harder to read; left is often better online */
-    /* hyphens: auto; */ /* Use with text-align: justify */
-  }
-  
-  p.calibre6:last-child, p.calibre7:last-child {
-      margin-bottom: 0;
-  }
-  
-  
-  /* Clearfix for paragraph containing the drop cap to ensure proper flow */
-  .calibre4 > p:first-of-type::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-  
-  /* General Links (if any appear outside of ToC, e.g., in footnotes) */
-  a {
-    color: var(--link-color);
-    text-decoration: none;
-  }
-  
-  a:hover, a:focus {
-    color: var(--link-hover-color);
-    text-decoration: underline;
-  }
-  
-  /* Custom Scrollbar (for WebKit/Blink browsers like Chrome, Edge, Safari) */
-  ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: var(--bg-color); /* Track same as body background */
-    border-radius: 10px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--border-color);
-    border-radius: 10px;
-    border: 3px solid var(--bg-color); /* Creates padding around thumb */
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #555e60; /* Slightly lighter on hover */
-  }
-  
-  /* Custom Scrollbar (for Firefox - newer versions) */
-  html {
-    scrollbar-width: thin;
-    scrollbar-color: var(--border-color) var(--bg-color); /* thumb and track */
-  }
-  
-  /* A small touch for horizontal separators like '***' if they are in their own paragraph */
-  /* This is a heuristic. If '***' is always in a p.calibre7 (for example) and is short: */
-  /* If a paragraph is truly just '***', it might be short. Example: */
-  /* This is very specific and might not always work.
-     If paragraphs containing '***' are always short:
-  p.calibre7:only-child { }
-  */
-  /* For the given HTML, <p class="calibre7">***</p>, just let it be styled as a normal p.calibre7.
-     If you want to specifically style it, add a class to that paragraph in the HTML:
-     e.g., <p class="calibre7 text-separator">***</p>
-     Then style .text-separator { text-align: center; color: var(--border-color); letter-spacing: 0.2em; margin: 2em 0; }
-  */
+}
+
+
+/* Inner div within chapter sections */
+.calibre4 {
+  /* Typically no specific styling needed if parent handles layout */
+}
+
+/* Chapter Titles */
+h2.calibre5, h2.subtitle { /* MODIFIED SELECTOR to include h2.subtitle */
+  font-size: 2.1em;
+  color: var(--heading-color);
+  font-weight: 600;
+  margin-top: 0; /* Space is handled by parent's padding-top */
+  margin-bottom: calc(var(--base-spacing) * 1.5);
+  line-height: 1.3;
+  /* text-align: center; */ /* Optional: center chapter titles */
+}
+
+/* Paragraphs */
+p.calibre6, p.calibre7, p.calibre2 { /* MODIFIED SELECTOR to include p.calibre2 */
+  margin-bottom: calc(var(--base-spacing) * 1.1);
+  font-size: 1em; /* Standard paragraph font size */
+  /* text-align: justify; */ /* Can be harder to read; left is often better online */
+  /* hyphens: auto; */ /* Use with text-align: justify */
+}
+
+p.calibre6:last-child, p.calibre7:last-child, p.calibre2:last-child { /* MODIFIED SELECTOR to include p.calibre2 */
+    margin-bottom: 0;
+}
+
+
+/* Clearfix for paragraph containing the drop cap to ensure proper flow */
+/* MODIFIED to handle new structure as well */
+.calibre4 > p:first-of-type::after,
+div.calibre[id^="calibre_link-"]:not(#calibre_link-0) div.calibre1 > p.calibre2:first-of-type::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* General Links (if any appear outside of ToC, e.g., in footnotes) */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* Custom Scrollbar (for WebKit/Blink browsers like Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color); /* Track same as body background */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 10px;
+  border: 3px solid var(--bg-color); /* Creates padding around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555e60; /* Slightly lighter on hover */
+}
+
+/* Custom Scrollbar (for Firefox - newer versions) */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) var(--bg-color); /* thumb and track */
+}
+
+/* A small touch for horizontal separators like '***' if they are in their own paragraph */
+/* This is a heuristic. If '***' is always in a p.calibre7 (for example) and is short: */
+/* If a paragraph is truly just '***', it might be short. Example: */
+/* This is very specific and might not always work.
+   If paragraphs containing '***' are always short:
+p.calibre7:only-child { }
+*/
+/* For the given HTML, <p class="calibre7">***</p>, just let it be styled as a normal p.calibre7.
+   If you want to specifically style it, add a class to that paragraph in the HTML:
+   e.g., <p class="calibre7 text-separator">***</p>
+   Then style .text-separator { text-align: center; color: var(--border-color); letter-spacing: 0.2em; margin: 2em 0; }
+*/
