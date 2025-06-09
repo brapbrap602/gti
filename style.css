@@ -1,216 +1,239 @@
-/* style.css */
-
-:root {
-  --bg-color: #181a1b; /* Slightly warmer dark gray */
-  --bg-color-light: #282c2e; /* Lighter surface for TOC */
-  --text-color: #dcdcdc; /* Light gray for text */
-  --heading-color: #ffffff; /* White for main headings */
-  --link-color: #61afef; /* Clear, accessible blue for links */
-  --link-hover-color: #82c0ff; /* Brighter blue for hover */
-  --border-color: #3e4446; /* Subtle border color */
-  --accent-color: #98c379; /* A calm green for accents (dropcap, TOC title) */
-
-  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  --font-serif: 'Georgia', 'Times New Roman', Times, serif; /* For dropcaps or specific elements */
-
-  --content-max-width: 1000px;
-  --base-spacing: 1rem; /* Approx 16px */
-}
-
-/* General Reset and Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* --- Dark Mode Book Reader CSS --- */
 
 html {
-  scroll-behavior: smooth; /* For smooth scrolling to anchors */
-  font-size: 100%; /* Base font size */
+    font-size: 16px; /* Base for rem units */
+    box-sizing: border-box;
+    /* Dark scrollbar for Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #4F5663 #22252A;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
 }
 
 body {
-  font-family: var(--font-primary);
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  line-height: 1.7; /* Improved readability */
-  padding: calc(var(--base-spacing) * 1.5); /* Padding around the whole page content */
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center the main content blocks */
+    background-color: #140f0f; /* Dark, but not pitch black */
+    color: #D4D4D4;           /* Off-white text for readability */
+    font-family: 'Georgia', Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", serif;
+    line-height: 1.7;         /* Improved line spacing */
+    margin: 0;
+    padding: 25px 30px;       /* Overall padding */
+    max-width: 900px;         /* Max width for the content area for better readability */
+    margin-left: auto;        /* Center content area */
+    margin-right: auto;       /* Center content area */
 }
 
-/* Optional: Main Book Title (if added to HTML) */
-.book-title {
-  font-size: 2.8em;
-  font-weight: 700;
-  text-align: center;
-  color: var(--heading-color);
-  margin-bottom: calc(var(--base-spacing) * 2.5);
-  width: 100%;
-  max-width: var(--content-max-width);
-}
-
-/* Table of Contents Container */
-#calibre_link-0 {
-  background-color: var(--bg-color-light);
-  padding: calc(var(--base-spacing) * 1.5) calc(var(--base-spacing) * 2);
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  max-width: var(--content-max-width);
-  margin-bottom: calc(var(--base-spacing) * 3); /* Space after TOC */
-}
-
-/* "Table of Contents" Heading */
-h2.calibre1 {
-  font-size: 1.8em;
-  color: var(--accent-color); /* Accent color for TOC title */
-  margin-top: 0;
-  margin-bottom: calc(var(--base-spacing) * 1.2);
-  padding-bottom: calc(var(--base-spacing) * 0.6);
-  border-bottom: 2px solid var(--border-color);
-  font-weight: 600;
-}
-
-ul.level {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-li.calibre2 {
-  margin-bottom: calc(var(--base-spacing) * 0.6);
-}
-
-li.calibre2:last-child {
-  margin-bottom: 0;
-}
-
-/* TOC Links */
-a.pcalibre, a.calibre3 {
-  color: var(--link-color);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease-in-out, padding-left 0.2s ease-in-out;
-  display: block;
-  padding: calc(var(--base-spacing) * 0.3) 0;
-  border-radius: 4px; /* Subtle rounding for hover state if padding added */
-}
-
-a.pcalibre:hover, a.calibre3:hover,
-a.pcalibre:focus, a.calibre3:focus {
-  color: var(--link-hover-color);
-  padding-left: calc(var(--base-spacing) * 0.5); /* Indent on hover/focus */
-  background-color: rgba(255, 255, 255, 0.03); /* Very subtle hover background */
-}
-
-/* Chapter Container (div.calibre with ID calibre_link-XXX) */
-div.calibre[id^="calibre_link-"]:not(#calibre_link-0) {
-  width: 100%;
-  max-width: var(--content-max-width);
-  margin-bottom: calc(var(--base-spacing) * 2.5); /* Space below each chapter */
-  padding-top: calc(var(--base-spacing) * 2);   /* Padding above chapter title, below border */
-  border-top: 1px dashed var(--border-color);
-  scroll-margin-top: calc(var(--base-spacing) * 1.5); /* Offset for anchor links */
-}
-
-/* Remove border-top and adjust padding for the first chapter if it immediately follows the TOC */
-#calibre_link-0 + div.calibre[id^="calibre_link-"] {
-  border-top: none;
-  padding-top: 0;
-}
-/* If there's a .book-title h1 before TOC, this selector will still work for TOC + first chapter */
-.book-title + #calibre_link-0 + div.calibre[id^="calibre_link-"] {
-    border-top: none;
-    padding-top: 0;
-}
-
-
-/* Inner div within chapter sections */
-.calibre4 {
-  /* Typically no specific styling needed if parent handles layout */
-}
-
-/* Chapter Titles */
-h2.calibre5, h2.subtitle { /* MODIFIED SELECTOR to include h2.subtitle */
-  font-size: 2.1em;
-  color: var(--heading-color);
-  font-weight: 600;
-  margin-top: 0; /* Space is handled by parent's padding-top */
-  margin-bottom: calc(var(--base-spacing) * 1.5);
-  line-height: 1.3;
-  /* text-align: center; */ /* Optional: center chapter titles */
-}
-
-/* Paragraphs */
-p.calibre6, p.calibre7, p.calibre2 { /* MODIFIED SELECTOR to include p.calibre2 */
-  margin-bottom: calc(var(--base-spacing) * 1.1);
-  font-size: 1em; /* Standard paragraph font size */
-  /* text-align: justify; */ /* Can be harder to read; left is often better online */
-  /* hyphens: auto; */ /* Use with text-align: justify */
-}
-
-p.calibre6:last-child, p.calibre7:last-child, p.calibre2:last-child { /* MODIFIED SELECTOR to include p.calibre2 */
-    margin-bottom: 0;
-}
-
-
-/* Clearfix for paragraph containing the drop cap to ensure proper flow */
-/* MODIFIED to handle new structure as well */
-.calibre4 > p:first-of-type::after,
-div.calibre[id^="calibre_link-"]:not(#calibre_link-0) div.calibre1 > p.calibre2:first-of-type::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-/* General Links (if any appear outside of ToC, e.g., in footnotes) */
-a {
-  color: var(--link-color);
-  text-decoration: none;
-}
-
-a:hover, a:focus {
-  color: var(--link-hover-color);
-  text-decoration: underline;
-}
-
-/* Custom Scrollbar (for WebKit/Blink browsers like Chrome, Edge, Safari) */
+/* --- Webkit (Chrome, Safari, Edge) Scrollbar Styling --- */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+    width: 12px;
+    height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-color); /* Track same as body background */
-  border-radius: 10px;
+    background: #22252A; /* Scrollbar track to match body */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--border-color);
-  border-radius: 10px;
-  border: 3px solid var(--bg-color); /* Creates padding around thumb */
+    background-color: #4F5663; /* A slightly lighter, muted color for the thumb */
+    border-radius: 6px;
+    border: 3px solid #22252A; /* Creates padding around thumb, matches track */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #555e60; /* Slightly lighter on hover */
+    background-color: #6A7385;
 }
 
-/* Custom Scrollbar (for Firefox - newer versions) */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-color) var(--bg-color); /* thumb and track */
+
+/* --- Header (Book Title & Author) --- */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #3E4451; /* Subtle separator line */
 }
 
-/* A small touch for horizontal separators like '***' if they are in their own paragraph */
-/* This is a heuristic. If '***' is always in a p.calibre7 (for example) and is short: */
-/* If a paragraph is truly just '***', it might be short. Example: */
-/* This is very specific and might not always work.
-   If paragraphs containing '***' are always short:
-p.calibre7:only-child { }
-*/
-/* For the given HTML, <p class="calibre7">***</p>, just let it be styled as a normal p.calibre7.
-   If you want to specifically style it, add a class to that paragraph in the HTML:
-   e.g., <p class="calibre7 text-separator">***</p>
-   Then style .text-separator { text-align: center; color: var(--border-color); letter-spacing: 0.2em; margin: 2em 0; }
-*/
+.header h1.calibre3 { /* Book Title */
+    font-size: 2.8rem;
+    color: #FFFFFF; /* Pure white for main title */
+    margin-top: 0;
+    margin-bottom: 0.3em;
+    font-weight: 600;
+}
+
+.header h3.calibre4 { /* Author */
+    font-size: 1.3rem;
+    color: #A0A8B8; /* Lighter, muted color for author */
+    margin-top: 0;
+    margin-bottom: 0;
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* --- Table of Contents (TOC) --- */
+nav[type="toc"] {
+    background-color: #1D2025; /* Slightly darker than body for distinction */
+    padding: 20px 25px;
+    margin-bottom: 50px;
+    border-radius: 8px;
+    border: 1px solid #3E4451;
+}
+
+nav[type="toc"] h2.calibre8 { /* TOC Title */
+    font-size: 1.6rem;
+    color: #E8E8E8;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #3E4451;
+    font-weight: 500;
+}
+
+nav[type="toc"] ol {
+    list-style: none;
+    padding-left: 0;
+}
+
+nav[type="toc"] ol.calibre9 > li.calibre10 { /* Volume level list items */
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+}
+nav[type="toc"] ol.calibre9 > li.calibre10 > a {
+    font-weight: bold; /* Make volume titles a bit bolder */
+    color: #87CEEB; /* A slightly brighter blue for volume titles */
+}
+
+
+nav[type="toc"] ol.calibre11 { /* Chapter list within a volume */
+    padding-left: 25px; /* Indent chapters */
+    margin-top: 8px;
+}
+
+nav[type="toc"] li.calibre10 {
+    margin-bottom: 8px;
+}
+
+nav[type="toc"] a {
+    color: #61AFEF; /* Pleasing blue for links */
+    text-decoration: none;
+    transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
+}
+
+nav[type="toc"] a:hover,
+nav[type="toc"] a:focus {
+    color: #82C0FF; /* Lighter blue on hover */
+    text-decoration: underline;
+}
+
+/* --- Chapter Content --- */
+/* The .calibre div wrapping chapter content doesn't need specific styling if body covers it */
+
+h1.calibre13 { /* Chapter Title */
+    font-size: 2.2rem;
+    color: #EFEFEF;
+    margin-top: 30px;      /* Space above chapter title */
+    margin-bottom: 35px;   /* Space below chapter title */
+    padding-bottom: 15px;
+    border-bottom: 1px solid #3E4451;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Paragraphs within chapters */
+p.calibre14 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5em;
+    max-width: 75ch;      /* Optimal line length for readability */
+    margin-left: auto;    /* Center paragraph block if container is wider */
+    margin-right: auto;   /* Center paragraph block if container is wider */
+    text-align: justify;  /* Justified text for a book-like feel */
+    hyphens: auto;        /* Improve justification by allowing hyphenation */
+}
+
+/* Styling for the Translator/Editor line */
+/* This targets the second p.calibre14 after the h1.calibre13,
+   as per your example (first p is empty) */
+h1.calibre13 + p.calibre14 + p.calibre14 {
+    font-style: italic;
+    color: #8892A0; /* Muted color for metadata */
+    text-align: center;
+    font-size: 0.95rem;
+    margin-top: -1.5em; /* Pull it up a bit closer to chapter title */
+    margin-bottom: 3em;  /* More space after metadata, before story starts */
+    max-width: 100%;     /* Allow this line to span wider if needed */
+}
+
+/* Ensure empty paragraphs don't take up space */
+p.calibre14:empty {
+    display: none;
+}
+
+/* --- General Link Styling (if any outside TOC) --- */
+a {
+    color: #61AFEF;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #82C0FF;
+    text-decoration: underline;
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 20px;
+    }
+
+    .header h1.calibre3 {
+        font-size: 2.4rem;
+    }
+    .header h3.calibre4 {
+        font-size: 1.15rem;
+    }
+
+    h1.calibre13 { /* Chapter Title */
+        font-size: 1.9rem;
+    }
+
+    p.calibre14 {
+        font-size: 1rem; /* Slightly smaller font on smaller screens */
+        text-align: left; /* Left align might be better on narrow screens than justify */
+        hyphens: none;
+    }
+
+    nav[type="toc"] {
+        padding: 15px 20px;
+    }
+    nav[type="toc"] ol.calibre11 {
+        padding-left: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px; /* Smaller base font for very small screens */
+    }
+    body {
+        padding: 15px 15px;
+    }
+    .header h1.calibre3 {
+        font-size: 2rem;
+    }
+    .header h3.calibre4 {
+        font-size: 1rem;
+    }
+    h1.calibre13 { /* Chapter Title */
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+    p.calibre14 {
+        line-height: 1.6;
+    }
+    h1.calibre13 + p.calibre14 + p.calibre14 {
+        font-size: 0.9rem;
+        margin-bottom: 2.5em;
+    }
+}
