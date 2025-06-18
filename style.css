@@ -1,29 +1,45 @@
-/* --- Dark Mode Book Reader CSS --- */
+/* --- Dark Mode Book Reader CSS (Improved) --- */
+
+:root {
+    /* CSS variables for easier theme management */
+    --bg-color: #140f0f;
+    --text-color: #D4D4D4;
+    --text-color-bright: #FFFFFF;
+    --text-color-muted: #A0A8B8;
+    --border-color: #3E4451;
+    --link-color: #61AFEF;
+    --link-hover-color: #82C0FF;
+    --toc-bg-color: #1D2025;
+    --scrollbar-track: #22252A;
+    --scrollbar-thumb: #4F5663;
+}
 
 html {
-    font-size: 16px; /* Base for rem units */
+    font-size: 100%; /* Respect user's browser font-size setting. 100% = 16px by default. */
     box-sizing: border-box;
     /* Dark scrollbar for Firefox */
     scrollbar-width: thin;
-    scrollbar-color: #4F5663 #22252A;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
 *,
 *:before,
 *:after {
     box-sizing: inherit;
+    margin: 0; /* Reset default margins */
+    padding: 0; /* Reset default padding */
 }
 
 body {
-    background-color: #140f0f; /* Dark, but not pitch black */
-    color: #D4D4D4;           /* Off-white text for readability */
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: 'Georgia', Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", serif;
-    line-height: 1.7;         /* Improved line spacing */
-    margin: 0;
-    padding: 25px 30px;       /* Overall padding */
-    max-width: 900px;         /* Max width for the content area for better readability */
-    margin-left: auto;        /* Center content area */
-    margin-right: auto;       /* Center content area */
+    line-height: 1.7;
+    /* Center the content block with a max-width for readability and add padding for gutters */
+    max-width: 80ch; /* Optimal for readability, approx 80 characters wide */
+    margin-inline: auto; /* Modern equivalent of margin-left/right: auto */
+    padding-inline: 1.5rem; /* Horizontal padding */
+    padding-block: 2rem;   /* Vertical padding */
 }
 
 /* --- Webkit (Chrome, Safari, Edge) Scrollbar Styling --- */
@@ -31,209 +47,157 @@ body {
     width: 12px;
     height: 12px;
 }
-
 ::-webkit-scrollbar-track {
-    background: #22252A; /* Scrollbar track to match body */
+    background: var(--scrollbar-track);
 }
-
 ::-webkit-scrollbar-thumb {
-    background-color: #4F5663; /* A slightly lighter, muted color for the thumb */
+    background-color: var(--scrollbar-thumb);
     border-radius: 6px;
-    border: 3px solid #22252A; /* Creates padding around thumb, matches track */
+    border: 3px solid var(--scrollbar-track);
 }
-
 ::-webkit-scrollbar-thumb:hover {
     background-color: #6A7385;
 }
 
+/* --- General Link Styling --- */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+a:hover, a:focus {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
 
 /* --- Header (Book Title & Author) --- */
 .header {
     text-align: center;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #3E4451; /* Subtle separator line */
+    margin-block-end: 3rem; /* Space after the header block */
+    padding-block-end: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .header h1.calibre3 { /* Book Title */
-    font-size: 2.8rem;
-    color: #FFFFFF; /* Pure white for main title */
-    margin-top: 0;
-    margin-bottom: 0.3em;
+    font-size: clamp(2.2rem, 5vw, 2.8rem); /* Fluid font size */
+    color: var(--text-color-bright);
+    margin-block-end: 0.3em;
     font-weight: 600;
 }
 
 .header h3.calibre4 { /* Author */
-    font-size: 1.3rem;
-    color: #A0A8B8; /* Lighter, muted color for author */
-    margin-top: 0;
-    margin-bottom: 0;
+    font-size: clamp(1.1rem, 3vw, 1.3rem); /* Fluid font size */
+    color: var(--text-color-muted);
     font-style: italic;
     font-weight: 400;
 }
 
 /* --- Table of Contents (TOC) --- */
 nav[type="toc"] {
-    background-color: #1D2025; /* Slightly darker than body for distinction */
-    padding: 20px 25px;
-    margin-bottom: 50px;
+    background-color: var(--toc-bg-color);
+    padding: 1.5rem;
+    margin-block-end: 3.5rem; /* Space after TOC */
     border-radius: 8px;
-    border: 1px solid #3E4451;
+    border: 1px solid var(--border-color);
 }
 
-nav[type="toc"] h2.calibre8 { /* TOC Title */
+nav[type="toc"] h2.calibre8 {
     font-size: 1.6rem;
-    color: #E8E8E8;
-    margin-top: 0;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #3E4451;
+    color: var(--text-color-bright);
+    margin-block-end: 1rem;
+    padding-block-end: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
     font-weight: 500;
 }
 
 nav[type="toc"] ol {
     list-style: none;
-    padding-left: 0;
+    padding-inline-start: 0; /* Remove default list padding */
 }
 
-nav[type="toc"] ol.calibre9 > li.calibre10 { /* Volume level list items */
-    margin-bottom: 12px;
+nav[type="toc"] ol.calibre9 > li.calibre10 { /* Volume title */
     font-size: 1.1rem;
+    font-weight: bold;
+    margin-block-end: 0.75rem;
 }
 nav[type="toc"] ol.calibre9 > li.calibre10 > a {
-    font-weight: bold; /* Make volume titles a bit bolder */
     color: #87CEEB; /* A slightly brighter blue for volume titles */
 }
 
-
-nav[type="toc"] ol.calibre11 { /* Chapter list within a volume */
-    padding-left: 25px; /* Indent chapters */
-    margin-top: 8px;
+nav[type="toc"] ol.calibre11 { /* Chapter list */
+    /* Indent chapters relative to volume */
+    padding-inline-start: 1.5rem;
+    margin-block-start: 0.5rem;
 }
 
 nav[type="toc"] li.calibre10 {
-    margin-bottom: 8px;
-}
-
-nav[type="toc"] a {
-    color: #61AFEF; /* Pleasing blue for links */
-    text-decoration: none;
-    transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
-}
-
-nav[type="toc"] a:hover,
-nav[type="toc"] a:focus {
-    color: #82C0FF; /* Lighter blue on hover */
-    text-decoration: underline;
+    margin-block-end: 0.5rem;
 }
 
 /* --- Chapter Content --- */
-/* The .calibre div wrapping chapter content doesn't need specific styling if body covers it */
-
 h1.calibre13 { /* Chapter Title */
-    font-size: 2.2rem;
-    color: #EFEFEF;
-    margin-top: 30px;      /* Space above chapter title */
-    margin-bottom: 35px;   /* Space below chapter title */
-    padding-bottom: 15px;
-    border-bottom: 1px solid #3E4451;
+    font-size: clamp(1.8rem, 4vw, 2.2rem); /* Fluid font size */
+    color: var(--text-color-bright);
+    /* Space between previous chapter's text and this title */
+    margin-block-start: 4rem;
+    margin-block-end: 2rem;
+    padding-block-end: 1rem;
+    border-bottom: 1px solid var(--border-color);
     text-align: center;
     font-weight: 500;
 }
 
-/* Paragraphs within chapters */
 p.calibre14 {
     font-size: 1.1rem;
-    margin-bottom: 1.5em;
-    max-width: 75ch;      /* Optimal line length for readability */
-    margin-left: auto;    /* Center paragraph block if container is wider */
-    margin-right: auto;   /* Center paragraph block if container is wider */
-    text-align: justify;  /* Justified text for a book-like feel */
-    hyphens: auto;        /* Improve justification by allowing hyphenation */
+    margin-block-end: 1.5em; /* Space between paragraphs */
+    text-align: justify;
+    hyphens: auto;
 }
 
-/* Styling for the Translator/Editor line */
-/* This targets the second p.calibre14 after the h1.calibre13,
-   as per your example (first p is empty) */
+/* Styling for the Translator/Editor line, which follows an empty <p> tag */
 h1.calibre13 + p.calibre14 + p.calibre14 {
     font-style: italic;
-    color: #8892A0; /* Muted color for metadata */
+    color: var(--text-color-muted);
     text-align: center;
     font-size: 0.95rem;
-    margin-top: -1.5em; /* Pull it up a bit closer to chapter title */
-    margin-bottom: 3em;  /* More space after metadata, before story starts */
-    max-width: 100%;     /* Allow this line to span wider if needed */
+    margin-block-start: -1rem; /* Pull it up closer to the title */
+    margin-block-end: 3em;   /* More space after it, before the story starts */
 }
 
-/* Ensure empty paragraphs don't take up space */
+/* Hide empty paragraphs generated by Calibre so they don't affect layout */
 p.calibre14:empty {
     display: none;
 }
 
-/* --- General Link Styling (if any outside TOC) --- */
-a {
-    color: #61AFEF;
-    text-decoration: none;
-}
+/* --- Responsive Adjustments for Small Screens --- */
+@media (max-width: 600px) {
+    html {
+        font-size: 93.75%; /* Slightly smaller base font (15px) */
+    }
 
-a:hover, a:focus {
-    color: #82C0FF;
-    text-decoration: underline;
-}
-
-/* --- Responsive adjustments --- */
-@media (max-width: 768px) {
     body {
-        padding: 20px 20px;
+        /* Reduce padding for more content space on small screens */
+        padding-inline: 1rem;
+        padding-block: 1.5rem;
     }
 
-    .header h1.calibre3 {
-        font-size: 2.4rem;
-    }
-    .header h3.calibre4 {
-        font-size: 1.15rem;
-    }
-
-    h1.calibre13 { /* Chapter Title */
-        font-size: 1.9rem;
-    }
-
-    p.calibre14 {
-        font-size: 1rem; /* Slightly smaller font on smaller screens */
-        text-align: left; /* Left align might be better on narrow screens than justify */
-        hyphens: none;
+    .header {
+        margin-block-end: 2rem;
     }
 
     nav[type="toc"] {
-        padding: 15px 20px;
+        padding: 1rem;
+        margin-block-end: 2.5rem;
     }
-    nav[type="toc"] ol.calibre11 {
-        padding-left: 20px;
-    }
-}
 
-@media (max-width: 480px) {
-    html {
-        font-size: 14px; /* Smaller base font for very small screens */
+    h1.calibre13 {
+        margin-block-start: 3rem;
+        margin-block-end: 1.5rem;
     }
-    body {
-        padding: 15px 15px;
-    }
-    .header h1.calibre3 {
-        font-size: 2rem;
-    }
-    .header h3.calibre4 {
-        font-size: 1rem;
-    }
-    h1.calibre13 { /* Chapter Title */
-        font-size: 1.6rem;
-        margin-bottom: 25px;
-    }
+
     p.calibre14 {
-        line-height: 1.6;
-    }
-    h1.calibre13 + p.calibre14 + p.calibre14 {
-        font-size: 0.9rem;
-        margin-bottom: 2.5em;
+        /* Justified text is hard to read on narrow screens. Left-align is better. */
+        text-align: left;
+        hyphens: none;
     }
 }
