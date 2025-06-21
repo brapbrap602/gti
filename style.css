@@ -1,203 +1,138 @@
-/* --- Dark Mode Book Reader CSS (Improved) --- */
+/* Dark Mode CSS for The Legendary Mechanic - Near OLED Black */
 
-:root {
-    /* CSS variables for easier theme management */
-    --bg-color: #140f0f;
-    --text-color: #D4D4D4;
-    --text-color-bright: #FFFFFF;
-    --text-color-muted: #A0A8B8;
-    --border-color: #3E4451;
-    --link-color: #61AFEF;
-    --link-hover-color: #82C0FF;
-    --toc-bg-color: #1D2025;
-    --scrollbar-track: #22252A;
-    --scrollbar-thumb: #4F5663;
-}
-
-html {
-    font-size: 100%; /* Respect user's browser font-size setting. 100% = 16px by default. */
-    box-sizing: border-box;
-    /* Dark scrollbar for Firefox */
-    scrollbar-width: thin;
-    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-}
-
-*,
-*:before,
-*:after {
-    box-sizing: inherit;
-    margin: 0; /* Reset default margins */
-    padding: 0; /* Reset default padding */
+/* Base styles */
+* {
+  box-sizing: border-box;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: 'Georgia', Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", serif;
-    line-height: 1.7;
-    /* Center the content block with a max-width for readability and add padding for gutters */
-    max-width: 80ch; /* Optimal for readability, approx 80 characters wide */
-    margin-inline: auto; /* Modern equivalent of margin-left/right: auto */
-    padding-inline: 1.5rem; /* Horizontal padding */
-    padding-block: 2rem;   /* Vertical padding */
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* --- Webkit (Chrome, Safari, Edge) Scrollbar Styling --- */
-::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-}
-::-webkit-scrollbar-track {
-    background: var(--scrollbar-track);
-}
-::-webkit-scrollbar-thumb {
-    background-color: var(--scrollbar-thumb);
-    border-radius: 6px;
-    border: 3px solid var(--scrollbar-track);
-}
-::-webkit-scrollbar-thumb:hover {
-    background-color: #6A7385;
+/* Main container */
+.calibre {
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  padding: 0;
 }
 
-/* --- General Link Styling --- */
-a {
-    color: var(--link-color);
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
-}
-a:hover, a:focus {
-    color: var(--link-hover-color);
-    text-decoration: underline;
-}
-
-/* --- Header (Book Title & Author) --- */
-.header {
-    text-align: center;
-    margin-block-end: 3rem; /* Space after the header block */
-    padding-block-end: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
+/* Headings */
+.calibre2, h1 {
+  color: #ffffff;
+  font-size: 2.2em;
+  font-weight: bold;
+  margin: 2em 0 1em 0;
+  padding: 0;
+  text-align: center;
+  border-bottom: 2px solid #333333;
+  padding-bottom: 0.5em;
 }
 
-.header h1.calibre3 { /* Book Title */
-    font-size: clamp(2.2rem, 5vw, 2.8rem); /* Fluid font size */
-    color: var(--text-color-bright);
-    margin-block-end: 0.3em;
-    font-weight: 600;
+h2 {
+  color: #ffffff;
+  font-size: 1.8em;
+  margin: 1.5em 0 1em 0;
 }
 
-.header h3.calibre4 { /* Author */
-    font-size: clamp(1.1rem, 3vw, 1.3rem); /* Fluid font size */
-    color: var(--text-color-muted);
-    font-style: italic;
-    font-weight: 400;
+h3 {
+  color: #ffffff;
+  font-size: 1.4em;
+  margin: 1.2em 0 0.8em 0;
 }
 
-/* --- Table of Contents (TOC) --- */
+/* Table of Contents */
 nav[type="toc"] {
-    background-color: var(--toc-bg-color);
-    padding: 1.5rem;
-    margin-block-end: 3.5rem; /* Space after TOC */
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
+  background-color: #111111;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
 }
 
-nav[type="toc"] h2.calibre8 {
-    font-size: 1.6rem;
-    color: var(--text-color-bright);
-    margin-block-end: 1rem;
-    padding-block-end: 0.75rem;
-    border-bottom: 1px solid var(--border-color);
-    font-weight: 500;
+.calibre3, ol {
+  list-style: none;
+  counter-reset: chapter-counter;
+  padding: 0;
+  margin: 10px 0;
 }
 
-nav[type="toc"] ol {
-    list-style: none;
-    padding-inline-start: 0; /* Remove default list padding */
+.calibre4, .calibre3 li {
+  counter-increment: chapter-counter;
+  margin: 8px 0;
+  padding: 8px 0;
+  border-bottom: 1px solid #222222;
 }
 
-nav[type="toc"] ol.calibre9 > li.calibre10 { /* Volume title */
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-block-end: 0.75rem;
-}
-nav[type="toc"] ol.calibre9 > li.calibre10 > a {
-    color: #87CEEB; /* A slightly brighter blue for volume titles */
+.calibre4:last-child {
+  border-bottom: none;
 }
 
-nav[type="toc"] ol.calibre11 { /* Chapter list */
-    /* Indent chapters relative to volume */
-    padding-inline-start: 1.5rem;
-    margin-block-start: 0.5rem;
+.calibre4::before {
+  content: counter(chapter-counter) ". ";
+  color: #888888;
+  font-weight: bold;
+  margin-right: 8px;
 }
 
-nav[type="toc"] li.calibre10 {
-    margin-block-end: 0.5rem;
+/* Links */
+a {
+  color: #4a9eff;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-/* --- Chapter Content --- */
-h1.calibre13 { /* Chapter Title */
-    font-size: clamp(1.8rem, 4vw, 2.2rem); /* Fluid font size */
-    color: var(--text-color-bright);
-    /* Space between previous chapter's text and this title */
-    margin-block-start: 4rem;
-    margin-block-end: 2rem;
-    padding-block-end: 1rem;
-    border-bottom: 1px solid var(--border-color);
-    text-align: center;
-    font-weight: 500;
+a:hover {
+  color: #66b3ff;
+  text-decoration: underline;
 }
 
-p.calibre14 {
-    font-size: 1.1rem;
-    margin-block-end: 1.5em; /* Space between paragraphs */
-    text-align: justify;
-    hyphens: auto;
+a:visited {
+  color: #8a7ca8;
 }
 
-/* Styling for the Translator/Editor line, which follows an empty <p> tag */
-h1.calibre13 + p.calibre14 + p.calibre14 {
-    font-style: italic;
-    color: var(--text-color-muted);
-    text-align: center;
-    font-size: 0.95rem;
-    margin-block-start: -1rem; /* Pull it up closer to the title */
-    margin-block-end: 3em;   /* More space after it, before the story starts */
+/* Paragraphs */
+.calibre5, p {
+  color: #e0e0e0;
+  margin: 1em 0;
+  text-align: justify;
+  text-indent: 1.5em;
 }
 
-/* Hide empty paragraphs generated by Calibre so they don't affect layout */
-p.calibre14:empty {
-    display: none;
+/* First paragraph of chapters - no indent */
+.chapter-c > .chapter-c:first-child .calibre5:first-child,
+.chapter-c > .calibre5:first-child {
+  text-indent: 0;
 }
 
-/* --- Responsive Adjustments for Small Screens --- */
-@media (max-width: 600px) {
-    html {
-        font-size: 93.75%; /* Slightly smaller base font (15px) */
-    }
+/* Strong/Bold text */
+.calibre6, strong, b {
+  color: #ffffff;
+  font-weight: bold;
+}
 
-    body {
-        /* Reduce padding for more content space on small screens */
-        padding-inline: 1rem;
-        padding-block: 1.5rem;
-    }
+/* Italic/Emphasis text */
+.calibre7, em, i {
+  color: #cccccc;
+  font-style: italic;
+}
 
-    .header {
-        margin-block-end: 2rem;
-    }
+/* Superscript */
+.calibre8, sup {
+  font-size: 0.8em;
+  vertical-align: super;
+  color: #aaaaaa;
+}
 
-    nav[type="toc"] {
-        padding: 1rem;
-        margin-block-end: 2.5rem;
-    }
-
-    h1.calibre13 {
-        margin-block-start: 3rem;
-        margin-block-end: 1.5rem;
-    }
-
-    p.calibre14 {
-        /* Justified text is hard to read on narrow screens. Left-align is better. */
-        text-align: left;
-        hyphens: none;
-    }
+/* Chapter containers */
+.chapter-c {
+  margin: 0;
+  padding: 0;
 }
