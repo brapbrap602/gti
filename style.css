@@ -11,10 +11,10 @@ body {
   font-family: 'Georgia', 'Times New Roman', serif;
   font-size: 16px;
   line-height: 1.6;
-  margin: 0;
+  margin: 0 auto;
   padding: 20px;
   max-width: 800px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 /* Main container */
@@ -30,7 +30,6 @@ body {
   font-size: 2.2em;
   font-weight: bold;
   margin: 2em 0 1em 0;
-  padding: 0;
   text-align: center;
   border-bottom: 2px solid #333333;
   padding-bottom: 0.5em;
@@ -55,6 +54,7 @@ nav[type="toc"] {
   border-radius: 8px;
   padding: 20px;
   margin: 20px 0;
+  overflow-x: auto;
 }
 
 .calibre3, ol {
@@ -112,13 +112,13 @@ a:visited {
   text-indent: 0;
 }
 
-/* Strong/Bold text */
+/* Bold text */
 .calibre6, strong, b {
   color: #ffffff;
   font-weight: bold;
 }
 
-/* Italic/Emphasis text */
+/* Italic text */
 .calibre7, em, i {
   color: #cccccc;
   font-style: italic;
@@ -135,4 +135,35 @@ a:visited {
 .chapter-c {
   margin: 0;
   padding: 0;
+}
+
+/* ---------------------------------
+   Responsive Adjustments (Mobile)
+---------------------------------- */
+@media (max-width: 600px) {
+  body {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 1.6em;
+  }
+
+  h2 {
+    font-size: 1.4em;
+  }
+
+  h3 {
+    font-size: 1.2em;
+  }
+
+  nav[type="toc"] {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .calibre5, p {
+    text-indent: 1em;
+  }
 }
