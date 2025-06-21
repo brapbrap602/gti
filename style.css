@@ -1,5 +1,4 @@
 /* Dark Mode CSS for The Legendary Mechanic - Near OLED Black */
-
 /* Base styles */
 * {
   box-sizing: border-box;
@@ -15,6 +14,7 @@ body {
   padding: 20px;
   max-width: 800px;
   width: 100%;
+  min-height: 100vh;
 }
 
 /* Main container */
@@ -22,6 +22,7 @@ body {
   background-color: #0a0a0a;
   color: #e0e0e0;
   padding: 0;
+  width: 100%;
 }
 
 /* Headings */
@@ -33,18 +34,24 @@ body {
   text-align: center;
   border-bottom: 2px solid #333333;
   padding-bottom: 0.5em;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 h2 {
   color: #ffffff;
   font-size: 1.8em;
   margin: 1.5em 0 1em 0;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 h3 {
   color: #ffffff;
   font-size: 1.4em;
   margin: 1.2em 0 0.8em 0;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 /* Table of Contents */
@@ -55,6 +62,7 @@ nav[type="toc"] {
   padding: 20px;
   margin: 20px 0;
   overflow-x: auto;
+  width: 100%;
 }
 
 .calibre3, ol {
@@ -62,6 +70,7 @@ nav[type="toc"] {
   counter-reset: chapter-counter;
   padding: 0;
   margin: 10px 0;
+  width: 100%;
 }
 
 .calibre4, .calibre3 li {
@@ -69,6 +78,8 @@ nav[type="toc"] {
   margin: 8px 0;
   padding: 8px 0;
   border-bottom: 1px solid #222222;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .calibre4:last-child {
@@ -87,6 +98,8 @@ a {
   color: #4a9eff;
   text-decoration: none;
   transition: color 0.2s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 a:hover {
@@ -104,6 +117,9 @@ a:visited {
   margin: 1em 0;
   text-align: justify;
   text-indent: 1.5em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 /* First paragraph of chapters - no indent */
@@ -135,35 +151,114 @@ a:visited {
 .chapter-c {
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
-/* ---------------------------------
-   Responsive Adjustments (Mobile)
----------------------------------- */
-@media (max-width: 600px) {
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
   body {
-    padding: 12px;
+    padding: 15px;
     font-size: 15px;
+    line-height: 1.5;
   }
-
-  h1 {
-    font-size: 1.6em;
+  
+  .calibre2, h1 {
+    font-size: 1.8em;
+    margin: 1.5em 0 0.8em 0;
+    padding-bottom: 0.3em;
   }
-
+  
   h2 {
-    font-size: 1.4em;
+    font-size: 1.5em;
+    margin: 1.2em 0 0.8em 0;
   }
-
+  
   h3 {
     font-size: 1.2em;
+    margin: 1em 0 0.6em 0;
   }
-
+  
   nav[type="toc"] {
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 6px;
+  }
+  
+  .calibre5, p {
+    text-align: left;
+    text-indent: 1em;
+    margin: 0.8em 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
     padding: 12px;
     font-size: 14px;
+    line-height: 1.4;
   }
-
+  
+  .calibre2, h1 {
+    font-size: 1.6em;
+    margin: 1.2em 0 0.6em 0;
+    text-align: left;
+  }
+  
+  h2 {
+    font-size: 1.3em;
+    margin: 1em 0 0.6em 0;
+  }
+  
+  h3 {
+    font-size: 1.1em;
+    margin: 0.8em 0 0.4em 0;
+  }
+  
+  nav[type="toc"] {
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 4px;
+  }
+  
   .calibre5, p {
-    text-indent: 1em;
+    text-align: left;
+    text-indent: 0.8em;
+    margin: 0.6em 0;
+  }
+  
+  .calibre4::before {
+    margin-right: 6px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  body {
+    padding: 10px;
+    font-size: 13px;
+  }
+  
+  .calibre2, h1 {
+    font-size: 1.4em;
+    margin: 1em 0 0.5em 0;
+  }
+  
+  h2 {
+    font-size: 1.2em;
+    margin: 0.8em 0 0.5em 0;
+  }
+  
+  h3 {
+    font-size: 1.05em;
+    margin: 0.6em 0 0.3em 0;
+  }
+  
+  nav[type="toc"] {
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .calibre5, p {
+    text-indent: 0.5em;
+    margin: 0.5em 0;
   }
 }
