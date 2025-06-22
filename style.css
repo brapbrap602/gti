@@ -166,7 +166,7 @@ a:visited {
   padding: 15px; /* Padding for content inside the whole interface box */
   margin: 1.5em 0; /* Clear vertical spacing */
   font-family: 'Consolas', 'Lucida Console', 'Courier New', monospace; /* Futuristic monospace font */
-  font-size: 0.9em; /* Slightly smaller than body paragraphs (16px * 0.9 = 14.4px) */
+  font-size: calc(1em - 1px); /* Adjusted to be 1px less than normal paragraph text */
   line-height: 1.4; /* Slightly tighter line-height for the overall interface block */
   color: #80FFFF; /* Vibrant light cyan for primary interface text */
   text-align: left; /* Game interfaces are typically left-aligned */
@@ -287,7 +287,7 @@ a:visited {
   .game-interface {
     padding: 10px;
     margin: 1em 0;
-    font-size: 0.85em;
+    /* font-size: 0.85em; <- REMOVED */
     line-height: 1.3;
   }
   .game-interface p.calibre5,
@@ -346,7 +346,7 @@ a:visited {
   .game-interface {
     padding: 8px;
     margin: 0.8em 0;
-    font-size: 0.8em;
+    /* font-size: 0.8em; <- REMOVED */
     line-height: 1.25;
   }
   .game-interface p.calibre5,
@@ -396,7 +396,7 @@ a:visited {
   .game-interface {
     padding: 6px;
     margin: 0.6em 0;
-    font-size: 0.75em;
+    /* font-size: 0.75em; <- REMOVED */
     line-height: 1.2;
   }
   .game-interface p.calibre5,
