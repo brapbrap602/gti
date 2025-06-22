@@ -169,7 +169,7 @@ a:visited {
   margin: 1.5em 0; /* Clear vertical spacing */
   font-family: 'Consolas', 'Lucida Console', 'Courier New', monospace; /* Futuristic monospace font */
   font-size: 0.9em; /* Slightly smaller than body paragraphs (16px * 0.9 = 14.4px) */
-  line-height: 1.5; /* Default line height for the interface block */
+  line-height: 1.4; /* Slightly tighter line-height for the overall interface block */
   color: #80FFFF; /* Vibrant light cyan for primary interface text */
   text-align: left; /* Game interfaces are typically left-aligned */
   text-indent: 0; /* No text indent for interface lines */
@@ -183,17 +183,18 @@ a:visited {
 .game-interface p {
   margin: 0; /* Crucial: Remove all default margin from paragraphs inside the interface */
   padding: 0; /* Crucial: Remove all default padding */
-  line-height: 1.3; /* Slightly tighter line-height for compactness within multi-line paragraphs */
+  line-height: 1.3; /* Tighter line-height for compactness within multi-line paragraphs */
   color: inherit; /* Inherit color from parent .game-interface */
   text-align: left; /* Ensure paragraphs are left-aligned */
   text-indent: 0; /* No indent */
 }
 
 /* Add subtle divider between visible paragraphs */
-/* Applies border and margin below the line, but not to the last visible paragraph or delimiters */
+/* Applies border and margin below the line, but not to the last visible paragraph */
 .game-interface p:not(:last-child):not(.game-interface-delimiter) {
   border-bottom: 1px solid rgba(0, 68, 136, 0.2); /* Very subtle blue-tinted grey divider */
-  margin-bottom: 0.3em; /* Space after the divider to the next line of text */
+  padding-bottom: 0.25em; /* Small space between text and divider */
+  margin-bottom: 0.25em; /* Small space between divider and next line */
 }
 
 /* Ensure the last visible paragraph doesn't have extra spacing or border at the bottom of the box */
@@ -201,6 +202,17 @@ a:visited {
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: none; /* Explicitly ensure no border on the very last visible paragraph */
+}
+
+/* Key-Value Styling for Game Interface Content */
+.game-interface .interface-key {
+  color: #CCEEFF; /* A brighter, slightly lighter blue for the key */
+  font-weight: 600; /* Bolder than normal, but not full bold */
+  margin-right: 0.2em; /* Small space after the key for readability */
+}
+
+.game-interface .interface-value {
+  color: #80FFFF; /* Maintain original vibrant cyan for the value */
 }
 
 
@@ -278,13 +290,18 @@ a:visited {
     padding: 10px;
     margin: 1em 0;
     font-size: 0.85em;
+    line-height: 1.3;
   }
   .game-interface p.calibre5,
   .game-interface p {
-    line-height: 1.2; /* Even tighter line height on mobile */
+    line-height: 1.2;
   }
   .game-interface p:not(:last-child):not(.game-interface-delimiter) {
-    margin-bottom: 0.25em; /* Slightly smaller margin after divider */
+    padding-bottom: 0.2em;
+    margin-bottom: 0.2em;
+  }
+  .game-interface .interface-key {
+    margin-right: 0.15em;
   }
 }
 
@@ -332,13 +349,18 @@ a:visited {
     padding: 8px;
     margin: 0.8em 0;
     font-size: 0.8em;
+    line-height: 1.25;
   }
   .game-interface p.calibre5,
   .game-interface p {
-    line-height: 1.15; /* Even tighter line height on mobile */
+    line-height: 1.15;
   }
   .game-interface p:not(:last-child):not(.game-interface-delimiter) {
-    margin-bottom: 0.2em; /* Smallest margin after divider */
+    padding-bottom: 0.15em;
+    margin-bottom: 0.15em;
+  }
+  .game-interface .interface-key {
+    margin-right: 0.1em;
   }
 }
 
@@ -377,12 +399,15 @@ a:visited {
     padding: 6px;
     margin: 0.6em 0;
     font-size: 0.75em;
+    line-height: 1.2;
   }
   .game-interface p.calibre5,
   .game-interface p {
-    line-height: 1.1; /* Very tight line height on smallest mobile */
+    line-height: 1.1;
   }
   .game-interface p:not(:last-child):not(.game-interface-delimiter) {
-    margin-bottom: 0.15em; /* Very small margin after divider */
+    padding-bottom: 0.1em;
+    margin-bottom: 0.1em;
   }
+  /* No need to adjust interface-key margin-right further for 320px, 0.1em is already small */
 }
