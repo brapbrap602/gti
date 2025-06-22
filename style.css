@@ -165,11 +165,11 @@ a:visited {
   background-color: #1a1a1a; /* Slightly lighter than body for subtle contrast */
   border: 1px solid #004488; /* Darker blue border */
   border-radius: 6px; /* Slightly rounded corners */
-  padding: 15px;
+  padding: 15px; /* Padding for content inside the whole interface box */
   margin: 1.5em 0; /* Clear vertical spacing */
   font-family: 'Consolas', 'Lucida Console', 'Courier New', monospace; /* Futuristic monospace font */
   font-size: 0.9em; /* Slightly smaller than body paragraphs (16px * 0.9 = 14.4px) */
-  line-height: 1.5;
+  line-height: 1.5; /* Default line height for the interface block */
   color: #80FFFF; /* Vibrant light cyan for primary interface text */
   text-align: left; /* Game interfaces are typically left-aligned */
   text-indent: 0; /* No text indent for interface lines */
@@ -179,37 +179,61 @@ a:visited {
 }
 
 /* Specific styles for elements within the game interface */
-.game-interface p.calibre5, /* Target calibre5 specifically if needed, or just .game-interface p */
-.game-interface p { /* Fallback for general paragraphs inside */
-  margin: 0.2em 0; /* Tighter line spacing for interface text */
+.game-interface p.calibre5,
+.game-interface p {
+  margin: 0; /* Crucial: Remove all default margin from paragraphs inside the interface */
+  padding: 0; /* Crucial: Remove all default padding */
+  line-height: 1.3; /* Slightly tighter line-height for compactness within multi-line paragraphs */
   color: inherit; /* Inherit color from parent .game-interface */
   text-align: left; /* Ensure paragraphs are left-aligned */
   text-indent: 0; /* No indent */
 }
 
-.game-interface .calibre6, /* Target calibre6 specifically */
+/* Add subtle divider between visible paragraphs */
+/* Applies border and margin below the line, but not to the last visible paragraph or delimiters */
+.game-interface p:not(:last-child):not(.game-interface-delimiter) {
+  border-bottom: 1px solid rgba(0, 68, 136, 0.2); /* Very subtle blue-tinted grey divider */
+  margin-bottom: 0.3em; /* Space after the divider to the next line of text */
+}
+
+/* Ensure the last visible paragraph doesn't have extra spacing or border at the bottom of the box */
+.game-interface p:last-child:not(.game-interface-delimiter) {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none; /* Explicitly ensure no border on the very last visible paragraph */
+}
+
+
+/* Styling for bold, italic, and superscript elements within the interface */
+.game-interface .calibre6,
 .game-interface strong,
 .game-interface b {
   color: #FFFFFF; /* Bright white for bold elements */
   font-weight: bold;
 }
 
-.game-interface .calibre7, /* Target calibre7 specifically */
+.game-interface .calibre7,
 .game-interface em,
 .game-interface i {
   color: #AADDFF; /* Lighter blue for italic elements */
   font-style: italic;
 }
 
-.game-interface .calibre8, /* Target calibre8 specifically */
+.game-interface .calibre8,
 .game-interface sup {
   color: #88CCFF; /* Slightly different blue for superscript */
 }
 
 
-/* Hide the delimiter lines */
+/* Hide the delimiter lines added by JS */
 .game-interface-delimiter {
-  display: none !important; /* Ensures delimiters are hidden */
+  display: none !important; /* Ensures delimiters are completely hidden */
+  /* Also reset any potential spacing that might leak from default paragraph styles */
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  border: none !important;
 }
 
 
@@ -220,43 +244,47 @@ a:visited {
     font-size: 16px;
     line-height: 1.5;
   }
-  
+
   .calibre2, h1 {
     font-size: 1.6em;
     margin: 0.8em 0 0.4em 0;
     padding-bottom: 0.2em;
   }
-  
+
   h2 {
     font-size: 1.4em;
     margin: 0.8em 0 0.4em 0;
   }
-  
+
   h3 {
     font-size: 1.2em;
     margin: 0.6em 0 0.3em 0;
   }
-  
+
   nav[type="toc"] {
     padding: 8px;
     margin: 8px 0;
     border-radius: 3px;
   }
-  
+
   .calibre5, p {
     text-align: left;
     text-indent: 0.8em;
     margin: 0.4em 0;
   }
-  
+
   /* Mobile adjustments for game interface */
   .game-interface {
     padding: 10px;
     margin: 1em 0;
-    font-size: 0.85em; /* Slightly smaller on smaller screens */
+    font-size: 0.85em;
   }
+  .game-interface p.calibre5,
   .game-interface p {
-    margin: 0.15em 0; /* Tighter line spacing */
+    line-height: 1.2; /* Even tighter line height on mobile */
+  }
+  .game-interface p:not(:last-child):not(.game-interface-delimiter) {
+    margin-bottom: 0.25em; /* Slightly smaller margin after divider */
   }
 }
 
@@ -266,29 +294,29 @@ a:visited {
     font-size: 16px;
     line-height: 1.4;
   }
-  
+
   .calibre2, h1 {
     font-size: 1.4em;
     margin: 0.6em 0 0.3em 0;
     text-align: left;
   }
-  
+
   h2 {
     font-size: 1.2em;
     margin: 0.6em 0 0.3em 0;
   }
-  
+
   h3 {
     font-size: 1.1em;
     margin: 0.5em 0 0.2em 0;
   }
-  
+
   nav[type="toc"] {
     padding: 6px;
     margin: 6px 0;
     border-radius: 2px;
   }
-  
+
   .calibre5, p {
     text-align: left;
     text-indent: 0.5em;
@@ -303,10 +331,14 @@ a:visited {
   .game-interface {
     padding: 8px;
     margin: 0.8em 0;
-    font-size: 0.8em; /* Even smaller */
+    font-size: 0.8em;
   }
+  .game-interface p.calibre5,
   .game-interface p {
-    margin: 0.1em 0; /* Even tighter line spacing */
+    line-height: 1.15; /* Even tighter line height on mobile */
+  }
+  .game-interface p:not(:last-child):not(.game-interface-delimiter) {
+    margin-bottom: 0.2em; /* Smallest margin after divider */
   }
 }
 
@@ -315,27 +347,27 @@ a:visited {
     padding: 4px;
     font-size: 15px;
   }
-  
+
   .calibre2, h1 {
     font-size: 1.3em;
     margin: 0.5em 0 0.2em 0;
   }
-  
+
   h2 {
     font-size: 1.1em;
     margin: 0.5em 0 0.2em 0;
   }
-  
+
   h3 {
     font-size: 1.05em;
     margin: 0.4em 0 0.1em 0;
   }
-  
+
   nav[type="toc"] {
     padding: 4px;
     margin: 4px 0;
   }
-  
+
   .calibre5, p {
     text-indent: 0.3em;
     margin: 0.2em 0;
@@ -344,9 +376,13 @@ a:visited {
   .game-interface {
     padding: 6px;
     margin: 0.6em 0;
-    font-size: 0.75em; /* Smallest */
+    font-size: 0.75em;
   }
+  .game-interface p.calibre5,
   .game-interface p {
-    margin: 0.05em 0; /* Very tight line spacing */
+    line-height: 1.1; /* Very tight line height on smallest mobile */
+  }
+  .game-interface p:not(:last-child):not(.game-interface-delimiter) {
+    margin-bottom: 0.15em; /* Very small margin after divider */
   }
 }
