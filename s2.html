@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isometric Sprinkler Designer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Interact.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <style>
+        :root {
+            --zone1-color: #22c55e; /* Green */ --zone2-color: #ef4444; /* Red */ --zone3-color: #f97316; /* Orange */
+            --water-spray-color: rgba(255, 255, 255, 0.8);
+        }
+        .item { touch-action: none; user-select: none; box-sizing: border-box; }
+        .handle { position: absolute; background-color: #3b82f6; border: 2px solid white; z-index: 10; }
+        .resize-handle { width: 12px; height: 12px; bottom: -6px; right: -6px; cursor: se-resize; }
+        .rotate-handle { width: 12px; height: 12px; top: -18px; left: calc(50% - 6px); cursor: alias; }
+        .spray-arc-90 { clip-path: polygon(50% 50%, 100% 50%, 100% 0, 50% 0); }
+        .spray-arc-180 { clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 0% 100%, 0% 50%); }
+
+        /* --- ISOMETRIC PRESENTATION MODE STYLES --- */
+        body.isometric-mode { background-color: #4a5568; }
+        body.isometric-mode #left-panel, body.isometric-mode #right-panel { transform: translateX(-110%); }
+        body.isometric-mode #right-panel { transform: translateX(110%); }
+        body.isometric-mode #canvas-container { transform: rotateX(55deg) rotateZ(-45deg) scale(0.7); transition: transform 0.5s ease-in-out; }
+        body.isometric-mode #canvas { background: #94ac78; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
+        body.isometric-mode .item { border: none !important; }
+        body.isometric-mode .handle, body.isometric-mode .dimension-label { display: none; }
+        
+        /* Faux 3D effects for presentation */
+        body.isometric-mode .item-house { background: #dcd3c3; border-bottom: 8px solid #b7ad9d; border-right: 8px solid #b7ad9d; }
+        body.isometric-mode .item-house::before { /* Roof */
+            content: ''; position: absolute; top: -20px; left: -8px; width: calc(100% + 8px); height: 20px;
+            background: #595551; transform: skewX(-45deg);
+        }
+        body.isometric-mode .item-house::after { /* Roof Side */
+            content: ''; position: absolute; top: -20px; right: -8px; width: 8px; height: calc(100% + 12px);
+            background: #6c6660; transform: skewY(-45deg);
+        }
+        body.isometric-mode .item-patio { background: #e2e2e2; border-bottom: 6px solid #c1c1c1; border-right: 6px solid #c1c1c1; }
+        body.isometric-mode .item-retaining-wall {
+            background-image: repeating-linear-gradient(45deg, #717171, #717171 20px, #8d8d8d 20px, #8d8d8d 40px);
+            border-bottom: 10px solid #4a4a4a;
+        }
+        body.isometric-mode .item-tree { background: #5a8a5a; border-radius: 50%; border-bottom: 5px solid #3e603e; }
+        body.isometric-mode .sprinkler { background: #9ca3af !important; border-bottom: 8px solid #4b5563; height: 15px !important; }
+        body.isometric-mode .item-riser { background: #fde047; border-bottom: 6px solid #eab308; }
+        body.isometric-mode .item-backflow { background: #fde047; border-bottom: 6px solid #eab308; width: 40px !important; }
+        body.isometric-mode .item-valve-box { background: #4d7c0f; border-bottom: 8px solid #365314; }
+        body.isometric-mode .spray-arc { border: 1.5px solid var(--water-spray-color); background: none; }
+
+        body.isometric-mode #mode-toggle-btn {
+            position: fixed; top: 20px; left: 20px; z-index: 1000;
+            background-color: rgba(255,255,255,0.8); color: #1f2937;
+            backdrop-filter: blur(5px); box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex h-screen overflow-hidden">
+
+    <!-- Left Panel: Toolbox -->
+    <div id="left-panel" class="bg-white w-60 p-4 shadow-lg flex flex-col gap-6 transition-transform duration-300 z-20 overflow-y-auto">
+        <div>
+            <h3 class="text-lg font-bold border-b pb-2 mb-3">Controls</h3>
+            <button id="mode-toggle-btn" class="w-full text-white bg-indigo-500 hover:bg-indigo-600 p-2 rounded-md font-semibold">
+                View Presentation
+            </button>
+            <button id="load-template-btn" class="w-full bg-gray-200 hover:bg-gray-300 p-2 rounded-md mt-2">Load Sample Yard</button>
+            <button id="clear-canvas-btn" class="w-full bg-red-500 text-white hover:bg-red-600 p-2 rounded-md mt-2">Clear Canvas</button>
+        </div>
+        <div>
+            <h3 class="text-lg font-bold border-b pb-2 mb-3">Yard Layout</h3>
+            <button data-type="house" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50 mb-2">Add House</button>
+            <button data-type="patio" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50 mb-2">Add Patio</button>
+            <button data-type="tree" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50 mb-2">Add Tree</button>
+            <button data-type="retaining-wall" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50">Add Retaining Wall</button>
+        </div>
+        <div>
+            <h3 class="text-lg font-bold border-b pb-2 mb-3">Sprinkler System</h3>
+            <button data-type="valve-box" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50 mb-2">Add Valve Box</button>
+            <button data-type="backflow" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50 mb-2">Add Backflow Preventer</button>
+            <button data-type="riser" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50 mb-2">Add Riser Pipe</button>
+            <button data-type="rotor" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50 mb-2">Add Rotor Head</button>
+            <button data-type="spray-90" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50">Add Spray Head (90°)</button>
+        </div>
+    </div>
+
+    <!-- Center Canvas -->
+    <main class="flex-1 flex items-center justify-center p-5 transition-all duration-300">
+        <div id="canvas-container" class="relative transition-transform duration-500">
+            <div id="canvas" class="w-[1200px] h-[800px] bg-white shadow-lg relative transition-all duration-300">
+                <div id="canvas-grid" class="absolute inset-0 bg-transparent" style="background-image: linear-gradient(#e5e7eb 1px, transparent 1px), linear-gradient(to right, #e5e7eb 1px, transparent 1px); background-size: 20px 20px;"></div>
+                <svg id="pipe-layer" class="absolute inset-0 w-full h-full pointer-events-none z-0"></svg>
+                <div id="item-container" class="absolute inset-0"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Right Panel: Properties -->
+    <div id="right-panel" class="bg-white w-64 p-4 shadow-lg flex-col gap-4 transition-transform duration-300 z-20">
+        <!-- Panel Content is generated by JS -->
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const SCALE = 20; // 20px = 1ft
+    const itemContainer = document.getElementById('item-container');
+    const pipeLayer = document.getElementById('pipe-layer');
+    const rightPanel = document.getElementById('right-panel');
+
+    const ITEM_STYLES = {
+        house: 'bg-yellow-100 border-2 border-yellow-300', patio: 'bg-gray-300 border-2 border-gray-400',
+        tree: 'bg-green-600 rounded-full border-2 border-green-800', 'retaining-wall': 'bg-gray-500 border-2 border-gray-700',
+        'valve-box': 'bg-green-800 border-2 border-black w-20 h-20', 'backflow': 'bg-yellow-400 border-2 border-yellow-600 w-10 h-5',
+        riser: 'bg-yellow-400 border-2 border-yellow-600 w-5 h-10', rotor: 'bg-gray-700 rounded-full w-5 h-5 sprinkler',
+        'spray-90': 'bg-gray-700 rounded-full w-5 h-5 sprinkler',
+    };
+
+    const sampleYardTemplate = [
+        { type: 'house', left: 4, top: 4, width: 22, height: 18 },
+        { type: 'patio', left: 26, top: 12, width: 20, height: 4 },
+        { type: 'retaining-wall', left: 4, top: 22, width: 52, height: 14 },
+        { type: 'tree', left: 48, top: 2, width: 5, height: 5, noResize: true },
+        { type: 'backflow', left: 24, top: 11, width: 2, height: 1, noResize: true },
+        { type: 'valve-box', left: 27, top: 9, width: 3, height: 3 },
+        { type: 'riser', left: 4.5, top: 22, width: 1, height: 2, noResize: true, zone: 1 },
+        { type: 'spray-90', left: 4.5, top: 21, rotation: 135, zone: 1 },
+        { type: 'spray-90', left: 4.5, top: 35, rotation: 45, zone: 1 },
+        { type: 'spray-90', left: 55, top: 35, rotation: -45, zone: 1 },
+        { type: 'spray-90', left: 55, top: 22, rotation: -135, zone: 1 },
+        { type: 'rotor', left: 16, top: 29, rotation: 0, zone: 2 },
+        { type: 'rotor', left: 44, top: 29, rotation: 0, zone: 2 },
+    ];
+
+    function createItem(options) { /* ... same as previous ... */ } // (Function body below)
+    function drawPipes() { /* ... same as previous ... */ } // (Function body below)
+    function selectItem(item) { /* ... same as previous ... */ } // (Function body below)
+    function updatePropertiesPanel() { /* ... same as previous ... */ } // (Function body below)
+    function updateDimensionLabel(item) { /* ... same as previous ... */ } // (Function body below)
+    function updateZoneVisuals(item) { /* ... same as previous ... */ } // (Function body below)
+
+    // Right Panel HTML structure
+    rightPanel.innerHTML = `
+        <h3 class="text-lg font-bold border-b pb-2">Properties</h3>
+        <div id="instructions" class="text-sm text-gray-600 p-3 bg-gray-50 rounded-md">
+            <p><strong>Welcome!</strong></p>
+            <p class="mt-2">1. Click <strong>Load Sample Yard</strong> to see a plan based on the image.</p>
+            <p>2. Add a <strong>Valve Box</strong> first for custom designs.</p>
+            <p>3. Select an item to edit its properties here.</p>
+        </div>
+        <div id="properties-panel" class="hidden flex-col gap-4">
+            <h4 id="item-name" class="text-md font-semibold"></h4>
+            <div id="dimensions-controls" class="space-y-2">
+                <div><label for="prop-width" class="text-sm font-medium">Width (ft)</label><input type="number" id="prop-width" class="w-full p-1 border rounded-md mt-1"></div>
+                <div><label for="prop-height" class="text-sm font-medium">Height (ft)</label><input type="number" id="prop-height" class="w-full p-1 border rounded-md mt-1"></div>
+            </div>
+            <div id="zone-controls" class="space-y-2">
+                <p class="text-sm font-medium">Assign to Zone:</p>
+                <button data-zone="1" class="w-full p-2 rounded-md text-white" style="background-color: var(--zone1-color);">Zone 1 (Green)</button>
+                <button data-zone="2" class="w-full p-2 rounded-md text-white" style="background-color: var(--zone2-color);">Zone 2 (Red)</button>
+                <button data-zone="3" class="w-full p-2 rounded-md text-white" style="background-color: var(--zone3-color);">Zone 3 (Orange)</button>
+                <button data-zone="0" class="w-full p-2 rounded-md bg-gray-500 text-white">Clear Zone</button>
+            </div>
+        </div>`;
+
+    // Re-bind variables to the new elements
+    const instructionsPanel = document.getElementById('instructions');
+    const propertiesPanel = document.getElementById('properties-panel');
+    const itemName = document.getElementById('item-name');
+    const zoneControls = document.getElementById('zone-controls');
+    const dimensionsControls = document.getElementById('dimensions-controls');
+    const propWidthInput = document.getElementById('prop-width');
+    const propHeightInput = document.getElementById('prop-height');
+
+    // --- Core Functions (mostly unchanged, just refined) ---
+    createItem = (options) => {
+        const item = document.createElement('div');
+        item.className = `item absolute ${ITEM_STYLES[options.type]}`;
+        item.style.width = `${options.width * SCALE}px`;
+        item.style.height = `${options.height * SCALE}px`;
+        item.setAttribute('data-x', options.left * SCALE);
+        item.setAttribute('data-y', options.top * SCALE);
+        item.style.transform = `translate(${options.left * SCALE}px, ${options.top * SCALE}px) rotate(${options.rotation || 0}deg)`;
+        
+        if (options.zone) item.dataset.zone = options.zone;
+        if (options.noResize) item.classList.add('no-resize');
+
+        item.innerHTML += '<div class="dimension-label absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/70 px-1 rounded text-xs font-bold pointer-events-none"></div>';
+        item.innerHTML += '<div class="handle rotate-handle absolute bg-blue-500 border-2 border-white rounded-full"></div>';
+        if (!options.noResize) item.innerHTML += '<div class="handle resize-handle absolute bg-blue-500 border-2 border-white"></div>';
+        
+        if (options.type.includes('spray') || options.type.includes('rotor')) {
+            item.classList.add('sprinkler');
+            const arc = document.createElement('div');
+            arc.className = `spray-arc absolute pointer-events-none border-dashed border-gray-600/50 ${options.type.includes('90') ? 'spray-arc-90' : ''} ${options.type.includes('180') ? 'spray-arc-180' : ''}`;
+            const arcSize = options.type.includes('rotor') ? 400 : 200;
+            arc.style.width = `${arcSize}px`; arc.style.height = `${arcSize}px`;
+            arc.style.left = `calc(50% - ${arcSize/2}px)`; arc.style.top = `calc(50% - ${arcSize/2}px)`;
+            item.appendChild(arc);
+        }
+
+        itemContainer.appendChild(item);
+        updateDimensionLabel(item); updateZoneVisuals(item); return item;
+    };
+    drawPipes = () => {
+        pipeLayer.innerHTML = '';
+        const valveBox = document.querySelector('.item-valve-box');
+        if (!valveBox) return;
+
+        const valveX = parseFloat(valveBox.dataset.x) + valveBox.offsetWidth / 2;
+        const valveY = parseFloat(valveBox.dataset.y) + valveBox.offsetHeight / 2;
+
+        const zones = {};
+        document.querySelectorAll('[data-zone]').forEach(s => {
+            if (s.dataset.zone) {
+                if (!zones[s.dataset.zone]) zones[s.dataset.zone] = [];
+                zones[s.dataset.zone].push(s);
+            }
+        });
+
+        for (const zoneNum in zones) {
+            const heads = zones[zoneNum].sort((a, b) => parseFloat(a.dataset.x) - parseFloat(b.dataset.x));
+            let lastX = valveX, lastY = valveY;
+            
+            heads.forEach(head => {
+                const headX = parseFloat(head.dataset.x) + head.offsetWidth / 2;
+                const headY = parseFloat(head.dataset.y) + head.offsetHeight / 2;
+                const color = getComputedStyle(document.documentElement).getPropertyValue(`--zone${zoneNum}-color`);
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', lastX); line.setAttribute('y1', lastY);
+                line.setAttribute('x2', headX); line.setAttribute('y2', headY);
+                line.setAttribute('stroke', color); line.setAttribute('stroke-width', '4');
+                line.setAttribute('stroke-linecap', 'round');
+                pipeLayer.appendChild(line);
+                lastX = headX; lastY = headY;
+            });
+        }
+    };
+    selectItem = (item) => {
+        if (selectedItem) selectedItem.classList.remove('border-blue-500');
+        selectedItem = item;
+        document.querySelectorAll('.handle').forEach(h => h.classList.add('hidden'));
+        if (selectedItem) {
+            selectedItem.classList.add('border-blue-500');
+            selectedItem.querySelectorAll('.handle').forEach(h => h.classList.remove('hidden'));
+            updatePropertiesPanel();
+        } else {
+            propertiesPanel.classList.add('hidden');
+            instructionsPanel.classList.remove('hidden');
+        }
+    };
+    updatePropertiesPanel = () => {
+        if (!selectedItem) return;
+        propertiesPanel.classList.remove('hidden'); instructionsPanel.classList.add('hidden');
+        const type = Object.keys(ITEM_STYLES).find(key => selectedItem.classList.contains(`item-${key}`));
+        itemName.textContent = type.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+        const isEditable = !selectedItem.classList.contains('sprinkler') && !selectedItem.classList.contains('item-valve-box') && !selectedItem.classList.contains('no-resize');
+        const canHaveZone = selectedItem.classList.contains('sprinkler') || selectedItem.classList.contains('item-riser');
+        zoneControls.style.display = canHaveZone ? 'block' : 'none';
+        dimensionsControls.style.display = isEditable ? 'block' : 'none';
+        if (isEditable) {
+            propWidthInput.value = Math.round(selectedItem.offsetWidth / SCALE);
+            propHeightInput.value = Math.round(selectedItem.offsetHeight / SCALE);
+        }
+    };
+    updateDimensionLabel = (item) => {
+        const label = item.querySelector('.dimension-label'); if (!label) return;
+        label.textContent = `${Math.round(item.offsetWidth/SCALE)}'x${Math.round(item.offsetHeight/SCALE)}'`;
+    };
+    updateZoneVisuals = (item) => {
+        if (item.dataset.zone && (item.classList.contains('sprinkler') || item.classList.contains('item-riser'))) {
+            item.style.backgroundColor = `var(--zone${item.dataset.zone}-color)`;
+        } else if (item.classList.contains('sprinkler')) {
+            item.style.backgroundColor = '#4b5563'; // gray-700
+        }
+    };
+
+    // Event Listeners Setup
+    document.getElementById('load-template-btn').addEventListener('click', () => { itemContainer.innerHTML = ''; sampleYardTemplate.forEach(opts => createItem(opts)); drawPipes(); });
+    document.getElementById('clear-canvas-btn').addEventListener('click', () => { itemContainer.innerHTML = ''; drawPipes(); selectItem(null); });
+    document.getElementById('mode-toggle-btn').addEventListener('click', () => {
+        const btn = document.getElementById('mode-toggle-btn');
+        const isPresenting = document.body.classList.toggle('isometric-mode');
+        btn.innerHTML = isPresenting ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" /></svg> Back to Editor` : 'View Presentation';
+        if (isPresenting) selectItem(null);
+    });
+    document.querySelectorAll('#left-panel button[data-type]').forEach(button => {
+        button.addEventListener('click', () => {
+            const type = button.dataset.type;
+            selectItem(createItem({ type: type, left: 5, top: 5, width: 10, height: 10 }));
+        });
+    });
+    itemContainer.addEventListener('click', e => { if (!document.body.classList.contains('isometric-mode')) selectItem(e.target.closest('.item')); });
+    document.addEventListener('keydown', e => { if ((e.key === 'Delete' || e.key === 'Backspace') && selectedItem) { selectedItem.remove(); selectItem(null); drawPipes(); }});
+    [propWidthInput, propHeightInput].forEach(input => input.addEventListener('input', () => { if (!selectedItem) return; selectedItem.style.width = `${propWidthInput.value * SCALE}px`; selectedItem.style.height = `${propHeightInput.value * SCALE}px`; updateDimensionLabel(selectedItem); }));
+    rightPanel.addEventListener('click', e => {
+        if (e.target.closest('#zone-controls button') && selectedItem) {
+            const zone = e.target.closest('button').dataset.zone;
+            if (zone === '0') delete selectedItem.dataset.zone; else selectedItem.dataset.zone = zone;
+            updateZoneVisuals(selectedItem); drawPipes();
+        }
+    });
+
+    // Interact.js Logic (same as before)
+    interact('.item').draggable({listeners: { move(event) { const target = event.target; const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx; const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy; const rotation = (target.style.transform.match(/rotate\((.+)deg\)/) || [])[1] || 0; target.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`; target.setAttribute('data-x', x); target.setAttribute('data-y', y); drawPipes(); }}, modifiers: [interact.modifiers.snap({ targets: [interact.createSnapGrid({ x: SCALE/2, y: SCALE/2 })], range: Infinity, relativePoints: [{ x: 0, y: 0 }] })]}).resizable({edges: { left: false, right: '.resize-handle', bottom: '.resize-handle', top: false }, listeners: { move(event) { let target = event.target; target.style.width = `${event.rect.width}px`; target.style.height = `${event.rect.height}px`; let x = parseFloat(target.getAttribute('data-x')) || 0; let y = parseFloat(target.getAttribute('data-y')) || 0; x += event.deltaRect.left; y += event.deltaRect.top; const rotation = (target.style.transform.match(/rotate\((.+)deg\)/) || [])[1] || 0; target.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`; target.setAttribute('data-x', x); target.setAttribute('data-y', y); updateDimensionLabel(target); updatePropertiesPanel(); drawPipes(); }}, modifiers: [interact.modifiers.snapSize({ targets: [interact.createSnapGrid({ x: SCALE, y: SCALE })] })]}).on('tap', e => { if (!document.body.classList.contains('isometric-mode')) selectItem(e.currentTarget) });
+    interact('.rotate-handle').draggable({ onmove: function (event) { const target = event.target.parentElement; const rect = target.getBoundingClientRect(); const centerX = rect.left + rect.width / 2; const centerY = rect.top + rect.height / 2; const angle = Math.atan2(event.clientY - centerY, event.clientX - centerX) * 180 / Math.PI + 90; const x = parseFloat(target.getAttribute('data-x')) || 0; const y = parseFloat(target.getAttribute('data-y')) || 0; target.style.transform = `translate(${x}px, ${y}px) rotate(${angle}deg)`; }, onend: drawPipes });
+});
+</script>
+</body>
+</html>
