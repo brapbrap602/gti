@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dual-Mode Sprinkler Designer</title>
+    <style>
+        :root {
+            --bg-color: #f0f2f5; --canvas-bg: #fff; --panel-bg: #ffffff;
+            --text-color: #333; --border-color: #d9d9d9; --accent-color: #007bff;
+            --grid-color: #e9e9e9; --label-bg: rgba(255, 255, 255, 0.75);
+            --zone1-color: #007bff; --zone2-color: #28a745; --zone3-color: #fd7e14;
+            --grass-color-light: #b8e0b8; --grass-color-dark: #92c792;
+            --water-spray-color: rgba(173, 216, 230, 0.7);
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color); color: var(--text-color); margin: 0;
+            display: flex; height: 100vh; overflow: hidden; transition: background-color 0.3s;
+        }
+        .panel {
+            background-color: var(--panel-bg); padding: 15px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05); display: flex;
+            flex-direction: column; gap: 15px; z-index: 20;
+            transition: transform 0.4s ease-in-out;
+        }
+        #left-panel { width: 220px; border-right: 1px solid var(--border-color); }
+        #right-panel { width: 250px; border-left: 1px solid var(--border-color); }
+        h3, h4 { margin-top: 0; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
+        h4 { margin-bottom: 10px; }
+        .tool-group button, .control-button {
+            display: block; width: 100%; padding: 10px; margin-bottom: 8px; text-align: left;
+            border: 1px solid var(--border-color); background-color: #fff;
+            border-radius: 5px; cursor: pointer; transition: background-color 0.2s, box-shadow 0.2s;
+        }
+        .tool-group button:hover, .control-button:hover { background-color: #f8f9fa; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        #mode-toggle-btn { background-color: #28a745; color: white; border-color: #28a745; font-weight: bold; }
+        #canvas-container {
+            flex-grow: 1; padding: 20px; background-color: var(--bg-color);
+            display: flex; justify-content: center; align-items: center; transition: padding 0.4s;
+        }
+        #canvas {
+            width: 1200px; height: 800px; background-color: var(--canvas-bg);
+            background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(to right, var(--grid-color) 1px, transparent 1px);
+            background-size: 20px 20px; position: relative;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1); overflow: hidden;
+            border: 1px solid var(--border-color); transition: all 0.4s;
+        }
+        .item {
+            position: absolute; cursor: grab; user-select: none;
+            box-sizing: border-box; border: 2px solid transparent; transition: border-color 0.2s;
+        }
+        .item.selected { border: 2px solid var(--accent-color); z-index: 1000; }
+        .item:active { cursor: grabbing; }
+        
+        /* Item Graphics */
+        .item-house { background-color: #f0e6d2; border: 2px solid #bba; }
+        .item-patio { background-color: #d1c9b8; border: 2px solid #988; }
+        .item-garden-bed { background-color: #bfa893; border: 2px solid #8c7a6b; }
+        .item-shed { background-color: #c9c9c9; border: 2px solid #888; }
+        .item-tree {
+            background-color: #6a8d6a; border-radius: 50%; border: 2px solid #587558;
+            transition: all 0.3s;
+        }
+        .item-tree::after { /* Trunk */
+            content: ''; position: absolute; bottom: -10px; left: calc(50% - 5px);
+            width: 10px; height: 15px; background-color: #8b5e3c; z-index: -1;
+            display: none;
+        }
+        .dimension-label {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: var(--label-bg); padding: 2px 5px; border-radius: 3px;
+            font-size: 12px; font-weight: bold; pointer-events: none; white-space: nowrap;
+            transition: opacity 0.3s;
+        }
+        .sprinkler {
+            width: 20px; height: 20px; border-radius: 50%; background-color: #555;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .sprinkler.zone-1 { background-color: var(--zone1-color); }
+        .sprinkler.zone-2 { background-color: var(--zone2-color); }
+        .sprinkler.zone-3 { background-color: var(--zone3-color); }
+        .spray-arc {
+            position: absolute; border-radius: 50%; pointer-events: none;
+            border: 1px dashed rgba(0,0,0,0.4);
+            transition: all 0.4s;
+        }
+        .item-rotor .spray-arc { width: 400px; height: 400px; left: calc(50% - 200px); top: calc(50% - 200px); }
+        .item-spray .spray-arc { width: 200px; height: 200px; left: calc(50% - 100px); top: calc(50% - 100px); }
+        .spray-arc-90 { clip-path: polygon(50% 50%, 100% 50%, 100% 0, 50% 0); }
+        .spray-arc-180 { clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 0% 100%, 0% 50%); }
+        .handle {
+            position: absolute; background-color: var(--accent-color);
+            border: 1px solid white; visibility: hidden; transition: opacity 0.3s;
+        }
+        .item.selected .handle { visibility: visible; }
+        .resize-handle { width: 12px; height: 12px; bottom: -7px; right: -7px; cursor: nwse-resize; }
+        .rotate-handle { width: 12px; height: 12px; top: -15px; left: calc(50% - 6px); cursor: alias; border-radius: 50%; }
+        .no-resize .resize-handle { display: none; }
+        #properties-panel { display: none; }
+        #properties-panel.visible { display: block; }
+        #instructions { font-size: 0.9em; color: #666; background-color: #f8f9fa; padding: 10px; border-radius: 5px;}
+        .prop-group { margin-bottom: 15px; }
+        .prop-group label { display: block; margin-bottom: 5px; font-size: 14px; }
+        .prop-group input { width: calc(100% - 12px); padding: 5px; border: 1px solid var(--border-color); border-radius: 3px; }
+
+        /* --- PRESENTATION MODE STYLES --- */
+        body.presentation-mode { background-color: #d1d8e0; }
+        body.presentation-mode #left-panel { transform: translateX(-100%); }
+        body.presentation-mode #right-panel { transform: translateX(100%); }
+        body.presentation-mode #canvas-container { padding: 40px; }
+        body.presentation-mode #canvas {
+            background-image: none;
+            background: radial-gradient(circle, var(--grass-color-light), var(--grass-color-dark));
+            border-color: var(--grass-color-dark);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        body.presentation-mode .item.selected { border-color: transparent; }
+        body.presentation-mode .handle, body.presentation-mode .dimension-label { display: none; }
+        body.presentation-mode .item-tree { border-radius: 45% 55% 40% 60% / 60% 50% 55% 40%; }
+        body.presentation-mode .item-tree::after { display: block; }
+        body.presentation-mode .spray-arc {
+            border: none;
+            background: radial-gradient(circle, var(--water-spray-color) 0%, rgba(173, 216, 230, 0) 70%);
+        }
+    </style>
+</head>
+<body>
+    <div id="left-panel" class="panel">
+        <h3>Controls</h3>
+        <div class="tool-group">
+            <button class="control-button" id="mode-toggle-btn">View Presentation</button>
+            <button class="control-button" id="load-template-btn">Load Sample Yard</button>
+            <button class="control-button" id="clear-canvas-btn">Clear Canvas</button>
+        </div>
+        <h3>Toolbox</h3>
+        <div class="tool-group">
+            <h4>Yard Layout</h4>
+            <button data-type="house">Add House</button>
+            <button data-type="patio">Add Patio</button>
+            <button data-type="tree">Add Tree</button>
+            <button data-type="garden-bed">Add Garden Bed</button>
+        </div>
+        <div class="tool-group">
+            <h4>Sprinklers</h4>
+            <button data-type="rotor">Add Rotor</button>
+            <button data-type="spray-90">Add Spray (90°)</button>
+            <button data-type="spray-180">Add Spray (180°)</button>
+        </div>
+    </div>
+    <div id="canvas-container"><div id="canvas"></div></div>
+    <div id="right-panel" class="panel">
+        <h3>Properties</h3>
+        <div id="instructions">
+            <p><strong>How to Use:</strong></p>
+            <p>1. Click <strong>Load Sample Yard</strong> to start.</p>
+            <p>2. Drag items to move them.</p>
+            <p>3. Click an item to select it.</p>
+            <p>4. Use handles to resize/rotate.</p>
+            <p>5. Use this panel to set exact sizes.</p>
+            <p>6. Click <strong>View Presentation</strong> for a clean look!</p>
+        </div>
+        <div id="properties-panel">
+            <h4 id="item-name"></h4>
+            <div id="dimensions-controls" class="prop-group">
+                <label for="prop-width">Width (ft)</label>
+                <input type="number" id="prop-width">
+                <label for="prop-height">Height (ft)</label>
+                <input type="number" id="prop-height">
+            </div>
+            <div id="zone-controls" class="prop-group">
+                <p><strong>Assign to Zone:</strong></p>
+                <button data-zone="1">Zone 1 (Blue)</button>
+                <button data-zone="2">Zone 2 (Green)</button>
+                <button data-zone="3">Zone 3 (Orange)</button>
+                <button data-zone="0">Clear Zone</button>
+            </div>
+        </div>
+    </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const SCALE = 20;
+    const canvas = document.getElementById('canvas');
+    const modeToggleButton = document.getElementById('mode-toggle-btn');
+    const propertiesPanel = document.getElementById('properties-panel');
+    const instructionsPanel = document.getElementById('instructions');
+    const itemName = document.getElementById('item-name');
+    const zoneControls = document.getElementById('zone-controls');
+    const dimensionsControls = document.getElementById('dimensions-controls');
+    const propWidthInput = document.getElementById('prop-width');
+    const propHeightInput = document.getElementById('prop-height');
+
+    let selectedItem = null;
+    let activeHandle = null;
+    let initialPos = {};
+
+    const sampleYardTemplate = [
+        { type: 'house', left: 0, top: 0, width: 12, height: 40 },
+        { type: 'patio', left: 12, top: 28, width: 24, height: 12 },
+        { type: 'garden-bed', left: 12, top: 0, width: 48, height: 6 },
+        { type: 'tree', left: 50, top: 8, width: 4, height: 4, noResize: true },
+        { type: 'rotor', left: 15, top: 25, rotation: 90, zone: 1 },
+        { type: 'rotor', left: 35, top: 25, rotation: 90, zone: 1 },
+        { type: 'rotor', left: 55, top: 25, rotation: 180, zone: 1 },
+        { type: 'spray-90', left: 13, top: 7, rotation: 90, zone: 2 },
+        { type: 'spray-90', left: 35, top: 27, rotation: 0, zone: 2 },
+        { type: 'spray-180', left: 24, top: 7, rotation: 90, zone: 2 }
+    ];
+
+    function createItem(options) {
+        const itemClass = options.type.includes('spray') ? 'spray' : options.type;
+        const newItem = document.createElement('div');
+        newItem.className = `item item-${itemClass}`;
+        
+        newItem.style.left = `${options.left * SCALE}px`;
+        newItem.style.top = `${options.top * SCALE}px`;
+        newItem.style.width = `${options.width * SCALE}px`;
+        newItem.style.height = `${options.height * SCALE}px`;
+        if (options.rotation) newItem.style.transform = `rotate(${options.rotation}deg)`;
+        if (options.zone) newItem.classList.add(`zone-${options.zone}`);
+        if (options.noResize) newItem.classList.add('no-resize');
+
+        if (!options.type.includes('spray') && !options.type.includes('rotor')) {
+            newItem.appendChild(document.createElement('div')).className = 'dimension-label';
+        }
+        newItem.appendChild(document.createElement('div')).className = 'handle resize-handle';
+        newItem.appendChild(document.createElement('div')).className = 'handle rotate-handle';
+        
+        if (options.type.includes('spray') || options.type.includes('rotor')) {
+            newItem.classList.add('sprinkler');
+            const arc = document.createElement('div');
+            let arcClass = 'spray-arc-360';
+            if (options.type.includes('90')) arcClass = 'spray-arc-90';
+            if (options.type.includes('180')) arcClass = 'spray-arc-180';
+            arc.className = `spray-arc ${arcClass}`;
+            newItem.appendChild(arc);
+        }
+        
+        canvas.appendChild(newItem);
+        updateDimensionLabel(newItem);
+        return newItem;
+    }
+
+    function loadTemplate() {
+        clearCanvas();
+        sampleYardTemplate.forEach(itemData => {
+            const defaultSize = itemData.type.includes('spray') || itemData.type.includes('rotor') ? 1 : 10;
+            createItem({ ...itemData, width: itemData.width || defaultSize, height: itemData.height || defaultSize });
+        });
+    }
+
+    function clearCanvas() { canvas.innerHTML = ''; selectItem(null); }
+    document.getElementById('load-template-btn').addEventListener('click', loadTemplate);
+    document.getElementById('clear-canvas-btn').addEventListener('click', clearCanvas);
+    document.querySelectorAll('#left-panel .tool-group:not(:first-child) button').forEach(button => {
+        button.addEventListener('click', () => {
+            const type = button.dataset.type;
+            const isSprinkler = type.includes('spray') || type.includes('rotor');
+            selectItem(createItem({ type: type, left: 5, top: 5, width: isSprinkler ? 1 : 10, height: isSprinkler ? 1 : 10 }));
+        });
+    });
+    modeToggleButton.addEventListener('click', () => {
+        const isPresenting = document.body.classList.toggle('presentation-mode');
+        modeToggleButton.textContent = isPresenting ? 'Back to Edit Mode' : 'View Presentation';
+        if (isPresenting) { selectItem(null); }
+    });
+
+    function updateDimensionLabel(item) {
+        const label = item.querySelector('.dimension-label');
+        if (!label) return;
+        label.textContent = `${Math.round(item.offsetWidth/SCALE)}' x ${Math.round(item.offsetHeight/SCALE)}'`;
+    }
+
+    function selectItem(item) {
+        if (selectedItem) selectedItem.classList.remove('selected');
+        selectedItem = item;
+        if (selectedItem) {
+            selectedItem.classList.add('selected');
+            updatePropertiesPanel();
+        } else {
+            hidePropertiesPanel();
+        }
+    }
+    
+    function updatePropertiesPanel() {
+        if (!selectedItem) return;
+        propertiesPanel.classList.add('visible');
+        instructionsPanel.style.display = 'none';
+        const type = selectedItem.classList[1].replace('item-', '').replace('-', ' ');
+        itemName.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+        if (selectedItem.classList.contains('sprinkler')) {
+            zoneControls.style.display = 'block'; dimensionsControls.style.display = 'none';
+        } else {
+            zoneControls.style.display = 'none'; dimensionsControls.style.display = 'block';
+            propWidthInput.value = Math.round(selectedItem.offsetWidth / SCALE);
+            propHeightInput.value = Math.round(selectedItem.offsetHeight / SCALE);
+        }
+    }
+
+    function hidePropertiesPanel() {
+        propertiesPanel.classList.remove('visible');
+        instructionsPanel.style.display = 'block';
+    }
+    
+    [propWidthInput, propHeightInput].forEach(input => {
+        input.addEventListener('input', () => {
+            if (!selectedItem) return;
+            selectedItem.style.width = `${propWidthInput.value * SCALE}px`;
+            selectedItem.style.height = `${propHeightInput.value * SCALE}px`;
+            updateDimensionLabel(selectedItem);
+        });
+    });
+
+    zoneControls.addEventListener('click', e => {
+        if (e.target.tagName === 'BUTTON' && selectedItem) {
+            const zone = e.target.dataset.zone;
+            selectedItem.classList.remove('zone-1', 'zone-2', 'zone-3');
+            if (zone !== '0') selectedItem.classList.add(`zone-${zone}`);
+        }
+    });
+
+    document.addEventListener('keydown', e => {
+        if ((e.key === 'Delete' || e.key === 'Backspace') && selectedItem) {
+            selectedItem.remove(); selectItem(null);
+        }
+    });
+
+    canvas.addEventListener('mousedown', e => {
+        const item = e.target.closest('.item');
+        if (document.body.classList.contains('presentation-mode') || !item) {
+            selectItem(null); return;
+        }
+        selectItem(item);
+        if (e.target.classList.contains('resize-handle')) activeHandle = 'resize';
+        else if (e.target.classList.contains('rotate-handle')) activeHandle = 'rotate';
+        else activeHandle = 'drag';
+        initialPos = { x: e.clientX, y: e.clientY, left: item.offsetLeft, top: item.offsetTop, width: item.offsetWidth, height: item.offsetHeight };
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+        e.preventDefault();
+    });
+
+    function onMouseMove(e) {
+        if (!selectedItem || !activeHandle) return;
+        const dx = e.clientX - initialPos.x, dy = e.clientY - initialPos.y;
+        if (activeHandle === 'drag') {
+            selectedItem.style.left = `${initialPos.left + dx}px`;
+            selectedItem.style.top = `${initialPos.top + dy}px`;
+        } else if (activeHandle === 'resize') {
+            selectedItem.style.width = `${initialPos.width + dx}px`;
+            selectedItem.style.height = `${initialPos.height + dy}px`;
+            updateDimensionLabel(selectedItem); updatePropertiesPanel();
+        } else if (activeHandle === 'rotate') {
+            const rect = selectedItem.getBoundingClientRect();
+            const angle = Math.atan2(e.clientY - (rect.top + rect.height / 2), e.clientX - (rect.left + rect.width / 2)) * (180 / Math.PI) + 90;
+            selectedItem.style.transform = `rotate(${angle}deg)`;
+        }
+    }
+    function onMouseUp() { activeHandle = null; document.removeEventListener('mousemove', onMouseMove); document.removeEventListener('mouseup', onMouseUp); }
+});
+</script>
+</body>
+</html>
