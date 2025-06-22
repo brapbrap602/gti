@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const endDelimiter = '¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯';
 
     // Select all paragraphs that might contain the game interface content.
-    // Using 'p.calibre5' for specificity as per your HTML example.
     const allParagraphs = document.querySelectorAll('p.calibre5');
 
     let currentInterfaceParagraphs = [];
@@ -15,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Iterate through the NodeList of paragraphs using a standard for loop for performance.
     for (let i = 0; i < allParagraphs.length; i++) {
         const p = allParagraphs[i];
+        // Trim the entire paragraph text for delimiter detection
         const trimmedText = p.textContent.trim();
 
         if (trimmedText === startDelimiter) {
@@ -79,9 +79,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Move each node from its original parent to the fragment, then apply delimiter class.
         nodes.forEach(node => {
-            // Ensure the node is still part of the expected parent before moving,
-            // as other scripts or malformed HTML could alter it.
+            // Ensure the node is still part of the expected parent before moving.
             if (node.parentNode === parent) {
+                // === IMPORTANT CHANGE HERE: Clean text content before appending ===
+                // Split the text by newlines, trim each individual line, and then join them back.
+                // This removes any leading/trailing whitespace on each line, ensuring left alignment.
+                let cleanedText = node.textContent.split('\n')
+                                    .map(line => line.trim())
+                                    .filter(line => line.length > 0) // Optionally remove lines that are entirely empty after trimming
+                                    .join('\n');
+
+                node.textContent = cleanedText;
+                // ===================================================================
+
+                // Apply delimiter class if it's a delimiter line (after cleaning text content)
                 if (node.textContent.trim() === startDelimiter || node.textContent.trim() === endDelimiter) {
                     node.classList.add('game-interface-delimiter'); // Add class to hide delimiters via CSS
                 }
