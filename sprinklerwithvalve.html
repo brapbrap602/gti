@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Sprinkler System Designer</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Interact.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <style>
+        :root {
+            --zone1-color: #3b82f6; --zone2-color: #22c55e; --zone3-color: #f97316;
+            --water-spray-color: rgba(135, 206, 235, 0.6);
+        }
+        /* Custom styles to complement Tailwind */
+        .item { touch-action: none; user-select: none; box-sizing: border-box; }
+        .resize-handle { width: 12px; height: 12px; bottom: -6px; right: -6px; cursor: se-resize; }
+        .rotate-handle { width: 12px; height: 12px; top: -18px; left: calc(50% - 6px); cursor: alias; }
+        .spray-arc-90 { clip-path: polygon(50% 50%, 100% 50%, 100% 0, 50% 0); }
+        .spray-arc-180 { clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 0% 100%, 0% 50%); }
+
+        /* Presentation Mode Styles */
+        body.presentation-mode { background-color: #e5e7eb; }
+        body.presentation-mode #left-panel, body.presentation-mode #right-panel { transform: translateX(-110%); }
+        body.presentation-mode #right-panel { transform: translateX(110%); }
+        body.presentation-mode #canvas {
+            background-image: none;
+            background: radial-gradient(circle, #a7f3d0, #34d399);
+        }
+        body.presentation-mode .item.selected { border-color: transparent; }
+        body.presentation-mode .handle, body.presentation-mode .dimension-label, body.presentation-mode #pipe-layer { display: none; }
+        body.presentation-mode .item-tree { border-radius: 45% 55% 40% 60% / 60% 50% 55% 40%; }
+        body.presentation-mode .item-tree::after { display: block; }
+        body.presentation-mode .spray-arc {
+            border: none;
+            background: radial-gradient(circle, var(--water-spray-color) 0%, rgba(135, 206, 235, 0) 70%);
+        }
+        body.presentation-mode #mode-toggle-btn {
+            position: fixed; top: 20px; left: 20px; z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex h-screen overflow-hidden">
+
+    <!-- Left Panel: Toolbox -->
+    <div id="left-panel" class="bg-white w-60 p-4 shadow-lg flex flex-col gap-6 transition-transform duration-300 z-20">
+        <div>
+            <h3 class="text-lg font-bold border-b pb-2 mb-3">Controls</h3>
+            <button id="mode-toggle-btn" class="w-full text-white bg-green-500 hover:bg-green-600 p-2 rounded-md font-semibold">View Presentation</button>
+            <button id="load-template-btn" class="w-full bg-gray-200 hover:bg-gray-300 p-2 rounded-md mt-2">Load Sample Yard</button>
+            <button id="clear-canvas-btn" class="w-full bg-red-500 text-white hover:bg-red-600 p-2 rounded-md mt-2">Clear Canvas</button>
+        </div>
+        <div>
+            <h3 class="text-lg font-bold border-b pb-2 mb-3">Yard Layout</h3>
+            <button data-type="house" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50 mb-2">Add House</button>
+            <button data-type="patio" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50 mb-2">Add Patio</button>
+            <button data-type="tree" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50 mb-2">Add Tree</button>
+            <button data-type="garden-bed" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50">Add Garden Bed</button>
+        </div>
+        <div>
+            <h3 class="text-lg font-bold border-b pb-2 mb-3">Sprinkler System</h3>
+            <button data-type="valve-box" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50 mb-2">Add Valve Box</button>
+            <button data-type="rotor" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50 mb-2">Add Rotor</button>
+            <button data-type="spray-90" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50 mb-2">Add Spray (90°)</button>
+            <button data-type="spray-180" class="w-full text-left bg-white border p-2 rounded-md hover:bg-gray-50">Add Spray (180°)</button>
+        </div>
+    </div>
+
+    <!-- Center Canvas -->
+    <main class="flex-1 flex items-center justify-center p-5">
+        <div id="canvas-container" class="w-[1200px] h-[800px] bg-white shadow-lg relative">
+            <div id="canvas-grid" class="absolute inset-0 bg-transparent" style="background-image: linear-gradient(#e5e7eb 1px, transparent 1px), linear-gradient(to right, #e5e7eb 1px, transparent 1px); background-size: 20px 20px;"></div>
+            <svg id="pipe-layer" class="absolute inset-0 w-full h-full pointer-events-none z-0"></svg>
+            <div id="item-container" class="absolute inset-0"></div>
+        </div>
+    </main>
+
+    <!-- Right Panel: Properties -->
+    <div id="right-panel" class="bg-white w-64 p-4 shadow-lg flex-col gap-4 transition-transform duration-300 z-20">
+        <h3 class="text-lg font-bold border-b pb-2">Properties</h3>
+        <div id="instructions" class="text-sm text-gray-600 p-3 bg-gray-50 rounded-md">
+            <p><strong>Welcome!</strong></p>
+            <p class="mt-2">1. Add a <strong>Valve Box</strong> first.</p>
+            <p>2. Add sprinklers and assign them to a zone to see the pipes.</p>
+            <p>3. Click an item to select it, then edit its properties here.</p>
+        </div>
+        <div id="properties-panel" class="hidden flex-col gap-4">
+            <h4 id="item-name" class="text-md font-semibold"></h4>
+            <div id="dimensions-controls" class="space-y-2">
+                <div>
+                    <label for="prop-width" class="text-sm font-medium">Width (ft)</label>
+                    <input type="number" id="prop-width" class="w-full p-1 border rounded-md mt-1">
+                </div>
+                <div>
+                    <label for="prop-height" class="text-sm font-medium">Height (ft)</label>
+                    <input type="number" id="prop-height" class="w-full p-1 border rounded-md mt-1">
+                </div>
+            </div>
+            <div id="zone-controls" class="space-y-2">
+                <p class="text-sm font-medium">Assign to Zone:</p>
+                <button data-zone="1" class="w-full p-2 rounded-md text-white" style="background-color: var(--zone1-color);">Zone 1</button>
+                <button data-zone="2" class="w-full p-2 rounded-md text-white" style="background-color: var(--zone2-color);">Zone 2</button>
+                <button data-zone="3" class="w-full p-2 rounded-md text-white" style="background-color: var(--zone3-color);">Zone 3</button>
+                <button data-zone="0" class="w-full p-2 rounded-md bg-gray-500 text-white">Clear Zone</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const SCALE = 20; // 20px = 1ft
+    const itemContainer = document.getElementById('item-container');
+    const pipeLayer = document.getElementById('pipe-layer');
+    const propertiesPanel = document.getElementById('properties-panel');
+    const instructionsPanel = document.getElementById('instructions');
+    const itemName = document.getElementById('item-name');
+    const zoneControls = document.getElementById('zone-controls');
+    const dimensionsControls = document.getElementById('dimensions-controls');
+    const propWidthInput = document.getElementById('prop-width');
+    const propHeightInput = document.getElementById('prop-height');
+
+    let selectedItem = null;
+
+    const ITEM_STYLES = {
+        house: 'bg-yellow-100 border-2 border-yellow-300',
+        patio: 'bg-gray-300 border-2 border-gray-400',
+        tree: 'bg-green-600 rounded-full border-2 border-green-800',
+        'garden-bed': 'bg-yellow-600/50 border-2 border-yellow-700/80',
+        'valve-box': 'bg-green-800 border-2 border-black w-20 h-20',
+        rotor: 'bg-gray-700 rounded-full w-5 h-5 sprinkler',
+        'spray-90': 'bg-gray-700 rounded-full w-5 h-5 sprinkler',
+        'spray-180': 'bg-gray-700 rounded-full w-5 h-5 sprinkler',
+    };
+
+    const sampleYardTemplate = [
+        { type: 'house', left: 0, top: 0, width: 12, height: 40 },
+        { type: 'patio', left: 12, top: 28, width: 24, height: 12 },
+        { type: 'garden-bed', left: 12, top: 0, width: 48, height: 6 },
+        { type: 'valve-box', left: 13, top: 7, width: 4, height: 4 },
+        { type: 'tree', left: 50, top: 8, width: 4, height: 4, noResize: true },
+        { type: 'rotor', left: 35, top: 25, rotation: 90, zone: 1 },
+        { type: 'rotor', left: 55, top: 25, rotation: 180, zone: 1 },
+        { type: 'spray-90', left: 35, top: 27, rotation: 0, zone: 2 },
+        { type: 'spray-180', left: 24, top: 7, rotation: 90, zone: 2 },
+    ];
+
+    function createItem(options) {
+        const item = document.createElement('div');
+        item.className = `item absolute ${ITEM_STYLES[options.type]}`;
+        item.style.width = `${options.width * SCALE}px`;
+        item.style.height = `${options.height * SCALE}px`;
+        item.setAttribute('data-x', options.left * SCALE);
+        item.setAttribute('data-y', options.top * SCALE);
+        item.style.transform = `translate(${options.left * SCALE}px, ${options.top * SCALE}px) rotate(${options.rotation || 0}deg)`;
+        
+        if (options.zone) item.dataset.zone = options.zone;
+
+        // Add visual elements and handles
+        if (!options.type.includes('spray') && !options.type.includes('rotor')) {
+            item.innerHTML += '<div class="dimension-label absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/70 px-1 rounded text-xs font-bold pointer-events-none"></div>';
+        }
+        item.innerHTML += '<div class="handle rotate-handle absolute bg-blue-500 border-2 border-white rounded-full"></div>';
+        if (!options.noResize) {
+            item.innerHTML += '<div class="handle resize-handle absolute bg-blue-500 border-2 border-white"></div>';
+        }
+        
+        // Add spray arc for sprinklers
+        if (options.type.includes('spray') || options.type.includes('rotor')) {
+            const arc = document.createElement('div');
+            arc.className = `spray-arc absolute pointer-events-none border-dashed border-gray-600/50 ${options.type.includes('90') ? 'spray-arc-90' : ''} ${options.type.includes('180') ? 'spray-arc-180' : ''}`;
+            const arcSize = options.type.includes('rotor') ? 400 : 200; // rotor vs spray
+            arc.style.width = `${arcSize}px`; arc.style.height = `${arcSize}px`;
+            arc.style.left = `calc(50% - ${arcSize/2}px)`; arc.style.top = `calc(50% - ${arcSize/2}px)`;
+            item.appendChild(arc);
+        }
+
+        itemContainer.appendChild(item);
+        updateDimensionLabel(item);
+        updateZoneVisuals(item);
+        return item;
+    }
+
+    function drawPipes() {
+        pipeLayer.innerHTML = '';
+        const valveBox = document.querySelector('.item-valve-box');
+        if (!valveBox) return;
+
+        const valveX = parseFloat(valveBox.dataset.x) + valveBox.offsetWidth / 2;
+        const valveY = parseFloat(valveBox.dataset.y) + valveBox.offsetHeight / 2;
+
+        const zones = {};
+        document.querySelectorAll('.sprinkler').forEach(s => {
+            if (s.dataset.zone) {
+                if (!zones[s.dataset.zone]) zones[s.dataset.zone] = [];
+                zones[s.dataset.zone].push(s);
+            }
+        });
+
+        for (const zoneNum in zones) {
+            const heads = zones[zoneNum].sort((a, b) => parseFloat(a.dataset.x) - parseFloat(b.dataset.x));
+            let lastX = valveX, lastY = valveY;
+            
+            heads.forEach(head => {
+                const headX = parseFloat(head.dataset.x) + head.offsetWidth / 2;
+                const headY = parseFloat(head.dataset.y) + head.offsetHeight / 2;
+                const color = getComputedStyle(document.documentElement).getPropertyValue(`--zone${zoneNum}-color`);
+                
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', lastX); line.setAttribute('y1', lastY);
+                line.setAttribute('x2', headX); line.setAttribute('y2', headY);
+                line.setAttribute('stroke', color);
+                line.setAttribute('stroke-width', '3');
+                pipeLayer.appendChild(line);
+                
+                lastX = headX; lastY = headY;
+            });
+        }
+    }
+
+    function selectItem(item) {
+        if (selectedItem) selectedItem.classList.remove('border-blue-500');
+        selectedItem = item;
+        document.querySelectorAll('.handle').forEach(h => h.classList.add('hidden'));
+
+        if (selectedItem) {
+            selectedItem.classList.add('border-blue-500');
+            selectedItem.querySelectorAll('.handle').forEach(h => h.classList.remove('hidden'));
+            updatePropertiesPanel();
+        } else {
+            propertiesPanel.classList.add('hidden');
+            instructionsPanel.classList.remove('hidden');
+        }
+    }
+    
+    function updatePropertiesPanel() {
+        if (!selectedItem) return;
+        propertiesPanel.classList.remove('hidden'); instructionsPanel.classList.add('hidden');
+        const type = Object.keys(ITEM_STYLES).find(key => selectedItem.classList.contains(`item-${key}`));
+        itemName.textContent = type.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+        
+        const isSprinkler = selectedItem.classList.contains('sprinkler') || selectedItem.classList.contains('item-valve-box');
+        zoneControls.style.display = isSprinkler ? 'block' : 'none';
+        dimensionsControls.style.display = isSprinkler ? 'none' : 'block';
+
+        if (!isSprinkler) {
+            propWidthInput.value = Math.round(selectedItem.offsetWidth / SCALE);
+            propHeightInput.value = Math.round(selectedItem.offsetHeight / SCALE);
+        }
+    }
+
+    function updateDimensionLabel(item) {
+        const label = item.querySelector('.dimension-label');
+        if (!label) return;
+        label.textContent = `${Math.round(item.offsetWidth/SCALE)}' x ${Math.round(item.offsetHeight/SCALE)}'`;
+    }
+
+    function updateZoneVisuals(item) {
+        if (item.dataset.zone) {
+            item.style.backgroundColor = `var(--zone${item.dataset.zone}-color)`;
+        } else if (item.classList.contains('sprinkler')) {
+            item.style.backgroundColor = '#4b5563'; // gray-700
+        }
+    }
+
+    // Event Listeners
+    document.getElementById('load-template-btn').addEventListener('click', () => {
+        itemContainer.innerHTML = '';
+        sampleYardTemplate.forEach(opts => createItem(opts));
+        drawPipes();
+    });
+    document.getElementById('clear-canvas-btn').addEventListener('click', () => { itemContainer.innerHTML = ''; drawPipes(); selectItem(null); });
+    document.getElementById('mode-toggle-btn').addEventListener('click', () => {
+        const isPresenting = document.body.classList.toggle('presentation-mode');
+        document.getElementById('mode-toggle-btn').textContent = isPresenting ? 'Back to Edit Mode' : 'View Presentation';
+        if (isPresenting) selectItem(null);
+    });
+
+    document.querySelectorAll('#left-panel button[data-type]').forEach(button => {
+        button.addEventListener('click', () => {
+            const type = button.dataset.type;
+            const isSprinkler = type.includes('spray') || type.includes('rotor');
+            selectItem(createItem({ type: type, left: 5, top: 5, width: isSprinkler ? 1 : 4, height: isSprinkler ? 1 : 4 }));
+        });
+    });
+
+    itemContainer.addEventListener('click', e => {
+        const item = e.target.closest('.item');
+        if (document.body.classList.contains('presentation-mode')) return;
+        selectItem(item);
+    });
+    document.addEventListener('keydown', e => { if ((e.key === 'Delete' || e.key === 'Backspace') && selectedItem) { selectedItem.remove(); selectItem(null); drawPipes(); }});
+
+    [propWidthInput, propHeightInput].forEach(input => input.addEventListener('input', () => {
+        if (!selectedItem) return;
+        selectedItem.style.width = `${propWidthInput.value * SCALE}px`;
+        selectedItem.style.height = `${propHeightInput.value * SCALE}px`;
+        updateDimensionLabel(selectedItem);
+    }));
+
+    zoneControls.addEventListener('click', e => {
+        if (e.target.tagName === 'BUTTON' && selectedItem) {
+            const zone = e.target.dataset.zone;
+            if (zone === '0') delete selectedItem.dataset.zone;
+            else selectedItem.dataset.zone = zone;
+            updateZoneVisuals(selectedItem);
+            drawPipes();
+        }
+    });
+
+    // Interact.js Logic
+    interact('.item')
+        .draggable({
+            listeners: {
+                move(event) {
+                    const target = event.target;
+                    const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+                    const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+                    const rotation = (target.style.transform.match(/rotate\((.+)deg\)/) || [])[1] || 0;
+                    target.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+                    target.setAttribute('data-x', x);
+                    target.setAttribute('data-y', y);
+                    drawPipes();
+                }
+            },
+            modifiers: [interact.modifiers.snap({ targets: [interact.createSnapGrid({ x: SCALE/2, y: SCALE/2 })], range: Infinity, relativePoints: [{ x: 0, y: 0 }] })]
+        })
+        .resizable({
+            edges: { left: false, right: '.resize-handle', bottom: '.resize-handle', top: false },
+            listeners: {
+                move(event) {
+                    let target = event.target;
+                    target.style.width = `${event.rect.width}px`;
+                    target.style.height = `${event.rect.height}px`;
+                    let x = parseFloat(target.getAttribute('data-x')) || 0;
+                    let y = parseFloat(target.getAttribute('data-y')) || 0;
+                    x += event.deltaRect.left; y += event.deltaRect.top;
+                    const rotation = (target.style.transform.match(/rotate\((.+)deg\)/) || [])[1] || 0;
+                    target.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+                    target.setAttribute('data-x', x); target.setAttribute('data-y', y);
+                    updateDimensionLabel(target); updatePropertiesPanel(); drawPipes();
+                }
+            },
+            modifiers: [interact.modifiers.snapSize({ targets: [interact.createSnapGrid({ x: SCALE, y: SCALE })] })]
+        })
+        .on('tap', e => selectItem(e.currentTarget));
+
+    interact('.rotate-handle').draggable({
+        onmove: function (event) {
+            const target = event.target.parentElement;
+            const rect = target.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const angle = Math.atan2(event.clientY - centerY, event.clientX - centerX) * 180 / Math.PI + 90;
+            const x = parseFloat(target.getAttribute('data-x')) || 0;
+            const y = parseFloat(target.getAttribute('data-y')) || 0;
+            target.style.transform = `translate(${x}px, ${y}px) rotate(${angle}deg)`;
+        },
+        onend: drawPipes,
+    });
+});
+</script>
+</body>
+</html>
