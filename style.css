@@ -165,9 +165,9 @@ sup {
   padding: 0;
   width: 100%;
 }
-/* Game Interface Styles - Restored Original Gradient, Simplified Effects */
+/* Game Interface Styles - Enhanced Simulated Glass Effect */
 .game-interface {
-  /* RESTORED: Using the exact linear-gradient from your original code. */
+  /* The original background gradient is kept as the base layer. */
   background-image: linear-gradient(
     135deg,
     #0f1419 0%,
@@ -177,10 +177,15 @@ sup {
     #0f1419 100%
   );
 
-  /* UPDATED: A simple, static border to define the edge. */
-  border: 1px solid rgba(128, 255, 255, 0.15);
+  /* UPDATED: A slightly brighter border to better define the edge of the "glass". */
+  border: 1px solid rgba(128, 255, 255, 0.2);
 
-  /* Kept existing structural styles */
+  /* UPDATED: Refined shadows for more depth. 
+     Adds a softer outer shadow and a subtle inner highlight to simulate thickness. */
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.08);
+
+  /* --- Kept existing structural and text styles --- */
   border-radius: 8px;
   padding: 18px;
   margin: 1.5em 0;
@@ -193,16 +198,32 @@ sup {
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 100, 255, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-
-  /* Ensure no animation is running on the main element */
+  position: relative; /* Ensures pseudo-elements are positioned relative to this container */
+  overflow: hidden; /* Clips the glare effect to the rounded corners */
   animation: none;
 }
 
-/* REMOVED: The ::before rule with the colorful 'borderGlow' animation is gone. */
+/* ADDED: A pseudo-element to create a soft, glassy "glare" effect.
+   This sits on top of the background but behind the text content to simulate light reflecting off the surface. */
+.game-interface::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* A large, soft radial gradient simulates a light source reflection. */
+  background: radial-gradient(
+    circle at 15% 15%,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0) 50%
+  );
+
+  border-radius: inherit; /* Matches the parent's border-radius */
+  pointer-events: none; /* Allows clicks to pass through */
+  z-index: 0; /* Ensures it's behind the text content */
+}
 
 /* REMOVED: The scan line effect has been removed. */
 
@@ -215,6 +236,8 @@ sup {
   color: inherit; /* Inherit color from parent .game-interface */
   text-align: left; /* Ensure paragraphs are left-aligned */
   text-indent: 0; /* No indent */
+  position: relative; /* Ensure text content renders above the ::before pseudo-element */
+  z-index: 1;
 }
 
 /* SIMPLIFIED: Dividers are now a clean, static line. */
