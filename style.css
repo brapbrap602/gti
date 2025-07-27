@@ -1,58 +1,99 @@
-/* Base styles for dark theme */
+/* Base styles for dark mode reader */
 body {
   background-color: #0a0a0a;
   color: #e0e0e0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.8;
   margin: 0;
-  padding: 40px 20px;
+  padding: 3rem 1.25rem;
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Container for centered content with limited width */
+/* Main content wrapper */
 .calibre {
-  max-width: 800px;
+  max-width: 850px;
   margin: 0 auto;
+  padding-inline: 1rem;
 }
 
-/* Paragraphs */
-p {
-  margin: 0 0 1em;
-}
-
-/* Specific classes */
-.calibre1 {
-  margin-top: 1em;
-}
-
+/* Paragraph styling */
+p,
 .calibre2 {
-  font-size: 1.1em;
-  color: #f0f0f0;
+  margin: 0 0 1.5em;
+  color: #e0e0e0;
+  font-size: 1.05rem;
 }
 
-/* Links, if any */
+/* Spacer/divider blocks */
+.calibre1 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Optional: Chapter headers (if you insert them in future chapters) */
+.chapter {
+  font-size: clamp(2rem, 4.5vw, 2.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #2a2a2a;
+  padding-bottom: 0.5rem;
+  letter-spacing: 0.4px;
+}
+
+/* Optional: Blockquote for emphasis or thoughts */
+blockquote {
+  font-style: italic;
+  color: #cccccc;
+  border-left: 3px solid #333;
+  margin: 1.5em 0;
+  padding-left: 1rem;
+}
+
+/* Links */
 a {
   color: #80cbc4;
   text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
 }
-a:hover {
+a:hover,
+a:focus {
   text-decoration: underline;
+  color: #a7ffeb;
 }
 
-/* Optional: selection color */
+/* Text selection highlight */
 ::selection {
-  background: #444;
-  color: #fff;
+  background-color: #444;
+  color: #ffffff;
 }
 
-/* Responsive typography */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   body {
-    padding: 20px 10px;
-    font-size: 1em;
+    padding: 2rem 1rem;
+    font-size: 1rem;
   }
 
   .calibre {
-    padding: 0 10px;
+    padding-inline: 0.5rem;
+  }
+
+  .chapter {
+    font-size: clamp(1.6rem, 6vw, 2.1rem);
+  }
+
+  p,
+  .calibre2 {
+    font-size: 1rem;
+  }
+
+  .calibre1 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 }
