@@ -29,11 +29,19 @@
 
         .book-list {
             display: grid;
-            /* Creates a responsive grid that fits as many 250px columns as possible */
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            /* Creates a responsive grid that fits as many columns as possible */
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 1.5rem;
             list-style: none;
             padding: 0;
+        }
+        
+        /* Ensure single column on very small screens */
+        @media (max-width: 480px) {
+            .book-list {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
         }
 
         /* The clickable link wrapper */
