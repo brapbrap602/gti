@@ -116,7 +116,7 @@ a:focus {
   width: 60px;
   height: 60px;
   background-color: rgba(26, 26, 26, 0.85);
-  border: 2px solid rgba(80, 80, 80, 0.8);
+  border: 1px solid rgba(80, 80, 80, 0.8);
   border-radius: 8px;
   cursor: pointer;
   opacity: 0;
@@ -149,13 +149,13 @@ a:focus {
 .scroll-to-top::before {
   content: '↑';
   font-size: 28px;
-  color: #e0e0e0;
+  color: #666666;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 .scroll-to-top:hover::before {
-  color: #ffffff;
+  color: #999999;
 }
 
 /* Responsive adjustments for scroll button */
