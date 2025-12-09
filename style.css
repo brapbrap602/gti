@@ -116,8 +116,8 @@ a:focus {
   width: 60px;
   height: 60px;
   background-color: rgba(26, 26, 26, 0.85);
-  border: 2px solid rgba(128, 203, 196, 0.6);
-  border-radius: 50%;
+  border: 2px solid rgba(80, 80, 80, 0.8);
+  border-radius: 8px;
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
@@ -137,7 +137,7 @@ a:focus {
 
 .scroll-to-top:hover {
   background-color: rgba(42, 42, 42, 0.95);
-  border-color: rgba(128, 203, 196, 0.9);
+  border-color: rgba(128, 128, 128, 0.9);
   transform: translateY(-3px);
 }
 
@@ -149,13 +149,13 @@ a:focus {
 .scroll-to-top::before {
   content: '↑';
   font-size: 28px;
-  color: #80cbc4;
+  color: #e0e0e0;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 .scroll-to-top:hover::before {
-  color: #a7ffeb;
+  color: #ffffff;
 }
 
 /* Responsive adjustments for scroll button */
@@ -163,11 +163,11 @@ a:focus {
   .scroll-to-top {
     bottom: 1.5rem;
     right: 1.5rem;
-    width: 55px;
-    height: 55px;
+    width: 65px;
+    height: 65px;
   }
   
   .scroll-to-top::before {
-    font-size: 24px;
+    font-size: 30px;
   }
 }
