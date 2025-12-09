@@ -58,4 +58,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     console.timeEnd('Chapter Insertion'); // Stop timer and log duration
+
+    // 4. CREATE SCROLL-TO-TOP BUTTON
+    // Dynamically create and add the scroll-to-top button
+    const scrollToTopBtn = document.createElement('button');
+    scrollToTopBtn.className = 'scroll-to-top';
+    scrollToTopBtn.id = 'scrollToTopBtn';
+    scrollToTopBtn.setAttribute('aria-label', 'Scroll to top');
+    document.body.appendChild(scrollToTopBtn);
+
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.add('visible');
+        } else {
+            scrollToTopBtn.classList.remove('visible');
+        }
+    });
+
+    // Scroll to top when button is clicked
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 });
