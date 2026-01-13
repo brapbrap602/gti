@@ -1,5 +1,9 @@
 [
   {
+    "title": "latest_lon_sim",
+    "path": "latest_lon_sim/index.html"
+  },
+  {
     "title": "longevity simulation",
     "path": "longevity simulation/index.html"
   },
