@@ -1,8 +1,8 @@
 import os
 
 headers_file = 'chapter_headers.txt'
-html_file = 'longevity simulation/index_newest.html'
-output_file = 'longevity simulation/index_newest.html' # Overwrite
+html_file = 'latest_lon_sim/index.html'
+output_file = 'latest_lon_sim/index_newest.html' # Overwrite
 
 # Generate TOC HTML
 toc_lines = [

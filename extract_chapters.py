@@ -1,6 +1,6 @@
 import re
 
-input_file = 'longevity simulation/index_newest.html'
+input_file = 'latest_lon_sim/index.html'
 output_file = 'chapter_headers.txt'
 
 pattern = re.compile(r'<h1 id="(calibre_link-\d+)" class="calibre1">(.*?)</h1>')
