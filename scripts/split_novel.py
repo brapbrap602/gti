@@ -11,10 +11,10 @@ It handles:
 4. Updating library.json with all split files
 
 Usage:
-    python filter_chapters.py <input_html> <chapters_per_file>
+    python scripts/split_novel.py <input_html> <chapters_per_file>
 
 Example:
-    python filter_chapters.py "Who Let Him Cultivate/index_all.html" 100
+    python scripts/split_novel.py "Who Let Him Cultivate/index_all.html" 100
 
     Splits the novel into files with 100 chapters each.
 """
@@ -30,15 +30,34 @@ def extract_chapter_ids(content):
     return pattern.findall(content)
 
 
-def extract_chapter_content(content, chapter_id):
-    pattern = re.compile(
-        r'(<div[^>]*class="calibre"[^>]*id="calibre_link-'
-        + chapter_id
-        + r'"[^>]*>.*?</div>\s*</div>\s*</div>)',
-        re.DOTALL,
+def extract_all_chapters(content, chapter_ids):
+    """Single-pass extraction: find all chapter divs and slice between boundaries.
+
+    Returns a dict mapping chapter_id (str) -> html string for that chapter.
+    Each chapter runs from its opening div tag up to (but not including) the
+    next sibling calibre div, or the </body> tag.
+    """
+    id_set = set(chapter_ids)
+
+    # Find every <div class="calibre" id="calibre_link-N"> in document order
+    div_pattern = re.compile(
+        r'<div\s[^>]*class="calibre"[^>]*id="calibre_link-(\d+)"[^>]*>', re.DOTALL
     )
-    match = pattern.search(content)
-    return match.group(1) if match else None
+    all_divs = [(m.group(1), m.start()) for m in div_pattern.finditer(content)]
+
+    # Find end of body
+    body_end = re.search(r"</body", content, re.IGNORECASE)
+    doc_end = body_end.start() if body_end else len(content)
+
+    chapters = {}
+    for i, (div_id, start_pos) in enumerate(all_divs):
+        if div_id not in id_set:
+            continue
+        # Slice ends at the start of the next calibre div, or </body>
+        end_pos = all_divs[i + 1][1] if i + 1 < len(all_divs) else doc_end
+        chapters[div_id] = content[start_pos:end_pos]
+
+    return chapters
 
 
 def get_novel_title(content):
@@ -54,8 +73,8 @@ def build_clean_head(content):
         '    <meta charset="utf-8">\n'
         '    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
         f"    <title>{title}</title>\n"
-        '    <link rel="stylesheet" href="../style.css">\n'
-        '    <script src="../chapter.js"></script>\n'
+        '    <link rel="stylesheet" href="../../assets/style.css">\n'
+        '    <script src="../../assets/chapter.js"></script>\n'
         "</head>"
     )
 
@@ -134,23 +153,28 @@ def process_chunks(input_path: Path, chapters_per_file: int):
     footer_match = re.search(r"(</body>\s*</html>)", content, re.IGNORECASE)
     file_footer = footer_match.group(1) if footer_match else "</body></html>"
 
+    # Single-pass extraction of all chapter content (O(n) over the file)
+    print("Extracting chapter content...")
+    chapter_map = extract_all_chapters(content, chapter_ids)
+    print(f"Extracted {len(chapter_map)} chapters")
+
     split_files = []
     split_ranges = []
 
     for start in range(1, total_chapters + 1, chapters_per_file):
         end = min(start + chapters_per_file - 1, total_chapters)
-        print(f"\nCreating chapters {start} - {end}...")
+        print(f"Creating chapters {start} - {end}...")
 
         toc_content = build_toc_content(toc_match, start, end, chapter_ids)
 
-        valid_segments = []
-        for ch_id in chapter_ids[start - 1 : end]:
-            chapter = extract_chapter_content(content, ch_id)
-            if chapter:
-                valid_segments.append(chapter)
+        valid_segments = [
+            chapter_map[ch_id]
+            for ch_id in chapter_ids[start - 1 : end]
+            if ch_id in chapter_map
+        ]
 
         output_file = folder / f"index_{start}_{end}.html"
-        split_files.append(f"{novel_name}/{output_file.name}")
+        split_files.append(f"novels/{novel_name}/{output_file.name}")
         split_ranges.append((start, end))
 
         with open(output_file, "w", encoding="utf-8") as f:
@@ -166,7 +190,7 @@ def process_chunks(input_path: Path, chapters_per_file: int):
         print(f"Created {output_file.name} with {len(valid_segments)} chapters")
 
     print(f"\nUpdating library.json...")
-    library_path = Path("library.json")
+    library_path = Path("data/library.json")
     if library_path.exists():
         library_data = json.loads(library_path.read_text(encoding="utf-8"))
     else:
