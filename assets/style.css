@@ -270,6 +270,27 @@ a:focus {
   flex-wrap: wrap;
   gap: 0.4rem;
   justify-content: center;
+  max-height: 10rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #3a3a3a transparent;
+}
+
+.book-parts::-webkit-scrollbar {
+  width: 4px;
+}
+
+.book-parts::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.book-parts::-webkit-scrollbar-thumb {
+  background-color: #3a3a3a;
+  border-radius: 2px;
+}
+
+.book-parts::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }
 
 .book-part-link {
