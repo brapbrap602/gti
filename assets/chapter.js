@@ -67,13 +67,16 @@ document.addEventListener('DOMContentLoaded', function() {
     scrollToTopBtn.setAttribute('aria-label', 'Scroll to top');
     document.body.appendChild(scrollToTopBtn);
 
-    // Show/hide button based on scroll position
+    // Show button only when scrolling up (and not near the top)
+    let lastScrollY = window.pageYOffset;
     window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
+        const currentScrollY = window.pageYOffset;
+        if (currentScrollY < lastScrollY && currentScrollY > 300) {
             scrollToTopBtn.classList.add('visible');
         } else {
             scrollToTopBtn.classList.remove('visible');
         }
+        lastScrollY = currentScrollY;
     });
 
     // Scroll to top when button is clicked

@@ -96,12 +96,16 @@
             // --- Scroll to top ---
             const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
+            // Show button only when scrolling up (and not near the top)
+            let lastScrollY = window.pageYOffset;
             window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
+                const currentScrollY = window.pageYOffset;
+                if (currentScrollY < lastScrollY && currentScrollY > 300) {
                     scrollToTopBtn.classList.add('visible');
                 } else {
                     scrollToTopBtn.classList.remove('visible');
                 }
+                lastScrollY = currentScrollY;
             });
 
             scrollToTopBtn.addEventListener('click', function() {
