@@ -9,19 +9,16 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1.175rem;
   line-height: 1.8;
-  margin: 0;
+  margin: 0 auto;
   padding: 3rem 1.25rem;
   overflow-x: hidden;
-  width: 100%;
+  max-width: 1200px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* Main content wrapper */
 .calibre {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-inline: 0;
   width: 100%;
 }
 
