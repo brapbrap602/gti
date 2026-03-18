@@ -3,10 +3,6 @@
   box-sizing: border-box;
 }
 
-html {
-  overflow-x: hidden;
-}
-
 body {
   background-color: #0a0a0a;
   color: #e0e0e0;
@@ -23,7 +19,7 @@ body {
 
 /* Main content wrapper */
 .calibre {
-  max-width: 850px;
+  max-width: 1200px;
   margin: 0 auto;
   padding-inline: 0;
   width: 100%;
@@ -147,15 +143,29 @@ a:focus {
 
 /* Arrow icon */
 .scroll-to-top::before {
-  content: '↑';
-  font-size: 20px;
-  color: #666666;
-  font-weight: bold;
-  transition: color 0.3s ease;
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  background-color: #666666;
+  transition: background-color 0.3s ease;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='18 15 12 9 6 15'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='18 15 12 9 6 15'/%3E%3C/svg%3E");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
 }
 
 .scroll-to-top:hover::before {
-  color: #999999;
+  background-color: #999999;
+}
+
+.scroll-to-top:focus-visible {
+  outline: 2px solid #80cbc4;
+  outline-offset: 2px;
 }
 
 /* Responsive adjustments for scroll button */
@@ -166,8 +176,132 @@ a:focus {
     width: 35px;
     height: 35px;
   }
-  
+
   .scroll-to-top::before {
-    font-size: 18px;
+    width: 16px;
+    height: 16px;
   }
+}
+
+/* =====================
+   Library page styles
+   ===================== */
+
+.library-header {
+  text-align: center;
+  border-bottom: 2px solid #2a2a2a;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+.library-header h1 {
+  margin: 0;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+@media (max-width: 480px) {
+  .book-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Single-entry card: the whole card is a link */
+.book-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.book-card {
+  background-color: #161616;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Hover for single-link cards */
+.book-link:hover .book-card,
+.book-link:focus-visible .book-card {
+  transform: translateY(-4px);
+  border-color: #80cbc4;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Subtle hover for multi-part cards (not clickable as a whole) */
+.book-card:has(.book-parts) {
+  cursor: default;
+}
+
+.book-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin: 0;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+.book-link:hover .book-title {
+  color: #ffffff;
+}
+
+/* Chapter-range pills for multi-part novels */
+.book-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.book-part-link {
+  display: inline-block;
+  padding: 0.3rem 0.65rem;
+  background-color: #1f1f1f;
+  border: 1px solid #3a3a3a;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #9e9e9e;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.book-part-link:hover,
+.book-part-link:focus-visible {
+  background-color: #263238;
+  border-color: #80cbc4;
+  color: #80cbc4;
+  text-decoration: none;
+  outline: none;
+}
+
+.status-msg {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  grid-column: 1 / -1;
+}
+
+.status-msg--error {
+  color: #ff6b6b;
 }

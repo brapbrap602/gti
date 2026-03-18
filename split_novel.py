@@ -135,6 +135,7 @@ def process_chunks(input_path: Path, chapters_per_file: int):
     file_footer = footer_match.group(1) if footer_match else "</body></html>"
 
     split_files = []
+    split_ranges = []
 
     for start in range(1, total_chapters + 1, chapters_per_file):
         end = min(start + chapters_per_file - 1, total_chapters)
@@ -150,6 +151,7 @@ def process_chunks(input_path: Path, chapters_per_file: int):
 
         output_file = folder / f"index_{start}_{end}.html"
         split_files.append(f"{novel_name}/{output_file.name}")
+        split_ranges.append((start, end))
 
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("<html>")
@@ -170,18 +172,27 @@ def process_chunks(input_path: Path, chapters_per_file: int):
     else:
         library_data = []
 
-    # Remove all existing entries for this novel (match by folder name OR title)
+    # Remove all existing entries for this novel (match by folder name, novel field, or title)
     library_data = [
         item
         for item in library_data
         if item.get("path", "").split("/")[0] != novel_name
-        and item.get("title") != novel_title
+        and item.get("novel", item.get("title")) != novel_title
     ]
 
-    for file_path in split_files:
-        library_data.append({"title": novel_title, "path": file_path})
+    for file_path, (start, end) in zip(split_files, split_ranges):
+        library_data.append(
+            {
+                "novel": novel_title,
+                "title": f"{novel_title} Chs {start}-{end}",
+                "chapters": {"start": start, "end": end},
+                "path": file_path,
+            }
+        )
 
-    library_data.sort(key=lambda x: x["title"])
+    library_data.sort(
+        key=lambda x: (x["novel"], x["chapters"]["start"] if "chapters" in x else 0)
+    )
     library_path.write_text(json.dumps(library_data, indent=2), encoding="utf-8")
     print(f"Updated library.json with {len(split_files)} entries")
 
