@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 """
-Tag audiobook chapter MP3s with metadata for:
-  Who Let Him Cultivate Immortality (谁让他修仙的！)
-  Author: The Whitest Crow (最白的乌鸦)
+Tag audiobook chapter MP3s with ID3 metadata.
 
 Usage:
-    # Tag files in the test directory:
+    # Tag files in the test directory (uses default WLHCI metadata):
     python tag_audiobook.py --dir tag_test
 
-    # Tag all chapters in tts_out (each chapter_NNN folder):
+    # Tag all chapters in a tts_out-style folder (chapter_NNN subdirs):
     python tag_audiobook.py --dir tts_out --recursive
+
+    # Tag a different book with custom metadata:
+    python tag_audiobook.py --dir "tts_out/beyond the timescape" --recursive \\
+        --album "Beyond the Timescape" --artist "Er Gen" \\
+        --comment "Xianxia audiobook by Er Gen | Translator: Deathblade | Publisher: Wuxiaworld" \\
+        --cover tag_test/cover_bts.jpg
 
     # Dry run (print what would be done without writing):
     python tag_audiobook.py --dir tag_test --dry-run
@@ -74,7 +78,9 @@ def chapter_number_from_filename(filename: str) -> int | None:
     return None
 
 
-def tag_mp3(mp3_path: Path, cover_data: bytes | None, dry_run: bool = False):
+def tag_mp3(
+    mp3_path: Path, cover_data: bytes | None, meta: dict, dry_run: bool = False
+):
     """Apply ID3 tags to a single MP3 file."""
     ch_num = chapter_number_from_filename(mp3_path.name)
     if ch_num is None:
@@ -104,11 +110,11 @@ def tag_mp3(mp3_path: Path, cover_data: bytes | None, dry_run: bool = False):
     tags.delall("APIC")
 
     tags["TIT2"] = TIT2(encoding=3, text=title)
-    tags["TALB"] = TALB(encoding=3, text=METADATA["album"])
-    tags["TPE1"] = TPE1(encoding=3, text=METADATA["artist"])
+    tags["TALB"] = TALB(encoding=3, text=meta["album"])
+    tags["TPE1"] = TPE1(encoding=3, text=meta["artist"])
     tags["TRCK"] = TRCK(encoding=3, text=track)
-    tags["TCON"] = TCON(encoding=3, text=METADATA["genre"])
-    tags["COMM"] = COMM(encoding=3, lang="eng", desc="", text=METADATA["comment"])
+    tags["TCON"] = TCON(encoding=3, text=meta["genre"])
+    tags["COMM"] = COMM(encoding=3, lang="eng", desc="", text=meta["comment"])
 
     if cover_data:
         mime = "image/png" if cover_data[:8] == b"\x89PNG\r\n\x1a\n" else "image/jpeg"
@@ -153,11 +159,27 @@ def collect_mp3s(root: Path, recursive: bool) -> list[Path]:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Tag audiobook MP3s with book metadata."
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=(
+            "Tag audiobook chapter MP3s with ID3 metadata.\n\n"
+            "Example:\n"
+            '  python tag_audiobook.py --dir "tts_out/<book folder>" --recursive \\\n'
+            '    --album "Book Title" --artist "Author Name" \\\n'
+            '    --comment "your comment" --cover "path/to/cover.jpg"'
+        ),
     )
     parser.add_argument("--dir", required=True, help="Directory to process")
     parser.add_argument(
         "--cover", default=None, help="Path to cover image (overrides default)"
+    )
+    parser.add_argument(
+        "--album", default=None, help="Album / book title (overrides default)"
+    )
+    parser.add_argument(
+        "--artist", default=None, help="Artist / author name (overrides default)"
+    )
+    parser.add_argument(
+        "--comment", default=None, help="Comment tag (overrides default)"
     )
     parser.add_argument(
         "--recursive",
@@ -176,6 +198,14 @@ def main():
         print(f"Error: directory not found: {root}")
         sys.exit(1)
 
+    # Build effective metadata (CLI args override defaults)
+    meta = {
+        "album": args.album or METADATA["album"],
+        "artist": args.artist or METADATA["artist"],
+        "genre": METADATA["genre"],
+        "comment": args.comment or METADATA["comment"],
+    }
+
     cover_path = Path(args.cover) if args.cover else METADATA["cover"]
     cover_data = load_cover(cover_path)
 
@@ -184,11 +214,14 @@ def main():
         print(f"No MP3s found in {root}")
         sys.exit(0)
 
-    print(f"Found {len(mp3s)} MP3(s) in {root}\n")
+    print(f"Found {len(mp3s)} MP3(s) in {root}")
+    print(f"  Album  : {meta['album']}")
+    print(f"  Artist : {meta['artist']}")
+    print(f"  Cover  : {cover_path}\n")
     for mp3_path in mp3s:
-        tag_mp3(mp3_path, cover_data, dry_run=args.dry_run)
+        tag_mp3(mp3_path, cover_data, meta, dry_run=args.dry_run)
 
-    print(f"\nDone. {'(dry run – no files modified)' if args.dry_run else ''}")
+    print(f"\nDone. {'(dry run - no files modified)' if args.dry_run else ''}")
 
 
 if __name__ == "__main__":

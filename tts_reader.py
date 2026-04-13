@@ -41,7 +41,7 @@ from mutagen.mp3 import MP3
 # ---------------------------------------------------------------------------
 HTML_FILE = r"novels\Who Let Him Cultivate\index_1_50.html"
 OUT_DIR = Path("tts_out")
-VOICE = "en-US-BrianMultilingualNeural"
+VOICE = "en-US-BrianNeural"
 CONCURRENCY = 2  # simultaneous TTS requests
 RETRY_ATTEMPTS = 5
 RETRY_BASE_DELAY = 1.0  # seconds, doubles each retry
