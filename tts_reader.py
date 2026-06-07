@@ -70,6 +70,12 @@ NOVEL_CONFIGS: dict[str, dict] = {
         "para_class": "calibre4",
         "id_offset": 0,  # calibre_link-1 = Chapter 1
     },
+    "my longevity simulation": {
+        "flat_layout": True,
+        "para_class": "calibre2",
+        "id_offset": 0,
+        "chapter_num_from_title": True,
+    },
 }
 DEFAULT_NOVEL = "who let him cultivate"
 
@@ -150,6 +156,61 @@ def _toc_title_map(
     return mapping
 
 
+def parse_chapters_flat(soup: BeautifulSoup, novel_cfg: dict) -> list[dict]:
+    """
+    Parse a flat Calibre HTML layout where all chapters live inside a single
+    <div class="calibre" id="calibre_link-0"> and are delimited by <h1> tags.
+    """
+    para_class = novel_cfg["para_class"]
+    id_offset = novel_cfg.get("id_offset", 0)
+
+    wrapper = soup.find("div", class_="calibre", id="calibre_link-0")
+    if not wrapper:
+        return []
+
+    chapters = []
+    current_title = None
+    current_id = None
+    current_paragraphs = []
+
+    for tag in wrapper.children:
+        if not hasattr(tag, "get"):
+            continue
+        if tag.name == "h1" and tag.get("id", "").startswith("calibre_link-"):
+            # Save previous chapter
+            if current_title and current_paragraphs:
+                chapters.append({
+                    "id": current_id,
+                    "title": current_title,
+                    "paragraphs": current_paragraphs,
+                    "id_offset": id_offset,
+                    "chapter_num_from_title": novel_cfg.get("chapter_num_from_title", False),
+                })
+            current_id = tag.get("id")
+            current_title = tag.get_text(strip=True)
+            current_paragraphs = []
+        elif tag.name == "p" and para_class in tag.get("class", []):
+            text = tag.get_text(" ", strip=True)
+            if (
+                text
+                and not re.match(r"^[~\-*=`\s]+$", text)
+                and not re.match(r"^\d+\.\s", text)
+            ):
+                current_paragraphs.append(text)
+
+    # Save last chapter
+    if current_title and current_paragraphs:
+        chapters.append({
+            "id": current_id,
+            "title": current_title,
+            "paragraphs": current_paragraphs,
+            "id_offset": id_offset,
+            "chapter_num_from_title": novel_cfg.get("chapter_num_from_title", False),
+        })
+
+    return chapters
+
+
 def parse_chapters(soup: BeautifulSoup, novel_cfg: dict) -> list[dict]:
     """
     Return list of:
@@ -160,7 +221,11 @@ def parse_chapters(soup: BeautifulSoup, novel_cfg: dict) -> list[dict]:
                         Use None to fall back to the TOC title map for all chapters.
       para_class      - p class name for body paragraphs
       id_offset       - subtract from calibre_link-N to get chapter number (default 0)
+      flat_layout     - if True, use flat h1-delimited parsing instead of div-per-chapter
     """
+    if novel_cfg.get("flat_layout"):
+        return parse_chapters_flat(soup, novel_cfg)
+
     title_selector = novel_cfg.get("title_selector")
     para_class = novel_cfg["para_class"]
     id_offset = novel_cfg.get("id_offset", 0)
