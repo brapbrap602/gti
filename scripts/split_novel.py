@@ -26,36 +26,68 @@ from pathlib import Path
 
 
 def extract_chapter_ids(content):
+    """Return chapter IDs in TOC order, deduplicated (handles duplicate nav elements)."""
     pattern = re.compile(r'href="#calibre_link-(\d+)"')
-    return pattern.findall(content)
+    seen = set()
+    result = []
+    for cid in pattern.findall(content):
+        if cid not in seen:
+            seen.add(cid)
+            result.append(cid)
+    return result
 
 
 def extract_all_chapters(content, chapter_ids):
-    """Single-pass extraction: find all chapter divs and slice between boundaries.
+    """Single-pass extraction: find all chapter anchors and slice between boundaries.
+
+    Supports two Calibre export structures:
+      - div-based:  <div class="calibre" id="calibre_link-N">
+      - h1-based:   <h1 id="calibre_link-N" ...>  (preceded by <div class="calibreN"></div>)
 
     Returns a dict mapping chapter_id (str) -> html string for that chapter.
-    Each chapter runs from its opening div tag up to (but not including) the
-    next sibling calibre div, or the </body> tag.
+    Each chapter runs from its opening tag up to (but not including) the next
+    chapter boundary, or </body>.
     """
     id_set = set(chapter_ids)
-
-    # Find every <div class="calibre" id="calibre_link-N"> in document order
-    div_pattern = re.compile(
-        r'<div\s[^>]*class="calibre"[^>]*id="calibre_link-(\d+)"[^>]*>', re.DOTALL
-    )
-    all_divs = [(m.group(1), m.start()) for m in div_pattern.finditer(content)]
 
     # Find end of body
     body_end = re.search(r"</body", content, re.IGNORECASE)
     doc_end = body_end.start() if body_end else len(content)
 
+    # Try div-based structure first
+    div_pattern = re.compile(
+        r'<div\s[^>]*class="calibre"[^>]*id="calibre_link-(\d+)"[^>]*>', re.DOTALL
+    )
+    all_anchors = [(m.group(1), m.start()) for m in div_pattern.finditer(content)]
+
+    # If only the wrapper div (calibre_link-0) was found, fall back to h1-based
+    chapter_anchors = [(cid, pos) for cid, pos in all_anchors if cid in id_set]
+    if not chapter_anchors:
+        # h1-based: each chapter starts at the <div class="calibreN"></div> separator
+        # that immediately precedes the <h1 id="calibre_link-N">, or at the h1 itself
+        # for the very first chapter (which has no preceding separator).
+        h1_pattern = re.compile(r'<h1[^>]*\bid="calibre_link-(\d+)"[^>]*>', re.DOTALL)
+        h1_matches = [(m.group(1), m.start()) for m in h1_pattern.finditer(content)]
+
+        # Build a lookup of h1 start positions so we can find the preceding separator
+        sep_pattern = re.compile(r'<div\s[^>]*class="calibre\d+"[^>]*>\s*</div>')
+        sep_positions = [m.start() for m in sep_pattern.finditer(content)]
+
+        all_anchors = []
+        for cid, h1_pos in h1_matches:
+            # Find the closest separator that comes just before this h1
+            preceding = [s for s in sep_positions if s < h1_pos]
+            start_pos = preceding[-1] if preceding else h1_pos
+            all_anchors.append((cid, start_pos))
+
+        chapter_anchors = [(cid, pos) for cid, pos in all_anchors if cid in id_set]
+
     chapters = {}
-    for i, (div_id, start_pos) in enumerate(all_divs):
-        if div_id not in id_set:
+    for i, (cid, start_pos) in enumerate(all_anchors):
+        if cid not in id_set:
             continue
-        # Slice ends at the start of the next calibre div, or </body>
-        end_pos = all_divs[i + 1][1] if i + 1 < len(all_divs) else doc_end
-        chapters[div_id] = content[start_pos:end_pos]
+        end_pos = all_anchors[i + 1][1] if i + 1 < len(all_anchors) else doc_end
+        chapters[cid] = content[start_pos:end_pos]
 
     return chapters
 
@@ -79,10 +111,20 @@ def build_clean_head(content):
     )
 
 
+def extract_chapter_number(li_html):
+    """Pull the first integer after 'Chapter ' from a TOC <li> string, or None."""
+    m = re.search(r"Chapter\s+(\d+)", li_html)
+    return int(m.group(1)) if m else None
+
+
 def build_toc_content(toc_match, start, end, chapter_ids):
-    """Build a filtered TOC nav element for chapters start..end (1-indexed)."""
+    """Build a filtered TOC nav element for the slice chapter_ids[start-1:end].
+
+    Returns (html, first_ch_num, last_ch_num) where the chapter numbers are the
+    actual chapter numbers extracted from the titles (or None if not found).
+    """
     if not toc_match:
-        return ""
+        return "", None, None
 
     toc_start_tag = toc_match.group(1)
     toc_inner = toc_match.group(2)
@@ -92,13 +134,19 @@ def build_toc_content(toc_match, start, end, chapter_ids):
     lis = li_pattern.findall(toc_inner)
     filtered_lis = lis[start - 1 : end]
 
-    h2_match = re.search(r"(<h2[^>]*>)(.*?)(</h2>)", toc_inner, re.DOTALL)
-    ol_start_match = re.search(r"(<ol[^>]*>)", toc_inner)
-
-    if h2_match:
-        h2 = f"{h2_match.group(1)}Chapters {start} - {end}{h2_match.group(3)}"
+    # Derive human-readable chapter numbers from the actual titles
+    first_num = extract_chapter_number(filtered_lis[0]) if filtered_lis else None
+    last_num = extract_chapter_number(filtered_lis[-1]) if filtered_lis else None
+    if first_num is not None and last_num is not None:
+        label = f"Chapters {first_num} - {last_num}"
     else:
-        h2 = f"<h2>Chapters {start} - {end}</h2>"
+        label = f"Chapters {start} - {end}"
+
+    h2_match = re.search(r"(<h2[^>]*>)(.*?)(</h2>)", toc_inner, re.DOTALL)
+    if h2_match:
+        h2 = f"{h2_match.group(1)}{label}{h2_match.group(3)}"
+    else:
+        h2 = f"<h2>{label}</h2>"
     ol_start = '<ul style="list-style: none; padding: 0;">'
 
     new_toc_inner = (
@@ -106,7 +154,7 @@ def build_toc_content(toc_match, start, end, chapter_ids):
         + "\n        ".join(filtered_lis)
         + "\n      </ul>\n    "
     )
-    return toc_start_tag + new_toc_inner + toc_end_tag
+    return toc_start_tag + new_toc_inner + toc_end_tag, first_num, last_num
 
 
 def process_chunks(input_path: Path, chapters_per_file: int):
@@ -163,9 +211,9 @@ def process_chunks(input_path: Path, chapters_per_file: int):
 
     for start in range(1, total_chapters + 1, chapters_per_file):
         end = min(start + chapters_per_file - 1, total_chapters)
-        print(f"Creating chapters {start} - {end}...")
+        print(f"Creating positional slice {start} - {end}...")
 
-        toc_content = build_toc_content(toc_match, start, end, chapter_ids)
+        toc_content, first_ch, last_ch = build_toc_content(toc_match, start, end, chapter_ids)
 
         valid_segments = [
             chapter_map[ch_id]
@@ -173,9 +221,13 @@ def process_chunks(input_path: Path, chapters_per_file: int):
             if ch_id in chapter_map
         ]
 
-        output_file = folder / f"index_{start}_{end}.html"
+        # Use real chapter numbers in file name when available
+        file_start = first_ch if first_ch is not None else start
+        file_end = last_ch if last_ch is not None else end
+
+        output_file = folder / f"index_{file_start}_{file_end}.html"
         split_files.append(f"novels/{novel_name}/{output_file.name}")
-        split_ranges.append((start, end))
+        split_ranges.append((file_start, file_end))
 
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("<html>")
@@ -204,12 +256,12 @@ def process_chunks(input_path: Path, chapters_per_file: int):
         and item.get("novel", item.get("title")) != novel_title
     ]
 
-    for file_path, (start, end) in zip(split_files, split_ranges):
+    for file_path, (file_start, file_end) in zip(split_files, split_ranges):
         library_data.append(
             {
                 "novel": novel_title,
-                "title": f"{novel_title} Chs {start}-{end}",
-                "chapters": {"start": start, "end": end},
+                "title": f"{novel_title} Chs {file_start}-{file_end}",
+                "chapters": {"start": file_start, "end": file_end},
                 "path": file_path,
             }
         )
