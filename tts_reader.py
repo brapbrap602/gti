@@ -76,6 +76,12 @@ NOVEL_CONFIGS: dict[str, dict] = {
         "id_offset": 0,
         "chapter_num_from_title": True,
     },
+    "return of the mount hua sect": {
+        "title_selector": None,  # titles come from the TOC; no in-div title element
+        "para_class": "calibre4",
+        "id_offset": 0,
+        "chapter_num_from_title": True,
+    },
 }
 DEFAULT_NOVEL = "who let him cultivate"
 
