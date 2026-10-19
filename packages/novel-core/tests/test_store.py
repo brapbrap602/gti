@@ -269,6 +269,25 @@ def test_align_dup(book):
     assert book.store.check().duplicates == (Duplicate(a, ChapterKey(3165), ("/c/a", "/c/b")),)
 
 
+def test_skipped_repost_resolves_a_duplicate_and_keeps_parts(book):
+    # freewebnovel lists BTS 651 pt 1, 651 pt 2 and 652 twice; skip the second copies.
+    a = book.source("a")
+    titles_ = ["Chapter 651 (part 1)", "Chapter 651 (part 2)", "Chapter 652"] * 2
+    items = [SourceItem(f"/c/{i}", i, t) for i, t in enumerate(titles_, start=1)]
+    book.store.record_index(a, items)
+    for item in items:
+        book.store.put_version(a, item.ref, book.version(item.ref))
+    diff = book.store.set_alignment(a, AlignmentRules(skip=frozenset({"/c/4", "/c/5", "/c/6"})))
+    assert [(s.key.label, s.item_ref) for s in book.store.selection()] == [
+        ("651 pt 1", "/c/1"), ("651 pt 2", "/c/2"), ("652", "/c/3")
+    ]  # fmt: skip
+    report = book.store.check()
+    assert report.duplicates == () and report.unmapped == ()
+    assert {m.item_ref for m in diff.moved} == {"/c/1", "/c/2", "/c/3"}
+    assert book.store.rebase_refs(a, "/c/", "/d/") == 6
+    assert book.store.sources()[0].alignment.skip == {"/d/4", "/d/5", "/d/6"}
+
+
 def test_title_mismatch_reported(book):
     a = book.source("a")
     book.store.record_index(a, [SourceItem("/c/1", 1, "Chapter 7: Oops", number=8)])

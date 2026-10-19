@@ -6,7 +6,8 @@ part only splits a chapter when another item of the source has the same printed
 number; a lone "(2)" numbers a story arc (Barbarian, Mount Hua) and becomes part 0.
 Items with no printed number and no override are unmapped. Items of one source that derive
 to the same key are all left unmapped and reported as duplicates; the user
-resolves them with item overrides.
+resolves them with item overrides, or by skipping a repost. Skipped items take no
+part in derivation at all: no key, not unmapped, not a duplicate.
 """
 
 import json
@@ -31,6 +32,7 @@ class AlignmentRules:
     offset: int = 0
     ranges: tuple[RangeOverride, ...] = ()
     items: Mapping[ItemRef, ChapterKey] = field(default_factory=dict)
+    skip: frozenset[ItemRef] = frozenset()  # reposts and other items that are not chapters of the book
 
     def to_json(self) -> str:
         return json.dumps(
@@ -38,6 +40,7 @@ class AlignmentRules:
                 "offset": self.offset,
                 "ranges": [[r.start, r.end, r.offset] for r in self.ranges],
                 "items": {ref: [k.number, k.part] for ref, k in sorted(self.items.items())},
+                "skip": sorted(self.skip),
             }
         )
 
@@ -48,14 +51,15 @@ class AlignmentRules:
             offset=raw["offset"],
             ranges=tuple(RangeOverride(*r) for r in raw["ranges"]),
             items={ref: ChapterKey(*k) for ref, k in raw["items"].items()},
+            skip=frozenset(raw.get("skip", ())),
         )
 
     def rebased(self, old_prefix: str, new_prefix: str) -> "AlignmentRules":
-        items = {
-            (new_prefix + ref[len(old_prefix) :] if ref.startswith(old_prefix) else ref): key
-            for ref, key in self.items.items()
-        }
-        return AlignmentRules(self.offset, self.ranges, items)
+        def rebase(ref: ItemRef) -> ItemRef:
+            return new_prefix + ref[len(old_prefix) :] if ref.startswith(old_prefix) else ref
+
+        items = {rebase(ref): key for ref, key in self.items.items()}
+        return AlignmentRules(self.offset, self.ranges, items, frozenset(map(rebase, self.skip)))
 
 
 @dataclass(frozen=True)
@@ -75,7 +79,7 @@ class Derivation:
 
 
 def derive_keys(items: Iterable[Printed], rules: AlignmentRules) -> Derivation:
-    items = list(items)
+    items = [i for i in items if i.ref not in rules.skip]
     shared = {n for n, count in Counter(i.number for i in items).items() if n is not None and count > 1}
     candidates: dict[ItemRef, ChapterKey] = {}
     unmapped: list[ItemRef] = []

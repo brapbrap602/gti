@@ -5,6 +5,8 @@ import re
 import unicodedata
 from pathlib import Path
 
+from novel_core.store import DB_NAME
+
 DATA_DIR_ENV = "NOVELS_DATA_DIR"
 
 
@@ -23,6 +25,17 @@ def slugify(title: str) -> str:
     if not slug:
         raise ValueError(f"title {title!r} has no ASCII letters; pass a slug explicitly")
     return slug
+
+
+def site_dir() -> Path:
+    """Where `nov build site` writes; not a slug, so it never collides with a novel."""
+    return data_dir() / "_site"
+
+
+def novel_slugs() -> list[str]:
+    """Every novel in the data dir, sorted."""
+    root = data_dir()
+    return sorted(d.name for d in root.iterdir() if (d / DB_NAME).is_file()) if root.is_dir() else []
 
 
 def novel_dir(slug: str) -> Path:

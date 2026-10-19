@@ -2,7 +2,8 @@
 
 Per-host differences are data (`CleanRules`): where the chapter body is, which
 elements to delete, and which text is junk. The walk itself is shared: block
-elements and <br> end paragraphs, inline <i>/<em> and <b>/<strong> become run
+elements and <br> end paragraphs (except a <br> wrapping a sentence mid-line,
+before a lowercase word), inline <i>/<em> and <b>/<strong> become run
 styles, <hr> and symbol-only lines ("***", "❄️❄️❄️") become separators.
 """
 
@@ -80,11 +81,22 @@ class _Walker:
     def __init__(self):
         self.blocks: list[Block] = []
         self.runs: list[Run] = []
+        self.after_br = False  # a <br> was seen; the next text decides whether it ends the paragraph
 
     def flush(self) -> None:
+        self.after_br = False
         if self.runs:
             self.blocks.append(_paragraph_or_separator(self.runs))
             self.runs = []
+
+    def text(self, text: str, em: bool, strong: bool) -> None:
+        if self.after_br and (head := text.lstrip()):
+            if head[0].islower():  # "wiped his forehead with his<br>sleeve.": a hard-wrapped line
+                self.runs.append(Run(" ", em, strong))
+                self.after_br = False
+            else:
+                self.flush()
+        self.runs.append(Run(text, em, strong))
 
     def walk(self, node: Tag, em: bool, strong: bool) -> None:
         for child in node.children:
@@ -92,13 +104,13 @@ class _Walker:
                 continue
             if isinstance(child, NavigableString):
                 if text := str(child):
-                    self.runs.append(Run(text, em, strong))
+                    self.text(text, em, strong)
                 continue
             if not isinstance(child, Tag):
                 continue
             name = child.name
             if name == "br":
-                self.flush()
+                self.after_br = True
             elif name == "hr":
                 self.flush()
                 self.blocks.append(Separator())
