@@ -82,6 +82,12 @@ NOVEL_CONFIGS: dict[str, dict] = {
         "id_offset": 0,
         "chapter_num_from_title": True,
     },
+    "surviving the game as a barbarian": {
+        "title_selector": None,
+        "para_class": "calibre4",
+        "id_offset": 0,
+        "chapter_num_from_title": True,
+    },
 }
 DEFAULT_NOVEL = "who let him cultivate"
 
