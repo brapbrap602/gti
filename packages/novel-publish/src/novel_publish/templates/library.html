@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% set root = "" %}
+{% block title %}Library{% endblock %}
+{% block body %}
+<header class="library-header">
+    <h1>My Library</h1>
+</header>
+<main class="book-list">
+{% for novel in novels %}
+    <section class="book-card">
+        <h2 class="book-title">{{ novel.title }}</h2>
+        {% if novel.author %}
+        <p class="book-meta">{{ novel.author }}</p>
+        {% endif %}
+        {% if novel.raw_only %}
+        <p class="book-meta"><span class="badge">raw only</span> not published until translated</p>
+        {% elif not novel.pages %}
+        <p class="book-meta">no chapters yet</p>
+        {% else %}
+        <p class="book-meta">{{ novel.chapters }} chapters</p>
+        <nav class="book-parts" aria-label="{{ novel.title }} chapters">
+            {% for page in novel.pages %}
+            <a class="book-part-link" href="{{ page.href }}">Chs {{ page.label }}</a>
+            {% endfor %}
+        </nav>
+        {% endif %}
+    </section>
+{% else %}
+    <p class="status-msg">No novels yet. Import one with <code>nov import</code>, then run <code>nov build site</code>.</p>
+{% endfor %}
+</main>
+{% endblock %}

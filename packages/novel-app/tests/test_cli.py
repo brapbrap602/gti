@@ -61,6 +61,46 @@ def test_import_exits_1_and_lists_failed_chapters(data_dir, wns_folder):
     assert "failed: 1" in result.output and "/novel-book/test-novel/chapter-2" in result.output
 
 
+def test_align_skip_and_item(data_dir, wns_folder):
+    run("import", "wns", wns_folder)
+    notice = "/novel-book/test-novel/notice"
+    chapter_4 = "/novel-book/test-novel/chapter-4"
+
+    result = run("align", "item", "test-novel", chapter_4, "3pt1")
+    assert result.exit_code == 0, result.output
+    assert f"{chapter_4}: 4 -> 3 pt 1" in result.output
+
+    result = run("align", "skip", "test-novel", notice)
+    assert result.exit_code == 0 and "0 items moved" in result.output
+    check = run("check", "test-novel").output
+    assert check == "test-novel: 3 chapters selected\n"  # 3 pt 1 fills the gap at 3; the notice is skipped
+
+    bad = run("align", "skip", "test-novel", "/typo")
+    assert bad.exit_code == 2 and "no item '/typo'" in bad.output
+    assert run("align", "item", "test-novel", chapter_4, "x").exit_code == 2
+
+
+def test_build_site_for_every_novel(data_dir, wns_folder):
+    run("import", "wns", wns_folder)
+
+    result = run("build", "site")
+
+    assert result.exit_code == 0, result.output
+    assert "test-novel: 3 chapters, 1 pages written, 0 deleted" in result.output
+    page = (data_dir / "_site" / "novels" / "test-novel" / "1-50.html").read_text(encoding="utf-8")
+    assert "Text 4." in page
+    assert "test-novel: 3 chapters, 0 pages written" in run("build", "site").output
+
+
+def test_deploy_site_over_budget(data_dir, wns_folder, tmp_path):
+    run("import", "wns", wns_folder)
+    run("build", "site")
+
+    result = run("deploy", "site", "--remote", tmp_path / "nowhere.git", "--budget-mb", 0)
+
+    assert result.exit_code == 1 and "over the 0 MiB budget; nothing pushed" in result.output
+
+
 def test_check_unknown_novel(data_dir):
     result = run("check", "nope")
     assert result.exit_code == 2 and "no novel 'nope'" in result.output

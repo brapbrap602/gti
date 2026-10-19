@@ -242,6 +242,12 @@ class NovelStore:
         with self._engine.connect() as conn:
             return tuple(_load_sources(conn).values())
 
+    def item_refs(self, source: SourceId) -> frozenset[ItemRef]:
+        """Every item the source's index has listed, vanished ones included."""
+        with self._engine.connect() as conn:
+            rows = conn.execute(sa.select(_item.c.item_ref).where(_item.c.source_id == source))
+            return frozenset(r.item_ref for r in rows)
+
     def set_priority(self, sources: Sequence[SourceId]) -> None:
         with self._engine.begin() as conn:
             known = _load_sources(conn)

@@ -96,10 +96,14 @@ _NAVIGATION = re.compile(
     re.IGNORECASE,
 )
 _STRAY_MARKUP = re.compile(r"^[^\w]*`[^\w]*$")  # '“`': a markdown fence left in the text
+# Reader-site interface text copied into the chapter, and a watermark left without its site name.
+_SITE_UI = re.compile(
+    r"^\s*(?:a new text-to-speech function has been added.*|please visit\s+to enjoy reading\W*)$", re.IGNORECASE
+)
 
 COMMON = CleanRules(
     content=(),
-    drop=(is_watermark, _CREDIT.search, _NAVIGATION.search, _STRAY_MARKUP.search),
+    drop=(is_watermark, _CREDIT.search, _NAVIGATION.search, _STRAY_MARKUP.search, _SITE_UI.search),
     strip=(cut_glued_watermarks,),
 )
 

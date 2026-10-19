@@ -351,7 +351,7 @@ CI: GitHub Actions on push runs `uv sync`, `pytest -m "not live"` on a **Windows
 0. **Repo base** (after the §9.5 step-0 preconditions). Workspace skeleton, GPL LICENSE, `.gitignore`, env-only secrets, scrub script + fixtures, CI. Copy legacy with the secrets scan.
 1. **Core.** ChapterKey, NovelStore, selection, alignment, check (core cases).
 2. **WNS importer + normalizers** for 4 hosts, then `nov import wns`, `nov check`.
-3. **Site builder.** Jinja templates reuse the CSS. Then walkthrough 1, then the **cutover** (§9.5 steps 1–3, G7).
+3. **Site builder.** Jinja templates reuse the CSS. Then walkthrough 1, then the **cutover** (§9.5 steps 1–3, G7). *The cutover is deferred until after slice 8 (user decision, 2026-10-19).*
 4. **Audio.** Sentence cache, fake TTS, legacy registration (G6 for M4B), MP3 tags, M4B volumes.
 5. **EPUB builder.**
 6. **Other importers.** MtlTings, scribblehub, Calibre HTML, then the MtlTings archive step.
@@ -415,3 +415,15 @@ Definition of done: all non-live tests are green on CI; walkthroughs 1–5 are e
   - Titles are repaired with ftfy using `uncurl_quotes=False`, so curly quotes stay as they are.
   - Found in the data: freewebnovel lists BTS 651–655 twice, and some BTS side stories carry a title number, so `check` reports those as duplicates. Longevity has a 606 duplicate and 4 unnumbered notices. Golden Core has 2 unnumbered extras.
   - freewebnovel numbers its chapter URLs by position (BTS `/chapter-1446` is "Chapter 1353"). `SourceItem.ref_numbered=False` stops the slug fallback there, so untitled posts like "2025.10.29" are listed as unmapped instead of becoming chapter 1370.
+- **Slice 3 implementation notes (2026-10-19):**
+  - Reading pages hold 50 chapter **numbers** each, named by their range (`novels/<slug>/1-50.html`; a number-0 override joins page 1). Anchors are `#c524` and `#c524-1`. Headings come from the key label plus the source title with everything through "Chapter N" removed, so a novel name in front of the title is dropped too.
+  - The library page is rendered statically. There is no `data/library.json` and no `chapter.js`. The scroll-to-top button moved into `assets/site.js`.
+  - `build_site(novels_by_slug, out_dir, force)` owns the whole site directory. A page is rebuilt when a chapter on it is in `to_build` or `to_prune`, when its file is missing, or when a neighbouring page appeared or disappeared (its prev/next links changed). Pages left empty and folders of novels that no longer exist are deleted. The fingerprint hashes the templates, the static files, the page size and the renderer source.
+  - `nov deploy site` commits `_site` in a throwaway git dir whose work tree is `_site` (so the site is never copied), then force-pushes `gh-pages`. Before pushing it writes `deploy.txt` with a deploy id. The live check polls `deploy.txt` with a cache-busting query until it matches. Tested against a local bare repo only; nothing was pushed to GitHub.
+  - `AlignmentRules.skip`: reposts and other non-chapters are left out of derivation (no key, not unmapped, not a duplicate). `nov align item|skip` edit the rules, and refs are checked against `NovelStore.item_refs`. In Git Bash, set `MSYS_NO_PATHCONV=1`, or refs starting with `/` get rewritten into Windows paths.
+  - normalize: a `<br>` followed by a lowercase word joins the lines (skydemonorder hard-wraps sentences). Reader-site UI lines ("A new text-to-speech function…", "Please visit to enjoy reading") are dropped.
+  - Walkthrough 1 (all 7 WNS novels, against the live site):
+    - Same chapter set for Barbarian (815), Mount Hua (230–1343) and WLHC (1339). BTS (1438) and CCG (3165) are supersets of the old site.
+    - Text differences are junk removed (watermarks, credits, `❄️❄️❄️` lines now shown as `<hr>`) or old Calibre losses repaired.
+    - Data fixes applied with `nov align`: BTS date-titled posts 1370/1398/1400/1406 → 1277/1305/1307/1313; BTS reposts 734–739 and the second CCG 3165 copy skipped (the first copy of each pair kept).
+    - Longevity has only WNS 834–1002, while the live site shows MtlTings 990–1781. The user plans a better translation later, so this is left as is.

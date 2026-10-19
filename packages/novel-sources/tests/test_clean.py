@@ -18,9 +18,15 @@ def texts(blocks) -> list[str]:
 
 
 def test_paragraphs_runs_and_breaks():
-    blocks = normalize(page("<p>One <i>two</i> <b>three</b></p>bare text<br>after break<p>  </p>"), BODY)
+    blocks = normalize(page("<p>One <i>two</i> <b>three</b></p>bare text<br>After break<p>  </p>"), BODY)
     assert blocks[0] == Paragraph((Run("One "), Run("two", em=True), Run(" "), Run("three", strong=True)))
-    assert texts(blocks) == ["One two three", "bare text", "after break"]
+    assert texts(blocks) == ["One two three", "bare text", "After break"]
+
+
+def test_br_wrapping_a_sentence_mid_line_joins_the_lines():
+    html = "<p>wiped his forehead with his<br>\r\nsleeve.<br>“Phew.”</p><p>the <i>Hall,<br>including</i> elders</p>"
+    blocks = normalize(page(html), BODY)
+    assert texts(blocks) == ["wiped his forehead with his sleeve.", "“Phew.”", "the Hall, including elders"]
 
 
 def test_separators_images_and_headings():
@@ -130,6 +136,8 @@ def test_common_rules_drop_credits_navigation_and_watermarks():
     html = (
         "<p>Translator: GodBrandy Editor: Kurisu</p><p>Previous Chapter Project Page Support Us on Ko-fi</p>"
         f"<p>Read latest chapters at freewebnovel.com Only.</p><p>“`</p><p>{long}freewebnovel.com</p>"
+        "<p>A new text-to-speech function has been added. You can try clicking on the settings!</p>"
+        "<p>Please visit  to enjoy reading</p>"
     )
     rules = rules_for("https://novelbin.me/b/x/chapter-1")
     raw = RawChapter(f"<div id='chr-content'>{html}</div>")

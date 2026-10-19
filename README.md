@@ -18,7 +18,15 @@ The new tooling is the `nov` command. Novels live in `$NOVELS_DATA_DIR` (default
 ```
 uv run nov import wns "%LOCALAPPDATA%\web-novel-scraper\web-novel-scraper\<Title>"   # [--novel <slug>]
 uv run nov check <slug>                  # gaps, duplicates, unmapped chapters, failed pages, ...
+uv run nov align item <slug> <ref> 1277   # give an item an explicit key (524pt1 for a part); --source when several
+uv run nov align skip <slug> <ref>...    # leave reposts/notices out of the book
+uv run nov build site                    # every novel -> <data dir>/_site (incremental; --force rebuilds all)
+uv run nov deploy site                   # force-push _site as orphan gh-pages, then wait until it is live
 ```
+
+Reading pages hold 50 chapter numbers each (`novels/<slug>/1-50.html`, anchors `#c524`, `#c524-1` for parts).
+In Git Bash, `export MSYS_NO_PATHCONV=1` first, or refs starting with `/` are rewritten into Windows paths.
+`nov deploy site` aborts before pushing if the site is over 900 MiB (`--budget-mb`).
 
 - `packages/`: the workspace packages (`novel-core` ← `novel-sources`, `novel-publish`, `novel-audio` ← `novel-app`).
 - `tools/scrub_fixture.py`: turns a real chapter page into a test fixture without novel prose.

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% set root = "../../" %}
+{% set lang = novel.language %}
+{% block title %}{{ novel.title }} Chs {{ page.label }}{% endblock %}
+{% macro page_nav() %}
+<nav class="page-nav" aria-label="Pages">
+    {% if prev %}<a href="{{ prev.filename }}" rel="prev">&larr; Chs {{ prev.label }}</a>{% else %}<span></span>{% endif %}
+    <a href="../../index.html">Library</a>
+    {% if next %}<a href="{{ next.filename }}" rel="next">Chs {{ next.label }} &rarr;</a>{% else %}<span></span>{% endif %}
+</nav>
+{% endmacro %}
+{% block body %}
+{{ page_nav() }}
+<header class="library-header">
+    <h1>{{ novel.title }}</h1>
+    <p class="book-meta">Chapters {{ page.label }}</p>
+</header>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+    {% for chapter in chapters %}
+        <li><a href="#{{ chapter.anchor }}">{{ chapter.heading }}</a></li>
+    {% endfor %}
+    </ol>
+</nav>
+<main>
+{% for chapter in chapters %}
+<article id="{{ chapter.anchor }}">
+<h2 class="chapter">{{ chapter.heading }}</h2>
+{{ chapter.body }}
+</article>
+{% endfor %}
+</main>
+{{ page_nav() }}
+{% endblock %}
