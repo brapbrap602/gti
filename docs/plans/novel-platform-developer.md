@@ -393,3 +393,11 @@ Definition of done: all non-live tests are green on CI; walkthroughs 1–5 are e
   - ties broken by version id with an injected Clock
   - strengthened tests
 - **r3 edits:** reviewed only by self-check. The changes are confined to the remedies proposed by the reviewer.
+- **Slice 0–1 implementation notes (2026-10-19):**
+  - `kind` lives on the Source, not on each Version. A source's texts all share one kind, so a pin's raw-zh check reads it from one place.
+  - Range overrides apply to **printed numbers**, and the range's offset replaces the source offset. The precedence test uses an item override whose target differs from the range result (3165 → 3200), since 3165 → 3163 cannot tell the two apart.
+  - Items of one source that derive to the same key are all left without a key and reported as duplicates.
+  - In `plan_build`, an item that already has a legacy row at another key is not rebuilt. `check` reports it as `legacy_moved`.
+  - When pins overlap, the most recent pin wins.
+  - NovelStore owns a novel directory (`novel.sqlite` plus `raw/`).
+  - Repo tools live in `tools/`. The per-host fixtures move to slice 2, where the junk-text keep patterns are defined.

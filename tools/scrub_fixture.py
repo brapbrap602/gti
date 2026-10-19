@@ -34,7 +34,7 @@ KEEP_CJK = frozenset("第章节回卷零〇一二三四五六七八九十百千�
 LATIN_FILLER = "loremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliqua"
 CJK_FILLER = "甲乙丙丁戊己庚辛壬癸"
 PROSE_ATTRS = ("alt", "title", "aria-label")
-PROSE_META = re.compile(r"description|title", re.I)
+PROSE_META = re.compile(r"description|title", re.IGNORECASE)
 JSON_SCRIPT_TYPES = {"application/json", "application/ld+json"}
 WORD = re.compile(r"[^\W\d_]+")
 
@@ -93,9 +93,9 @@ def scrub_html(html: str | bytes, keep: Sequence[str] = ()) -> str:
         for attr in PROSE_ATTRS:
             if isinstance(tag.get(attr), str):
                 tag[attr] = scrub.text(tag[attr])
-        if tag.name == "meta" and PROSE_META.search(tag.get("name", "") + tag.get("property", "")):
-            if isinstance(tag.get("content"), str):
-                tag["content"] = scrub.text(tag["content"])
+        is_prose_meta = tag.name == "meta" and PROSE_META.search(tag.get("name", "") + tag.get("property", ""))
+        if is_prose_meta and isinstance(tag.get("content"), str):
+            tag["content"] = scrub.text(tag["content"])
 
     for node in soup.find_all(string=True):
         if isinstance(node, (Comment, Declaration, Doctype, Stylesheet)):
