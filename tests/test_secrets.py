@@ -1,5 +1,4 @@
 import pytest
-
 from copy_legacy import copy_legacy
 from secret_scan import SecretsFound, scan_text
 

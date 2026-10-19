@@ -2,7 +2,6 @@ import json
 import re
 
 from bs4 import BeautifulSoup
-
 from scrub_fixture import scrub_html
 
 PAGE = """<!DOCTYPE html>
@@ -43,7 +42,7 @@ def test_text_keeps_length_digits_punctuation_and_case():
 def test_tags_and_structural_attributes_are_unchanged():
     out = BeautifulSoup(scrub_html(PAGE), "html.parser")
     before = BeautifulSoup(PAGE, "html.parser")
-    structural = lambda soup: [  # noqa: E731
+    structural = lambda soup: [
         (t.name, {k: v for k, v in t.attrs.items() if k not in ("alt", "title", "content")})
         for t in soup.find_all(True)
     ]
