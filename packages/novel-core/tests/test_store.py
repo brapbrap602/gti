@@ -103,6 +103,19 @@ def test_select_mixed_parts_a_first(book):
     assert book.picked() == {"524 pt 1": a, "524 pt 2": a}
 
 
+def test_lone_part_suffix_is_not_a_split(book):
+    # Barbarian / Mount Hua: "(2)" numbers an arc, and every chapter has its own number.
+    a = book.source("a")
+    book.chapters(a, ["Chapter 55 The Forest (2)", "Chapter 56 The Forest (3)", "Chapter 57 Rules (1)"])
+    assert keys(book.store.selection()) == ["55", "56", "57"]
+
+
+def test_parts_split_only_numbers_they_share(book):
+    a = book.source("a")
+    book.chapters(a, ["Chapter 183 (part 3)", "Chapter 184 (part 1)", "Chapter 184 (part 2)", "Chapter 185"])
+    assert keys(book.store.selection()) == ["183", "184 pt 1", "184 pt 2", "185"]
+
+
 def test_part_zero_dropped_when_same_source_has_parts(book):
     a = book.source("a")
     book.chapters(a, ["Chapter 524", "Chapter 524 (1)", "Chapter 524 (2)"])
@@ -233,6 +246,18 @@ def test_align_unnumbered(book):
     book.store.set_alignment(a, AlignmentRules(items={prologue: ChapterKey(0)}))
     assert keys(book.store.selection()) == ["0", "1"]
     assert {n.item_ref for n in book.store.check().unmapped} == {side}
+
+
+def test_positional_slug_is_not_a_chapter_number(book):
+    # freewebnovel numbers pages by position: /chapter-1370 is a translator post titled "2025.10.29".
+    a = book.source("a")
+    items = [SourceItem("/n/chapter-1369", 1, "Chapter 1353: Xu", ref_numbered=False),
+             SourceItem("/n/chapter-1370", 2, "2025.10.29", ref_numbered=False)]  # fmt: skip
+    book.store.record_index(a, items)
+    for item in items:
+        book.store.put_version(a, item.ref, book.version(item.title))
+    assert keys(book.store.selection()) == ["1353"]
+    assert [n.title for n in book.store.check().unmapped] == ["2025.10.29"]
 
 
 def test_align_dup(book):

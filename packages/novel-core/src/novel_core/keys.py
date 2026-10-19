@@ -52,14 +52,15 @@ _TITLE_NUMBER = re.compile(r"\bchapter\s*(\d+)", re.IGNORECASE)
 _CJK_NUMBER = re.compile(r"第\s*([0-9零〇一二三四五六七八九十百千万两]+)\s*[章节回]")
 _SLUG_NUMBER = re.compile(r"chapter-(\d+)", re.IGNORECASE)
 _LEADING_NUMBER = re.compile(r"^(\d+)(?:-|$)")
-_PART = re.compile(r"(?:\((\d+)\)|\b(?:part|pt)\.?\s*(\d+))\s*$", re.IGNORECASE)
+_PART = re.compile(r"(?:\((?:(?:part|pt)\.?\s*)?(\d+)\)|\b(?:part|pt)\.?\s*(\d+))\s*$", re.IGNORECASE)
 
 
 def parse_printed(title: str, ref: ItemRef = "") -> tuple[int | None, int]:
     """Printed (number, part) from a title, else from the ref's last path segment.
 
     The number is None for items without one (prologue, side story, notice).
-    The part is 0 unless the title ends with "(N)", "part N" or "pt N".
+    The part is 0 unless the title ends with "(N)", "(part N)", "part N" or "pt N".
+    Whether a part really splits a chapter is decided at key derivation.
     """
     number = title_number(title)
     if number is None:

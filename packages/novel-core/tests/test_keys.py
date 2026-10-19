@@ -15,6 +15,7 @@ def test_key_order_parts():
         ("Chapter 524 (1): Title", "", (524, 1)),
         ("Chapter 524 part 2", "", (524, 2)),
         ("Chapter 88 - The Gate (3)", "", (88, 3)),
+        ("Chapter 184: Strange Developments (part 2)", "", (184, 2)),
         ("第一千八百九十七章 天下", "", (1897, 0)),
         ("第12章", "", (12, 0)),
         ("The Fall", "/novel/x/chapter-301", (301, 0)),
@@ -22,7 +23,7 @@ def test_key_order_parts():
         ("Prologue", "/novel/x/prologue", (None, 0)),
         ("Side story: X", "/novel/x/side-story-x", (None, 0)),
     ],
-    ids=["title", "paren-part", "part-word", "trailing-part", "cn-numerals", "cn-digits", "slug", "skydemon-slug",
+    ids=["title", "paren-part", "part-word", "trailing-part", "paren-part-word", "cn-numerals", "cn-digits", "slug", "skydemon-slug",
          "prologue", "side-story"],
 )  # fmt: skip
 def test_parse_printed(title, ref, expected):

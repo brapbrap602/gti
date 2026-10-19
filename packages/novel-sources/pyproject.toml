@@ -4,7 +4,12 @@ version = "0.1.0"
 description = "Source backends, fetching, normalization and legacy importers"
 license = "GPL-3.0-only"
 requires-python = ">=3.12"
-dependencies = ["novel-core"]
+dependencies = [
+    "beautifulsoup4>=4.12",
+    "ftfy>=6.2",
+    "lxml>=5.3",
+    "novel-core",
+]
 
 [tool.uv.sources]
 novel-core = { workspace = true }
