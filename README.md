@@ -13,8 +13,18 @@ uv run lint-imports                      # novel_core must not import the outer 
 uv run python tools/secret_scan.py       # fails on API-key-shaped strings in tracked files
 ```
 
+The new tooling is the `nov` command. Novels live in `$NOVELS_DATA_DIR` (default `%LOCALAPPDATA%/novels`), one folder per novel:
+
+```
+uv run nov import wns "%LOCALAPPDATA%\web-novel-scraper\web-novel-scraper\<Title>"   # [--novel <slug>]
+uv run nov check <slug>                  # gaps, duplicates, unmapped chapters, failed pages, ...
+```
+
 - `packages/`: the workspace packages (`novel-core` ← `novel-sources`, `novel-publish`, `novel-audio` ← `novel-app`).
 - `tools/scrub_fixture.py`: turns a real chapter page into a test fixture without novel prose.
+  The host fixtures in `tests/fixtures/hosts/` were made with
+  `--keep '\S*(?:nov|ovel|web|kiss)\S*' --keep 'Translator:|Editor:' --keep 'Previous Chapter|Next Chapter|Project Page|Support Us on Ko-fi'`
+  so the junk lines the cleanup rules must remove survive the scrub.
 - `tools/copy_legacy.py`: freezes old scraper scripts into `legacy/`, aborting if any contains a key.
 - Secrets are read only from environment variables. Never commit keys or a `.env` file.
 

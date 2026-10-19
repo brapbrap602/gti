@@ -53,7 +53,8 @@ class SourceItem:
     """One entry of a source's chapter list, identified by `ref` within its source.
 
     `number` is the backend's printed number. When it is None, the number is parsed
-    from the title, then from the ref's slug. `part` is parsed from the title when None.
+    from the title, then from the ref's slug unless `ref_numbered` is False (hosts that
+    number their URLs by position, like freewebnovel). `part` is parsed from the title when None.
     """
 
     ref: ItemRef
@@ -61,6 +62,7 @@ class SourceItem:
     title: str
     number: int | None = None
     part: int | None = None
+    ref_numbered: bool = True
 
 
 class ItemStatus(StrEnum):

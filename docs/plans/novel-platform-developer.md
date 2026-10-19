@@ -401,3 +401,17 @@ Definition of done: all non-live tests are green on CI; walkthroughs 1–5 are e
   - When pins overlap, the most recent pin wins.
   - NovelStore owns a novel directory (`novel.sqlite` plus `raw/`).
   - Repo tools live in `tools/`. The per-host fixtures move to slice 2, where the junk-text keep patterns are defined.
+- **Slice 2 implementation notes (2026-10-19):**
+  - A printed part only splits a chapter when another item of the same source has the same printed number. In Barbarian and Mount Hua, "(2)" numbers a story arc and every chapter has its own number, so a lone suffix becomes part 0. `(part N)` is parsed as a part too (BTS).
+  - The CCG range override is **not** seeded. In the WNS titles the inner number ("Chapter 3161: 3159: …") is 2 lower from printed 2962 onwards, and agrees at 2740. Where the drift starts between those two can't be read from the titles, and nothing supports 1897. The user sets the override once the start is known.
+  - Watermark rules apply to every host, since aggregators copy each other's text:
+    - A short line naming a site is dropped, even when disguised by look-alike letters, symbols between letters, a missing letter, or no domain at all.
+    - A watermark sentence glued onto a real paragraph is cut back to where the previous sentence ended.
+    - Translator credits, chapter navigation and Discord links are dropped.
+  - `CleanRules.drop` and `strip` take functions as well as regexes.
+  - `normalize(raw, rules, title)` also drops the copy of the title at the top of the body. This covers "Chapter N …" lines, an exact copy of the title, and the title without its "Chapter N" prefix.
+  - Importers return a `NovelIndex` that carries report notes and snapshot files. `import_novel(novel_dir, importer)` is the shared import step.
+  - The first snapshot of `main.json` keeps its plain name. Later, different copies are kept beside it under their hash.
+  - Titles are repaired with ftfy using `uncurl_quotes=False`, so curly quotes stay as they are.
+  - Found in the data: freewebnovel lists BTS 651–655 twice, and some BTS side stories carry a title number, so `check` reports those as duplicates. Longevity has a 606 duplicate and 4 unnumbered notices. Golden Core has 2 unnumbered extras.
+  - freewebnovel numbers its chapter URLs by position (BTS `/chapter-1446` is "Chapter 1353"). `SourceItem.ref_numbered=False` stops the slug fallback there, so untitled posts like "2025.10.29" are listed as unmapped instead of becoming chapter 1370.

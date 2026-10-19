@@ -1,16 +1,18 @@
 """Key derivation: the one rule that maps a source's items to ChapterKeys.
 
 Precedence: an explicit item override, then the last range override covering the
-printed number, then the source's offset added to the printed number. Items with
-no printed number and no override are unmapped. Items of one source that derive
+printed number, then the source's offset added to the printed number. A printed
+part only splits a chapter when another item of the source has the same printed
+number; a lone "(2)" numbers a story arc (Barbarian, Mount Hua) and becomes part 0.
+Items with no printed number and no override are unmapped. Items of one source that derive
 to the same key are all left unmapped and reported as duplicates; the user
 resolves them with item overrides.
 """
 
 import json
-from collections import defaultdict
+from collections import Counter, defaultdict
 from collections.abc import Iterable, Mapping
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 from novel_core.keys import ChapterKey, ItemRef
 
@@ -73,10 +75,12 @@ class Derivation:
 
 
 def derive_keys(items: Iterable[Printed], rules: AlignmentRules) -> Derivation:
+    items = list(items)
+    shared = {n for n, count in Counter(i.number for i in items).items() if n is not None and count > 1}
     candidates: dict[ItemRef, ChapterKey] = {}
     unmapped: list[ItemRef] = []
     for item in items:
-        key = _key(item, rules)
+        key = _key(item if item.number in shared else replace(item, part=0), rules)
         if key is None:
             unmapped.append(item.ref)
         else:

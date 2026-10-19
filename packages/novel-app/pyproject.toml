@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "Service, job runner, CLI and local web UI"
 license = "GPL-3.0-only"
 requires-python = ">=3.12"
-dependencies = ["novel-sources", "novel-publish", "novel-audio"]
+dependencies = ["novel-sources", "novel-publish", "novel-audio", "typer>=0.15"]
+
+[project.scripts]
+nov = "novel_app.cli:app"
 
 [tool.uv.sources]
 novel-sources = { workspace = true }

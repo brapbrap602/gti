@@ -279,7 +279,7 @@ class NovelStore:
             }
             added, revived = [], []
             for item in items:
-                number, part = parse_printed(item.title, item.ref)
+                number, part = parse_printed(item.title, item.ref if item.ref_numbered else "")
                 values = {
                     "position": item.position,
                     "printed_number": item.number if item.number is not None else number,
