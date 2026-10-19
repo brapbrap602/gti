@@ -92,6 +92,17 @@ def test_build_site_for_every_novel(data_dir, wns_folder):
     assert "test-novel: 3 chapters, 0 pages written" in run("build", "site").output
 
 
+def test_build_epub(data_dir, wns_folder):
+    run("import", "wns", wns_folder)
+
+    result = run("build", "epub", "test-novel")
+
+    assert result.exit_code == 0, result.output
+    assert "test-novel: 1 of 1 volumes built, 0 deleted" in result.output
+    assert (data_dir / "_epub" / "test-novel" / "test-novel_0001-0100.epub").exists()
+    assert "test-novel: 0 of 1 volumes built" in run("build", "epub", "test-novel").output
+
+
 def test_deploy_site_over_budget(data_dir, wns_folder, tmp_path):
     run("import", "wns", wns_folder)
     run("build", "site")

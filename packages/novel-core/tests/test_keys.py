@@ -42,6 +42,11 @@ def test_key_range_is_inclusive_and_rejects_empty():
         KeyRange(5, 4)
 
 
+@pytest.mark.parametrize(("number", "start"), [(0, 1), (1, 1), (100, 1), (101, 101), (250, 201)])
+def test_range_containing(number, start):
+    assert KeyRange.containing(number, 100) == KeyRange(start, start + 99)
+
+
 @pytest.mark.parametrize(
     ("key", "title", "heading"),
     [

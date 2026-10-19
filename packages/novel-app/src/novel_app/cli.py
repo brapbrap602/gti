@@ -16,12 +16,13 @@ from novel_audio.media import MediaError
 from novel_audio.tts import DEFAULT_VOICE, EdgeTts
 from novel_audio.volumes import VOLUME_SIZE, build_volumes
 from novel_core import AlignmentRules, ChapterKey, CheckReport, KeyRange, NovelStore
+from novel_publish import epub
 from novel_publish.site import build_site
 from novel_sources.importing import ImportReport, import_novel
 from novel_sources.wns import WnsImporter, snapshot_refs
 
 from novel_app import deploy
-from novel_app.library import audio_dir, novel_dir, novel_slugs, site_dir, slugify
+from novel_app.library import audio_dir, epub_dir, novel_dir, novel_slugs, site_dir, slugify
 
 app = typer.Typer(no_args_is_help=True, help="Novel library: import, check, build.")
 import_app = typer.Typer(no_args_is_help=True, help="One-shot imports of legacy local stores.")
@@ -158,6 +159,23 @@ def build_site_cmd(
     typer.echo(f"site: {out} ({deploy.site_size(out) / 2**20:.0f} MiB)")
 
 
+@build_app.command("epub")
+def build_epub_cmd(
+    novel: Novel,
+    size: Annotated[int, typer.Option(help="chapter numbers per volume")] = epub.VOLUME_SIZE,
+    force: Annotated[bool, typer.Option(help="rebuild every volume, not only stale ones")] = False,
+    out: Annotated[Path | None, typer.Option(help="EPUB folder; defaults to <data dir>/_epub/<novel>")] = None,
+) -> None:
+    """EPUB volumes of the selected chapters, with title, author, series and cover (incremental)."""
+    out = out or epub_dir(novel)
+    with _open(novel) as store:
+        report = epub.build_epub(
+            store, out, novel, size=size, cover=_cover(novel, store), force=force,
+            progress=lambda r, i, n: typer.echo(f"  [{i}/{n}] volume {r.start}-{r.end}"),
+        )  # fmt: skip
+    typer.echo(f"{novel}: {len(report.built)} of {report.volumes} volumes built, {len(report.deleted)} deleted ({out})")
+
+
 AudioOut = Annotated[Path | None, typer.Option(help="audio folder; defaults to <data dir>/_audio/<novel>")]
 
 
@@ -245,7 +263,7 @@ def cover(
     novel: Novel,
     image: Annotated[Path, typer.Argument(exists=True, dir_okay=False, help="a .jpg or .png")],
 ) -> None:
-    """Set the novel's cover (copied into its folder); used for audio tags and volumes."""
+    """Set the novel's cover (copied into its folder); used for audio tags, M4B and EPUB volumes."""
     suffix = ".jpg" if image.suffix.lower() == ".jpeg" else image.suffix.lower()
     if suffix not in {".jpg", ".png"}:
         raise typer.BadParameter(f"{image.name}: expected a .jpg or .png")

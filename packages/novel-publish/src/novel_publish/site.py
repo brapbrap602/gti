@@ -18,22 +18,10 @@ from importlib import resources
 from pathlib import Path
 
 import jinja2
-from markupsafe import Markup, escape
-from novel_core import (
-    Block,
-    ChapterKey,
-    Heading,
-    Image,
-    Kind,
-    Note,
-    NovelStore,
-    OutputKind,
-    Paragraph,
-    Selected,
-    Separator,
-    System,
-    chapter_heading,
-)
+from markupsafe import Markup
+from novel_core import ChapterKey, Kind, KeyRange, NovelStore, OutputKind, Selected, chapter_heading
+
+from novel_publish import render
 
 PAGE_SIZE = 50  # chapter numbers per reading page
 NOVELS = "novels"
@@ -79,7 +67,8 @@ def build_site(novels: Mapping[str, NovelStore], out_dir: Path, force: bool = Fa
 def fingerprint() -> str:
     """Changes whenever the templates, assets, page size or this renderer change."""
     h = hashlib.sha256(f"page_size={PAGE_SIZE}\n".encode())
-    h.update(Path(__file__).read_bytes())
+    for module in (__file__, render.__file__):
+        h.update(Path(module).read_bytes())
     for folder in ("templates", "static"):
         for f in sorted(resources.files(__package__).joinpath(folder).iterdir(), key=lambda f: f.name):
             h.update(f.name.encode() + b"\0" + f.read_bytes())
@@ -159,7 +148,7 @@ def _paginate(selection: Iterable[Selected]) -> list[_Page]:
 
 def _page_start(key: ChapterKey) -> int:
     """Chapter numbers 1-50 share page 1, 51-100 page 51, ...; 0 (a prologue override) joins page 1."""
-    return (max(key.number, 1) - 1) // PAGE_SIZE * PAGE_SIZE + 1
+    return KeyRange.containing(key.number, PAGE_SIZE).start
 
 
 def _neighbours_of_removed(names: Sequence[str], existing: set[str]) -> set[int]:
@@ -189,36 +178,8 @@ def _chapter_view(store: NovelStore, s: Selected) -> dict:
     return {
         "anchor": anchor(s.key),
         "heading": chapter_heading(s.key, version.title),
-        "body": Markup("\n").join(_block_html(b) for b in version.blocks),
+        "body": Markup("\n").join(render.block_html(b) for b in version.blocks),
     }
-
-
-def _block_html(block: Block) -> Markup:
-    match block:
-        case Paragraph(runs):
-            inner = Markup("").join(_run_html(r.text, r.em, r.strong) for r in runs)
-            return Markup("<p>{}</p>").format(inner)
-        case Heading(text, level):
-            tag = f"h{min(max(level, 3), 6)}"  # h1/h2 belong to the page and the chapter title
-            return Markup(f"<{tag}>{{}}</{tag}>").format(text)
-        case Separator():
-            return Markup('<hr class="separator">')
-        case Image(src, alt):
-            return Markup('<img src="{}" alt="{}" loading="lazy">').format(src, alt)
-        case System(text):
-            return Markup('<p class="system">{}</p>').format(text)
-        case Note(text):
-            return Markup('<aside class="note">{}</aside>').format(text)
-    raise TypeError(f"unknown block {block!r}")
-
-
-def _run_html(text: str, em: bool, strong: bool) -> Markup:
-    html = escape(text)
-    if em:
-        html = Markup("<em>{}</em>").format(html)
-    if strong:
-        html = Markup("<strong>{}</strong>").format(html)
-    return html
 
 
 @cache

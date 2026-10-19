@@ -22,7 +22,8 @@ uv run nov align item <slug> <ref> 1277   # give an item an explicit key (524pt1
 uv run nov align skip <slug> <ref>...    # leave reposts/notices out of the book
 uv run nov build site                    # every novel -> <data dir>/_site (incremental; --force rebuilds all)
 uv run nov deploy site                   # force-push _site as orphan gh-pages, then wait until it is live
-uv run nov cover <slug> <image.jpg|png>  # cover for audio tags and volumes (copied into the novel folder)
+uv run nov cover <slug> <image.jpg|png>  # cover for audio tags, M4B and EPUB (copied into the novel folder)
+uv run nov build epub <slug>             # EPUB per 100 chapter numbers -> <data dir>/_epub/<slug> (--size, --force)
 uv run nov build audio <slug>            # edge-tts MP3 per chapter -> <data dir>/_audio/<slug> (--range 1-100, --voice, --force)
 uv run nov build volumes <slug>          # M4B per 100 chapter numbers, with chapter marks and cover
 uv run nov audio register <slug> "tts_out/<novel>" --key position|title-number   # [--shift 736-1442:+4]
