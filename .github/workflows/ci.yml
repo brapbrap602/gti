@@ -12,6 +12,8 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           version: "0.12.7"
+      - name: Install ffmpeg (audio tests join, tag and encode real files)
+        run: choco install ffmpeg -y --no-progress
       - run: uv sync --locked
       - name: Secret scan
         run: uv run python tools/secret_scan.py

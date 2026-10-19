@@ -29,6 +29,19 @@ class OutputRow:
 
 
 @dataclass(frozen=True)
+class VolumeRow:
+    """A built volume (an M4B of the audio chapters numbered within `range`).
+
+    `membership_hash` identifies the chapter audio it was built from; a different
+    hash for the same range means the volume is stale.
+    """
+
+    range: KeyRange
+    membership_hash: str
+    artifact: str
+
+
+@dataclass(frozen=True)
 class BuildPlan:
     to_build: tuple[Selected, ...]
     to_prune: tuple[OutputRow, ...]

@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 import ftfy
-from novel_core import Kind, NovelMeta, RawChapter, SourceItem, SourceSpec, url_ref
+from novel_core import ItemRef, Kind, NovelMeta, RawChapter, SourceItem, SourceSpec, url_ref
 
 from novel_sources.hosts import site_name
 from novel_sources.importing import NovelIndex
@@ -87,3 +87,14 @@ class WnsImporter:
             return None
         html = (self._data / "chapters" / entry.filename).read_bytes().decode("utf-8", errors="replace")
         return RawChapter(html, "html", final_url=entry.url)
+
+
+def snapshot_refs(novel_dir: Path, source_id: int) -> list[ItemRef]:
+    """Item refs in the order of the first main.json imported for this source (position 1 first).
+
+    Legacy audio folders are numbered by position in that frozen list, never in a live index.
+    """
+    path = novel_dir / "imports" / str(source_id) / SNAPSHOT_NAME
+    if not path.exists():
+        raise FileNotFoundError(f"{path}: source {source_id} was not imported from web-novel-scraper")
+    return [url_ref(ch["chapter_url"]) for ch in json.loads(path.read_bytes())["chapters"]]

@@ -1,3 +1,5 @@
+import sqlite3
+
 import pytest
 from novel_core import (
     AlignmentRules,
@@ -17,6 +19,7 @@ from novel_core import (
     SourceItem,
     StoreError,
     Unchanged,
+    VolumeRow,
     url_ref,
 )
 
@@ -428,3 +431,38 @@ def test_legacy_row_survives_source_switch_unless_forced(book):
     assert [r.built_key for r in book.store.check().legacy_unselected] == [ChapterKey(7)]
     forced = book.store.plan_build(OutputKind.AUDIO, "a1", force=KeyRange(7, 7))
     assert [s.source_id for s in forced.to_build] == [l]
+
+
+def test_chapters_lists_a_sources_items_even_when_not_selected(book):
+    w, l = book.source("wns"), book.source("lncrawl")
+    book.chapters(w, titles(1, 2))
+    book.chapters(l, titles(2))
+    book.store.set_priority([l, w])
+
+    assert [(s.key.label, s.source_id) for s in book.store.chapters(w)] == [("1", w), ("2", w)]
+    assert [s.source_id for s in book.store.selection() if s.key == ChapterKey(2)] == [l]
+
+
+def test_volumes_are_recorded_per_range(store):
+    store.record_volume(VolumeRow(KeyRange(1, 100), "h1", "v1.m4b"))
+    store.record_volume(VolumeRow(KeyRange(101, 200), "h2", "v2.m4b"))
+    store.record_volume(VolumeRow(KeyRange(1, 100), "h3", "v1.m4b"))
+    assert store.volumes() == (VolumeRow(KeyRange(1, 100), "h3", "v1.m4b"), VolumeRow(KeyRange(101, 200), "h2", "v2.m4b"))
+
+    store.prune_volume(KeyRange(1, 100))
+    assert [v.range for v in store.volumes()] == [KeyRange(101, 200)]
+
+
+def test_open_migrates_a_version_1_store(tmp_path):
+    folder = tmp_path / "old"
+    NovelStore.create(folder, NovelMeta("Old")).close()
+    with sqlite3.connect(folder / "novel.sqlite") as conn:
+        conn.execute("DROP TABLE volume")
+        conn.execute("PRAGMA user_version=1")
+    conn.close()
+
+    with NovelStore.open(folder) as store:
+        store.record_volume(VolumeRow(KeyRange(1, 100), "h", "v.m4b"))
+        assert len(store.volumes()) == 1
+    with NovelStore.open(folder) as store:
+        assert len(store.volumes()) == 1
