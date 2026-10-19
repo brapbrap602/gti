@@ -32,6 +32,11 @@ def site_dir() -> Path:
     return data_dir() / "_site"
 
 
+def audio_dir(slug: str) -> Path:
+    """Where `nov build audio` writes one novel's chapter MP3s, sentence cache and volumes."""
+    return data_dir() / "_audio" / slug
+
+
 def novel_slugs() -> list[str]:
     """Every novel in the data dir, sorted."""
     root = data_dir()

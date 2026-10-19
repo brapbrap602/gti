@@ -11,12 +11,13 @@ from novel_core.blocks import (
     Separator,
     System,
 )
-from novel_core.build import BuildPlan, OutputKind, OutputRow
+from novel_core.build import BuildPlan, OutputKind, OutputRow, VolumeRow
 from novel_core.check import CheckReport, Duplicate, ItemNote
 from novel_core.keys import (
     ChapterKey,
     ItemRef,
     KeyRange,
+    chapter_heading,
     parse_printed,
     title_number,
     url_ref,
@@ -46,6 +47,6 @@ __all__ = [
     "Heading", "Image", "IndexDiff", "Inserted", "ItemNote", "ItemRef", "ItemStatus", "KeyRange", "Kind",
     "Moved", "NewVersion", "Note", "NovelMeta", "NovelStore", "OutputKind", "OutputRow", "Paragraph",
     "PinFallback", "PutResult", "RangeOverride", "RawChapter", "Run", "Selected", "Separator", "SourceId",
-    "SourceInfo", "SourceItem", "SourceSpec", "StoreError", "System", "Unchanged", "Version",
-    "parse_printed", "title_number", "url_ref",
+    "SourceInfo", "SourceItem", "SourceSpec", "StoreError", "System", "Unchanged", "Version", "VolumeRow",
+    "chapter_heading", "parse_printed", "title_number", "url_ref",
 ]  # fmt: skip

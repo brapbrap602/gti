@@ -32,6 +32,7 @@ from novel_core import (
     Selected,
     Separator,
     System,
+    chapter_heading,
 )
 
 PAGE_SIZE = 50  # chapter numbers per reading page
@@ -178,19 +179,6 @@ def _neighbours_of_removed(names: Sequence[str], existing: set[str]) -> set[int]
 
 
 # -- rendering --------------------------------------------------------------
-
-# Up to and through "Chapter N", wherever it starts: some sources put the novel's name first
-# ("Who Let Him Cultivate?! (WX)-Chapter 1: Today Is ...").
-_CHAPTER_PREFIX = re.compile(
-    r"^.{0,80}?\bchapter\s*\d+\s*(?:\((?:(?:part|pt)\.?\s*)?\d+\)|(?:part|pt)\.?\s*\d+)?\s*[:：\-–—.]*\s*", re.IGNORECASE
-)
-
-
-def chapter_heading(key: ChapterKey, title: str) -> str:
-    """'Chapter 524 pt 1: The Gate' from key (524, 1) and a source title like 'Chapter 524 (1) - The Gate'."""
-    rest = _CHAPTER_PREFIX.sub("", title, count=1).strip()
-    return f"Chapter {key.label}: {rest}" if rest else f"Chapter {key.label}"
-
 
 def anchor(key: ChapterKey) -> str:
     return f"c{key.number}-{key.part}" if key.part else f"c{key.number}"

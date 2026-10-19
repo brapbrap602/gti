@@ -4,7 +4,12 @@ version = "0.1.0"
 description = "TTS audio builds, legacy audio registration and M4B volumes"
 license = "GPL-3.0-only"
 requires-python = ">=3.12"
-dependencies = ["novel-core"]
+dependencies = [
+    "edge-tts>=7.3.1",
+    "mutagen>=1.47",
+    "novel-core",
+    "pysbd>=0.3.4",
+]
 
 [tool.uv.sources]
 novel-core = { workspace = true }

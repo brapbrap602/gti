@@ -16,7 +16,7 @@ from novel_core import (
     SourceSpec,
     System,
 )
-from novel_publish.site import build_site, chapter_heading
+from novel_publish.site import build_site
 
 
 @pytest.fixture
@@ -97,23 +97,6 @@ def test_site_labels_show_split_parts(stores, site):
     assert '<h2 class="chapter">Chapter 524 pt 2: Gate</h2>' in html
     assert "<title>Test Novel Chs 523–524 pt 2</title>" in html
     assert "Chs 523–524 pt 2" in (site / "index.html").read_text(encoding="utf-8")
-
-
-@pytest.mark.parametrize(
-    ("key", "title", "heading"),
-    [
-        (ChapterKey(5), "Chapter 5: The Gate", "Chapter 5: The Gate"),
-        (ChapterKey(5), "Chapter 5 - The Gate", "Chapter 5: The Gate"),
-        (ChapterKey(5), "Chapter 5", "Chapter 5"),
-        (ChapterKey(6), "Chapter 5: Drifted", "Chapter 6: Drifted"),
-        (ChapterKey(524, 1), "Chapter 524 (1) - Gate", "Chapter 524 pt 1: Gate"),
-        (ChapterKey(0), "Prologue", "Chapter 0: Prologue"),
-        (ChapterKey(1), "Who Let Him Cultivate?! (WX)-Chapter 1: Today", "Chapter 1: Today"),
-        (ChapterKey(9), "The Chapter Nine Riddle", "Chapter 9: The Chapter Nine Riddle"),
-    ],
-)
-def test_chapter_heading(key, title, heading):
-    assert chapter_heading(key, title) == heading
 
 
 def test_blocks_render_escaped(stores, site):

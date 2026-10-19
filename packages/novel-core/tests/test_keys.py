@@ -1,5 +1,5 @@
 import pytest
-from novel_core import ChapterKey, KeyRange, parse_printed, url_ref
+from novel_core import ChapterKey, KeyRange, chapter_heading, parse_printed, url_ref
 
 
 def test_key_order_parts():
@@ -40,3 +40,20 @@ def test_key_range_is_inclusive_and_rejects_empty():
     assert 10 in r and 20 in r and 9 not in r and 21 not in r
     with pytest.raises(ValueError):
         KeyRange(5, 4)
+
+
+@pytest.mark.parametrize(
+    ("key", "title", "heading"),
+    [
+        (ChapterKey(5), "Chapter 5: The Gate", "Chapter 5: The Gate"),
+        (ChapterKey(5), "Chapter 5 - The Gate", "Chapter 5: The Gate"),
+        (ChapterKey(5), "Chapter 5", "Chapter 5"),
+        (ChapterKey(6), "Chapter 5: Drifted", "Chapter 6: Drifted"),
+        (ChapterKey(524, 1), "Chapter 524 (1) - Gate", "Chapter 524 pt 1: Gate"),
+        (ChapterKey(0), "Prologue", "Chapter 0: Prologue"),
+        (ChapterKey(1), "Who Let Him Cultivate?! (WX)-Chapter 1: Today", "Chapter 1: Today"),
+        (ChapterKey(9), "The Chapter Nine Riddle", "Chapter 9: The Chapter Nine Riddle"),
+    ],
+)
+def test_chapter_heading(key, title, heading):
+    assert chapter_heading(key, title) == heading

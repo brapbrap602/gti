@@ -2,7 +2,7 @@ import json
 
 from novel_core import ChapterKey, NovelStore
 from novel_sources.importing import import_novel
-from novel_sources.wns import SNAPSHOT_NAME, WnsImporter
+from novel_sources.wns import SNAPSHOT_NAME, WnsImporter, snapshot_refs
 
 GOLDEN = "https://novelbin.me/novel-book/my-golden-core"
 MOUNT_HUA = "https://skydemonorder.com/projects/3801994495-return-of-the-mount-hua-sect"
@@ -101,6 +101,8 @@ def test_reimport_is_unchanged_and_snapshot_is_frozen(wns, tmp_path, clock):
     assert second.index.added == (f"{GOLDEN.removeprefix('https://novelbin.me')}/chapter-4-new",)
     assert snapshot.read_bytes() == frozen  # legacy positions keep resolving against the first snapshot
     assert len(json.loads(next(p for p in snapshot.parent.iterdir() if p != snapshot).read_text())["chapters"]) == 5
+    refs = snapshot_refs(tmp_path / "golden", first.source_id)
+    assert len(refs) == 4 and second.index.added[0] not in refs
 
 
 def test_missing_page_fails_that_chapter_only(wns, tmp_path, clock):

@@ -1,20 +1,27 @@
 """`nov`: the command line. Each command is a thin wrapper over the packages below it."""
 
 import re
+import shutil
 from collections.abc import Callable, Iterable, Sequence
 from contextlib import ExitStack
 from dataclasses import replace
+from enum import StrEnum
 from pathlib import Path
 from typing import Annotated
 
 import typer
-from novel_core import AlignmentRules, ChapterKey, CheckReport, NovelStore
+from novel_audio.build import build_audio, retag_audio
+from novel_audio.legacy import LegacyReport, Positions, Shift, TitleNumbers, register_legacy
+from novel_audio.media import MediaError
+from novel_audio.tts import DEFAULT_VOICE, EdgeTts
+from novel_audio.volumes import VOLUME_SIZE, build_volumes
+from novel_core import AlignmentRules, ChapterKey, CheckReport, KeyRange, NovelStore
 from novel_publish.site import build_site
 from novel_sources.importing import ImportReport, import_novel
-from novel_sources.wns import WnsImporter
+from novel_sources.wns import WnsImporter, snapshot_refs
 
 from novel_app import deploy
-from novel_app.library import novel_dir, novel_slugs, site_dir, slugify
+from novel_app.library import audio_dir, novel_dir, novel_slugs, site_dir, slugify
 
 app = typer.Typer(no_args_is_help=True, help="Novel library: import, check, build.")
 import_app = typer.Typer(no_args_is_help=True, help="One-shot imports of legacy local stores.")
@@ -25,6 +32,8 @@ deploy_app = typer.Typer(no_args_is_help=True, help="Publish built outputs.")
 app.add_typer(deploy_app, name="deploy")
 align_app = typer.Typer(no_args_is_help=True, help="Fix how a source's items map to chapter keys.")
 app.add_typer(align_app, name="align")
+audio_app = typer.Typer(no_args_is_help=True, help="Chapter audio: legacy registration and tags.")
+app.add_typer(audio_app, name="audio")
 
 LIST_LIMIT = 10
 
@@ -81,11 +90,7 @@ def _edit_alignment(
 ) -> None:
     with _open(novel) as store:
         sources = {s.id: s for s in store.sources()}
-        if source is None and len(sources) == 1:
-            source = next(iter(sources))
-        if source not in sources:
-            typer.echo(f"pass --source, one of {sorted(sources)}", err=True)
-            raise typer.Exit(2)
+        source = _pick_source(store, source)
         known = store.item_refs(source)
         if unknown := [r for r in refs if r not in known]:
             typer.echo(f"source {source} has no item {unknown[0]!r}", err=True)
@@ -94,6 +99,32 @@ def _edit_alignment(
     for m in diff.moved:
         typer.echo(f"  {m.item_ref}: {m.old or 'none'} -> {m.new or 'none'}")
     typer.echo(f"{len(diff.moved)} items moved")
+
+
+def _pick_source(store: NovelStore, source: int | None) -> int:
+    """The given source, or the novel's only one."""
+    ids = sorted(s.id for s in store.sources())
+    if source is None and len(ids) == 1:
+        return ids[0]
+    if source not in ids:
+        typer.echo(f"pass --source, one of {ids}", err=True)
+        raise typer.Exit(2)
+    return source
+
+
+def _parse_range(text: str) -> KeyRange:
+    m = re.fullmatch(r"\s*(\d+)\s*(?:-\s*(\d+))?\s*", text)
+    if m is None:
+        raise typer.BadParameter(f"{text!r} is not a range of chapter numbers like 1-100 or 7")
+    start = int(m.group(1))
+    return KeyRange(start, int(m.group(2) or start))
+
+
+def _parse_shift(text: str) -> Shift:
+    m = re.fullmatch(r"\s*(\d+)\s*-\s*(\d+)\s*:\s*([+-]?\d+)\s*", text)
+    if m is None:
+        raise typer.BadParameter(f"{text!r} is not a shift like 736-1442:+4")
+    return Shift(KeyRange(int(m.group(1)), int(m.group(2))), int(m.group(3)))
 
 
 def _parse_key(text: str) -> ChapterKey:
@@ -125,6 +156,111 @@ def build_site_cmd(
         state = "raw only" if n.raw_only else f"{n.chapters} chapters"
         typer.echo(f"{n.slug}: {state}, {n.pages_written} pages written, {n.pages_deleted} deleted")
     typer.echo(f"site: {out} ({deploy.site_size(out) / 2**20:.0f} MiB)")
+
+
+AudioOut = Annotated[Path | None, typer.Option(help="audio folder; defaults to <data dir>/_audio/<novel>")]
+
+
+@build_app.command("audio")
+def build_audio_cmd(
+    novel: Novel,
+    chapters: Annotated[str | None, typer.Option("--range", help="only chapter numbers in this range, e.g. 1-100")] = None,
+    force: Annotated[bool, typer.Option(help="rebuild every chapter in --range, legacy ones too")] = False,
+    voice: Annotated[str, typer.Option(help="edge-tts voice; a different voice rebuilds every built chapter")] = DEFAULT_VOICE,
+    concurrency: Annotated[int, typer.Option(help="TTS requests in flight")] = 2,
+    out: AudioOut = None,
+) -> None:
+    """Text-to-speech MP3 per selected chapter (incremental; sentences are cached)."""
+    out = out or audio_dir(novel)
+    keys = _parse_range(chapters) if chapters else None
+    with _open(novel) as store:
+        try:
+            report = build_audio(
+                store, out, EdgeTts(voice), keys=keys, force=force, cover=_cover(novel, store),
+                concurrency=concurrency, progress=lambda s, i, n: typer.echo(f"  [{i}/{n}] chapter {s.key.label}"),
+            )  # fmt: skip
+        except MediaError as e:
+            typer.echo(f"audio build stopped: {e}", err=True)
+            raise typer.Exit(1) from e
+    typer.echo(
+        f"{novel}: {len(report.built)} chapters built, {len(report.pruned)} pruned; "
+        f"{report.synthesized} sentences synthesized, {report.reused} from the cache ({out})"
+    )
+
+
+@build_app.command("volumes")
+def build_volumes_cmd(
+    novel: Novel,
+    size: Annotated[int, typer.Option(help="chapter numbers per volume")] = VOLUME_SIZE,
+    out: AudioOut = None,
+) -> None:
+    """M4B audiobook volumes with chapter marks, from the chapter audio already built or registered."""
+    out = out or audio_dir(novel)
+    with _open(novel) as store:
+        try:
+            report = build_volumes(
+                store, out, size=size, cover=_cover(novel, store),
+                progress=lambda r, i, n: typer.echo(f"  [{i}/{n}] volume {r.start}-{r.end}"),
+            )  # fmt: skip
+        except MediaError as e:
+            typer.echo(f"volume build stopped: {e}", err=True)
+            raise typer.Exit(1) from e
+    typer.echo(f"{novel}: {len(report.built)} volumes built, {len(report.pruned)} deleted ({out / 'volumes'})")
+    for r, missing in report.incomplete:
+        typer.echo(f"  volume {r.start}-{r.end} lacks audio for {missing} selected chapters")
+
+
+class LegacyKey(StrEnum):
+    POSITION = "position"
+    TITLE_NUMBER = "title-number"
+
+
+@audio_app.command("register")
+def audio_register(
+    novel: Novel,
+    folder: Annotated[Path, typer.Argument(exists=True, file_okay=False, help="old tts_out/<novel> folder")],
+    key: Annotated[LegacyKey, typer.Option(help="what chapter_NNN counts: main.json positions or chapter numbers")],
+    source: SourceOpt = None,
+    shift: Annotated[list[str] | None, typer.Option(help="move folders: 736-1442:+4 maps folder 736 to 740")] = None,
+) -> None:
+    """Register old tts_reader chapter MP3s as built audio, after checking each against its text."""
+    shifts = [_parse_shift(s) for s in shift or []]
+    with _open(novel) as store:
+        source = _pick_source(store, source)
+        keys = Positions(snapshot_refs(novel_dir(novel), source)) if key is LegacyKey.POSITION else TitleNumbers()
+        report = register_legacy(store, folder, source, keys, shifts)
+    _print_legacy(report)
+
+
+@audio_app.command("retag")
+def audio_retag(novel: Novel, out: AudioOut = None) -> None:
+    """Rewrite title, album, artist, track and cover tags of every chapter MP3, legacy ones included."""
+    with _open(novel) as store:
+        done = retag_audio(store, out or audio_dir(novel), _cover(novel, store))
+    typer.echo(f"{novel}: {done} chapter MP3s tagged")
+
+
+@app.command()
+def cover(
+    novel: Novel,
+    image: Annotated[Path, typer.Argument(exists=True, dir_okay=False, help="a .jpg or .png")],
+) -> None:
+    """Set the novel's cover (copied into its folder); used for audio tags and volumes."""
+    suffix = ".jpg" if image.suffix.lower() == ".jpeg" else image.suffix.lower()
+    if suffix not in {".jpg", ".png"}:
+        raise typer.BadParameter(f"{image.name}: expected a .jpg or .png")
+    with _open(novel) as store:
+        folder = novel_dir(novel)
+        for old in folder.glob("cover.*"):
+            old.unlink()
+        shutil.copyfile(image, folder / f"cover{suffix}")
+        store.set_meta(replace(store.meta, cover_path=f"cover{suffix}"))
+    typer.echo(f"{novel}: cover set to {image.name}")
+
+
+def _cover(novel: str, store: NovelStore) -> bytes | None:
+    path = store.meta.cover_path
+    return (novel_dir(novel) / path).read_bytes() if path else None
 
 
 @deploy_app.command("site")
@@ -161,6 +297,14 @@ def _print_import(slug: str, r: ImportReport) -> None:
     _section("failed", [f"{ref}: {reason}" for ref, reason in r.failed])
     for note in r.notes:
         typer.echo(f"  note: {note}")
+
+
+def _print_legacy(r: LegacyReport) -> None:
+    typer.echo(f"  registered: {len(r.registered)} ({len(r.unverified)} too short or without sentence files to check)")
+    _numbers("partial (no combined mp3)", r.partial)
+    _numbers("already built", r.already_built)
+    _section("unmapped", [f"folder {n}: {why}" for n, why in r.unmapped])
+    _section("mismatched", [f"folder {m.folder}: not {m.key}; best match is {m.best}" for m in r.mismatched])
 
 
 def _print_check(r: CheckReport) -> None:

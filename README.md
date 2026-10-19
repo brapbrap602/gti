@@ -22,7 +22,18 @@ uv run nov align item <slug> <ref> 1277   # give an item an explicit key (524pt1
 uv run nov align skip <slug> <ref>...    # leave reposts/notices out of the book
 uv run nov build site                    # every novel -> <data dir>/_site (incremental; --force rebuilds all)
 uv run nov deploy site                   # force-push _site as orphan gh-pages, then wait until it is live
+uv run nov cover <slug> <image.jpg|png>  # cover for audio tags and volumes (copied into the novel folder)
+uv run nov build audio <slug>            # edge-tts MP3 per chapter -> <data dir>/_audio/<slug> (--range 1-100, --voice, --force)
+uv run nov build volumes <slug>          # M4B per 100 chapter numbers, with chapter marks and cover
+uv run nov audio register <slug> "tts_out/<novel>" --key position|title-number   # [--shift 736-1442:+4]
+uv run nov audio retag <slug>            # rewrite tags of every chapter MP3, legacy ones included
 ```
+
+Audio needs ffmpeg on PATH. Built chapters are recorded per chapter, so an interrupted
+`nov build audio` resumes where it stopped; sentences are cached under `_audio/<slug>/_sentences`,
+so an edited chapter re-synthesizes only the sentences that changed. Changing `--voice` rebuilds
+every built (non-legacy) chapter. `nov audio register` checks each old `chapter_NNN` folder against
+its text using the per-sentence file names and reports mappings that don't fit instead of registering them.
 
 Reading pages hold 50 chapter numbers each (`novels/<slug>/1-50.html`, anchors `#c524`, `#c524-1` for parts).
 In Git Bash, `export MSYS_NO_PATHCONV=1` first, or refs starting with `/` are rewritten into Windows paths.

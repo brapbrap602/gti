@@ -23,7 +23,7 @@ import zstandard
 
 from novel_core.alignment import AlignmentRules, Derivation, Printed, derive_keys
 from novel_core.blocks import blocks_from_json, blocks_to_json, content_hash
-from novel_core.build import BuildPlan, OutputKind, OutputRow, plan_build
+from novel_core.build import BuildPlan, OutputKind, OutputRow, VolumeRow, plan_build
 from novel_core.check import CheckReport, Duplicate, ItemNote
 from novel_core.keys import ChapterKey, ItemRef, KeyRange, parse_printed, title_number
 from novel_core.model import (
@@ -45,7 +45,7 @@ from novel_core.model import (
 )
 from novel_core.selection import Pin, Selected, Selection, SourceId, select
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 DB_NAME = "novel.sqlite"
 
 type Clock = Callable[[], datetime]
@@ -125,6 +125,22 @@ _output = sa.Table(
     sa.Column("built_at", sa.String, nullable=False),
     sa.Column("legacy", sa.Boolean, nullable=False),
 )  # fmt: skip
+_volume = sa.Table(
+    "volume", _md,
+    sa.Column("range_start", sa.Integer, primary_key=True),
+    sa.Column("range_end", sa.Integer, primary_key=True),
+    sa.Column("membership_hash", sa.String, nullable=False),
+    sa.Column("artifact", sa.String, nullable=False),
+    sa.Column("built_at", sa.String, nullable=False),
+)  # fmt: skip
+
+
+def _add_volumes(conn: sa.Connection) -> None:
+    _volume.create(conn)
+
+
+# Each step upgrades a store from the version it is keyed by to the next one.
+_MIGRATIONS: dict[int, Callable[[sa.Connection], None]] = {1: _add_volumes}
 
 
 def _utc_now() -> datetime:
@@ -195,8 +211,12 @@ class NovelStore:
         if not db.exists():
             raise FileNotFoundError(db)
         engine = _engine(db)
-        with engine.connect() as conn:
+        with engine.begin() as conn:
             version = conn.exec_driver_sql("PRAGMA user_version").scalar()
+            while version in _MIGRATIONS:
+                _MIGRATIONS[version](conn)
+                version += 1
+                conn.exec_driver_sql(f"PRAGMA user_version={version}")
         if version != SCHEMA_VERSION:
             engine.dispose()
             raise StoreError(f"{db}: schema version {version}, expected {SCHEMA_VERSION}")
@@ -453,6 +473,12 @@ class NovelStore:
         with self._engine.connect() as conn:
             return self._snapshot(conn).selection.chapters
 
+    def chapters(self, source: SourceId) -> tuple[Selected, ...]:
+        """Every mapped item of one source with its current version, selected or not, in key order."""
+        with self._engine.connect() as conn:
+            self._require_source(conn, source)
+            return tuple(sorted(self._snapshot(conn).current.get(source, []), key=lambda s: s.key))
+
     def outputs(self, kind: OutputKind) -> tuple[OutputRow, ...]:
         with self._engine.connect() as conn:
             return _load_outputs(conn, kind)
@@ -486,6 +512,31 @@ class NovelStore:
     def prune_output(self, kind: OutputKind, key: ChapterKey) -> None:
         with self._engine.begin() as conn:
             conn.execute(_output.delete().where(*_output_is(kind, key)))
+
+    def volumes(self) -> tuple[VolumeRow, ...]:
+        with self._engine.connect() as conn:
+            return tuple(
+                VolumeRow(KeyRange(r.range_start, r.range_end), r.membership_hash, r.artifact)
+                for r in conn.execute(sa.select(_volume).order_by(_volume.c.range_start, _volume.c.range_end))
+            )
+
+    def record_volume(self, volume: VolumeRow) -> None:
+        """Record a built volume, replacing whatever was built for the same range."""
+        with self._engine.begin() as conn:
+            conn.execute(_volume.delete().where(*_volume_is(volume.range)))
+            conn.execute(
+                _volume.insert().values(
+                    range_start=volume.range.start,
+                    range_end=volume.range.end,
+                    membership_hash=volume.membership_hash,
+                    artifact=volume.artifact,
+                    built_at=self._now(),
+                )
+            )
+
+    def prune_volume(self, keys: KeyRange) -> None:
+        with self._engine.begin() as conn:
+            conn.execute(_volume.delete().where(*_volume_is(keys)))
 
     def check(self) -> CheckReport:
         with self._engine.connect() as conn:
@@ -552,6 +603,10 @@ def _item_is(source: SourceId, ref: ItemRef):
 
 def _output_is(kind: OutputKind, key: ChapterKey):
     return _output.c.kind == str(kind), _output.c.key_number == key.number, _output.c.key_part == key.part
+
+
+def _volume_is(keys: KeyRange):
+    return _volume.c.range_start == keys.start, _volume.c.range_end == keys.end
 
 
 def _load_sources(conn: sa.Connection) -> dict[SourceId, SourceInfo]:
