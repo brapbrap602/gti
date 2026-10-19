@@ -1,5 +1,23 @@
 # github_pages
 
+This repo (gti) is being consolidated into a uv workspace for novel tooling; see
+`docs/plans/novel-platform-stakeholder.md`. Until the cutover, the root scripts
+below still build the live site.
+
+## Development
+
+```
+uv sync                                  # installs the workspace packages and dev tools
+uv run pytest                            # live-site tests are skipped unless you pass -m live
+uv run lint-imports                      # novel_core must not import the outer packages
+uv run python tools/secret_scan.py       # fails on API-key-shaped strings in tracked files
+```
+
+- `packages/`: the workspace packages (`novel-core` ← `novel-sources`, `novel-publish`, `novel-audio` ← `novel-app`).
+- `tools/scrub_fixture.py`: turns a real chapter page into a test fixture without novel prose.
+- `tools/copy_legacy.py`: freezes old scraper scripts into `legacy/`, aborting if any contains a key.
+- Secrets are read only from environment variables. Never commit keys or a `.env` file.
+
 ## Adding a new novel
 
 ### If the HTML file already has a TOC

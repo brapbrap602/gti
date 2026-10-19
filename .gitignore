@@ -1,3 +1,9 @@
 .idea
 tts_out/
 __pycache__/
+.venv/
+.ruff_cache/
+.pytest_cache/
+# Secrets come only from environment variables; never commit a .env file.
+.env
+.env.*

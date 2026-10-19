@@ -1,0 +1,16 @@
+[project]
+name = "novel-app"
+version = "0.1.0"
+description = "Service, job runner, CLI and local web UI"
+license = "GPL-3.0-only"
+requires-python = ">=3.12"
+dependencies = ["novel-sources", "novel-publish", "novel-audio"]
+
+[tool.uv.sources]
+novel-sources = { workspace = true }
+novel-publish = { workspace = true }
+novel-audio = { workspace = true }
+
+[build-system]
+requires = ["uv_build>=0.12,<0.13"]
+build-backend = "uv_build"
