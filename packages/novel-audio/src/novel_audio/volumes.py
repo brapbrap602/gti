@@ -43,10 +43,10 @@ def build_volumes(
 
     members: dict[KeyRange, list[OutputRow]] = {}
     for row in audio:
-        members.setdefault(_volume_range(row.built_key.number, size), []).append(row)
+        members.setdefault(KeyRange.containing(row.built_key.number, size), []).append(row)
     wanted: dict[KeyRange, int] = {}
     for key in selection:
-        r = _volume_range(key.number, size)
+        r = KeyRange.containing(key.number, size)
         wanted[r] = wanted.get(r, 0) + 1
     existing = {v.range: v for v in store.volumes()}
 
@@ -81,11 +81,6 @@ def build_volumes(
         (r, wanted[r] - len(rows)) for r, rows, _ in todo if len(rows) < wanted.get(r, 0)
     )
     return VolumeReport(tuple(r for r, _, _ in todo), tuple(pruned), incomplete)
-
-
-def _volume_range(number: int, size: int) -> KeyRange:
-    start = (max(number, 1) - 1) // size * size + 1
-    return KeyRange(start, start + size - 1)
 
 
 def _membership_hash(rows: list[OutputRow]) -> str:

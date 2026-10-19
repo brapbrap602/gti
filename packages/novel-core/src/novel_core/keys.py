@@ -38,6 +38,12 @@ class KeyRange:
     def __contains__(self, number: object) -> bool:
         return isinstance(number, int) and self.start <= number <= self.end
 
+    @classmethod
+    def containing(cls, number: int, size: int) -> "KeyRange":
+        """The range of `size` numbers that holds `number`: 1-100, 101-200, ...; 0 (a prologue) joins the first."""
+        start = (max(number, 1) - 1) // size * size + 1
+        return cls(start, start + size - 1)
+
 
 def url_ref(url: str) -> ItemRef:
     """Item ref of a web chapter: the URL path without scheme, host, query, fragment or trailing slash.

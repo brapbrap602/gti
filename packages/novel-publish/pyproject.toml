@@ -5,6 +5,7 @@ description = "Static site and EPUB builders"
 license = "GPL-3.0-only"
 requires-python = ">=3.12"
 dependencies = [
+    "ebooklib>=0.19",
     "jinja2>=3.1",
     "novel-core",
 ]

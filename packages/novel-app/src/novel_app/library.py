@@ -37,6 +37,11 @@ def audio_dir(slug: str) -> Path:
     return data_dir() / "_audio" / slug
 
 
+def epub_dir(slug: str) -> Path:
+    """Where `nov build epub` writes one novel's volumes."""
+    return data_dir() / "_epub" / slug
+
+
 def novel_slugs() -> list[str]:
     """Every novel in the data dir, sorted."""
     root = data_dir()
