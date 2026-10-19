@@ -1,0 +1,14 @@
+[project]
+name = "novel-sources"
+version = "0.1.0"
+description = "Source backends, fetching, normalization and legacy importers"
+license = "GPL-3.0-only"
+requires-python = ">=3.12"
+dependencies = ["novel-core"]
+
+[tool.uv.sources]
+novel-core = { workspace = true }
+
+[build-system]
+requires = ["uv_build>=0.12,<0.13"]
+build-backend = "uv_build"

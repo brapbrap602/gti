@@ -1,12 +1,46 @@
 [project]
-name = "github-pages"
+name = "gti"
 version = "0.1.0"
-description = "Add your description here"
+description = "Novel library: sources, site, EPUB and audio builds"
 readme = "README.md"
+license = "GPL-3.0-only"
 requires-python = ">=3.12"
 dependencies = [
+    "novel-app",
+    # Used by the legacy root scripts (tts_reader.py, tag_audiobook.py, scripts/) until the cutover.
     "bs4>=0.0.2",
     "edge-tts>=7.2.8",
     "mutagen>=1.47.0",
     "nltk>=3.9.4",
+]
+
+[tool.uv.sources]
+novel-app = { workspace = true }
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[dependency-groups]
+dev = [
+    "beautifulsoup4>=4.12",
+    "import-linter>=2.1",
+    "pytest>=8.3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "packages"]
+pythonpath = ["tools"]
+addopts = ["-m", "not live"]
+markers = ["live: hits real websites; never run by default (select with -m live)"]
+
+[tool.importlinter]
+root_packages = ["novel_core", "novel_sources", "novel_publish", "novel_audio", "novel_app"]
+
+[[tool.importlinter.contracts]]
+name = "Dependencies point inward"
+type = "layers"
+layers = [
+    "novel_app",
+    "novel_sources | novel_publish | novel_audio",
+    "novel_core",
 ]
