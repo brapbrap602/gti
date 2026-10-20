@@ -58,6 +58,15 @@
   display: none !important;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 /* Base styles */
 * {
   box-sizing: border-box;
@@ -288,6 +297,10 @@ a:focus {
   justify-content: center;
   margin: 0;
   font-size: 0.95rem;
+}
+
+.book-card .goto input {
+  width: 9rem;
 }
 
 .book-card .goto-status {
@@ -617,16 +630,41 @@ img {
   margin: 0 0 1rem;
 }
 
-.goto input {
-  width: 7rem;
+.goto input,
+.goto button {
   min-height: 2.5rem;
-  margin-left: 0.5rem;
-  padding: 0.25rem 0.5rem;
+  font: inherit;
+  font-size: 0.95rem;
+  border-radius: 6px;
+}
+
+.goto button {
+  min-width: 3rem;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--r-pill);
+  color: var(--r-text);
+  border: 1px solid var(--r-pill-border);
+  cursor: pointer;
+}
+
+.goto button:hover {
+  border-color: var(--r-link);
+}
+
+.goto input {
+  width: 10.5rem;
+  padding: 0.25rem 0.6rem;
   background-color: var(--r-bg);
   color: var(--r-text);
   border: 1px solid var(--r-pill-border);
-  border-radius: 6px;
-  font: inherit;
+}
+
+.goto input::placeholder {
+  color: var(--r-muted);
+}
+
+.goto-status:empty {
+  display: none;
 }
 
 .goto-status {
