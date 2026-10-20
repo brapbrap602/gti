@@ -23,8 +23,10 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from novel_core import Kind
 from novel_sources.backends import BACKENDS
+from novel_translate.glossary import AddAlias, AddTerm, Category, Edit, Status, UpdateTerm
 from starlette.concurrency import run_in_threadpool
 
+from novel_app.glossary_page import TABS
 from novel_app.jobs import JobPanel, JobRunning, JobState
 from novel_app.notation import parse_range
 from novel_app.pages import CELL_LABELS, CellState, source_label
@@ -42,6 +44,7 @@ WEB_JOBS: dict[str, tuple[str, ...]] = {
     "build-audio": ("novel",),
     "build-volumes": ("novel",),
     "audio-retag": ("novel",),
+    "glossary-build": ("novel", "model", "cap"),
 }
 JOB_LABELS = {
     "add": "Add source",
@@ -51,6 +54,7 @@ JOB_LABELS = {
     "build-audio": "Build audio",
     "build-volumes": "Build M4B volumes",
     "audio-retag": "Retag MP3s",
+    "glossary-build": "Build glossary",
 }
 
 
@@ -112,7 +116,8 @@ def create_app(service: Service) -> FastAPI:
 
     @app.get("/novels/{novel}", response_class=HTMLResponse)
     async def novel(request: Request, novel: str):
-        return page(request, "novel.html", novel=await run_in_threadpool(service.novel, novel))
+        n = await run_in_threadpool(service.novel, novel)
+        return page(request, "novel.html", novel=n, glossary=await run_in_threadpool(service.glossary_counts, novel))
 
     @app.get("/novels/{novel}/compare", response_class=HTMLResponse)
     async def compare(request: Request, novel: str, number: int, left: int | None = None, right: int | None = None):
@@ -165,6 +170,61 @@ def create_app(service: Service) -> FastAPI:
             raise UserError(str(e)) from e
         await run_in_threadpool(service.unpin, novel, keys)
         return done(request, f"{keys.start}-{keys.end} unpinned", f"/novels/{novel}")
+
+    # -- glossary ------------------------------------------------------------------
+
+    @app.get("/novels/{novel}/glossary", response_class=HTMLResponse)
+    async def glossary(request: Request, novel: str, tab: str = "review", q: str = "", category: str = ""):
+        g = await run_in_threadpool(service.glossary_page, novel, tab, q.strip(), _category(category))
+        return page(request, "glossary.html", page=g, tabs=TABS, categories=list(Category))
+
+    @app.post("/novels/{novel}/glossary")
+    async def glossary_add(
+        request: Request,
+        novel: str,
+        zh: str = Form(),
+        en: str = Form(),
+        category: str = Form("other"),
+        aliases: str = Form(""),
+        back: str = Form(""),
+    ):
+        names = tuple(a.strip() for a in aliases.replace("，", ",").split(",") if a.strip())
+        edit = AddTerm(zh, en, _category(category) or Category.OTHER, aliases=names)
+        await run_in_threadpool(service.glossary_edit, novel, [edit])
+        return done(request, f"added {zh} → {en}", _local(back, f"/novels/{novel}/glossary"))
+
+    @app.post("/novels/{novel}/glossary/bulk")
+    async def glossary_bulk(request: Request, novel: str):
+        form = await request.form()
+        ids = [int(i) for i in form.getlist("ids")]
+        action, category = str(form.get("action", "")), _category(str(form.get("category", "")))
+        if not ids:
+            raise UserError("tick some terms first")
+        if action == "accept":
+            rows = [await run_in_threadpool(service.glossary_row, novel, i) for i in ids]
+            edits = [UpdateTerm(r.term.id, en=r.top_llm, status=Status.ACCEPTED) for r in rows]
+        elif action in ("lock", "reject"):
+            edits = [UpdateTerm(i, status=Status.LOCKED if action == "lock" else Status.REJECTED) for i in ids]
+        elif action == "category" and category is not None:
+            edits = [UpdateTerm(i, category=category) for i in ids]
+        else:
+            raise UserError(f"cannot {action or 'do that'} in bulk" + (" without a category" if action == "category" else ""))
+        await run_in_threadpool(service.glossary_edit, novel, edits)
+        return done(request, f"{len(ids)} terms updated", _local(str(form.get("back", "")), f"/novels/{novel}/glossary"))
+
+    @app.post("/novels/{novel}/glossary/{term_id}")
+    async def glossary_term(request: Request, novel: str, term_id: int):
+        form = await request.form()
+        action = str(form.get("action", ""))
+        edits = _term_edits(term_id, action, form)
+        await run_in_threadpool(service.glossary_edit, novel, edits)
+        back = _local(str(form.get("back", "")), f"/novels/{novel}/glossary")
+        if request.headers.get("HX-Request"):
+            row = await run_in_threadpool(service.glossary_row, novel, term_id)
+            return templates.TemplateResponse(
+                request, "_term.html", {"row": row, "slug": novel, "back": back, "categories": list(Category)}
+            )
+        return RedirectResponse(back, status_code=303)
 
     # -- jobs ----------------------------------------------------------------------
 
@@ -236,8 +296,51 @@ def sse(event: str, data: str) -> str:
 
 
 def _back(form) -> str:
-    back = str(form.get("back", "/"))
-    return back if back.startswith("/") and not back.startswith("//") else "/"
+    return _local(str(form.get("back", "/")), "/")
+
+
+def _local(url: str, default: str) -> str:
+    """A path on this server, or the default: a form's `back` never sends the browser elsewhere."""
+    return url if url.startswith("/") and not url.startswith("//") else default
+
+
+def _category(text: str) -> Category | None:
+    if not text:
+        return None
+    try:
+        return Category(text)
+    except ValueError as e:
+        raise UserError(f"no category {text!r}") from e
+
+
+def _term_edits(term_id: int, action: str, form) -> list[Edit]:
+    """The glossary edits one action on the page stands for."""
+    match action:
+        case "save":
+            return [UpdateTerm(term_id, en=str(form.get("en", "")))]
+        case "pick":
+            return [UpdateTerm(term_id, en=str(form.get("en", "")), status=Status.ACCEPTED)]
+        case "accept":
+            return [UpdateTerm(term_id, status=Status.ACCEPTED)]
+        case "lock":
+            return [UpdateTerm(term_id, status=Status.LOCKED)]
+        case "reject":
+            return [UpdateTerm(term_id, status=Status.REJECTED)]
+        case "revive":  # a term after all: the user decides its rendering
+            return [UpdateTerm(term_id, status=Status.NEEDS_REVIEW)]
+        case "details":
+            edits: list[Edit] = [
+                UpdateTerm(
+                    term_id,
+                    category=_category(str(form.get("category", ""))),
+                    gender=str(form.get("gender", "")),
+                    notes=str(form.get("notes", "")),
+                )
+            ]
+            if alias := str(form.get("alias", "")).strip():
+                edits.append(AddAlias(term_id, alias))
+            return edits
+    raise UserError(f"no glossary action {action!r}")
 
 
 def _with_query(url: str, **params: str) -> str:

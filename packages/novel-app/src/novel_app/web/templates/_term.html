@@ -1,0 +1,66 @@
+{# One term: its row and its evidence. An action swaps this whole tbody; ids keep keyboard focus in place. #}
+{% set t = row.term %}
+{% set act = "/novels/" ~ slug ~ "/glossary/" ~ t.id %}
+<tbody id="term-{{ t.id }}" class="term term--{{ t.status }}">
+<tr>
+    <td><input type="checkbox" name="ids" value="{{ t.id }}" form="bulk" aria-label="Tick {{ t.zh }}"></td>
+    <th scope="row" lang="zh">{{ t.zh }}{% if t.edited %} <span title="edited by you" aria-label="edited">✎</span>{% endif %}</th>
+    <td data-label="Category">{{ t.category }}{% if t.gender %} · {{ t.gender }}{% endif %}</td>
+    <td data-label="English">
+        <form method="post" action="{{ act }}" hx-post="{{ act }}" hx-target="#term-{{ t.id }}" hx-swap="outerHTML" class="inline">
+            <input type="hidden" name="action" value="save">
+            <input type="hidden" name="back" value="{{ back }}">
+            <input id="term-{{ t.id }}-en" name="en" value="{{ t.en }}" size="22" aria-label="English for {{ t.zh }}">
+            <button id="term-{{ t.id }}-save" type="submit">Save</button>
+        </form>
+    </td>
+    <td data-label="Status">{{ t.status | replace("_", " ") }}</td>
+    <td data-label="Seen">{{ t.occurrences }}{% if t.first_chapter %} <span class="muted">from {{ t.first_chapter }}</span>{% endif %}</td>
+    <td data-label="Actions" class="term-actions">
+        {% set actions = [] %}
+        {% if t.status != "locked" %}{% set _ = actions.append(("lock", "Lock")) %}{% endif %}
+        {% if t.status in ("needs_review", "proposed") %}{% set _ = actions.append(("accept", "Accept")) %}{% endif %}
+        {% if t.status == "rejected" %}{% set _ = actions.append(("revive", "Revive")) %}{% else %}{% set _ = actions.append(("reject", "Reject")) %}{% endif %}
+        {% for action, label in actions %}
+        <form method="post" action="{{ act }}" hx-post="{{ act }}" hx-target="#term-{{ t.id }}" hx-swap="outerHTML" class="inline">
+            <input type="hidden" name="action" value="{{ action }}">
+            <input type="hidden" name="back" value="{{ back }}">
+            <button id="term-{{ t.id }}-{{ action }}" type="submit" aria-label="{{ label }} {{ t.zh }}">{{ label }}</button>
+        </form>
+        {% endfor %}
+    </td>
+</tr>
+<tr class="term-evidence">
+    <td></td>
+    <td colspan="6">
+        <details{% if t.status == "needs_review" %} open{% endif %}>
+            <summary>Evidence{% if row.candidates %}: {{ row.candidates | length }} renderings{% endif %}{% if t.aliases %} · aliases {{ t.aliases | join(", ") }}{% endif %}</summary>
+            {% if row.candidates %}
+            <ul class="candidates">
+                {% for c in row.candidates %}
+                <li>
+                    <form method="post" action="{{ act }}" hx-post="{{ act }}" hx-target="#term-{{ t.id }}" hx-swap="outerHTML" class="inline">
+                        <input type="hidden" name="action" value="pick">
+                        <input type="hidden" name="en" value="{{ c.en }}">
+                        <input type="hidden" name="back" value="{{ back }}">
+                        <button id="term-{{ t.id }}-pick-{{ loop.index }}" type="submit" aria-label="Use {{ c.en }} for {{ t.zh }}">Use</button>
+                    </form>
+                    {{ c.en }} <span class="muted">{{ c.votes }} × {{ {"llm": "model", "official-en": "official English", "side-channel": "a translation", "mtl-glossary": "MtlTings glossary"}.get(c.origin, c.origin) }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% if row.snippets %}<ol class="snippets" lang="zh">{% for s in row.snippets %}<li>{{ s }}</li>{% endfor %}</ol>{% endif %}
+            <form method="post" action="{{ act }}" hx-post="{{ act }}" hx-target="#term-{{ t.id }}" hx-swap="outerHTML" class="term-details">
+                <input type="hidden" name="action" value="details">
+                <input type="hidden" name="back" value="{{ back }}">
+                <label>Category <select id="term-{{ t.id }}-category" name="category">{% for c in categories %}<option{% if c == t.category %} selected{% endif %}>{{ c }}</option>{% endfor %}</select></label>
+                <label>Gender <select id="term-{{ t.id }}-gender" name="gender">{% for g in ("", "male", "female") %}<option value="{{ g }}"{% if (t.gender or "") == g %} selected{% endif %}>{{ g or "—" }}</option>{% endfor %}</select></label>
+                <label>Note <input id="term-{{ t.id }}-notes" name="notes" value="{{ t.notes }}" size="30"></label>
+                <label>Add alias <input id="term-{{ t.id }}-alias" name="alias" size="8" lang="zh"></label>
+                <button id="term-{{ t.id }}-details" type="submit">Save details</button>
+            </form>
+        </details>
+    </td>
+</tr>
+</tbody>

@@ -121,3 +121,29 @@ def test_compare_jump_stays_in_view_when_the_page_reloads(page, app_url, service
     page.js("new Promise(r => setTimeout(r, 1500))")  # past the reload that follows the job's end
 
     assert page.js(in_view)
+
+
+def test_glossary_review_keeps_focus_on_the_row(openrouter, page, app_url, service, tmp_path):
+    from novel_translate.glossary import Status, UpdateTerm
+
+    assert service.run("glossary-build", lambda _l: None, novel="raw-novel", model="vendor/cheap")[0] is JobState.DONE
+    han = next(t.id for t in service.glossary("raw-novel") if t.zh == "韩立")
+    service.glossary_edit("raw-novel", [UpdateTerm(han, status=Status.NEEDS_REVIEW)])
+
+    page.goto(app_url + "/novels/raw-novel/glossary")
+    assert page.js(f"!!document.getElementById('term-{han}')")
+    assert page.js(f"document.querySelector('#term-{han} details').open")  # evidence shown for review
+    page.js(f"document.getElementById('term-{han}-en').value = 'Han Li the Elder'")
+    page.js(f"document.getElementById('term-{han}-save').focus()")
+    page.click(f"#term-{han}-save")
+    page.wait_for(f"document.querySelector('#term-{han} th').textContent.includes('✎')")
+    assert page.js("document.activeElement.id") == f"term-{han}-save"
+
+    settled = "!document.querySelector('.htmx-request, .htmx-swapping, .htmx-settling')"
+    page.wait_for(settled)  # a person never clicks within htmx's settle delay
+    page.js(f"document.getElementById('term-{han}-lock').focus()")
+    page.click(f"#term-{han}-lock")
+    page.wait_for(f"document.querySelector('#term-{han}').classList.contains('term--locked')")
+    assert page.js(f"document.getElementById('term-{han}-en').value") == "Han Li the Elder"
+    page.screenshot(tmp_path / "glossary.png")
+    assert (tmp_path / "glossary.png").stat().st_size > 1000
