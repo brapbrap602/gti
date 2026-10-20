@@ -10,14 +10,20 @@ match (`array`) or the first. A host may also register a custom processor for a 
 web-novel-scraper package, which is a declared dependency. Pages are fetched with the
 same ladder as every custom backend (fetch.py: Firefox only when a site challenges).
 
+The user's own guide file (same format, a JSON list of entries) adds hosts and
+replaces shipped entries host by host: the shipped entries go stale as sites change.
+
 Where web-novel-scraper keeps only chapter URLs, the index here keeps the link text
 as the item title, so chapters are numbered from titles like on every other source.
 """
 
 import json
+from collections.abc import Mapping
+from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from functools import cache
 from importlib import resources
+from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 
 from bs4 import BeautifulSoup, Tag
@@ -34,33 +40,57 @@ _XOR = "XOR"
 _MAX_TOC_PAGES = 500  # a next-page rule that loops is cut off here
 
 
+@dataclass(frozen=True)
+class Guides:
+    """The guide entries by host: the user's own, then web-novel-scraper's shipped ones."""
+
+    own: Mapping[str, dict] = field(default_factory=dict)
+
+    @classmethod
+    def load(cls, own_file: Path | None) -> "Guides":
+        """The shipped guide plus the user's file, when it exists. ValueError names a malformed file."""
+        if own_file is None or not own_file.is_file():
+            return cls()
+        try:
+            entries = json.loads(own_file.read_text(encoding="utf-8-sig"))
+            return cls(_by_host(entries))
+        except (ValueError, TypeError, KeyError, AttributeError) as e:
+            raise ValueError(f"{own_file}: not a decode guide (a JSON list of entries, each with a host): {e}") from e
+
+    def for_url(self, url: str) -> dict | None:
+        return _lookup(self.own, url) or _lookup(_shipped(), url)
+
+    def is_own(self, url: str) -> bool:
+        """Whether the user wrote the entry for this host (it then wins over other backends)."""
+        return _lookup(self.own, url) is not None
+
+
 @cache
-def guides() -> dict[str, dict]:
-    """web-novel-scraper's guide entries by host."""
+def _shipped() -> dict[str, dict]:
     text = resources.files("web_novel_scraper").joinpath("decode_guide/decode_guide.json").read_text(encoding="utf-8")
-    return {entry["host"]: entry for entry in json.loads(text) if entry["host"] != "default"}
+    return _by_host(json.loads(text))
 
 
-def guide_for(url: str) -> dict | None:
+def _by_host(entries: list) -> dict[str, dict]:
+    return {entry["host"].lower(): entry for entry in entries if entry["host"] != "default"}
+
+
+def _lookup(entries: Mapping[str, dict], url: str) -> dict | None:
     host = (urlsplit(url).hostname or "").lower()
     bare = host.removeprefix("www.")
-    return guides().get(host) or guides().get(bare) or guides().get(f"www.{bare}")
+    return entries.get(host) or entries.get(bare) or entries.get(f"www.{bare}")
 
 
 class DecodeGuideSource:
-    def __init__(self, spec: SourceSpec, scraper):
+    def __init__(self, spec: SourceSpec, guides: Guides, scraper):
         """`scraper` is a lncrawl-scraper Scraper for the site (fetch.firefox_scraper)."""
-        guide = guide_for(spec.url)
-        if guide is None:
-            raise ValueError(f"{spec.url}: web-novel-scraper has no decode guide for this host")
         self._spec = spec
-        self._guide = guide
+        self._guide = _guide(spec.url, guides)
         self._scraper = scraper
 
     @staticmethod
-    def spec_for(url: str, lang: str = "en") -> SourceSpec:
-        if guide_for(url) is None:
-            raise ValueError(f"{url}: web-novel-scraper has no decode guide for this host")
+    def spec_for(url: str, lang: str, guides: Guides) -> SourceSpec:
+        _guide(url, guides)
         return SourceSpec(BACKEND, url, lang, Kind.RAW_ZH if lang == "zh" else Kind.OFFICIAL_EN)
 
     @property
@@ -180,6 +210,13 @@ def _compose(rule: dict) -> str:
     for attr, value in (rule.get("attributes") or {}).items():
         selector += f'[{attr}="{value}"]' if value is not None else f"[{attr}]"
     return selector
+
+
+def _guide(url: str, guides: Guides) -> dict:
+    guide = guides.for_url(url)
+    if guide is None:
+        raise ValueError(f"{url}: no decode guide for this host (neither your guide file nor web-novel-scraper's)")
+    return guide
 
 
 def _page_title(html: str) -> str:
