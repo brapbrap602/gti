@@ -1,6 +1,6 @@
 # Reader site and app UI: developer plan
 
-Status: approved by the user 2026-10-20 (r3). Reviewed independently twice (r1 full review, r2 focused review; findings folded in, §9). Implemented 2026-10-20 (slices 0-8, §10); not deployed.
+Status: approved by the user 2026-10-20 (r3). Reviewed independently twice (r1 full review, r2 focused review; findings folded in, §9). Implemented and deployed 2026-10-20 (slices 0-8, §10).
 Related: [stakeholder plan](reader-ui-stakeholder.md) · [platform v1 developer plan](novel-platform-developer.md) (done).
 
 ## 1. Approved decisions (user)
@@ -381,5 +381,6 @@ All slices are done on `main` (not pushed): 327 default tests and 21 local `brow
 - W5: `nov serve` from the plan commit and from `main` on the same data copy, phone and desktop. The app's palette and layout are unchanged apart from the intended changes.
 - Seen in the data, not caused by this work: CCG chapter 3000's title reads "2998: Multithreaded Fellow Daoists Discussion".
 
-**Left**
-- Deploy: `nov build site`, then `nov deploy site` (a full push, every page changes), after the user confirms.
+**Shipped** (user confirmed 2026-10-20, including the compare rewrite rule)
+- `main` pushed; CI green on 3b68984.
+- Real site rebuilt (every page) and deployed: gh-pages b154b477c613, 128 MiB; the live index serves the new versioned assets.
