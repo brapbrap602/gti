@@ -25,14 +25,19 @@ dev = [
     "beautifulsoup4>=4.12",
     "httpx>=0.28",
     "import-linter>=2.1",
+    # Drives headless Firefox for the local-only `browser` tests.
+    "lncrawl-scraper~=1.7.0",
     "pytest>=8.3",
 ]
 
 [tool.pytest.ini_options]
 testpaths = ["tests", "packages"]
 pythonpath = ["tools"]
-addopts = ["-m", "not live", "--import-mode=importlib"]
-markers = ["live: hits real websites; never run by default (select with -m live)"]
+addopts = ["-m", "not live and not browser", "--import-mode=importlib"]
+markers = [
+    "live: hits real websites; never run by default (select with -m live)",
+    "browser: drives headless Firefox; local only (select with -m browser)",
+]
 
 [tool.importlinter]
 root_packages = ["novel_core", "novel_sources", "novel_publish", "novel_audio", "novel_app"]
