@@ -202,7 +202,7 @@ def test_only_the_newest_problem_of_a_job_shows(board):
     assert ids(board.panel().attention) == [newer]
 
 
-def test_a_run_with_item_errors_is_a_problem_and_resolves_nothing(board):
+def test_a_run_with_item_errors_is_a_problem_that_replaces_but_does_not_resolve(board):
     partial = ended(board, "x", JobState.DONE, errors=("ch 5: HTTP 500",) * 40)
     ended(board, "y", JobState.FAILED)
     partial_y = ended(board, "y", JobState.DONE, errors=("ch 9: HTTP 500",))

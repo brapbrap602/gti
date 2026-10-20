@@ -7,7 +7,7 @@
     <script>
     // Text size and theme before first paint. site.js changes them through readerSettings.apply.
     window.readerSettings = (function () {
-        var SCALES = [0.9, 1, 1.1, 1.2, 1.35], THEMES = ['system', 'light', 'dark'];
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35], THEMES = ['system', 'light', 'dark'];
         var light = matchMedia('(prefers-color-scheme: light)'), current;
         function apply(s) {
             s = s || {};
@@ -22,9 +22,9 @@
         }
         light.addEventListener('change', function () { apply(current); });
         var saved = null;
-        try { saved = JSON.parse(localStorage.getItem('reader:settings')); } catch (e) {}
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
         apply(saved);
-        return {apply: apply, scales: SCALES, current: function () { return current; }};
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
     })();
     </script>
     <link rel="stylesheet" href="{{ root }}assets/style.css?v={{ assets_v }}">

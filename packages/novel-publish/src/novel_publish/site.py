@@ -132,6 +132,8 @@ def _build_novel(slug: str, store: NovelStore, folder: Path, fp: str, force: boo
         (folder / name).unlink()
     if pages:
         _write_if_changed(folder / TOC, _toc_json(pages))
+    else:
+        (folder / TOC).unlink(missing_ok=True)
 
     raw_only = not pages and any(src.spec.kind is Kind.RAW_ZH for src in store.sources())
     card = {
