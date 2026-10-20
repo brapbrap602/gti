@@ -1,5 +1,7 @@
 """Reader site behaviour in headless Firefox (local only: `pytest -m browser`)."""
 
+import json
+
 import pytest
 from firefox_page import firefox, serve
 from novel_core import Kind, NewVersion, NovelMeta, NovelStore, Paragraph, SourceItem, SourceSpec
@@ -56,6 +58,22 @@ def scroll_into(page, anchor: str, extra: float = 0) -> None:
     """Step-scroll until the article's top is just under the bar, plus extra pixels."""
     page.scroll(page.js(f"document.getElementById('{anchor}').getBoundingClientRect().top"
                         " - document.querySelector('.reader-bar').offsetHeight") + extra)
+
+
+def continue_link(page) -> dict | None:
+    return page.js("""(() => { const a = document.querySelector('.book-card[data-slug="n"] .continue');
+        return a.hidden ? null : {text: a.textContent, href: a.getAttribute('href')}; })()""")
+
+
+def save_position(page, site, file: str, anchor: str, para: int, label: str) -> None:
+    page.goto(site + "index.html")
+    pos = {"file": file, "anchor": anchor, "para": para, "label": label, "t": 1}
+    page.js(f"localStorage.setItem('reader:pos:n', {json.dumps(json.dumps(pos))})")
+
+
+def back_to_library(page) -> None:
+    page.navigate_by("history.back()")
+    page.frame()
 
 
 def settings(page) -> dict:
@@ -131,6 +149,8 @@ def test_settings_work_for_the_visit_when_storage_throws(tmp_path, site):
         assert settings(page) == {"theme": "light", "scale": "0.9"}
         scroll_into(page, "c2", 50)
         assert bar(page)["title"] == "Ch 2: Title 2"
+        page.goto(site + "index.html")
+        assert continue_link(page) is None
         page.assert_no_errors()
 
 
@@ -224,3 +244,74 @@ def test_go_to_chapter(page, site):
     assert page.js("location.pathname + location.hash").endswith("/51-100.html#c52")
     page.frame()
     assert bar(page)["title"] == "Ch 52: Title 52"
+
+
+def test_continue_reopens_the_paragraph_last_read(page, site):
+    page.goto(site + "novels/n/1-50.html")
+    assert page.js("innerHeight") * 1.5 < page.js("document.getElementById('c2').getBoundingClientRect().top")
+
+    scroll_into(page, "c2")
+    page.scroll(page.js("document.querySelectorAll('#c2 p')[7].getBoundingClientRect().top")
+                - page.js("document.querySelector('.reader-bar').offsetHeight") + 5)
+    page.goto(site + "index.html")
+
+    assert continue_link(page) == {"text": "Continue · Ch 2", "href": "novels/n/1-50.html?p=7#c2"}
+    page.navigate_by("document.querySelector('.continue').click()")
+    page.frame()
+    top = page.js("document.querySelectorAll('#c2 p')[7].getBoundingClientRect().top")
+    assert abs(top - page.js("document.querySelector('.reader-bar').offsetHeight")) <= 2
+    assert page.js("location.search") == "" and page.js("location.hash") == "#c2"
+
+
+def test_opening_a_range_starts_at_its_top(page, site):
+    save_position(page, site, "1-50.html", "c2", 7, "2")
+    page.goto(site + "index.html")
+
+    page.navigate_by("document.querySelector('.all-chapters a').click()")
+
+    assert page.js("scrollY") == 0
+
+
+def test_a_quick_look_keeps_the_saved_place(page, site):
+    save_position(page, site, "51-100.html", "c52", 7, "52")
+    page.navigate_by("document.querySelector('.all-chapters a').click()")
+
+    page.scroll(page.js("innerHeight") * 0.5)
+    back_to_library(page)
+
+    assert continue_link(page)["text"] == "Continue · Ch 52"
+
+
+def test_reading_on_in_another_range_moves_the_saved_place(page, site):
+    save_position(page, site, "51-100.html", "c52", 7, "52")
+    page.navigate_by("document.querySelector('.all-chapters a').click()")
+
+    page.scroll(page.js("innerHeight") * 3)
+    back_to_library(page)
+
+    assert continue_link(page)["href"].startswith("novels/n/1-50.html?p=")
+
+
+def test_jumps_alone_keep_the_saved_place(page, site):
+    save_position(page, site, "51-100.html", "c52", 7, "52")
+    page.navigate_by("document.querySelector('.all-chapters a').click()")
+
+    page.click('[data-open="chapters"]')
+    goto(page, "3")
+    page.wait_for("location.hash === '#c3'")
+    page.goto(site + "index.html")
+
+    assert continue_link(page)["text"] == "Continue · Ch 52"
+
+
+def test_scroll_restored_on_reload_is_not_reading(page, site):
+    save_position(page, site, "51-100.html", "c52", 7, "52")
+    page.navigate_by("document.querySelector('.all-chapters a').click()")
+
+    page.scroll(page.js("innerHeight"))
+    page.navigate_by("location.reload()")
+    page.frame()
+    assert page.js("scrollY") > 0  # the browser put us back
+    page.goto(site + "index.html")
+
+    assert continue_link(page)["text"] == "Continue · Ch 52"

@@ -54,6 +54,7 @@ class Page:
 
     def __init__(self, backend) -> None:
         self._b = backend
+        self._navigations = 0
 
     def goto(self, url: str) -> None:
         self._b.navigate(url, timeout=30)
@@ -106,9 +107,12 @@ class Page:
 
     def navigate_by(self, action: str) -> None:
         """Run action (JS) that navigates, and wait for the new document to load."""
-        self.js("window.__left = 1")
+        # A token unique to this call: a page back from the bfcache keeps its old one.
+        self._navigations += 1
+        token = self._navigations
+        self.js(f"window.__left = {token}")
         self.js(action)
-        self.wait_for("window.__left === undefined && document.readyState === 'complete'")
+        self.wait_for(f"window.__left !== {token} && document.readyState === 'complete'")
 
     def screenshot(self, path: Path) -> None:
         """Save the viewport as a PNG."""
