@@ -619,7 +619,6 @@ Soft checks (stored with flags):
 - **Key limits:** 402, or 403 with "limit" in the body, raises `OutOfCredit`. This is unconfirmed against a real key-limit reply.
 - **Reasoning "off"** sends no `reasoning` setting, so the model's default applies. Revisit at G2 for models that reason by default.
 - **G1 status:**
-  - **Done:** TM #4411 realigned to 1465 with `nov align item`, and `nov check` shows raw-only 1–1465. Every real store is now at schema 3. Schema-2 backups are in `%LOCALAPPDATA%
-ovels\_backup-schema2-2026-10-20\`.
+  - **Done:** TM #4411 realigned to 1465 with `nov align item`, and `nov check` shows raw-only 1–1465. Every real store is now at schema 3. Schema-2 backups are in `%LOCALAPPDATA%\novels\_backup-schema2-2026-10-20\`.
   - **Open:** the `live` test (`pytest -m live packages/novel-translate -s`, model from `NOV_LIVE_MODEL`, default `google/gemini-2.5-flash-lite`) waits for the user's key.
 
