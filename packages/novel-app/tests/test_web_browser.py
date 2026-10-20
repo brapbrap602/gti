@@ -132,6 +132,7 @@ def test_glossary_review_keeps_focus_on_the_row(openrouter, page, app_url, servi
 
     page.goto(app_url + "/novels/raw-novel/glossary")
     assert page.js(f"!!document.getElementById('term-{han}')")
+    assert page.js("document.documentElement.scrollWidth <= innerWidth")  # a phone never scrolls sideways
     assert page.js(f"document.querySelector('#term-{han} details').open")  # evidence shown for review
     page.js(f"document.getElementById('term-{han}-en').value = 'Han Li the Elder'")
     page.js(f"document.getElementById('term-{han}-save').focus()")

@@ -34,7 +34,7 @@
     <td></td>
     <td colspan="6">
         <details{% if t.status == "needs_review" %} open{% endif %}>
-            <summary>Evidence{% if row.candidates %}: {{ row.candidates | length }} renderings{% endif %}{% if t.aliases %} · aliases {{ t.aliases | join(", ") }}{% endif %}</summary>
+            <summary>Evidence{% if row.candidates %}: {{ row.candidates | length }} rendering{{ "s" if row.candidates | length != 1 }}{% endif %}{% if t.aliases %} · aliases {{ t.aliases | join(", ") }}{% endif %}</summary>
             {% if row.candidates %}
             <ul class="candidates">
                 {% for c in row.candidates %}
