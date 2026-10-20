@@ -20,13 +20,14 @@ from typing import Any, Literal
 import httpx2
 from openai import AsyncOpenAI
 from pydantic import BaseModel, Field
-from pydantic_ai import Agent, capture_run_messages
+from pydantic_ai import Agent, ModelRetry, capture_run_messages
 from pydantic_ai.exceptions import IncompleteToolCall, ModelAPIError, ModelHTTPError, UnexpectedModelBehavior
 from pydantic_ai.messages import ModelMessage, ModelResponse
 from pydantic_ai.models import Model
 from pydantic_ai.models.openrouter import OpenRouterModel
 from pydantic_ai.providers.openrouter import OpenRouterProvider
 
+from novel_translate.chapter import Translated
 from novel_translate.glossary import Category, Verdict
 
 OPENROUTER_URL = "https://openrouter.ai/api/v1"
@@ -146,6 +147,23 @@ class Hinted:
     charged: Charged
 
 
+@dataclass(frozen=True)
+class Attempted:
+    out: Translated
+    charged: Charged
+
+
+# What the translator is told when a hard check fails (validate.py's check ids).
+_FIXES = {
+    "cjk": "- Some Chinese characters or Chinese punctuation are left in the title or text: write English only.",
+    "ids": "- The paragraph ids must be exactly the source ids, each once: one English paragraph per source paragraph.",
+    "empty": "- A paragraph is empty although its source paragraph is not: translate every paragraph.",
+    "loop": "- The text repeats itself: translate each source paragraph once.",
+    "length": "- The translation is far too short or too long for the source: translate fully, without padding.",
+    "heading": "- A paragraph starts with 'Chapter N' although the source paragraph does not: drop it.",
+}
+
+
 class LLM:
     """One thread's handle on one model. Build it with `ModelFactory.llm`, or directly around a test model."""
 
@@ -222,6 +240,36 @@ class LLM:
             agent, f"## English translation\n{en_text}\n\n## Terms\n{terms}", max_tokens=max_tokens, output_retries=1
         )
         return Hinted({u.zh: u.en.strip() for u in out.terms if u.zh in asked and u.en and u.en.strip()}, charged)
+
+    def translate(
+        self,
+        instructions: str,
+        prompt: str,
+        hard_checks: Callable[[Translated], Sequence[str]],
+        max_tokens: int,
+        retry_invalid: bool = True,
+    ) -> Attempted:
+        """One chapter. Output failing `hard_checks` is sent back once with what to fix (`retry_invalid`);
+        raises CallFailed("invalid: <checks>") if it still fails, CutOff if it hit `max_tokens`."""
+        agent = Agent(self._model, output_type=Translated, instructions=instructions)
+        failed: list[Sequence[str]] = []
+
+        @agent.output_validator
+        def _valid(out: Translated) -> Translated:
+            if problems := hard_checks(out):
+                failed.append(problems)
+                raise ModelRetry("Fix these problems and answer again in full:\n" + "\n".join(_FIXES[p] for p in problems))
+            return out
+
+        try:
+            out, charged = self._run(agent, prompt, max_tokens=max_tokens, output_retries=1 if retry_invalid else 0)
+        except CutOff:
+            raise
+        except CallFailed as e:
+            if failed:
+                raise CallFailed(f"invalid: {', '.join(failed[-1])}", e.charged) from e
+            raise
+        return Attempted(out, charged)
 
     def _run(self, agent: Agent, prompt: str, *, max_tokens: int, output_retries: int) -> tuple[Any, Charged]:
         """Run the agent once, retrying transient HTTP failures. Raises OutOfCredit or CallFailed."""
