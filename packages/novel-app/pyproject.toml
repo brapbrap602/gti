@@ -8,6 +8,7 @@ dependencies = [
     "novel-sources",
     "novel-publish",
     "novel-audio",
+    "novel-translate",
     "typer>=0.15",
     "fastapi>=0.150",
     "uvicorn>=0.54",
@@ -22,6 +23,7 @@ nov = "novel_app.cli:app"
 novel-sources = { workspace = true }
 novel-publish = { workspace = true }
 novel-audio = { workspace = true }
+novel-translate = { workspace = true }
 
 [build-system]
 requires = ["uv_build>=0.12,<0.13"]

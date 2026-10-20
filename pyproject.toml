@@ -40,13 +40,13 @@ markers = [
 ]
 
 [tool.importlinter]
-root_packages = ["novel_core", "novel_sources", "novel_publish", "novel_audio", "novel_app"]
+root_packages = ["novel_core", "novel_sources", "novel_publish", "novel_audio", "novel_translate", "novel_app"]
 
 [[tool.importlinter.contracts]]
 name = "Dependencies point inward"
 type = "layers"
 layers = [
     "novel_app",
-    "novel_sources | novel_publish | novel_audio",
+    "novel_sources | novel_publish | novel_audio | novel_translate",
     "novel_core",
 ]
