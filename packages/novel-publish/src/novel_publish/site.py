@@ -8,6 +8,7 @@ when its file is missing, or when a neighbouring page appeared or disappeared
 """
 
 import hashlib
+import json
 import os
 import re
 import shutil
@@ -25,6 +26,7 @@ from novel_publish import render
 
 PAGE_SIZE = 50  # chapter numbers per reading page
 NOVELS = "novels"
+TOC = "toc.json"  # per novel folder: every page's chapters
 ASSETS = "assets"
 
 
@@ -59,7 +61,7 @@ def build_site(novels: Mapping[str, NovelStore], out_dir: Path, force: bool = Fa
         cards.append(card)
     for stale in _subdirs(out_dir / NOVELS) - set(novels):
         shutil.rmtree(out_dir / NOVELS / stale)
-    _write(out_dir / "index.html", _env().get_template("library.html").render(novels=cards))
+    _write(out_dir / "index.html", _env().get_template("library.html").render(novels=cards, assets_v=fp[:12]))
     return SiteReport(tuple(builds))
 
 
@@ -112,6 +114,8 @@ def _build_novel(slug: str, store: NovelStore, folder: Path, fp: str, force: boo
     for i in rebuild:
         page = pages[i]
         html = template.render(
+            assets_v=fp[:12],
+            slug=slug,
             novel=meta,
             page=page,
             prev=pages[i - 1] if i > 0 else None,
@@ -126,6 +130,8 @@ def _build_novel(slug: str, store: NovelStore, folder: Path, fp: str, force: boo
     deleted = existing - set(names)
     for name in deleted:
         (folder / name).unlink()
+    if pages:
+        _write_if_changed(folder / TOC, _toc_json(pages))
 
     raw_only = not pages and any(src.spec.kind is Kind.RAW_ZH for src in store.sources())
     card = {
@@ -144,6 +150,15 @@ def _paginate(selection: Iterable[Selected]) -> list[_Page]:
     for s in sorted(selection, key=lambda s: s.key):
         by_start.setdefault(_page_start(s.key), []).append(s)
     return [_Page(start, tuple(chapters)) for start, chapters in sorted(by_start.items())]
+
+
+def _toc_json(pages: Sequence[_Page]) -> str:
+    """Every page's file and chapters, for the reader's "Go to chapter": compact and byte-stable."""
+    toc = {"pages": [
+        {"file": p.filename, "chapters": [{"n": s.key.number, "a": anchor(s.key)} for s in p.chapters]}
+        for p in pages
+    ]}  # fmt: skip
+    return json.dumps(toc, separators=(",", ":"), sort_keys=True)
 
 
 def _page_start(key: ChapterKey) -> int:
@@ -211,6 +226,11 @@ def _write(path: Path, text: str) -> None:
     tmp = path.with_name(path.name + ".tmp")
     tmp.write_text(text, encoding="utf-8", newline="\n")
     os.replace(tmp, path)
+
+
+def _write_if_changed(path: Path, text: str) -> None:
+    if not path.exists() or path.read_text(encoding="utf-8") != text:
+        _write(path, text)
 
 
 def _subdirs(folder: Path) -> set[str]:
