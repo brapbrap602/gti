@@ -13,11 +13,12 @@ from novel_core import AlignmentDiff
 from novel_publish import epub
 from novel_sources.backends import BACKENDS
 from novel_sources.fetch import FetchError
+from novel_translate.glossary import AddTerm, Category, Status, UpdateTerm
 
 from novel_app import deploy, report
 from novel_app.jobs import JobBoard, JobRunner, JobRunning, Outcome
 from novel_app.notation import parse_range
-from novel_app.service import Service, UserError, app_db
+from novel_app.service import DEFAULT_CAP, Service, UserError, app_db
 
 app = typer.Typer(no_args_is_help=True, help="Novel library: import, sync, check, build.")
 import_app = typer.Typer(no_args_is_help=True, help="One-shot imports of legacy local stores.")
@@ -30,6 +31,8 @@ align_app = typer.Typer(no_args_is_help=True, help="Fix how a source's items map
 app.add_typer(align_app, name="align")
 audio_app = typer.Typer(no_args_is_help=True, help="Chapter audio: legacy registration and tags.")
 app.add_typer(audio_app, name="audio")
+glossary_app = typer.Typer(no_args_is_help=True, help="A novel's glossary: the names its translations keep.")
+app.add_typer(glossary_app, name="glossary")
 
 
 @app.callback()
@@ -329,6 +332,94 @@ def deploy_site_cmd(
     """Force-push the built site as an orphan gh-pages branch, then check the live URL."""
     remote = remote or deploy.origin_url(Path.cwd())
     _job("deploy-site", remote=remote, site=_str(site), budget=budget_mb * 2**20, wait=wait)
+
+
+Model = Annotated[str, typer.Option(help="OpenRouter model id, e.g. google/gemini-2.5-flash-lite")]
+Cap = Annotated[float, typer.Option(help="stop once this many US dollars are spent")]
+TermIds = Annotated[list[int], typer.Argument(help="term ids, as `nov glossary list` prints them")]
+
+
+@glossary_app.command("build")
+def glossary_build(
+    novel: Novel,
+    model: Model,
+    cap: Cap = DEFAULT_CAP,
+    revote: Annotated[bool, typer.Option(help="re-decide accepted terms you never edited")] = False,
+    workers: Annotated[int, typer.Option(help="calls at once")] = 4,
+    yes: Annotated[bool, typer.Option("--yes", help="start without asking")] = False,
+) -> None:
+    """Find the novel's names, ask the model about them and summarize changed chapters (resumable)."""
+    estimate = _calling(lambda: _service().glossary_estimate(novel, model))
+    typer.echo(f"{novel}: glossary pass with {model}, cap ${cap:.2f}")
+    _echo(report.estimate_lines(estimate))
+    if not yes and not typer.confirm("start?"):
+        raise typer.Exit(1)
+    _job("glossary-build", novel=novel, model=model, cap=cap, revote=revote, workers=workers)
+
+
+@glossary_app.command("list")
+def glossary_list(
+    novel: Novel,
+    status: Annotated[Status | None, typer.Option(help="only terms with this status")] = None,
+    category: Annotated[Category | None, typer.Option(help="only terms of this category")] = None,
+    search: Annotated[str | None, typer.Option(help="text in the Chinese, an alias or the English")] = None,
+) -> None:
+    """Show glossary terms: id, Chinese, English, category, status."""
+    terms = _calling(lambda: _service().glossary(novel, status, category, search))
+    for t in terms:
+        aliases = f" (also {', '.join(t.aliases)})" if t.aliases else ""
+        edited = " *" if t.edited else ""
+        typer.echo(f"  {t.id:>5}  {t.zh}{aliases} → {t.en}  [{t.category}, {t.status}{edited}]")
+    typer.echo(f"{len(terms)} terms (* edited by you)")
+
+
+@glossary_app.command("add")
+def glossary_add(
+    novel: Novel,
+    zh: Annotated[str, typer.Argument(help="the Chinese name")],
+    en: Annotated[str, typer.Argument(help="its English rendering")],
+    category: Annotated[Category, typer.Option(help="what it names")] = Category.OTHER,
+    status: Annotated[Status, typer.Option(help="locked terms are never changed by a glossary pass")] = Status.LOCKED,
+    alias: Annotated[list[str] | None, typer.Option(help="another Chinese form (repeatable)")] = None,
+    gender: Annotated[str | None, typer.Option(help="for persons: male or female")] = None,
+    notes: Annotated[str, typer.Option(help="a note the translator is given")] = "",
+) -> None:
+    """Add a term (locked unless --status says otherwise)."""
+    edit = AddTerm(zh, en, category, status, gender, notes, tuple(alias or ()))
+    revision = _calling(lambda: _service().glossary_edit(novel, [edit]))
+    typer.echo(f"{novel}: added {zh} → {en} (glossary revision {revision})")
+
+
+@glossary_app.command("set")
+def glossary_set(
+    novel: Novel,
+    term: Annotated[int, typer.Argument(help="term id")],
+    en: Annotated[str | None, typer.Option(help="new English rendering")] = None,
+    category: Annotated[Category | None, typer.Option()] = None,
+    status: Annotated[Status | None, typer.Option()] = None,
+    gender: Annotated[str | None, typer.Option(help='male, female, or "" to clear')] = None,
+    notes: Annotated[str | None, typer.Option(help='a note for the translator, or "" to clear')] = None,
+) -> None:
+    """Change a term; what you leave out stays. Any change marks it edited, so passes leave it alone."""
+    revision = _calling(lambda: _service().glossary_edit(novel, [UpdateTerm(term, en, category, status, gender, notes)]))
+    typer.echo(f"{novel}: term {term} updated (glossary revision {revision})")
+
+
+@glossary_app.command("lock")
+def glossary_lock(novel: Novel, terms: TermIds) -> None:
+    """Lock terms: injected as they are, never changed by a glossary pass."""
+    _glossary_status(novel, terms, Status.LOCKED)
+
+
+@glossary_app.command("reject")
+def glossary_reject(novel: Novel, terms: TermIds) -> None:
+    """Mark strings as not terms: never injected, never proposed again."""
+    _glossary_status(novel, terms, Status.REJECTED)
+
+
+def _glossary_status(novel: str, terms: Sequence[int], status: Status) -> None:
+    revision = _calling(lambda: _service().glossary_edit(novel, [UpdateTerm(t, status=status) for t in terms]))
+    typer.echo(f"{novel}: {len(terms)} terms {status} (glossary revision {revision})")
 
 
 @app.command()

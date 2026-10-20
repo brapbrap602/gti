@@ -6,10 +6,12 @@ their input before taking the job's lock, raising UserError for bad input, so a
 mistake is reported at once instead of as a failed job. Each job logs what the CLI
 prints. The rest are quick reads and writes that return what they did.
 
-Composition: `sources` (the backends' `open_source`) and `tts` can be passed in; left
-out, they are this module's names, looked up when the Service is made.
+Composition: `sources` (the backends' `open_source`), `tts` and `translator` (what
+makes OpenRouter models) can be passed in; left out, they are this module's names,
+looked up when the Service is made.
 """
 
+import os
 import shutil
 from collections.abc import Callable, Iterator, Mapping, Sequence
 from contextlib import AbstractContextManager, ExitStack, contextmanager
@@ -21,7 +23,7 @@ from novel_audio.legacy import Positions, TitleNumbers, register_legacy
 from novel_audio.media import MediaError
 from novel_audio.tts import DEFAULT_VOICE, EdgeTts, TtsEngine
 from novel_audio.volumes import VOLUME_SIZE, build_volumes
-from novel_core import AlignmentDiff, AlignmentRules, KeyRange, NovelStore, NovelView, SourceInfo, SourceSpec, StoreError
+from novel_core import AlignmentDiff, AlignmentRules, KeyRange, Kind, NovelStore, NovelView, SourceInfo, SourceSpec, StoreError
 from novel_core.check import CheckReport
 from novel_core.selection import Pin
 from novel_core.store import DB_NAME
@@ -35,6 +37,11 @@ from novel_sources.mtl import MtlImporter
 from novel_sources.scribble import ScribbleImporter
 from novel_sources.sync import Source, add_source, sync
 from novel_sources.wns import WnsImporter, snapshot_refs
+from novel_translate.budget import Budget
+from novel_translate.glossary import Category, Edit, GlossaryError, Status, Term
+from novel_translate.models import ModelFactory, OutOfCredit, Price, PriceUnavailable
+from novel_translate.phase_a import Estimate, GlossaryOptions, build_glossary, estimate_glossary
+from novel_translate.tstore import TranslateStore
 
 from novel_app import deploy, pages, report
 from novel_app.jobs import SITE, JobPanel, JobRow, JobRunner, JobState, Outcome, Work
@@ -58,6 +65,8 @@ IMPORTERS: Mapping[str, Callable[[Path], Importer]] = {
     "calibre": CalibreImporter,
 }
 LEGACY_KEYS = ("position", "title-number")
+KEY_ENV = "OPENROUTER_API_KEY"
+DEFAULT_CAP = 1.0  # dollars per job unless the run says otherwise
 
 
 class UserError(Exception):
@@ -74,16 +83,26 @@ def app_db() -> Path:
     return data_dir() / "app.sqlite"
 
 
+def openrouter() -> ModelFactory:
+    """OpenRouter, with the key from the environment it was started in."""
+    key = os.environ.get(KEY_ENV)
+    if not key:
+        raise UserError(f"set {KEY_ENV} (and restart nov serve)")
+    return ModelFactory(key)
+
+
 class Service:
     def __init__(
         self,
         runner: JobRunner,
         sources: Callable[..., AbstractContextManager[Source]] | None = None,
         tts: Callable[[str], TtsEngine] | None = None,
+        translator: Callable[[], ModelFactory] | None = None,
     ):
         self.runner = runner
         self._open_source = sources or open_source
         self._tts = tts or EdgeTts
+        self._translator = translator or openrouter
         # Page reads, per novel, until its database files change: (stamp, view, row without job state).
         self._cache: dict[str, tuple[tuple, NovelView, pages.LibraryRow]] = {}
         self._ops: Mapping[str, Callable[..., tuple[str, Work]]] = {
@@ -97,6 +116,7 @@ class Service:
             "audio-register": self._audio_register,
             "audio-retag": self._audio_retag,
             "deploy-site": self._deploy_site,
+            "glossary-build": self._glossary_build,
         }
 
     # -- jobs ----------------------------------------------------------------
@@ -470,6 +490,67 @@ class Service:
             shutil.copyfile(image, folder / f"cover{suffix}")
             store.set_meta(replace(store.meta, cover_path=f"cover{suffix}"))
 
+    # -- glossary ------------------------------------------------------------
+
+    def _glossary_build(self, novel: str, model: str, cap: float = DEFAULT_CAP, revote: bool = False, workers: int = 4):
+        options = self._glossary_options(novel, model, cap, workers, revote)
+        factory = self._translator()
+        price = _price(factory, model)
+
+        def work(job) -> Outcome:
+            with self._store(novel) as store, self._tstore(novel) as ts:
+                job.log(f"{novel}: glossary pass with {model}, cap ${cap:.2f}")
+                try:
+                    r = build_glossary(
+                        store, ts, lambda cancel: factory.llm(model, cancel), price, Budget(cap), options,
+                        lambda done, total, step: job.progress(done, total, step),
+                    )  # fmt: skip
+                except OutOfCredit as e:
+                    job.log(f"stopped: out of OpenRouter credit ({e})")
+                    return Outcome((f"out of OpenRouter credit: {e}",))
+            for line in report.glossary_lines(r):
+                job.log(line)
+            return Outcome(tuple(r.failed))
+
+        return novel, work
+
+    def glossary_estimate(self, novel: str, model: str) -> Estimate:
+        options = self._glossary_options(novel, model)
+        price = _price(self._translator(), model)
+        with self._store(novel) as store, self._tstore(novel) as ts:
+            return estimate_glossary(store, ts, price, options)
+
+    def glossary(
+        self, novel: str, status: Status | None = None, category: Category | None = None, search: str | None = None
+    ) -> tuple[Term, ...]:
+        with self._tstore(novel) as ts:
+            return ts.entries(status, category, search)
+
+    def glossary_edit(self, novel: str, edits: Sequence[Edit]) -> int:
+        """Apply the user's glossary edits together; returns the glossary's new revision."""
+        with self._tstore(novel) as ts:
+            try:
+                return ts.apply(edits)
+            except GlossaryError as e:
+                raise UserError(str(e)) from e
+
+    def _glossary_options(
+        self, novel: str, model: str, cap: float = DEFAULT_CAP, workers: int = 4, revote: bool = False
+    ) -> GlossaryOptions:
+        with self._store(novel) as store:
+            if not any(s.spec.kind is Kind.RAW_ZH for s in store.sources()):
+                raise UserError(f"{novel} has no Chinese raws")
+        if cap <= 0:
+            raise UserError("the cap must be more than $0")
+        if workers < 1:
+            raise UserError("workers must be at least 1")
+        return GlossaryOptions(model, workers, revote)
+
+    @contextmanager
+    def _tstore(self, novel: str) -> Iterator[TranslateStore]:
+        with TranslateStore.open_or_create(self._require(novel)) as ts:
+            yield ts
+
     # -- helpers ---------------------------------------------------------------
 
     def _require(self, novel: str) -> Path:
@@ -510,6 +591,13 @@ def _stat(path: Path):
         return path.stat()
     except FileNotFoundError:
         return None
+
+
+def _price(factory: ModelFactory, model: str) -> Price:
+    try:
+        return factory.price(model)
+    except PriceUnavailable as e:
+        raise UserError(str(e)) from e
 
 
 def _slug(novel: str) -> str:
