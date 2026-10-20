@@ -14,6 +14,7 @@ from novel_publish import epub
 from novel_sources.backends import BACKENDS
 from novel_sources.fetch import FetchError
 from novel_translate.glossary import AddTerm, Category, Status, UpdateTerm
+from novel_translate.setups import SetupError, TranslatorSetup
 
 from novel_app import deploy, report
 from novel_app.jobs import JobBoard, JobRunner, JobRunning, Outcome
@@ -33,6 +34,10 @@ audio_app = typer.Typer(no_args_is_help=True, help="Chapter audio: legacy regist
 app.add_typer(audio_app, name="audio")
 glossary_app = typer.Typer(no_args_is_help=True, help="A novel's glossary: the names its translations keep.")
 app.add_typer(glossary_app, name="glossary")
+translate_app = typer.Typer(no_args_is_help=True, help="LLM translations of the raws, one source per translator setup.")
+app.add_typer(translate_app, name="translate")
+setup_app = typer.Typer(no_args_is_help=True, help="Translator setups: model, prompt, context, reasoning.")
+translate_app.add_typer(setup_app, name="setup")
 
 
 @app.callback()
@@ -420,6 +425,88 @@ def glossary_reject(novel: Novel, terms: TermIds) -> None:
 def _glossary_status(novel: str, terms: Sequence[int], status: Status) -> None:
     revision = _calling(lambda: _service().glossary_edit(novel, [UpdateTerm(t, status=status) for t in terms]))
     typer.echo(f"{novel}: {len(terms)} terms {status} (glossary revision {revision})")
+
+
+SetupArg = Annotated[int, typer.Argument(help="the setup's source id, as `nov translate setup list` prints it")]
+
+
+@setup_app.command("add")
+def setup_add(
+    novel: Novel,
+    model: Model,
+    prompt: Annotated[str, typer.Option(help="prompt version")] = "v1",
+    context: Annotated[str, typer.Option(help="parallel, or sequential (also gives the previous translation)")] = "parallel",
+    reasoning: Annotated[str, typer.Option(help="off, low, medium or high")] = "off",
+    data_collection: Annotated[str, typer.Option(help="allow, or deny (only hosts that do not keep prompts)")] = "allow",
+) -> None:
+    """Add a translator setup: its own source, unpublished until you switch it on."""
+    try:
+        setup = TranslatorSetup(model, prompt, context, reasoning, data_collection)
+    except SetupError as e:
+        raise typer.BadParameter(str(e)) from e
+    source = _calling(lambda: _service().add_setup(novel, setup))
+    typer.echo(f"{novel}: setup {setup.label} is source {source} (unpublished)")
+
+
+@setup_app.command("list")
+def setup_list(novel: Novel) -> None:
+    """The novel's translator setups, with chapters done and spend so far."""
+    for r in _calling(lambda: _service().setups(novel)):
+        state = "published" if r.source.published else "unpublished"
+        typer.echo(
+            f"  source {r.source.id}: {r.setup.label} [{state}]: {r.chapters} chapters "
+            f"({r.flagged} flagged, {r.failed} failed), ${r.cost:.4f}"
+        )
+
+
+@translate_app.command("run")
+def translate_run(
+    novel: Novel,
+    setup: SetupArg,
+    numbers: Annotated[str | None, typer.Argument(help="chapter numbers, e.g. 1495-1504")] = None,
+    stale: Annotated[bool, typer.Option("--stale", help="the chapters whose inputs changed instead")] = False,
+    cap: Cap = DEFAULT_CAP,
+    workers: Annotated[int, typer.Option(help="chapters at once (sequential setups use 1)")] = 4,
+    yes: Annotated[bool, typer.Option("--yes", help="start without asking")] = False,
+) -> None:
+    """Translate chapters with one setup (prints the cost estimate and asks first)."""
+    if (numbers is None) == (not stale):
+        raise typer.BadParameter("give chapter numbers or --stale")
+    span = numbers or ""
+    estimate = _calling(lambda: _service().translate_estimate(novel, setup, span))
+    _echo(report.translate_estimate_lines(estimate))
+    if not estimate.chapters:
+        typer.echo("nothing to translate")
+        return
+    if not yes and not typer.confirm(f"start, with a cap of ${cap:.2f}?"):
+        raise typer.Exit(1)
+    _job("translate", novel=novel, setup=setup, range=span, cap=cap, workers=workers)
+
+
+@translate_app.command("stale")
+def translate_stale(novel: Novel, setup: SetupArg) -> None:
+    """Chapters whose inputs (raw, glossary lines, context) changed since they were translated."""
+    _echo(report.stale_lines(_calling(lambda: _service().stale(novel, setup))))
+
+
+@translate_app.command("prune")
+def translate_prune(novel: Novel, setup: SetupArg) -> None:
+    """Drop translations of raw chapters that no longer exist (orphans) from the setup."""
+    dropped = _calling(lambda: _service().prune_orphans(novel, setup))
+    typer.echo(f"{novel}: {len(dropped)} orphans dropped" + (f" ({', '.join(dropped)})" if dropped else ""))
+
+
+@app.command()
+def publish(
+    novel: Novel,
+    source: Annotated[int, typer.Argument(help="source id")],
+    switch: Annotated[str, typer.Argument(help="on or off")],
+) -> None:
+    """Switch a source in or out of the book (site, EPUB, audio). New translator setups start off."""
+    if switch not in ("on", "off"):
+        raise typer.BadParameter("on or off")
+    _calling(lambda: _service().set_published(novel, source, switch == "on"))
+    typer.echo(f"{novel}: source {source} {'published' if switch == 'on' else 'unpublished'}; rank it with `nov priority`")
 
 
 @app.command()

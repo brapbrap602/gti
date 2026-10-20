@@ -41,6 +41,9 @@ from novel_translate.budget import Budget
 from novel_translate.glossary import Category, Edit, GlossaryError, Status, Term
 from novel_translate.models import ModelFactory, OutOfCredit, Price, PriceUnavailable
 from novel_translate.phase_a import Estimate, GlossaryOptions, build_glossary, estimate_glossary
+from novel_translate.phase_b import Estimate as TranslateEstimate
+from novel_translate.phase_b import StaleReport, TranslateReport, estimate_translate, prune, stale, translate
+from novel_translate.setups import SetupError, TranslatorSetup, register, setups
 from novel_translate.tstore import DB_NAME as TRANSLATE_DB
 from novel_translate.tstore import TranslateStore
 
@@ -73,6 +76,16 @@ DEFAULT_CAP = 1.0  # dollars per job unless the run says otherwise
 
 class UserError(Exception):
     """Bad input: an unknown novel or source, a malformed range, a broken guide file."""
+
+
+@dataclass(frozen=True)
+class SetupRow:
+    source: SourceInfo
+    setup: TranslatorSetup
+    chapters: int  # translated and current in the ledger
+    flagged: int  # of those, stored with soft flags
+    failed: int
+    cost: float  # every attempt, failed ones included
 
 
 @dataclass(frozen=True)
@@ -119,6 +132,7 @@ class Service:
             "audio-retag": self._audio_retag,
             "deploy-site": self._deploy_site,
             "glossary-build": self._glossary_build,
+            "translate": self._translate,
         }
 
     # -- jobs ----------------------------------------------------------------
@@ -583,6 +597,106 @@ class Service:
             raise UserError("workers must be at least 1")
         return GlossaryOptions(model.strip(), workers, revote)
 
+    # -- translation -----------------------------------------------------------
+
+    def add_setup(self, novel: str, setup: TranslatorSetup) -> int:
+        """Add a translator setup as an unpublished source; its model must be one OpenRouter lists."""
+        self._require_raws(novel)
+        _price(self._translator(), setup.model)
+        with self._store(novel) as store:
+            try:
+                return register(store, setup)
+            except SetupError as e:
+                raise UserError(str(e)) from e
+
+    def setups(self, novel: str) -> list[SetupRow]:
+        with self._store(novel) as store, self._tstore(novel) as ts:
+            rows = []
+            for info, setup in setups(store.sources()):
+                ledger = ts.latest(setup.url).values()
+                ok = [r for r in ledger if r.outcome == "ok"]
+                rows.append(SetupRow(
+                    info, setup, len(ok), sum(1 for r in ok if r.soft_flags),
+                    sum(1 for r in ledger if r.outcome == "failed"), ts.spend(setup.url).cost,
+                ))  # fmt: skip
+            return rows
+
+    def _translate(
+        self, novel: str, setup: int, range: str = "", cap: float | str = DEFAULT_CAP, workers: int | str = 4
+    ):
+        keys, chosen, workers = self._translate_args(novel, setup, range, workers)
+        cap = _number(float, cap, "the cap")
+        if cap <= 0:
+            raise UserError("the cap must be more than $0")
+        factory = self._translator()
+        price = _price(factory, chosen.model)
+
+        def new_llm(cancel):
+            return factory.llm(chosen.model, cancel, data_collection=chosen.data_collection, reasoning=_effort(chosen))
+
+        def work(job) -> Outcome:
+            progress_report = TranslateReport()
+            job.log(f"{novel}: translating {range or 'stale chapters'} with source {setup} ({chosen.label}), cap ${cap:.2f}")
+            with self._store(novel) as store, self._tstore(novel) as ts:
+                try:
+                    translate(
+                        store, ts, chosen, keys, new_llm, price, Budget(cap), workers,
+                        lambda done, total, step: job.progress(done, total, step), progress_report,
+                    )  # fmt: skip
+                except OutOfCredit as e:
+                    job.log(f"stopped: out of OpenRouter credit ({e})")
+                    for line in report.translate_lines(progress_report):
+                        job.log(line)
+                    return Outcome((f"out of OpenRouter credit: {e}",))
+                except BaseException:
+                    job.log("stopped before the end; what was paid for is kept:")
+                    for line in report.translate_lines(progress_report):
+                        job.log(line)
+                    raise
+            for line in report.translate_lines(progress_report):
+                job.log(line)
+            return Outcome(tuple(progress_report.failed + progress_report.blocked))
+
+        return novel, work
+
+    def translate_estimate(self, novel: str, setup: int, range: str = "") -> TranslateEstimate:
+        keys, chosen, _ = self._translate_args(novel, setup, range, 1)
+        price = _price(self._translator(), chosen.model)
+        with self._store(novel) as store, self._tstore(novel) as ts:
+            return estimate_translate(store, ts, chosen, keys, price)
+
+    def stale(self, novel: str, setup: int) -> StaleReport:
+        chosen = self._setup(novel, setup)
+        with self._store(novel) as store, self._tstore(novel) as ts:
+            return stale(store, ts, chosen)
+
+    def prune_orphans(self, novel: str, setup: int) -> tuple[str, ...]:
+        chosen = self._setup(novel, setup)
+        with self._store(novel) as store, self._tstore(novel) as ts:
+            return prune(store, ts, chosen)
+
+    def set_published(self, novel: str, source: int, on: bool) -> None:
+        with self._store(novel) as store:
+            try:
+                store.set_published(source, on)
+            except StoreError as e:
+                raise UserError(str(e)) from e
+
+    def _setup(self, novel: str, source: int) -> TranslatorSetup:
+        with self._store(novel) as store:
+            for info, setup in setups(store.sources()):
+                if info.id == source:
+                    return setup
+        raise UserError(f"source {source} of {novel} is not a translator setup; see `nov translate setup list {novel}`")
+
+    def _translate_args(self, novel: str, setup: int | str, range: str, workers: int | str):
+        self._require_raws(novel)
+        chosen = self._setup(novel, _number(int, setup, "the setup"))
+        keys = _parsed(parse_range, range) if range.strip() else "stale"
+        if (workers := _number(int, workers, "workers")) < 1:
+            raise UserError("workers must be at least 1")
+        return keys, chosen, workers
+
     def _require_raws(self, novel: str) -> None:
         with self._store(novel) as store:
             if not any(s.spec.kind is Kind.RAW_ZH for s in store.sources()):
@@ -633,6 +747,10 @@ def _stat(path: Path):
         return path.stat()
     except FileNotFoundError:
         return None
+
+
+def _effort(setup: TranslatorSetup) -> str | None:
+    return None if setup.reasoning == "off" else setup.reasoning
 
 
 def _number[N](kind: type[N], text: N | str, name: str) -> N:

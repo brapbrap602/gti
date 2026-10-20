@@ -7,6 +7,8 @@ from novel_core import CheckReport
 from novel_sources.importing import ImportReport
 from novel_sources.sync import SyncReport
 from novel_translate.phase_a import Estimate, GlossaryReport
+from novel_translate.phase_b import Estimate as TranslateEstimate
+from novel_translate.phase_b import StaleReport, TranslateReport
 
 from novel_app.notation import ranges
 
@@ -83,6 +85,37 @@ def estimate_lines(e: Estimate) -> list[str]:
     calls = ", ".join(f"{n} {step}" for step, n in e.calls.items())
     bound = "at most " if e.upper_bound else "about "
     return [f"  {e.chapters} chapters; {e.total_calls} calls ({calls}); {bound}${e.usd:.4f}"]
+
+
+def translate_lines(r: TranslateReport) -> list[str]:
+    flags = ", ".join(f"{n} {flag}" for flag, n in sorted(r.soft_flags.items()))
+    lines = [
+        f"  translated {len(r.translated)}; {r.skipped} already current; "
+        f"{len(r.blocked)} blocked; {len(r.failed)} failed",
+        f"  {r.calls} calls, ${r.cost:.4f}" + (f"; stored with flags: {flags}" if flags else ""),
+        *section("blocked (review these terms on the glossary page)", r.blocked),
+        *section("failed", r.failed),
+    ]
+    if r.orphans:
+        lines.append(f"  orphans (their raw chapter is gone; `nov translate prune` drops them): {', '.join(r.orphans)}")
+    if r.stopped:
+        lines.append(f"  stopped: {r.stopped}; run it again (with a higher --cap) to continue")
+    return lines
+
+
+def translate_estimate_lines(e: TranslateEstimate) -> list[str]:
+    return [
+        f"  {e.chapters} chapters to translate ({e.current} already current, {e.blocked} blocked by terms to review); "
+        f"at most ${e.usd:.4f}"
+    ]
+
+
+def stale_lines(r: StaleReport) -> list[str]:
+    def listed(refs: Sequence[str]) -> str:
+        more = " …" if len(refs) > LIST_LIMIT else ""
+        return f" ({', '.join(refs[:LIST_LIMIT])}{more})" if refs else ""
+
+    return [f"  stale: {len(r.stale)}{listed(r.stale)}", f"  orphans: {len(r.orphans)}{listed(r.orphans)}"]
 
 
 def section(name: str, lines: Sequence[str]) -> list[str]:
