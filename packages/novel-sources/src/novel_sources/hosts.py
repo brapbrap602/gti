@@ -92,24 +92,30 @@ def cut_glued_watermarks(text: str) -> str:
 
 _CREDIT = re.compile(rf"^(?=.{{0,{_SHORT}}}$)\s*(?:translator|editor|proofreader|tl|ed)\s*:", re.IGNORECASE)
 _NAVIGATION = re.compile(
-    rf"^(?=.{{0,{_SHORT}}}$).*(?:\bprevious chapter\b|\bnext chapter\b|\bko-fi\b|\bproject page\b|discord\.gg/)",
+    rf"^(?=.{{0,{_SHORT}}}$).*(?:\bprevious chapter\b|\bnext chapter\b|\bko-fi\b|\bproject page\b|discord\.gg/|patreon\.com/)",
     re.IGNORECASE,
 )
 _STRAY_MARKUP = re.compile(r"^[^\w]*`[^\w]*$")  # '“`': a markdown fence left in the text
+# "(End of this chapter)" closing machine translations, and a translator's sign-off line.
+_END_MARK = re.compile(r"^\W*(?:end of (?:this )?chapter|spirit\W?stone\W?translations?)\W*$", re.IGNORECASE)
 # Reader-site interface text copied into the chapter, and a watermark left without its site name.
 _SITE_UI = re.compile(
     r"^\s*(?:a new text-to-speech function has been added.*|please visit\s+to enjoy reading\W*)$", re.IGNORECASE
 )
 
+# Ad networks that slip banners and tracking pixels into the chapter body on any host.
+_ADS = ('img[src*="pubfuture."]', 'img[src*="pubadx."]', 'div[class*="bg-ssp-"]', "div.PUBFUTURE")
+
 COMMON = CleanRules(
     content=(),
-    drop=(is_watermark, _CREDIT.search, _NAVIGATION.search, _STRAY_MARKUP.search, _SITE_UI.search),
+    remove=_ADS,
+    drop=(is_watermark, _CREDIT.search, _NAVIGATION.search, _STRAY_MARKUP.search, _SITE_UI.search, _END_MARK.search),
     strip=(cut_glued_watermarks,),
 )
 
 HOSTS: dict[str, CleanRules] = {
     "freewebnovel": CleanRules(content=("div#article",)),
-    "novelbin": CleanRules(content=("div#chr-content", "div#chapter-content"), remove=("div.PUBFUTURE",)),
+    "novelbin": CleanRules(content=("div#chr-content", "div#chapter-content")),
     # novelbuddy.me (current layout) and novelbuddy.com (older layout).
     "novelbuddy": CleanRules(content=("div.novel-tts-content", "div.content-inner")),
     "skydemonorder": CleanRules(content=("div#chapter-body",)),

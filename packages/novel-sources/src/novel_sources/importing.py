@@ -25,8 +25,7 @@ from novel_core import (
 )
 from novel_core.store import DB_NAME, Clock
 
-from novel_sources.clean import CleanError, normalize
-from novel_sources.hosts import COMMON, rules_for
+from novel_sources.clean import CleanError, CleanRules, normalize
 
 
 @dataclass(frozen=True)
@@ -35,6 +34,7 @@ class NovelIndex:
     items: tuple[SourceItem, ...]
     notes: tuple[str, ...] = ()  # what the reader skipped or doubted, for the import report
     snapshot: Mapping[str, bytes] = field(default_factory=dict)  # files kept as provenance, by name
+    provenance: Mapping[str, object] = field(default_factory=dict)  # added to every version's provenance
 
 
 class Importer(Protocol):
@@ -45,6 +45,10 @@ class Importer(Protocol):
 
     def read_chapter(self, item: SourceItem) -> RawChapter | None:
         """The stored page or text; None when the store never had this chapter (locked, skipped)."""
+        ...
+
+    def clean_rules(self, raw: RawChapter) -> CleanRules:
+        """How to normalize a chapter this importer read."""
         ...
 
 
@@ -84,13 +88,13 @@ def import_novel(novel_dir: Path, importer: Importer, clock: Clock | None = None
                     store.mark_item(source, item.ref, ItemStatus.UNAVAILABLE)
                     unavailable.append(item.ref)
                     continue
-                rules = COMMON if raw.content_type == "text" else rules_for(raw.final_url or importer.spec.url)
-                blocks = normalize(raw, rules, item.title)
+                blocks = normalize(raw, importer.clean_rules(raw), item.title)
             except (OSError, CleanError) as e:
                 store.mark_item(source, item.ref, ItemStatus.FAILED, str(e))
                 failed.append((item.ref, str(e)))
                 continue
-            result = store.put_version(source, item.ref, NewVersion(item.title, blocks, raw, {"importer": importer.spec.backend}))
+            provenance = {"importer": importer.spec.backend, **index.provenance}
+            result = store.put_version(source, item.ref, NewVersion(item.title, blocks, raw, provenance))
             if isinstance(result, Inserted):
                 inserted += 1
             else:

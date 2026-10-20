@@ -17,6 +17,10 @@ The new tooling is the `nov` command. Novels live in `$NOVELS_DATA_DIR` (default
 
 ```
 uv run nov import wns "%LOCALAPPDATA%\web-novel-scraper\web-novel-scraper\<Title>"   # [--novel <slug>]
+uv run nov import mtl "<MtlTings>\data\raw\<novel>"         # raws as raw-zh; data\translated\<novel> as my-translation
+uv run nov import scribble "<file>" --novel <slug>          # scribblehub text dump ('## Chapter N: Title' markers)
+uv run nov import calibre "novels\<Novel>" --novel <slug>   # old site's Calibre HTML pages; import last (ranks lowest)
+uv run nov priority <slug> [3,1,2]       # show the sources best first, or set the order
 uv run nov check <slug>                  # gaps, duplicates, unmapped chapters, failed pages, ...
 uv run nov align item <slug> <ref> 1277   # give an item an explicit key (524pt1 for a part); --source when several
 uv run nov align skip <slug> <ref>...    # leave reposts/notices out of the book

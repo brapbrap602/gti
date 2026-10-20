@@ -43,7 +43,7 @@ from novel_core.model import (
     Unchanged,
     Version,
 )
-from novel_core.selection import Pin, Selected, Selection, SourceId, select
+from novel_core.selection import Pin, Selected, Selection, SourceId, rank, select
 
 SCHEMA_VERSION = 2
 DB_NAME = "novel.sqlite"
@@ -274,6 +274,12 @@ class NovelStore:
             if unknown := [s for s in sources if s not in known]:
                 raise StoreError(f"unknown sources {unknown}")
             conn.execute(_novel.update().values(priority_json=json.dumps(list(sources))))
+
+    def priority(self) -> tuple[SourceId, ...]:
+        """Every source, best first; sources missing from the stored list rank after it, by id."""
+        with self._engine.connect() as conn:
+            priority, _ = _load_policy(conn)
+            return tuple(rank(priority, _load_sources(conn)))
 
     def set_pin(self, keys: KeyRange, source: SourceId) -> None:
         """Pin numbers keys.start..keys.end to a source. A later pin wins where pins overlap."""

@@ -144,6 +144,21 @@ def test_common_rules_drop_credits_navigation_and_watermarks():
     assert texts(normalize(raw, rules)) == [long.strip()]
 
 
+def test_common_rules_drop_ads_patreon_lines_and_end_marks():
+    # As found in stored novelbin pages: a pubfuture banner in a <p>, and pubadx tracking pixels.
+    html = (
+        '<p>a</p><p><a href="https://pubfuture.com/"><img alt="Ads by Pubfuture" src="https://s3.pubfuture.com/favicon.ico"/></a>'
+        '<a href="https://x.epicplay.in/"><img src="https://media.pubfuture.com/2024/10/17/300x250.gif"/></a></p>'
+        '<div class="bg-ssp-6327"><div style="display:none"><img src="https://imp9.pubadx.one/rec?f=1"/></div></div>'
+        '<p><img src="https://s.w.org/images/core/emoji/11.2.0/svg/2744.svg" alt="❄️"/></p>'
+        "<p>Read extra chapters on >>> patreon.com/SpiritStonetranslation</p><p>b</p>"
+        "<p>(End of this chapter)</p><p>Spirit.Stone.translation</p><p>The end of this chapter was near.</p>"
+    )
+    blocks = normalize(RawChapter(f"<div id='chr-content'>{html}</div>"), rules_for("https://novelbin.me/b/x/chapter-1"))
+    assert texts(blocks) == ["a", "Image", "b", "The end of this chapter was near."]
+    assert blocks[1] == Image("https://s.w.org/images/core/emoji/11.2.0/svg/2744.svg", "❄️")
+
+
 # -- per-host rules on scrubbed real pages ----------------------------------------------
 
 

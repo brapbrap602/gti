@@ -9,7 +9,7 @@ Decided per number N, never per key:
 """
 
 from collections import defaultdict
-from collections.abc import Mapping, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 
 from novel_core.keys import ChapterKey, ItemRef, KeyRange
@@ -49,6 +49,11 @@ class Selection:
     pin_fallbacks: tuple[PinFallback, ...]
 
 
+def rank(priority: Sequence[SourceId], sources: Iterable[SourceId]) -> list[SourceId]:
+    """Every source, best first: the priority list, then sources missing from it in id order."""
+    return list(priority) + sorted(s for s in sources if s not in priority)
+
+
 def select(
     current: Mapping[SourceId, Sequence[Selected]],
     priority: Sequence[SourceId],
@@ -58,7 +63,7 @@ def select(
 
     Sources missing from `priority` rank after it, in id order.
     """
-    order = list(priority) + sorted(s for s in current if s not in priority)
+    order = rank(priority, current)
     by_number: dict[int, dict[SourceId, list[Selected]]] = defaultdict(lambda: defaultdict(list))
     for source_id, chapters in current.items():
         for c in chapters:
