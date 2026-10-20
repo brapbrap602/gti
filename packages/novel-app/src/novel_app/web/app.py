@@ -41,6 +41,7 @@ WEB_JOBS: dict[str, tuple[str, ...]] = {
     "build-epub": ("novel",),
     "build-audio": ("novel",),
     "build-volumes": ("novel",),
+    "audio-retag": ("novel",),
 }
 JOB_LABELS = {
     "add": "Add source",
@@ -49,6 +50,7 @@ JOB_LABELS = {
     "build-epub": "Build EPUB",
     "build-audio": "Build audio",
     "build-volumes": "Build M4B volumes",
+    "audio-retag": "Retag MP3s",
 }
 
 

@@ -123,6 +123,16 @@ def test_htmx_posts_get_the_notice_in_place(client, service):
     assert "volumes built" in client.get(f"/jobs/{job_id}/log").text
 
 
+
+def test_retag_from_the_build_menu(client, service):
+    added(service)
+    assert 'name="kind" value="audio-retag"' in client.get("/novels/test-novel").text
+    ok = client.post("/jobs", data={"kind": "audio-retag", "novel": "test-novel"}, headers={"HX-Request": "true"})
+    assert "started job" in ok.text and "Retag MP3s test-novel" in ok.text
+    job_id = int(re.search(r"started job (\d+)", ok.text).group(1))
+    assert finished(service, job_id).state is JobState.DONE
+    assert "test-novel: 0 chapter MP3s tagged" in client.get(f"/jobs/{job_id}/log").text
+
 def test_job_interrupted_at_startup(site, service):
     dead = JobBoard(app_db(), clock=lambda: 0.0)  # its heartbeat is decades old
     job_id = dead.claim("test-novel", "sync", {"novel": "test-novel"})
