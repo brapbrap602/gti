@@ -3,7 +3,7 @@ import subprocess
 
 import pytest
 from mutagen.id3 import ID3
-from novel_app import cli
+from novel_app import service
 from novel_app.cli import app
 from novel_app.library import DATA_DIR_ENV
 from novel_audio.media import ffmpeg
@@ -36,7 +36,7 @@ def frame(tmp_path) -> bytes:
 
 @pytest.fixture
 def silent_tts(monkeypatch, frame):
-    """Replace edge-tts at the CLI's composition point; records the voice it was built with."""
+    """Replace edge-tts at the Service's composition point; records the voice it was built with."""
     voices = []
 
     class SilentTts:
@@ -47,7 +47,7 @@ def silent_tts(monkeypatch, frame):
         async def synthesize(self, text):
             return frame * 3
 
-    monkeypatch.setattr(cli, "EdgeTts", SilentTts)
+    monkeypatch.setattr(service, "EdgeTts", SilentTts)
     return voices
 
 
