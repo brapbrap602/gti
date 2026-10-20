@@ -4,6 +4,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
+    <script>
+    // Text size and theme before first paint. site.js changes them through readerSettings.apply.
+    window.readerSettings = (function () {
+        var SCALES = [0.9, 1, 1.1, 1.2, 1.35], THEMES = ['system', 'light', 'dark'];
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: THEMES.indexOf(s.theme) >= 0 ? s.theme : 'dark'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem('reader:settings')); } catch (e) {}
+        apply(saved);
+        return {apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
     <link rel="stylesheet" href="{{ root }}assets/style.css?v={{ assets_v }}">
     <script src="{{ root }}assets/site.js?v={{ assets_v }}" defer></script>
 </head>
@@ -11,6 +34,5 @@
 <div class="calibre">
 {% block body %}{% endblock %}
 </div>
-<button class="scroll-to-top" id="scrollToTopBtn" aria-label="Scroll to top"></button>
 </body>
 </html>

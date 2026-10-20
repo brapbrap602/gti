@@ -1,5 +1,6 @@
 import json
 import re
+from importlib import resources
 
 import pytest
 from novel_core import (
@@ -303,3 +304,9 @@ def test_filling_a_page_gap_rewrites_only_that_page(stores, site):
     assert report.novels[0].pages_written == 1
     assert last_marker_chapter(read(site, "n", "1-50.html")) == "c50"
     assert read(site, "n", "51-100.html") == second
+
+
+def test_hidden_attribute_always_hides():
+    """Reader controls are rendered `hidden` until site.js shows them; author CSS must not override that."""
+    css = resources.files("novel_publish").joinpath("static/style.css").read_text(encoding="utf-8")
+    assert re.search(r"\[hidden\]\s*\{\s*display:\s*none\s*!important", css)
