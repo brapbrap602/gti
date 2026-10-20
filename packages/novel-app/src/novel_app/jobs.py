@@ -88,6 +88,7 @@ class Job:
         self._cancel = threading.Event()
         self._last_persist = 0.0
         self._last_echo = 0.0
+        self.last_progress: tuple[int, int, str] | None = None
 
     def log(self, line: str) -> None:
         self._board.append_log(self.id, line)
@@ -97,6 +98,7 @@ class Job:
     def progress(self, done: int, total: int, current: str = "") -> None:
         """Report progress; raises Cancelled when a cancel was requested."""
         now = self._clock()
+        self.last_progress = (done, total, current)
         if done == total or now - self._last_persist >= PERSIST_EVERY:
             self._board.set_progress(self.id, done, total, current)
             self._last_persist = now
@@ -287,6 +289,11 @@ class JobRunner:
         job._cancel.set()
         return True
 
+    def owns(self, job_id: int) -> bool:
+        """Whether the job is queued or running in this process, so `cancel` can reach it."""
+        with self._mutex:
+            return job_id in self._active
+
     def shutdown(self) -> None:
         """Cancel this process's jobs and wait for them to stop."""
         with self._mutex:
@@ -323,6 +330,8 @@ class JobRunner:
             if reraise:
                 raise
         finally:
+            if job.last_progress:  # progress is saved at most once a second; keep where it stopped
+                self.board.set_progress(job.id, *job.last_progress)
             self.board.finish(job.id, state, outcome.errors)
             with self._mutex:
                 del self._active[job.id]

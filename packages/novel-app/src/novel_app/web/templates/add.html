@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Add a novel · Novel library{% endblock %}
+{% block main %}
+<h1>Add a novel</h1>
+<p class="muted">Paste the novel's page on a site. The backend is picked by host; nothing is fetched until you confirm.</p>
+<form method="post" action="/add" class="add-form">
+    <label>URL <input type="url" name="url" required value="{{ form.url or '' }}" size="60"></label>
+    <label>Language
+        <select name="lang">
+            <option value="en"{% if form.lang != "zh" %} selected{% endif %}>en</option>
+            <option value="zh"{% if form.lang == "zh" %} selected{% endif %}>zh (raw)</option>
+        </select>
+    </label>
+    <label>Backend
+        <select name="backend">
+            <option value="">pick by host</option>
+            {% for b in backends %}<option value="{{ b }}"{% if form.backend == b %} selected{% endif %}>{{ b }}</option>{% endfor %}
+        </select>
+    </label>
+    <button type="submit">Preview</button>
+</form>
+{% if spec %}
+<section class="preview" aria-labelledby="preview-heading">
+    <h2 id="preview-heading">Preview</h2>
+    <dl>
+        <dt>Backend</dt><dd>{{ spec.backend }}</dd>
+        <dt>Kind</dt><dd>{{ spec.kind }}</dd>
+        <dt>URL</dt><dd>{{ spec.url }}</dd>
+    </dl>
+    <form method="post" action="/jobs" hx-post="/jobs" hx-target="#notice">
+        <input type="hidden" name="kind" value="add">
+        <input type="hidden" name="url" value="{{ form.url }}">
+        <input type="hidden" name="lang" value="{{ form.lang }}">
+        <input type="hidden" name="backend" value="{{ form.backend }}">
+        <input type="hidden" name="back" value="/">
+        <label>Attach to
+            <select name="novel">
+                <option value="">a new novel named after the site's title</option>
+                {% for n in novels %}<option value="{{ n }}"{% if form.novel == n %} selected{% endif %}>{{ n }}</option>{% endfor %}
+            </select>
+        </label>
+        <button type="submit">Add and read the chapter list</button>
+    </form>
+    <p class="muted">Reading the chapter list runs as a job; some sites take half an hour.</p>
+</section>
+{% endif %}
+{% endblock %}

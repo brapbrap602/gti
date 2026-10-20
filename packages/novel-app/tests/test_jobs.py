@@ -88,6 +88,7 @@ def test_cancel_stops_work_at_its_next_item(board, runner):
     assert runner.cancel(job_id)
     row = wait_for(board, job_id)
     assert row.state is JobState.CANCELLED and len(seen) < 999
+    assert (row.done, row.current) == (seen[-1], f"item {seen[-1]}")  # where it stopped, not the last 1 s save
     assert "cancelled" in board.log_path(job_id).read_text(encoding="utf-8")
 
 

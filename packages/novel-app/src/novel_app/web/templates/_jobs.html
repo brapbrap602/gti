@@ -1,0 +1,43 @@
+{% if not jobs %}
+<p class="muted">No jobs yet.</p>
+{% else %}
+<ol class="job-list">
+{% for j in jobs %}
+    <li class="job job--{{ j.state }}" data-job="{{ j.id }}" data-target="{{ j.target }}">
+        <div class="job-head">
+            <span class="job-title">{{ job_labels.get(j.kind, j.kind) }} {% if j.target != "_site" %}{{ j.target }}{% endif %}</span>
+            <span class="job-state">{{ j.state }}</span>
+        </div>
+        {% if j.total %}
+        <progress max="{{ j.total }}" value="{{ j.done }}" aria-label="job {{ j.id }} progress">{{ j.done }}/{{ j.total }}</progress>
+        <div class="job-progress">{{ j.done }}/{{ j.total }}{% if j.current and j.state.active %} · {{ j.current }}{% endif %}</div>
+        {% endif %}
+        {% if j.errors %}
+        <details class="job-errors">
+            <summary>{{ j.errors | length }} error{{ "s" if j.errors | length != 1 }}</summary>
+            <ul>{% for e in j.errors[:20] %}<li>{{ e }}</li>{% endfor %}</ul>
+            {% if j.errors | length > 20 %}<p>… and {{ j.errors | length - 20 }} more in the log</p>{% endif %}
+        </details>
+        {% endif %}
+        <div class="job-actions">
+            <a href="/jobs/{{ j.id }}/log">log</a>
+            {% if j.state.active %}
+                {% if owns(j.id) %}
+                <form method="post" action="/jobs/{{ j.id }}/cancel" hx-post="/jobs/{{ j.id }}/cancel" hx-target="#notice">
+                    <input type="hidden" name="back" value="/">
+                    <button type="submit">Cancel</button>
+                </form>
+                {% else %}
+                <span class="muted">running in another process</span>
+                {% endif %}
+            {% elif j.state in (JobState.INTERRUPTED, JobState.FAILED, JobState.CANCELLED) %}
+            <form method="post" action="/jobs/{{ j.id }}/rerun" hx-post="/jobs/{{ j.id }}/rerun" hx-target="#notice">
+                <input type="hidden" name="back" value="/">
+                <button type="submit">Re-run</button>
+            </form>
+            {% endif %}
+        </div>
+    </li>
+{% endfor %}
+</ol>
+{% endif %}
