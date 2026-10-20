@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% from "_macros.html" import job_button, build_menu, staleness %}
+{% block main %}
+<h1>Library</h1>
+{% if not rows %}
+<p class="empty">The library is empty. <a href="/add">Add a novel</a> from a site, or import a legacy store with <code>nov import</code>.</p>
+{% else %}
+<div class="library-actions">
+    {{ job_button("build-site", None, jobs | selectattr("target", "equalto", "_site") | selectattr("state.active") | first, "/") }}
+</div>
+<table class="library">
+    <caption class="visually-hidden">Novels, their sources and outputs</caption>
+    <thead>
+    <tr>
+        <th scope="col">Novel</th>
+        <th scope="col">Sources (best first)</th>
+        <th scope="col">Chapters</th>
+        <th scope="col">Gaps</th>
+        <th scope="col">New</th>
+        <th scope="col">Last sync</th>
+        <th scope="col">Site · EPUB · Audio</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for r in rows %}
+    <tr>
+        <th scope="row">
+            <a href="/novels/{{ r.slug }}">{{ r.title }}</a>
+            {% if r.raw_only %}<span class="badge">raw only</span>{% endif %}
+        </th>
+        <td>
+            <ol class="sources">
+            {% for s in r.sources %}<li>{{ s.info.spec.backend }} <span class="muted">{{ s.info.spec.kind }}</span></li>{% endfor %}
+            </ol>
+        </td>
+        <td>
+            {{ r.selected }} selected
+            <ul class="counts">
+            {% for kind, n in r.numbers.items() %}<li>{{ n }} {{ kind }}</li>{% endfor %}
+            </ul>
+        </td>
+        <td>{{ r.gaps or "none" }}</td>
+        <td>{% if r.can_sync %}{{ r.new_items }}{% else %}<span class="muted">no web source</span>{% endif %}</td>
+        <td>{{ r.last_sync | ago }}</td>
+        <td>
+            <ul class="outputs">
+            {% for o in r.outputs %}<li>{{ o.kind }}: {{ staleness(o) }}</li>{% endfor %}
+            </ul>
+        </td>
+        <td class="actions">
+            {% if r.can_sync %}{{ job_button("sync", r.slug, r.job) }}{% endif %}
+            {{ build_menu(r.slug, r.job) }}
+            <a href="/novels/{{ r.slug }}">Open</a>
+            {% if r.job %}<p class="busy">{{ job_labels.get(r.job.kind, r.job.kind) }} {{ r.job.state }}</p>{% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}

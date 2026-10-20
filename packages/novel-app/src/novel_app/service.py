@@ -21,8 +21,9 @@ from novel_audio.legacy import Positions, TitleNumbers, register_legacy
 from novel_audio.media import MediaError
 from novel_audio.tts import DEFAULT_VOICE, EdgeTts, TtsEngine
 from novel_audio.volumes import VOLUME_SIZE, build_volumes
-from novel_core import AlignmentDiff, AlignmentRules, KeyRange, NovelStore, SourceInfo, StoreError
+from novel_core import AlignmentDiff, AlignmentRules, KeyRange, NovelStore, NovelView, SourceInfo, SourceSpec, StoreError
 from novel_core.check import CheckReport
+from novel_core.store import DB_NAME
 from novel_publish import epub
 from novel_publish.site import build_site
 from novel_sources.backends import is_web, open_source, spec_for_url
@@ -34,8 +35,8 @@ from novel_sources.scribble import ScribbleImporter
 from novel_sources.sync import Source, add_source, sync
 from novel_sources.wns import WnsImporter, snapshot_refs
 
-from novel_app import deploy, report
-from novel_app.jobs import SITE, JobRunner, JobState, Outcome, Work
+from novel_app import deploy, pages, report
+from novel_app.jobs import SITE, JobRow, JobRunner, JobState, Outcome, Work
 from novel_app.library import (
     audio_dir,
     data_dir,
@@ -82,6 +83,8 @@ class Service:
         self.runner = runner
         self._open_source = sources or open_source
         self._tts = tts or EdgeTts
+        # Page reads, per novel, until its database files change: (stamp, view, row without job state).
+        self._cache: dict[str, tuple[tuple, NovelView, pages.LibraryRow]] = {}
         self._ops: Mapping[str, Callable[..., tuple[str, Work]]] = {
             "add": self._add,
             "sync": self._sync,
@@ -330,6 +333,57 @@ class Service:
 
         return SITE, work
 
+    def jobs(self, limit: int = 20) -> list[JobRow]:
+        """Active jobs first, then the most recent."""
+        return self.runner.board.jobs(limit)
+
+    def job_log(self, job_id: int) -> str:
+        path = self.runner.board.log_path(job_id)
+        return path.read_text(encoding="utf-8") if path.exists() else ""
+
+    def cancel(self, job_id: int) -> bool:
+        """Ask a job of this process to stop after its current item."""
+        return self.runner.cancel(job_id)
+
+    # -- pages ---------------------------------------------------------------
+
+    def library(self) -> list[pages.LibraryRow]:
+        jobs = self.jobs(limit=50)
+        return [self._row(slug, jobs) for slug in novel_slugs()]
+
+    def novel(self, novel: str) -> pages.NovelPage:
+        row = self._row(novel, self.jobs(limit=50))
+        view = self._read(novel)[0]
+        return pages.NovelPage(row, pages.chapter_grid(view), view.pins, view.check())
+
+    def compare(self, novel: str, number: int, left: int | None = None, right: int | None = None) -> pages.Comparison:
+        with self._store(novel) as store:
+            return pages.comparison(store, store.view(), number, left, right)
+
+    def preview_add(self, url: str, lang: str = "en", backend: str | None = None) -> SourceSpec:
+        """The source `add` would create for this URL (the backend picked by host), without fetching."""
+        try:
+            return spec_for_url(url, lang, backend, self.guides())
+        except ValueError as e:
+            raise UserError(str(e)) from e
+
+    def _read(self, novel: str) -> tuple[NovelView, pages.LibraryRow]:
+        """The novel's view and library row, read again only after its database changed."""
+        folder = self._require(novel)
+        stamp = _stamp(folder)
+        cached = self._cache.get(novel)
+        if cached is None or cached[0] != stamp:
+            with NovelStore.open(folder) as store:
+                view = store.view()
+            cached = (stamp, view, pages.library_row(novel, view, (), None))
+            self._cache[novel] = cached
+        return cached[1], cached[2]
+
+    def _row(self, novel: str, jobs: Sequence[JobRow]) -> pages.LibraryRow:
+        last = self.runner.board.last_ended(novel, "sync")
+        job = next((j for j in jobs if j.target == novel and j.state.active), None)
+        return replace(self._read(novel)[1], job=job, last_sync=last.ended_at if last else None)
+
     # -- quick reads and writes ------------------------------------------------
 
     def novels(self) -> list[str]:
@@ -429,6 +483,20 @@ class Service:
         if source not in ids:
             raise UserError(f"pass --source, one of {ids}")
         return source
+
+
+def _stamp(folder: Path) -> tuple:
+    """Changes with every commit to the novel's database (WAL appends, checkpoints)."""
+    return tuple(
+        (st.st_mtime_ns, st.st_size) if (st := _stat(folder / name)) else None for name in (DB_NAME, DB_NAME + "-wal")
+    )
+
+
+def _stat(path: Path):
+    try:
+        return path.stat()
+    except FileNotFoundError:
+        return None
 
 
 def _slug(novel: str) -> str:

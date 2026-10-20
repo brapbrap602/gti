@@ -318,6 +318,22 @@ def deploy_site_cmd(
     _job("deploy-site", remote=remote, site=_str(site), budget=budget_mb * 2**20, wait=wait)
 
 
+@app.command()
+def serve(
+    port: Annotated[int, typer.Option(help="port on 127.0.0.1")] = 8765,
+    workers: Annotated[int, typer.Option(help="jobs that may run at once (one per novel)")] = 2,
+) -> None:
+    """The web UI on http://127.0.0.1:<port>: library, chapter grids, compare and pin, jobs."""
+    # Imported here: the web stack is not needed by the other commands.
+    import uvicorn
+
+    from novel_app.web.app import create_app
+
+    service = Service(JobRunner(JobBoard(app_db()), workers=workers))
+    typer.echo(f"serving the library on http://127.0.0.1:{port} (Ctrl-C stops; running jobs end as cancelled)")
+    uvicorn.run(create_app(service), host="127.0.0.1", port=port, log_level="warning")
+
+
 def _parsed[T](parse: Callable[[str], T], text: str) -> T:
     try:
         return parse(text)

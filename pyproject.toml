@@ -23,6 +23,7 @@ members = ["packages/*"]
 [dependency-groups]
 dev = [
     "beautifulsoup4>=4.12",
+    "httpx>=0.28",
     "import-linter>=2.1",
     "pytest>=8.3",
 ]

@@ -1,0 +1,31 @@
+{# A button that starts a job. While the novel has a job, it is disabled and says why. #}
+{% macro job_button(kind, novel, busy, back="/", label=None) %}
+<form method="post" action="/jobs" hx-post="/jobs" hx-target="#notice" class="inline">
+    <input type="hidden" name="kind" value="{{ kind }}">
+    {% if novel %}<input type="hidden" name="novel" value="{{ novel }}">{% endif %}
+    <input type="hidden" name="back" value="{{ back }}">
+    <button type="submit"{% if busy %} disabled title="{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }})"{% endif %}>{{ label or job_labels[kind] }}</button>
+</form>
+{% endmacro %}
+
+{% macro build_menu(novel, busy, back="/") %}
+<details class="menu">
+    <summary>Build</summary>
+    <div class="menu-items">
+        {{ job_button("build-epub", novel, busy, back, "EPUB") }}
+        {{ job_button("build-audio", novel, busy, back, "Audio") }}
+        {{ job_button("build-volumes", novel, busy, back, "M4B volumes") }}
+    </div>
+</details>
+{% endmacro %}
+
+{% macro busy_reason(busy) %}
+{% if busy %}<p class="busy">{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }}); actions wait until it ends.</p>{% endif %}
+{% endmacro %}
+
+{% macro staleness(o) %}
+{% if o.built == 0 and o.stale == 0 %}<span class="muted">nothing to build</span>
+{% elif o.built == 0 %}<span class="stale">not built</span>
+{% elif o.stale %}<span class="stale">{{ o.stale }} stale</span>
+{% else %}<span class="fresh">up to date</span>{% endif %}
+{% endmacro %}

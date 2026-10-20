@@ -4,7 +4,16 @@ version = "0.1.0"
 description = "Service, job runner, CLI and local web UI"
 license = "GPL-3.0-only"
 requires-python = ">=3.12"
-dependencies = ["novel-sources", "novel-publish", "novel-audio", "typer>=0.15"]
+dependencies = [
+    "novel-sources",
+    "novel-publish",
+    "novel-audio",
+    "typer>=0.15",
+    "fastapi>=0.150",
+    "uvicorn>=0.54",
+    "python-multipart>=0.0.32",
+    "jinja2>=3.1",
+]
 
 [project.scripts]
 nov = "novel_app.cli:app"

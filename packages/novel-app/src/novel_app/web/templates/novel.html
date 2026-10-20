@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% from "_macros.html" import job_button, build_menu, busy_reason, staleness %}
+{% set r = novel.row %}
+{% set back = "/novels/" ~ r.slug %}
+{% block title %}{{ r.title }} · Novel library{% endblock %}
+{% block main %}
+<h1>{{ r.title }} {% if r.raw_only %}<span class="badge">raw only</span>{% endif %}</h1>
+<p class="muted">{{ r.slug }} · {{ r.selected }} chapters selected · gaps: {{ r.gaps or "none" }} · last sync {{ r.last_sync | ago }}</p>
+<div class="novel-actions">
+    {% if r.can_sync %}{{ job_button("sync", r.slug, r.job, back) }}{% endif %}
+    {{ build_menu(r.slug, r.job, back) }}
+    <ul class="outputs inline-list">{% for o in r.outputs %}<li>{{ o.kind }}: {{ staleness(o) }}</li>{% endfor %}</ul>
+</div>
+{{ busy_reason(r.job) }}
+
+<section id="sources" aria-labelledby="sources-heading">
+    <h2 id="sources-heading">Sources</h2>
+    <p class="muted">The book takes each chapter from the first source in this order that has it, unless a pin says otherwise. Raw-zh sources are never published.</p>
+    <table class="sources-table">
+        <thead>
+        <tr>
+            <th scope="col">Rank</th><th scope="col">Source</th><th scope="col">Kind</th>
+            <th scope="col">Listed</th><th scope="col">Texts</th><th scope="col">To fetch</th><th scope="col">Order</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for s in r.sources %}
+        <tr>
+            <td>{{ s.rank }}</td>
+            <th scope="row">{{ s.id }}: {{ s.info.spec.backend }}<br><span class="muted url">{{ s.info.spec.url }}</span></th>
+            <td>{{ s.info.spec.kind }}</td>
+            <td>{{ s.listed }}</td>
+            <td>{{ s.texts }}</td>
+            <td>{{ s.to_fetch if s.to_fetch is not none else "—" }}</td>
+            <td class="order">
+                {% for move, label in (("up", "↑"), ("down", "↓")) %}
+                <form method="post" action="/novels/{{ r.slug }}/priority" class="inline">
+                    <input type="hidden" name="source" value="{{ s.id }}">
+                    <input type="hidden" name="move" value="{{ move }}">
+                    <button type="submit" aria-label="Move source {{ s.id }} {{ move }}"
+                        {% if (move == "up" and s.rank == 1) or (move == "down" and s.rank == r.sources | length) %}disabled{% endif %}>{{ label }}</button>
+                </form>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if novel.pins %}
+    <h3>Pins</h3>
+    <ul>{% for p in novel.pins %}<li>{{ p.range.start }}–{{ p.range.end }} → source {{ p.source_id }}</li>{% endfor %}</ul>
+    {% endif %}
+</section>
+
+<section aria-labelledby="chapters-heading">
+    <h2 id="chapters-heading">Chapters</h2>
+    <ul class="legend" aria-label="Legend">
+        {% for state in CellState %}<li><span class="cell cell--{{ state }}" aria-hidden="true"></span> {{ cell_labels[state] }}</li>{% endfor %}
+        <li><span class="cell cell--official cell--pinned" aria-hidden="true"></span> pinned</li>
+    </ul>
+    {% if not novel.grid %}<p class="empty">No chapters yet.</p>{% endif %}
+    {% for block in novel.grid %}
+    <details class="grid-block"{% if block.count(CellState.MISSING) or block.count(CellState.FAILED) %} open{% endif %}>
+        <summary>
+            {{ block.range.start }}–{{ block.range.end }}
+            <span class="muted">
+            {% for state in CellState %}{% set n = block.count(state) %}{% if n %} · {{ n }} {{ cell_labels[state] }}{% endif %}{% endfor %}
+            </span>
+        </summary>
+        <ul class="grid">
+        {# One line per cell: a long book has thousands. The title describes the cell to screen readers too. #}
+        {% for c in block.cells %}
+<li><a class="cell cell--{{ c.state }}{% if c.pinned %} cell--pinned{% endif %}" href="{{ r.slug }}/compare?number={{ c.key.number }}" title="{{ c.label }}">{{ c.key.label }}</a></li>
+        {% endfor %}
+        </ul>
+    </details>
+    {% endfor %}
+</section>
+
+<section aria-labelledby="check-heading">
+    <h2 id="check-heading">Check</h2>
+    {% set k = novel.check %}
+    {% set problems = k.duplicates | length + k.unmapped | length + k.vanished | length + k.failed | length + k.title_mismatches | length + k.mixed_parts | length + k.pin_fallbacks | length + k.legacy_moved | length + k.legacy_unselected | length %}
+    {% if not problems and not k.gaps %}<p class="fresh">No problems found.</p>{% endif %}
+    {% if k.gaps %}<p>Gaps: {{ k.gaps | length }} ({{ k.gaps | join(", ") | truncate(300) }})</p>{% endif %}
+    {% if k.raw_only %}<p>Raw only: {{ k.raw_only | length }} ({{ k.raw_only | join(", ") | truncate(300) }})</p>{% endif %}
+    {% if k.duplicates %}<details><summary>Duplicates: {{ k.duplicates | length }}</summary><ul>{% for d in k.duplicates[:200] %}<li>source {{ d.source_id }} key {{ d.key.label }}: {{ d.item_refs | join(", ") }}</li>{% endfor %}</ul></details>{% endif %}
+    {% for title, items in (("Unmapped", k.unmapped), ("Vanished", k.vanished), ("Failed", k.failed), ("Title mismatches", k.title_mismatches)) %}
+    {% if items %}
+    <details>
+        <summary>{{ title }}: {{ items | length }}</summary>
+        <ul>{% for n in items[:200] %}<li>source {{ n.source_id }} <code>{{ n.item_ref }}</code> {{ n.title }}{% if n.detail %} — {{ n.detail }}{% endif %}</li>{% endfor %}</ul>
+        {% if items | length > 200 %}<p class="muted">… and {{ items | length - 200 }} more (see <code>nov check {{ r.slug }}</code>)</p>{% endif %}
+    </details>
+    {% endif %}
+    {% endfor %}
+    {% if k.mixed_parts %}<p>Mixed parts: {{ k.mixed_parts | join(", ") | truncate(300) }}</p>{% endif %}
+    {% if k.pin_fallbacks %}<details><summary>Pin fallbacks: {{ k.pin_fallbacks | length }}</summary><ul>{% for p in k.pin_fallbacks[:200] %}<li>{{ p.number }}: pinned source {{ p.pinned_source }} has nothing</li>{% endfor %}</ul></details>{% endif %}
+    {% for title, rows in (("Legacy moved", k.legacy_moved), ("Legacy unselected", k.legacy_unselected)) %}
+    {% if rows %}<details><summary>{{ title }}: {{ rows | length }}</summary><ul>{% for o in rows[:200] %}<li>{{ o.kind }} {{ o.built_key.label }}: <code>{{ o.item_ref }}</code></li>{% endfor %}</ul></details>{% endif %}
+    {% endfor %}
+</section>
+{% endblock %}

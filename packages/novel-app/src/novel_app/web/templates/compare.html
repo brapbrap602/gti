@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}{{ slug }} {{ c.number }} · compare{% endblock %}
+{% block main %}
+{% set here = "/novels/" ~ slug ~ "/compare?number=" ~ c.number %}
+<p><a href="/novels/{{ slug }}">← {{ slug }}</a></p>
+<h1>Chapter {{ c.number }}</h1>
+<nav class="compare-nav" aria-label="Neighbouring chapters">
+    {% if c.number > 0 %}<a href="/novels/{{ slug }}/compare?number={{ c.number - 1 }}">← {{ c.number - 1 }}</a>{% endif %}
+    <a href="/novels/{{ slug }}/compare?number={{ c.number + 1 }}">{{ c.number + 1 }} →</a>
+</nav>
+{% if not c.offers %}
+<p class="empty">No source has a text for chapter {{ c.number }}.</p>
+{% else %}
+<p>The book uses {% if c.selected is not none %}source {{ c.selected }}{% else %}nothing (raw only){% endif %} for this chapter.</p>
+<form method="get" action="/novels/{{ slug }}/compare" class="compare-pick">
+    <input type="hidden" name="number" value="{{ c.number }}">
+    {% for side, text in (("left", c.left), ("right", c.right)) %}
+    <label>{{ side | capitalize }}
+        <select name="{{ side }}">
+            {% for o in c.offers %}<option value="{{ o.id }}"{% if text and text.source.id == o.id %} selected{% endif %}>source {{ o.id }}: {{ o.spec.backend }} ({{ o.spec.kind }})</option>{% endfor %}
+        </select>
+    </label>
+    {% endfor %}
+    <button type="submit">Show</button>
+</form>
+<div class="compare">
+    {% for text in (c.left, c.right) %}
+    <article class="compare-side" aria-label="{% if text %}source {{ text.source.id }}{% else %}no second source{% endif %}">
+        {% if text %}
+        <header>
+            <h2>Source {{ text.source.id }}: {{ text.source.spec.backend }} <span class="muted">{{ text.source.spec.kind }}</span></h2>
+            {% if text.source.spec.kind == Kind.RAW_ZH %}
+            <p class="muted">Raw text is never published, so it cannot be pinned.</p>
+            {% elif text.source.id == c.selected %}
+            <p class="fresh">Used by the book.</p>
+            {% else %}
+            <form method="post" action="/novels/{{ slug }}/pin" class="pin-form">
+                <input type="hidden" name="source" value="{{ text.source.id }}">
+                <input type="hidden" name="back" value="{{ here }}">
+                <label>Pin this source for <input name="numbers" value="{{ c.number }}" size="11" aria-describedby="pin-help-{{ loop.index }}"></label>
+                <button type="submit">Pin</button>
+                <span id="pin-help-{{ loop.index }}" class="muted">a number or a range, like 834-836</span>
+            </form>
+            {% endif %}
+        </header>
+        {% for heading, body in text.chapters %}
+        <h3 class="chapter">{{ heading }}</h3>
+        <div class="compare-text">{{ body }}</div>
+        {% endfor %}
+        {% else %}
+        <p class="muted">Only one source has this chapter.</p>
+        {% endif %}
+    </article>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
