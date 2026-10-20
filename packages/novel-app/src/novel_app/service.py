@@ -23,6 +23,7 @@ from novel_audio.tts import DEFAULT_VOICE, EdgeTts, TtsEngine
 from novel_audio.volumes import VOLUME_SIZE, build_volumes
 from novel_core import AlignmentDiff, AlignmentRules, KeyRange, NovelStore, NovelView, SourceInfo, SourceSpec, StoreError
 from novel_core.check import CheckReport
+from novel_core.selection import Pin
 from novel_core.store import DB_NAME
 from novel_publish import epub
 from novel_publish.site import build_site
@@ -410,6 +411,14 @@ class Service:
         with self._store(novel) as store:
             try:
                 store.set_pin(keys, source)
+            except StoreError as e:
+                raise UserError(str(e)) from e
+
+    def unpin(self, novel: str, keys: KeyRange) -> tuple[Pin, ...]:
+        """Let the priority decide these chapter numbers again; returns the pins left."""
+        with self._store(novel) as store:
+            try:
+                return store.unpin(keys)
             except StoreError as e:
                 raise UserError(str(e)) from e
 

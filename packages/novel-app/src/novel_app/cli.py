@@ -189,6 +189,19 @@ def pin(
     typer.echo(f"{novel}: {keys.start}-{keys.end} pinned to source {source}")
 
 
+@app.command()
+def unpin(
+    novel: Novel,
+    numbers: Annotated[str, typer.Argument(help="chapter numbers, e.g. 834-836 or 7")],
+) -> None:
+    """Let the priority choose these chapter numbers again (pins on other numbers stay)."""
+    keys = _parsed(parse_range, numbers)
+    left = _calling(lambda: _service().unpin(novel, keys))
+    typer.echo(f"{novel}: {keys.start}-{keys.end} unpinned")
+    for p in left:
+        typer.echo(f"  still pinned: {p.range.start}-{p.range.end} to source {p.source_id}")
+
+
 @align_app.command("item")
 def align_item(
     novel: Novel,

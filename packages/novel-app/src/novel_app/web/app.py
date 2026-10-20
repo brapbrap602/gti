@@ -154,6 +154,15 @@ def create_app(service: Service) -> FastAPI:
         await run_in_threadpool(service.pin, novel, keys, source)
         return done(request, f"{keys.start}-{keys.end} pinned to source {source}", back or f"/novels/{novel}")
 
+    @app.post("/novels/{novel}/unpin")
+    async def unpin(request: Request, novel: str, numbers: str = Form()):
+        try:
+            keys = parse_range(numbers)
+        except ValueError as e:
+            raise UserError(str(e)) from e
+        await run_in_threadpool(service.unpin, novel, keys)
+        return done(request, f"{keys.start}-{keys.end} unpinned", f"/novels/{novel}")
+
     # -- jobs ----------------------------------------------------------------------
 
     @app.post("/jobs")
