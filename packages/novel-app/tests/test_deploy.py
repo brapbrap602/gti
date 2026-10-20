@@ -37,6 +37,25 @@ def test_deploy_pushes_one_orphan_commit(site, remote):
     assert not (site / ".git").exists() and not (site.parent / ".deploy-git").exists()
 
 
+def test_deploy_without_a_git_identity(site, remote, tmp_path, monkeypatch):
+    # CI runners have no user.name/user.email; useConfigOnly stops git guessing one from the host.
+    config = tmp_path / "gitconfig"
+    config.write_text("[user]\n\tuseConfigOnly = true\n", encoding="utf-8")
+    monkeypatch.setenv("GIT_CONFIG_GLOBAL", str(config))
+    monkeypatch.setenv("GIT_CONFIG_NOSYSTEM", "1")
+    deployed = deploy_site(site, str(remote))
+    assert git("--git-dir", remote, "rev-parse", "gh-pages").strip() == deployed.commit
+
+
+def test_deploy_keeps_the_users_git_identity(site, remote, tmp_path, monkeypatch):
+    config = tmp_path / "gitconfig"
+    config.write_text("[user]\n\tname = Someone\n\temail = someone@example.com\n", encoding="utf-8")
+    monkeypatch.setenv("GIT_CONFIG_GLOBAL", str(config))
+    monkeypatch.setenv("GIT_CONFIG_NOSYSTEM", "1")
+    deploy_site(site, str(remote))
+    assert git("--git-dir", remote, "log", "-1", "--format=%an <%ae>", "gh-pages").strip() == "Someone <someone@example.com>"
+
+
 def test_site_over_budget_aborts_before_push(site, remote):
     with pytest.raises(DeployError, match="over the"):
         deploy_site(site, str(remote), budget=10)
