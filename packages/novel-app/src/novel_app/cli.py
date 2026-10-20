@@ -21,6 +21,7 @@ from novel_publish import epub
 from novel_publish.site import build_site
 from novel_sources.backends import BACKENDS, is_web, open_source, spec_for_url
 from novel_sources.calibre import CalibreImporter
+from novel_sources.decode_guide import Guides
 from novel_sources.fetch import FetchError
 from novel_sources.importing import Importer, ImportReport, import_novel
 from novel_sources.mtl import MtlImporter
@@ -29,7 +30,7 @@ from novel_sources.sync import add_source, sync
 from novel_sources.wns import WnsImporter, snapshot_refs
 
 from novel_app import deploy
-from novel_app.library import audio_dir, epub_dir, novel_dir, novel_slugs, site_dir, slugify, fetch_dir
+from novel_app.library import audio_dir, epub_dir, novel_dir, novel_slugs, site_dir, slugify, fetch_dir, guide_file
 
 app = typer.Typer(no_args_is_help=True, help="Novel library: import, sync, check, build.")
 import_app = typer.Typer(no_args_is_help=True, help="One-shot imports of legacy local stores.")
@@ -121,11 +122,12 @@ def add(
     backend: Annotated[str | None, typer.Option(help=f"one of {', '.join(BACKENDS)}; picked by host when left out")] = None,
 ) -> None:
     """Add a web source to a novel (creating the novel if it is new) and read its chapter list."""
+    guides = _guides()
     try:
-        spec = spec_for_url(url, lang, backend)
+        spec = spec_for_url(url, lang, backend, guides)
     except ValueError as e:
         raise typer.BadParameter(str(e)) from e
-    with open_source(spec, fetch_dir()) as source:
+    with open_source(spec, fetch_dir(), guides) as source:
         index = _fetching(source.fetch_index)
     slug = novel or slugify(index.meta.title)
     r = add_source(novel_dir(slug), spec, index)
@@ -145,6 +147,7 @@ def sync_cmd(
     if all_novels == (novel is not None):
         raise typer.BadParameter("give a novel slug or --all")
     keys = _parse_range(refresh) if refresh else None
+    guides = _guides()
     failed = 0
     for slug in novel_slugs() if all_novels else [novel]:
         with _open(slug) as store:
@@ -154,7 +157,7 @@ def sync_cmd(
                 raise typer.Exit(2)
             for info in web:
                 typer.echo(f"{slug}: source {info.id} ({info.spec.backend}) {info.spec.url}")
-                with open_source(info.spec, fetch_dir()) as live:
+                with open_source(info.spec, fetch_dir(), guides) as live:
                     r = _fetching(lambda: sync(store, info.id, live, keys, _progress))
                 typer.echo(
                     f"  index: {len(r.index.added)} new, {len(r.index.vanished)} vanished; "
@@ -164,6 +167,14 @@ def sync_cmd(
                 failed += len(r.failed)
     if failed:
         raise typer.Exit(1)
+
+
+def _guides() -> Guides:
+    try:
+        return Guides.load(guide_file())
+    except ValueError as e:
+        typer.echo(str(e), err=True)
+        raise typer.Exit(2) from e
 
 
 def _fetching[T](call: Callable[[], T]) -> T:

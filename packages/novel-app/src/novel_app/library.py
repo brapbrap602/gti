@@ -54,6 +54,11 @@ def novel_dir(slug: str) -> Path:
     return data_dir() / slug
 
 
+def guide_file() -> Path:
+    """The user's own decode guide entries (web-novel-scraper's format), overriding the shipped ones by host."""
+    return data_dir() / "decode_guide.json"
+
+
 def fetch_dir() -> Path:
     """Where fetching keeps what it learns per site: challenge clearances, the Firefox profile."""
     return data_dir() / "_fetch"

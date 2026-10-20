@@ -52,7 +52,7 @@ def site(tmp_path, monkeypatch):
     site = Site()
 
     @contextmanager
-    def open_source(spec: SourceSpec, state):
+    def open_source(spec: SourceSpec, state, guides):
         assert spec.backend == "lncrawl" and spec.kind is Kind.OFFICIAL_EN
         yield site.source(spec)
 
@@ -93,6 +93,14 @@ def test_unreachable_index_ends_the_command(site):
     result = run("add", URL)
     assert result.exit_code == 1
     assert "fetch failed" in result.output
+
+
+def test_a_malformed_guide_file_ends_add_and_sync(site, tmp_path):
+    (tmp_path / "data").mkdir()
+    (tmp_path / "data" / "decode_guide.json").write_text("[{", encoding="utf-8")
+    for args in (["add", URL], ["sync", "--all"]):
+        result = CliRunner().invoke(cli.app, args)
+        assert result.exit_code == 2 and "not a decode guide" in result.output
 
 
 def test_sync_needs_a_web_source(site, tmp_path):
