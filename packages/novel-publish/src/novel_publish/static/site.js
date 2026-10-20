@@ -1,5 +1,5 @@
-// The reader site: the reading page's bar and chapter navigation, "Go to chapter", and
-// text settings. One file, no framework; sections are independent and each starts from
+// The reader site: the reading page's bar and chapter navigation, resume ("Continue"),
+// "Go to chapter", and text settings. One file, no framework; sections are independent and each starts from
 // its own markup. Everything here must keep working when localStorage throws: then
 // nothing is saved.
 (function () {
@@ -8,6 +8,7 @@
     // -- storage --------------------------------------------------------------
 
     const SETTINGS = 'reader:settings';
+    const POSITION = 'reader:pos:'; // + novel slug: {file, anchor, para, label, t}
 
     const storage = {
         get(key) {
@@ -23,10 +24,11 @@
     const REVEAL_TOP = 64;   // px from the top where the bar always shows
     const REVEAL_TRAVEL = 8; // px of scrolling in one direction that shows or hides it
 
+    // Returns the current article and the bar's height, for resume; null off a reading page.
     function initReader() {
         const bar = document.querySelector('.reader-bar');
         const articles = Array.from(document.querySelectorAll('main > article'));
-        if (!bar || !articles.length) return;
+        if (!bar || !articles.length) return null;
         bar.hidden = false;
         const title = bar.querySelector('.bar-title');
         const prevLink = bar.querySelector('.bar-prev');
@@ -119,6 +121,97 @@
 
         updateCurrent();
         show(scrollY < REVEAL_TOP);
+        return {
+            article: () => articles[currentIndex()],
+            barHeight: () => bar.offsetHeight,
+        };
+    }
+
+    // -- resume: save the last place actually read ----------------------------
+    //
+    // Saving arms once this visit has scrolled 1.5 viewports, counting only steps of at
+    // most one viewport: anything bigger is a jump (a link, go-to, the arrows, the
+    // browser restoring the scroll on reload, the ?p restore), not reading. Arriving
+    // through Continue arms it at once. Until armed nothing is written, so a quick look
+    // at an old range keeps the saved place.
+
+    const ARM_VIEWPORTS = 1.5;
+    const SAVE_DELAY = 1000; // ms
+
+    function initResume(reader) {
+        const main = document.querySelector('main[data-slug]');
+        if (!reader || !main) return;
+        const key = POSITION + main.dataset.slug;
+        const file = location.pathname.split('/').pop();
+        const restore = restoreTarget();
+        let armed = restore !== null;
+        let distance = 0;
+        let lastY = scrollY;
+        let timer = 0;
+
+        function save() {
+            clearTimeout(timer);
+            if (!armed) return;
+            const article = reader.article();
+            const line = reader.barHeight();
+            const paragraphs = Array.from(article.querySelectorAll('p'));
+            let para = paragraphs.findIndex((p) => p.getBoundingClientRect().bottom > line);
+            if (para < 0) para = Math.max(paragraphs.length - 1, 0);
+            storage.set(key, { file, anchor: article.id, para, label: article.dataset.label, t: Date.now() });
+        }
+
+        addEventListener('scroll', () => {
+            const dy = Math.abs(scrollY - lastY);
+            lastY = scrollY;
+            if (dy <= innerHeight) distance += dy;
+            if (distance >= ARM_VIEWPORTS * innerHeight) armed = true;
+            if (armed) {
+                clearTimeout(timer);
+                timer = setTimeout(save, SAVE_DELAY);
+            }
+        }, { passive: true });
+        addEventListener('pagehide', save);
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden') save();
+        });
+
+        if (restore) {
+            history.replaceState(history.state, '', location.pathname + location.hash);
+            // Again on load: the browser's own scroll to the #anchor can land after DOMContentLoaded.
+            const go = () => {
+                restore.scrollIntoView();
+                lastY = scrollY;
+            };
+            go();
+            addEventListener('load', go, { once: true });
+        }
+    }
+
+    // The paragraph a Continue link (?p=<index>#<anchor>) points at, clamped; else null.
+    function restoreTarget() {
+        const p = new URLSearchParams(location.search).get('p');
+        const article = location.hash && document.getElementById(location.hash.slice(1));
+        if (p === null || !/^\d+$/.test(p) || !article) return null;
+        const paragraphs = article.querySelectorAll('p');
+        return paragraphs.length ? paragraphs[Math.min(Number(p), paragraphs.length - 1)] : article;
+    }
+
+    // -- library: Continue links -----------------------------------------------
+
+    const SAVED_FILE = /^\d+-\d+\.html$/;
+    const SAVED_ANCHOR = /^c\d+(-\d+)?$/;
+
+    function fillContinue() {
+        document.querySelectorAll('.book-card[data-slug]').forEach((card) => {
+            const link = card.querySelector('.continue');
+            const pos = storage.get(POSITION + card.dataset.slug);
+            const valid = pos && SAVED_FILE.test(pos.file) && SAVED_ANCHOR.test(pos.anchor)
+                && Number.isInteger(pos.para) && pos.para >= 0;
+            link.hidden = !valid;
+            if (!valid) return;
+            link.href = `novels/${card.dataset.slug}/${pos.file}?p=${pos.para}#${pos.anchor}`;
+            link.textContent = `Continue · Ch ${pos.label}`;
+        });
     }
 
     // -- dialogs --------------------------------------------------------------
@@ -169,7 +262,7 @@
         form.hidden = false;
         const input = form.querySelector('input');
         const status = form.querySelector('[role="status"]');
-        const tocUrl = new URL(form.dataset.toc, location.href);
+        const tocUrl = new URL(form.closest('[data-toc]').dataset.toc, location.href);
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -234,8 +327,11 @@
         show(current());
     }
 
+    // pageshow also fires when the library comes back from the back/forward cache.
+    addEventListener('pageshow', fillContinue);
+
     document.addEventListener('DOMContentLoaded', () => {
-        initReader();
+        initResume(initReader());
         initDialogs();
         document.querySelectorAll('form.goto').forEach(initGoto);
         initSettings();

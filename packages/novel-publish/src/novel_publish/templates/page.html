@@ -28,9 +28,9 @@
 {{ chapter_list() }}
 </nav>
 </noscript>
-<main>
+<main data-slug="{{ slug }}">
 {% for chapter in chapters %}
-<article id="{{ chapter.anchor }}">
+<article id="{{ chapter.anchor }}" data-label="{{ chapter.label }}">
 {% if loop.last %}
 <span id="last"></span>
 {% endif %}

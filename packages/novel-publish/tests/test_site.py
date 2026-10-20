@@ -275,7 +275,7 @@ def test_toc_json_goes_with_a_removed_novel(stores, site):
 def last_marker_chapter(html: str) -> str:
     """The id of the article that holds the page's only `id="last"` marker, which must be its first child."""
     assert html.count('id="last"') == 1
-    return re.search(r'<article id="([^"]+)">\s*<span id="last"></span>', html).group(1)
+    return re.search(r'<article id="([^"]+)"[^>]*>\s*<span id="last"></span>', html).group(1)
 
 
 def test_cross_page_links_carry_no_chapter_anchors(stores, site):
@@ -337,3 +337,23 @@ def test_reader_controls_start_hidden(stores, site):
     html = read(site, "n", "1-50.html")
     assert re.search(r'<header class="reader-bar" hidden', html)
     assert re.search(r'<form class="goto" hidden', html)
+
+
+def test_library_cards_hold_resume_go_to_and_all_chapters(stores, site):
+    a, zh = stores("novel-a", "Novel A"), stores("zh", "修真聊天群")
+    add_chapters(a, add_source(a, "a"), chapters(60))
+    add_chapters(zh, add_source(zh, "zh", Kind.RAW_ZH), ["第1章"])
+
+    build_site({"novel-a": a, "zh": zh}, site)
+
+    library = (site / "index.html").read_text(encoding="utf-8")
+    cards = dict(re.findall(r'<section class="book-card"[^>]*>.*?<h2 class="book-title">([^<]+)</h2>(.*?)</section>', library, re.S))
+    card = re.search(r'<section class="book-card"[^>]*>', library).group(0)
+    assert 'data-slug="novel-a"' in card and 'data-toc="novels/novel-a/toc.json"' in card
+    assert re.search(r'<a class="continue" hidden>', cards["Novel A"])
+    assert re.search(r'<form class="goto" hidden', cards["Novel A"])
+    all_chapters = re.search(r'<details class="all-chapters">\s*<summary>All chapters \(2 pages\)</summary>(.*?)</details>',
+                             cards["Novel A"], re.S).group(1)
+    assert re.findall(r'href="([^"]+)"', all_chapters) == ["novels/novel-a/1-50.html", "novels/novel-a/51-100.html"]
+    assert "continue" not in cards["修真聊天群"] and "goto" not in cards["修真聊天群"]
+    assert "all-chapters" not in cards["修真聊天群"]

@@ -135,6 +135,8 @@ def _build_novel(slug: str, store: NovelStore, folder: Path, fp: str, force: boo
 
     raw_only = not pages and any(src.spec.kind is Kind.RAW_ZH for src in store.sources())
     card = {
+        "slug": slug,
+        "toc": f"{NOVELS}/{slug}/{TOC}",
         "title": meta.title,
         "author": meta.author,
         "chapters": sum(len(p.chapters) for p in pages),
@@ -192,6 +194,7 @@ def _chapter_view(store: NovelStore, s: Selected) -> dict:
     version = store.read_version(s.version_id)
     return {
         "anchor": anchor(s.key),
+        "label": s.key.label,
         "heading": chapter_heading(s.key, version.title),
         "body": Markup("\n").join(render.block_html(b) for b in version.blocks),
     }
