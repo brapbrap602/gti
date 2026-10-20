@@ -1,3 +1,4 @@
+import json
 import re
 
 import pytest
@@ -16,7 +17,7 @@ from novel_core import (
     SourceSpec,
     System,
 )
-from novel_publish.site import build_site
+from novel_publish.site import build_site, fingerprint
 
 
 @pytest.fixture
@@ -51,6 +52,14 @@ def add_chapters(store: NovelStore, source: int, titles: list[str], text: str = 
     return [i.ref for i in items]
 
 
+def add_numbered(store: NovelStore, source: int, numbers) -> None:
+    """Index chapters by number with refs that stay put as the index grows (add_chapters' refs are positional)."""
+    items = [SourceItem(f"/novel/c{n}", i, f"Chapter {n}") for i, n in enumerate(numbers, start=1)]
+    store.record_index(source, items)
+    for item in items:
+        store.put_version(source, item.ref, NewVersion(item.title, (Paragraph.of(f"text {item.title}"),)))
+
+
 def chapters(n: int, first: int = 1) -> list[str]:
     return [f"Chapter {i}" for i in range(first, first + n)]
 
@@ -79,7 +88,9 @@ def test_pages_of_50_numbers_with_library_cards(stores, site):
     assert anchors(first) == [f"c{i}" for i in range(1, 51)]
     assert "<title>Novel A Chs 1–50</title>" in first
     assert 'href="51-100.html" rel="next"' in first and 'rel="prev"' not in first
-    assert '<link rel="stylesheet" href="../../assets/style.css">' in first
+    fp = fingerprint()[:12]
+    assert f'<link rel="stylesheet" href="../../assets/style.css?v={fp}">' in first
+    assert f'<script src="../../assets/site.js?v={fp}" defer></script>' in first
     library = (site / "index.html").read_text(encoding="utf-8")
     assert "Novel A" in library and "Gen, Er" in library and "120 chapters" in library
     assert '<a class="book-part-link" href="novels/novel-a/101-150.html">Chs 101–120</a>' in library
@@ -226,3 +237,69 @@ def test_output_is_deterministic(stores, tmp_path):
 
     for name in ("index.html", "novels/n/1-50.html"):
         assert (tmp_path / "one" / name).read_bytes() == (tmp_path / "two" / name).read_bytes()
+
+
+def toc(site, slug: str) -> dict:
+    return json.loads((site / "novels" / slug / "toc.json").read_text(encoding="utf-8"))
+
+
+def test_toc_json_lists_every_page_and_chapter(stores, tmp_path):
+    store = stores("n")
+    add_chapters(store, add_source(store, "a"),
+                 ["Chapter 1", "Chapter 2", "Chapter 3", "Chapter 51", "Chapter 52 (part 1)", "Chapter 52 (part 2)"])
+
+    build_site({"n": store}, tmp_path / "one")
+    build_site({"n": store}, tmp_path / "two", force=True)
+
+    assert toc(tmp_path / "one", "n") == {"pages": [
+        {"file": "1-50.html", "chapters": [{"n": 1, "a": "c1"}, {"n": 2, "a": "c2"}, {"n": 3, "a": "c3"}]},
+        {"file": "51-100.html", "chapters": [{"n": 51, "a": "c51"}, {"n": 52, "a": "c52-1"}, {"n": 52, "a": "c52-2"}]},
+    ]}
+    one, two = (d / "novels" / "n" / "toc.json" for d in (tmp_path / "one", tmp_path / "two"))
+    assert one.read_bytes() == two.read_bytes()
+
+
+def test_toc_json_goes_with_a_removed_novel(stores, site):
+    a, b = stores("a"), stores("b")
+    for store in (a, b):
+        add_chapters(store, add_source(store, "x"), chapters(1))
+    build_site({"a": a, "b": b}, site)
+    assert (site / "novels" / "b" / "toc.json").exists()
+
+    build_site({"a": a}, site)
+
+    assert not (site / "novels" / "b").exists()
+
+
+def last_marker_chapter(html: str) -> str:
+    """The id of the article that holds the page's only `id="last"` marker, which must be its first child."""
+    assert html.count('id="last"') == 1
+    return re.search(r'<article id="([^"]+)">\s*<span id="last"></span>', html).group(1)
+
+
+def test_cross_page_links_carry_no_chapter_anchors(stores, site):
+    store = stores("n")
+    add_chapters(store, add_source(store, "a"), chapters(3) + ["Chapter 51", "Chapter 101"])
+
+    build_site({"n": store}, site)
+
+    first, middle, last = (read(site, "n", p) for p in ("1-50.html", "51-100.html", "101-150.html"))
+    assert last_marker_chapter(first) == "c3"
+    assert 'data-next-page="51-100.html"' in first and "data-prev-page" not in first
+    assert 'data-prev-page="1-50.html#last"' in middle and 'data-next-page="101-150.html"' in middle
+    assert 'data-prev-page="51-100.html#last"' in last and "data-next-page" not in last
+
+
+def test_filling_a_page_gap_rewrites_only_that_page(stores, site):
+    store = stores("n")
+    a = add_source(store, "a")
+    add_numbered(store, a, [*range(1, 49), 51])
+    build_site({"n": store}, site)
+    second = read(site, "n", "51-100.html")
+
+    add_numbered(store, a, range(1, 52))  # 49 and 50 arrive; 51 is unchanged
+    report = build_site({"n": store}, site)
+
+    assert report.novels[0].pages_written == 1
+    assert last_marker_chapter(read(site, "n", "1-50.html")) == "c50"
+    assert read(site, "n", "51-100.html") == second

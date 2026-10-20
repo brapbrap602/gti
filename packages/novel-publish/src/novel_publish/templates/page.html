@@ -10,6 +10,7 @@
 </nav>
 {% endmacro %}
 {% block body %}
+<header class="reader-bar" hidden{% if prev %} data-prev-page="{{ prev.filename }}#last"{% endif %}{% if next %} data-next-page="{{ next.filename }}"{% endif %}></header>
 {{ page_nav() }}
 <header class="library-header">
     <h1>{{ novel.title }}</h1>
@@ -25,6 +26,9 @@
 <main>
 {% for chapter in chapters %}
 <article id="{{ chapter.anchor }}">
+{% if loop.last %}
+<span id="last"></span>
+{% endif %}
 <h2 class="chapter">{{ chapter.heading }}</h2>
 {{ chapter.body }}
 </article>
