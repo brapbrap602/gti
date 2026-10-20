@@ -5,6 +5,7 @@ Every page gets a preload script that records uncaught errors in `window.__error
 so a test can end with `page.assert_no_errors()`.
 """
 
+import base64
 import functools
 import http.server
 import json
@@ -108,6 +109,11 @@ class Page:
         self.js("window.__left = 1")
         self.js(action)
         self.wait_for("window.__left === undefined && document.readyState === 'complete'")
+
+    def screenshot(self, path: Path) -> None:
+        """Save the viewport as a PNG."""
+        shot = self._b._rpc.send("browsingContext.captureScreenshot", {"context": self._b._context})
+        path.write_bytes(base64.b64decode(shot["data"]))
 
     def assert_no_errors(self) -> None:
         assert self.js("window.__errors") == []

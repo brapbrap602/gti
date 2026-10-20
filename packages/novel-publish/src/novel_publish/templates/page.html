@@ -2,27 +2,32 @@
 {% set root = "../../" %}
 {% set lang = novel.language %}
 {% block title %}{{ novel.title }} Chs {{ page.label }}{% endblock %}
-{% macro page_nav() %}
-<nav class="page-nav" aria-label="Pages">
+{% macro page_links() %}
     {% if prev %}<a href="{{ prev.filename }}" rel="prev">&larr; Chs {{ prev.label }}</a>{% else %}<span></span>{% endif %}
     <a href="../../index.html">Library</a>
     {% if next %}<a href="{{ next.filename }}" rel="next">Chs {{ next.label }} &rarr;</a>{% else %}<span></span>{% endif %}
-</nav>
 {% endmacro %}
-{% block body %}
-<header class="reader-bar" hidden{% if prev %} data-prev-page="{{ prev.filename }}#last"{% endif %}{% if next %} data-next-page="{{ next.filename }}"{% endif %}></header>
-{{ page_nav() }}
-<header class="library-header">
-    <h1>{{ novel.title }}</h1>
-    <p class="book-meta">Chapters {{ page.label }}</p>
-</header>
-<nav class="toc" aria-label="Chapters on this page">
+{% macro chapter_list() %}
     <ol>
     {% for chapter in chapters %}
         <li><a href="#{{ chapter.anchor }}">{{ chapter.heading }}</a></li>
     {% endfor %}
     </ol>
+{% endmacro %}
+{% block body %}
+<header class="reader-bar" hidden{% if prev %} data-prev-page="{{ prev.filename }}#last"{% endif %}{% if next %} data-next-page="{{ next.filename }}"{% endif %}>
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+{{ chapter_list() }}
 </nav>
+</noscript>
 <main>
 {% for chapter in chapters %}
 <article id="{{ chapter.anchor }}">
@@ -34,7 +39,24 @@
 </article>
 {% endfor %}
 </main>
-{{ page_nav() }}
+<nav class="page-nav" aria-label="Pages">
+{{ page_links() }}
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">{{ novel.title }} · Chs {{ page.label }}</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+{{ chapter_list() }}
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label>Go to chapter <input type="number" inputmode="numeric" min="0" name="chapter"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+{{ page_links() }}
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
 <dialog id="settings" class="sheet" aria-labelledby="settings-title">
     <form method="dialog">
         <h2 id="settings-title" class="sheet-title">Text</h2>

@@ -44,6 +44,20 @@ def page(browser, site):
     browser.assert_no_errors()
 
 
+def bar(page) -> dict:
+    return page.js("""(() => { const b = document.querySelector('.reader-bar');
+        return {shown: !b.hidden && b.classList.contains('reader-bar--shown'),
+                title: b.querySelector('.bar-title').textContent,
+                prev: b.querySelector('.bar-prev').getAttribute('href'),
+                next: b.querySelector('.bar-next').getAttribute('href')}; })()""")
+
+
+def scroll_into(page, anchor: str, extra: float = 0) -> None:
+    """Step-scroll until the article's top is just under the bar, plus extra pixels."""
+    page.scroll(page.js(f"document.getElementById('{anchor}').getBoundingClientRect().top"
+                        " - document.querySelector('.reader-bar').offsetHeight") + extra)
+
+
 def settings(page) -> dict:
     return page.js("({theme: document.documentElement.dataset.theme,"
                    " scale: document.documentElement.style.getPropertyValue('--r-scale')})")
@@ -115,4 +129,98 @@ def test_settings_work_for_the_visit_when_storage_throws(tmp_path, site):
         page.click('#settings [data-size="-1"]')
 
         assert settings(page) == {"theme": "light", "scale": "0.9"}
+        scroll_into(page, "c2", 50)
+        assert bar(page)["title"] == "Ch 2: Title 2"
         page.assert_no_errors()
+
+
+def test_bar_reveals_on_scroll_up_and_hides_on_scroll_down(page, site):
+    page.goto(site + "novels/n/1-50.html")
+    assert bar(page)["shown"]  # at the top
+
+    page.scroll(600)
+    assert not bar(page)["shown"]
+    page.scroll(-50)
+    assert bar(page)["shown"]
+    page.scroll(-page.js("scrollY"))
+    assert bar(page)["shown"]
+
+    page.click(".bar-next")
+    page.frame()
+    assert bar(page)["shown"]  # a jump from the bar leaves it up
+    page.scroll(300)
+    assert not bar(page)["shown"]
+
+
+def test_bar_follows_the_current_chapter(page, site):
+    page.goto(site + "novels/n/1-50.html")
+    assert bar(page) | {"shown": True} == {"shown": True, "title": "Ch 1: Title 1", "prev": None, "next": "#c2"}
+
+    scroll_into(page, "c2", 100)
+
+    assert bar(page)["title"] == "Ch 2: Title 2"
+    assert bar(page)["prev"] == "#c1" and bar(page)["next"] == "#c3"
+    assert page.js("[...document.querySelectorAll('#chapters [aria-current]')].map(a => a.getAttribute('href'))") == ["#c2"]
+
+
+def test_next_from_a_pages_last_chapter_opens_the_next_page(page, site):
+    page.goto(site + "novels/n/1-50.html")
+    page.js("scrollTo(0, document.documentElement.scrollHeight)")
+    page.frame()
+    assert bar(page)["title"] == "Ch 3: Title 3" and bar(page)["next"] == "51-100.html"
+
+    page.navigate_by("document.querySelector('.bar-next').click()")
+
+    assert page.js("location.pathname").endswith("/51-100.html")
+    assert page.js("scrollY") == 0 and bar(page)["title"] == "Ch 51: Title 51"
+
+
+def test_prev_from_a_pages_first_chapter_opens_the_previous_pages_last(page, site):
+    page.goto(site + "novels/n/51-100.html")
+    assert bar(page)["prev"] == "1-50.html#last"
+
+    page.navigate_by("document.querySelector('.bar-prev').click()")
+    page.frame()
+    assert bar(page)["title"] == "Ch 3: Title 3"
+
+    page.click(".bar-prev")
+    page.frame()
+    assert bar(page)["title"] == "Ch 2: Title 2"
+
+
+def test_novel_ends_disable_the_arrows(page, site):
+    page.goto(site + "novels/n/51-100.html")
+    page.js("scrollTo(0, document.documentElement.scrollHeight)")
+    page.frame()
+
+    assert bar(page)["next"] is None
+    assert page.js("document.querySelector('.bar-next').getAttribute('aria-disabled')") == "true"
+
+
+def goto(page, text: str) -> None:
+    """Submit the chapters sheet's go-to form; goto_status then waits for the new answer."""
+    page.js("document.querySelector('#chapters .goto [role=status]').textContent = ''")
+    page.js(f"document.querySelector('#chapters .goto input').value = {text!r}")
+    page.js("document.querySelector('#chapters .goto').requestSubmit()")
+
+
+def goto_status(page) -> str:
+    return page.wait_for("document.querySelector('#chapters .goto [role=status]').textContent")
+
+
+def test_go_to_chapter(page, site):
+    page.goto(site + "novels/n/1-50.html")
+    page.click('[data-open="chapters"]')
+
+    goto(page, "abc")
+    assert goto_status(page) == "Enter a chapter number."
+    goto(page, "40")
+    assert goto_status(page) == "Chapter 40 isn't on the site. Nearest: 3 or 51."
+    goto(page, "60")
+    assert goto_status(page) == "Chapter 60 isn't on the site. Nearest: 53."
+
+    page.navigate_by("(document.querySelector('#chapters .goto input').value = '52',"
+                     " document.querySelector('#chapters .goto').requestSubmit())")
+    assert page.js("location.pathname + location.hash").endswith("/51-100.html#c52")
+    page.frame()
+    assert bar(page)["title"] == "Ch 52: Title 52"
