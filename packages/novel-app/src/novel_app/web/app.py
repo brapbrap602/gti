@@ -27,7 +27,7 @@ from starlette.concurrency import run_in_threadpool
 
 from novel_app.jobs import JobPanel, JobRunning, JobState
 from novel_app.notation import parse_range
-from novel_app.pages import CELL_LABELS, CellState
+from novel_app.pages import CELL_LABELS, CellState, source_label
 from novel_app.service import Service, UserError
 
 HERE = Path(__file__).parent
@@ -66,7 +66,7 @@ def create_app(service: Service) -> FastAPI:
     templates.env.filters["ago"] = _ago
     templates.env.globals.update(
         job_labels=JOB_LABELS, cell_labels=CELL_LABELS, CellState=CellState, Kind=Kind, JobState=JobState,
-        backends=BACKENDS, owns=service.runner.owns,
+        backends=BACKENDS, owns=service.runner.owns, source_label=source_label,
     )  # fmt: skip
 
     def page(request: Request, name: str, status: int = 200, **context) -> HTMLResponse:

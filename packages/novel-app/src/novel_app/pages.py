@@ -9,6 +9,8 @@ from collections import defaultdict
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from enum import StrEnum
+from pathlib import PurePosixPath
+from urllib.parse import unquote, urlsplit
 
 from markupsafe import Markup
 from novel_audio.build import fingerprint as audio_fingerprint
@@ -23,6 +25,7 @@ from novel_core import (
     NovelView,
     OutputKind,
     SourceInfo,
+    SourceSpec,
 )
 from novel_core.keys import chapter_heading
 from novel_core.selection import Pin
@@ -50,10 +53,38 @@ class SourceRow:
 
 
 @dataclass(frozen=True)
+class SourceLabel:
+    short: str  # what a table shows: a site's host, an imported folder's name, else the backend
+    full: str  # the source's URL, for a tooltip or a second line
+
+
+def source_label(spec: SourceSpec) -> SourceLabel:
+    parts = urlsplit(spec.url)
+    if parts.scheme in ("http", "https") and parts.hostname:
+        short = parts.hostname.removeprefix("www.")
+    elif parts.scheme == "file":
+        short = PurePosixPath(unquote(parts.path).rstrip("/")).name or spec.backend
+    else:
+        short = spec.backend
+    return SourceLabel(short, spec.url)
+
+
+@dataclass(frozen=True)
 class Staleness:
     kind: OutputKind
     built: int  # chapters with an output row
     stale: int  # chapters to build or prune
+
+    @property
+    def badge(self) -> tuple[str, str]:
+        """Short text and its state (fresh, stale, missing, none) for the library's outputs cell."""
+        if self.built == 0 and self.stale == 0:
+            return f"{self.kind} —", "none"
+        if self.built == 0:
+            return f"{self.kind} not built", "missing"
+        if self.stale:
+            return f"{self.kind} {self.stale} stale", "stale"
+        return f"{self.kind} ✓", "fresh"
 
 
 @dataclass(frozen=True)

@@ -107,6 +107,21 @@ th, td {
 thead th { color: var(--muted); font-weight: 600; font-size: 0.9rem; }
 tbody th { font-weight: 600; }
 
+/* Output badges in the library */
+.outputs .out {
+  display: inline-block;
+  padding: 0 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.library .outputs { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.out--fresh { color: var(--ok); }
+.out--stale { color: var(--warn); border-color: var(--warn); }
+.out--missing { color: var(--warn); border-style: dashed; }
+.out--none { color: var(--muted); }
+
 .library ol, .library ul, .inline-list { margin: 0; padding: 0; list-style: none; font-size: 0.9rem; }
 .sources { counter-reset: rank; }
 .sources li::before { counter-increment: rank; content: counter(rank) ". "; color: var(--muted); }
@@ -192,6 +207,35 @@ aside.jobs:not(.show-recent) .job-list--recent { display: none; }
 .job-progress { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .job-actions { display: flex; gap: 0.75rem; align-items: center; margin-top: 0.3rem; }
 .job-errors ul { padding-left: 1rem; color: var(--error); word-break: break-all; }
+
+/* Phones: the library and sources tables become one card per row, each cell labelled */
+@media (max-width: 640px) {
+  body { padding: 0.75rem 0.75rem 3rem; }
+  .app-header { gap: 0.5rem 1rem; }
+  :is(table.library, table.sources-table) thead { display: none; }
+  :is(table.library, table.sources-table),
+  :is(table.library, table.sources-table) :is(tbody, tr, th, td) { display: block; width: 100%; }
+  :is(table.library, table.sources-table) tr {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    background: var(--surface);
+  }
+  :is(table.library, table.sources-table) :is(th, td) { border-bottom: 0; padding: 0.35rem 0; }
+  :is(table.library, table.sources-table) tbody th { font-size: 1.05rem; }
+  :is(table.library, table.sources-table) td[data-label] {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+  :is(table.library, table.sources-table) td[data-label]::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .actions { white-space: normal; }
+}
 
 /* Chapter grid: color plus text (title/aria-label, legend) */
 .legend { display: flex; flex-wrap: wrap; gap: 1rem; list-style: none; padding: 0; font-size: 0.9rem; }
