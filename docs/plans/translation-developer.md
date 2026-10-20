@@ -1,7 +1,7 @@
 # Translation pipeline: developer plan
 
 Status: approved by the user 2026-10-20 (r3). Not built; implementation needs the user's go-ahead. The baseline (§1) was approved by the user on 2026-10-20. Three independent reviews are folded in (§9).
-Related: [stakeholder plan](translation-stakeholder.md) · [platform v1 developer plan](novel-platform-developer.md) · [reader UI plan](reader-ui-developer.md) · research: `reports/LLM web novel translation tools.md` (untracked; notes in `research_notes/LLM web novel translation tools/`).
+Related: [stakeholder plan](translation-stakeholder.md) · [platform v1 developer plan](novel-platform-developer.md) · [reader UI plan](reader-ui-developer.md) · research: [LLM web novel translation tools](../research/LLM%20web%20novel%20translation%20tools.md) (notes in `docs/research/LLM web novel translation tools/`).
 
 ## 1. Approved decisions (user, 2026-10-20)
 
