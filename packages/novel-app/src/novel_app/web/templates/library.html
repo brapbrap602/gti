@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import job_button, build_menu, staleness %}
+{% from "_macros.html" import job_button, build_menu, badge %}
 {% block main %}
 <h1>Library</h1>
 {% if not rows %}
@@ -29,26 +29,26 @@
             <a href="/novels/{{ r.slug }}">{{ r.title }}</a>
             {% if r.raw_only %}<span class="badge">raw only</span>{% endif %}
         </th>
-        <td>
+        <td data-label="Sources">
             <ol class="sources">
-            {% for s in r.sources %}<li>{{ s.info.spec.backend }} <span class="muted">{{ s.info.spec.kind }}</span></li>{% endfor %}
+            {% for s in r.sources %}{% set label = source_label(s.info.spec) %}<li title="{{ label.full }}">{{ label.short }} <span class="muted">{{ s.info.spec.kind }}</span></li>{% endfor %}
             </ol>
         </td>
-        <td>
+        <td data-label="Chapters">
             {{ r.selected }} selected
             <ul class="counts">
             {% for kind, n in r.numbers.items() %}<li>{{ n }} {{ kind }}</li>{% endfor %}
             </ul>
         </td>
-        <td>{{ r.gaps or "none" }}</td>
-        <td>{% if r.can_sync %}{{ r.new_items }}{% else %}<span class="muted">no web source</span>{% endif %}</td>
-        <td>{{ r.last_sync | ago }}</td>
-        <td>
+        <td data-label="Gaps">{{ r.gaps or "none" }}</td>
+        <td data-label="New">{% if r.can_sync %}{{ r.new_items }}{% else %}<span class="muted">no web source</span>{% endif %}</td>
+        <td data-label="Last sync">{{ r.last_sync | ago }}</td>
+        <td data-label="Outputs">
             <ul class="outputs">
-            {% for o in r.outputs %}<li>{{ o.kind }}: {{ staleness(o) }}</li>{% endfor %}
+            {% for o in r.outputs %}<li>{{ badge(o) }}</li>{% endfor %}
             </ul>
         </td>
-        <td class="actions">
+        <td class="actions" data-label="Actions">
             {% if r.can_sync %}{{ job_button("sync", r.slug, r.job) }}{% endif %}
             {{ build_menu(r.slug, r.job) }}
             <a href="/novels/{{ r.slug }}">Open</a>

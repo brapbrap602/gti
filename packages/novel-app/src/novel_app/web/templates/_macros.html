@@ -23,6 +23,11 @@
 {% if busy %}<p class="busy">{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }}); actions wait until it ends.</p>{% endif %}
 {% endmacro %}
 
+{% macro badge(o) %}
+{% set text, state = o.badge %}
+<span class="out out--{{ state }}" title="{{ o.kind }}: {{ {"fresh": "up to date", "stale": o.stale ~ " stale", "missing": "not built", "none": "nothing to build"}[state] }}">{{ text }}</span>
+{%- endmacro %}
+
 {% macro staleness(o) %}
 {% if o.built == 0 and o.stale == 0 %}<span class="muted">nothing to build</span>
 {% elif o.built == 0 %}<span class="stale">not built</span>

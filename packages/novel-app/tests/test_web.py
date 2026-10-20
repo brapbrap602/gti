@@ -53,9 +53,10 @@ def test_library_row_and_novel_grid(client, service):
     added(service)
     page = client.get("/").text
     assert 'href="/novels/test-novel">Test Novel</a>' in page
-    assert "3 selected" in page and "lncrawl" in page
+    assert "3 selected" in page
     assert re.search(r'name="kind" value="sync"', page)
-    assert re.search(r'site:\s*<span class="stale">not built</span>', page)
+    assert '<span class="out out--missing" title="site: not built">site not built</span>' in page
+    assert '<li title="https://novelbuddy.me/test-novel">novelbuddy.me <span class="muted">official-en</span></li>' in page
 
     novel = client.get("/novels/test-novel").text
     assert 'title="3, official, source 1: Chapter 3"' in novel
@@ -202,3 +203,13 @@ def test_jobs_panel_shows_attention_then_recent(client, service):
     ]  # fmt: skip
     assert re.search(r"<h3[^>]*><button[^>]*>Recent \(10\)</button></h3>", panel)
     board.finish(running, JobState.DONE)
+
+
+def test_table_cells_carry_labels_for_phones(client, service):
+    added(service)
+
+    for path, table in (("/", "library"), ("/novels/test-novel", "sources-table")):
+        html = re.search(rf'<table class="{table}">.*?</table>', client.get(path).text, re.S).group(0)
+        body = html.split("<tbody>", 1)[1]
+        cells = re.findall(r"<td(?: [^>]*)?>", body)
+        assert cells and all("data-label=" in c for c in cells), (path, cells)

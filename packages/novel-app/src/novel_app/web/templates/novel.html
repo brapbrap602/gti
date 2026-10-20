@@ -26,13 +26,14 @@
         <tbody>
         {% for s in r.sources %}
         <tr>
-            <td>{{ s.rank }}</td>
-            <th scope="row">{{ s.id }}: {{ s.info.spec.backend }}<br><span class="muted url">{{ s.info.spec.url }}</span></th>
-            <td>{{ s.info.spec.kind }}</td>
-            <td>{{ s.listed }}</td>
-            <td>{{ s.texts }}</td>
-            <td>{{ s.to_fetch if s.to_fetch is not none else "—" }}</td>
-            <td class="order">
+            {% set label = source_label(s.info.spec) %}
+            <td data-label="Rank">{{ s.rank }}</td>
+            <th scope="row">{{ s.id }}: {{ label.short }} <span class="muted">{{ s.info.spec.backend }}</span><br><span class="muted url">{{ label.full }}</span></th>
+            <td data-label="Kind">{{ s.info.spec.kind }}</td>
+            <td data-label="Listed">{{ s.listed }}</td>
+            <td data-label="Texts">{{ s.texts }}</td>
+            <td data-label="To fetch">{{ s.to_fetch if s.to_fetch is not none else "—" }}</td>
+            <td class="order" data-label="Order">
                 {% for move, label in (("up", "↑"), ("down", "↓")) %}
                 <form method="post" action="/novels/{{ r.slug }}/priority" class="inline">
                     <input type="hidden" name="source" value="{{ s.id }}">
