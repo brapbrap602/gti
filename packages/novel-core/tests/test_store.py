@@ -523,3 +523,36 @@ def test_open_migrates_a_version_1_store(tmp_path):
         assert len(store.volumes()) == 1
     with NovelStore.open(folder) as store:
         assert len(store.volumes()) == 1
+
+
+# -- views ----------------------------------------------------------------------
+
+
+def test_a_view_is_one_read_that_later_writes_do_not_change(book):
+    a, b = book.source("a"), book.source("b")
+    book.chapters(a, titles(1, 2))
+    view = book.store.view()
+    book.chapters(b, titles(3))
+    book.store.set_pin(KeyRange(1, 1), b)
+
+    assert keys(view.selection) == ["1", "2"]
+    assert view.pins == () and view.priority == (a, b)
+    assert view.to_fetch(b) == ()
+    assert keys(book.store.view().selection) == ["1", "2", "3"]
+
+
+def test_view_items_show_each_entry_as_the_book_sees_it(book):
+    a = book.source("a")
+    index = ["Chapter 1", "Notice", "Chapter 2", "Chapter 3"]
+    book.store.record_index(a, [SourceItem(book.ref(t), i, t) for i, t in enumerate(index, start=1)])
+    book.store.put_version(a, "/novel/chapter-1", book.version("one"))
+    book.store.mark_item(a, "/novel/chapter-2", ItemStatus.FAILED, "HTTP 500")
+    book.store.set_alignment(a, AlignmentRules(skip={"/novel/chapter-3"}))
+
+    items = {i.ref: i for i in book.store.view().items(a)}
+    assert (items["/novel/chapter-1"].key, items["/novel/chapter-1"].has_text) == (ChapterKey(1), True)
+    assert items["/novel/notice"].key is None
+    assert (items["/novel/chapter-2"].status, items["/novel/chapter-2"].reason) == (ItemStatus.FAILED, "HTTP 500")
+    assert items["/novel/chapter-3"].skipped and items["/novel/chapter-3"].key is None
+    with pytest.raises(StoreError, match="unknown source"):
+        book.store.view().items(99)

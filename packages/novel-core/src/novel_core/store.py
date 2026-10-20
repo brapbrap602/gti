@@ -13,7 +13,7 @@ import hashlib
 import json
 from collections import defaultdict
 from collections.abc import Callable, Sequence
-from dataclasses import dataclass
+from dataclasses import replace
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Self
@@ -21,11 +21,11 @@ from typing import Self
 import sqlalchemy as sa
 import zstandard
 
-from novel_core.alignment import AlignmentRules, Derivation, Printed, derive_keys
+from novel_core.alignment import AlignmentRules
 from novel_core.blocks import blocks_from_json, blocks_to_json, content_hash
-from novel_core.build import BuildPlan, OutputKind, OutputRow, VolumeRow, plan_build
-from novel_core.check import CheckReport, Duplicate, ItemNote
-from novel_core.keys import ChapterKey, ItemRef, KeyRange, parse_printed, title_number
+from novel_core.build import BuildPlan, OutputKind, OutputRow, VolumeRow
+from novel_core.check import CheckReport
+from novel_core.keys import ChapterKey, ItemRef, KeyRange, parse_printed
 from novel_core.model import (
     AlignmentDiff,
     IndexDiff,
@@ -43,16 +43,13 @@ from novel_core.model import (
     Unchanged,
     Version,
 )
-from novel_core.selection import Pin, Selected, Selection, SourceId, rank, select
+from novel_core.selection import Pin, Selected, SourceId, rank
+from novel_core.view import CurrentVersion, NovelView, StoreError, StoredItem, derive
 
 SCHEMA_VERSION = 2
 DB_NAME = "novel.sqlite"
 
 type Clock = Callable[[], datetime]
-
-
-class StoreError(Exception):
-    """A request the store refuses (unknown source or item, pin to a raw source, ...)."""
 
 
 _md = sa.MetaData()
@@ -161,29 +158,6 @@ def _engine(db: Path) -> sa.Engine:
     return engine
 
 
-@dataclass(frozen=True)
-class _Item:
-    source_id: SourceId
-    ref: ItemRef
-    title: str
-    printed_number: int | None
-    part: int
-    status: ItemStatus
-    reason: str | None
-    vanished: bool
-
-
-@dataclass(frozen=True)
-class _Snapshot:
-    """Everything selection, planning and checks read, loaded in one transaction."""
-
-    sources: dict[SourceId, SourceInfo]
-    items: dict[SourceId, list[_Item]]
-    derivations: dict[SourceId, Derivation]
-    current: dict[SourceId, list[Selected]]  # current version of each mapped item that has one
-    selection: Selection
-
-
 class NovelStore:
     def __init__(self, novel_dir: Path, engine: sa.Engine, clock: Clock):
         self._dir = novel_dir
@@ -236,8 +210,7 @@ class NovelStore:
     @property
     def meta(self) -> NovelMeta:
         with self._engine.connect() as conn:
-            r = conn.execute(sa.select(_novel)).one()
-        return NovelMeta(r.title, r.author, r.language, r.status, r.cover_path, tuple(json.loads(r.tags_json)))
+            return _load_meta(conn)
 
     def set_meta(self, meta: NovelMeta) -> None:
         with self._engine.begin() as conn:
@@ -342,8 +315,8 @@ class NovelStore:
         with self._engine.begin() as conn:
             info = self._require_source(conn, source)
             items = _load_items(conn).get(source, [])
-            before = _derive(items, info.alignment).keys
-            after = _derive(items, rules).keys
+            before = derive(items, info).keys
+            after = derive(items, replace(info, alignment=rules)).keys
             conn.execute(_source.update().where(_source.c.id == source).values(alignment_json=rules.to_json()))
         moved = [
             Moved(ref, before.get(ref), after.get(ref))
@@ -474,58 +447,46 @@ class NovelStore:
 
     # -- selection, builds, checks -----------------------------------------
 
+    def view(self) -> NovelView:
+        """A read of the whole novel that answers every derived question consistently (see NovelView)."""
+        with self._engine.connect() as conn:
+            latest: dict[tuple[SourceId, ItemRef], sa.Row] = {}
+            for v in conn.execute(
+                sa.select(_version.c.id, _version.c.source_id, _version.c.item_ref, _version.c.content_hash,
+                          _version.c.title, _version.c.last_seen_at)
+            ):  # fmt: skip
+                k = (v.source_id, v.item_ref)
+                if k not in latest or (v.last_seen_at, v.id) > (latest[k].last_seen_at, latest[k].id):
+                    latest[k] = v
+            priority, pins = _load_policy(conn)
+            return NovelView(
+                _load_meta(conn),
+                _load_sources(conn),
+                _load_items(conn),
+                [CurrentVersion(v.source_id, v.item_ref, v.id, v.content_hash, v.title) for v in latest.values()],
+                priority,
+                pins,
+                {kind: _load_outputs(conn, kind) for kind in OutputKind},
+            )
+
     def selection(self) -> tuple[Selected, ...]:
         """The publishable book: one source per number (pins, then priority), never raw-zh."""
-        with self._engine.connect() as conn:
-            return self._snapshot(conn).selection.chapters
+        return self.view().selection
 
     def chapters(self, source: SourceId) -> tuple[Selected, ...]:
         """Every mapped item of one source with its current version, selected or not, in key order."""
-        with self._engine.connect() as conn:
-            self._require_source(conn, source)
-            return tuple(sorted(self._snapshot(conn).current.get(source, []), key=lambda s: s.key))
+        return self.view().chapters(source)
 
     def to_fetch(self, source: SourceId, refresh: KeyRange | None = None) -> tuple[ItemRef, ...]:
-        """The items a sync of this source should fetch, in index order.
-
-        An item is fetched when it has no version yet and the book lacks its number:
-        no other source has a text for it (for a raw-zh source, no other raw text).
-        Unmapped items without a version are fetched too, so their text can show what
-        they are. Unavailable (locked), vanished and skipped items are left alone.
-        Items whose key falls in `refresh` are fetched again whatever they hold.
-        """
-        with self._engine.connect() as conn:
-            info = self._require_source(conn, source)
-            snap = self._snapshot(conn)
-            stored = set(
-                conn.execute(sa.select(_version.c.item_ref).where(_version.c.source_id == source).distinct()).scalars()
-            )
-        if info.spec.kind is Kind.RAW_ZH:
-            raws = (c for sid, c in snap.current.items() if snap.sources[sid].spec.kind is Kind.RAW_ZH)
-            covered = {s.key.number for chapters in raws for s in chapters}
-        else:
-            covered = {s.key.number for s in snap.selection.chapters}
-        keys = snap.derivations[source].keys
-        wanted = []
-        for item in snap.items.get(source, []):
-            if item.vanished or item.ref in info.alignment.skip:
-                continue
-            key = keys.get(item.ref)
-            if refresh is not None and key is not None and key.number in refresh:
-                wanted.append(item.ref)
-            elif item.ref not in stored and item.status is not ItemStatus.UNAVAILABLE:
-                if key is None or key.number not in covered:
-                    wanted.append(item.ref)
-        return tuple(wanted)
+        """The items a sync of this source should fetch, in index order (see NovelView.to_fetch)."""
+        return self.view().to_fetch(source, refresh)
 
     def outputs(self, kind: OutputKind) -> tuple[OutputRow, ...]:
         with self._engine.connect() as conn:
             return _load_outputs(conn, kind)
 
     def plan_build(self, kind: OutputKind, fingerprint: str, force: KeyRange | None = None) -> BuildPlan:
-        with self._engine.connect() as conn:
-            selection = self._snapshot(conn).selection.chapters
-            return plan_build(selection, _load_outputs(conn, kind), fingerprint, force)
+        return self.view().plan_build(kind, fingerprint, force)
 
     def record_output(
         self, kind: OutputKind, selected: Selected, fingerprint: str, artifact: str, legacy: bool = False
@@ -578,10 +539,7 @@ class NovelStore:
             conn.execute(_volume.delete().where(*_volume_is(keys)))
 
     def check(self) -> CheckReport:
-        with self._engine.connect() as conn:
-            snap = self._snapshot(conn)
-            legacy = [r for kind in OutputKind for r in _load_outputs(conn, kind) if r.legacy]
-        return _report(snap, legacy)
+        return self.view().check()
 
     # -- internals ---------------------------------------------------------
 
@@ -593,29 +551,6 @@ class NovelStore:
         if info is None:
             raise StoreError(f"unknown source {source}")
         return info
-
-    def _snapshot(self, conn: sa.Connection) -> _Snapshot:
-        sources = _load_sources(conn)
-        items = _load_items(conn)
-        derivations = {sid: _derive(items.get(sid, []), info.alignment) for sid, info in sources.items()}
-
-        latest: dict[tuple[SourceId, ItemRef], sa.Row] = {}
-        for v in conn.execute(
-            sa.select(_version.c.id, _version.c.source_id, _version.c.item_ref, _version.c.content_hash,
-                      _version.c.title, _version.c.last_seen_at)
-        ):  # fmt: skip
-            k = (v.source_id, v.item_ref)
-            if k not in latest or (v.last_seen_at, v.id) > (latest[k].last_seen_at, latest[k].id):
-                latest[k] = v
-        current: dict[SourceId, list[Selected]] = defaultdict(list)
-        for (sid, ref), v in latest.items():
-            key = derivations[sid].keys.get(ref)
-            if key is not None:
-                current[sid].append(Selected(key, sid, ref, v.id, v.content_hash, v.title))
-
-        priority, pins = _load_policy(conn)
-        publishable = {sid: c for sid, c in current.items() if sources[sid].spec.kind is not Kind.RAW_ZH}
-        return _Snapshot(sources, items, derivations, dict(current), select(publishable, priority, pins))
 
 
 # -- row helpers -------------------------------------------------------------
@@ -648,6 +583,11 @@ def _volume_is(keys: KeyRange):
     return _volume.c.range_start == keys.start, _volume.c.range_end == keys.end
 
 
+def _load_meta(conn: sa.Connection) -> NovelMeta:
+    r = conn.execute(sa.select(_novel)).one()
+    return NovelMeta(r.title, r.author, r.language, r.status, r.cover_path, tuple(json.loads(r.tags_json)))
+
+
 def _load_sources(conn: sa.Connection) -> dict[SourceId, SourceInfo]:
     return {
         r.id: SourceInfo(
@@ -659,18 +599,13 @@ def _load_sources(conn: sa.Connection) -> dict[SourceId, SourceInfo]:
     }
 
 
-def _load_items(conn: sa.Connection) -> dict[SourceId, list[_Item]]:
-    items: dict[SourceId, list[_Item]] = defaultdict(list)
+def _load_items(conn: sa.Connection) -> dict[SourceId, list[StoredItem]]:
+    items: dict[SourceId, list[StoredItem]] = defaultdict(list)
     for r in conn.execute(sa.select(_item).order_by(_item.c.source_id, _item.c.position)):
         items[r.source_id].append(
-            _Item(r.source_id, r.item_ref, r.title, r.printed_number, r.part, ItemStatus(r.status), r.reason, r.vanished)
+            StoredItem(r.source_id, r.item_ref, r.title, r.printed_number, r.part, ItemStatus(r.status), r.reason, r.vanished)
         )
     return items
-
-
-def _derive(items: Sequence[_Item], rules: AlignmentRules) -> Derivation:
-    # Vanished items take no part in key derivation or duplicate detection.
-    return derive_keys((Printed(i.ref, i.printed_number, i.part) for i in items if not i.vanished), rules)
 
 
 def _load_policy(conn: sa.Connection) -> tuple[list[SourceId], list[Pin]]:
@@ -697,72 +632,4 @@ def _load_outputs(conn: sa.Connection, kind: OutputKind) -> tuple[OutputRow, ...
         for r in conn.execute(
             sa.select(_output).where(_output.c.kind == str(kind)).order_by(_output.c.key_number, _output.c.key_part)
         )
-    )
-
-
-def _report(snap: _Snapshot, legacy: Sequence[OutputRow]) -> CheckReport:
-    raw = {sid for sid, info in snap.sources.items() if info.spec.kind is Kind.RAW_ZH}
-    selected_numbers = {s.key.number for s in snap.selection.chapters}
-    selected_by_key = {s.key: s for s in snap.selection.chapters}
-
-    expected = {
-        key.number for sid, d in snap.derivations.items() if sid not in raw for key in d.keys.values()
-    } | selected_numbers
-    gaps = sorted(set(range(min(expected), max(expected) + 1)) - selected_numbers) if expected else []
-    raw_only = sorted(
-        {c.key.number for sid in raw for c in snap.current.get(sid, [])} - selected_numbers
-    )
-
-    split_by_number: dict[int, set[bool]] = defaultdict(set)
-    for sid, chapters in snap.current.items():
-        if sid in raw:
-            continue
-        per_number: dict[int, bool] = defaultdict(bool)
-        for c in chapters:
-            per_number[c.key.number] |= c.key.part > 0
-        for number, split in per_number.items():
-            split_by_number[number].add(split)
-
-    def notes(pred, detail=lambda _i: "") -> tuple[ItemNote, ...]:
-        return tuple(
-            ItemNote(i.source_id, i.ref, i.title, detail(i))
-            for sid in sorted(snap.items)
-            for i in snap.items[sid]
-            if pred(i)
-        )
-
-    unmapped = {(sid, ref) for sid, d in snap.derivations.items() for ref in d.unmapped}
-    moved = tuple(
-        r for r in legacy if snap.derivations[r.source_id].keys.get(r.item_ref) != r.built_key
-    )
-    unselected = tuple(
-        r
-        for r in legacy
-        if r not in moved
-        and (
-            (s := selected_by_key.get(r.built_key)) is None or (s.source_id, s.item_ref) != (r.source_id, r.item_ref)
-        )
-    )
-    return CheckReport(
-        gaps=tuple(gaps),
-        raw_only=tuple(raw_only),
-        duplicates=tuple(
-            Duplicate(sid, key, refs)
-            for sid, d in sorted(snap.derivations.items())
-            for key, refs in sorted(d.duplicates.items())
-        ),
-        unmapped=notes(lambda i: (i.source_id, i.ref) in unmapped),
-        vanished=notes(lambda i: i.vanished),
-        failed=notes(lambda i: i.status is ItemStatus.FAILED, lambda i: i.reason or ""),
-        title_mismatches=notes(
-            lambda i: not i.vanished
-            and i.printed_number is not None
-            and (n := title_number(i.title)) is not None
-            and n != i.printed_number,
-            lambda i: str(title_number(i.title)),
-        ),
-        mixed_parts=tuple(sorted(n for n, splits in split_by_number.items() if len(splits) > 1)),
-        pin_fallbacks=snap.selection.pin_fallbacks,
-        legacy_moved=moved,
-        legacy_unselected=unselected,
     )

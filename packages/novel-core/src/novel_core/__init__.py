@@ -40,12 +40,13 @@ from novel_core.model import (
     Version,
 )
 from novel_core.selection import PinFallback, Selected, SourceId
-from novel_core.store import NovelStore, StoreError
+from novel_core.store import NovelStore
+from novel_core.view import ItemState, NovelView, StoreError
 
 __all__ = [
     "AlignmentDiff", "AlignmentRules", "Block", "BuildPlan", "ChapterKey", "CheckReport", "Duplicate",
-    "Heading", "Image", "IndexDiff", "Inserted", "ItemNote", "ItemRef", "ItemStatus", "KeyRange", "Kind",
-    "Moved", "NewVersion", "Note", "NovelMeta", "NovelStore", "OutputKind", "OutputRow", "Paragraph",
+    "Heading", "Image", "IndexDiff", "Inserted", "ItemNote", "ItemState", "ItemRef", "ItemStatus", "KeyRange", "Kind",
+    "Moved", "NewVersion", "Note", "NovelMeta", "NovelStore", "NovelView", "OutputKind", "OutputRow", "Paragraph",
     "PinFallback", "PutResult", "RangeOverride", "RawChapter", "Run", "Selected", "Separator", "SourceId",
     "SourceInfo", "SourceItem", "SourceSpec", "StoreError", "System", "Unchanged", "Version", "VolumeRow",
     "chapter_heading", "parse_printed", "title_number", "url_ref",
