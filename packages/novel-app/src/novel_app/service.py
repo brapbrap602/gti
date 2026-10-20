@@ -41,9 +41,11 @@ from novel_translate.budget import Budget
 from novel_translate.glossary import Category, Edit, GlossaryError, Status, Term
 from novel_translate.models import ModelFactory, OutOfCredit, Price, PriceUnavailable
 from novel_translate.phase_a import Estimate, GlossaryOptions, build_glossary, estimate_glossary
+from novel_translate.tstore import DB_NAME as TRANSLATE_DB
 from novel_translate.tstore import TranslateStore
 
 from novel_app import deploy, pages, report
+from novel_app.glossary_page import GlossaryPage, TermRow, glossary_page, term_row
 from novel_app.jobs import SITE, JobPanel, JobRow, JobRunner, JobState, Outcome, Work
 from novel_app.library import (
     audio_dir,
@@ -492,8 +494,11 @@ class Service:
 
     # -- glossary ------------------------------------------------------------
 
-    def _glossary_build(self, novel: str, model: str, cap: float = DEFAULT_CAP, revote: bool = False, workers: int = 4):
+    def _glossary_build(
+        self, novel: str, model: str, cap: float | str = DEFAULT_CAP, revote: bool = False, workers: int | str = 4
+    ):
         options = self._glossary_options(novel, model, cap, workers, revote)
+        model, cap = options.model, float(cap)
         factory = self._translator()
         price = _price(factory, model)
 
@@ -526,6 +531,37 @@ class Service:
         with self._tstore(novel) as ts:
             return ts.entries(status, category, search)
 
+    def glossary_page(
+        self, novel: str, tab: str = "review", search: str = "", category: Category | None = None
+    ) -> GlossaryPage:
+        row = self._row(novel, self.jobs(limit=50))
+        try:
+            self._require_raws(novel)
+            self._translator()
+            blocked = None
+        except UserError as e:
+            blocked = str(e)
+        with self._tstore(novel) as ts:
+            return glossary_page(novel, row.title, ts, tab, search, category, blocked, row.job)
+
+    def glossary_counts(self, novel: str) -> dict[Status, int] | None:
+        """Terms per status, for the novel page; None when the novel has no raws to translate."""
+        row = self._read(novel)[1]
+        if not row.numbers.get(Kind.RAW_ZH):
+            return None
+        folder = self._require(novel)
+        if not (folder / TRANSLATE_DB).exists():
+            return {}
+        with TranslateStore.open(folder) as ts:
+            return ts.counts()
+
+    def glossary_row(self, novel: str, term_id: int) -> TermRow:
+        with self._tstore(novel) as ts:
+            row = term_row(ts, term_id)
+        if row is None:
+            raise UserError(f"no term {term_id}")
+        return row
+
     def glossary_edit(self, novel: str, edits: Sequence[Edit]) -> int:
         """Apply the user's glossary edits together; returns the glossary's new revision."""
         with self._tstore(novel) as ts:
@@ -535,16 +571,22 @@ class Service:
                 raise UserError(str(e)) from e
 
     def _glossary_options(
-        self, novel: str, model: str, cap: float = DEFAULT_CAP, workers: int = 4, revote: bool = False
+        self, novel: str, model: str, cap: float | str = DEFAULT_CAP, workers: int | str = 4, revote: bool = False
     ) -> GlossaryOptions:
+        """Checks a glossary pass's arguments (web forms pass numbers as text)."""
+        self._require_raws(novel)
+        if not model.strip():
+            raise UserError("name an OpenRouter model, like google/gemini-2.5-flash-lite")
+        if _number(float, cap, "the cap") <= 0:
+            raise UserError("the cap must be more than $0")
+        if (workers := _number(int, workers, "workers")) < 1:
+            raise UserError("workers must be at least 1")
+        return GlossaryOptions(model.strip(), workers, revote)
+
+    def _require_raws(self, novel: str) -> None:
         with self._store(novel) as store:
             if not any(s.spec.kind is Kind.RAW_ZH for s in store.sources()):
                 raise UserError(f"{novel} has no Chinese raws")
-        if cap <= 0:
-            raise UserError("the cap must be more than $0")
-        if workers < 1:
-            raise UserError("workers must be at least 1")
-        return GlossaryOptions(model, workers, revote)
 
     @contextmanager
     def _tstore(self, novel: str) -> Iterator[TranslateStore]:
@@ -591,6 +633,13 @@ def _stat(path: Path):
         return path.stat()
     except FileNotFoundError:
         return None
+
+
+def _number[N](kind: type[N], text: N | str, name: str) -> N:
+    try:
+        return kind(text)
+    except ValueError as e:
+        raise UserError(f"{name}: {text!r} is not a number") from e
 
 
 def _price(factory: ModelFactory, model: str) -> Price:

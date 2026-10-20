@@ -217,6 +217,21 @@ class TranslateStore:
             rows = conn.execute(sa.select(_candidate).where(_candidate.c.term_id == term_id))
             return tuple(sorted((Candidate(r.en, r.votes, r.origin) for r in rows), key=lambda c: (-c.votes, c.en)))
 
+    def counts(self) -> dict[Status, int]:
+        """How many terms have each status (statuses with none left out)."""
+        with self._engine.connect() as conn:
+            rows = conn.execute(sa.select(_term.c.status, sa.func.count()).group_by(_term.c.status))
+            return {Status(status): n for status, n in rows}
+
+    def evidence(self, term_ids: Sequence[int]) -> dict[int, tuple[tuple[Candidate, ...], tuple[str, ...]]]:
+        """For each term: its candidates (most voted first) and the raw snippets it was seen in."""
+        with self._engine.connect() as conn:
+            candidates = _load_candidates(conn, term_ids)
+            rows = conn.execute(sa.select(_term.c.id, _term.c.snippets_json).where(_term.c.id.in_(term_ids)))
+            snippets = {r.id: tuple(json.loads(r.snippets_json)) for r in rows}
+        ranked = {t: tuple(sorted(cs, key=lambda c: (-c.votes, c.en))) for t, cs in candidates.items()}
+        return {t: (ranked.get(t, ()), snippets.get(t, ())) for t in term_ids}
+
     def snippets(self, term_id: int) -> tuple[str, ...]:
         with self._engine.connect() as conn:
             raw = conn.execute(sa.select(_term.c.snippets_json).where(_term.c.id == term_id)).scalar()
@@ -424,9 +439,10 @@ def _add_votes(conn: sa.Connection, term_id: int, origin: str, renderings: Itera
             conn.execute(_candidate.insert().values(term_id=term_id, en=en, origin=origin, votes=1, examples_json="[]"))
 
 
-def _load_candidates(conn: sa.Connection) -> dict[int, list[Candidate]]:
+def _load_candidates(conn: sa.Connection, term_ids: Sequence[int] | None = None) -> dict[int, list[Candidate]]:
     out: dict[int, list[Candidate]] = defaultdict(list)
-    for r in conn.execute(sa.select(_candidate)):
+    query = sa.select(_candidate) if term_ids is None else sa.select(_candidate).where(_candidate.c.term_id.in_(term_ids))
+    for r in conn.execute(query):
         out[r.term_id].append(Candidate(r.en, r.votes, r.origin))
     return out
 

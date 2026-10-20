@@ -12,6 +12,10 @@
     <ul class="outputs inline-list">{% for o in r.outputs %}<li>{{ o.kind }}: {{ staleness(o) }}</li>{% endfor %}</ul>
 </div>
 {{ busy_reason(r.job) }}
+{% if glossary is not none %}
+<p class="glossary-link"><a href="/novels/{{ r.slug }}/glossary">Glossary</a>
+    <span class="muted">{% if glossary %}{% for status, n in glossary | dictsort %}{{ n }} {{ status | replace("_", " ") }}{% if not loop.last %} · {% endif %}{% endfor %}{% else %}no entries yet{% endif %}</span></p>
+{% endif %}
 
 <section id="sources" aria-labelledby="sources-heading">
     <h2 id="sources-heading">Sources</h2>
