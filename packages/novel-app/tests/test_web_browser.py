@@ -98,3 +98,26 @@ def test_expanded_recent_jobs_stay_expanded_across_live_updates(page, app_url, s
 
     assert page.js("document.getElementById('recent-jobs').checkVisibility()")
     assert page.js("document.querySelector('.recent-toggle').getAttribute('aria-expanded')") == "true"
+
+
+def test_compare_jump_stays_in_view_when_the_page_reloads(page, app_url, service, two_texts):
+    filler = tuple(f"Same paragraph {i}, long enough to wrap on a phone screen twice over." for i in range(40))
+    two_texts("d", {"Chapter 1": (*filler, "He ran fast.", *filler)},
+              {"Chapter 1": (*filler, "He ran quickly.", *filler)})
+    page.goto(app_url + "/novels/d/compare?number=1")
+    in_view = "(() => { const t = document.getElementById('d1-l').getBoundingClientRect().top;" \
+              " return t >= 0 && t < innerHeight; })()"
+
+    page.click('.diff-summary a[href="#d1-l"]')
+    page.frame()
+    assert page.js(in_view)
+
+    page.js("document.getElementById('main').dataset.before = 'reload'")
+    board = service.runner.board
+    job = board.claim("other", "sync", {})  # a job starting makes the page reload its main region
+    page.wait_for("document.getElementById('jobs').textContent.includes('other')")
+    board.finish(job, JobState.DONE)
+    page.wait_for("!document.getElementById('main').dataset.before")  # main was swapped
+    page.js("new Promise(r => setTimeout(r, 1500))")  # past the reload that follows the job's end
+
+    assert page.js(in_view)

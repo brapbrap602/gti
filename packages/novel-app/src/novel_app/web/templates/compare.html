@@ -23,6 +23,15 @@
     {% endfor %}
     <button type="submit">Show</button>
 </form>
+{% if c.left and c.right %}
+<p class="diff-summary" id="differences">
+{% if not c.diff %}Raw text: no diff.
+{% elif not c.diff.changes %}Identical text.
+{% else %}{{ c.diff.changes }} of {{ c.diff.total }} paragraphs differ · jump:
+    {% for g in range(1, [c.diff.groups, 30] | min + 1) %}<a href="#d{{ g }}-l">{{ g }}</a> {% endfor %}{% if c.diff.groups > 30 %}…{% endif %}
+{% endif %}
+</p>
+{% endif %}
 <div class="compare">
     {% for text in (c.left, c.right) %}
     <article class="compare-side" aria-label="{% if text %}source {{ text.source.id }}{% else %}no second source{% endif %}">
@@ -43,9 +52,9 @@
             </form>
             {% endif %}
         </header>
-        {% for heading, body in text.chapters %}
-        <h3 class="chapter">{{ heading }}</h3>
-        <div class="compare-text">{{ body }}</div>
+        {% for part in text.chapters %}
+        <h3 class="chapter">{{ part.heading }}</h3>
+        <div class="compare-text">{{ part.body }}</div>
         {% endfor %}
         {% else %}
         <p class="muted">Only one source has this chapter.</p>
