@@ -310,3 +310,30 @@ def test_hidden_attribute_always_hides():
     """Reader controls are rendered `hidden` until site.js shows them; author CSS must not override that."""
     css = resources.files("novel_publish").joinpath("static/style.css").read_text(encoding="utf-8")
     assert re.search(r"\[hidden\]\s*\{\s*display:\s*none\s*!important", css)
+
+
+def test_page_opens_on_chapter_text_with_chapters_in_a_dialog(stores, site):
+    store = stores("n")
+    add_chapters(store, add_source(store, "a"), chapters(3) + ["Chapter 51"])
+
+    build_site({"n": store}, site)
+
+    html = read(site, "n", "1-50.html")
+    outside_noscript = re.sub(r"<noscript>.*?</noscript>", "", html, flags=re.S)
+    assert '<nav class="toc"' not in outside_noscript and '<nav class="toc"' in html
+    assert 'class="library-header"' not in html
+    dialog = re.search(r'<dialog id="chapters".*?</dialog>', html, re.S).group(0)
+    assert re.findall(r'<li><a href="#(c\d+)">', dialog) == ["c1", "c2", "c3"]
+    assert html.count('rel="next"') == 2  # the dialog's page links and the one page nav, after the text
+    assert html.index('class="page-nav"') > html.index("</main>")
+
+
+def test_reader_controls_start_hidden(stores, site):
+    store = stores("n")
+    add_chapters(store, add_source(store, "a"), chapters(2))
+
+    build_site({"n": store}, site)
+
+    html = read(site, "n", "1-50.html")
+    assert re.search(r'<header class="reader-bar" hidden', html)
+    assert re.search(r'<form class="goto" hidden', html)
