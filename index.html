@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <script>
+    // Text size and theme before first paint. site.js changes them through readerSettings.apply.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35], THEMES = ['system', 'light', 'dark'];
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: THEMES.indexOf(s.theme) >= 0 ? s.theme : 'dark'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="assets/style.css?v=f6274d5c257a">
+    <script src="assets/site.js?v=f6274d5c257a" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="library-header">
+    <h1>My Library</h1>
+</header>
+<main class="book-list">
+    <section class="book-card" data-slug="beyond-the-timescape" data-toc="novels/beyond-the-timescape/toc.json">
+        <h2 class="book-title">Beyond The Timescape</h2>
+        <p class="book-meta">Er Gen</p>
+        <p class="book-meta">1441 chapters</p>
+        <a class="continue" hidden>Continue</a>
+        <form class="goto" hidden>
+            <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+            <button>Go</button>
+            <p class="goto-status" role="status"></p>
+        </form>
+        <details class="all-chapters">
+            <summary>All chapters (28 pages)</summary>
+            <nav class="book-parts" aria-label="Beyond The Timescape chapters">
+                <a class="book-part-link" href="novels/beyond-the-timescape/1-50.html">Chs 1–50</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/51-100.html">Chs 51–100</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/101-150.html">Chs 101–150</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/151-200.html">Chs 151–200</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/201-250.html">Chs 201–250</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/251-300.html">Chs 251–300</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/301-350.html">Chs 301–350</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/351-400.html">Chs 351–400</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/401-450.html">Chs 401–450</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/451-500.html">Chs 451–500 pt 2</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/501-550.html">Chs 501 pt 1–550</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/551-600.html">Chs 551 pt 1–600</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/601-650.html">Chs 601–650</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/651-700.html">Chs 651 pt 1–700</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/701-750.html">Chs 701 pt 1–750</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/751-800.html">Chs 751–800</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/801-850.html">Chs 801–850</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/851-900.html">Chs 851–900</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/901-950.html">Chs 901–950</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/951-1000.html">Chs 951–1000</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/1001-1050.html">Chs 1001–1050</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/1051-1100.html">Chs 1051–1100</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/1101-1150.html">Chs 1101–1150</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/1151-1200.html">Chs 1151–1200</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/1201-1250.html">Chs 1201–1250</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/1251-1300.html">Chs 1251–1300</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/1301-1350.html">Chs 1301–1350</a>
+                <a class="book-part-link" href="novels/beyond-the-timescape/1351-1400.html">Chs 1351–1354</a>
+            </nav>
+        </details>
+    </section>
+    <section class="book-card" data-slug="cultivation-chat-group" data-toc="novels/cultivation-chat-group/toc.json">
+        <h2 class="book-title">Cultivation Chat Group</h2>
+        <p class="book-meta">3165 chapters</p>
+        <a class="continue" hidden>Continue</a>
+        <form class="goto" hidden>
+            <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+            <button>Go</button>
+            <p class="goto-status" role="status"></p>
+        </form>
+        <details class="all-chapters">
+            <summary>All chapters (64 pages)</summary>
+            <nav class="book-parts" aria-label="Cultivation Chat Group chapters">
+                <a class="book-part-link" href="novels/cultivation-chat-group/1-50.html">Chs 1–50</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/51-100.html">Chs 51–100</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/101-150.html">Chs 101–150</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/151-200.html">Chs 151–200</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/201-250.html">Chs 201–250</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/251-300.html">Chs 251–300</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/301-350.html">Chs 301–350</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/351-400.html">Chs 351–400</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/401-450.html">Chs 401–450</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/451-500.html">Chs 451–500</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/501-550.html">Chs 501–550</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/551-600.html">Chs 551–600</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/601-650.html">Chs 601–650</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/651-700.html">Chs 651–700</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/701-750.html">Chs 701–750</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/751-800.html">Chs 751–800</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/801-850.html">Chs 801–850</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/851-900.html">Chs 851–900</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/901-950.html">Chs 901–950</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/951-1000.html">Chs 951–1000</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1001-1050.html">Chs 1001–1050</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1051-1100.html">Chs 1051–1100</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1101-1150.html">Chs 1101–1150</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1151-1200.html">Chs 1151–1200</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1201-1250.html">Chs 1201–1250</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1251-1300.html">Chs 1251–1300</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1301-1350.html">Chs 1301–1350</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1351-1400.html">Chs 1351–1400</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1401-1450.html">Chs 1401–1450</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1451-1500.html">Chs 1451–1500</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1501-1550.html">Chs 1501–1550</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1551-1600.html">Chs 1551–1600</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1601-1650.html">Chs 1601–1650</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1651-1700.html">Chs 1651–1700</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1701-1750.html">Chs 1701–1750</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1751-1800.html">Chs 1751–1800</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1801-1850.html">Chs 1801–1850</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1851-1900.html">Chs 1851–1900</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1901-1950.html">Chs 1901–1950</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/1951-2000.html">Chs 1951–2000</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2001-2050.html">Chs 2001–2050</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2051-2100.html">Chs 2051–2100</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2101-2150.html">Chs 2101–2150</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2151-2200.html">Chs 2151–2200</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2201-2250.html">Chs 2201–2250</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2251-2300.html">Chs 2251–2300</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2301-2350.html">Chs 2301–2350</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2351-2400.html">Chs 2351–2400</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2401-2450.html">Chs 2401–2450</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2451-2500.html">Chs 2451–2500</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2501-2550.html">Chs 2501–2550</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2551-2600.html">Chs 2551–2600</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2601-2650.html">Chs 2601–2650</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2651-2700.html">Chs 2651–2700</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2701-2750.html">Chs 2701–2750</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2751-2800.html">Chs 2751–2800</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2801-2850.html">Chs 2801–2850</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2851-2900.html">Chs 2851–2900</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2901-2950.html">Chs 2901–2950</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/2951-3000.html">Chs 2951–3000</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/3001-3050.html">Chs 3001–3050</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/3051-3100.html">Chs 3051–3100</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/3101-3150.html">Chs 3101–3150</a>
+                <a class="book-part-link" href="novels/cultivation-chat-group/3151-3200.html">Chs 3151–3165</a>
+            </nav>
+        </details>
+    </section>
+    <section class="book-card" data-slug="my-golden-core" data-toc="novels/my-golden-core/toc.json">
+        <h2 class="book-title">My Golden Core</h2>
+        <p class="book-meta">636 chapters</p>
+        <a class="continue" hidden>Continue</a>
+        <form class="goto" hidden>
+            <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+            <button>Go</button>
+            <p class="goto-status" role="status"></p>
+        </form>
+        <details class="all-chapters">
+            <summary>All chapters (13 pages)</summary>
+            <nav class="book-parts" aria-label="My Golden Core chapters">
+                <a class="book-part-link" href="novels/my-golden-core/1-50.html">Chs 1–50</a>
+                <a class="book-part-link" href="novels/my-golden-core/51-100.html">Chs 51–100</a>
+                <a class="book-part-link" href="novels/my-golden-core/101-150.html">Chs 101–150</a>
+                <a class="book-part-link" href="novels/my-golden-core/151-200.html">Chs 151–200</a>
+                <a class="book-part-link" href="novels/my-golden-core/201-250.html">Chs 201–250</a>
+                <a class="book-part-link" href="novels/my-golden-core/251-300.html">Chs 251–300</a>
+                <a class="book-part-link" href="novels/my-golden-core/301-350.html">Chs 301–350</a>
+                <a class="book-part-link" href="novels/my-golden-core/351-400.html">Chs 351–400</a>
+                <a class="book-part-link" href="novels/my-golden-core/401-450.html">Chs 401–450</a>
+                <a class="book-part-link" href="novels/my-golden-core/451-500.html">Chs 451–500</a>
+                <a class="book-part-link" href="novels/my-golden-core/501-550.html">Chs 501–550</a>
+                <a class="book-part-link" href="novels/my-golden-core/551-600.html">Chs 551–600</a>
+                <a class="book-part-link" href="novels/my-golden-core/601-650.html">Chs 601–636</a>
+            </nav>
+        </details>
+    </section>
+    <section class="book-card" data-slug="my-longevity-simulation" data-toc="novels/my-longevity-simulation/toc.json">
+        <h2 class="book-title">My Longevity Simulation</h2>
+        <p class="book-meta">1779 chapters</p>
+        <a class="continue" hidden>Continue</a>
+        <form class="goto" hidden>
+            <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+            <button>Go</button>
+            <p class="goto-status" role="status"></p>
+        </form>
+        <details class="all-chapters">
+            <summary>All chapters (36 pages)</summary>
+            <nav class="book-parts" aria-label="My Longevity Simulation chapters">
+                <a class="book-part-link" href="novels/my-longevity-simulation/1-50.html">Chs 1–50</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/51-100.html">Chs 51–100</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/101-150.html">Chs 101–150</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/151-200.html">Chs 151–200</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/201-250.html">Chs 201–250</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/251-300.html">Chs 251–300</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/301-350.html">Chs 301–350</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/351-400.html">Chs 351–400</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/401-450.html">Chs 401–450</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/451-500.html">Chs 451–500</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/501-550.html">Chs 501–550</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/551-600.html">Chs 551–600</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/601-650.html">Chs 601–650</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/651-700.html">Chs 651–700</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/701-750.html">Chs 701–750</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/751-800.html">Chs 751–800</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/801-850.html">Chs 801–850</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/851-900.html">Chs 851–900</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/901-950.html">Chs 901–950</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/951-1000.html">Chs 951–1000</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1001-1050.html">Chs 1001–1050</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1051-1100.html">Chs 1051–1100</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1101-1150.html">Chs 1101–1150</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1151-1200.html">Chs 1151–1200</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1201-1250.html">Chs 1201–1250</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1251-1300.html">Chs 1251–1300</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1301-1350.html">Chs 1301–1350</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1351-1400.html">Chs 1351–1400</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1401-1450.html">Chs 1401–1450</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1451-1500.html">Chs 1451–1500</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1501-1550.html">Chs 1501–1550</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1551-1600.html">Chs 1551–1600</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1601-1650.html">Chs 1601–1650</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1651-1700.html">Chs 1651–1700</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1701-1750.html">Chs 1701–1750</a>
+                <a class="book-part-link" href="novels/my-longevity-simulation/1751-1800.html">Chs 1751–1781</a>
+            </nav>
+        </details>
+    </section>
+    <section class="book-card" data-slug="return-of-the-mount-hua-sect" data-toc="novels/return-of-the-mount-hua-sect/toc.json">
+        <h2 class="book-title">Return of the Mount Hua Sect</h2>
+        <p class="book-meta">1414 chapters</p>
+        <a class="continue" hidden>Continue</a>
+        <form class="goto" hidden>
+            <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+            <button>Go</button>
+            <p class="goto-status" role="status"></p>
+        </form>
+        <details class="all-chapters">
+            <summary>All chapters (29 pages)</summary>
+            <nav class="book-parts" aria-label="Return of the Mount Hua Sect chapters">
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/1-50.html">Chs 1–50</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/51-100.html">Chs 51–100</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/101-150.html">Chs 101–150</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/151-200.html">Chs 151–200</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/201-250.html">Chs 201–250</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/251-300.html">Chs 251–300</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/301-350.html">Chs 301–350</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/351-400.html">Chs 351–400</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/401-450.html">Chs 401–450</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/451-500.html">Chs 451–500</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/501-550.html">Chs 501–550</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/551-600.html">Chs 551–600</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/601-650.html">Chs 601–650</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/651-700.html">Chs 651–700</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/701-750.html">Chs 701–750</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/751-800.html">Chs 751–800</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/801-850.html">Chs 801–850</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/851-900.html">Chs 851–900</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/901-950.html">Chs 901–950</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/951-1000.html">Chs 951–1000</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/1001-1050.html">Chs 1001–1050</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/1051-1100.html">Chs 1051–1100</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/1101-1150.html">Chs 1101–1150</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/1151-1200.html">Chs 1151–1200</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/1201-1250.html">Chs 1201–1250</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/1251-1300.html">Chs 1251–1300</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/1301-1350.html">Chs 1301–1350</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/1351-1400.html">Chs 1351–1400</a>
+                <a class="book-part-link" href="novels/return-of-the-mount-hua-sect/1401-1450.html">Chs 1401–1414</a>
+            </nav>
+        </details>
+    </section>
+    <section class="book-card" data-slug="surviving-the-game-as-a-barbarian" data-toc="novels/surviving-the-game-as-a-barbarian/toc.json">
+        <h2 class="book-title">Surviving the Game as a Barbarian</h2>
+        <p class="book-meta">815 chapters</p>
+        <a class="continue" hidden>Continue</a>
+        <form class="goto" hidden>
+            <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+            <button>Go</button>
+            <p class="goto-status" role="status"></p>
+        </form>
+        <details class="all-chapters">
+            <summary>All chapters (17 pages)</summary>
+            <nav class="book-parts" aria-label="Surviving the Game as a Barbarian chapters">
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/1-50.html">Chs 1–50</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/51-100.html">Chs 51–100</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/101-150.html">Chs 101–150</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/151-200.html">Chs 151–200</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/201-250.html">Chs 201–250</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/251-300.html">Chs 251–300</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/301-350.html">Chs 301–350</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/351-400.html">Chs 351–400</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/401-450.html">Chs 401–450</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/451-500.html">Chs 451–500</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/501-550.html">Chs 501–550</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/551-600.html">Chs 551–600</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/601-650.html">Chs 601–650</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/651-700.html">Chs 651–700</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/701-750.html">Chs 701–750</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/751-800.html">Chs 751–800</a>
+                <a class="book-part-link" href="novels/surviving-the-game-as-a-barbarian/801-850.html">Chs 801–815</a>
+            </nav>
+        </details>
+    </section>
+    <section class="book-card">
+        <h2 class="book-title">Transcendental Mechanic</h2>
+        <p class="book-meta"><span class="badge">raw only</span> not published until translated</p>
+    </section>
+    <section class="book-card" data-slug="who-let-him-cultivate" data-toc="novels/who-let-him-cultivate/toc.json">
+        <h2 class="book-title">Who Let Him Cultivate</h2>
+        <p class="book-meta">1363 chapters</p>
+        <a class="continue" hidden>Continue</a>
+        <form class="goto" hidden>
+            <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+            <button>Go</button>
+            <p class="goto-status" role="status"></p>
+        </form>
+        <details class="all-chapters">
+            <summary>All chapters (28 pages)</summary>
+            <nav class="book-parts" aria-label="Who Let Him Cultivate chapters">
+                <a class="book-part-link" href="novels/who-let-him-cultivate/1-50.html">Chs 1–50</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/51-100.html">Chs 51–100</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/101-150.html">Chs 101–150</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/151-200.html">Chs 151–200</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/201-250.html">Chs 201–250</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/251-300.html">Chs 251–300</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/301-350.html">Chs 301–350</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/351-400.html">Chs 351–400</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/401-450.html">Chs 401–450</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/451-500.html">Chs 451–500</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/501-550.html">Chs 501–550</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/551-600.html">Chs 551–600</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/601-650.html">Chs 601–650</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/651-700.html">Chs 651–700</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/701-750.html">Chs 701–750</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/751-800.html">Chs 751–800</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/801-850.html">Chs 801–850</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/851-900.html">Chs 851–900</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/901-950.html">Chs 901–950</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/951-1000.html">Chs 951–1000</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/1001-1050.html">Chs 1001–1050</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/1051-1100.html">Chs 1051–1100</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/1101-1150.html">Chs 1101–1150</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/1151-1200.html">Chs 1151–1200</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/1201-1250.html">Chs 1201–1250</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/1251-1300.html">Chs 1251–1300</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/1301-1350.html">Chs 1301–1350</a>
+                <a class="book-part-link" href="novels/who-let-him-cultivate/1351-1400.html">Chs 1351–1364</a>
+            </nav>
+        </details>
+    </section>
+</main>
+</div>
+</body>
+</html>
