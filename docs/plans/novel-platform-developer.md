@@ -365,7 +365,7 @@ Definition of done: all non-live tests are green on CI; walkthroughs 1–5 are e
 - Translation/glossary project. The IR slot is `my-translation` with provenance.
 - Scheduled sync, text editing in the UI, private hosting, git history rewrite, `book.mp3`.
 - Open technical contracts: lncrawl JSON ZIP field mapping (resolved in G1); LNReader harness I/O schema (G2); novel-downloader API surface (G3).
-- Optional, not in v1 unless trivial: trafilatura fallback, FlareSolverr/Byparr sidecar (only if G8 shows curl_cffi is insufficient), `nov audio retag`, import-linter, Ubuntu CI.
+- Optional, not in v1 unless trivial: trafilatura fallback, FlareSolverr/Byparr sidecar (only if G8 shows curl_cffi is insufficient), import-linter, Ubuntu CI.
 
 ## 15. Review log
 
