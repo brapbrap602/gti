@@ -5,7 +5,8 @@ the host fails (skydemonorder). A host the user wrote a decode guide for uses it
 A Chinese raw site novel-downloader has a plugin for goes to it. Then lncrawl, when
 it has a crawler for the host (asking it loads lncrawl's crawler index); failing
 that, web-novel-scraper's shipped decode guide for the host (novelbin, which lncrawl
-lists as down); lncrawl's generic crawler is last.
+lists as down); lncrawl's generic crawler is last. LNReader plugins are never picked
+by host (finding out would mean setting up Node): `--backend lnreader`.
 
 `guides` is the decode guides in force (decode_guide.Guides.load with the user's
 file); left out, only the shipped ones.
@@ -17,14 +18,14 @@ from pathlib import Path
 
 from novel_core import SourceSpec
 
-from novel_sources import decode_guide, lncrawl, noveldl, skydemonorder
+from novel_sources import decode_guide, lncrawl, lnreader, noveldl, skydemonorder
 from novel_sources.decode_guide import Guides
 from novel_sources.fetch import firefox_scraper
 from novel_sources.hosts import site_name
 from novel_sources.sync import Source
 
 CUSTOM = {"skydemonorder": skydemonorder.BACKEND}
-BACKENDS = (lncrawl.BACKEND, noveldl.BACKEND, decode_guide.BACKEND, *CUSTOM.values())
+BACKENDS = (lncrawl.BACKEND, noveldl.BACKEND, decode_guide.BACKEND, lnreader.BACKEND, *CUSTOM.values())
 
 
 def backend_for(url: str, guides: Guides = Guides()) -> str:
@@ -57,6 +58,9 @@ def open_source(spec: SourceSpec, state: Path, guides: Guides = Guides()) -> Ite
         elif spec.backend == noveldl.BACKEND:
             source = noveldl.connect(spec, state)
             stack.callback(source.close)
+        elif spec.backend == lnreader.BACKEND:
+            source = lnreader.connect(spec, state)
+            stack.callback(source.close)
         elif spec.backend == skydemonorder.BACKEND:
             scraper = stack.enter_context(firefox_scraper(spec.url, state))
             source = skydemonorder.SkyDemonOrderSource(spec, scraper)
@@ -76,6 +80,8 @@ def spec_for_url(url: str, lang: str, backend: str | None = None, guides: Guides
         return noveldl.NovelDownloaderSource.spec_for(url)
     if backend == decode_guide.BACKEND:
         return decode_guide.DecodeGuideSource.spec_for(url, lang, guides)
+    if backend == lnreader.BACKEND:
+        return lnreader.LnreaderSource.spec_for(url, lang)
     if backend == lncrawl.BACKEND:
         return lncrawl.LncrawlSource.spec_for(url, lang)
     raise ValueError(f"unknown backend {backend!r}; choose from {list(BACKENDS)}")
