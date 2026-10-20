@@ -48,7 +48,7 @@
 {{ chapter_list() }}
     </nav>
     <form class="goto" hidden data-toc="toc.json">
-        <label>Go to chapter <input type="number" inputmode="numeric" min="0" name="chapter"></label>
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
         <button>Go</button>
         <p class="goto-status" role="status"></p>
     </form>
