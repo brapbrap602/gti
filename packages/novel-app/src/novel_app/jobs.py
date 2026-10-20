@@ -60,6 +60,14 @@ class JobRow:
 
 
 @dataclass(frozen=True)
+class JobPanel:
+    """The jobs drawer: what needs attention, then the rest of the recent jobs."""
+
+    attention: tuple[JobRow, ...]  # active jobs, then unresolved problems; each newest first
+    recent: tuple[JobRow, ...]  # newest first, none of them in attention
+
+
+@dataclass(frozen=True)
 class Outcome:
     """What finished work reports: per-item errors (failed chapters) that did not stop it."""
 
@@ -133,6 +141,7 @@ class JobBoard:
                 CREATE TABLE IF NOT EXISTS lock (
                     target TEXT PRIMARY KEY, job_id INTEGER NOT NULL, pid INTEGER NOT NULL, heartbeat REAL NOT NULL
                 );
+                CREATE INDEX IF NOT EXISTS job_by_pair ON job (target, kind, id);
                 """
             )
         finally:
@@ -222,6 +231,32 @@ class JobBoard:
                 (JobState.QUEUED, JobState.RUNNING, limit),
             ).fetchall()
         return [_row(r) for r in rows]
+
+    def panel(self, recent: int = 10) -> JobPanel:
+        """Active jobs and unresolved problems, then the `recent` newest other jobs.
+
+        A problem is a job that failed, was interrupted, or ended done with item errors.
+        It stays until a later job of the same kind for the same target (args are
+        ignored) ends: a clean run resolves it, and a later problem replaces it, so only
+        the newest problem of a (target, kind) shows. Cancelled and active jobs neither
+        resolve nor replace one.
+        """
+        ended = (JobState.DONE, JobState.FAILED, JobState.INTERRUPTED)
+        with self._connect() as db:
+            active = db.execute(
+                "SELECT * FROM job WHERE state IN (?, ?) ORDER BY id DESC", (JobState.QUEUED, JobState.RUNNING)
+            ).fetchall()
+            problems = db.execute(
+                "SELECT * FROM job AS j WHERE (j.state IN (?, ?) OR (j.state = ? AND j.errors != '[]'))"
+                " AND NOT EXISTS (SELECT 1 FROM job AS k WHERE k.target = j.target AND k.kind = j.kind"
+                " AND k.id > j.id AND k.state IN (?, ?, ?)) ORDER BY j.id DESC",
+                (JobState.FAILED, JobState.INTERRUPTED, JobState.DONE, *ended),
+            ).fetchall()
+            attention = [_row(r) for r in active + problems]
+            shown = {j.id for j in attention}
+            newest = db.execute("SELECT * FROM job ORDER BY id DESC LIMIT ?", (recent + len(shown),)).fetchall()
+        rest = [row for row in map(_row, newest) if row.id not in shown]
+        return JobPanel(tuple(attention), tuple(rest[:recent]))
 
     def job(self, job_id: int) -> JobRow | None:
         with self._connect() as db:

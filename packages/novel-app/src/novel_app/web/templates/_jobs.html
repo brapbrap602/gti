@@ -1,9 +1,5 @@
-{% if not jobs %}
-<p class="muted">No jobs yet.</p>
-{% else %}
-<ol class="job-list">
-{% for j in jobs %}
-    <li class="job job--{{ j.state }}" data-job="{{ j.id }}" data-target="{{ j.target }}">
+{% macro job_item(j, recent=False) %}
+    <li class="job job--{{ j.state }}{% if recent %} job--recent{% endif %}" data-job="{{ j.id }}" data-target="{{ j.target }}">
         <div class="job-head">
             <span class="job-title">{{ job_labels.get(j.kind, j.kind) }} {% if j.target != "_site" %}{{ j.target }}{% endif %}</span>
             <span class="job-state">{{ j.state }}</span>
@@ -38,6 +34,25 @@
             {% endif %}
         </div>
     </li>
+{% endmacro %}
+{% if not job_panel.attention and not job_panel.recent %}
+<p class="muted">No jobs yet.</p>
+{% else %}
+{% if job_panel.attention %}
+<ol class="job-list">
+{% for j in job_panel.attention %}
+{{ job_item(j) }}
 {% endfor %}
 </ol>
+{% else %}
+<p class="muted">Nothing running, no problems.</p>
+{% endif %}
+{% if job_panel.recent %}
+<h3 class="recent-heading"><button type="button" class="recent-toggle" aria-expanded="false" aria-controls="recent-jobs">Recent ({{ job_panel.recent | length }})</button></h3>
+<ol class="job-list job-list--recent" id="recent-jobs">
+{% for j in job_panel.recent %}
+{{ job_item(j, recent=True) }}
+{% endfor %}
+</ol>
+{% endif %}
 {% endif %}

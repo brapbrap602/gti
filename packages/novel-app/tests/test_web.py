@@ -170,9 +170,35 @@ def test_job_events_push_changes_and_starts_and_ends(service):
         return len(polls) > 4
 
     async def collect():
-        render = lambda jobs: "|".join(f"{j.id}:{j.state}" for j in jobs)  # noqa: E731
+        render = lambda panel: "|".join(f"{j.id}:{j.state}" for j in panel.attention + panel.recent)  # noqa: E731
         return [e async for e in job_events(service, render, disconnected, every=0.0)]
 
     events = asyncio.run(collect())
     assert [e.splitlines()[0] for e in events] == ["event: jobs", "event: jobs", "event: active", "event: jobs", "event: active"]
     assert events[1].split("\n") == ["event: jobs", f"data: {claimed[0]}:queued", "", ""]
+
+
+def test_jobs_panel_shows_attention_then_recent(client, service):
+    board = service.runner.board
+
+    def ended(target, state):
+        job_id = board.claim(target, "sync", {})
+        board.finish(job_id, state)
+        return job_id
+
+    running = board.claim("run", "sync", {})
+    board.start(running)
+    failed, interrupted = ended("f", JobState.FAILED), ended("i", JobState.INTERRUPTED)
+    done = [ended(f"d{i}", JobState.DONE) for i in range(12)]
+    cancelled = ended("c", JobState.CANCELLED)
+
+    page = client.get("/").text
+
+    panel = re.search(r'<div id="jobs".*?</aside>', page, re.S).group(0)
+    jobs = re.findall(r'<li class="job job--(\w+)( job--recent)?" data-job="(\d+)"', panel)
+    assert [(int(i), bool(r)) for _, r, i in jobs] == [
+        (running, False), (interrupted, False), (failed, False),
+        (cancelled, True), *((d, True) for d in reversed(done[3:])),
+    ]  # fmt: skip
+    assert re.search(r"<h3[^>]*><button[^>]*>Recent \(10\)</button></h3>", panel)
+    board.finish(running, JobState.DONE)

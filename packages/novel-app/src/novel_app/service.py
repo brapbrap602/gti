@@ -37,7 +37,7 @@ from novel_sources.sync import Source, add_source, sync
 from novel_sources.wns import WnsImporter, snapshot_refs
 
 from novel_app import deploy, pages, report
-from novel_app.jobs import SITE, JobRow, JobRunner, JobState, Outcome, Work
+from novel_app.jobs import SITE, JobPanel, JobRow, JobRunner, JobState, Outcome, Work
 from novel_app.library import (
     audio_dir,
     data_dir,
@@ -337,6 +337,10 @@ class Service:
     def jobs(self, limit: int = 20) -> list[JobRow]:
         """Active jobs first, then the most recent."""
         return self.runner.board.jobs(limit)
+
+    def job_panel(self) -> JobPanel:
+        """The jobs drawer: active jobs and unresolved problems, then recent jobs (see JobBoard.panel)."""
+        return self.runner.board.panel()
 
     def job_log(self, job_id: int) -> str:
         path = self.runner.board.log_path(job_id)

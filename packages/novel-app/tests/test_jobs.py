@@ -1,7 +1,7 @@
 import threading
 
 import pytest
-from novel_app.jobs import Cancelled, JobBoard, JobRunner, JobRunning, JobState, Outcome
+from novel_app.jobs import Cancelled, JobBoard, JobPanel, JobRunner, JobRunning, JobState, Outcome
 
 
 class Clock:
@@ -141,3 +141,70 @@ def test_cancelled_raises_from_progress_only(board):
         assert runner.run("a", "sync", {}, work, lambda _l: None)[0] is JobState.DONE
     finally:
         runner.shutdown()
+
+
+def ended(board, target: str, state: JobState, kind: str = "sync", errors: tuple[str, ...] = ()) -> int:
+    job_id = board.claim(target, kind, {})
+    board.start(job_id)
+    board.finish(job_id, state, errors)
+    return job_id
+
+
+def ids(rows) -> list[int]:
+    return [r.id for r in rows]
+
+
+def test_panel_keeps_active_jobs_and_problems_and_folds_the_rest(board):
+    running = board.claim("run", "sync", {})
+    board.start(running)
+    failed = ended(board, "f", JobState.FAILED)
+    interrupted = ended(board, "i", JobState.INTERRUPTED)
+    done = [ended(board, f"d{i}", JobState.DONE) for i in range(12)]
+    cancelled = ended(board, "c", JobState.CANCELLED)
+
+    panel = board.panel()
+
+    assert isinstance(panel, JobPanel)
+    assert ids(panel.attention) == [running, interrupted, failed]
+    assert ids(panel.recent) == [cancelled, *reversed(done[3:])]
+
+
+def test_panel_keeps_an_old_problem_however_many_jobs_follow(board):
+    failed = ended(board, "x", JobState.FAILED)
+    for i in range(25):
+        ended(board, f"other{i}", JobState.DONE)
+
+    assert ids(board.panel().attention) == [failed]
+
+
+def test_a_later_clean_run_resolves_a_problem(board):
+    failed = ended(board, "x", JobState.FAILED)
+    clean = ended(board, "x", JobState.DONE)
+
+    panel = board.panel()
+
+    assert panel.attention == ()
+    assert ids(panel.recent) == [clean, failed]
+
+
+def test_cancelling_or_another_kind_does_not_resolve_a_problem(board):
+    failed = ended(board, "x", JobState.FAILED)
+    ended(board, "x", JobState.CANCELLED)
+    ended(board, "x", JobState.DONE, kind="build-epub")
+
+    assert ids(board.panel().attention) == [failed]
+
+
+def test_only_the_newest_problem_of_a_job_shows(board):
+    ended(board, "x", JobState.FAILED)
+    newer = ended(board, "x", JobState.FAILED)
+
+    assert ids(board.panel().attention) == [newer]
+
+
+def test_a_run_with_item_errors_is_a_problem_and_resolves_nothing(board):
+    partial = ended(board, "x", JobState.DONE, errors=("ch 5: HTTP 500",) * 40)
+    ended(board, "y", JobState.FAILED)
+    partial_y = ended(board, "y", JobState.DONE, errors=("ch 9: HTTP 500",))
+
+    assert ids(board.panel().attention) == [partial_y, partial]
