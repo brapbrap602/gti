@@ -15,6 +15,7 @@ from enum import StrEnum
 from novel_core import Block, Heading, Image, Note, Paragraph, Separator, System
 
 WORD_DIFF_LIMIT = 2_000_000  # len(left) * len(right) above which changed words are not marked
+MARKED_SHARE = 0.5  # a paired block with more of its text changed than this is shown without word marks
 _TOKENS = re.compile(r"\w+|\W+")
 
 
@@ -35,7 +36,7 @@ class Span:
 @dataclass(frozen=True)
 class BlockMark:
     state: Mark
-    spans: tuple[Span, ...] | None = None  # changed words; None unless CHANGED and marked
+    spans: tuple[Span, ...] | None = None  # changed words when CHANGED: () for a rewrite, None if not computed
     group: int | None = None  # None for SAME
 
 
@@ -109,7 +110,25 @@ def _changed_words(a: str, b: str) -> tuple[tuple[Span, ...], tuple[Span, ...]]:
             sa.append(Span(oa[i1], oa[i2]))
         if j1 < j2:
             sb.append(Span(ob[j1], ob[j2]))
-    return tuple(sa), tuple(sb)
+    sa, sb = _joined(a, sa), _joined(b, sb)
+    if _share(a, sa) > MARKED_SHARE or _share(b, sb) > MARKED_SHARE:
+        return (), ()  # a rewrite, not an edit: marking nearly every word only adds noise
+    return sa, sb
+
+
+def _joined(text: str, spans: list[Span]) -> tuple[Span, ...]:
+    """Spans with only whitespace between them become one, so a changed phrase reads as one mark."""
+    out: list[Span] = []
+    for span in spans:
+        if out and not text[out[-1].end:span.start].strip():
+            out[-1] = Span(out[-1].start, span.end)
+        else:
+            out.append(span)
+    return tuple(out)
+
+
+def _share(text: str, spans: tuple[Span, ...]) -> float:
+    return sum(s.end - s.start for s in spans) / len(text) if text else 0.0
 
 
 def _offsets(tokens: Sequence[str]) -> list[int]:

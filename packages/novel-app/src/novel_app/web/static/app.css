@@ -225,12 +225,15 @@ aside.jobs:not(.show-recent) .job-list--recent { display: none; }
   :is(table.library, table.sources-table) :is(th, td) { border-bottom: 0; padding: 0.35rem 0; }
   :is(table.library, table.sources-table) tbody th { font-size: 1.05rem; }
   :is(table.library, table.sources-table) td[data-label] {
-    display: grid;
-    grid-template-columns: 6.5rem minmax(0, 1fr);
-    gap: 0.75rem;
+    position: relative;
+    padding-left: 7.25rem;
+    min-height: 2rem;
   }
   :is(table.library, table.sources-table) td[data-label]::before {
     content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 6.5rem;
     color: var(--muted);
     font-size: 0.85rem;
   }
