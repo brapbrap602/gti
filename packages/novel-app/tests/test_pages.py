@@ -22,7 +22,7 @@ def test_source_label_names_the_site_or_folder(backend, url, short):
     (40, 0, ("site ✓", "fresh")),
     (40, 4, ("site 4 stale", "stale")),
     (0, 40, ("site not built", "missing")),
-    (0, 0, ("site —", "none")),
+    (0, 0, ("site — nothing to build", "none")),
 ])  # fmt: skip
 def test_output_badges(built, stale, badge):
     assert Staleness(OutputKind.SITE, built, stale).badge == badge

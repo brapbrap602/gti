@@ -260,6 +260,18 @@ def test_toc_json_lists_every_page_and_chapter(stores, tmp_path):
     assert one.read_bytes() == two.read_bytes()
 
 
+def test_toc_json_goes_when_a_novel_has_no_pages_left(stores, site):
+    store = stores("n")
+    a = add_source(store, "a")
+    refs = add_chapters(store, a, chapters(2))
+    build_site({"n": store}, site)
+
+    store.set_alignment(a, AlignmentRules(skip=frozenset(refs)))
+    build_site({"n": store}, site)
+
+    assert page_files(site, "n") == [] and not (site / "novels" / "n" / "toc.json").exists()
+
+
 def test_toc_json_goes_with_a_removed_novel(stores, site):
     a, b = stores("a"), stores("b")
     for store in (a, b):

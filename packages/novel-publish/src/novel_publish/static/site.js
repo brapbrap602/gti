@@ -7,7 +7,6 @@
 
     // -- storage --------------------------------------------------------------
 
-    const SETTINGS = 'reader:settings';
     const POSITION = 'reader:pos:'; // + novel slug: {file, anchor, para, label, t}
 
     const storage = {
@@ -302,7 +301,7 @@
         const output = dialog.querySelector('output');
         const smaller = dialog.querySelector('[data-size="-1"]');
         const larger = dialog.querySelector('[data-size="1"]');
-        const { apply, scales, current } = window.readerSettings;
+        const { key, apply, scales, current } = window.readerSettings;
 
         function show(s) {
             output.textContent = Math.round(scales[s.scale] * 100) + '%';
@@ -313,7 +312,7 @@
 
         function change(patch) {
             const s = apply(Object.assign({}, current(), patch));
-            storage.set(SETTINGS, s);
+            storage.set(key, s);
             show(s);
         }
 

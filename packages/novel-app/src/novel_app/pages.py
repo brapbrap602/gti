@@ -81,7 +81,7 @@ class Staleness:
     def badge(self) -> tuple[str, str]:
         """Short text and its state (fresh, stale, missing, none) for the library's outputs cell."""
         if self.built == 0 and self.stale == 0:
-            return f"{self.kind} —", "none"
+            return f"{self.kind} — nothing to build", "none"
         if self.built == 0:
             return f"{self.kind} not built", "missing"
         if self.stale:
@@ -331,21 +331,29 @@ def _marked_parts(
     for heading, blocks in parts:
         html = []
         for block in blocks:
-            html.extend(Markup('<span class="diff-gap" id="d{}-{}"></span>').format(g, side) for g in gaps_at.pop(index, ()))
+            html.extend(_gap(g, side) for g in gaps_at.pop(index, ()))
             mark = marks[index] if marks else BlockMark(Mark.SAME)
             html.append(_marked_block(block, mark, side, mark.group not in targeted))
             targeted.add(mark.group)
             index += 1
         out.append([heading, html])
     for groups in gaps_at.values():  # groups after the last block
-        out[-1][1].extend(Markup('<span class="diff-gap" id="d{}-{}"></span>').format(g, side) for g in groups)
+        out[-1][1].extend(_gap(g, side) for g in groups)
     return tuple(Part(heading, Markup("\n").join(html)) for heading, html in out)
+
+
+def _target_id(group: int, side: str) -> str:
+    return f"d{group}-{side}"
+
+
+def _gap(group: int, side: str) -> Markup:
+    return Markup('<span class="diff-gap" id="{}"></span>').format(_target_id(group, side))
 
 
 def _marked_block(block: Block, mark: BlockMark, side: str, target: bool) -> Markup:
     if mark.state is Mark.SAME:
         return render.block_html(block, remote_images=False)
-    id_attr = Markup(' id="d{}-{}"').format(mark.group, side) if target else Markup("")
+    id_attr = Markup(' id="{}"').format(_target_id(mark.group, side)) if target else Markup("")
     if mark.state is Mark.ONLY:
         return Markup('<div class="diff diff--only"{}>{}</div>').format(id_attr, render.block_html(block, remote_images=False))
     text = normalised(block)
