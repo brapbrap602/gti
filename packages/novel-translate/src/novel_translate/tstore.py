@@ -36,6 +36,8 @@ from novel_translate.glossary import (
     resolve,
 )
 from novel_translate.matching import Matcher
+from novel_translate.models import Charged
+from novel_translate.validate import Norms
 
 SCHEMA_VERSION = 1
 DB_NAME = "translate.sqlite"
@@ -49,6 +51,27 @@ class StoredSummary:
     raw_hash: str
     model: str
     text: str
+
+
+@dataclass(frozen=True)
+class LedgerRow:
+    """One chapter's translation outcome for one setup: the truth for staleness, cost and flags."""
+
+    ref: str
+    input_key: str
+    content_hash: str | None
+    outcome: str  # ok | failed
+    reason: str | None
+    cost: float  # every attempt for this outcome
+    attempts: int
+    soft_flags: tuple[str, ...]
+    at: str = ""
+
+
+@dataclass(frozen=True)
+class SetupSpend:
+    cost: float
+    requests: int
 
 _md = sa.MetaData()
 _meta = sa.Table(
@@ -87,6 +110,33 @@ _candidate = sa.Table(
     sa.Column("origin", sa.String, primary_key=True),  # llm | official-en | mtl-glossary | side-channel
     sa.Column("votes", sa.Integer, nullable=False),
     sa.Column("examples_json", sa.String, nullable=False),
+)  # fmt: skip
+_spend = sa.Table(
+    "spend", _md,
+    sa.Column("id", sa.Integer, primary_key=True),
+    sa.Column("setup_url", sa.String, nullable=False),
+    sa.Column("ref", sa.String, nullable=False),
+    sa.Column("cost", sa.Float, nullable=False),
+    sa.Column("input_tokens", sa.Integer, nullable=False),
+    sa.Column("output_tokens", sa.Integer, nullable=False),
+    sa.Column("generation_ids_json", sa.String, nullable=False),
+    sa.Column("requests", sa.Integer, nullable=False),
+    sa.Column("at", sa.String, nullable=False),
+)  # fmt: skip
+_ledger = sa.Table(
+    "ledger", _md,
+    sa.Column("id", sa.Integer, primary_key=True),
+    sa.Column("setup_url", sa.String, nullable=False),
+    sa.Column("ref", sa.String, nullable=False),
+    sa.Column("input_key", sa.String, nullable=False),
+    sa.Column("content_hash", sa.String),  # of the stored version; None when it failed
+    sa.Column("outcome", sa.String, nullable=False),  # ok | failed
+    sa.Column("reason", sa.String),
+    sa.Column("cost", sa.Float, nullable=False),
+    sa.Column("attempts", sa.Integer, nullable=False),
+    sa.Column("soft_flags_json", sa.String, nullable=False),
+    sa.Column("at", sa.String, nullable=False),
+    sa.Index("ledger_by_ref", "setup_url", "ref", "id"),
 )  # fmt: skip
 _summary = sa.Table(
     "summary", _md,
@@ -368,6 +418,64 @@ class TranslateStore:
                 decided_counts[decided.status] += 1
             _bump(conn)
         return dict(decided_counts)
+
+    # -- translation ledger and spend --------------------------------------
+
+    def record_spend(self, setup_url: str, ref: str, charged: Charged) -> None:
+        """Every paid attempt, written before anything else about it."""
+        with self._engine.begin() as conn:
+            conn.execute(
+                _spend.insert().values(
+                    setup_url=setup_url, ref=ref, cost=charged.cost, input_tokens=charged.input_tokens,
+                    output_tokens=charged.output_tokens, generation_ids_json=json.dumps(list(charged.generation_ids)),
+                    requests=charged.requests, at=self._now(),
+                )
+            )  # fmt: skip
+
+    def record_outcome(self, setup_url: str, row: LedgerRow) -> None:
+        with self._engine.begin() as conn:
+            conn.execute(
+                _ledger.insert().values(
+                    setup_url=setup_url, ref=row.ref, input_key=row.input_key, content_hash=row.content_hash,
+                    outcome=row.outcome, reason=row.reason, cost=row.cost, attempts=row.attempts,
+                    soft_flags_json=json.dumps(list(row.soft_flags), ensure_ascii=False), at=self._now(),
+                )
+            )  # fmt: skip
+
+    def latest(self, setup_url: str) -> dict[str, LedgerRow]:
+        """Each ref's latest outcome for the setup."""
+        with self._engine.connect() as conn:
+            rows = conn.execute(sa.select(_ledger).where(_ledger.c.setup_url == setup_url).order_by(_ledger.c.id))
+            return {
+                r.ref: LedgerRow(
+                    r.ref, r.input_key, r.content_hash, r.outcome, r.reason, r.cost, r.attempts,
+                    tuple(json.loads(r.soft_flags_json)), r.at,
+                )
+                for r in rows
+            }  # fmt: skip
+
+    def spend(self, setup_url: str) -> SetupSpend:
+        with self._engine.connect() as conn:
+            cost, requests = conn.execute(
+                sa.select(sa.func.coalesce(sa.func.sum(_spend.c.cost), 0.0), sa.func.coalesce(sa.func.sum(_spend.c.requests), 0))
+                .where(_spend.c.setup_url == setup_url)
+            ).one()  # fmt: skip
+            return SetupSpend(float(cost), int(requests))
+
+    def norms(self) -> Norms:
+        """This novel's validation limits (the defaults until they are tuned)."""
+        with self._engine.connect() as conn:
+            raw = conn.execute(sa.select(_meta.c.value).where(_meta.c.key == "norms")).scalar()
+        if raw is None:
+            return Norms()
+        values = json.loads(raw)
+        return Norms(tuple(values["length_range"]), values["loop_ratio"])
+
+    def set_norms(self, norms: Norms) -> None:
+        value = json.dumps({"length_range": list(norms.length_range), "loop_ratio": norms.loop_ratio})
+        with self._engine.begin() as conn:
+            conn.execute(_meta.delete().where(_meta.c.key == "norms"))
+            conn.execute(_meta.insert().values(key="norms", value=value))
 
     # -- summaries and the discovery cache ----------------------------------
 
