@@ -2,7 +2,7 @@
 
 `library_row` is the library page's summary, `chapter_grid` the novel page's cells
 (one per chapter key, in blocks of 100 numbers) and `comparison` two sources' texts
-of one chapter number side by side.
+of one chapter number side by side, with their differences marked.
 """
 
 from collections import defaultdict
@@ -12,10 +12,11 @@ from enum import StrEnum
 from pathlib import PurePosixPath
 from urllib.parse import unquote, urlsplit
 
-from markupsafe import Markup
+from markupsafe import Markup, escape
 from novel_audio.build import fingerprint as audio_fingerprint
 from novel_audio.tts import DEFAULT_VOICE
 from novel_core import (
+    Block,
     ChapterKey,
     CheckReport,
     ItemStatus,
@@ -33,6 +34,7 @@ from novel_publish import epub, render
 from novel_publish import site as site_builder
 from novel_sources.backends import is_web
 
+from novel_app.diff import BlockMark, Mark, TextDiff, diff_blocks, normalised
 from novel_app.jobs import JobRow
 from novel_app.library import novel_dir
 
@@ -248,11 +250,19 @@ class NovelPage:
 
 
 @dataclass(frozen=True)
+class Part:
+    """One key (part) of a chapter number: its heading and its body rendered, differences marked."""
+
+    heading: str
+    body: Markup
+
+
+@dataclass(frozen=True)
 class Text:
-    """One source's text for a chapter number: each of its keys (parts) rendered."""
+    """One source's text for a chapter number."""
 
     source: SourceInfo
-    chapters: tuple[tuple[str, Markup], ...]  # (heading, body html)
+    chapters: tuple[Part, ...]
 
 
 @dataclass(frozen=True)
@@ -262,6 +272,7 @@ class Comparison:
     selected: int | None  # the source the book uses
     left: Text | None
     right: Text | None
+    diff: TextDiff | None  # None when a side is missing or either side is raw text
 
 
 def comparison(store: NovelStore, view: NovelView, number: int, left: int | None, right: int | None) -> Comparison:
@@ -279,14 +290,69 @@ def comparison(store: NovelStore, view: NovelView, number: int, left: int | None
     if right not in by_source:
         right = next((i for i in ids if i != left), None)
 
-    def text(sid: int | None) -> Text | None:
-        if sid is None:
-            return None
-        chapters = []
+    def parts(sid: int) -> list[tuple[str, tuple[Block, ...]]]:
+        out = []
         for c in sorted(by_source[sid], key=lambda c: c.key):
             version = store.read_version(c.version_id)
-            body = Markup("\n").join(render.block_html(b, remote_images=False) for b in version.blocks)
-            chapters.append((chapter_heading(c.key, version.title), body))
-        return Text(view.source(sid), tuple(chapters))
+            out.append((chapter_heading(c.key, version.title), version.blocks))
+        return out
 
-    return Comparison(number, offers, selected, text(left), text(right))
+    sides = {sid: parts(sid) for sid in (left, right) if sid is not None}
+    diff = None
+    if left is not None and right is not None and Kind.RAW_ZH not in (view.source(left).spec.kind, view.source(right).spec.kind):
+        diff = diff_blocks(*([b for _, blocks in sides[sid] for b in blocks] for sid in (left, right)))
+
+    def text(sid: int | None, side: str) -> Text | None:
+        if sid is None:
+            return None
+        marks, gaps = None, ()
+        if diff:
+            marks, gaps = (diff.left, diff.left_gaps) if side == "l" else (diff.right, diff.right_gaps)
+        return Text(view.source(sid), _marked_parts(sides[sid], marks, gaps, side))
+
+    return Comparison(number, offers, selected, text(left, "l"), text(right, "r"), diff)
+
+
+def _marked_parts(
+    parts: Sequence[tuple[str, Sequence[Block]]],
+    marks: Sequence[BlockMark] | None,
+    gaps: Sequence[tuple[int, int]],
+    side: str,
+) -> tuple[Part, ...]:
+    """Render one side's parts. A differing group's first block (or its gap, when it has
+    none on this side) carries the jump target id `d<group>-<side>`; changed blocks show
+    their normalised text with the changed words in <mark>, so inline formatting is dropped there."""
+    gaps_at: dict[int, list[int]] = defaultdict(list)
+    for index, group in gaps:
+        gaps_at[index].append(group)
+    targeted: set[int] = set()
+    index = 0
+    out = []
+    for heading, blocks in parts:
+        html = []
+        for block in blocks:
+            html.extend(Markup('<span class="diff-gap" id="d{}-{}"></span>').format(g, side) for g in gaps_at.pop(index, ()))
+            mark = marks[index] if marks else BlockMark(Mark.SAME)
+            html.append(_marked_block(block, mark, side, mark.group not in targeted))
+            targeted.add(mark.group)
+            index += 1
+        out.append([heading, html])
+    for groups in gaps_at.values():  # groups after the last block
+        out[-1][1].extend(Markup('<span class="diff-gap" id="d{}-{}"></span>').format(g, side) for g in groups)
+    return tuple(Part(heading, Markup("\n").join(html)) for heading, html in out)
+
+
+def _marked_block(block: Block, mark: BlockMark, side: str, target: bool) -> Markup:
+    if mark.state is Mark.SAME:
+        return render.block_html(block, remote_images=False)
+    id_attr = Markup(' id="d{}-{}"').format(mark.group, side) if target else Markup("")
+    if mark.state is Mark.ONLY:
+        return Markup('<div class="diff diff--only"{}>{}</div>').format(id_attr, render.block_html(block, remote_images=False))
+    text = normalised(block)
+    inner, at = [], 0
+    for span in mark.spans or ():
+        inner.append(escape(text[at:span.start]))
+        inner.append(Markup("<mark>{}</mark>").format(text[span.start:span.end]))
+        at = span.end
+    inner.append(escape(text[at:]))
+    return Markup('<div class="diff diff--changed"{}><p>{}</p></div>').format(id_attr, Markup("").join(inner))

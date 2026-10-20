@@ -7,6 +7,7 @@ from fastapi.testclient import TestClient
 from novel_app.jobs import JobBoard, JobRunner, JobState
 from novel_app.service import Service, app_db
 from novel_app.web.app import create_app, job_events
+from novel_core import Kind
 
 URL = "https://novelbuddy.me/test-novel"
 
@@ -213,3 +214,59 @@ def test_table_cells_carry_labels_for_phones(client, service):
         body = html.split("<tbody>", 1)[1]
         cells = re.findall(r"<td(?: [^>]*)?>", body)
         assert cells and all("data-label=" in c for c in cells), (path, cells)
+
+
+def compare_page(client, slug: str, number: int = 1) -> str:
+    page = client.get(f"/novels/{slug}/compare", params={"number": number})
+    assert page.status_code == 200
+    return page.text
+
+
+def test_compare_marks_a_changed_word_and_links_to_it(client, two_texts):
+    two_texts("d", {"Chapter 1": ("Start.", "He ran fast.", "End.")},
+              {"Chapter 1": ("Start.", "He ran quickly.", "End.")})
+
+    page = compare_page(client, "d")
+
+    assert "He ran <mark>fast</mark>." in page and "He ran <mark>quickly</mark>." in page
+    assert page.count("<mark>") == 2
+    assert re.search(r"1 of 3 paragraphs differ\s*·\s*jump:\s*<a href=\"#d1-l\">1</a>", page)
+
+
+def test_compare_jump_targets_are_unique_and_never_missing(client, two_texts):
+    two_texts("d", {"Chapter 1": ("A.", "B.", "C.", "x", "a1", "a2", "y")},
+              {"Chapter 1": ("A.", "B.", "New.", "C.", "x", "b1", "b2", "b3", "y")})
+
+    page = compare_page(client, "d")
+
+    ids = re.findall(r'id="(d\d+-[lr])"', page)
+    assert len(ids) == len(set(ids))
+    hrefs = re.findall(r'href="#(d\d+-l)"', page)
+    assert hrefs == ["d1-l", "d2-l"] and all(ids.count(h) == 1 for h in hrefs)
+    assert '<span class="diff-gap" id="d1-l"></span>' in page
+
+
+def test_compare_diffs_parts_without_diffing_their_headings(client, two_texts):
+    two_texts("d", {"Chapter 1 (part 1)": ("Same one.",), "Chapter 1 (part 2)": ("Left two.",)},
+              {"Chapter 1 (part 1)": ("Same one.",), "Chapter 1 (part 2)": ("Right two.",)})
+
+    page = compare_page(client, "d")
+
+    assert page.count("Chapter 1 pt 1") >= 2 and page.count("Chapter 1 pt 2") >= 2
+    assert "<p>Same one.</p>" in page
+    assert "<mark>Left</mark> two." in page and "<mark>Right</mark> two." in page
+    assert "1 of 2 paragraphs differ" in page
+
+
+def test_compare_does_not_diff_raw_text(client, two_texts):
+    two_texts("d", {"Chapter 1": ("English text.",)}, {"Chapter 1": ("中文。",)}, right_kind=Kind.RAW_ZH)
+
+    page = compare_page(client, "d")
+
+    assert "Raw text: no diff" in page and "<mark>" not in page and "diff--" not in page
+
+
+def test_compare_says_when_texts_are_identical(client, two_texts):
+    two_texts("d", {"Chapter 1": ("Same.",)}, {"Chapter 1": ("Same.",)})
+
+    assert "Identical text." in compare_page(client, "d")
