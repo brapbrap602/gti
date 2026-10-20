@@ -23,6 +23,7 @@ from novel_core import (
     VolumeRow,
     url_ref,
 )
+from novel_core.selection import Pin
 
 
 def titles(*numbers) -> list[str]:
@@ -189,6 +190,26 @@ def test_later_pin_wins_where_pins_overlap(book):
     book.store.set_pin(KeyRange(1, 3), b)
     book.store.set_pin(KeyRange(2, 2), c)
     assert book.picked() == {"1": b, "2": c, "3": b}
+
+
+def test_unpin_returns_numbers_to_priority_and_keeps_the_rest(book):
+    a, b, c = book.source("a"), book.source("b"), book.source("c")
+    for s in (a, b, c):
+        book.chapters(s, titles(1, 2, 3, 4, 5))
+    book.store.set_pin(KeyRange(1, 5), b)
+    book.store.set_pin(KeyRange(4, 4), c)
+    left = book.store.unpin(KeyRange(2, 3))
+    assert left == (Pin(KeyRange(1, 1), b), Pin(KeyRange(4, 5), b), Pin(KeyRange(4, 4), c))
+    assert book.picked() == {"1": b, "2": a, "3": a, "4": c, "5": b}  # the later pin still wins on 4
+    assert book.store.view().pins == left
+
+
+def test_unpin_where_nothing_is_pinned_is_refused(book):
+    a, b = book.source("a"), book.source("b")
+    book.store.set_pin(KeyRange(10, 20), b)
+    with pytest.raises(StoreError, match="nothing in 1-9 is pinned"):
+        book.store.unpin(KeyRange(1, 9))
+    assert book.store.unpin(KeyRange(1, 30)) == ()
 
 
 # -- versions -----------------------------------------------------------------

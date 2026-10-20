@@ -82,6 +82,14 @@ def test_compare_then_pin(client, service, site):
     bad = client.post("/novels/test-novel/pin", data={"numbers": "two", "source": "2"})
     assert bad.status_code == 400 and "not a range" in bad.text
 
+    assert 'aria-label="Unpin 2–2"' in client.get("/novels/test-novel").text
+    unpinned = client.post("/novels/test-novel/unpin", data={"numbers": "2-2"}, follow_redirects=False)
+    assert unpinned.status_code == 303
+    novel = client.get(unpinned.headers["location"]).text
+    assert 'title="2, official, source 1: Chapter 2"' in novel and "Unpin" not in novel
+    again = client.post("/novels/test-novel/unpin", data={"numbers": "2"})
+    assert again.status_code == 400 and "nothing in 2-2 is pinned" in again.text
+
 
 def test_priority_buttons_reorder_sources(client, service):
     added(service)

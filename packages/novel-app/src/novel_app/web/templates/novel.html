@@ -48,7 +48,14 @@
     </table>
     {% if novel.pins %}
     <h3>Pins</h3>
-    <ul>{% for p in novel.pins %}<li>{{ p.range.start }}–{{ p.range.end }} → source {{ p.source_id }}</li>{% endfor %}</ul>
+    <ul>{% for p in novel.pins %}
+        <li>{{ p.range.start }}–{{ p.range.end }} → source {{ p.source_id }}
+            <form method="post" action="/novels/{{ r.slug }}/unpin" class="inline">
+                <input type="hidden" name="numbers" value="{{ p.range.start }}-{{ p.range.end }}">
+                <button type="submit" aria-label="Unpin {{ p.range.start }}–{{ p.range.end }}">Unpin</button>
+            </form>
+        </li>{% endfor %}
+    </ul>
     {% endif %}
 </section>
 

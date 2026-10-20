@@ -43,7 +43,7 @@ from novel_core.model import (
     Unchanged,
     Version,
 )
-from novel_core.selection import Pin, Selected, SourceId, rank
+from novel_core.selection import Pin, Selected, SourceId, rank, unpinned
 from novel_core.view import CurrentVersion, NovelView, StoreError, StoredItem, derive
 
 SCHEMA_VERSION = 2
@@ -263,6 +263,22 @@ class NovelStore:
             if info.spec.kind is Kind.RAW_ZH:
                 raise StoreError(f"source {source} is raw-zh and can never be published")
             conn.execute(_pin.insert().values(range_start=keys.start, range_end=keys.end, source_id=source))
+
+    def unpin(self, keys: KeyRange) -> tuple[Pin, ...]:
+        """Return numbers keys.start..keys.end to priority order; returns the pins left, oldest first.
+
+        A pin partly inside keys keeps its other numbers, and every pin keeps its precedence.
+        Raises StoreError if no pin covers any of these numbers.
+        """
+        with self._engine.begin() as conn:
+            _, pins = _load_policy(conn)
+            kept = unpinned(pins, keys)
+            if kept == pins:
+                raise StoreError(f"nothing in {keys.start}-{keys.end} is pinned")
+            conn.execute(_pin.delete())  # rewritten in order: ids are the precedence
+            for p in kept:
+                conn.execute(_pin.insert().values(range_start=p.range.start, range_end=p.range.end, source_id=p.source_id))
+            return tuple(kept)
 
     # -- index and alignment -----------------------------------------------
 

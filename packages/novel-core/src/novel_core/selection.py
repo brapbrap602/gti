@@ -87,3 +87,18 @@ def select(
             keys = [c for c in keys if c.key.part]
         chosen.extend(keys)
     return Selection(tuple(chosen), tuple(fallbacks))
+
+
+def unpinned(pins: Sequence[Pin], keys: KeyRange) -> list[Pin]:
+    """The pins with every number in keys taken out; what remains keeps its order (and so its precedence)."""
+    kept: list[Pin] = []
+    for p in pins:
+        r = p.range
+        if r.end < keys.start or keys.end < r.start:
+            kept.append(p)
+            continue
+        if r.start < keys.start:
+            kept.append(Pin(KeyRange(r.start, keys.start - 1), p.source_id))
+        if keys.end < r.end:
+            kept.append(Pin(KeyRange(keys.end + 1, r.end), p.source_id))
+    return kept
