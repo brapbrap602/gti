@@ -6,6 +6,7 @@ from novel_audio.legacy import LegacyReport
 from novel_core import CheckReport
 from novel_sources.importing import ImportReport
 from novel_sources.sync import SyncReport
+from novel_translate.phase_a import Estimate, GlossaryReport
 
 from novel_app.notation import ranges
 
@@ -62,6 +63,26 @@ def check_lines(r: CheckReport) -> list[str]:
 
 def numbers(name: str, values: Sequence[int]) -> list[str]:
     return [f"  {name}: {len(values)} ({ranges(values)})"] if values else []
+
+
+def glossary_lines(r: GlossaryReport) -> list[str]:
+    decided = ", ".join(f"{n} {status}" for status, n in sorted(r.decided.items())) or "none"
+    lines = [
+        f"  discovered {r.candidates} new strings; classified {r.classified}; "
+        f"official English consulted in {r.hinted} chapters; {r.summarized} chapters summarized",
+        f"  decided: {decided}",
+        f"  {r.calls} calls, ${r.cost:.4f}",
+        *section("failed", r.failed),
+    ]
+    if r.stopped:
+        lines.append(f"  stopped: {r.stopped}; run it again (with a higher --cap) to continue")
+    return lines
+
+
+def estimate_lines(e: Estimate) -> list[str]:
+    calls = ", ".join(f"{n} {step}" for step, n in e.calls.items())
+    bound = "at most " if e.upper_bound else "about "
+    return [f"  {e.chapters} chapters; {e.total_calls} calls ({calls}); {bound}${e.usd:.4f}"]
 
 
 def section(name: str, lines: Sequence[str]) -> list[str]:

@@ -616,6 +616,13 @@ Soft checks (stored with flags):
   - `finish_reason: "error"` comes back as a **normal success**. `models.py` checks the last response and raises `CallFailed("finish: error")` (also for `content_filter`).
   - Empty output on a length stop raises `UnexpectedModelBehavior`. With output retries at 0, a truncated tool call raises `IncompleteToolCall`. With output retries at 1, pydantic-ai **spends the retry on the truncated call**. Slice 7 must keep cut-off detection apart from the validator retry: it should check `finish_reason == "length"` before treating a failure as a validation retry.
   - The generation id is `ModelResponse.provider_response_id`.
+- **Slice 4 (2026-10-20):** 4169a06 discovery, 273eabc Phase A + pool, then the CLI and Service.
+  - **Discovery on real TM** (5.3M chars): 14,161 candidates in 69–82 s, 185 MiB peak. The protagonist 韩萧 is first. Many candidates are ordinary vocabulary (文明, 玩家). The classifier rejects them, and the cap bounds the cost, since candidates go most-frequent first.
+    - Changes from the plan: `MIN_COUNT` is 10, not 5. There is a shipped `common_words.txt`. Strings containing 的, 了 or 着 are dropped. Tune at G2.
+  - **Discovery is cached in `translate.sqlite`,** keyed by the raws' hash. The estimate and the build share one candidate list, and discovery reruns only when a raw changes. The first estimate on a long novel takes about a minute.
+  - **Hints are resumable per chapter:** `term.consulted_json` records the chapters already asked, so a resumed run never asks one twice or double-counts its votes.
+  - **`import-hints` is deferred.** There is no `active_glossary.json` (or `data/glossary/`) in the local MtlTings checkout. Its README describes a glossary extracted from the *English* output, so it would carry no Chinese keys to vote on. It returns if the user points at a file with zh→en pairs.
+  - **`nov glossary build` needs `--model`** until G2 sets a default.
 - **Key limits:** 402, or 403 with "limit" in the body, raises `OutOfCredit`. This is unconfirmed against a real key-limit reply.
 - **Reasoning "off"** sends no `reasoning` setting, so the model's default applies. Revisit at G2 for models that reason by default.
 - **G1 status:**
