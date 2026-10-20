@@ -12,19 +12,22 @@ its own `LLM` (its own provider, client and model) from the shared factory.
 
 import threading
 import time
-from collections.abc import Callable
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
 from email.utils import parsedate_to_datetime
-from typing import Any
+from typing import Any, Literal
 
 import httpx2
 from openai import AsyncOpenAI
+from pydantic import BaseModel, Field
 from pydantic_ai import Agent, capture_run_messages
 from pydantic_ai.exceptions import IncompleteToolCall, ModelAPIError, ModelHTTPError, UnexpectedModelBehavior
 from pydantic_ai.messages import ModelMessage, ModelResponse
 from pydantic_ai.models import Model
 from pydantic_ai.models.openrouter import OpenRouterModel
 from pydantic_ai.providers.openrouter import OpenRouterProvider
+
+from novel_translate.glossary import Category, Verdict
 
 OPENROUTER_URL = "https://openrouter.ai/api/v1"
 TIMEOUT_S = 180.0
@@ -101,6 +104,48 @@ class Summary:
     charged: Charged
 
 
+@dataclass(frozen=True)
+class Sample:
+    """A possible term with where it was seen: a few raw snippets around it."""
+
+    zh: str
+    snippets: tuple[str, ...]
+
+
+class _TermVerdict(BaseModel):
+    zh: str
+    is_term: bool = Field(description="a proper name or fixed term (person, place, sect, technique, ...), not an ordinary word")
+    category: Category
+    renderings: list[str] = Field(description="one English rendering per snippet, in snippet order")
+    aliases: list[str] = Field(default=[], description="other Chinese forms of the same name seen in the snippets")
+    gender: Literal["male", "female"] | None = Field(default=None, description="persons only, when the snippets show it")
+
+
+class _Verdicts(BaseModel):
+    terms: list[_TermVerdict]
+
+
+@dataclass(frozen=True)
+class Classified:
+    verdicts: tuple[Verdict, ...]  # those for zh that were asked about; others are dropped
+    charged: Charged
+
+
+class _Usage(BaseModel):
+    zh: str
+    en: str | None = Field(description="the English the text uses for it, exactly as written; null if it does not appear")
+
+
+class _Usages(BaseModel):
+    terms: list[_Usage]
+
+
+@dataclass(frozen=True)
+class Hinted:
+    renderings: Mapping[str, str]  # zh -> how the English text renders it, for the terms it renders
+    charged: Charged
+
+
 class LLM:
     """One thread's handle on one model. Build it with `ModelFactory.llm`, or directly around a test model."""
 
@@ -133,6 +178,50 @@ class LLM:
         )
         text, charged = self._run(agent, raw, max_tokens=max_tokens, output_retries=0)
         return Summary(text.strip(), charged)
+
+    def classify(self, samples: Sequence[Sample], max_tokens: int) -> Classified:
+        """Is each string a term, and how would one render it in each snippet (those are its votes)?"""
+        agent = Agent(
+            self._model,
+            output_type=_Verdicts,
+            instructions=(
+                "You build the glossary for an English translation of a Chinese web novel. For each string, "
+                "decide from its snippets whether it is a proper name or fixed term (person, place, sect, "
+                "technique, cultivation realm, item, title) rather than an ordinary word or phrase. Give one "
+                "English rendering per snippet, as a careful translator would write it in English prose: "
+                "personal names in pinyin (surname first), other names translated for meaning. "
+                "Answer for every string, in order."
+            ),
+        )
+        asked = {s.zh for s in samples}
+        prompt = "\n\n".join(
+            f"### {s.zh}\n" + "\n".join(f"{i}. {snippet}" for i, snippet in enumerate(s.snippets, 1)) for s in samples
+        )
+        out, charged = self._run(agent, prompt, max_tokens=max_tokens, output_retries=1)
+        verdicts = (
+            Verdict(v.zh, v.is_term, v.category, tuple(v.renderings), tuple(v.aliases), v.gender)
+            for v in out.terms
+            if v.zh in asked
+        )
+        return Classified(tuple(verdicts), charged)
+
+    def hint(self, samples: Sequence[Sample], en_text: str, max_tokens: int) -> Hinted:
+        """How an existing English translation of one chapter renders each term."""
+        agent = Agent(
+            self._model,
+            output_type=_Usages,
+            instructions=(
+                "Below is an English translation of one chapter of a Chinese novel, then Chinese terms from that "
+                "chapter with snippets of the original. For each term, quote the English the translation uses "
+                "for it, exactly as written, or null if you cannot find it."
+            ),
+        )
+        asked = {s.zh for s in samples}
+        terms = "\n".join(f"- {s.zh}: {' / '.join(s.snippets)}" for s in samples)
+        out, charged = self._run(
+            agent, f"## English translation\n{en_text}\n\n## Terms\n{terms}", max_tokens=max_tokens, output_retries=1
+        )
+        return Hinted({u.zh: u.en.strip() for u in out.terms if u.zh in asked and u.en and u.en.strip()}, charged)
 
     def _run(self, agent: Agent, prompt: str, *, max_tokens: int, output_retries: int) -> tuple[Any, Charged]:
         """Run the agent once, retrying transient HTTP failures. Raises OutOfCredit or CallFailed."""

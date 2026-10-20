@@ -9,8 +9,10 @@ Concurrency: WAL with a 5 s busy timeout, so quick edits from the web can land
 while a job runs; each thread uses its own connection.
 """
 
+import json
 from collections import defaultdict
-from collections.abc import Callable, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
+from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Self
@@ -20,14 +22,18 @@ import sqlalchemy as sa
 from novel_translate.glossary import (
     AddAlias,
     AddTerm,
+    Candidate,
     Category,
     Edit,
     GlossaryError,
     RemoveAlias,
+    Seen,
     Status,
     Term,
     UpdateTerm,
+    Verdict,
     normalize,
+    resolve,
 )
 from novel_translate.matching import Matcher
 
@@ -35,6 +41,14 @@ SCHEMA_VERSION = 1
 DB_NAME = "translate.sqlite"
 
 type Clock = Callable[[], datetime]
+type Key = tuple[int, int]  # chapter (number, part)
+
+
+@dataclass(frozen=True)
+class StoredSummary:
+    raw_hash: str
+    model: str
+    text: str
 
 _md = sa.MetaData()
 _meta = sa.Table(
@@ -55,8 +69,11 @@ _term = sa.Table(
     sa.Column("confidence", sa.Float),
     sa.Column("first_chapter", sa.Integer),
     sa.Column("occurrences", sa.Integer, nullable=False),
+    sa.Column("snippets_json", sa.String, nullable=False, server_default="[]"),
     sa.Column("updated_at", sa.String, nullable=False),
     sa.Column("edited_at", sa.String),  # set by any user edit, never cleared
+    sa.Column("hinted_at", sa.String),  # official English was consulted for it
+    sa.Column("consulted_json", sa.String, nullable=False, server_default="[]"),  # chapters asked so far
 )  # fmt: skip
 _alias = sa.Table(
     "alias", _md,
@@ -70,6 +87,14 @@ _candidate = sa.Table(
     sa.Column("origin", sa.String, primary_key=True),  # llm | official-en | mtl-glossary | side-channel
     sa.Column("votes", sa.Integer, nullable=False),
     sa.Column("examples_json", sa.String, nullable=False),
+)  # fmt: skip
+_summary = sa.Table(
+    "summary", _md,
+    sa.Column("number", sa.Integer, primary_key=True),
+    sa.Column("part", sa.Integer, primary_key=True),
+    sa.Column("raw_hash", sa.String, nullable=False),
+    sa.Column("model", sa.String, nullable=False),
+    sa.Column("text", sa.String, nullable=False),
 )  # fmt: skip
 
 
@@ -186,6 +211,177 @@ class TranslateStore:
                         _touch(conn, term_id, now)
             return _bump(conn)
 
+    def candidates(self, term_id: int) -> tuple[Candidate, ...]:
+        """The evidence for a term: renderings by origin, most voted first."""
+        with self._engine.connect() as conn:
+            rows = conn.execute(sa.select(_candidate).where(_candidate.c.term_id == term_id))
+            return tuple(sorted((Candidate(r.en, r.votes, r.origin) for r in rows), key=lambda c: (-c.votes, c.en)))
+
+    def snippets(self, term_id: int) -> tuple[str, ...]:
+        with self._engine.connect() as conn:
+            raw = conn.execute(sa.select(_term.c.snippets_json).where(_term.c.id == term_id)).scalar()
+            return tuple(json.loads(raw or "[]"))
+
+    # -- glossary pass writes (never over a user's edit) -------------------
+
+    def known_keys(self) -> frozenset[str]:
+        """Every name and alias, whatever its status: discovery never proposes them again."""
+        with self._engine.connect() as conn:
+            names = conn.execute(sa.select(_term.c.zh)).scalars().all()
+            aliases = conn.execute(sa.select(_alias.c.zh)).scalars().all()
+            return frozenset([*names, *aliases])
+
+    def record_verdicts(self, verdicts: Sequence[Verdict], seen: Mapping[str, Seen]) -> None:
+        """Store the model's verdicts: new terms, or evidence for existing ones.
+
+        A new term is `proposed` until `resolve`, or `rejected` if the model says it is
+        no term. An existing term gets the votes as candidates; its category, gender and
+        status change only if the user never edited it.
+        """
+        now = self._now()
+        with self._engine.begin() as conn:
+            for v in verdicts:
+                zh = normalize(v.zh)
+                status = Status.PROPOSED if v.is_term else Status.REJECTED
+                facts = {}
+                if where := seen.get(zh):
+                    facts = {
+                        "first_chapter": where.first_chapter,
+                        "occurrences": where.occurrences,
+                        "snippets_json": json.dumps(list(where.snippets), ensure_ascii=False),
+                    }
+                term_id = conn.execute(sa.select(_term.c.id).where(_term.c.zh == zh)).scalar()
+                if term_id is None:
+                    term_id = conn.execute(
+                        _term.insert().values(
+                            zh=zh, en=_top(v.renderings) or zh, category=str(v.category), status=str(status),
+                            gender=v.gender, notes="", origin="discovered", updated_at=now, **({"occurrences": 0} | facts),
+                        )
+                    ).inserted_primary_key[0]  # fmt: skip
+                else:
+                    if facts:
+                        conn.execute(_term.update().where(_term.c.id == term_id).values(**facts))
+                    conn.execute(
+                        _term.update()
+                        .where(_term.c.id == term_id, _term.c.edited_at.is_(None))
+                        .values(category=str(v.category), gender=v.gender, status=str(status), updated_at=now)
+                    )
+                _add_votes(conn, term_id, "llm", v.renderings)
+                for alias in v.aliases:
+                    alias = normalize(alias.strip())
+                    if alias and _taken(conn, alias) is None:
+                        conn.execute(_alias.insert().values(zh=alias, term_id=term_id))
+            _bump(conn)
+
+    def propose(self, terms: Sequence[tuple[str, str, Category]]) -> int:
+        """New terms a translation reported (zh, en, category): `proposed`, never injected or blocking,
+        until a glossary pass scores them. Names already in the glossary, rejected ones included,
+        are ignored. Returns how many were added."""
+        now = self._now()
+        added = 0
+        with self._engine.begin() as conn:
+            for zh, en, category in terms:
+                zh, en = normalize(zh.strip()), en.strip()
+                if not zh or not en or _taken(conn, zh) is not None:
+                    continue
+                term_id = conn.execute(
+                    _term.insert().values(
+                        zh=zh, en=en, category=str(category), status=str(Status.PROPOSED), notes="",
+                        origin="side-channel", occurrences=0, updated_at=now,
+                    )
+                ).inserted_primary_key[0]  # fmt: skip
+                _add_votes(conn, term_id, "side-channel", [en])
+                added += 1
+            if added:
+                _bump(conn)
+        return added
+
+    def unhinted(self) -> tuple[Term, ...]:
+        """Terms official English has not been consulted for yet (never rejected ones)."""
+        with self._engine.connect() as conn:
+            ids = set(
+                conn.execute(
+                    sa.select(_term.c.id).where(_term.c.hinted_at.is_(None), _term.c.status != str(Status.REJECTED))
+                ).scalars()
+            )
+            return tuple(t for t in _load_terms(conn) if t.id in ids)
+
+    def consulted(self) -> dict[int, set[int]]:
+        """Per term not yet hinted, the chapters whose official English was already asked about it."""
+        with self._engine.connect() as conn:
+            rows = conn.execute(sa.select(_term.c.id, _term.c.consulted_json).where(_term.c.hinted_at.is_(None)))
+            return {r.id: set(json.loads(r.consulted_json)) for r in rows}
+
+    def record_hints(
+        self, renderings: Mapping[int, Sequence[str]], consulted: Mapping[int, int], done: Iterable[int]
+    ) -> None:
+        """Official English renderings become candidates; `consulted` maps terms to the chapter asked;
+        the `done` terms are marked hinted."""
+        now = self._now()
+        with self._engine.begin() as conn:
+            for term_id, ens in renderings.items():
+                _add_votes(conn, term_id, "official-en", ens)
+            for term_id, number in consulted.items():
+                raw = conn.execute(sa.select(_term.c.consulted_json).where(_term.c.id == term_id)).scalar_one()
+                chapters = sorted(set(json.loads(raw)) | {number})
+                conn.execute(_term.update().where(_term.c.id == term_id).values(consulted_json=json.dumps(chapters)))
+            if done := list(done):
+                conn.execute(_term.update().where(_term.c.id.in_(done)).values(hinted_at=now))
+            _bump(conn)
+
+    def resolve(self, revote: bool = False) -> dict[Status, int]:
+        """Decide unedited proposed and needs-review terms (accepted ones too with `revote`) from their votes."""
+        open_statuses = [Status.PROPOSED, Status.NEEDS_REVIEW] + ([Status.ACCEPTED] if revote else [])
+        now = self._now()
+        decided_counts: dict[Status, int] = defaultdict(int)
+        with self._engine.begin() as conn:
+            term_ids = conn.execute(
+                sa.select(_term.c.id).where(
+                    _term.c.edited_at.is_(None), _term.c.status.in_([str(s) for s in open_statuses])
+                )
+            ).scalars().all()  # fmt: skip
+            votes = _load_candidates(conn)
+            for term_id in term_ids:
+                decided = resolve(votes.get(term_id, ()))
+                if decided is None:
+                    continue
+                conn.execute(
+                    _term.update()
+                    .where(_term.c.id == term_id, _term.c.edited_at.is_(None))
+                    .values(status=str(decided.status), en=decided.en, confidence=decided.confidence, updated_at=now)
+                )
+                decided_counts[decided.status] += 1
+            _bump(conn)
+        return dict(decided_counts)
+
+    # -- summaries and the discovery cache ----------------------------------
+
+    def summaries(self) -> dict[Key, StoredSummary]:
+        with self._engine.connect() as conn:
+            rows = conn.execute(sa.select(_summary))
+            return {(r.number, r.part): StoredSummary(r.raw_hash, r.model, r.text) for r in rows}
+
+    def put_summary(self, key: Key, raw_hash: str, model: str, text: str) -> None:
+        number, part = key
+        with self._engine.begin() as conn:
+            conn.execute(_summary.delete().where(_summary.c.number == number, _summary.c.part == part))
+            conn.execute(_summary.insert().values(number=number, part=part, raw_hash=raw_hash, model=model, text=text))
+
+    def discovery(self, raws_hash: str) -> list[tuple[str, int]] | None:
+        """The candidates found in exactly these raws, if discovery already ran over them."""
+        with self._engine.connect() as conn:
+            raw = conn.execute(sa.select(_meta.c.value).where(_meta.c.key == "discovery")).scalar()
+        if raw is None:
+            return None
+        cached = json.loads(raw)
+        return [(zh, count) for zh, count in cached["candidates"]] if cached["raws"] == raws_hash else None
+
+    def set_discovery(self, raws_hash: str, candidates: Sequence[tuple[str, int]]) -> None:
+        value = json.dumps({"raws": raws_hash, "candidates": [list(c) for c in candidates]}, ensure_ascii=False)
+        with self._engine.begin() as conn:
+            conn.execute(_meta.delete().where(_meta.c.key == "discovery"))
+            conn.execute(_meta.insert().values(key="discovery", value=value))
+
     def _now(self) -> str:
         return self._clock().isoformat()
 
@@ -205,13 +401,42 @@ def _require_term(conn: sa.Connection, term_id: int) -> None:
         raise GlossaryError(f"no term {term_id}")
 
 
-def _require_free(conn: sa.Connection, zh: str) -> None:
-    """A key is used once, as a term's name or as an alias."""
+def _taken(conn: sa.Connection, zh: str) -> int | None:
+    """The term that uses this key, as its name or as an alias."""
     taken = conn.execute(sa.select(_term.c.id).where(_term.c.zh == zh)).scalar()
     if taken is None:
         taken = conn.execute(sa.select(_alias.c.term_id).where(_alias.c.zh == zh)).scalar()
-    if taken is not None:
+    return taken
+
+
+def _require_free(conn: sa.Connection, zh: str) -> None:
+    """A key is used once, as a term's name or as an alias."""
+    if (taken := _taken(conn, zh)) is not None:
         raise GlossaryError(f"{zh} is already in the glossary (term {taken})")
+
+
+def _add_votes(conn: sa.Connection, term_id: int, origin: str, renderings: Iterable[str]) -> None:
+    for en in renderings:
+        if not (en := en.strip()):
+            continue
+        key = (_candidate.c.term_id == term_id, _candidate.c.en == en, _candidate.c.origin == origin)
+        if conn.execute(_candidate.update().where(*key).values(votes=_candidate.c.votes + 1)).rowcount == 0:
+            conn.execute(_candidate.insert().values(term_id=term_id, en=en, origin=origin, votes=1, examples_json="[]"))
+
+
+def _load_candidates(conn: sa.Connection) -> dict[int, list[Candidate]]:
+    out: dict[int, list[Candidate]] = defaultdict(list)
+    for r in conn.execute(sa.select(_candidate)):
+        out[r.term_id].append(Candidate(r.en, r.votes, r.origin))
+    return out
+
+
+def _top(renderings: Sequence[str]) -> str | None:
+    counts: dict[str, int] = defaultdict(int)
+    for en in renderings:
+        if en.strip():
+            counts[en.strip()] += 1
+    return max(counts, key=lambda en: (counts[en], en)) if counts else None
 
 
 def _add_term(conn: sa.Connection, edit: AddTerm, now: str) -> None:

@@ -4,6 +4,9 @@ A term's Chinese key (and every alias) is stored in Simplified script, so raws i
 either script match the same entry.
 """
 
+import re
+from collections import Counter, defaultdict
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from enum import StrEnum
 from functools import cache
@@ -99,6 +102,81 @@ class RemoveAlias:
 
 
 type Edit = AddTerm | UpdateTerm | AddAlias | RemoveAlias
+
+
+# -- evidence and how a glossary pass decides -------------------------------------
+
+
+@dataclass(frozen=True)
+class Verdict:
+    """The model's answer about one possible term: what it is and its renderings, one per snippet."""
+
+    zh: str
+    is_term: bool
+    category: Category
+    renderings: tuple[str, ...]
+    aliases: tuple[str, ...] = ()
+    gender: str | None = None
+
+
+@dataclass(frozen=True)
+class Seen:
+    """Where a term occurs in the raws."""
+
+    first_chapter: int
+    occurrences: int
+    snippets: tuple[str, ...]
+
+
+AGREEMENT = 0.7  # the top rendering's least share of the model's votes for a confident pick
+
+
+@dataclass(frozen=True)
+class Candidate:
+    """One proposed English rendering of a term and how many times a source gave it."""
+
+    en: str
+    votes: int
+    origin: str  # llm | official-en | mtl-glossary | side-channel
+
+
+@dataclass(frozen=True)
+class Resolution:
+    status: Status  # accepted or needs_review
+    en: str
+    confidence: float  # the top rendering's share of the model's votes
+
+
+def resolve(candidates: Sequence[Candidate]) -> Resolution | None:
+    """Pick a rendering from the model's votes; None when the model has not voted.
+
+    Low confidence (needs review): the top rendering has under AGREEMENT of the votes,
+    or the official English renders it otherwise most of the time. Renderings that
+    differ only in case or a leading article count as the same.
+    """
+    llm = _tally(c for c in candidates if c.origin == "llm")
+    if not llm:
+        return None
+    top, (votes, spelling) = max(llm.items(), key=lambda kv: (kv[1][0], kv[0]))
+    confidence = votes / sum(v for v, _ in llm.values())
+    official = _tally(c for c in candidates if c.origin == "official-en")
+    disputed = bool(official) and max(official.items(), key=lambda kv: (kv[1][0], kv[0]))[0] != top
+    status = Status.NEEDS_REVIEW if confidence < AGREEMENT or disputed else Status.ACCEPTED
+    return Resolution(status, spelling, confidence)
+
+
+def _tally(candidates: Iterable[Candidate]) -> dict[str, tuple[int, str]]:
+    """Votes per rendering, compared loosely; keeps the most voted spelling of each."""
+    totals: dict[str, int] = defaultdict(int)
+    spellings: dict[str, Counter] = defaultdict(Counter)
+    for c in candidates:
+        key = _ARTICLE.sub("", c.en.strip()).casefold()
+        totals[key] += c.votes
+        spellings[key][c.en.strip()] += c.votes
+    return {k: (n, spellings[k].most_common(1)[0][0]) for k, n in totals.items()}
+
+
+_ARTICLE = re.compile(r"^(the|a|an)\s+", re.IGNORECASE)
 
 
 @cache
