@@ -1,5 +1,6 @@
 """Shared fixtures: a fake site behind every backend, in an empty data dir."""
 
+import random
 import re
 import threading
 import time
@@ -95,19 +96,28 @@ FILLER = "山水风云天地日月花草木石金银铜铁春夏秋冬东西南�
 
 
 class FakeOpenRouter:
-    """Stands in for ModelFactory: every string is a term rendered 'Name', every chapter summarized."""
+    """Stands in for ModelFactory: only 韩立 is a term ('Han Li'), every chapter is summarized, and
+    every translation is made-up English of the right length; `models` lists what it was asked for."""
 
     def __init__(self):
         self.calls: list[str] = []
+        self.models: list[tuple[str, dict]] = []
 
     def price(self, model: str) -> Price:
         return Price(0.000001, 0.000002)
 
-    def llm(self, model: str, cancel: threading.Event, **_settings) -> LLM:
+    def llm(self, model: str, cancel: threading.Event, **settings) -> LLM:
+        self.models.append((model, settings))
         return LLM(FunctionModel(self.answer), lambda: self.price(model), cancel)
 
     def answer(self, messages, info) -> ModelResponse:
         prompt = messages[-1].parts[-1].content
+        if info.instructions.startswith("You translate"):
+            self.calls.append("translate")
+            source = re.findall(r"^\[(\d+)\] (.+)$", prompt.split("## Chapter to translate")[1], re.M)
+            paragraphs = [{"id": int(i), "text": _english(len(text), f"{i}{text[:4]}")} for i, text in source]
+            result = {"title": "A Title", "paragraphs": paragraphs, "new_terms": []}
+            return ModelResponse(parts=[ToolCallPart(info.output_tools[0].name, result)])
         if info.instructions.startswith("Summarize"):
             self.calls.append("summarize")
             return ModelResponse(parts=[TextPart("A summary.")])
@@ -137,3 +147,9 @@ def openrouter(novels, monkeypatch):
     fake = FakeOpenRouter()
     monkeypatch.setattr(service, "openrouter", lambda: fake)
     return fake
+
+
+def _english(n_chars: int, seed: str) -> str:
+    """Varied made-up English, about 0.6 words per Chinese character (passes the length check)."""
+    rng = random.Random(seed)
+    return " ".join("".join(rng.choice("aeioubcdfghklmnprstvw") for _ in range(rng.randint(3, 8))) for _ in range(int(n_chars * 0.6)))
