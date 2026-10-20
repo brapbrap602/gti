@@ -46,7 +46,7 @@ from novel_core.model import (
 from novel_core.selection import Pin, Selected, SourceId, rank, unpinned
 from novel_core.view import CurrentVersion, NovelView, StoreError, StoredItem, derive
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 DB_NAME = "novel.sqlite"
 
 type Clock = Callable[[], datetime]
@@ -73,6 +73,7 @@ _source = sa.Table(
     sa.Column("kind", sa.String, nullable=False),
     sa.Column("alignment_json", sa.String, nullable=False),
     sa.Column("config_json", sa.String, nullable=False),
+    sa.Column("published", sa.Boolean, nullable=False, server_default=sa.text("1")),
     sa.UniqueConstraint("backend", "url"),
 )  # fmt: skip
 _item = sa.Table(
@@ -136,8 +137,13 @@ def _add_volumes(conn: sa.Connection) -> None:
     _volume.create(conn)
 
 
+def _add_published(conn: sa.Connection) -> None:
+    # Same DDL as the column above, so created and migrated stores match; existing sources stay published.
+    conn.exec_driver_sql("ALTER TABLE source ADD COLUMN published BOOLEAN NOT NULL DEFAULT 1")
+
+
 # Each step upgrades a store from the version it is keyed by to the next one.
-_MIGRATIONS: dict[int, Callable[[sa.Connection], None]] = {1: _add_volumes}
+_MIGRATIONS: dict[int, Callable[[sa.Connection], None]] = {1: _add_volumes, 2: _add_published}
 
 
 def _utc_now() -> datetime:
@@ -216,7 +222,11 @@ class NovelStore:
         with self._engine.begin() as conn:
             conn.execute(_novel.update().values(**_meta_row(meta)))
 
-    def upsert_source(self, spec: SourceSpec) -> SourceId:
+    def upsert_source(self, spec: SourceSpec, *, published: bool = True) -> SourceId:
+        """Add a source, or update the spec of the one with the same (backend, url).
+
+        `published` applies only when the source is new; a repeat upsert never changes it.
+        """
         values = {"lang": spec.lang, "kind": str(spec.kind), "config_json": json.dumps(dict(spec.config), sort_keys=True)}
         with self._engine.begin() as conn:
             existing = conn.execute(
@@ -227,8 +237,9 @@ class NovelStore:
                 return existing
             return conn.execute(
                 _source.insert().values(
-                    backend=spec.backend, url=spec.url, alignment_json=AlignmentRules().to_json(), **values
-                )
+                    backend=spec.backend, url=spec.url, alignment_json=AlignmentRules().to_json(),
+                    published=published, **values,
+                )  # fmt: skip
             ).inserted_primary_key[0]
 
     def sources(self) -> tuple[SourceInfo, ...]:
@@ -248,6 +259,16 @@ class NovelStore:
                 raise StoreError(f"unknown sources {unknown}")
             conn.execute(_novel.update().values(priority_json=json.dumps(list(sources))))
 
+    def set_published(self, source: SourceId, on: bool) -> None:
+        """Switch a source in or out of the book. Unpublishing a pinned source is refused."""
+        with self._engine.begin() as conn:
+            self._require_source(conn, source)
+            if not on:
+                _, pins = _load_policy(conn)
+                if ranges := [f"{p.range.start}-{p.range.end}" for p in pins if p.source_id == source]:
+                    raise StoreError(f"source {source} is pinned at {', '.join(ranges)}; unpin it first")
+            conn.execute(_source.update().where(_source.c.id == source).values(published=on))
+
     def priority(self) -> tuple[SourceId, ...]:
         """Every source, best first; sources missing from the stored list rank after it, by id."""
         with self._engine.connect() as conn:
@@ -262,6 +283,8 @@ class NovelStore:
                 raise StoreError(f"unknown source {source}")
             if info.spec.kind is Kind.RAW_ZH:
                 raise StoreError(f"source {source} is raw-zh and can never be published")
+            if not info.published:
+                raise StoreError(f"source {source} is unpublished; publish it before pinning")
             conn.execute(_pin.insert().values(range_start=keys.start, range_end=keys.end, source_id=source))
 
     def unpin(self, keys: KeyRange) -> tuple[Pin, ...]:
@@ -610,6 +633,7 @@ def _load_sources(conn: sa.Connection) -> dict[SourceId, SourceInfo]:
             r.id,
             SourceSpec(r.backend, r.url, r.lang, Kind(r.kind), json.loads(r.config_json)),
             AlignmentRules.from_json(r.alignment_json),
+            r.published,
         )
         for r in conn.execute(sa.select(_source).order_by(_source.c.id))
     }

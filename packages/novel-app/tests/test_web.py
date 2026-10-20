@@ -7,7 +7,8 @@ from fastapi.testclient import TestClient
 from novel_app.jobs import JobBoard, JobRunner, JobState
 from novel_app.service import Service, app_db
 from novel_app.web.app import create_app, job_events
-from novel_core import Kind
+from novel_app.library import novel_dir
+from novel_core import Kind, NewVersion, NovelStore, Paragraph, SourceItem, SourceSpec
 
 URL = "https://novelbuddy.me/test-novel"
 
@@ -62,6 +63,20 @@ def test_library_row_and_novel_grid(client, service):
     novel = client.get("/novels/test-novel").text
     assert 'title="3, official, source 1: Chapter 3"' in novel
     assert "No problems found." in novel
+
+
+def test_library_counts_leave_out_unpublished_sources(client, service):
+    added(service)
+    with NovelStore.open(novel_dir("test-novel")) as store:
+        mine = store.upsert_source(SourceSpec("translate:test", "test:setup", "en", Kind.MY_TRANSLATION), published=False)
+        store.record_index(mine, [SourceItem("n1", 1, "Chapter 1")])
+        store.put_version(mine, "n1", NewVersion("Chapter 1", (Paragraph.of("one"),)))
+    page = client.get("/").text
+    assert "<li>3 official-en</li>" in page and "<li>1 my-translation</li>" not in page
+
+    with NovelStore.open(novel_dir("test-novel")) as store:
+        store.set_published(mine, True)
+    assert "<li>1 my-translation</li>" in client.get("/").text
 
 
 def test_compare_then_pin(client, service, site):

@@ -129,13 +129,20 @@ class NovelView:
 
     @cached_property
     def _selection(self) -> Selection:
-        publishable = {sid: c for sid, c in self._current.items() if self._sources[sid].spec.kind is not Kind.RAW_ZH}
+        publishable = {sid: c for sid, c in self._current.items() if sid not in self._unpublishable}
         extras = {sid: self._derivations[sid].extras for sid in publishable}
         return select(publishable, self._priority, self.pins, extras)
 
+    @cached_property
+    def _unpublishable(self) -> frozenset[SourceId]:
+        """Raw-zh sources and the ones switched off: neither takes part in the book."""
+        return frozenset(
+            sid for sid, info in self._sources.items() if info.spec.kind is Kind.RAW_ZH or not info.published
+        )
+
     @property
     def selection(self) -> tuple[Selected, ...]:
-        """The publishable book: one source per number (pins, then priority), never raw-zh."""
+        """The publishable book: one source per number (pins, then priority), never raw-zh or unpublished."""
         return self._selection.chapters
 
     @property
@@ -151,7 +158,9 @@ class NovelView:
         """The items a sync of this source should fetch, in index order.
 
         An item is fetched when it has no version yet and the book lacks its number:
-        no other source has a text for it (for a raw-zh source, no other raw text).
+        no other source has a text for it (for a raw-zh source, no other raw text;
+        for an official-en source, no other official text, so official English keeps
+        syncing where only my-translation text is published).
         Unmapped items without a version are fetched too, so their text can show what
         they are. Unavailable (locked), vanished and skipped items are left alone.
         Items whose key falls in `refresh` are fetched again whatever they hold.
@@ -160,6 +169,9 @@ class NovelView:
         if info.spec.kind is Kind.RAW_ZH:
             raws = (c for sid, c in self._current.items() if self._sources[sid].spec.kind is Kind.RAW_ZH)
             covered = {s.key.number for chapters in raws for s in chapters}
+        elif info.spec.kind is Kind.OFFICIAL_EN:
+            mine = {sid for sid, info in self._sources.items() if info.spec.kind is Kind.MY_TRANSLATION}
+            covered = {s.key.number for s in self.selection if s.source_id not in mine}
         else:
             covered = {s.key.number for s in self.selection}
         keys = self._derivations[source].keys
@@ -188,19 +200,20 @@ class NovelView:
 
     def check(self) -> CheckReport:
         raw = {sid for sid, info in self._sources.items() if info.spec.kind is Kind.RAW_ZH}
+        hidden = self._unpublishable
         selection = self.selection
         selected_numbers = {s.key.number for s in selection}
         selected_by_key = {s.key: s for s in selection}
 
         expected = {
-            key.number for sid, d in self._derivations.items() if sid not in raw for key in d.keys.values()
+            key.number for sid, d in self._derivations.items() if sid not in hidden for key in d.keys.values()
         } | selected_numbers
         gaps = sorted(set(range(min(expected), max(expected) + 1)) - selected_numbers) if expected else []
         raw_only = sorted({c.key.number for sid in raw for c in self._current.get(sid, [])} - selected_numbers)
 
         split_by_number: dict[int, set[bool]] = defaultdict(set)
         for sid, chapters in self._current.items():
-            if sid in raw:
+            if sid in hidden:
                 continue
             per_number: dict[int, bool] = defaultdict(bool)
             extras = self._derivations[sid].extras

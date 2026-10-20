@@ -46,6 +46,7 @@ class SourceInfo:
     id: SourceId
     spec: SourceSpec
     alignment: AlignmentRules
+    published: bool = True  # off: kept out of the book (site, EPUB, audio); set by the user, never by an upsert
 
 
 @dataclass(frozen=True)
