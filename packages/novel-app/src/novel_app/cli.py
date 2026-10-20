@@ -2,6 +2,7 @@
 
 import re
 import shutil
+import sys
 from collections.abc import Callable, Iterable, Sequence
 from contextlib import ExitStack
 from dataclasses import replace
@@ -39,6 +40,14 @@ deploy_app = typer.Typer(no_args_is_help=True, help="Publish built outputs.")
 app.add_typer(deploy_app, name="deploy")
 align_app = typer.Typer(no_args_is_help=True, help="Fix how a source's items map to chapter keys.")
 app.add_typer(align_app, name="align")
+
+
+@app.callback()
+def _utf8_output() -> None:
+    # Titles can be Chinese; on Windows a piped stdout defaults to the ANSI code page, which cannot print them.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
 audio_app = typer.Typer(no_args_is_help=True, help="Chapter audio: legacy registration and tags.")
 app.add_typer(audio_app, name="audio")
 

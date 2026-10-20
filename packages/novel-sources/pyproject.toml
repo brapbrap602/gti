@@ -11,6 +11,9 @@ dependencies = [
     "lncrawl-scraper~=1.7.0",
     "lxml>=5.3",
     "novel-core",
+    "novel-downloader~=3.1.1",
+    "opencc>=1.1.9",
+    "web-novel-scraper~=2.2.1",
 ]
 
 [tool.uv.sources]

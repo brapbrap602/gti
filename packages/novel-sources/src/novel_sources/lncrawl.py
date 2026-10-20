@@ -43,6 +43,16 @@ def _context():
     return ctx
 
 
+def supports(url: str) -> bool:
+    """Whether lncrawl has a crawler for this host that it does not list as rejected (site down)."""
+    sources = _context().sources
+    try:
+        sources.find_crawler(url)
+    except Exception:  # lncrawl's ServerError: no crawler, or the host is rejected
+        return False
+    return True
+
+
 class LncrawlSource:
     def __init__(self, spec: SourceSpec):
         self._spec = spec
