@@ -72,3 +72,16 @@ def test_huge_texts_skip_word_marks():
     assert time.monotonic() - started < 10
     assert any(m.state is Mark.CHANGED for m in d.left)
     assert all(m.spans is None for m in d.left + d.right)
+
+
+def test_changed_words_next_to_each_other_form_one_mark():
+    left = "Then he ran very fast towards the old gate of the city."
+    d = diff_blocks(paras(left), paras("Then he walked quite slowly towards the old gate of the city."))
+
+    assert marked(left, d.left[0].spans) == ["ran very fast"]
+
+
+def test_a_rewritten_paragraph_is_highlighted_without_word_marks():
+    d = diff_blocks(paras("Li Fan narrowed his eyes and looked down."), paras("Squinting, the cultivator surveyed the mortals."))
+
+    assert d.left[0].state is Mark.CHANGED and d.left[0].spans == () and d.right[0].spans == ()

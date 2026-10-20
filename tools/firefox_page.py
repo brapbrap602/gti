@@ -34,7 +34,7 @@ _THROWING_STORAGE = """() => {
 def serve(folder: Path) -> Iterator[str]:
     """Serve folder over http on an ephemeral port; yields the base URL (with a trailing slash)."""
     handler = functools.partial(_QuietHandler, directory=str(folder))
-    server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
+    server = _QuietServer(("127.0.0.1", 0), handler)
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     try:
@@ -42,6 +42,11 @@ def serve(folder: Path) -> Iterator[str]:
     finally:
         server.shutdown()
         server.server_close()
+
+
+class _QuietServer(http.server.ThreadingHTTPServer):
+    def handle_error(self, request, client_address) -> None:
+        pass  # Firefox resets keep-alive connections when it closes; that is not a failure
 
 
 class _QuietHandler(http.server.SimpleHTTPRequestHandler):
