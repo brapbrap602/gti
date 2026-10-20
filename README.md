@@ -23,6 +23,7 @@ uv run nov import calibre "novels\<Novel>" --novel <slug>   # old site's Calibre
 uv run nov add <url> [--novel <slug>]    # attach a web source (creates the novel if new); --lang zh for raws
 uv run nov sync <slug>|--all             # fetch the chapters the book lacks (--refresh 1400-1414 refetches)
 uv run nov priority <slug> [3,1,2]       # show the sources best first, or set the order
+uv run nov pin <slug> 834-836 <source>    # use that source for these numbers whatever the priority says
 uv run nov check <slug>                  # gaps, duplicates, unmapped chapters, failed pages, ...
 uv run nov align item <slug> <ref> 1277   # give an item an explicit key (524pt1 for a part); --source when several
 uv run nov align skip <slug> <ref>...    # leave reposts/notices out of the book
@@ -34,7 +35,12 @@ uv run nov build audio <slug>            # edge-tts MP3 per chapter -> <data dir
 uv run nov build volumes <slug>          # M4B per 100 chapter numbers, with chapter marks and cover
 uv run nov audio register <slug> "tts_out/<novel>" --key position|title-number   # [--shift 736-1442:+4]
 uv run nov audio retag <slug>            # rewrite tags of every chapter MP3, legacy ones included
+uv run nov serve                         # web UI on http://127.0.0.1:8765: library, chapter grid, compare and pin, jobs
 ```
+
+Long commands (add, sync, builds, imports, deploy) run as jobs: one at a time per novel, whether
+started from the CLI or from `nov serve`, and a second one for the same novel is refused with
+"job already running". Jobs, their logs and locks live in `<data dir>/app.sqlite` and `_jobs/`.
 
 `nov sync` reads sites with lightnovel-crawler's crawlers (in-process), except hosts with a
 custom backend (skydemonorder). By default it fetches only chapter numbers no source has yet;
