@@ -130,7 +130,8 @@ class NovelView:
     @cached_property
     def _selection(self) -> Selection:
         publishable = {sid: c for sid, c in self._current.items() if self._sources[sid].spec.kind is not Kind.RAW_ZH}
-        return select(publishable, self._priority, self.pins)
+        extras = {sid: self._derivations[sid].extras for sid in publishable}
+        return select(publishable, self._priority, self.pins, extras)
 
     @property
     def selection(self) -> tuple[Selected, ...]:
@@ -202,8 +203,9 @@ class NovelView:
             if sid in raw:
                 continue
             per_number: dict[int, bool] = defaultdict(bool)
+            extras = self._derivations[sid].extras
             for c in chapters:
-                per_number[c.key.number] |= c.key.part > 0
+                per_number[c.key.number] |= c.key.part > 0 and c.key not in extras
             for number, split in per_number.items():
                 split_by_number[number].add(split)
 

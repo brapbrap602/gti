@@ -8,6 +8,9 @@ Items with no printed number and no override are unmapped. Items of one source t
 to the same key are all left unmapped and reported as duplicates; the user
 resolves them with item overrides, or by skipping a repost. Skipped items take no
 part in derivation at all: no key, not unmapped, not a duplicate.
+An item override onto a part of a number the source does not itself split (e.g. an
+unnumbered side story placed at 852 pt 1) is an extra: it sits beside the whole chapter
+instead of replacing it.
 """
 
 import json
@@ -76,6 +79,7 @@ class Derivation:
     keys: dict[ItemRef, ChapterKey]
     unmapped: tuple[ItemRef, ...]
     duplicates: dict[ChapterKey, tuple[ItemRef, ...]]
+    extras: frozenset[ChapterKey] = frozenset()  # placed parts that do not split their number
 
 
 def derive_keys(items: Iterable[Printed], rules: AlignmentRules) -> Derivation:
@@ -95,7 +99,9 @@ def derive_keys(items: Iterable[Printed], rules: AlignmentRules) -> Derivation:
         by_key[key].append(ref)
     duplicates = {key: tuple(refs) for key, refs in by_key.items() if len(refs) > 1}
     keys = {ref: key for ref, key in candidates.items() if key not in duplicates}
-    return Derivation(keys, tuple(unmapped), duplicates)
+    split = {key.number for ref, key in keys.items() if key.part and ref not in rules.items}
+    extras = frozenset(key for ref, key in keys.items() if key.part and ref in rules.items and key.number not in split)
+    return Derivation(keys, tuple(unmapped), duplicates, extras)
 
 
 def _key(item: Printed, rules: AlignmentRules) -> ChapterKey | None:
