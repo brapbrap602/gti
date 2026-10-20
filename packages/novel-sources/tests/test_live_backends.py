@@ -1,4 +1,4 @@
-"""Gates G1 (lncrawl in-process) and G8 (fetch ladder) against the real sites: `pytest -m live`."""
+"""Gates G1 (lncrawl in-process), G3 (novel-downloader) and G8 (fetch ladder) against the real sites: `pytest -m live`."""
 
 import os
 from pathlib import Path
@@ -12,8 +12,9 @@ pytestmark = pytest.mark.live
 
 @pytest.mark.parametrize(
     "url",
-    ["https://novelbuddy.me/surviving-the-game-as-a-barbarian", "https://skydemonorder.com/projects/3801994495-return-of-the-mount-hua-sect"],
-    ids=["lncrawl-novelbuddy", "skydemonorder-firefox"],
+    ["https://novelbuddy.me/surviving-the-game-as-a-barbarian", "https://skydemonorder.com/projects/3801994495-return-of-the-mount-hua-sect",
+     "https://www.biquges123.com/50537/"],
+    ids=["lncrawl-novelbuddy", "skydemonorder-firefox", "noveldl-biquges123"],
 )  # fmt: skip
 def test_index_and_last_chapter(url):
     data = os.environ.get("NOVELS_DATA_DIR") or Path(os.environ.get("LOCALAPPDATA", Path.home())) / "novels"
