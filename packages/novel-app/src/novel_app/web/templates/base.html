@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/static/app.css">
     <script src="/static/vendor/htmx.min.js" defer></script>
     <script src="/static/vendor/sse.js" defer></script>
+    <script src="/static/app.js" defer></script>
 </head>
 <body hx-ext="sse" sse-connect="/jobs/stream">
 <header class="app-header">
@@ -17,6 +18,7 @@
         <a href="/">Library</a>
         <a href="/add">Add novel</a>
     </nav>
+    <button type="button" class="jobs-toggle" aria-expanded="false" aria-controls="jobs-panel">Jobs</button>
     <div id="notice" role="status" aria-live="polite">{% include "_notice.html" %}</div>
 </header>
 <div class="app-layout">
@@ -25,8 +27,12 @@
           hx-trigger="sse:active" hx-select="#main" hx-target="this" hx-swap="outerHTML" hx-disinherit="*">
     {% block main %}{% endblock %}
     </main>
-    <aside class="jobs" aria-labelledby="jobs-heading">
-        <h2 id="jobs-heading">Jobs</h2>
+    {# Drawer and Recent state live on the aside, outside the #jobs region that SSE replaces. #}
+    <aside class="jobs" id="jobs-panel" aria-labelledby="jobs-heading">
+        <div class="jobs-head">
+            <h2 id="jobs-heading">Jobs</h2>
+            <button type="button" class="jobs-close" aria-label="Close jobs">&times;</button>
+        </div>
         <div id="jobs" sse-swap="jobs">{% include "_jobs.html" %}</div>
     </aside>
 </div>

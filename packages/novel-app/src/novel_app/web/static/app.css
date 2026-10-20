@@ -48,6 +48,21 @@ p { font-size: 1rem; }
   .app-layout { grid-template-columns: 1fr; }
 }
 
+/* The Jobs button opens the jobs panel as a drawer on narrow screens; its dot shows
+   while a job is queued or running (app.js sets .jobs-toggle--running after each swap:
+   Firefox leaves a :has()-driven ::after stale). */
+.app-header .jobs-toggle { display: none; margin-left: auto; }
+.jobs-toggle--running::after {
+  content: "" / "running";
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-left: 0.45rem;
+  border-radius: 50%;
+  background: var(--accent-bright);
+  vertical-align: middle;
+}
+
 h1 { font-size: 1.6rem; margin: 0.5rem 0 1rem; }
 h2 { font-size: 1.25rem; margin: 2rem 0 0.75rem; }
 h3 { font-size: 1.05rem; }
@@ -135,6 +150,35 @@ tbody th { font-weight: 600; }
   background: var(--surface);
 }
 .jobs h2 { margin-top: 1rem; }
+.jobs-head { display: flex; justify-content: space-between; align-items: center; }
+.jobs-close { display: none; font-size: 1.2rem; line-height: 1; padding: 0.3rem 0.6rem; }
+.recent-heading { margin: 1rem 0 0.25rem; font-size: 0.95rem; }
+.recent-toggle { background: none; border: 0; padding: 0.25rem 0; color: var(--muted); font-weight: 600; }
+.recent-toggle::before { content: "▸ "; }
+.recent-toggle[aria-expanded="true"]::before { content: "▾ "; }
+aside.jobs:not(.show-recent) .job-list--recent { display: none; }
+
+@media (max-width: 960px) {
+  .app-header .jobs-toggle, .jobs-close { display: inline-block; }
+  .jobs {
+    position: fixed;
+    inset: 0 0 0 auto;
+    z-index: 20;
+    width: min(22rem, 90vw);
+    max-height: none;
+    border-radius: 0;
+    border-width: 0 0 0 1px;
+    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 0.2s ease, visibility 0.2s;
+  }
+  .jobs.open { transform: none; visibility: visible; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jobs { transition: none; }
+}
 .job-list { list-style: none; margin: 0; padding: 0; }
 .job { border-top: 1px solid var(--border); padding: 0.6rem 0; font-size: 0.9rem; }
 .job-head { display: flex; justify-content: space-between; gap: 0.5rem; }

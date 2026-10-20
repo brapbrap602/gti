@@ -25,7 +25,7 @@ from novel_core import Kind
 from novel_sources.backends import BACKENDS
 from starlette.concurrency import run_in_threadpool
 
-from novel_app.jobs import JobRow, JobRunning, JobState
+from novel_app.jobs import JobPanel, JobRunning, JobState
 from novel_app.notation import parse_range
 from novel_app.pages import CELL_LABELS, CellState
 from novel_app.service import Service, UserError
@@ -71,6 +71,7 @@ def create_app(service: Service) -> FastAPI:
 
     def page(request: Request, name: str, status: int = 200, **context) -> HTMLResponse:
         context.setdefault("jobs", service.jobs())
+        context.setdefault("job_panel", service.job_panel())
         return templates.TemplateResponse(
             request, name, {"notice": request.query_params.get("notice"), **context}, status_code=status
         )
@@ -194,8 +195,8 @@ def create_app(service: Service) -> FastAPI:
 
     @app.get("/jobs/stream")
     async def job_stream(request: Request):
-        def render(jobs: list[JobRow]) -> str:
-            return templates.get_template("_jobs.html").render(jobs=jobs, owns=service.runner.owns)
+        def render(panel: JobPanel) -> str:
+            return templates.get_template("_jobs.html").render(job_panel=panel, owns=service.runner.owns)
 
         async def events() -> AsyncIterator[str]:
             async for event in job_events(service, render, request.is_disconnected):
@@ -208,19 +209,19 @@ def create_app(service: Service) -> FastAPI:
 
 async def job_events(
     service: Service,
-    render: Callable[[list[JobRow]], str],
+    render: Callable[[JobPanel], str],
     disconnected: Callable,
     every: float = STREAM_EVERY,
 ) -> AsyncIterator[str]:
     """SSE events: `jobs` (the drawer's HTML) when it changes, `active` when a job starts or ends."""
     shown, active = None, None
     while not await disconnected():
-        jobs = await run_in_threadpool(service.jobs)
-        html = render(jobs)
+        panel = await run_in_threadpool(service.job_panel)
+        html = render(panel)
         if html != shown:
             shown = html
             yield sse("jobs", html)
-        now_active = {j.id for j in jobs if j.state.active}
+        now_active = {j.id for j in panel.attention if j.state.active}
         if active is not None and active != now_active:
             yield sse("active", "")
         active = now_active
