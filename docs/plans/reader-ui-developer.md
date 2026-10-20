@@ -1,6 +1,6 @@
 # Reader site and app UI: developer plan
 
-Status: approved by the user 2026-10-20 (r3). Reviewed independently twice (r1 full review, r2 focused review; findings folded in, §9). Not implemented.
+Status: approved by the user 2026-10-20 (r3). Reviewed independently twice (r1 full review, r2 focused review; findings folded in, §9). Implemented 2026-10-20 (slices 0-8, §10); not deployed.
 Related: [stakeholder plan](reader-ui-stakeholder.md) · [platform v1 developer plan](novel-platform-developer.md) (done).
 
 ## 1. Approved decisions (user)
@@ -359,3 +359,27 @@ Paths are relative to the repo root. Pub = `packages/novel-publish/src/novel_pub
   - m4: slice and matrix sync
   - m5: reload keeps the offset, not the hash
   - Scope trims: toc.json reduced to `{n, a}` per chapter (S8 dropped); changed blocks render as plain marked divs (D10 dropped, no render seam).
+
+## 10. Implementation notes (2026-10-20)
+
+All slices are done on `main` (not pushed): 327 default tests and 21 local `browser` tests pass, and `lint-imports` keeps its contract. A two-axis review (standards, spec) found every §4.2 case covered; its fixes are in the last commit.
+
+**Gates**
+- G1: `--window-size` is ignored by headless Firefox on Windows (innerWidth stayed 1366). The fallback `browsingContext.setViewport` works, 3 of 3 runs. The harness lives in `tools/firefox_page.py`.
+- G2: the `prefs.js` colour-scheme override reaches `matchMedia` (both values), so B7b stays.
+
+**Deviations from the design**
+- Jobs: the Recent toggle is a button in the "Recent (n)" heading inside `#jobs`. Its state is still on `aside.jobs`, and `app.js` restores `aria-expanded` from a MutationObserver after each swap.
+- Jobs: the running dot is a class set by `app.js`, not pure CSS. Firefox left the `:has()`-driven `::after` drawn after the job ended (W1 caught it).
+- Compare: `Part` is `(heading, body)` with the body rendered in `pages._marked_parts`, so the ids and gaps are built in one tested place rather than in the template.
+- Compare, added after W5 on real data: changed words separated only by spaces form one mark, and a paired paragraph with more than half its text changed is highlighted without word marks (two translations otherwise marked nearly every word). `BlockMark.spans` is `()` for such a rewrite. Needs the user's confirmation.
+- Go-to input: a visually hidden label and a "Chapter #" placeholder, so it fits one row on library cards.
+- The library shows `site — nothing to build` as the badge text; the novel page keeps its longer staleness text.
+
+**Walkthroughs**
+- W4: the real library copied into a scratch folder and rebuilt in 70 s; the site is 128 MiB (not the ~230 MB estimated). Phone and desktop screenshots of the library, a CCG page, Longevity in light and dark, go to 3000, and the resume flow.
+- W5: `nov serve` from the plan commit and from `main` on the same data copy, phone and desktop. The app's palette and layout are unchanged apart from the intended changes.
+- Seen in the data, not caused by this work: CCG chapter 3000's title reads "2998: Multithreaded Fellow Daoists Discussion".
+
+**Left**
+- Deploy: `nov build site`, then `nov deploy site` (a full push, every page changes), after the user confirms.
