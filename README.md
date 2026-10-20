@@ -1,8 +1,11 @@
 # github_pages
 
 This repo (gti) is being consolidated into a uv workspace for novel tooling; see
-`docs/plans/novel-platform-stakeholder.md`. Until the cutover, the root scripts
-below still build the live site.
+`docs/plans/novel-platform-stakeholder.md`. The live site
+(https://brapbrap602.github.io/gti/) is built with `nov build site` and published with
+`nov deploy site` to the `gh-pages` branch; main no longer holds the site. The root
+scripts and the "Adding a new novel" / audio sections below are the old workflow, kept
+for reference (they expect the `novels/` folders that are now only in git history).
 
 ## Development
 
