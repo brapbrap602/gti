@@ -608,4 +608,18 @@ Soft checks (stored with flags):
   - Verdict: ready for user approval with gates G1–G3.
 
 ## 10. Implementation notes
-(empty)
+- **Slices 0–2 done (2026-10-20):** 3adab71 (package, deps, import layer), 1271193 (publish switch, schema 3), fe669b3 (model seam, budget, live test).
+- **pydantic-ai 2.58 facts found while building `models.py`** (checked against a fake transport):
+  - Retries are set per run with `retries={"output": n}`. There is no `output_retries` keyword.
+  - openai 3.x uses `httpx2`, so adapter tests use `httpx2.MockTransport`.
+  - A 200 reply whose body is an error raises `ModelHTTPError` with the body's code, so it is retried like a 5xx.
+  - `finish_reason: "error"` comes back as a **normal success**. `models.py` checks the last response and raises `CallFailed("finish: error")` (also for `content_filter`).
+  - Empty output on a length stop raises `UnexpectedModelBehavior`. With output retries at 0, a truncated tool call raises `IncompleteToolCall`. With output retries at 1, pydantic-ai **spends the retry on the truncated call**. Slice 7 must keep cut-off detection apart from the validator retry: it should check `finish_reason == "length"` before treating a failure as a validation retry.
+  - The generation id is `ModelResponse.provider_response_id`.
+- **Key limits:** 402, or 403 with "limit" in the body, raises `OutOfCredit`. This is unconfirmed against a real key-limit reply.
+- **Reasoning "off"** sends no `reasoning` setting, so the model's default applies. Revisit at G2 for models that reason by default.
+- **G1 status:**
+  - **Done:** TM #4411 realigned to 1465 with `nov align item`, and `nov check` shows raw-only 1–1465. Every real store is now at schema 3. Schema-2 backups are in `%LOCALAPPDATA%
+ovels\_backup-schema2-2026-10-20\`.
+  - **Open:** the `live` test (`pytest -m live packages/novel-translate -s`, model from `NOV_LIVE_MODEL`, default `google/gemini-2.5-flash-lite`) waits for the user's key.
+
