@@ -2328,6 +2328,7 @@ dependencies = [
     { name = "pyahocorasick" },
     { name = "pydantic-ai-slim", extra = ["openrouter"] },
     { name = "pypinyin" },
+    { name = "sqlalchemy" },
 ]
 
 [package.metadata]
@@ -2337,6 +2338,7 @@ requires-dist = [
     { name = "pyahocorasick", specifier = ">=2.1" },
     { name = "pydantic-ai-slim", extras = ["openrouter"], specifier = ">=2.58" },
     { name = "pypinyin", specifier = ">=0.53" },
+    { name = "sqlalchemy", specifier = ">=2.0" },
 ]
 
 [[package]]
