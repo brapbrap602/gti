@@ -112,6 +112,35 @@ def test_deploy_site_over_budget(data_dir, wns_folder, tmp_path):
     assert result.exit_code == 1 and "over the 0 MiB budget; nothing pushed" in result.output
 
 
+def test_import_legacy_stores_into_one_novel_then_rank_them(data_dir, tmp_path):
+    translated = tmp_path / "MtlTings" / "data" / "translated" / "test_novel"
+    translated.mkdir(parents=True)
+    for n in (2, 3):
+        (translated / f"chapter_{n}.html").write_text(f"Chapter {n}: T{n}\n\nMine {n}.\n", encoding="utf-8")
+    dump = tmp_path / "Test Novel"
+    dump.write_text("## Chapter 1: T1\n\nChapter 1: T1\n\nTheirs 1.## Chapter 2: T2\n\nTheirs 2.\n", encoding="utf-8")
+
+    result = run("import", "mtl", translated)  # the slug comes from the folder name
+    assert result.exit_code == 0, result.output
+    assert "created test-novel" in result.output and "texts: 2 stored" in result.output
+    result = run("import", "scribble", dump, "--novel", "test-novel")
+    assert result.exit_code == 0, result.output
+    assert "updated test-novel" in result.output
+
+    result = run("priority", "test-novel")
+    assert result.exit_code == 0, result.output
+    assert "1. source 1: import:mtl my-translation" in result.output
+    assert "2. source 2: import:scribble official-en" in result.output
+    result = run("priority", "test-novel", "2")
+    assert "1. source 2: import:scribble" in result.output and "2. source 1: import:mtl" in result.output
+    assert run("priority", "test-novel", "5").exit_code == 2
+
+
+def test_import_mtl_rejects_other_folders(data_dir, tmp_path):
+    result = run("import", "mtl", tmp_path)
+    assert result.exit_code == 2 and "data/raw or data/translated" in result.output
+
+
 def test_check_unknown_novel(data_dir):
     result = run("check", "nope")
     assert result.exit_code == 2 and "no novel 'nope'" in result.output

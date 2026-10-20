@@ -18,7 +18,10 @@ from novel_audio.volumes import VOLUME_SIZE, build_volumes
 from novel_core import AlignmentRules, ChapterKey, CheckReport, KeyRange, NovelStore
 from novel_publish import epub
 from novel_publish.site import build_site
-from novel_sources.importing import ImportReport, import_novel
+from novel_sources.calibre import CalibreImporter
+from novel_sources.importing import Importer, ImportReport, import_novel
+from novel_sources.mtl import MtlImporter
+from novel_sources.scribble import ScribbleImporter
 from novel_sources.wns import WnsImporter, snapshot_refs
 
 from novel_app import deploy
@@ -45,7 +48,47 @@ def import_wns(
     novel: Annotated[str | None, typer.Option(help="novel slug; defaults to the slug of the stored title")] = None,
 ) -> None:
     """Import a web-novel-scraper novel folder (main.json + saved pages)."""
-    importer = WnsImporter(folder)
+    _import(WnsImporter(folder), novel)
+
+
+NovelOpt = Annotated[str | None, typer.Option(help="novel slug; defaults to the slug of the folder or file name")]
+
+
+@import_app.command("mtl")
+def import_mtl(
+    folder: Annotated[Path, typer.Argument(exists=True, file_okay=False, help="MtlTings data/raw/<novel> or data/translated/<novel>")],
+    novel: NovelOpt = None,
+) -> None:
+    """Import MtlTings chapter files: raws as raw-zh, translations as my-translation."""
+    _import(_checked(MtlImporter, folder), novel)
+
+
+@import_app.command("scribble")
+def import_scribble(
+    file: Annotated[Path, typer.Argument(exists=True, dir_okay=False, help="scribblehub text dump")],
+    novel: NovelOpt = None,
+) -> None:
+    """Import a scribblehub text dump ('## Chapter N: Title' markers)."""
+    _import(_checked(ScribbleImporter, file), novel)
+
+
+@import_app.command("calibre")
+def import_calibre(
+    folder: Annotated[Path, typer.Argument(exists=True, file_okay=False, help="github_pages novels/<Novel> folder")],
+    novel: NovelOpt = None,
+) -> None:
+    """Import an old site's Calibre HTML pages; later imports rank lower, so import this last."""
+    _import(CalibreImporter(folder), novel)
+
+
+def _checked[T](make: Callable[[Path], T], path: Path) -> T:
+    try:
+        return make(path)
+    except ValueError as e:
+        raise typer.BadParameter(str(e)) from e
+
+
+def _import(importer: Importer, novel: str | None) -> None:
     slug = novel or slugify(importer.read_index().meta.title)
     report = import_novel(novel_dir(slug), importer)
     _print_import(slug, report)
@@ -100,6 +143,28 @@ def _edit_alignment(
     for m in diff.moved:
         typer.echo(f"  {m.item_ref}: {m.old or 'none'} -> {m.new or 'none'}")
     typer.echo(f"{len(diff.moved)} items moved")
+
+
+@app.command()
+def priority(
+    novel: Novel,
+    sources: Annotated[str | None, typer.Argument(help="source ids, best first, e.g. 3,1,2")] = None,
+) -> None:
+    """Show the novel's sources in priority order, or set the order (unlisted sources rank after, by id)."""
+    with _open(novel) as store:
+        known = {s.id: s for s in store.sources()}
+        if sources is not None:
+            try:
+                order = [int(x) for x in sources.split(",")]
+            except ValueError:
+                raise typer.BadParameter(f"{sources!r} is not a list of source ids like 3,1,2") from None
+            if unknown := [s for s in order if s not in known]:
+                raise typer.BadParameter(f"no source {unknown[0]}; the novel has {sorted(known)}")
+            store.set_priority(order)
+        ranked = store.priority()
+    for rank, source in enumerate(ranked, start=1):
+        spec = known[source].spec
+        typer.echo(f"  {rank}. source {source}: {spec.backend} {spec.kind} {spec.url}")
 
 
 def _pick_source(store: NovelStore, source: int | None) -> int:

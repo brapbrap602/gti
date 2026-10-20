@@ -64,6 +64,13 @@ def test_select_priority(book):
     assert book.picked() == {"5": b}
 
 
+def test_priority_lists_unranked_sources_after_the_ranked_ones(book):
+    a, b, c = book.source("a"), book.source("b"), book.source("c")
+    assert book.store.priority() == (a, b, c)
+    book.store.set_priority([c])
+    assert book.store.priority() == (c, a, b)
+
+
 def test_select_pin_range(book):
     a, b = book.source("a"), book.source("b")
     book.chapters(a, titles(*range(8, 23)))

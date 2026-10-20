@@ -16,7 +16,8 @@ from pathlib import Path
 import ftfy
 from novel_core import ItemRef, Kind, NovelMeta, RawChapter, SourceItem, SourceSpec, url_ref
 
-from novel_sources.hosts import site_name
+from novel_sources.clean import CleanRules
+from novel_sources.hosts import rules_for, site_name
 from novel_sources.importing import NovelIndex
 
 BACKEND = "import:wns"
@@ -87,6 +88,9 @@ class WnsImporter:
             return None
         html = (self._data / "chapters" / entry.filename).read_bytes().decode("utf-8", errors="replace")
         return RawChapter(html, "html", final_url=entry.url)
+
+    def clean_rules(self, raw: RawChapter) -> CleanRules:
+        return rules_for(raw.final_url or self.spec.url)
 
 
 def snapshot_refs(novel_dir: Path, source_id: int) -> list[ItemRef]:
