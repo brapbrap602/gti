@@ -27,7 +27,7 @@ def test_backend_by_host():
     assert backend_for("https://novelbuddy.me/some-novel") == "lncrawl"
     assert spec_for_url(f"{PROJECT}/", "en").url == PROJECT
     with pytest.raises(ValueError):
-        spec_for_url("https://a.test/n", "en", backend="lnreader")
+        spec_for_url("https://a.test/n", "en", backend="no-such-backend")
 
 
 def test_lncrawl_body_is_normalized_with_the_common_rules():

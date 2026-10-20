@@ -1,0 +1,17 @@
+{
+  "name": "lnreader-harness",
+  "private": true,
+  "description": "Runs LNReader plugins for novel-sources; the npm packages plugins import, at lnreader-plugins' locked versions",
+  "license": "GPL-3.0-only",
+  "type": "module",
+  "dependencies": {
+    "@noble/ciphers": "2.1.1",
+    "cheerio": "1.0.0",
+    "dayjs": "1.11.13",
+    "domhandler": "5.0.3",
+    "esbuild": "0.25.3",
+    "htmlparser2": "9.1.0",
+    "protobufjs": "7.6.5",
+    "urlencode": "2.0.0"
+  }
+}
