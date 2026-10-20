@@ -1,0 +1,20 @@
+[project]
+name = "novel-translate"
+version = "0.1.0"
+description = "Glossary pass and LLM translation of raw chapters via OpenRouter"
+license = "GPL-3.0-only"
+requires-python = ">=3.12"
+dependencies = [
+    "novel-core",
+    "opencc>=1.1.9",
+    "pyahocorasick>=2.1",
+    "pydantic-ai-slim[openrouter]>=2.58",
+    "pypinyin>=0.53",
+]
+
+[tool.uv.sources]
+novel-core = { workspace = true }
+
+[build-system]
+requires = ["uv_build>=0.12,<0.13"]
+build-backend = "uv_build"
