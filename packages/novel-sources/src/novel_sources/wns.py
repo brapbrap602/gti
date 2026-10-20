@@ -17,12 +17,10 @@ import ftfy
 from novel_core import ItemRef, Kind, NovelMeta, RawChapter, SourceItem, SourceSpec, url_ref
 
 from novel_sources.clean import CleanRules
-from novel_sources.hosts import rules_for, site_name
+from novel_sources.hosts import numbered_urls, rules_for
 from novel_sources.importing import NovelIndex
 
 BACKEND = "import:wns"
-# Hosts whose chapter URLs count pages by position, so a slug number is not a chapter number.
-POSITIONAL_SLUGS = frozenset({"freewebnovel"})
 SNAPSHOT_NAME = "wns-main.json"
 
 
@@ -57,8 +55,7 @@ class WnsImporter:
             ref = url_ref(ch["chapter_url"])
             title = ftfy.fix_text(ch.get("chapter_title") or "", uncurl_quotes=False).strip()
             replacement_titles += "\ufffd" in title
-            ref_numbered = site_name(ch["chapter_url"]) not in POSITIONAL_SLUGS
-            items.append(SourceItem(ref, position, title, ref_numbered=ref_numbered))
+            items.append(SourceItem(ref, position, title, ref_numbered=numbered_urls(ch["chapter_url"])))
 
         notes = []
         listed = {e.filename for e in self._entries.values() if e.filename}

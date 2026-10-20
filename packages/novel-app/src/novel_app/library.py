@@ -52,3 +52,8 @@ def novel_dir(slug: str) -> Path:
     if slug != slugify(slug):
         raise ValueError(f"{slug!r} is not a slug (lowercase ASCII letters, digits and dashes)")
     return data_dir() / slug
+
+
+def fetch_dir() -> Path:
+    """Where fetching keeps what it learns per site: challenge clearances, the Firefox profile."""
+    return data_dir() / "_fetch"

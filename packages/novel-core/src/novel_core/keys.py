@@ -54,10 +54,11 @@ def url_ref(url: str) -> ItemRef:
     return path or "/"
 
 
-_TITLE_NUMBER = re.compile(r"\bchapter\s*(\d+)", re.IGNORECASE)
+_TITLE_NUMBER = re.compile(r"\bchapters?\s*(\d+)", re.IGNORECASE)  # "Chapters 486" is a typo seen in titles
 _CJK_NUMBER = re.compile(r"第\s*([0-9零〇一二三四五六七八九十百千万两]+)\s*[章节回]")
 _SLUG_NUMBER = re.compile(r"chapter-(\d+)", re.IGNORECASE)
 _LEADING_NUMBER = re.compile(r"^(\d+)(?:-|$)")
+_DATE_SLUG = re.compile(r"^(?:19|20)\d\d-\d\d?-\d\d?(?:-|$)")  # a dated post ("2025-11-18"), not chapter 2025
 _PART = re.compile(r"(?:\((?:(?:part|pt)\.?\s*)?(\d+)\)|\b(?:part|pt)\.?\s*(\d+))\s*$", re.IGNORECASE)
 
 
@@ -71,7 +72,7 @@ def parse_printed(title: str, ref: ItemRef = "") -> tuple[int | None, int]:
     number = title_number(title)
     if number is None:
         slug = ref.rsplit("/", 1)[-1]
-        m = _SLUG_NUMBER.search(slug) or _LEADING_NUMBER.match(slug)
+        m = _SLUG_NUMBER.search(slug) or (None if _DATE_SLUG.match(slug) else _LEADING_NUMBER.match(slug))
         number = int(m.group(1)) if m else None
     title_head = re.split(r"[:：\-–—]", title, maxsplit=1)[0]
     part = _PART.search(title_head.strip()) or _PART.search(title.strip())
