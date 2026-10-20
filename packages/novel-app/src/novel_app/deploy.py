@@ -56,6 +56,9 @@ def deploy_site(site_dir: Path, remote: str, budget: int = DEFAULT_BUDGET, git_d
     try:
         git("init", "--quiet", f"--initial-branch={BRANCH}")
         git("config", "core.autocrlf", "false")
+        if not _has_identity(git_dir):  # e.g. a CI runner: commit as `nov deploy` rather than fail
+            git("config", "user.name", "nov deploy")
+            git("config", "user.email", "nov-deploy@localhost")
         git("add", "--all", "--force")  # --force: a global excludes file must not drop site files
         git("commit", "--quiet", "--message", f"Site deploy {deploy_id}")
         commit = git("rev-parse", "HEAD").strip()
@@ -111,6 +114,14 @@ def _run(*cmd: str) -> str:
     if done.returncode != 0:
         raise DeployError(f"{' '.join(cmd[:4])} ... failed: {done.stderr.strip() or done.stdout.strip()}")
     return done.stdout
+
+
+def _has_identity(git_dir: Path) -> bool:
+    """Whether git has user.name and user.email from its config (it may still guess them otherwise)."""
+    return all(
+        subprocess.run(["git", f"--git-dir={git_dir}", "config", key], capture_output=True).returncode == 0
+        for key in ("user.name", "user.email")
+    )
 
 
 def _rmtree(path: Path) -> None:
