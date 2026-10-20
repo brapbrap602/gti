@@ -166,7 +166,8 @@ def library_row(slug: str, view: NovelView, jobs: Sequence[JobRow], last_sync: f
     for info in view.sources:
         items = view.items(info.id)
         texts = view.chapters(info.id)
-        counts[info.spec.kind] |= {c.key.number for c in texts}
+        if info.published:
+            counts[info.spec.kind] |= {c.key.number for c in texts}
         to_fetch = len(view.to_fetch(info.id)) if is_web(info.spec) else None
         to_fetch_total += to_fetch or 0
         rows.append(SourceRow(info, rank[info.id], sum(not i.vanished for i in items), len(texts), to_fetch))

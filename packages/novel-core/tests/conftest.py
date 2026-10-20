@@ -29,9 +29,10 @@ class Book:
     def __init__(self, store: NovelStore):
         self.store = store
 
-    def source(self, name: str, kind: Kind = Kind.OFFICIAL_EN) -> int:
+    def source(self, name: str, kind: Kind = Kind.OFFICIAL_EN, published: bool = True) -> int:
         lang = "zh" if kind is Kind.RAW_ZH else "en"
-        return self.store.upsert_source(SourceSpec(f"custom:{name}", f"https://{name}.test/novel", lang, kind))
+        spec = SourceSpec(f"custom:{name}", f"https://{name}.test/novel", lang, kind)
+        return self.store.upsert_source(spec, published=published)
 
     def chapters(self, source: int, titles: list[str], text: str = "text") -> list[str]:
         """Index items titled `titles` (refs derive from the titles) and store one version each."""

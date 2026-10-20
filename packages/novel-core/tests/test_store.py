@@ -18,6 +18,7 @@ from novel_core import (
     RangeOverride,
     RawChapter,
     SourceItem,
+    SourceSpec,
     StoreError,
     Unchanged,
     VolumeRow,
@@ -555,6 +556,7 @@ def test_open_migrates_a_version_1_store(tmp_path):
     NovelStore.create(folder, NovelMeta("Old")).close()
     with sqlite3.connect(folder / "novel.sqlite") as conn:
         conn.execute("DROP TABLE volume")
+        conn.execute("ALTER TABLE source DROP COLUMN published")
         conn.execute("PRAGMA user_version=1")
     conn.close()
 
@@ -563,6 +565,116 @@ def test_open_migrates_a_version_1_store(tmp_path):
         assert len(store.volumes()) == 1
     with NovelStore.open(folder) as store:
         assert len(store.volumes()) == 1
+    NovelStore.create(tmp_path / "new", NovelMeta("New")).close()
+    assert source_columns(folder) == source_columns(tmp_path / "new")
+
+
+def source_columns(folder):
+    with sqlite3.connect(folder / "novel.sqlite") as conn:
+        columns = conn.execute("PRAGMA table_info(source)").fetchall()
+    conn.close()
+    return columns
+
+
+def test_open_migrates_a_version_2_store_keeping_every_source_published(tmp_path):
+    folder = tmp_path / "old"
+    with NovelStore.create(folder, NovelMeta("Old")) as store:
+        store.upsert_source(SourceSpec("custom:a", "https://a.test", "en", Kind.OFFICIAL_EN))
+        store.upsert_source(SourceSpec("custom:raw", "https://raw.test", "zh", Kind.RAW_ZH))
+    with sqlite3.connect(folder / "novel.sqlite") as conn:
+        conn.execute("ALTER TABLE source DROP COLUMN published")
+        conn.execute("PRAGMA user_version=2")
+    conn.close()
+
+    with NovelStore.open(folder) as store:
+        assert [s.published for s in store.sources()] == [True, True]
+    with sqlite3.connect(folder / "novel.sqlite") as conn:
+        assert conn.execute("PRAGMA user_version").fetchone() == (3,)
+    conn.close()
+
+
+# -- publish switch -----------------------------------------------------------
+
+
+def test_a_repeat_upsert_never_changes_the_publish_switch(book):
+    mine = book.source("mine", Kind.MY_TRANSLATION, published=False)
+    assert book.source("mine", Kind.MY_TRANSLATION, published=True) == mine
+    assert {s.id: s.published for s in book.store.sources()} == {mine: False}
+
+
+def test_an_unpublished_source_is_left_out_of_the_book_until_switched_on(book):
+    a = book.source("a")
+    mine = book.source("mine", Kind.MY_TRANSLATION, published=False)
+    book.chapters(a, titles(1, 2))
+    book.chapters(mine, titles(5, 6, 7, 8, 9))
+
+    assert book.picked() == {"1": a, "2": a}
+    assert keys(book.store.chapters(mine)) == ["5", "6", "7", "8", "9"]
+    book.store.set_published(mine, True)
+    assert book.picked() == {"1": a, "2": a} | {str(n): mine for n in range(5, 10)}
+    book.store.set_published(mine, False)
+    assert book.picked() == {"1": a, "2": a}
+
+
+def test_check_ignores_unpublished_sources_but_lists_their_failures(book):
+    a = book.source("a")
+    raw = book.source("raw", Kind.RAW_ZH)
+    mine = book.source("mine", Kind.MY_TRANSLATION, published=False)
+    book.chapters(a, titles(1, 2))
+    book.chapters(raw, ["第1章", "第2章", "第9章"])
+    index = titles("2 (1)", "2 (2)", 3, 4)
+    book.store.record_index(mine, [SourceItem(book.ref(t), i, t) for i, t in enumerate(index, 1)])
+    for t in index[:3]:
+        book.store.put_version(mine, book.ref(t), book.version(t))
+    book.store.mark_item(mine, book.ref("Chapter 4"), ItemStatus.FAILED, "blocked: 天元")
+
+    report = book.store.check()
+    assert report.gaps == () and report.mixed_parts == ()
+    assert report.raw_only == (9,)
+    assert [(f.source_id, f.detail) for f in report.failed] == [(mine, "blocked: 天元")]
+
+
+def test_pins_and_unpublishing_refuse_each_other(book):
+    a = book.source("a")
+    mine = book.source("mine", Kind.MY_TRANSLATION, published=False)
+    book.chapters(a, titles(1, 2))
+    book.chapters(mine, titles(1, 2))
+    with pytest.raises(StoreError, match="unpublished"):
+        book.store.set_pin(KeyRange(1, 2), mine)
+
+    book.store.set_published(mine, True)
+    book.store.set_pin(KeyRange(1, 2), mine)
+    book.store.set_pin(KeyRange(7, 9), mine)
+    with pytest.raises(StoreError, match="1-2, 7-9"):
+        book.store.set_published(mine, False)
+    assert book.picked() == {"1": mine, "2": mine}
+
+
+def test_official_sources_still_fetch_numbers_only_my_translation_has(book):
+    official = book.source("official")
+    mine = book.source("mine", Kind.MY_TRANSLATION)
+    other = book.source("other")
+    refs = book.store.record_index(official, [SourceItem(book.ref(t), i, t) for i, t in enumerate(titles(9, 10, 11), 1)]).added
+    book.chapters(mine, titles(10))
+    book.chapters(other, titles(11))
+
+    assert book.picked()["10"] == mine
+    assert book.store.to_fetch(official) == (refs[0], refs[1])  # 11 is official text already
+
+
+def test_raw_fetching_is_unchanged_by_my_translation(book):
+    official = book.source("official")
+    mine = book.source("mine", Kind.MY_TRANSLATION, published=False)
+    raw_a, raw_b = book.source("raw-a", Kind.RAW_ZH), book.source("raw-b", Kind.RAW_ZH)
+    official_refs = book.store.record_index(official, [SourceItem(book.ref(t), 1, t) for t in titles(10)]).added
+    raw_refs = book.store.record_index(raw_a, [SourceItem("/raw/10", 1, "第10章")]).added
+    book.chapters(mine, titles(10))
+    book.store.record_index(raw_b, [SourceItem("/b/10", 1, "第10章")])
+    book.store.put_version(raw_b, "/b/10", book.version("十"))
+
+    assert book.store.to_fetch(official) == official_refs
+    assert book.store.to_fetch(raw_a) == ()
+    assert raw_refs  # indexed, but raw-b already has the text
 
 
 # -- views ----------------------------------------------------------------------
