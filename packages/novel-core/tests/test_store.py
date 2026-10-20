@@ -133,6 +133,25 @@ def test_part_zero_dropped_when_same_source_has_parts(book):
     assert keys(book.store.selection()) == ["524 pt 1", "524 pt 2"]
 
 
+def test_placed_part_is_an_extra_beside_the_whole_chapter(book):
+    # BTS: an unnumbered side story posted after 852, placed there with `nov align item`.
+    a, b = book.source("a"), book.source("b")
+    refs = book.chapters(a, ["Chapter 852", "Side Story (Part One)", "Chapter 853"])
+    book.chapters(b, titles(852, 853))
+    book.store.set_alignment(a, AlignmentRules(items={refs[1]: ChapterKey(852, 1)}))
+    book.store.set_priority([a, b])
+    assert book.picked() == {"852": a, "852 pt 1": a, "853": a}
+    report = book.store.check()
+    assert report.mixed_parts == () and report.unmapped == ()
+
+
+def test_placed_part_on_a_split_number_still_drops_part_zero(book):
+    a = book.source("a")
+    refs = book.chapters(a, ["Chapter 524", "Chapter 524 (1)", "Chapter 524 part two"])
+    book.store.set_alignment(a, AlignmentRules(items={refs[2]: ChapterKey(524, 2)}))
+    assert keys(book.store.selection()) == ["524 pt 1", "524 pt 2"]
+
+
 def test_pin_part0_vs_parts(book):
     a, b = book.source("a"), book.source("b")
     book.chapters(a, ["Chapter 524 (1)", "Chapter 524 (2)"])

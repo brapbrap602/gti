@@ -5,11 +5,11 @@ Decided per number N, never per key:
    source has something for N. Otherwise the first source in priority order
    that has something for N. Raw-zh sources are never candidates.
 2. Only the chosen source's keys for N are emitted. If it has parts above 0 for
-   N, its part 0 is dropped.
+   N, its part 0 is dropped, unless those parts are all extras (alignment.py).
 """
 
 from collections import defaultdict
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Iterable, Mapping, Sequence, Set
 from dataclasses import dataclass
 
 from novel_core.keys import ChapterKey, ItemRef, KeyRange
@@ -58,6 +58,7 @@ def select(
     current: Mapping[SourceId, Sequence[Selected]],
     priority: Sequence[SourceId],
     pins: Sequence[Pin],
+    extras: Mapping[SourceId, Set[ChapterKey]] | None = None,
 ) -> Selection:
     """`current` holds each publishable (non-raw) source's current version per mapped item.
 
@@ -81,7 +82,8 @@ def select(
                 fallbacks.append(PinFallback(number, pin.source_id))
             source = next(s for s in order if s in offers)
         keys = sorted(offers[source], key=lambda c: c.key)
-        if any(c.key.part for c in keys):
+        source_extras = (extras or {}).get(source, frozenset())
+        if any(c.key.part and c.key not in source_extras for c in keys):
             keys = [c for c in keys if c.key.part]
         chosen.extend(keys)
     return Selection(tuple(chosen), tuple(fallbacks))
