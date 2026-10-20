@@ -6,6 +6,7 @@ from novel_core import (
     ChapterKey,
     Duplicate,
     Inserted,
+    ItemStatus,
     KeyRange,
     Kind,
     NewVersion,
@@ -448,6 +449,55 @@ def test_chapters_lists_a_sources_items_even_when_not_selected(book):
 
     assert [(s.key.label, s.source_id) for s in book.store.chapters(w)] == [("1", w), ("2", w)]
     assert [s.source_id for s in book.store.selection() if s.key == ChapterKey(2)] == [l]
+
+
+# -- what a sync fetches ------------------------------------------------------
+
+
+def index(book, source, *chapter_titles) -> list[str]:
+    items = [SourceItem(book.ref(t), pos, t) for pos, t in enumerate(chapter_titles, start=1)]
+    book.store.record_index(source, items)
+    return [i.ref for i in items]
+
+
+def test_sync_new_only(book):
+    a = book.source("a")
+    book.chapters(a, titles(*range(1, 11)))
+    refs = index(book, a, *titles(*range(1, 13)))
+    assert book.store.to_fetch(a) == tuple(refs[10:])
+
+
+def test_to_fetch_skips_numbers_another_source_already_has(book):
+    imported, web = book.source("import"), book.source("web")
+    book.chapters(imported, titles(1, 2, 3))
+    refs = index(book, web, *titles(1, 2, 3, 4), "Notice: hiatus")
+    assert book.store.to_fetch(web) == (refs[3], refs[4])  # 4, and the unmapped notice
+
+
+def test_to_fetch_raw_counts_only_raw_coverage(book):
+    en, raw = book.source("en"), book.source("raw", Kind.RAW_ZH)
+    book.chapters(en, titles(1, 2))
+    refs = index(book, raw, "第1章", "第2章")
+    assert book.store.to_fetch(raw) == tuple(refs)
+    assert book.store.to_fetch(en) == ()
+
+
+def test_to_fetch_leaves_out_unavailable_vanished_and_skipped(book):
+    a = book.source("a")
+    refs = index(book, a, *titles(1, 2, 3, 4))
+    book.store.mark_item(a, refs[0], ItemStatus.UNAVAILABLE)
+    book.store.mark_item(a, refs[1], ItemStatus.FAILED, "timeout")
+    book.store.set_alignment(a, AlignmentRules(skip={refs[2]}))
+    index(book, a, *titles(1, 2, 3))  # 4 vanished
+    assert book.store.to_fetch(a) == (refs[1],)  # a failed item is retried
+
+
+def test_to_fetch_refresh_range_refetches_stored_and_unavailable(book):
+    a = book.source("a")
+    refs = book.chapters(a, titles(1, 2, 3, 4))
+    book.store.mark_item(a, refs[2], ItemStatus.UNAVAILABLE)
+    assert book.store.to_fetch(a) == ()
+    assert book.store.to_fetch(a, refresh=KeyRange(2, 3)) == (refs[1], refs[2])
 
 
 def test_volumes_are_recorded_per_range(store):

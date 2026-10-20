@@ -6,7 +6,7 @@ source. Re-running an import is safe: unchanged texts are stored once.
 """
 
 import hashlib
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Protocol
@@ -20,6 +20,7 @@ from novel_core import (
     NovelMeta,
     NovelStore,
     RawChapter,
+    SourceId,
     SourceItem,
     SourceSpec,
 )
@@ -66,42 +67,77 @@ class ImportReport:
 
 
 def import_novel(novel_dir: Path, importer: Importer, clock: Clock | None = None) -> ImportReport:
-    """Import into the novel at novel_dir, creating it from the index's metadata if it is new.
-
-    One bad chapter never stops the import: it is marked failed with the reason.
-    """
+    """Import every chapter into the novel at novel_dir, creating it from the index's metadata if it is new."""
     index = importer.read_index()
-    created = not (novel_dir / DB_NAME).exists()
-    clock_arg = {} if clock is None else {"clock": clock}
-    store = NovelStore.create(novel_dir, index.meta, **clock_arg) if created else NovelStore.open(novel_dir, **clock_arg)
+    store, created = open_novel(novel_dir, index.meta, clock)
     with store:
         source = store.upsert_source(importer.spec)
         _write_snapshot(novel_dir / "imports" / str(source), index.snapshot)
         diff = store.record_index(source, index.items)
-        inserted = unchanged = 0
-        unavailable: list[ItemRef] = []
-        failed: list[tuple[ItemRef, str]] = []
-        for item in index.items:
-            try:
-                raw = importer.read_chapter(item)
-                if raw is None:
-                    store.mark_item(source, item.ref, ItemStatus.UNAVAILABLE)
-                    unavailable.append(item.ref)
-                    continue
-                blocks = normalize(raw, importer.clean_rules(raw), item.title)
-            except (OSError, CleanError) as e:
-                store.mark_item(source, item.ref, ItemStatus.FAILED, str(e))
-                failed.append((item.ref, str(e)))
-                continue
-            provenance = {"importer": importer.spec.backend, **index.provenance}
-            result = store.put_version(source, item.ref, NewVersion(item.title, blocks, raw, provenance))
-            if isinstance(result, Inserted):
-                inserted += 1
-            else:
-                unchanged += 1
+        provenance = {"importer": importer.spec.backend, **index.provenance}
+        stored = store_chapters(store, source, index.items, importer.read_chapter, importer.clean_rules, provenance)
     return ImportReport(
-        novel_dir, source, created, diff, inserted, unchanged, tuple(unavailable), tuple(failed), index.notes
-    )
+        novel_dir, source, created, diff, stored.inserted, stored.unchanged, stored.unavailable, stored.failed,
+        index.notes,
+    )  # fmt: skip
+
+
+def open_novel(novel_dir: Path, meta: NovelMeta, clock: Clock | None = None) -> tuple[NovelStore, bool]:
+    """The novel's store, created from `meta` when the novel is new; and whether it was created."""
+    clock_arg = {} if clock is None else {"clock": clock}
+    if (novel_dir / DB_NAME).exists():
+        return NovelStore.open(novel_dir, **clock_arg), False
+    return NovelStore.create(novel_dir, meta, **clock_arg), True
+
+
+@dataclass(frozen=True)
+class Stored:
+    inserted: int
+    unchanged: int
+    unavailable: tuple[ItemRef, ...]
+    failed: tuple[tuple[ItemRef, str], ...]  # (ref, reason)
+
+
+type Progress = Callable[[int, int, SourceItem], None]  # (done, total, item just stored)
+
+
+def store_chapters(
+    store: NovelStore,
+    source: SourceId,
+    items: Sequence[SourceItem],
+    read: Callable[[SourceItem], RawChapter | None],
+    rules: Callable[[RawChapter], CleanRules],
+    provenance: Mapping[str, object],
+    progress: Progress | None = None,
+) -> Stored:
+    """Read, normalize and store each item; one transaction per item, so an interrupted run resumes.
+
+    `read` returning None marks the item unavailable (locked, never downloaded). One bad
+    chapter never stops the run: an OSError (network failures included) or a CleanError
+    marks it failed with the reason.
+    """
+    inserted = unchanged = 0
+    unavailable: list[ItemRef] = []
+    failed: list[tuple[ItemRef, str]] = []
+    for done, item in enumerate(items, start=1):
+        try:
+            raw = read(item)
+            if raw is None:
+                store.mark_item(source, item.ref, ItemStatus.UNAVAILABLE)
+                unavailable.append(item.ref)
+            else:
+                blocks = normalize(raw, rules(raw), item.title)
+                result = store.put_version(source, item.ref, NewVersion(item.title, blocks, raw, provenance))
+                if isinstance(result, Inserted):
+                    inserted += 1
+                else:
+                    unchanged += 1
+        except (OSError, CleanError) as e:
+            store.mark_item(source, item.ref, ItemStatus.FAILED, str(e))
+            failed.append((item.ref, str(e)))
+        if progress:
+            progress(done, len(items), item)
+    return Stored(inserted, unchanged, tuple(unavailable), tuple(failed))
 
 
 def _write_snapshot(folder: Path, files: Mapping[str, bytes]) -> None:

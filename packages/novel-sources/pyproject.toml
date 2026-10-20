@@ -7,6 +7,8 @@ requires-python = ">=3.12"
 dependencies = [
     "beautifulsoup4>=4.12",
     "ftfy>=6.2",
+    "lightnovel-crawler==4.14.0",
+    "lncrawl-scraper~=1.7.0",
     "lxml>=5.3",
     "novel-core",
 ]

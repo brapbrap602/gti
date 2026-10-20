@@ -485,6 +485,39 @@ class NovelStore:
             self._require_source(conn, source)
             return tuple(sorted(self._snapshot(conn).current.get(source, []), key=lambda s: s.key))
 
+    def to_fetch(self, source: SourceId, refresh: KeyRange | None = None) -> tuple[ItemRef, ...]:
+        """The items a sync of this source should fetch, in index order.
+
+        An item is fetched when it has no version yet and the book lacks its number:
+        no other source has a text for it (for a raw-zh source, no other raw text).
+        Unmapped items without a version are fetched too, so their text can show what
+        they are. Unavailable (locked), vanished and skipped items are left alone.
+        Items whose key falls in `refresh` are fetched again whatever they hold.
+        """
+        with self._engine.connect() as conn:
+            info = self._require_source(conn, source)
+            snap = self._snapshot(conn)
+            stored = set(
+                conn.execute(sa.select(_version.c.item_ref).where(_version.c.source_id == source).distinct()).scalars()
+            )
+        if info.spec.kind is Kind.RAW_ZH:
+            raws = (c for sid, c in snap.current.items() if snap.sources[sid].spec.kind is Kind.RAW_ZH)
+            covered = {s.key.number for chapters in raws for s in chapters}
+        else:
+            covered = {s.key.number for s in snap.selection.chapters}
+        keys = snap.derivations[source].keys
+        wanted = []
+        for item in snap.items.get(source, []):
+            if item.vanished or item.ref in info.alignment.skip:
+                continue
+            key = keys.get(item.ref)
+            if refresh is not None and key is not None and key.number in refresh:
+                wanted.append(item.ref)
+            elif item.ref not in stored and item.status is not ItemStatus.UNAVAILABLE:
+                if key is None or key.number not in covered:
+                    wanted.append(item.ref)
+        return tuple(wanted)
+
     def outputs(self, kind: OutputKind) -> tuple[OutputRow, ...]:
         with self._engine.connect() as conn:
             return _load_outputs(conn, kind)

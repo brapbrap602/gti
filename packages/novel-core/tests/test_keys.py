@@ -22,9 +22,11 @@ def test_key_order_parts():
         ("Untitled", "/novels/foo/1205-a-new-dawn", (1205, 0)),
         ("Prologue", "/novel/x/prologue", (None, 0)),
         ("Side story: X", "/novel/x/side-story-x", (None, 0)),
+        ("Chapters 486: The Finals Begin", "", (486, 0)),
+        ("2025.11.18", "/novel/x/2025-11-18", (None, 0)),
     ],
     ids=["title", "paren-part", "part-word", "trailing-part", "paren-part-word", "cn-numerals", "cn-digits", "slug", "skydemon-slug",
-         "prologue", "side-story"],
+         "prologue", "side-story", "plural-typo", "date-post"],
 )  # fmt: skip
 def test_parse_printed(title, ref, expected):
     assert parse_printed(title, ref) == expected

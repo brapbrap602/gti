@@ -15,19 +15,22 @@ from novel_audio.legacy import LegacyReport, Positions, Shift, TitleNumbers, reg
 from novel_audio.media import MediaError
 from novel_audio.tts import DEFAULT_VOICE, EdgeTts
 from novel_audio.volumes import VOLUME_SIZE, build_volumes
-from novel_core import AlignmentRules, ChapterKey, CheckReport, KeyRange, NovelStore
+from novel_core import AlignmentRules, ChapterKey, CheckReport, KeyRange, NovelStore, SourceItem
 from novel_publish import epub
 from novel_publish.site import build_site
+from novel_sources.backends import BACKENDS, is_web, open_source, spec_for_url
 from novel_sources.calibre import CalibreImporter
+from novel_sources.fetch import FetchError
 from novel_sources.importing import Importer, ImportReport, import_novel
 from novel_sources.mtl import MtlImporter
 from novel_sources.scribble import ScribbleImporter
+from novel_sources.sync import add_source, sync
 from novel_sources.wns import WnsImporter, snapshot_refs
 
 from novel_app import deploy
-from novel_app.library import audio_dir, epub_dir, novel_dir, novel_slugs, site_dir, slugify
+from novel_app.library import audio_dir, epub_dir, novel_dir, novel_slugs, site_dir, slugify, fetch_dir
 
-app = typer.Typer(no_args_is_help=True, help="Novel library: import, check, build.")
+app = typer.Typer(no_args_is_help=True, help="Novel library: import, sync, check, build.")
 import_app = typer.Typer(no_args_is_help=True, help="One-shot imports of legacy local stores.")
 app.add_typer(import_app, name="import")
 build_app = typer.Typer(no_args_is_help=True, help="Build outputs from the selected chapters.")
@@ -96,6 +99,78 @@ def _import(importer: Importer, novel: str | None) -> None:
         raise typer.Exit(1)
 
 
+Novel = Annotated[str, typer.Argument(help="novel slug")]
+Refs = Annotated[list[str], typer.Argument(help="item refs, as `nov check` prints them")]
+SourceOpt = Annotated[int | None, typer.Option(help="source id; needed when the novel has several")]
+
+
+@app.command()
+def add(
+    url: Annotated[str, typer.Argument(help="the novel's page on the site")],
+    novel: Annotated[str | None, typer.Option(help="novel slug to attach to; defaults to the slug of the site's title")] = None,
+    lang: Annotated[str, typer.Option(help="en, or zh for Chinese raws")] = "en",
+    backend: Annotated[str | None, typer.Option(help=f"one of {', '.join(BACKENDS)}; picked by host when left out")] = None,
+) -> None:
+    """Add a web source to a novel (creating the novel if it is new) and read its chapter list."""
+    try:
+        spec = spec_for_url(url, lang, backend)
+    except ValueError as e:
+        raise typer.BadParameter(str(e)) from e
+    with open_source(spec, fetch_dir()) as source:
+        index = _fetching(source.fetch_index)
+    slug = novel or slugify(index.meta.title)
+    r = add_source(novel_dir(slug), spec, index)
+    typer.echo(f"{'created' if r.created else 'updated'} {slug}: source {r.source_id} ({spec.backend}), {r.items} chapters listed")
+    with _open(slug) as store:
+        typer.echo(f"  to fetch: {len(store.to_fetch(r.source_id))}; run `nov sync {slug}`")
+
+
+@app.command("sync")
+def sync_cmd(
+    novel: Annotated[str | None, typer.Argument(help="novel slug; leave out with --all")] = None,
+    all_novels: Annotated[bool, typer.Option("--all", help="sync every novel with a web source")] = False,
+    refresh: Annotated[str | None, typer.Option(help="also fetch these chapter numbers again, e.g. 1400-1414")] = None,
+    source: SourceOpt = None,
+) -> None:
+    """Fetch the chapters the book lacks from each web source; exit 1 if any chapter failed."""
+    if all_novels == (novel is not None):
+        raise typer.BadParameter("give a novel slug or --all")
+    keys = _parse_range(refresh) if refresh else None
+    failed = 0
+    for slug in novel_slugs() if all_novels else [novel]:
+        with _open(slug) as store:
+            web = [s for s in store.sources() if is_web(s.spec) and source in (None, s.id)]
+            if not web and not all_novels:
+                typer.echo(f"{slug} has no web source{'' if source is None else f' {source}'}; add one with `nov add`", err=True)
+                raise typer.Exit(2)
+            for info in web:
+                typer.echo(f"{slug}: source {info.id} ({info.spec.backend}) {info.spec.url}")
+                with open_source(info.spec, fetch_dir()) as live:
+                    r = _fetching(lambda: sync(store, info.id, live, keys, _progress))
+                typer.echo(
+                    f"  index: {len(r.index.added)} new, {len(r.index.vanished)} vanished; "
+                    f"fetched {r.wanted}: {r.inserted} stored, {r.unchanged} unchanged, {len(r.unavailable)} locked"
+                )
+                _section("failed", [f"{ref}: {reason}" for ref, reason in r.failed])
+                failed += len(r.failed)
+    if failed:
+        raise typer.Exit(1)
+
+
+def _fetching[T](call: Callable[[], T]) -> T:
+    """Run a fetch whose failure (no index at all) ends the command with the reason."""
+    try:
+        return call()
+    except FetchError as e:
+        typer.echo(f"fetch failed: {e}", err=True)
+        raise typer.Exit(1) from e
+
+
+def _progress(done: int, total: int, item: SourceItem) -> None:
+    if done == total or done % 25 == 0:
+        typer.echo(f"  {done}/{total} {item.title}")
+
+
 @app.command()
 def check(novel: Annotated[str, typer.Argument(help="novel slug")]) -> None:
     """Report gaps, duplicates, unmapped chapters and other problems."""
@@ -104,11 +179,6 @@ def check(novel: Annotated[str, typer.Argument(help="novel slug")]) -> None:
         selected = len(store.selection())
     typer.echo(f"{novel}: {selected} chapters selected")
     _print_check(report)
-
-
-Novel = Annotated[str, typer.Argument(help="novel slug")]
-Refs = Annotated[list[str], typer.Argument(help="item refs, as `nov check` prints them")]
-SourceOpt = Annotated[int | None, typer.Option(help="source id; needed when the novel has several")]
 
 
 @align_app.command("item")
@@ -127,6 +197,33 @@ def align_item(
 def align_skip(novel: Novel, refs: Refs, source: SourceOpt = None) -> None:
     """Leave items out of the book (reposts, notices): no key, not unmapped, not a duplicate."""
     _edit_alignment(novel, source, refs, lambda r: replace(r, skip=r.skip | set(refs)))
+
+
+@align_app.command("copy")
+def align_copy(
+    novel: Novel,
+    from_source: Annotated[int, typer.Argument(help="source whose rules to copy")],
+    to_source: Annotated[int, typer.Argument(help="source to give them to")],
+) -> None:
+    """Give a source another's offsets, ranges, item keys and skips (for items it also lists).
+
+    For a web source attached to a novel imported from the same site: refs are URL
+    paths, so the fixes made on the import apply to the same chapters.
+    """
+    with _open(novel) as store:
+        sources = {s.id: s for s in store.sources()}
+        if unknown := [s for s in (from_source, to_source) if s not in sources]:
+            typer.echo(f"no source {unknown[0]}; the novel has {sorted(sources)}", err=True)
+            raise typer.Exit(2)
+        rules = sources[from_source].alignment
+        known = store.item_refs(to_source)
+        copied = replace(
+            rules,
+            items={**sources[to_source].alignment.items, **{r: k for r, k in rules.items.items() if r in known}},
+            skip=sources[to_source].alignment.skip | (rules.skip & known),
+        )
+        diff = store.set_alignment(to_source, copied)
+    typer.echo(f"{len(diff.moved)} items moved")
 
 
 def _edit_alignment(

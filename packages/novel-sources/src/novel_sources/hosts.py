@@ -100,7 +100,8 @@ _STRAY_MARKUP = re.compile(r"^[^\w]*`[^\w]*$")  # '“`': a markdown fence left 
 _END_MARK = re.compile(r"^\W*(?:end of (?:this )?chapter|spirit\W?stone\W?translations?)\W*$", re.IGNORECASE)
 # Reader-site interface text copied into the chapter, and a watermark left without its site name.
 _SITE_UI = re.compile(
-    r"^\s*(?:a new text-to-speech function has been added.*|please visit\s+to enjoy reading\W*)$", re.IGNORECASE
+    r"^\s*(?:a new text-to-speech function has been added.*|please visit\s+to enjoy reading\W*|translate to)$",
+    re.IGNORECASE,
 )
 
 # Ad networks that slip banners and tracking pixels into the chapter body on any host.
@@ -127,6 +128,15 @@ def site_name(url: str) -> str:
     host = (urlsplit(url).hostname or "").removeprefix("www.")
     parts = host.split(".")
     return parts[-2] if len(parts) >= 2 else host
+
+
+# Hosts whose chapter URLs count pages by position, so a slug number is not a chapter number.
+_POSITIONAL_SLUGS = frozenset({"freewebnovel"})
+
+
+def numbered_urls(url: str) -> bool:
+    """Whether a number in this host's chapter URLs is the chapter number."""
+    return site_name(url) not in _POSITIONAL_SLUGS
 
 
 def rules_for(url: str) -> CleanRules:

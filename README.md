@@ -20,6 +20,8 @@ uv run nov import wns "%LOCALAPPDATA%\web-novel-scraper\web-novel-scraper\<Title
 uv run nov import mtl "<MtlTings>\data\raw\<novel>"         # raws as raw-zh; data\translated\<novel> as my-translation
 uv run nov import scribble "<file>" --novel <slug>          # scribblehub text dump ('## Chapter N: Title' markers)
 uv run nov import calibre "novels\<Novel>" --novel <slug>   # old site's Calibre HTML pages; import last (ranks lowest)
+uv run nov add <url> [--novel <slug>]    # attach a web source (creates the novel if new); --lang zh for raws
+uv run nov sync <slug>|--all             # fetch the chapters the book lacks (--refresh 1400-1414 refetches)
 uv run nov priority <slug> [3,1,2]       # show the sources best first, or set the order
 uv run nov check <slug>                  # gaps, duplicates, unmapped chapters, failed pages, ...
 uv run nov align item <slug> <ref> 1277   # give an item an explicit key (524pt1 for a part); --source when several
@@ -33,6 +35,12 @@ uv run nov build volumes <slug>          # M4B per 100 chapter numbers, with cha
 uv run nov audio register <slug> "tts_out/<novel>" --key position|title-number   # [--shift 736-1442:+4]
 uv run nov audio retag <slug>            # rewrite tags of every chapter MP3, legacy ones included
 ```
+
+`nov sync` reads sites with lightnovel-crawler's crawlers (in-process), except hosts with a
+custom backend (skydemonorder). By default it fetches only chapter numbers no source has yet;
+a failed chapter is retried by the next sync, a locked one is not. A site behind a Cloudflare
+challenge is solved once in Firefox (which must be installed; Chromium is never used), and the
+clearance is kept in `<data dir>/_fetch` for later requests.
 
 Audio needs ffmpeg on PATH. Built chapters are recorded per chapter, so an interrupted
 `nov build audio` resumes where it stopped; sentences are cached under `_audio/<slug>/_sentences`,
