@@ -10,6 +10,7 @@ refused, so a web page cannot start jobs through the visitor's browser.
 """
 
 import asyncio
+import logging
 import mimetypes
 import time
 from collections.abc import AsyncIterator, Callable
@@ -34,10 +35,22 @@ from novel_app.comparing import all_chapters, columns, setup_name, words
 from novel_app.glossary_page import TABS
 from novel_app.jobs import JobPanel, JobRunning, JobState
 from novel_app.notation import parse_range
-from novel_app.pages import CELL_LABELS, CellState, align_range_command, findings_text, reclean_command, source_label
+from novel_app.pages import (
+    CELL_LABELS,
+    STATUS_LABELS,
+    CellState,
+    LibraryRow,
+    NavRow,
+    align_range_command,
+    findings_text,
+    reclean_command,
+    source_label,
+    state_counts,
+)
 from novel_app.service import Service, UserError
 
 HERE = Path(__file__).parent
+log = logging.getLogger(__name__)
 STREAM_EVERY = 1.0
 # Judgements are Markdown; raw HTML in them is shown as text, not run.
 MARKDOWN = MarkdownIt("commonmark", {"html": False}).enable("table")
@@ -77,29 +90,40 @@ def create_app(service: Service) -> FastAPI:
     app = FastAPI(title="Novel library", lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None)
     mimetypes.add_type("font/woff2", ".woff2")  # Python 3.12 guesses none, and text/plain fonts are refused
     app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
-    app.mount("/site-assets", StaticFiles(packages=[("novel_publish", "static")]), name="site-assets")
     templates = Jinja2Templates(directory=HERE / "templates")
     templates.env.filters["ago"] = _ago
     templates.env.filters["markdown"] = lambda text: Markup(MARKDOWN.render(text))
     templates.env.globals.update(
-        job_labels=JOB_LABELS, cell_labels=CELL_LABELS, CellState=CellState, Kind=Kind, JobState=JobState,
+        job_labels=JOB_LABELS, cell_labels=CELL_LABELS, status_labels=STATUS_LABELS, CellState=CellState, Kind=Kind, JobState=JobState,
         backends=BACKENDS, owns=service.runner.owns, source_label=source_label,
         contexts=CONTEXTS, reasoning_levels=REASONING, data_collection=DATA_COLLECTION,
         setup_name=setup_name, words=words, align_range_command=align_range_command,
-        findings_text=findings_text, reclean_command=reclean_command,
+        findings_text=findings_text, reclean_command=reclean_command, state_counts=state_counts,
     )  # fmt: skip
 
-    def page(request: Request, name: str, status: int = 200, **context) -> HTMLResponse:
+    def nav_rows(rows: list[LibraryRow] | None = None) -> list[NavRow]:
+        """The sidebar's novels; slugs alone when the library cannot be read, so every page still renders."""
+        if rows is None:
+            try:
+                rows = service.library()
+            except Exception:
+                log.exception("library rows for the sidebar")
+                return [NavRow(slug, slug) for slug in service.novels()]
+        return [NavRow.of(r) for r in rows]
+
+    async def page(request: Request, name: str, status: int = 200, **context) -> HTMLResponse:
+        if "nav_rows" not in context:
+            context["nav_rows"] = await run_in_threadpool(nav_rows)
         context.setdefault("jobs", service.jobs())
         context.setdefault("job_panel", service.job_panel())
         return templates.TemplateResponse(
             request, name, {"notice": request.query_params.get("notice"), **context}, status_code=status
         )
 
-    def refused(request: Request, message: str, status: int) -> HTMLResponse:
+    async def refused(request: Request, message: str, status: int) -> HTMLResponse:
         if request.headers.get("HX-Request"):
             return templates.TemplateResponse(request, "_notice.html", {"error": message}, status_code=status)
-        return page(request, "error.html", status, message=message)
+        return await page(request, "error.html", status, message=message)
 
     def done(request: Request, notice: str, back: str) -> Response:
         if request.headers.get("HX-Request"):
@@ -115,23 +139,23 @@ def create_app(service: Service) -> FastAPI:
 
     @app.exception_handler(UserError)
     async def user_error(request: Request, e: UserError):
-        return refused(request, str(e), 400)
+        return await refused(request, str(e), 400)
 
     @app.exception_handler(JobRunning)
     async def job_running(request: Request, e: JobRunning):
-        return refused(request, str(e), 409)
+        return await refused(request, str(e), 409)
 
     # -- pages -----------------------------------------------------------------
 
     @app.get("/", response_class=HTMLResponse)
     async def library(request: Request):
         rows = await run_in_threadpool(service.library)
-        return page(request, "library.html", rows=rows)
+        return await page(request, "library.html", rows=rows, nav_rows=nav_rows(rows))
 
     @app.get("/novels/{novel}", response_class=HTMLResponse)
     async def novel(request: Request, novel: str):
         n = await run_in_threadpool(service.novel, novel)
-        return page(
+        return await page(
             request, "novel.html", novel=n, glossary=await run_in_threadpool(service.glossary_counts, novel),
             translate=await run_in_threadpool(service.translate_panel, novel),
             comparisons=len(await run_in_threadpool(service.comparisons, novel)),
@@ -141,11 +165,11 @@ def create_app(service: Service) -> FastAPI:
     @app.get("/novels/{novel}/compare", response_class=HTMLResponse)
     async def compare(request: Request, novel: str, number: int, left: int | None = None, right: int | None = None):
         c = await run_in_threadpool(service.compare, novel, number, left, right)
-        return page(request, "compare.html", slug=novel, c=c)
+        return await page(request, "compare.html", slug=novel, c=c)
 
     @app.get("/add", response_class=HTMLResponse)
     async def add_form(request: Request):
-        return page(request, "add.html", spec=None, form={})
+        return await page(request, "add.html", spec=None, form={})
 
     @app.post("/add", response_class=HTMLResponse)
     async def add_preview(
@@ -157,7 +181,7 @@ def create_app(service: Service) -> FastAPI:
     ):
         spec = await run_in_threadpool(service.preview_add, url, lang, backend or None)
         form = {"url": url, "lang": lang, "backend": backend, "novel": novel}
-        return page(request, "add.html", spec=spec, form=form, novels=service.novels())
+        return await page(request, "add.html", spec=spec, form=form, novels=service.novels())
 
     # -- writes ------------------------------------------------------------------
 
@@ -188,7 +212,7 @@ def create_app(service: Service) -> FastAPI:
         except ValueError as e:
             raise UserError(str(e)) from e
         await run_in_threadpool(service.unpin, novel, keys)
-        return done(request, f"{keys.start}-{keys.end} unpinned", f"/novels/{novel}")
+        return done(request, f"{keys.start}-{keys.end} unpinned", f"/novels/{novel}#sources")
 
     # -- translation ---------------------------------------------------------------
 
@@ -229,13 +253,13 @@ def create_app(service: Service) -> FastAPI:
     @app.get("/novels/{novel}/comparisons", response_class=HTMLResponse)
     async def comparisons(request: Request, novel: str):
         runs = await run_in_threadpool(service.comparisons, novel)
-        return page(request, "comparisons.html", slug=novel, runs=runs, columns=columns(runs), chapters=all_chapters(runs))
+        return await page(request, "comparisons.html", slug=novel, runs=runs, columns=columns(runs), chapters=all_chapters(runs))
 
     @app.get("/novels/{novel}/comparisons/{ref}", response_class=HTMLResponse)
     async def comparison_chapter(request: Request, novel: str, ref: str):
         screen = await run_in_threadpool(service.comparison_chapter, novel, ref)
         shown = request.query_params.getlist("show")
-        return page(request, "comparison_chapter.html", slug=novel, s=screen, shown=set(shown) if shown else None)
+        return await page(request, "comparison_chapter.html", slug=novel, s=screen, shown=set(shown) if shown else None)
 
     # -- glossary ------------------------------------------------------------------
 
@@ -243,7 +267,7 @@ def create_app(service: Service) -> FastAPI:
     async def glossary(request: Request, novel: str, tab: str = "review", q: str = "", category: str = ""):
         g = await run_in_threadpool(service.glossary_page, novel, tab, q.strip(), _category(category))
         rows = await run_in_threadpool(service.setups, novel)
-        return page(request, "glossary.html", page=g, tabs=TABS, categories=list(Category), setups=rows)
+        return await page(request, "glossary.html", page=g, tabs=TABS, categories=list(Category), setups=rows)
 
     @app.post("/novels/{novel}/glossary")
     async def glossary_add(

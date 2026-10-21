@@ -1,61 +1,74 @@
 {% extends "base.html" %}
+{% from "_ui.html" import icon, badge, empty %}
+{% set title = (nav_rows | selectattr("slug", "equalto", slug) | map(attribute="title") | first) or slug %}
 {% block title %}{{ slug }} {{ c.number }} · compare{% endblock %}
+{% block crumbs %}<li><a href="/">Library</a></li><li><a href="/novels/{{ slug }}#chapters" title="{{ title }}">{{ title }}</a></li><li><a href="/novels/{{ slug }}/compare?number={{ c.number }}" aria-current="page">Chapter {{ c.number }}</a></li>{% endblock %}
 {% block main %}
 {% set here = "/novels/" ~ slug ~ "/compare?number=" ~ c.number %}
-<p><a href="/novels/{{ slug }}">← {{ slug }}</a></p>
-<h1>Chapter {{ c.number }}</h1>
-<nav class="compare-nav" aria-label="Neighbouring chapters">
-    {% if c.number > 0 %}<a href="/novels/{{ slug }}/compare?number={{ c.number - 1 }}">← {{ c.number - 1 }}</a>{% endif %}
-    <a href="/novels/{{ slug }}/compare?number={{ c.number + 1 }}">{{ c.number + 1 }} →</a>
-</nav>
+<div class="page-header">
+    <div class="page-heading">
+        <h1>Chapter {{ c.number }}</h1>
+        {% if c.offers %}<p class="muted">The book uses {% if c.selected is not none %}source {{ c.selected }}{% else %}nothing (raw only){% endif %} for this chapter.</p>{% endif %}
+    </div>
+    <nav class="page-actions compare-nav" aria-label="Neighbouring chapters">
+        {% if c.number > 0 %}<a class="btn btn--outline btn--sm" href="/novels/{{ slug }}/compare?number={{ c.number - 1 }}">← {{ c.number - 1 }}</a>{% endif %}
+        <a class="btn btn--outline btn--sm" href="/novels/{{ slug }}/compare?number={{ c.number + 1 }}">{{ c.number + 1 }} →</a>
+    </nav>
+</div>
 {% if not c.offers %}
-<p class="empty">No source has a text for chapter {{ c.number }}.</p>
+{% call empty("file-text") %}<p>No source has a text for chapter {{ c.number }}.</p>{% endcall %}
 {% else %}
-<p>The book uses {% if c.selected is not none %}source {{ c.selected }}{% else %}nothing (raw only){% endif %} for this chapter.</p>
-<form method="get" action="/novels/{{ slug }}/compare" class="compare-pick">
+<form method="get" action="/novels/{{ slug }}/compare" class="card compare-pick">
     <input type="hidden" name="number" value="{{ c.number }}">
-    {% for side, text in (("left", c.left), ("right", c.right)) %}
-    <label>{{ side | capitalize }}
-        <select name="{{ side }}">
-            {% for o in c.offers %}<option value="{{ o.id }}"{% if text and text.source.id == o.id %} selected{% endif %}>source {{ o.id }}: {{ o.spec.backend }} ({{ o.spec.kind }})</option>{% endfor %}
-        </select>
-    </label>
-    {% endfor %}
-    <button type="submit">Show</button>
+    <div class="field-row">
+        {% for side, text in (("left", c.left), ("right", c.right)) %}
+        <label class="field field--wide"><span class="label">{{ side | capitalize }}</span>
+            <select name="{{ side }}">
+                {% for o in c.offers %}<option value="{{ o.id }}"{% if text and text.source.id == o.id %} selected{% endif %}>source {{ o.id }}: {{ o.spec.backend }} ({{ o.spec.kind }})</option>{% endfor %}
+            </select>
+        </label>
+        {% endfor %}
+        <div><button type="submit" class="btn btn--secondary">{{ icon("git-compare") }}Show</button></div>
+    </div>
 </form>
 {% if c.left and c.right %}
-<p class="diff-summary" id="differences">
+<div class="alert diff-summary" id="differences">
+    {{ icon("git-compare") }}
+    <p class="alert-body">
 {% if not c.diff %}Raw text: no diff.
 {% elif not c.diff.changes %}Identical text.
 {% else %}{{ c.diff.changes }} of {{ c.diff.total }} paragraphs differ · jump:
     {% for g in range(1, [c.diff.groups, 30] | min + 1) %}<a href="#d{{ g }}-l">{{ g }}</a> {% endfor %}{% if c.diff.groups > 30 %}…{% endif %}
 {% endif %}
-</p>
+    </p>
+</div>
 {% endif %}
 <div class="compare">
     {% for text in (c.left, c.right) %}
-    <article class="compare-side" aria-label="{% if text %}source {{ text.source.id }}{% else %}no second source{% endif %}">
+    <article class="card compare-side" aria-label="{% if text %}source {{ text.source.id }}{% else %}no second source{% endif %}">
         {% if text %}
-        <header>
-            <h2>Source {{ text.source.id }}: {{ text.source.spec.backend }} <span class="muted">{{ text.source.spec.kind }}</span></h2>
+        <header class="card-header compare-head">
+            <h2 class="card-title">Source {{ text.source.id }}: {{ text.source.spec.backend }} {{ badge(text.source.spec.kind, "outline") }}</h2>
             {% if text.source.spec.kind == Kind.RAW_ZH %}
-            <p class="muted">Raw text is never published, so it cannot be pinned.</p>
+            <p class="card-description">Raw text is never published, so it cannot be pinned.</p>
             {% elif text.source.id == c.selected %}
-            <p class="fresh">Used by the book.</p>
+            <p>{{ badge("Used by the book", "ok") }}</p>
             {% else %}
             <form method="post" action="/novels/{{ slug }}/pin" class="pin-form">
                 <input type="hidden" name="source" value="{{ text.source.id }}">
                 <input type="hidden" name="back" value="{{ here }}">
-                <label>Pin this source for <input name="numbers" value="{{ c.number }}" size="11" aria-describedby="pin-help-{{ loop.index }}"></label>
-                <button type="submit">Pin</button>
-                <span id="pin-help-{{ loop.index }}" class="muted">a number or a range, like 834-836</span>
+                <label class="field"><span class="label">Pin this source for</span> <input name="numbers" value="{{ c.number }}" size="11" aria-describedby="pin-help-{{ loop.index }}"></label>
+                <button type="submit" class="btn btn--outline">{{ icon("pin") }}Pin</button>
+                <span id="pin-help-{{ loop.index }}" class="field-hint">a number or a range, like 834-836</span>
             </form>
             {% endif %}
         </header>
+        <div class="prose compare-body">
         {% for part in text.chapters %}
         <h3 class="chapter">{{ part.heading }}</h3>
         <div class="compare-text">{{ part.body }}</div>
         {% endfor %}
+        </div>
         {% else %}
         <p class="muted">Only one source has this chapter.</p>
         {% endif %}

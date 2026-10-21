@@ -1,5 +1,5 @@
 {% macro job_item(j, recent=False) %}
-    <li class="job job--{{ j.state }}{% if recent %} job--recent{% endif %}" data-job="{{ j.id }}" data-target="{{ j.target }}">
+    <li class="job job--{{ j.state }}{% if recent %} job--recent{% endif %}" data-job="{{ j.id }}" data-target="{{ j.target }}" data-label="{{ job_labels.get(j.kind, j.kind) }}">
         <div class="job-head">
             <span class="job-title">{{ job_labels.get(j.kind, j.kind) }} {% if j.target != "_site" %}{{ j.target }}{% endif %}</span>
             <span class="job-state">{{ j.state }}</span>
@@ -16,12 +16,12 @@
         </details>
         {% endif %}
         <div class="job-actions">
-            <a href="/jobs/{{ j.id }}/log">log</a>
+            <a class="btn btn--ghost btn--sm" href="/jobs/{{ j.id }}/log">Log</a>
             {% if j.state.active %}
                 {% if owns(j.id) %}
                 <form method="post" action="/jobs/{{ j.id }}/cancel" hx-post="/jobs/{{ j.id }}/cancel" hx-target="#notice">
                     <input type="hidden" name="back" value="/">
-                    <button type="submit">Cancel</button>
+                    <button type="submit" class="btn btn--outline btn--sm">Cancel</button>
                 </form>
                 {% else %}
                 <span class="muted">running in another process</span>
@@ -29,14 +29,14 @@
             {% elif j.state in (JobState.INTERRUPTED, JobState.FAILED, JobState.CANCELLED) %}
             <form method="post" action="/jobs/{{ j.id }}/rerun" hx-post="/jobs/{{ j.id }}/rerun" hx-target="#notice">
                 <input type="hidden" name="back" value="/">
-                <button type="submit">Re-run</button>
+                <button type="submit" class="btn btn--outline btn--sm">Re-run</button>
             </form>
             {% endif %}
         </div>
     </li>
 {% endmacro %}
 {% if not job_panel.attention and not job_panel.recent %}
-<p class="muted">No jobs yet.</p>
+<p class="jobs-empty muted">No jobs yet.</p>
 {% else %}
 {% if job_panel.attention %}
 <ol class="job-list">
@@ -45,7 +45,7 @@
 {% endfor %}
 </ol>
 {% else %}
-<p class="muted">Nothing running, no problems.</p>
+<p class="jobs-empty muted">Nothing running, no problems.</p>
 {% endif %}
 {% if job_panel.recent %}
 <h3 class="recent-heading"><button type="button" class="recent-toggle" aria-expanded="false" aria-controls="recent-jobs">Recent ({{ job_panel.recent | length }})</button></h3>

@@ -1,3 +1,7 @@
+{% from "_ui.html" import icon -%}
+{% set active_jobs = job_panel.attention | selectattr("state.active") | list -%}
+{% set problems = job_panel.attention | rejectattr("state.active") | list | length -%}
+{% set shown_progress = active_jobs | selectattr("total") | first -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,33 +10,73 @@
     {# 4xx answers carry a message to show, so htmx swaps them like a 200. #}
     <meta name="htmx-config" content='{"responseHandling":[{"code":"204","swap":false},{"code":"[234]..","swap":true,"error":false},{"code":"...","swap":false,"error":true}]}'>
     <title>{% block title %}Novel library{% endblock %}</title>
-    <link rel="stylesheet" href="/site-assets/style.css">
+    {# Before paint: sheets, toasts and tabs are JS-only behaviour, and the tab comes from the hash. #}
+    <script>
+        document.documentElement.classList.add('js');
+        document.documentElement.dataset.tab =
+            ['sources', 'chapters', 'translate', 'check'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'chapters';
+    </script>
+    <link rel="preload" href="/static/vendor/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/static/ui.css">
     <link rel="stylesheet" href="/static/app.css">
     <script src="/static/vendor/htmx.min.js" defer></script>
     <script src="/static/vendor/sse.js" defer></script>
     <script src="/static/app.js" defer></script>
 </head>
-{# A "wide" page (block page_class) gives main the whole width: the jobs panel becomes a drawer, as on narrow screens. #}
+{# A "wide" page (block page_class) gives main the whole width: the sidebar becomes a sheet, as on narrow screens. #}
 <body hx-ext="sse" sse-connect="/jobs/stream" class="{% block page_class %}{% endblock %}">
-<header class="app-header">
-    <nav aria-label="Main">
-        <a href="/">Library</a>
-        <a href="/add">Add novel</a>
-    </nav>
-    <button type="button" class="jobs-toggle" aria-expanded="false" aria-controls="jobs-panel">Jobs</button>
-    <div id="notice" role="status" aria-live="polite">{% include "_notice.html" %}</div>
-</header>
-<div class="app-layout">
-    {# The reload is main's own: hx-disinherit keeps its target and swap off the forms inside. #}
+<nav id="sidebar" class="sidebar" aria-label="Main">
+    <div class="sidebar-head">
+        <a class="brand" href="/"><span class="brand-mark">{{ icon("book-open") }}</span> Novel library</a>
+        <button type="button" class="sidebar-close btn btn--ghost btn--icon btn--sm" aria-label="Close navigation">{{ icon("x") }}</button>
+    </div>
+    <ul class="nav-list">
+        <li><a class="nav-link" href="/"{% if request.url.path == "/" %} aria-current="page"{% endif %}>{{ icon("library") }} Library</a></li>
+        <li><a class="nav-link" href="/add"{% if request.url.path == "/add" %} aria-current="page"{% endif %}>{{ icon("plus") }} Add novel</a></li>
+    </ul>
+    <h2 class="nav-heading">Novels</h2>
+    {# Refreshed out of band whenever main reloads; ids keep keyboard focus across that swap. #}
+    <ul id="nav-novels" class="nav-list nav-novels">
+        {% for n in nav_rows %}
+        {% set home = "/novels/" ~ n.slug %}
+        <li data-novel="{{ n.slug }}">
+            <a id="nav-{{ n.slug }}" class="nav-link" href="{{ home }}" title="{{ n.title }}"
+               {% if request.url.path == home or request.url.path.startswith(home ~ "/") %} aria-current="page"{% endif %}>
+                <span class="dot dot--{{ n.status }}" title="{{ status_labels[n.status] }}"><span class="visually-hidden">{{ status_labels[n.status] }}: </span></span>
+                <span class="nav-text">{{ n.title }}</span>
+            </a>
+        </li>
+        {% else %}
+        <li class="nav-empty muted">None yet</li>
+        {% endfor %}
+    </ul>
+</nav>
+<div class="shell">
+    <header class="topbar">
+        <button type="button" class="nav-toggle btn btn--ghost btn--icon btn--sm" aria-label="Navigation" aria-expanded="false" aria-controls="sidebar">{{ icon("panel-left") }}</button>
+        <nav class="crumbs" aria-label="Breadcrumb">
+            <ol>{% block crumbs %}<li><a href="/" aria-current="page">Library</a></li>{% endblock %}</ol>
+        </nav>
+        {# The pill's first frame; app.js keeps it in step with #jobs after every live update. #}
+        <button type="button" class="jobs-toggle btn btn--outline btn--sm{% if active_jobs %} jobs-toggle--running{% endif %}{% if not active_jobs and problems %} jobs-toggle--problem{% endif %}"
+                aria-expanded="false" aria-controls="jobs-panel">
+            {{ icon("activity") }}
+            <span class="pill-label">{% if active_jobs %}{{ active_jobs | length }} running{% elif problems %}{{ problems }} problem{{ "s" if problems != 1 }}{% else %}Jobs{% endif %}</span>
+            <progress class="pill-progress" aria-label="first running job"
+                      {% if shown_progress %}max="{{ shown_progress.total }}" value="{{ shown_progress.done }}"{% else %}hidden{% endif %}></progress>
+        </button>
+    </header>
+    <div id="notice" class="notice" role="status" aria-live="polite">{% include "_notice.html" %}</div>
+    {# The reload is main's own: hx-disinherit keeps its target and swap off the forms inside; the sidebar's list comes along. #}
     <main id="main" hx-get="{{ request.url.path }}{% if request.url.query %}?{{ request.url.query }}{% endif %}"
-          hx-trigger="sse:active" hx-select="#main" hx-target="this" hx-swap="outerHTML" hx-disinherit="*">
+          hx-trigger="sse:active" hx-select="#main" hx-select-oob="#nav-novels" hx-target="this" hx-swap="outerHTML" hx-disinherit="*">
     {% block main %}{% endblock %}
     </main>
-    {# Drawer and Recent state live on the aside, outside the #jobs region that SSE replaces. #}
+    {# The sheet and Recent state live on the aside, outside the #jobs region that SSE replaces. #}
     <aside class="jobs" id="jobs-panel" aria-labelledby="jobs-heading">
-        <div class="jobs-head">
+        <div class="sheet-head jobs-head">
             <h2 id="jobs-heading">Jobs</h2>
-            <button type="button" class="jobs-close" aria-label="Close jobs">&times;</button>
+            <button type="button" class="jobs-close btn btn--ghost btn--icon btn--sm" aria-label="Close jobs">{{ icon("x") }}</button>
         </div>
         <div id="jobs" sse-swap="jobs">{% include "_jobs.html" %}</div>
     </aside>

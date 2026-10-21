@@ -1,4 +1,5 @@
 {# One term: its row and its evidence. An action swaps this whole tbody; ids keep keyboard focus in place. #}
+{% from "_ui.html" import badge %}
 {% set t = row.term %}
 {% set act = "/novels/" ~ slug ~ "/glossary/" ~ t.id %}
 <tbody id="term-{{ t.id }}" class="term term--{{ t.status }}">
@@ -11,10 +12,10 @@
             <input type="hidden" name="action" value="save">
             <input type="hidden" name="back" value="{{ back }}">
             <input id="term-{{ t.id }}-en" name="en" value="{{ t.en }}" size="22" aria-label="English for {{ t.zh }}">
-            <button id="term-{{ t.id }}-save" type="submit">Save</button>
+            <button id="term-{{ t.id }}-save" type="submit" class="btn btn--outline btn--sm">Save</button>
         </form>
     </td>
-    <td data-label="Status">{{ t.status | replace("_", " ") }}</td>
+    <td data-label="Status">{{ badge(t.status | replace("_", " "), {"needs_review": "warn", "accepted": "ok", "locked": "info", "proposed": "secondary"}.get(t.status, "muted")) }}</td>
     <td data-label="Seen">{{ t.occurrences }}{% if t.first_chapter %} <span class="muted">from {{ t.first_chapter }}</span>{% endif %}</td>
     <td data-label="Actions" class="term-actions">
         {% set actions = [] %}
@@ -25,7 +26,7 @@
         <form method="post" action="{{ act }}" hx-post="{{ act }}" hx-target="#term-{{ t.id }}" hx-swap="outerHTML" class="inline">
             <input type="hidden" name="action" value="{{ action }}">
             <input type="hidden" name="back" value="{{ back }}">
-            <button id="term-{{ t.id }}-{{ action }}" type="submit" aria-label="{{ label }} {{ t.zh }}">{{ label }}</button>
+            <button id="term-{{ t.id }}-{{ action }}" type="submit" class="btn btn--{{ "ghost" if action == "reject" else "outline" }} btn--sm" aria-label="{{ label }} {{ t.zh }}">{{ label }}</button>
         </form>
         {% endfor %}
     </td>
@@ -43,7 +44,7 @@
                         <input type="hidden" name="action" value="pick">
                         <input type="hidden" name="en" value="{{ c.en }}">
                         <input type="hidden" name="back" value="{{ back }}">
-                        <button id="term-{{ t.id }}-pick-{{ loop.index }}" type="submit" aria-label="Use {{ c.en }} for {{ t.zh }}">Use</button>
+                        <button id="term-{{ t.id }}-pick-{{ loop.index }}" type="submit" class="btn btn--outline btn--sm" aria-label="Use {{ c.en }} for {{ t.zh }}">Use</button>
                     </form>
                     {{ c.en }} <span class="muted">{{ c.votes }} × {{ {"llm": "model", "official-en": "official English", "side-channel": "a translation", "mtl-glossary": "MtlTings glossary"}.get(c.origin, c.origin) }}</span>
                 </li>
@@ -58,7 +59,7 @@
                 <label>Gender <select id="term-{{ t.id }}-gender" name="gender">{% for g in ("", "male", "female") %}<option value="{{ g }}"{% if (t.gender or "") == g %} selected{% endif %}>{{ g or "—" }}</option>{% endfor %}</select></label>
                 <label>Note <input id="term-{{ t.id }}-notes" name="notes" value="{{ t.notes }}" size="30"></label>
                 <label>Add alias <input id="term-{{ t.id }}-alias" name="alias" size="8" lang="zh"></label>
-                <button id="term-{{ t.id }}-details" type="submit">Save details</button>
+                <button id="term-{{ t.id }}-details" type="submit" class="btn btn--secondary btn--sm">Save details</button>
             </form>
         </details>
     </td>

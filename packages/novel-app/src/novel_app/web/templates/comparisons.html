@@ -1,15 +1,22 @@
 {% extends "base.html" %}
+{% from "_ui.html" import empty %}
+{% set title = (nav_rows | selectattr("slug", "equalto", slug) | map(attribute="title") | first) or slug %}
 {% block title %}{{ slug }} · model comparisons{% endblock %}
+{% block crumbs %}<li><a href="/">Library</a></li><li><a href="/novels/{{ slug }}#translate" title="{{ title }}">{{ title }}</a></li><li><a href="/novels/{{ slug }}/comparisons" aria-current="page">Model comparisons</a></li>{% endblock %}
 {% block main %}
-<p><a href="/novels/{{ slug }}#translate">← {{ slug }}</a></p>
-<h1>Model comparisons</h1>
+<div class="page-header">
+    <div class="page-heading">
+        <h1>Model comparisons</h1>
+        {% if runs %}<p class="muted">Every setup of every run, on the chapters it was given. A group request's cost and time are split evenly over its chapters.
+            Open a chapter to read every version side by side.</p>{% endif %}
+    </div>
+</div>
 {% if not runs %}
-<p class="empty">No comparisons yet. Run one with <code>nov translate compare {{ slug }} &lt;chapters&gt; --model &lt;id&gt; …</code></p>
+{% call empty("git-compare") %}<p>No comparisons yet. Run one with <code>nov translate compare {{ slug }} &lt;chapters&gt; --model &lt;id&gt; …</code></p>{% endcall %}
 {% else %}
-<p class="muted">Every setup of every run, on the chapters it was given. A group request's cost and time are split evenly over its chapters.
-    Open a chapter to read every version side by side.</p>
-
-<h2>Setups</h2>
+<section class="section" aria-labelledby="setups-heading">
+<h2 id="setups-heading">Setups</h2>
+<div class="table-wrap">
 <table class="comparison-table">
     <thead><tr>
         <th scope="col">Run</th><th scope="col">Setup</th><th scope="col">Done</th><th scope="col">Failed</th>
@@ -34,9 +41,12 @@
     {% endfor %}
     </tbody>
 </table>
+</div>
+</section>
 
-<h2>Chapters</h2>
-<div class="comparison-grid-wrap">
+<section class="section" aria-labelledby="chapters-heading">
+<h2 id="chapters-heading">Chapters</h2>
+<div class="table-wrap comparison-grid-wrap">
 <table class="comparison-grid">
     <thead><tr><th scope="col">Setup</th>
         {% for ref in chapters %}<th scope="col"><a href="/novels/{{ slug }}/comparisons/{{ ref }}">{{ ref[1:] }}</a></th>{% endfor %}
@@ -55,13 +65,16 @@
     </tbody>
 </table>
 </div>
+</section>
 
-<h2>Judgements</h2>
+<section class="section" aria-labelledby="judgements-heading">
+<h2 id="judgements-heading">Judgements</h2>
 {% for b in runs %}{% set col = columns | selectattr("run", "equalto", b.name) | first %}
 <details class="judgement"{% if loop.first and b.judgement %} open{% endif %}>
     <summary>{{ col.when }}: chapters {{ b.chapters | map("replace", "n", "") | join(", ") }} · ${{ "%.4f" | format(b.cost) }}{% if not b.judgement %} · <span class="muted">not judged yet</span>{% endif %}</summary>
-    {% if b.judgement %}<div class="judgement-text">{{ b.judgement | markdown }}</div>{% else %}<p class="muted">No <code>judgement.md</code> in <code>{{ b.name }}</code>.</p>{% endif %}
+    {% if b.judgement %}<div class="judgement-text prose">{{ b.judgement | markdown }}</div>{% else %}<p class="muted">No <code>judgement.md</code> in <code>{{ b.name }}</code>.</p>{% endif %}
 </details>
 {% endfor %}
+</section>
 {% endif %}
 {% endblock %}

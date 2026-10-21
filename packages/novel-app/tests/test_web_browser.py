@@ -1,16 +1,21 @@
 """nov serve in headless Firefox (local only: `pytest -m browser`)."""
 
+import os
 import threading
 import time
+from pathlib import Path
 
 import pytest
 import uvicorn
-from firefox_page import firefox
+from firefox_page import PHONE, firefox
 from novel_app.jobs import JobBoard, JobRunner, JobState
+from novel_app.library import novel_dir
 from novel_app.service import Service, app_db
 from novel_app.web.app import create_app
+from novel_core import Kind, NewVersion, Paragraph, SourceItem, SourceSpec
 
 pytestmark = pytest.mark.browser
+DESKTOP = (1280, 900)
 
 
 @pytest.fixture
@@ -163,3 +168,58 @@ def test_translate_form_enables_start_once_an_estimate_shows(openrouter, page, a
     page.wait_for(f"!{start}.disabled")
     assert "3 chapters to translate" in page.js("document.getElementById('estimate').textContent")
     assert page.js(f"document.querySelector('#translate-form select[name=setup]').value") == str(source)
+
+
+SHOTS_ENV = "APP_UI_SHOTS"  # a folder to keep the screenshots in, for review
+
+
+@pytest.mark.parametrize("size", [PHONE, DESKTOP], ids=["phone", "desktop"])
+def test_screenshots_of_every_page(openrouter, two_texts, app_url, service, tmp_path, size):
+    from novel_core import NovelStore, Note, System
+    from novel_translate.glossary import Status, UpdateTerm
+    from novel_translate.setups import TranslatorSetup
+
+    assert service.run("glossary-build", lambda _l: None, novel="raw-novel", model="vendor/cheap")[0] is JobState.DONE
+    setup = service.add_setup("raw-novel", TranslatorSetup("vendor/cheap"))
+    assert service.run("translate", lambda _l: None, novel="raw-novel", setup=setup, range="1-2")[0] is JobState.DONE
+    with NovelStore.open(novel_dir("raw-novel")) as store:
+        en = store.upsert_source(SourceSpec("custom:en", "https://en.test", "en", Kind.OFFICIAL_EN))
+        store.record_index(en, [SourceItem("/en1", 1, "Chapter 1: Official", number=1)])
+        store.put_version(en, "/en1", NewVersion("Chapter 1: Official", (Paragraph.of("Official words."),)))
+    assert service.run("compare", lambda _l: None, novel="raw-novel", models=["vendor/cheap", "vendor/other"],
+                       range="1-2", per_call=[1])[0] is JobState.DONE  # fmt: skip
+    han = next(t.id for t in service.glossary("raw-novel") if t.zh == "韩立")
+    service.glossary_edit("raw-novel", [UpdateTerm(han, status=Status.NEEDS_REVIEW)])  # holds back chapters 3-5
+    filler = tuple(f"Paragraph {i} of the chapter, the same on both sides." for i in range(6))
+    two_texts("d", {"Chapter 1": (*filler, "He ran fast.", System("[Strength +1]"), Note("TL note: a pun."))},
+              {"Chapter 1": (*filler, "He ran quickly.", System("[Strength +1]"))})
+    running = service.runner.board.claim("d", "sync", {})
+    service.runner.board.start(running)
+    service.runner.board.set_progress(running, 2, 7, "Chapter 2")
+
+    out = Path(os.environ.get(SHOTS_ENV) or tmp_path / "shots")
+    out.mkdir(parents=True, exist_ok=True)
+    pages = {
+        "library": "/",
+        "novel-sources": "/novels/raw-novel?s=1#sources",
+        "novel-chapters": "/novels/raw-novel?s=2#chapters",
+        "novel-translate": "/novels/raw-novel?s=3#translate",
+        "novel-check": "/novels/raw-novel?s=4#check",
+        "glossary": "/novels/raw-novel/glossary?tab=all",
+        "compare": "/novels/d/compare?number=1",
+        "comparisons": "/novels/raw-novel/comparisons",
+        "comparison-chapter": "/novels/raw-novel/comparisons/n1",
+        "add": "/add",
+        "error": "/novels/nope",
+    }
+    name = "phone" if size == PHONE else "desktop"
+    with firefox(tmp_path / "profile", size=size) as page:
+        for shot, path in pages.items():
+            page.goto(app_url + path)
+            page.js("document.fonts.ready.then(() => true)")
+            page.js("scrollTo(0, 0)")  # a full-page shot of a scrolled page draws the sticky top bar mid-page
+            page.frame()
+            assert page.js("document.documentElement.scrollWidth <= innerWidth"), shot  # never sideways
+            page.screenshot(out / f"{name}-{shot}.png", full_page=True)
+        page.assert_no_errors()
+    service.runner.board.finish(running, JobState.DONE)

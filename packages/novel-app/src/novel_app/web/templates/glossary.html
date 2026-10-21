@@ -1,78 +1,102 @@
 {% extends "base.html" %}
+{% from "_ui.html" import icon, empty %}
 {% from "_macros.html" import busy_reason %}
 {% set g = page %}
 {% set here = "/novels/" ~ g.slug ~ "/glossary?tab=" ~ g.tab ~ ("&q=" ~ (g.search | urlencode) if g.search else "") ~ ("&category=" ~ g.category if g.category else "") %}
 {% set slug, back = g.slug, here %}
 {% block title %}{{ g.title }} · glossary{% endblock %}
+{% block crumbs %}<li><a href="/">Library</a></li><li><a href="/novels/{{ g.slug }}" title="{{ g.title }}">{{ g.title }}</a></li><li><a href="{{ here }}" aria-current="page">Glossary</a></li>{% endblock %}
 {% block main %}
-<p><a href="/novels/{{ g.slug }}">← {{ g.title }}</a></p>
-<h1>Glossary</h1>
-<p class="muted">The names a translation keeps. Locked and accepted terms are given to the translator; a term that needs review holds back every chapter it occurs in. A glossary pass never changes a term you have edited (marked ✎).</p>
+<div class="page-header">
+    <div class="page-heading">
+        <h1>Glossary</h1>
+        <p class="muted">The names a translation keeps. Locked and accepted terms are given to the translator; a term that needs review holds back every chapter it occurs in. A glossary pass never changes a term you have edited (marked ✎).</p>
+    </div>
+</div>
 
-{% if g.building %}<p class="busy">Glossary pass running (job {{ g.job.id }}): your edits are kept.</p>
+{% if g.building %}<div class="alert alert--warn busy">{{ icon("loader") }}<p class="alert-body">Glossary pass running (job {{ g.job.id }}): your edits are kept.</p></div>
 {% else %}{{ busy_reason(g.job) }}{% endif %}
 
 <section class="glossary-tools" aria-label="Glossary pass and new terms">
-    <form method="post" action="/jobs" hx-post="/jobs" hx-target="#notice" class="glossary-build">
+    <form method="post" action="/jobs" hx-post="/jobs" hx-target="#notice" class="card glossary-build">
+        <div class="card-header">
+            <h2 class="card-title">Build glossary</h2>
+            <p class="card-description">A model reads the raws and proposes names; you review them below.</p>
+        </div>
         <input type="hidden" name="kind" value="glossary-build">
         <input type="hidden" name="novel" value="{{ g.slug }}">
         <input type="hidden" name="back" value="{{ here }}">
-        <label>Model <input name="model" required size="28" placeholder="google/gemini-2.5-flash-lite"></label>
-        <label>Cap $ <input name="cap" value="1.00" size="5" inputmode="decimal"></label>
-        <button type="submit"{% if g.build_blocked or g.job %} disabled{% endif %}
-            {% if g.build_blocked %}title="{{ g.build_blocked }}"{% elif g.job %}title="novel busy: {{ job_labels.get(g.job.kind, g.job.kind) }} (job {{ g.job.id }})"{% endif %}>Build glossary</button>
-        {% if g.build_blocked %}<span class="muted">{{ g.build_blocked }}</span>{% endif %}
+        <div class="field-row">
+            <label class="field field--wide"><span class="label">Model</span> <input name="model" required size="28" placeholder="google/gemini-2.5-flash-lite"></label>
+            <label class="field field--narrow"><span class="label">Cap $</span> <input name="cap" value="1.00" size="5" inputmode="decimal"></label>
+        </div>
+        <div class="card-footer">
+            <button type="submit"{% if g.build_blocked or g.job %} disabled{% endif %}
+                {% if g.build_blocked %}title="{{ g.build_blocked }}"{% elif g.job %}title="novel busy: {{ job_labels.get(g.job.kind, g.job.kind) }} (job {{ g.job.id }})"{% endif %}>Build glossary</button>
+            {% if g.build_blocked %}<span class="muted">{{ g.build_blocked }}</span>{% endif %}
+        </div>
     </form>
-    <form method="post" action="/novels/{{ g.slug }}/glossary" class="glossary-add">
+    <form method="post" action="/novels/{{ g.slug }}/glossary" class="card glossary-add">
+        <div class="card-header">
+            <h2 class="card-title">Add a term</h2>
+            <p class="card-description">Added terms are locked: a glossary pass leaves them as they are.</p>
+        </div>
         <input type="hidden" name="back" value="{{ here }}">
-        <label>Chinese <input name="zh" required size="10" lang="zh"></label>
-        <label>English <input name="en" required size="22"></label>
-        <label>Category <select name="category">{% for c in categories %}<option{% if c == "person" %} selected{% endif %}>{{ c }}</option>{% endfor %}</select></label>
-        <label>Aliases <input name="aliases" size="12" lang="zh" placeholder="comma separated"></label>
-        <button type="submit">Add term</button>
-        <span class="muted">added terms are locked</span>
+        <div class="field-row">
+            <label class="field"><span class="label">Chinese</span> <input name="zh" required size="10" lang="zh"></label>
+            <label class="field"><span class="label">English</span> <input name="en" required size="22"></label>
+            <label class="field"><span class="label">Category</span> <select name="category">{% for c in categories %}<option{% if c == "person" %} selected{% endif %}>{{ c }}</option>{% endfor %}</select></label>
+            <label class="field"><span class="label">Aliases</span> <input name="aliases" size="12" lang="zh" placeholder="comma separated"></label>
+        </div>
+        <div class="card-footer"><button type="submit" class="btn btn--secondary">{{ icon("plus") }}Add term</button></div>
     </form>
 </section>
 
 {% if setups %}
-<section class="stale-panel" aria-labelledby="stale-heading">
-    <h2 id="stale-heading">Translations behind the glossary</h2>
-    <ul>
-        {% for t in setups %}
-        <li>source {{ t.source.id }}: {{ t.setup.model }} · {{ t.stale }} stale{% if t.orphans %}, {{ t.orphans }} orphans{% endif %}
-            {% if t.stale %}<a href="/novels/{{ g.slug }}?setup={{ t.source.id }}&range=stale#translate">Translate stale</a>{% endif %}</li>
-        {% endfor %}
-    </ul>
+<section class="alert alert--warn stale-panel" aria-labelledby="stale-heading">
+    {{ icon("triangle-alert") }}
+    <div class="alert-body">
+        <h2 id="stale-heading" class="alert-title">Translations behind the glossary</h2>
+        <ul>
+            {% for t in setups %}
+            <li>source {{ t.source.id }}: {{ t.setup.model }} · {{ t.stale }} stale{% if t.orphans %}, {{ t.orphans }} orphans{% endif %}
+                {% if t.stale %}<a href="/novels/{{ g.slug }}?setup={{ t.source.id }}&range=stale#translate">Translate stale</a>{% endif %}</li>
+            {% endfor %}
+        </ul>
+    </div>
 </section>
 {% endif %}
 
-<nav class="tabs" aria-label="Terms by status">
-    {% for tab, label, _statuses in tabs %}
-    <a href="/novels/{{ g.slug }}/glossary?tab={{ tab }}{% if g.search %}&q={{ g.search | urlencode }}{% endif %}"{% if tab == g.tab %} aria-current="page"{% endif %}>{{ label }} <span class="count">{{ g.tab_count(tab) }}</span></a>
-    {% endfor %}
-</nav>
-<form method="get" action="/novels/{{ g.slug }}/glossary" class="glossary-filter" role="search">
-    <input type="hidden" name="tab" value="{{ g.tab }}">
-    <label>Search <input type="search" name="q" value="{{ g.search }}" placeholder="Chinese or English"></label>
-    <label>Category <select name="category"><option value="">any</option>{% for c in categories %}<option{% if c == g.category %} selected{% endif %}>{{ c }}</option>{% endfor %}</select></label>
-    <button type="submit">Filter</button>
-</form>
+<div class="toolbar">
+    <nav class="tabs" aria-label="Terms by status">
+        {% for tab, label, _statuses in tabs %}
+        <a class="tab" href="/novels/{{ g.slug }}/glossary?tab={{ tab }}{% if g.search %}&q={{ g.search | urlencode }}{% endif %}"{% if tab == g.tab %} aria-current="page"{% endif %}>{{ label }} <span class="count">{{ g.tab_count(tab) }}</span></a>
+        {% endfor %}
+    </nav>
+    <form method="get" action="/novels/{{ g.slug }}/glossary" class="glossary-filter" role="search">
+        <input type="hidden" name="tab" value="{{ g.tab }}">
+        <label class="search-input">{{ icon("search") }}<span class="visually-hidden">Search</span> <input type="search" name="q" value="{{ g.search }}" placeholder="Search Chinese or English"></label>
+        <label><span class="visually-hidden">Category</span> <select name="category"><option value="">any category</option>{% for c in categories %}<option{% if c == g.category %} selected{% endif %}>{{ c }}</option>{% endfor %}</select></label>
+        <button type="submit" class="btn btn--secondary">Filter</button>
+    </form>
+</div>
 
 {% if g.total == 0 %}
-<p class="empty">No entries yet. Build the glossary, or add terms you already know: a glossary pass leaves them as they are.</p>
+{% call empty("languages") %}<p>No entries yet. Build the glossary, or add terms you already know: a glossary pass leaves them as they are.</p>{% endcall %}
 {% elif not g.rows %}
-<p class="empty">No terms here.</p>
+{% call empty("search") %}<p>No terms here.</p>{% endcall %}
 {% else %}
 <form method="post" action="/novels/{{ g.slug }}/glossary/bulk" id="bulk" class="glossary-bulk">
     <input type="hidden" name="back" value="{{ here }}">
-    <span>With the ticked terms:</span>
-    <button type="submit" name="action" value="accept">Accept top</button>
-    <button type="submit" name="action" value="lock">Lock</button>
-    <button type="submit" name="action" value="reject">Reject</button>
-    <label>or set category <select name="category"><option value="">—</option>{% for c in categories %}<option>{{ c }}</option>{% endfor %}</select></label>
-    <button type="submit" name="action" value="category">Set</button>
+    <span class="muted">With the ticked terms:</span>
+    <button type="submit" class="btn btn--outline btn--sm" name="action" value="accept">Accept top</button>
+    <button type="submit" class="btn btn--outline btn--sm" name="action" value="lock">Lock</button>
+    <button type="submit" class="btn btn--outline btn--sm" name="action" value="reject">Reject</button>
+    <label><span class="muted">or set category</span> <select name="category"><option value="">—</option>{% for c in categories %}<option>{{ c }}</option>{% endfor %}</select></label>
+    <button type="submit" class="btn btn--outline btn--sm" name="action" value="category">Set</button>
 </form>
 {% if g.matching > g.rows | length %}<p class="muted">Showing the first {{ g.rows | length }} of {{ g.matching }}; search to narrow the list.</p>{% endif %}
+<div class="table-wrap glossary-wrap">
 <table class="glossary-table">
     <thead>
     <tr>
@@ -83,5 +107,6 @@
     </thead>
     {% for row in g.rows %}{% include "_term.html" %}{% endfor %}
 </table>
+</div>
 {% endif %}
 {% endblock %}

@@ -1,0 +1,28 @@
+{# Generic parts of the design system (ui.css); nothing here knows about novels. #}
+
+{# A Lucide icon from the vendored sprite. Decorative unless it has a label. #}
+{% macro icon(name, label=None) -%}
+<svg class="icon icon--{{ name }}"{% if label %} role="img" aria-label="{{ label }}"{% else %} aria-hidden="true"{% endif %}><use href="/static/vendor/lucide.svg#{{ name }}"/></svg>
+{%- endmacro %}
+
+{% macro badge(text, variant="secondary", title=None) -%}
+<span class="badge badge--{{ variant }}"{% if title %} title="{{ title }}"{% endif %}>{{ text }}</span>
+{%- endmacro %}
+
+{# A stat card: a label, a big value, an optional hint and an optional icon. #}
+{% macro stat(label, value, hint=None, icon_name=None) -%}
+<div class="stat">
+    <span class="stat-label">{{ label }}</span>
+    {% if icon_name %}{{ icon(icon_name) }}{% endif %}
+    <span class="stat-value">{{ value }}</span>
+    {% if hint %}<span class="stat-hint">{{ hint }}</span>{% endif %}
+</div>
+{%- endmacro %}
+
+{# An empty state; the caller's block is its text (and any action). #}
+{% macro empty(icon_name) -%}
+<div class="empty">
+    {{ icon(icon_name) }}
+    {{ caller() }}
+</div>
+{%- endmacro %}
