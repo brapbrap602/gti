@@ -60,7 +60,7 @@
 {% for b in runs %}{% set col = columns | selectattr("run", "equalto", b.name) | first %}
 <details class="judgement"{% if loop.first and b.judgement %} open{% endif %}>
     <summary>{{ col.when }}: chapters {{ b.chapters | map("replace", "n", "") | join(", ") }} · ${{ "%.4f" | format(b.cost) }}{% if not b.judgement %} · <span class="muted">not judged yet</span>{% endif %}</summary>
-    {% if b.judgement %}<pre class="judgement-text">{{ b.judgement }}</pre>{% else %}<p class="muted">No <code>judgement.md</code> in <code>{{ b.name }}</code>.</p>{% endif %}
+    {% if b.judgement %}<div class="judgement-text">{{ b.judgement | markdown }}</div>{% else %}<p class="muted">No <code>judgement.md</code> in <code>{{ b.name }}</code>.</p>{% endif %}
 </details>
 {% endfor %}
 {% endif %}
