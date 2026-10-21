@@ -103,6 +103,7 @@
 {% if translate %}
 <section id="translate" aria-labelledby="translate-heading">
     <h2 id="translate-heading">Translations</h2>
+    <p><a href="/novels/{{ r.slug }}/comparisons">Model comparisons</a> <span class="muted">{% if comparisons %}{{ comparisons }} run{{ "s" if comparisons != 1 }}{% else %}none yet{% endif %}</span></p>
     <p class="muted">Each translator setup is its own source, unpublished until you publish it above; then the order decides, as for any source.</p>
     {% if translate.setups %}
     <table class="sources-table setups-table">

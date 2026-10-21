@@ -61,7 +61,7 @@ from novel_translate.tstore import DB_NAME as TRANSLATE_DB
 from novel_translate.tstore import TranslateStore
 
 from novel_app import deploy, pages, report
-from novel_app.comparing import Reference, bundle_name, write_bundle
+from novel_app.comparing import Bundle, ChapterScreen, Reference, bundles, chapter_screen, new_bundle, write_bundle
 from novel_app.glossary_page import GlossaryPage, TermRow, glossary_page, term_row
 from novel_app.jobs import SITE, JobPanel, JobRow, JobRunner, JobState, Outcome, Work
 from novel_app.library import (
@@ -777,7 +777,7 @@ class Service:
             return factory.llm(setup.model, cancel, data_collection=setup.data_collection, reasoning=_effort(setup))
 
         def work(job) -> Outcome:
-            folder = compare_dir(novel) / bundle_name(range, datetime.now())
+            folder = new_bundle(compare_dir(novel), range, datetime.now())
             job.log(f"{novel}: comparing {len(chosen)} setups on {range}, cap ${cap:.4f}")
             comparison = Comparison()
             with self._store(novel) as store, self._tstore(novel) as ts:
@@ -798,6 +798,17 @@ class Service:
             return Outcome(tuple(failed))
 
         return novel, work
+
+    def comparisons(self, novel: str) -> list[Bundle]:
+        """The novel's comparison runs, newest first."""
+        self._require(novel)
+        return bundles(compare_dir(novel))
+
+    def comparison_chapter(self, novel: str, ref: str) -> ChapterScreen:
+        screen = chapter_screen(self.comparisons(novel), ref)
+        if screen is None:
+            raise UserError(f"no comparison of {novel} has chapter {ref}")
+        return screen
 
     def _compare_args(
         self, novel: str, models: Sequence[str], range: str, per_call: Sequence[int | str] = (1,)

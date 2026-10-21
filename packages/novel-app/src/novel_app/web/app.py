@@ -27,6 +27,7 @@ from novel_translate.glossary import AddAlias, AddTerm, Category, Edit, Status, 
 from novel_translate.setups import CONTEXTS, DATA_COLLECTION, REASONING, SetupError, TranslatorSetup
 from starlette.concurrency import run_in_threadpool
 
+from novel_app.comparing import all_chapters, columns, setup_name, words
 from novel_app.glossary_page import TABS
 from novel_app.jobs import JobPanel, JobRunning, JobState
 from novel_app.notation import parse_range
@@ -77,6 +78,7 @@ def create_app(service: Service) -> FastAPI:
         job_labels=JOB_LABELS, cell_labels=CELL_LABELS, CellState=CellState, Kind=Kind, JobState=JobState,
         backends=BACKENDS, owns=service.runner.owns, source_label=source_label,
         contexts=CONTEXTS, reasoning_levels=REASONING, data_collection=DATA_COLLECTION,
+        setup_name=setup_name, words=words,
     )  # fmt: skip
 
     def page(request: Request, name: str, status: int = 200, **context) -> HTMLResponse:
@@ -124,6 +126,7 @@ def create_app(service: Service) -> FastAPI:
         return page(
             request, "novel.html", novel=n, glossary=await run_in_threadpool(service.glossary_counts, novel),
             translate=await run_in_threadpool(service.translate_panel, novel),
+            comparisons=len(await run_in_threadpool(service.comparisons, novel)),
             prefill={"setup": request.query_params.get("setup", ""), "range": request.query_params.get("range", "")},
         )  # fmt: skip
 
@@ -212,6 +215,19 @@ def create_app(service: Service) -> FastAPI:
         except UserError as err:
             context = {"estimate": None, "error": str(err)}
         return templates.TemplateResponse(request, "_estimate.html", context)
+
+    # -- model comparisons -----------------------------------------------------------
+
+    @app.get("/novels/{novel}/comparisons", response_class=HTMLResponse)
+    async def comparisons(request: Request, novel: str):
+        runs = await run_in_threadpool(service.comparisons, novel)
+        return page(request, "comparisons.html", slug=novel, runs=runs, columns=columns(runs), chapters=all_chapters(runs))
+
+    @app.get("/novels/{novel}/comparisons/{ref}", response_class=HTMLResponse)
+    async def comparison_chapter(request: Request, novel: str, ref: str):
+        screen = await run_in_threadpool(service.comparison_chapter, novel, ref)
+        shown = request.query_params.getlist("show")
+        return page(request, "comparison_chapter.html", slug=novel, s=screen, shown=set(shown) if shown else None)
 
     # -- glossary ------------------------------------------------------------------
 

@@ -12,7 +12,8 @@
     <script src="/static/vendor/sse.js" defer></script>
     <script src="/static/app.js" defer></script>
 </head>
-<body hx-ext="sse" sse-connect="/jobs/stream">
+{# A "wide" page (block page_class) gives main the whole width: the jobs panel becomes a drawer, as on narrow screens. #}
+<body hx-ext="sse" sse-connect="/jobs/stream" class="{% block page_class %}{% endblock %}">
 <header class="app-header">
     <nav aria-label="Main">
         <a href="/">Library</a>
