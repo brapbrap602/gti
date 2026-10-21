@@ -10,6 +10,7 @@ refused, so a web page cannot start jobs through the visitor's browser.
 """
 
 import asyncio
+import mimetypes
 import time
 from collections.abc import AsyncIterator, Callable
 from contextlib import asynccontextmanager
@@ -74,6 +75,7 @@ def create_app(service: Service) -> FastAPI:
         await run_in_threadpool(service.runner.shutdown)
 
     app = FastAPI(title="Novel library", lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None)
+    mimetypes.add_type("font/woff2", ".woff2")  # Python 3.12 guesses none, and text/plain fonts are refused
     app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
     app.mount("/site-assets", StaticFiles(packages=[("novel_publish", "static")]), name="site-assets")
     templates = Jinja2Templates(directory=HERE / "templates")

@@ -1,6 +1,7 @@
 import asyncio
 import re
 import threading
+from pathlib import Path
 
 import pytest
 from fastapi.testclient import TestClient
@@ -316,3 +317,18 @@ def test_check_section_lists_held_chapters_numbering_and_unchecked_ones(client, 
         " <code>nov align range raw-novel 2-6 -1 --source 2</code></li>"
     ) in check
     assert "No problems found." not in check
+
+
+def test_vendored_fonts_and_icons_are_served(client):
+    for path in ("/static/vendor/lucide.svg", "/static/vendor/fonts/OFL.txt", "/static/vendor/LICENSE-lucide.txt"):
+        assert client.get(path).status_code == 200, path
+    for name in ("Geist-Variable", "GeistMono-Variable"):
+        font = client.get(f"/static/vendor/fonts/{name}.woff2")
+        assert font.status_code == 200 and font.headers["content-type"] == "font/woff2"
+
+
+def test_every_icon_a_template_uses_is_in_the_sprite():
+    web = Path(create_app.__code__.co_filename).parent
+    used = {name for t in (web / "templates").glob("*.html") for name in re.findall(r"""icon\(["']([\w-]+)["']""", t.read_text(encoding="utf-8"))}
+    symbols = set(re.findall(r'<symbol id="([\w-]+)"', (web / "static/vendor/lucide.svg").read_text(encoding="utf-8")))
+    assert used - symbols == set()
