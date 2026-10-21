@@ -650,8 +650,8 @@ Soft checks (stored with flags):
   - **`translate.sqlite` schema 1** grew through slices 3–7 with no migrations. No real store existed yet. It is frozen from the first real use (W1): later changes need a migration, as in `novel.sqlite`.
   - **Staleness counts** on the pages are cached per (novel, setup) until either database file changes.
 - **G3 status:** the glossary browser test (review, focus kept, lock, phone layout) passes on fixture data. Screenshots were checked at desktop and phone width. The real W2 walkthrough needs a built glossary (W1, which is paid).
-- **Key limits:** 402, or 403 with "limit" in the body, raises `OutOfCredit`. This is unconfirmed against a real key-limit reply.
-- **Reasoning "off"** sends no `reasoning` setting, so the model's default applies. Revisit at G2 for models that reason by default.
+- **Key limits:** 402 raises `OutOfCredit`. So does a 403 whose error carries `metadata.limit_source`, which is how OpenRouter's errors doc marks a spent key, workspace or guardrail budget. Any other 403 (a moderation or guardrail block) fails only that call. The tests use the documented body shape; a real key-limit reply is still unseen.
+- **Reasoning "off"** sends `reasoning: {effort: "none"}` when the model list says the model reasons by default (`reasoning.default_enabled`) and allows switching it off (`mandatory: false`). Otherwise it sends nothing. Models with mandatory reasoning reason anyway, and "off" does not double their output allowance; the cut-off retry covers that for now.
 - **G1 status:**
   - **Done:** TM #4411 realigned to 1465 with `nov align item`, and `nov check` shows raw-only 1–1465. Every real store is now at schema 3. Schema-2 backups are in `%LOCALAPPDATA%\novels\_backup-schema2-2026-10-20\`.
   - **Done (2026-10-20):** the `live` test (`pytest -m live packages/novel-translate -s`, model from `NOV_LIVE_MODEL`, default `google/gemini-2.5-flash-lite`) passes with the user's key. `data_collection` allow and deny were both accepted, each recording a cost (~$0.000016) and a generation id. G1 is passed.

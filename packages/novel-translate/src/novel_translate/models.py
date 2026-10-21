@@ -336,6 +336,7 @@ class ModelFactory:
         self._async_transport = async_transport
         self._clock = clock
         self._prices: dict[str, Price] = {}
+        self._reasons_by_default: set[str] = set()  # models that reason unless told not to, and may be told
         self._prices_at: float | None = None
         self._lock = threading.Lock()
 
@@ -345,7 +346,7 @@ class ModelFactory:
         cancel: threading.Event,
         *,
         data_collection: str = "allow",
-        reasoning: str | None = None,  # an OpenRouter effort ("low", "high", ...); None leaves the model's default
+        reasoning: str | None = None,  # an OpenRouter effort ("low", "high", ...); None turns it off where the model allows
     ) -> LLM:
         http_client = httpx2.AsyncClient(transport=self._async_transport) if self._async_transport else None
         client = AsyncOpenAI(
@@ -357,6 +358,8 @@ class ModelFactory:
         }
         if reasoning is not None:
             settings["openrouter_reasoning"] = {"effort": reasoning}
+        elif self._reasons_unless_told(model):  # else it reasons anyway: billed, and eating max_tokens
+            settings["openrouter_reasoning"] = {"effort": "none"}
         return LLM(
             OpenRouterModel(model, provider=OpenRouterProvider(openai_client=client)),
             lambda: self.price(model),
@@ -366,23 +369,37 @@ class ModelFactory:
 
     def price(self, model: str) -> Price:
         with self._lock:
-            now = self._clock()
-            if self._prices_at is None or now - self._prices_at > PRICE_TTL_S:
-                self._prices = self._fetch_prices()
-                self._prices_at = now
+            self._refresh()
             if model not in self._prices:
                 raise PriceUnavailable(f"OpenRouter does not list the model {model!r}")
             return self._prices[model]
 
-    def _fetch_prices(self) -> dict[str, Price]:
+    def _reasons_unless_told(self, model: str) -> bool:
+        """Whether the model reasons unless told not to and accepts being told; False when the list is unreadable."""
+        with self._lock:
+            try:
+                self._refresh()
+            except PriceUnavailable:
+                return False
+            return model in self._reasons_by_default
+
+    def _refresh(self) -> None:
+        now = self._clock()
+        if self._prices_at is None or now - self._prices_at > PRICE_TTL_S:
+            self._prices, self._reasons_by_default = self._fetch_models()
+            self._prices_at = now
+
+    def _fetch_models(self) -> tuple[dict[str, Price], set[str]]:
         try:
             with httpx2.Client(transport=self._transport, timeout=30) as http:
                 response = http.get(f"{self._base_url}/models", headers={"Authorization": f"Bearer {self._key}"})
                 response.raise_for_status()
                 rows = response.json()["data"]
-            return {r["id"]: Price(float(r["pricing"]["prompt"]), float(r["pricing"]["completion"])) for r in rows}
+            prices = {r["id"]: Price(float(r["pricing"]["prompt"]), float(r["pricing"]["completion"])) for r in rows}
         except (httpx2.HTTPError, KeyError, TypeError, ValueError) as e:
             raise PriceUnavailable(f"could not read OpenRouter's model list: {e}") from e
+        reasoning = {r["id"]: r["reasoning"] if isinstance(r.get("reasoning"), dict) else {} for r in rows}
+        return prices, {m for m, r in reasoning.items() if r.get("default_enabled") and not r.get("mandatory")}
 
 
 def _last_response(messages: list[ModelMessage]) -> ModelResponse | None:
@@ -396,10 +413,19 @@ def _classify(error: Exception, messages: list[ModelMessage]) -> str:
         last = _last_response(messages)
         return "cut-off" if last is not None and last.finish_reason == "length" else "fail"
     if isinstance(error, ModelHTTPError):
-        if error.status_code == 402 or (error.status_code == 403 and "limit" in str(error.body).lower()):
+        if error.status_code == 402 or (error.status_code == 403 and _budget_spent(error.body)):
             return "credit"
         return "retry" if error.status_code in (408, 429) or error.status_code >= 500 else "fail"
     return "retry"  # connection errors and timeouts
+
+
+def _budget_spent(body: object) -> bool:
+    """A 403 for a spent key, workspace or guardrail budget (OpenRouter names it in `metadata.limit_source`),
+    as opposed to a moderation or guardrail block of this one request."""
+    if not isinstance(body, dict):
+        return False
+    metadata = body.get("metadata")
+    return isinstance(metadata, dict) and bool(metadata.get("limit_source"))
 
 
 def _retry_wait(error: Exception, attempt: int) -> float:

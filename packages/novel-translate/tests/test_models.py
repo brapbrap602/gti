@@ -25,22 +25,23 @@ def completion(content="A summary.", finish="stop", cost=0.0012, gen="gen-1"):
     }  # fmt: skip
 
 
-def error(code, message="nope"):
-    return {"error": {"code": code, "message": message}}
+def error(code, message="nope", **metadata):
+    return {"error": {"code": code, "message": message} | ({"metadata": metadata} if metadata else {})}
 
 
 class OpenRouter:
     """Serves queued (status, body, headers) replies to chat calls and a fixed model list; records requests."""
 
-    def __init__(self, *replies):
+    def __init__(self, *replies, models=PRICES):
         self.replies = list(replies)
+        self.models = models
         self.chats: list[dict] = []
         self.model_lists = 0
 
     def handle(self, request: httpx2.Request) -> httpx2.Response:
         if request.url.path.endswith("/models"):
             self.model_lists += 1
-            return httpx2.Response(200, json=PRICES)
+            return httpx2.Response(200, json=self.models)
         self.chats.append({"body": json.loads(request.content), "auth": request.headers["authorization"]})
         status, body, headers = self.replies.pop(0)
         return httpx2.Response(status, json=body, headers=headers)
@@ -86,6 +87,32 @@ def test_reasoning_effort_is_sent_when_set():
     assert server.chats[0]["body"]["reasoning"] == {"effort": "low"}
 
 
+def reasoning_models(**reasoning):
+    row = PRICES["data"][0] | ({"reasoning": reasoning} if reasoning else {})
+    return {"data": [row]}
+
+
+@pytest.mark.parametrize(
+    ("reasoning", "sent"),
+    [
+        ({"mandatory": False, "default_enabled": True}, {"effort": "none"}),  # reasons unless told: tell it
+        ({"mandatory": True, "default_enabled": True}, None),  # "none" would be rejected
+        ({"mandatory": False, "default_enabled": False}, None),
+        ({}, None),  # not a reasoning model
+    ],
+)
+def test_reasoning_off_switches_off_a_model_that_reasons_by_default(reasoning, sent):
+    server = OpenRouter(ok(), models=reasoning_models(**reasoning))
+    server.factory().llm(MODEL, threading.Event()).summarize("第一章")
+    assert server.chats[0]["body"].get("reasoning") == sent
+
+
+def test_an_unreadable_model_list_leaves_reasoning_at_the_models_default():
+    server = OpenRouter(ok(), models={"no": "data"})
+    assert server.factory().llm(MODEL, threading.Event()).summarize("第一章").text == "A summary."
+    assert "reasoning" not in server.chats[0]["body"]
+
+
 def test_without_a_reported_cost_the_tokens_are_priced_from_the_model_list():
     server = OpenRouter(ok(cost=None))
     charged = server.factory().llm(MODEL, threading.Event()).summarize("第一章").charged
@@ -99,10 +126,18 @@ def test_out_of_credit_is_fatal_and_not_retried():
     assert len(server.chats) == 1
 
 
-def test_a_key_limit_is_out_of_credit_too():
-    server = OpenRouter((403, error(403, "Key limit exceeded"), {}))
+def test_a_spent_key_limit_is_out_of_credit_too():
+    server = OpenRouter((403, error(403, "Budget exceeded", limit_source="openrouter_key_limit"), {}))
     with pytest.raises(OutOfCredit):
         server.factory().llm(MODEL, threading.Event()).summarize("第一章")
+
+
+def test_a_moderation_block_fails_only_this_call():
+    flagged = error(403, "Input flagged: limits of acceptable content", reasons=["violence"], provider_name="Host")
+    server = OpenRouter((403, flagged, {}))
+    with pytest.raises(CallFailed, match="HTTP 403") as failed:
+        server.factory().llm(MODEL, threading.Event()).summarize("第一章")
+    assert not isinstance(failed.value, OutOfCredit) and len(server.chats) == 1
 
 
 def test_rate_limits_are_retried_after_the_wait_the_server_asks_for():
