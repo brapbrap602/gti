@@ -21,6 +21,8 @@ from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse, RedirectResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from markdown_it import MarkdownIt
+from markupsafe import Markup
 from novel_core import Kind
 from novel_sources.backends import BACKENDS
 from novel_translate.glossary import AddAlias, AddTerm, Category, Edit, Status, UpdateTerm
@@ -36,6 +38,8 @@ from novel_app.service import Service, UserError
 
 HERE = Path(__file__).parent
 STREAM_EVERY = 1.0
+# Judgements are Markdown; raw HTML in them is shown as text, not run.
+MARKDOWN = MarkdownIt("commonmark", {"html": False}).enable("table")
 
 # The fields each kind of job takes from a web form; anything else is ignored.
 WEB_JOBS: dict[str, tuple[str, ...]] = {
@@ -74,6 +78,7 @@ def create_app(service: Service) -> FastAPI:
     app.mount("/site-assets", StaticFiles(packages=[("novel_publish", "static")]), name="site-assets")
     templates = Jinja2Templates(directory=HERE / "templates")
     templates.env.filters["ago"] = _ago
+    templates.env.filters["markdown"] = lambda text: Markup(MARKDOWN.render(text))
     templates.env.globals.update(
         job_labels=JOB_LABELS, cell_labels=CELL_LABELS, CellState=CellState, Kind=Kind, JobState=JobState,
         backends=BACKENDS, owns=service.runner.owns, source_label=source_label,

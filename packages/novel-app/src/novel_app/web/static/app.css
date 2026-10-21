@@ -364,7 +364,11 @@ body.wide .jobs.open { transform: none; visibility: visible; }
 .attempt--ok { color: var(--ok); }
 .attempt--failed { color: var(--error); }
 .judgement summary { cursor: pointer; padding: 0.35rem 0; }
-.judgement-text { white-space: pre-wrap; font: inherit; font-size: 0.95rem; margin: 0.5rem 0 1rem; }
+.judgement-text { font-size: 0.95rem; margin: 0.5rem 0 1rem; max-width: 60rem; }
+.judgement-text h1 { font-size: 1.15rem; }
+.judgement-text h2 { font-size: 1.05rem; margin-top: 1.25rem; }
+/* A wide table scrolls on its own instead of widening the page. */
+.judgement-text table { display: block; overflow-x: auto; width: auto; margin: 0.5rem 0; }
 .column-pick fieldset { display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; align-items: center; border: 1px solid var(--border); border-radius: 6px; margin: 0 0 1rem; }
 .column-pick label { display: inline-flex; gap: 0.35rem; align-items: center; font-size: 0.9rem; }
 /* Versions share the width; scrolling sideways starts only below 13rem a column. */

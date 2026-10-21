@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 from novel_app.jobs import JobBoard, JobRunner, JobState
-from novel_app.library import novel_dir
+from novel_app.library import compare_dir, novel_dir
 from novel_app.service import Service, app_db
 from novel_app.web.app import create_app
 from novel_core import Kind, NewVersion, NovelStore, Paragraph, SourceItem, SourceSpec
@@ -44,6 +44,16 @@ def test_the_overview_shows_every_run_on_one_screen(service, client):
     assert page.count('class="attempt attempt--ok"') == 8  # 2 runs × 2 setups × 2 chapters
     assert page.count('<details class="judgement"') == 2 and "not judged yet" in page
     assert "2 runs" in client.get("/novels/raw-novel").text
+
+
+def test_a_judgement_is_shown_as_html_with_its_own_html_escaped(service, client):
+    compared(service)
+    (run,) = [p for p in compare_dir("raw-novel").iterdir() if p.is_dir()]
+    judgement = "# Verdict\n\n| a | b |\n|---|---|\n| **x** | y |\n\n<script>alert(1)</script>\n"
+    (run / "judgement.md").write_text(judgement, encoding="utf-8")
+    page = client.get("/novels/raw-novel/comparisons").text
+    assert "<h1>Verdict</h1>" in page and "<td><strong>x</strong></td>" in page
+    assert "<script>alert(1)</script>" not in page and "&lt;script&gt;" in page
 
 
 def test_a_chapter_screen_has_every_version_from_every_run_and_the_reference(service, client):

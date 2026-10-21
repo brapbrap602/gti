@@ -2197,6 +2197,7 @@ source = { editable = "packages/novel-app" }
 dependencies = [
     { name = "fastapi" },
     { name = "jinja2" },
+    { name = "markdown-it-py" },
     { name = "novel-audio" },
     { name = "novel-publish" },
     { name = "novel-sources" },
@@ -2210,6 +2211,7 @@ dependencies = [
 requires-dist = [
     { name = "fastapi", specifier = ">=0.150" },
     { name = "jinja2", specifier = ">=3.1" },
+    { name = "markdown-it-py", specifier = ">=4.2" },
     { name = "novel-audio", editable = "packages/novel-audio" },
     { name = "novel-publish", editable = "packages/novel-publish" },
     { name = "novel-sources", editable = "packages/novel-sources" },
