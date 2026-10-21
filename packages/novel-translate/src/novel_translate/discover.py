@@ -5,6 +5,10 @@ stick together more than chance would make them (PMI), and that turns up next
 to many different characters on both sides (boundary entropy). The counting
 passes are bounded: a string is only counted when both its shorter parts
 survived the frequency cut, so memory follows the frequent strings, not the text.
+Everyday words are left out: a short hand list (`common_words.txt`) also rules out
+strings that start or end with one of its words, and a long list from a general
+dictionary (`everyday_words.txt`) rules out only strings that are exactly one of its
+words, so names built from everyday words stay. So are strings of numerals alone.
 Recall matters more than precision here: the glossary pass's model rejects non-terms.
 """
 
@@ -26,12 +30,16 @@ INNER_STOPS = frozenset("的了着")
 # Grammatical characters that do not start or end a name.
 EDGE_STOPS = frozenset("的了是在和与及或也都就还又而着过把被让给对向从到于以为之其这那此彼他她它我你您们个一不没很太更最吗呢吧啊呀哦嗯说道")
 
-_COMMON = frozenset(
-    w
-    for line in resources.files(__package__).joinpath("common_words.txt").read_text(encoding="utf-8").splitlines()
-    if not line.startswith("#")
-    for w in line.split()
-)
+NUMERALS = frozenset("一二三四五六七八九十百千万亿几两零半数")
+
+
+def _words(name: str) -> frozenset[str]:
+    text = resources.files(__package__).joinpath(name).read_text(encoding="utf-8")
+    return frozenset(w for line in text.splitlines() if not line.startswith("#") for w in line.split())
+
+
+_COMMON = _words("common_words.txt")
+_EVERYDAY = _words("everyday_words.txt")
 
 _CJK_RUN = re.compile(r"[㐀-䶿一-鿿豈-﫿]+")
 
@@ -82,7 +90,9 @@ def candidates(chapters: Iterable[str], known: Set[str]) -> list[Candidate]:
 
 
 def _ordinary(w: str) -> bool:
-    """Starts or ends with a grammatical character or an everyday word, or holds a particle."""
+    """An everyday word or a number; or starts or ends with a grammatical character or a common word, or holds a particle."""
+    if w in _EVERYDAY or NUMERALS.issuperset(w):
+        return True
     if w[0] in EDGE_STOPS or w[-1] in EDGE_STOPS or not INNER_STOPS.isdisjoint(w):
         return True
     return any(w[:n] in _COMMON or w[-n:] in _COMMON for n in range(MIN_LEN, len(w) + 1))
