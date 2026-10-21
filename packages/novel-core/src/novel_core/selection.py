@@ -12,6 +12,7 @@ from collections import defaultdict
 from collections.abc import Iterable, Mapping, Sequence, Set
 from dataclasses import dataclass
 
+from novel_core.finding import Finding
 from novel_core.keys import ChapterKey, ItemRef, KeyRange
 
 type SourceId = int
@@ -27,6 +28,9 @@ class Selected:
     version_id: int
     content_hash: str
     title: str
+    rules_rev: str | None = None  # the zh rules revision that last checked it; None if never checked
+    findings: tuple[Finding, ...] = ()  # released ones included
+    raw_hash: str | None = None  # the kept raw it was made from (sha1 of the page, 12 hex digits)
 
 
 @dataclass(frozen=True)

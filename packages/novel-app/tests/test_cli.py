@@ -1,8 +1,11 @@
 import json
+import sqlite3
+from datetime import date
 
 import pytest
 from novel_app.cli import app
-from novel_app.library import DATA_DIR_ENV, novel_dir, slugify
+from novel_app.library import DATA_DIR_ENV, novel_dir, novel_slugs, slugify
+from novel_core import NovelMeta, NovelStore
 from typer.testing import CliRunner
 
 TOC = "https://novelbin.me/novel-book/test-novel"
@@ -153,3 +156,38 @@ def test_slugs():
         slugify("修真聊天群")
     with pytest.raises(ValueError):
         novel_dir("../escape")
+
+
+def test_slugs_skip_backups(data_dir):
+    """cli-slugs-skip-backups (library half): `_`-prefixed folders are never novels."""
+    NovelStore.create(data_dir / "a-novel", NovelMeta("A")).close()
+    NovelStore.create(data_dir / "_backup-x", NovelMeta("Backup")).close()
+    assert novel_slugs() == ["a-novel"]
+
+
+def test_an_older_store_is_backed_up_before_its_first_open(data_dir):
+    NovelStore.create(data_dir / "a-novel", NovelMeta("A")).close()
+    db = data_dir / "a-novel" / "novel.sqlite"
+    with sqlite3.connect(db) as conn:
+        conn.execute("DROP TABLE finding")
+        conn.execute("DROP TABLE release")
+        conn.execute("ALTER TABLE version DROP COLUMN rules_rev")
+        conn.execute("ALTER TABLE version DROP COLUMN raw_hash")
+        conn.execute("PRAGMA user_version=3")
+    conn.close()
+
+    assert run("check", "a-novel").exit_code == 0
+    backup = data_dir / f"_backup-schema3-{date.today().isoformat()}" / "a-novel" / "novel.sqlite"
+    assert user_version(backup) == 3 and user_version(db) == 4
+    assert novel_slugs() == ["a-novel"]
+
+    backup.unlink()
+    assert run("check", "a-novel").exit_code == 0
+    assert not backup.exists()  # a current store is not copied again
+
+
+def user_version(db) -> int:
+    with sqlite3.connect(db) as conn:
+        (version,) = conn.execute("PRAGMA user_version").fetchone()
+    conn.close()
+    return version

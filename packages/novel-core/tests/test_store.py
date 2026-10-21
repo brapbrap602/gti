@@ -1,10 +1,13 @@
+import hashlib
 import sqlite3
+from datetime import UTC, datetime
 
 import pytest
 from novel_core import (
     AlignmentRules,
     ChapterKey,
     Duplicate,
+    Finding,
     Inserted,
     ItemStatus,
     KeyRange,
@@ -564,6 +567,7 @@ def test_open_migrates_a_version_1_store(tmp_path):
     folder = tmp_path / "old"
     NovelStore.create(folder, NovelMeta("Old")).close()
     with sqlite3.connect(folder / "novel.sqlite") as conn:
+        undo_version_4(conn)
         conn.execute("DROP TABLE volume")
         conn.execute("ALTER TABLE source DROP COLUMN published")
         conn.execute("PRAGMA user_version=1")
@@ -576,6 +580,13 @@ def test_open_migrates_a_version_1_store(tmp_path):
         assert len(store.volumes()) == 1
     NovelStore.create(tmp_path / "new", NovelMeta("New")).close()
     assert source_columns(folder) == source_columns(tmp_path / "new")
+
+
+def undo_version_4(conn):
+    conn.execute("DROP TABLE finding")
+    conn.execute("DROP TABLE release")
+    conn.execute("ALTER TABLE version DROP COLUMN rules_rev")
+    conn.execute("ALTER TABLE version DROP COLUMN raw_hash")
 
 
 def source_columns(folder):
@@ -591,6 +602,7 @@ def test_open_migrates_a_version_2_store_keeping_every_source_published(tmp_path
         store.upsert_source(SourceSpec("custom:a", "https://a.test", "en", Kind.OFFICIAL_EN))
         store.upsert_source(SourceSpec("custom:raw", "https://raw.test", "zh", Kind.RAW_ZH))
     with sqlite3.connect(folder / "novel.sqlite") as conn:
+        undo_version_4(conn)
         conn.execute("ALTER TABLE source DROP COLUMN published")
         conn.execute("PRAGMA user_version=2")
     conn.close()
@@ -598,7 +610,7 @@ def test_open_migrates_a_version_2_store_keeping_every_source_published(tmp_path
     with NovelStore.open(folder) as store:
         assert [s.published for s in store.sources()] == [True, True]
     with sqlite3.connect(folder / "novel.sqlite") as conn:
-        assert conn.execute("PRAGMA user_version").fetchone() == (3,)
+        assert conn.execute("PRAGMA user_version").fetchone() == (4,)
     conn.close()
 
 
@@ -717,3 +729,183 @@ def test_view_items_show_each_entry_as_the_book_sees_it(book):
     assert items["/novel/chapter-3"].skipped and items["/novel/chapter-3"].key is None
     with pytest.raises(StoreError, match="unknown source"):
         book.store.view().items(99)
+
+
+# -- findings, kept raws and holds -------------------------------------------------
+
+POISON = Finding("poison", "有没×9 是止×4 退入×3 (3.1/1000)")
+NAMES = Finding("decoy-names", "陆昭 2/0")
+
+
+def zh(text: str, findings=(), rules_rev: str | None = "rev1", raw: str | None = None) -> NewVersion:
+    """A raw-zh version as zh rules would make it: kept text raw, findings and rules revision."""
+    page = RawChapter(raw if raw is not None else text, "text")
+    return NewVersion("T", (Paragraph.of(text),), raw=page, findings=tuple(findings), rules_rev=rules_rev)
+
+
+def raw_hash(raw: str) -> str:
+    return hashlib.sha1(raw.encode()).hexdigest()[:12]
+
+
+def current(book, source, ref):
+    return next(s for s in book.store.view().chapters(source) if s.item_ref == ref)
+
+
+@pytest.mark.parametrize(
+    "second",
+    [
+        pytest.param("same", id="findings-on-unchanged"),
+        pytest.param("edited", id="findings-on-insert"),
+    ],
+)
+def test_put_records_findings_and_rules_revision(book, second):
+    raw = book.source("raw", Kind.RAW_ZH)
+    [r] = index(book, raw, "第1章")
+    book.store.put_version(raw, r, zh("same", [POISON], "rev1"))
+    result = book.store.put_version(raw, r, zh(second, [NAMES], "rev2"))
+
+    assert isinstance(result, Unchanged if second == "same" else Inserted)
+    s = current(book, raw, r)
+    assert (s.findings, s.rules_rev, s.raw_hash) == ((NAMES,), "rev2", raw_hash(second))
+
+
+def test_unchanged_without_rules_keeps_findings(book):
+    raw = book.source("raw", Kind.RAW_ZH)
+    [r] = index(book, raw, "第1章")
+    book.store.put_version(raw, r, zh("same", [POISON], "rev1"))
+    book.store.put_version(raw, r, zh("same", (), rules_rev=None))
+    s = current(book, raw, r)
+    assert (s.findings, s.rules_rev) == ((POISON,), "rev1")
+
+
+def test_unchanged_takes_new_raw(book):
+    raw = book.source("raw", Kind.RAW_ZH)
+    [r] = index(book, raw, "第1章")
+    v1 = book.store.put_version(raw, r, zh("text", [POISON], raw="r1 text"))
+    book.store.put_version(raw, r, zh("other", [POISON], raw="r2 text"))
+    book.store.release(raw, [r])
+    again = book.store.put_version(raw, r, zh("text", [POISON], "rev2", raw="r2 text"))  # reclean of r2
+
+    assert again == Unchanged(v1.version_id, v1.content_hash)
+    s = current(book, raw, r)
+    assert (s.version_id, s.raw_hash) == (v1.version_id, raw_hash("r2 text"))
+    assert book.store.view().held(raw, r) == ()
+    assert book.store.read_raw(v1.version_id).content == "r2 text"
+
+
+def test_read_raw_gives_back_the_kept_page(book):
+    a = book.source("a")
+    [r] = index(book, a, *titles(1))
+    fetched = datetime(2026, 5, 1, 12, tzinfo=UTC)
+    page = RawChapter("<p>一</p>", "html", "https://a.test/1", fetched)
+    with_raw = book.store.put_version(a, r, NewVersion("T", (Paragraph.of("一"),), raw=page))
+    without = book.store.put_version(a, r, book.version("two"))
+
+    assert book.store.read_raw(with_raw.version_id) == page
+    assert book.store.read_raw(without.version_id) is None
+    with pytest.raises(StoreError, match="unknown version"):
+        book.store.read_raw(999)
+
+
+def test_open_migrates_a_version_3_store(tmp_path):
+    """migration-3-to-4: same tables as a fresh store, raw hashes read back from the kept raws' names."""
+    folder = tmp_path / "old"
+    with NovelStore.create(folder, NovelMeta("Old")) as store:
+        raw = store.upsert_source(SourceSpec("custom:raw", "https://raw.test", "zh", Kind.RAW_ZH))
+        store.record_index(raw, [SourceItem("/r/1", 1, "第1章"), SourceItem("/r/2", 2, "第2章")])
+        store.put_version(raw, "/r/1", NewVersion("T", (Paragraph.of("一"),), raw=RawChapter("一 raw", "text")))
+        store.put_version(raw, "/r/2", NewVersion("T", (Paragraph.of("二"),)))
+    with sqlite3.connect(folder / "novel.sqlite") as conn:
+        undo_version_4(conn)
+        conn.execute("PRAGMA user_version=3")
+    conn.close()
+
+    with NovelStore.open(folder) as store:
+        assert [(s.item_ref, s.raw_hash, s.rules_rev) for s in store.chapters(raw)] == [
+            ("/r/1", raw_hash("一 raw"), None),
+            ("/r/2", None, None),
+        ]
+    NovelStore.create(tmp_path / "new", NovelMeta("New")).close()
+    for table in ("version", "finding", "release"):
+        assert table_columns(folder, table) == table_columns(tmp_path / "new", table)
+    with sqlite3.connect(folder / "novel.sqlite") as conn:
+        assert conn.execute("PRAGMA user_version").fetchone() == (4,)
+    conn.close()
+
+
+def table_columns(folder, table):
+    with sqlite3.connect(folder / "novel.sqlite") as conn:
+        columns = conn.execute(f"PRAGMA table_info({table})").fetchall()
+    conn.close()
+    return columns
+
+
+def two_raws(book, held_in_a=(1,), numbers=(1, 2)):
+    """Raw sources a (first in priority) and b; a holds held_in_a, b only lists its chapters."""
+    a, b = book.source("raw-a", Kind.RAW_ZH), book.source("raw-b", Kind.RAW_ZH)
+    a_refs = index(book, a, *(f"第{n}章" for n in numbers))
+    for n, r in zip(numbers, a_refs, strict=True):
+        book.store.put_version(a, r, zh(f"a {n}", [POISON] if n in held_in_a else []))
+    b_refs = index(book, b, *(f"第{n}章" for n in numbers))
+    return a, b, a_refs, b_refs
+
+
+def test_held_not_covered(book):
+    a, b, _, b_refs = two_raws(book)
+    assert book.store.to_fetch(b) == (b_refs[0],)
+    assert book.store.check().raw_only == (2,)  # raw-only-excludes-held: 1 is only held text
+
+
+def test_held_refetched_clean_not(book):
+    a, _, a_refs, _ = two_raws(book)
+    assert book.store.to_fetch(a) == (a_refs[0],)
+    assert book.store.to_fetch(a, only=KeyRange(2, 2)) == ()
+
+
+def test_released_not_refetched(book):
+    a, b, a_refs, _ = two_raws(book)
+    assert book.store.release(a, a_refs) == {a_refs[0]: ("poison",)}
+    assert book.store.to_fetch(a) == () and book.store.to_fetch(b) == ()
+    assert [s.item_ref for s in book.store.view().raw_chapters()] == a_refs
+    assert book.store.check().held == ()
+
+
+def test_release_not_new_check(book):
+    a, _, a_refs, _ = two_raws(book)
+    book.store.release(a, [a_refs[0]])
+    book.store.put_version(a, a_refs[0], zh("a 1", [POISON, NAMES], "rev2"))  # a reclean finds a new kind
+    assert book.store.view().held(a, a_refs[0]) == (NAMES,)
+    assert [(n.item_ref, n.detail) for n in book.store.check().held] == [(a_refs[0], "decoy-names: 陆昭 2/0")]
+
+
+def test_raw_chapters_fall_back_past_held_numbers(book):
+    a, b, a_refs, b_refs = two_raws(book)
+    book.store.put_version(b, b_refs[0], zh("b 1"))
+    book.store.put_version(b, b_refs[1], zh("b 2"))
+    view = book.store.view()
+    assert [(s.key.label, s.item_ref) for s in view.raw_chapters()] == [("1", b_refs[0]), ("2", a_refs[1])]
+    assert [s.item_ref for s in view.raw_chapters(KeyRange(2, 5))] == [a_refs[1]]
+    assert [n.item_ref for n in view.check().held] == [a_refs[0]]
+
+
+def test_held_part_blocks_number(book):
+    a, b = book.source("raw-a", Kind.RAW_ZH), book.source("raw-b", Kind.RAW_ZH)
+    a_refs = index(book, a, "第1章 (1)", "第1章 (2)")
+    book.store.put_version(a, a_refs[0], zh("a 1.1"))
+    book.store.put_version(a, a_refs[1], zh("a 1.2", [POISON]))
+    b_refs = index(book, b, "第1章 (1)", "第1章 (2)")
+    for r in b_refs:
+        book.store.put_version(b, r, zh(f"b {r}"))
+    assert [s.item_ref for s in book.store.view().raw_chapters()] == b_refs
+
+
+def test_rebase_moves_releases_and_drops_findings_of_merged_versions(book):
+    a = book.source("raw", Kind.RAW_ZH)
+    book.store.record_index(a, [SourceItem("/old/1", 1, "第1章")])
+    book.store.put_version(a, "/old/1", zh("一", [POISON], raw="一 page"))
+    book.store.release(a, ["/old/1"])
+    book.store.record_index(a, [SourceItem("/new/1", 1, "第1章")])
+    book.store.put_version(a, "/new/1", zh("一", [POISON], raw="一 page"))  # same text: merged on rebase
+
+    assert book.store.rebase_refs(a, "/old/", "/new/") == 1
+    assert book.store.view().held(a, "/new/1") == ()

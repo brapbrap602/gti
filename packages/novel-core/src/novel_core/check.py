@@ -25,11 +25,12 @@ class Duplicate:
 @dataclass(frozen=True)
 class CheckReport:
     gaps: tuple[int, ...]  # numbers inside the book's range with nothing publishable
-    raw_only: tuple[int, ...]  # numbers that only a raw-zh source has
+    raw_only: tuple[int, ...]  # numbers that only a raw-zh source has, and not only as held text
     duplicates: tuple[Duplicate, ...]
     unmapped: tuple[ItemNote, ...]
     vanished: tuple[ItemNote, ...]
     failed: tuple[ItemNote, ...]  # detail = failure reason
+    held: tuple[ItemNote, ...]  # never translated; detail = the unreleased findings
     title_mismatches: tuple[ItemNote, ...]  # detail = number found in the title
     mixed_parts: tuple[int, ...]  # sources disagree on whether the number is split
     pin_fallbacks: tuple[PinFallback, ...]
