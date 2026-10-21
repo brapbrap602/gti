@@ -1,6 +1,6 @@
 # Raw cleaning and checks: developer plan
 
-Status: approved by the user 2026-10-21 (r3). Slices 1–10 built (slice 9 without G2); rollout step 2 left.
+Status: approved by the user 2026-10-21 (r3). Slices 1–10 built; rolled out 2026-10-21 (`nov reclean --all`: 121 rewritten, 8 held). G2 and G3 tried 2026-10-21 (§5).
 - The user approved the baseline (§1) on 2026-10-20.
 - Two independent reviews and one focused follow-up review (of r2's changes) are folded in (§9).
 - r3 adds only that review's remedies.
@@ -118,7 +118,7 @@ Related: [stakeholder plan](raw-cleaning-stakeholder.md) · [platform developer 
   - `prune` deletes orphans (`:199-212`).
 - **Layers (import-linter):** novel_app > (novel_sources | novel_translate | …) > novel_core. `sync()`/`store_chapters` do not know the slug (`sync.py:46-63`). Web sources sync in id order (`service.py:237-247`).
 - **`library.novel_slugs`** lists every folder that has a `novel.sqlite`, including `_backup-*` (`library.py:50-53`). `nov serve`/`nov build site` open every listed novel (`service.py:265`).
-- **The qidian plugin exists** (`.venv/.../plugins/sites/qidian`). For a locked chapter `parse_chapter_content` returns None (`qidian/parser.py:206-210`). Fetching without cookies has not been verified (gate G2).
+- **The qidian plugin exists** (`.venv/.../plugins/sites/qidian`). For a locked chapter `parse_chapter_content` returns None (`qidian/parser.py:206-210`). Fetching without cookies works for free chapters (gate G2, §5).
 
 ### 2.2 Tests and CI
 - pytest, with `-m "not live and not browser and not scale"` and `--import-mode=importlib`.
@@ -502,11 +502,16 @@ The translate estimate (`_estimate.html`) shows the unchecked count beside block
   - biquges123 watermark widened (○/Ο/С ends, ＿⊙◆▲★✿☢⊕●¸ padding, ttkan look-alikes, a symbol pair without www): 121 cut, 22 glued to prose; no watermark-looking survivor by the inspect heuristics (was 29 cut, about 90 left).
   - ixdzs8 lone-noise also drops `5」` and `o` (one line each). No lone digit run longer than one digit is stored, so none is dropped. `「7`/`「6`/`「9` (3 lines, ch 600 and 640) are left: cutting the digit leaves a bare `「`, and what stood there is for the G2 diff to show.
   - No names for cultivating-in-two-worlds: it has no decoy source, so no evidence.
-- **G2 — reference source.** Open: the Qidian fetch is not yet authorized. The `「」`/`「————”`/`「...—..」`/`「7` rewrite waits for it.
+- **G2 — reference source.** Tried 2026-10-21 on 苟在两界修仙 (Qidian book 1047213880, added as source 2):
+  - The index (759 chapters) and free chapters 20–22 fetch without cookies; locked chapter 100 is skipped with no request.
+  - `--against` pairs 3 of 3 by title; ixdzs8 20–22 are identical to Qidian's.
+  - Not settled: ixdzs8 uses `「」` as dialogue quotes only in later chapters (101–103: 63–82 each; 20–22: none), and those are locked on Qidian. The `「」`/`「————”`/`「...—..」`/`「7` rewrite stays out (fallback: no rule; the ixdzs8 note covers a stray 」).
   - Verify the qidian plugin fetches the free chapters of 苟在两界修仙 without cookies (a web fetch, not paid).
   - Acceptance: `--against` pairs at least 3 chapters, and the `「」`/`————` rule is chosen from the diff.
   - Fallback: another clean raw source, or heuristics with the rule marked unverified.
-- **G3 — prompt caching.** Only a paid call can measure it, so the user runs it. It does not block release.
+- **G3 — prompt caching.** Measured 2026-10-21 with the user's OK: two short calls per model, system prompt v1 + the ixdzs8 notes (1,335 chars), about $0.0008 in all.
+  - `qwen/qwen3.8-flash`: the second call read 256 tokens from cache, so the notes prefix caches.
+  - `deepseek/deepseek-v4.1-flash`: no cache reads (OpenRouter may route the two calls to different providers).
 - **G4 — reclean on a copy** (walkthrough 1) before the real library.
 
   **Passed 2026-10-21** (copy of the novel databases and raws, 859 MB). `nov reclean --all`: 6,620 rechecked, 121 rewritten (biquges123 watermark 20 + 93, ixdzs8 3 + 5), 6,499 unchanged; cleaner hits watermark 121, dash-run 105, lone-noise 28; 8 newly held, 0 cleared. A second run: 0 rewritten, 0 newly held. `nov check in-the-name-of-divine-powers`: held 7 (ixdzs8 691–693 poison, biquge5 600, 694–696 decoy-names); `nov check my-longevity-simulation`: held 1 (651); neither prints an unchecked line. Translate estimate (a setup added on the copy, a price-only stand-in, no network): 600–696 sends 5 (600, 640, 660, 675, 685), 0 unchecked, `stale` lists 691–696 as held, not orphans; Longevity 645–655 sends 10, 651 held. Web (walkthrough 3, by HTTP on the copy): the Check section shows Held 7 / Held 1 with details, Numbering 6 runs, and no unchecked line.
@@ -536,8 +541,8 @@ The translate estimate (`_estimate.html`) shows the unchecked count beside block
 
 ## 8. Definition of done
 - [ ] All §4.2 cases pass; CI green (pytest, lint-imports, secret scan).
-- [ ] G1 and G4 passed and recorded. G2 passed, or its fallback recorded.
-- [ ] Rollout step 2 (`nov reclean --all` on the real library) run with the user's OK, and its counts reported.
+- [x] G1 and G4 passed and recorded. G2 passed, or its fallback recorded.
+- [x] Rollout step 2 (`nov reclean --all` on the real library) run with the user's OK, and its counts reported.
 - [ ] Walkthroughs reported to the user.
 - [x] The skill and backlog are updated.
 - [ ] No paid run was made.
