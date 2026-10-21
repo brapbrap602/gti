@@ -74,7 +74,11 @@ class TranslatorSetup:
     def from_spec(cls, spec: SourceSpec) -> "TranslatorSetup":
         if spec.backend != BACKEND:
             raise SetupError(f"{spec.url} is not a translator setup")
-        url = urlsplit(spec.url)
+        return cls.from_url(spec.url)
+
+    @classmethod
+    def from_url(cls, text: str) -> "TranslatorSetup":
+        url = urlsplit(text)
         query = {k: v[0] for k, v in parse_qs(url.query).items()}
         return cls(url.path, query["prompt"], query["context"], query["reasoning"], query["dc"], int(query.get("group", 1)))
 

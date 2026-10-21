@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}{{ slug }} {{ s.ref[1:] }} · comparison{% endblock %}
+{% block page_class %}wide{% endblock %}
+{% block main %}
+{% set i = s.chapters.index(s.ref) %}
+{% set query = request.url.query %}
+<p><a href="/novels/{{ slug }}/comparisons">← model comparisons</a></p>
+<h1>{{ s.raw.title }}</h1>
+<nav class="compare-nav" aria-label="Compared chapters">
+    {% if i > 0 %}<a href="/novels/{{ slug }}/comparisons/{{ s.chapters[i - 1] }}{% if query %}?{{ query }}{% endif %}">← {{ s.chapters[i - 1][1:] }}</a>{% endif %}
+    {% if i + 1 < s.chapters | length %}<a href="/novels/{{ slug }}/comparisons/{{ s.chapters[i + 1] }}{% if query %}?{{ query }}{% endif %}">{{ s.chapters[i + 1][1:] }} →</a>{% endif %}
+</nav>
+
+{# Which columns: those ticked, else every version with text. A GET form, so the choice stays in the URL between chapters. #}
+{% set has_text = s.columns | selectattr("attempt") | rejectattr("attempt.failure") | map(attribute="key") | list %}
+<form method="get" class="column-pick">
+    <fieldset>
+        <legend>Columns</legend>
+        <label><input type="checkbox" name="show" value="zh"{% if not shown or "zh" in shown %} checked{% endif %}> Chinese</label>
+        {% for c in s.columns %}
+        <label><input type="checkbox" name="show" value="{{ c.key }}"{% if (shown and c.key in shown) or (not shown and c.key in has_text) %} checked{% endif %}> {{ setup_name(c.setup) }} <span class="muted">{{ c.when }}{% if c.key not in has_text %} · {{ c.attempt.failure if c.attempt else "not run" }}{% endif %}</span></label>
+        {% endfor %}
+        {% if s.reference %}<label><input type="checkbox" name="show" value="ref"{% if not shown or "ref" in shown %} checked{% endif %}> Reference</label>{% endif %}
+        <button type="submit">Show</button>
+    </fieldset>
+</form>
+
+{% set cols = s.columns | selectattr("key", "in", shown or has_text) | list %}
+{% set with_zh = not shown or "zh" in shown %}
+{% set with_ref = s.reference and (not shown or "ref" in shown) %}
+{% set rows = s.raw.paragraphs | length %}
+<div class="reading-wrap">
+<table class="reading" style="--columns: {{ cols | length + (1 if with_ref else 0) }}">
+    <thead><tr>
+        <th scope="col" class="para-no"><span class="visually-hidden">Paragraph</span></th>
+        {% if with_zh %}<th scope="col" class="zh-col">Chinese</th>{% endif %}
+        {% for c in cols %}{% set a = c.attempt %}
+        <th scope="col">
+            {{ setup_name(c.setup) }} <span class="muted">{{ c.when }}</span>
+            {% if a is none %}<div class="muted">not in this run</div>
+            {% elif a.failure %}<div class="stale">failed: {{ a.failure }}</div>
+            {% else %}<div class="attempt-meta">“{{ a.title }}” · ${{ "%.4f" | format(a.charged.cost) }} · {{ "%.0f" | format(a.seconds) }} s{% if a.shared > 1 %} for {{ a.shared }} chapters{% endif %} · {{ words(a.paragraphs) }} words{% if a.soft_flags %} · <span class="stale">{{ a.soft_flags | join(", ") }}</span>{% endif %}</div>{% endif %}
+        </th>
+        {% endfor %}
+        {% if with_ref %}<th scope="col">Reference <span class="muted">source {{ s.reference.source }}</span><div class="attempt-meta">{{ s.reference.title }} · {{ words(s.reference.paragraphs) }} words</div></th>{% endif %}
+    </tr></thead>
+    <tbody>
+    {% for zh in s.raw.paragraphs %}{% set n = loop.index %}
+    <tr id="p{{ n }}">
+        <th scope="row" class="para-no"><a href="#p{{ n }}">{{ n }}</a></th>
+        {% if with_zh %}<td lang="zh" data-label="Chinese">{{ zh }}</td>{% endif %}
+        {% for c in cols %}{% set a = c.attempt %}
+        <td data-label="{{ setup_name(c.setup) }}">{% if a and not a.failure and n <= a.paragraphs | length %}{{ a.paragraphs[n - 1] }}{% endif %}</td>
+        {% endfor %}
+        {% if with_ref and loop.first %}
+        {# The reference's paragraphs do not line up with the Chinese ones: it is one cell down the whole table, scrolling on its own. #}
+        <td rowspan="{{ rows }}" class="reference" data-label="Reference"><div class="reference-text">
+            {% for p in s.reference.paragraphs %}<p>{{ p }}</p>{% endfor %}
+        </div></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% if with_ref %}
+{# Phones read one paragraph at a time, so there the reference follows the table instead (the cell above is hidden). #}
+<section class="reference-after" aria-label="Reference">
+    <h2>Reference <span class="muted">source {{ s.reference.source }}: {{ s.reference.title }}</span></h2>
+    {% for p in s.reference.paragraphs %}<p>{{ p }}</p>{% endfor %}
+</section>
+{% endif %}
+{% endblock %}

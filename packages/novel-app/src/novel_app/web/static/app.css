@@ -44,6 +44,9 @@ p { font-size: 1rem; }
   align-items: start;
 }
 
+/* Without this a grid item is at least as wide as its content, and a wide table inside a scroller still widens the page. */
+.app-layout > main { min-width: 0; }
+
 @media (max-width: 960px) {
   .app-layout { grid-template-columns: 1fr; }
 }
@@ -172,6 +175,17 @@ tbody th { font-weight: 600; }
 .recent-toggle::before { content: "▸ "; }
 .recent-toggle[aria-expanded="true"]::before { content: "▾ "; }
 aside.jobs:not(.show-recent) .job-list--recent { display: none; }
+
+
+/* Wide pages (body.wide): main takes the whole width and jobs are a drawer at every size. */
+body.wide .app-layout { grid-template-columns: 1fr; }
+body.wide .app-header .jobs-toggle, body.wide .jobs-close { display: inline-block; }
+body.wide .jobs {
+  position: fixed; inset: 0 0 0 auto; z-index: 20; width: min(22rem, 90vw); max-height: none;
+  border-radius: 0; border-width: 0 0 0 1px; box-shadow: -8px 0 24px rgba(0, 0, 0, 0.5);
+  transform: translateX(100%); visibility: hidden; transition: transform 0.2s ease, visibility 0.2s;
+}
+body.wide .jobs.open { transform: none; visibility: visible; }
 
 @media (max-width: 960px) {
   .app-header .jobs-toggle, .jobs-close { display: inline-block; }
@@ -336,6 +350,55 @@ aside.jobs:not(.show-recent) .job-list--recent { display: none; }
   .term-actions { white-space: normal; }
   .glossary-tools input, .glossary-filter input, .term-details input, .glossary-table input:not([type]) { max-width: 100%; }
   .glossary-tools label, .glossary-filter label, .term-details label { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; max-width: 100%; }
+}
+
+/* Model comparisons. The chapter screen is one wide table: a column per version, a row per
+   source paragraph; the reference runs down its own column and scrolls on its own. */
+/* The reading table is its own screen-high scroller, so its header row and the reference stay in view. */
+.comparison-grid-wrap { overflow-x: auto; }
+.reading-wrap { overflow: auto; max-height: calc(100vh - 2rem); border: 1px solid var(--border); border-radius: 6px; }
+.comparison-grid { width: auto; }
+.comparison-grid :is(th, td) { padding: 0.3rem 0.5rem; text-align: center; white-space: nowrap; }
+.comparison-grid tbody th { text-align: left; }
+.attempt { text-decoration: none; display: inline-block; min-width: 1.5rem; }
+.attempt--ok { color: var(--ok); }
+.attempt--failed { color: var(--error); }
+.judgement summary { cursor: pointer; padding: 0.35rem 0; }
+.judgement-text { white-space: pre-wrap; font: inherit; font-size: 0.95rem; margin: 0.5rem 0 1rem; }
+.column-pick fieldset { display: flex; flex-wrap: wrap; gap: 0.35rem 1.25rem; align-items: center; border: 1px solid var(--border); border-radius: 6px; margin: 0 0 1rem; }
+.column-pick label { display: inline-flex; gap: 0.35rem; align-items: center; font-size: 0.9rem; }
+/* Versions share the width; scrolling sideways starts only below 13rem a column. */
+.reading { table-layout: fixed; width: max(100%, calc(var(--columns) * 13rem + 16rem)); font-size: 0.95rem; }
+.reading .zh-col { width: clamp(10rem, 16%, 18rem); }
+.reading th, .reading td { border-left: 1px solid var(--border); }
+.reading thead th { position: sticky; top: 0; z-index: 1; background: var(--bg); font-size: 0.9rem; color: var(--text); }
+.reading .para-no { width: 2.5rem; border-left: 0; color: var(--muted); font-size: 0.8rem; font-weight: normal; }
+.reading .para-no a { color: inherit; text-decoration: none; }
+.reading tr:target :is(td, th) { background: rgba(128, 203, 196, 0.08); }
+.reading td[lang="zh"] { color: var(--muted); }
+.attempt-meta { color: var(--muted); font-weight: normal; font-size: 0.8rem; margin-top: 0.2rem; }
+.reading td.reference { padding: 0; }
+.reading-wrap .reference-text { position: sticky; top: 5rem; max-height: calc(100vh - 8rem); overflow-y: auto; padding: 0.5rem 0.6rem; }
+.reference-after { display: none; }
+.reference-text p { font-size: 0.95rem; margin: 0 0 0.75em; }
+@media (max-width: 640px) {
+  /* Phones: one paragraph at a time, each version labelled; the reference follows the table. */
+  .reading, .reading :is(tbody, tr, th, td) { display: block; width: 100%; }
+  .reading thead { display: none; }
+  .reading tr { border-bottom: 1px solid var(--border); padding: 0.5rem 0; }
+  .reading :is(th, td) { border: 0; padding: 0.25rem 0; }
+  .reading td[data-label]::before { content: attr(data-label); display: block; color: var(--muted); font-size: 0.8rem; }
+  .reading-wrap { max-height: none; overflow: visible; border: 0; }
+  .reading td.reference { display: none; }
+  .reference-after { display: block; }
+  .reference-after h2 { font-size: 1.05rem; }
+  table.comparison-table thead { display: none; }
+  table.comparison-table, table.comparison-table :is(tbody, tr, th, td) { display: block; width: 100%; }
+  table.comparison-table tr { border: 1px solid var(--border); border-radius: 6px; margin-bottom: 0.75rem; padding: 0.25rem 0.75rem; background: var(--surface); }
+  table.comparison-table :is(th, td) { border-bottom: 0; padding: 0.2rem 0; }
+  table.comparison-table td:empty { display: none; }
+  table.comparison-table td[data-label] { position: relative; padding-left: 6.5rem; }
+  table.comparison-table td[data-label]::before { content: attr(data-label); position: absolute; left: 0; color: var(--muted); font-size: 0.85rem; }
 }
 
 /* Translations on the novel page. */

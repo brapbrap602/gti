@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}{{ slug }} · model comparisons{% endblock %}
+{% block main %}
+<p><a href="/novels/{{ slug }}#translate">← {{ slug }}</a></p>
+<h1>Model comparisons</h1>
+{% if not runs %}
+<p class="empty">No comparisons yet. Run one with <code>nov translate compare {{ slug }} &lt;chapters&gt; --model &lt;id&gt; …</code></p>
+{% else %}
+<p class="muted">Every setup of every run, on the chapters it was given. A group request's cost and time are split evenly over its chapters.
+    Open a chapter to read every version side by side.</p>
+
+<h2>Setups</h2>
+<table class="comparison-table">
+    <thead><tr>
+        <th scope="col">Run</th><th scope="col">Setup</th><th scope="col">Done</th><th scope="col">Failed</th>
+        <th scope="col">Cost</th><th scope="col">$/chapter</th><th scope="col">s/chapter</th>
+        <th scope="col" title="its words over the reference's">Length</th><th scope="col">Flags</th>
+    </tr></thead>
+    <tbody>
+    {% for b in runs %}{% set col = columns | selectattr("run", "equalto", b.name) | first %}
+    {% for r in b.rows() %}
+    <tr>
+        <td data-label="Run">{% if loop.first %}{{ col.when }}{% endif %}</td>
+        <th scope="row">{{ setup_name(r.setup) }}</th>
+        <td data-label="Done">{{ r.done }}</td>
+        <td data-label="Failed"{% if r.failed %} class="stale"{% endif %}>{{ r.failed }}</td>
+        <td data-label="Cost">${{ "%.4f" | format(r.cost) }}</td>
+        <td data-label="$/chapter">{% if r.per_chapter is not none %}${{ "%.4f" | format(r.per_chapter) }}{% else %}–{% endif %}</td>
+        <td data-label="s/chapter">{% if r.seconds is not none %}{{ "%.0f" | format(r.seconds) }}{% else %}–{% endif %}</td>
+        <td data-label="Length">{% if r.length is not none %}{{ "%.2f" | format(r.length) }}{% else %}–{% endif %}</td>
+        <td data-label="Flags">{{ r.flags | join(", ") or "–" }}</td>
+    </tr>
+    {% endfor %}
+    {% endfor %}
+    </tbody>
+</table>
+
+<h2>Chapters</h2>
+<div class="comparison-grid-wrap">
+<table class="comparison-grid">
+    <thead><tr><th scope="col">Setup</th>
+        {% for ref in chapters %}<th scope="col"><a href="/novels/{{ slug }}/comparisons/{{ ref }}">{{ ref[1:] }}</a></th>{% endfor %}
+    </tr></thead>
+    <tbody>
+    {% for b in runs %}{% for c in columns if c.run == b.name %}
+    <tr>
+        <th scope="row">{{ setup_name(c.setup) }} <span class="muted">{{ c.when }}</span></th>
+        {% for ref in chapters %}{% set a = b.attempts.get(c.setup.url, {}).get(ref) %}
+        <td>{% if a is none %}<span class="muted" title="not in this run">·</span>
+            {% elif a.failure %}<a class="attempt attempt--failed" href="/novels/{{ slug }}/comparisons/{{ ref }}" title="{{ a.failure }}">✗</a>
+            {% else %}<a class="attempt attempt--ok" href="/novels/{{ slug }}/comparisons/{{ ref }}" title="${{ '%.4f' | format(a.charged.cost) }}, {{ words(a.paragraphs) }} words">✓</a>{% endif %}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}{% endfor %}
+    </tbody>
+</table>
+</div>
+
+<h2>Judgements</h2>
+{% for b in runs %}{% set col = columns | selectattr("run", "equalto", b.name) | first %}
+<details class="judgement"{% if loop.first and b.judgement %} open{% endif %}>
+    <summary>{{ col.when }}: chapters {{ b.chapters | map("replace", "n", "") | join(", ") }} · ${{ "%.4f" | format(b.cost) }}{% if not b.judgement %} · <span class="muted">not judged yet</span>{% endif %}</summary>
+    {% if b.judgement %}<pre class="judgement-text">{{ b.judgement }}</pre>{% else %}<p class="muted">No <code>judgement.md</code> in <code>{{ b.name }}</code>.</p>{% endif %}
+</details>
+{% endfor %}
+{% endif %}
+{% endblock %}
