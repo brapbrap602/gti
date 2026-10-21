@@ -115,6 +115,13 @@ def sprinkled(total_cjk: int, hits: dict[str, int]) -> list[str]:
         pytest.param(sprinkled(2000, {"还没": 20}), None, id="poison-common-word-only"),
         pytest.param(sprinkled(3200, {"有没": 8}), None, id="poison-few-distinct"),
         pytest.param(sprinkled(9000, {"有没": 2, "是止": 2, "退入": 2}), None, id="poison-sparse"),
+        # 有没有 ("is there") is ordinary: 1,437 of the library's 1,507 有没 sit in it (slice 9).
+        pytest.param(sprinkled(1800, {"有没有": 8, "是止": 2, "退入": 2}), None, id="poison-youmeiyou-not-counted"),
+        pytest.param(
+            sprinkled(1800, {"有没有": 2, "有没": 4, "是止": 2, "退入": 2}),
+            "有没×4 是止×2 退入×2 (4.4/1000)",
+            id="poison-youmeiyou-beside-real-hits",
+        ),
     ],
 )
 def test_poison(paragraphs, detail):

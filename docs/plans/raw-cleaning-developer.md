@@ -1,6 +1,6 @@
 # Raw cleaning and checks: developer plan
 
-Status: approved by the user 2026-10-21 (r3). Not built.
+Status: approved by the user 2026-10-21 (r3). Slices 1–9 built (slice 9 without G2); slice 10 and rollout step 2 left.
 - The user approved the baseline (§1) on 2026-10-20.
 - Two independent reviews and one focused follow-up review (of r2's changes) are folded in (§9).
 - r3 adds only that review's remedies.
@@ -496,12 +496,19 @@ The translate estimate (`_estimate.html`) shows the unchecked count beside block
   - biquge5 400 is unflagged by names. After decision 12 that source is index-only, so it serves no new text.
 
   If tuning is needed, record the measured values here. Do not raise `distinct` above 3.
-- **G2 — reference source.**
+
+  **Passed 2026-10-21** on a library copy (6,620 mapped raw-zh chapters; the 46 unmapped stored ones checked once by hand, no finding). Flagged exactly: poison ixdzs8 691 (4.1/1000, 4 distinct, 32 hits), 692 (2.8, 4, 23), 693 (4.1, 5, 33), biquges123 Longevity 651 (6.6, 3, 12); decoy-names biquge5 600 (rest 908 CJK), 694 (900), 695 (866), 696 (937). Thresholds unchanged. One tuning: 有没有 is ordinary (`Markers.ordinary`): 1,437 of the library's 1,507 有没 sit in it, none in a flagged chapter. Highest clean chapter after it: 1.7/1000 with 1 distinct (biquges123 Longevity 284, 退入×3). Other rule changes, each from real lines:
+  - biquges123 watermark widened (○/Ο/С ends, ＿⊙◆▲★✿☢⊕●¸ padding, ttkan look-alikes, a symbol pair without www): 121 cut, 22 glued to prose; no watermark-looking survivor by the inspect heuristics (was 29 cut, about 90 left).
+  - ixdzs8 lone-noise also drops `5」` and `o` (one line each). No lone digit run longer than one digit is stored, so none is dropped. `「7`/`「6`/`「9` (3 lines, ch 600 and 640) are left: cutting the digit leaves a bare `「`, and what stood there is for the G2 diff to show.
+  - No names for cultivating-in-two-worlds: it has no decoy source, so no evidence.
+- **G2 — reference source.** Open: the Qidian fetch is not yet authorized. The `「」`/`「————”`/`「...—..」`/`「7` rewrite waits for it.
   - Verify the qidian plugin fetches the free chapters of 苟在两界修仙 without cookies (a web fetch, not paid).
   - Acceptance: `--against` pairs at least 3 chapters, and the `「」`/`————` rule is chosen from the diff.
   - Fallback: another clean raw source, or heuristics with the rule marked unverified.
 - **G3 — prompt caching.** Only a paid call can measure it, so the user runs it. It does not block release.
 - **G4 — reclean on a copy** (walkthrough 1) before the real library.
+
+  **Passed 2026-10-21** (copy of the novel databases and raws, 859 MB). `nov reclean --all`: 6,620 rechecked, 121 rewritten (biquges123 watermark 20 + 93, ixdzs8 3 + 5), 6,499 unchanged; cleaner hits watermark 121, dash-run 105, lone-noise 28; 8 newly held, 0 cleared. A second run: 0 rewritten, 0 newly held. `nov check in-the-name-of-divine-powers`: held 7 (ixdzs8 691–693 poison, biquge5 600, 694–696 decoy-names); `nov check my-longevity-simulation`: held 1 (651); neither prints an unchecked line. Translate estimate (a setup added on the copy, a price-only stand-in, no network): 600–696 sends 5 (600, 640, 660, 675, 685), 0 unchecked, `stale` lists 691–696 as held, not orphans; Longevity 645–655 sends 10, 651 held. Web (walkthrough 3, by HTTP on the copy): the Check section shows Held 7 / Held 1 with details, Numbering 6 runs, and no unchecked line.
 
 ## 6. Security, data and rollout
 - **Before the first v4 open,** copy every novel's `novel.sqlite` to `_backup-schema3-<date>`, as was done for schema 2. Slice 1 lands the `novel_slugs` `_` skip together with the migration, so no backup gets migrated (§9 N10).
