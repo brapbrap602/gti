@@ -34,6 +34,10 @@ dev = [
 testpaths = ["tests", "packages"]
 pythonpath = ["tools"]
 addopts = ["-m", "not live and not browser and not scale", "--import-mode=importlib"]
+filterwarnings = [
+    # pydantic-ai's run_sync on the main thread; the library handles the RuntimeError later Pythons raise there.
+    "ignore:There is no current event loop:DeprecationWarning:pydantic_graph",
+]
 markers = [
     "live: hits real websites; never run by default (select with -m live)",
     "browser: drives headless Firefox; local only (select with -m browser)",
