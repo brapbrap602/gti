@@ -5,7 +5,7 @@ Known gaps to come back to. Newest first; each item says what's wrong, why it ma
 ## ixdzs8 raws: 「」 forms wait for a reference; invented sentences unguarded (2026-10-20)
 
 Raw cleaning (`novel_sources/zh_tables.py`) now drops ixdzs8's lone `>`, `」`, `。` and digit lines and maps "————" to "……", and a translator note covers the stray `」` after item names. Two things are left:
-- **`「」`, `「————”`, `「...—..」` and `「7`-style openings** are left as they are. Which form they stand for waits for a clean reference to diff with (`nov inspect --against`, plan gate G2: Qidian's free chapters, not yet fetched).
+- **`「」`, `「————”`, `「...—..」` and `「7`-style openings** are left as they are. Which form they stand for waits for a clean reference to diff with (`nov inspect --against`). Qidian's free chapters (G2) don't help: ixdzs8 only uses `「」` in later chapters, which are locked on Qidian.
 - **Invented sentences.** In the comparison on 苟在两界修仙 chapters 101–103, one-at-a-time Luna turned 「」 into "She fell silent." and `>` into "She eyed him knowingly.", and the validator passed both. The `>` lines are gone now; a `「」` line can still do it. A soft check would catch it: the source paragraph has no CJK or letters, but the translation is a sentence (`novel_translate` validation). The raw cleaning plan left it out.
 
 ## Qwen's provider rate-limits parallel requests (2026-10-20)
