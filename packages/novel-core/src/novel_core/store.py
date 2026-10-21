@@ -516,9 +516,11 @@ class NovelStore:
         """Every mapped item of one source with its current version, selected or not, in key order."""
         return self.view().chapters(source)
 
-    def to_fetch(self, source: SourceId, refresh: KeyRange | None = None) -> tuple[ItemRef, ...]:
+    def to_fetch(
+        self, source: SourceId, refresh: KeyRange | None = None, only: KeyRange | None = None
+    ) -> tuple[ItemRef, ...]:
         """The items a sync of this source should fetch, in index order (see NovelView.to_fetch)."""
-        return self.view().to_fetch(source, refresh)
+        return self.view().to_fetch(source, refresh, only)
 
     def outputs(self, kind: OutputKind) -> tuple[OutputRow, ...]:
         with self._engine.connect() as conn:

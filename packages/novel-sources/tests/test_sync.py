@@ -78,6 +78,17 @@ def test_sync_new_only(novel):
     assert report.index.added == ("/novel/chapter-6", "/novel/chapter-7")
 
 
+def test_sync_only_fetches_just_those_numbers_and_the_rest_later(novel):
+    novel_dir, source, site = novel
+    with NovelStore.open(novel_dir) as store:
+        report = sync(store, source, site, only=KeyRange(2, 3))
+        assert site.fetched == [2, 3] and report.wanted == 2
+        assert len(store.to_fetch(source)) == 3  # the whole index is recorded
+        site.fetched.clear()
+        sync(store, source, site)
+    assert site.fetched == [1, 4, 5]
+
+
 def test_locked_chapter_is_a_gap_not_a_failure(novel):
     novel_dir, source, site = novel
     site.locked = {2}
