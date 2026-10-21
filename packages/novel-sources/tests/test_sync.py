@@ -175,7 +175,7 @@ def test_sync_refetch_clears(zh_novel):
     a.fetched.clear()
     again = sync(store, ids["a"], a, zh=rules("zh", "custom"))
     assert a.fetched == [2]  # held items are fetched again; clean ones are not
-    assert (again.inserted, again.cleared, again.held) == (1, 1, ())
+    assert (again.inserted, again.refetched, again.cleared, again.held) == (1, 1, 1, ())
     assert store.view().held(ids["a"], "/book/2") == ()
 
 

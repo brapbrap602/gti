@@ -43,6 +43,15 @@ class Cleaner:
 
 
 @dataclass(frozen=True)
+class Hit:
+    """One cleaner changing one line."""
+
+    rule: str  # the cleaner's name
+    before: str
+    after: str | None  # None when the line was dropped
+
+
+@dataclass(frozen=True)
 class Markers:
     """Poison: words a scrambling site swaps in. A chapter is poisoned when, per 1000 CJK chars,
     at least `density` hits are found, from at least `distinct` markers and `hits` in all."""
@@ -100,7 +109,8 @@ class ZhRules:
         Raises CleanError as normalize does.
         """
         if raw.content_type == "text":
-            text = "\n".join(line for line in map(self._clean_line, raw.content.splitlines()) if line is not None)
+            cleaned = (self._clean_line(line)[0] for line in raw.content.splitlines())
+            text = "\n".join(line for line in cleaned if line is not None)
             blocks = normalize(RawChapter(text, "text", raw.final_url, raw.fetched_at), CleanRules(content=()), title)
         else:
             blocks = normalize(raw, base, title)
@@ -117,13 +127,20 @@ class ZhRules:
         found = (_poison(paragraphs, self.markers), _decoy_names(paragraphs, self.names))
         return tuple(f for f in found if f is not None)
 
-    def _clean_line(self, line: str) -> str | None:
+    def trace(self, text: str) -> tuple[Hit, ...]:
+        """What the cleaners do to a kept raw text: each rule that changed a line, in order."""
+        return tuple(hit for line in text.splitlines() for hit in self._clean_line(line)[1])
+
+    def _clean_line(self, line: str) -> tuple[str | None, list[Hit]]:
         out: str | None = line.strip()
+        hits: list[Hit] = []
         for cleaner in self.cleaners:
             if out is None:
                 break
-            out = cleaner.apply(out)
-        return out
+            before, out = out, cleaner.apply(out)
+            if out != before:
+                hits.append(Hit(cleaner.name, before, out))
+        return out, hits
 
 
 def compose(layers: Sequence[Layer | None], slug: str, site: str, notes: str = "") -> ZhRules:

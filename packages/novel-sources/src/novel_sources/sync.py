@@ -11,6 +11,7 @@ fetches its number, and this one fetches it again next time). A decoy site serve
 no chapters unless `refresh` asks: only its index is recorded, for numbering.
 """
 
+from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Protocol
@@ -48,6 +49,7 @@ class SyncReport:
     unavailable: tuple[ItemRef, ...]
     failed: tuple[tuple[ItemRef, str], ...]  # (ref, reason)
     held: tuple[tuple[ItemRef, str], ...] = ()  # fetched now and held: (ref, "check: detail; ...")
+    refetched: int = 0  # held before and fetched again
     cleared: int = 0  # held before, fetched again and no longer held
     decoy_site: bool = False  # only the index was recorded (no `refresh`)
 
@@ -77,25 +79,27 @@ def sync(
     else:
         wanted = set()
     items = [i for i in index.items if i.ref in wanted]
-    held_before = _held(store, source_id, items) if zh else {}
+    held_before = held(store, source_id, [i.ref for i in items]) if zh else {}
     provenance = {"backend": source.spec.backend, **index.provenance}
     version = chapter_version(source.clean_rules, provenance, zh)
     stored = store_chapters(store, source_id, items, source.fetch_chapter, version, progress)
-    held_after = _held(store, source_id, items) if zh else {}
+    held_after = held(store, source_id, [i.ref for i in items]) if zh else {}
     return SyncReport(
         source_id, diff, len(items), stored.inserted, stored.unchanged, stored.unavailable, stored.failed,
         held=tuple(held_after.items()),
+        refetched=len(held_before),
         cleared=len(held_before.keys() - held_after.keys()),
         decoy_site=decoy and refresh is None,
     )  # fmt: skip
 
 
-def _held(store: NovelStore, source_id: SourceId, items: list[SourceItem]) -> dict[ItemRef, str]:
+def held(store: NovelStore, source_id: SourceId, refs: Iterable[ItemRef]) -> dict[ItemRef, str]:
+    """Which of these items are held now, each with its findings as "check: detail; check: detail"."""
     view = store.view()
     return {
-        i.ref: "; ".join(f"{f.check}: {f.detail}" for f in found)
-        for i in items
-        if (found := view.held(source_id, i.ref))
+        ref: "; ".join(f"{f.check}: {f.detail}" for f in found)
+        for ref in refs
+        if (found := view.held(source_id, ref))
     }
 
 

@@ -171,10 +171,48 @@ def sync_cmd(
 
 @app.command()
 def check(novel: Novel) -> None:
-    """Report gaps, duplicates, unmapped chapters and other problems."""
+    """Report gaps, duplicates, unmapped chapters, held and unchecked raws, and other problems."""
     selected, r = _calling(lambda: _service().check(novel))
     typer.echo(f"{novel}: {selected} chapters selected")
-    _echo(report.check_lines(r))
+    _echo(report.check_lines(novel, r))
+
+
+@app.command()
+def release(
+    novel: Novel,
+    numbers: Annotated[str, typer.Argument(help="chapter numbers, e.g. 691-693")],
+    source: Annotated[int | None, typer.Option(help="only this raw source")] = None,
+) -> None:
+    """Let held raw chapters be translated: their findings now are false positives (until the raw changes)."""
+    _parsed(parse_range, numbers)
+    released = _calling(lambda: _service().release(novel, numbers, source))
+    for sid, ref, checks in released:
+        typer.echo(f"{novel}: released source {sid} {ref} ({', '.join(checks)})")
+    if not released:
+        typer.echo(f"{novel}: nothing held in {numbers}")
+
+
+@app.command()
+def reclean(
+    novel: Annotated[str | None, typer.Argument(help="novel slug; leave out with --all")] = None,
+    all_novels: Annotated[bool, typer.Option("--all", help="every novel with Chinese raws")] = False,
+    source: Annotated[int | None, typer.Option(help="only this raw source")] = None,
+) -> None:
+    """Clean and check the kept raws again with today's zh rules (after a rule change); fetches nothing."""
+    if all_novels == (novel is not None):
+        raise typer.BadParameter("give a novel slug or --all")
+    service = _service()
+    slugs = [s for s in service.novels() if _has_raws(service, s, source)] if all_novels else [novel]
+    for slug in slugs:
+        _job("reclean", novel=slug, source=source)
+
+
+def _has_raws(service: Service, novel: str, source: int | None) -> bool:
+    try:
+        service.raw_sources(novel, source)
+    except UserError:
+        return False
+    return True
 
 
 @app.command()

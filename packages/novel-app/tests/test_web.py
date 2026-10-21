@@ -8,7 +8,8 @@ from novel_app.jobs import JobBoard, JobRunner, JobState
 from novel_app.service import Service, app_db
 from novel_app.web.app import create_app, job_events
 from novel_app.library import novel_dir
-from novel_core import Kind, NewVersion, NovelStore, Paragraph, SourceItem, SourceSpec
+from novel_core import Finding, Kind, NewVersion, NovelStore, Paragraph, SourceItem, SourceSpec
+from novel_sources.backends import zh_rules
 
 URL = "https://novelbuddy.me/test-novel"
 
@@ -295,3 +296,17 @@ def test_compare_says_when_texts_are_identical(client, two_texts):
     two_texts("d", {"Chapter 1": ("Same.",)}, {"Chapter 1": ("Same.",)})
 
     assert "Identical text." in compare_page(client, "d")
+
+
+def test_check_section_lists_held_chapters_and_counts_unchecked_ones(client, novels):
+    with NovelStore.open(novel_dir("raw-novel")) as store:
+        current = next(s for s in store.view().chapters(1) if s.item_ref == "/3")
+        v = store.read_version(current.version_id)
+        rev = zh_rules("raw-novel", store.sources()[0].spec).rev
+        store.put_version(1, "/3", NewVersion(v.title, v.blocks, findings=(Finding("poison", "有没×9"),), rules_rev=rev))
+
+    check = client.get("/novels/raw-novel").text.split('id="check-heading"')[1]
+    assert "<summary>Held: 1</summary>" in check
+    assert "<li>source 1 <code>/3</code> 第3章 — poison: 有没×9</li>" in check
+    assert "Not checked with current rules: 4 — run <code>nov reclean raw-novel</code>" in check
+    assert "No problems found." not in check

@@ -10,7 +10,7 @@ import pytest
 from novel_core import Finding, Kind, Paragraph, RawChapter, Separator, SourceSpec, Version
 from novel_sources.backends import is_reference, site_key, zh_rules
 from novel_sources.clean import CleanRules
-from novel_sources.zh_rules import Cleaner, Example
+from novel_sources.zh_rules import Cleaner, Example, Hit
 from novel_sources.zh_tables import COMMON, NOVELS, SITES, rules
 
 NO_SITE = "import:mtl"  # a site key with no layer of its own
@@ -152,6 +152,16 @@ def test_version_keeps_the_raw_and_stamps_the_rev():
     v = zh.version(raw, "第1章 名字", CleanRules(content=("div#nothing",)), {"backend": "novel-downloader"})
     assert v.blocks == (Paragraph.of("他笑了。……"),)  # title echo and noise gone; `base` ignored for text
     assert (v.raw, v.rules_rev, dict(v.provenance), v.findings) == (raw, zh.rev, {"backend": "novel-downloader"}, ())
+
+
+def test_trace_lists_each_rule_that_changed_a_line():
+    zh = rules("novel", "ixdzs8")
+    assert zh.trace("  第1章 名字\n>\n他笑了。————\n7\n他哭了。") == (
+        Hit("lone-noise", ">", None),
+        Hit("dash-run", "他笑了。————", "他笑了。……"),
+        Hit("lone-noise", "7", None),
+    )
+    assert rules("novel", NO_SITE).trace(">\n7") == ()
 
 
 def test_html_raw_is_normalized_by_its_backend_rules_and_only_checked():

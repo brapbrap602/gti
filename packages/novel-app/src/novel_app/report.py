@@ -1,17 +1,19 @@
 """Reports as text lines, for the terminal and for job logs."""
 
+from collections import Counter
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
 from novel_audio.legacy import LegacyReport
-from novel_core import CheckReport
 from novel_sources.importing import ImportReport
+from novel_sources.reclean import RecleanReport
 from novel_sources.sync import SyncReport
 from novel_translate.phase_a import Estimate, GlossaryReport
 from novel_translate.phase_b import Estimate as TranslateEstimate
 from novel_translate.phase_b import StaleReport, TranslateReport
 
 from novel_app.notation import ranges
+from novel_app.pages import NovelCheck
 
 if TYPE_CHECKING:  # service imports this module
     from novel_app.service import CompareEstimate
@@ -29,12 +31,48 @@ def import_lines(slug: str, r: ImportReport) -> list[str]:
     return lines + [f"  note: {note}" for note in r.notes]
 
 
-def sync_lines(r: SyncReport) -> list[str]:
-    return [
+def sync_lines(r: SyncReport, other_raws: bool = False) -> list[str]:
+    """`other_raws`: the novel has another raw-zh source, which can supply the numbers held here."""
+    lines = [
         f"  index: {len(r.index.added)} new, {len(r.index.vanished)} vanished; "
         f"fetched {r.wanted}: {r.inserted} stored, {r.unchanged} unchanged, {len(r.unavailable)} locked",
         *section("failed", failed_lines(r.failed)),
     ]
+    if r.held or r.refetched:
+        checks = Counter(check for _, detail in r.held for check in _checks(detail))
+        line = f"  held: {len(r.held)}" + (f" ({', '.join(f'{c} {n}' for c, n in checks.items())})" if checks else "")
+        if r.refetched:
+            line += f"; refetched held: {r.refetched}, now clean {r.cleared}"
+        lines += [line, *listed(failed_lines(r.held))]
+        if r.held and other_raws:
+            lines.append("  another source picks up held numbers on its next sync")
+    if r.decoy_site:
+        lines.append("  decoy site: index only")
+    return lines
+
+
+def reclean_lines(r: RecleanReport) -> list[str]:
+    hits = ", ".join(f"{rule} {n}" for rule, n in r.hits.items()) or "none"
+    return [
+        f"  rechecked {r.chapters}: {r.rewritten} rewritten, {r.unchanged} unchanged",
+        f"  cleaner hits: {hits}",
+        f"  held: {len(r.held)} newly, {len(r.cleared)} no longer",
+        *listed(failed_lines(r.held)),
+    ]
+
+
+def now_stale_line(setup: int, label: str, refs: Sequence[str]) -> str:
+    shown = f" ({', '.join(refs[:LIST_LIMIT])}{' …' if len(refs) > LIST_LIMIT else ''})" if refs else ""
+    return f"  setup {setup} {label}: {len(refs)} translation{'' if len(refs) == 1 else 's'} now stale{shown}"
+
+
+def unchecked_lines(count: int, slug: str) -> list[str]:
+    return [f"  {count} chapters not checked with current rules: run nov reclean {slug}"] if count else []
+
+
+def _checks(detail: str) -> list[str]:
+    """The check names in a held item's detail ("check: detail; check: detail")."""
+    return [part.split(":", 1)[0] for part in detail.split("; ")]
 
 
 def failed_lines(failed: Sequence[tuple[str, str]]) -> list[str]:
@@ -51,7 +89,8 @@ def legacy_lines(r: LegacyReport) -> list[str]:
     ]
 
 
-def check_lines(r: CheckReport) -> list[str]:
+def check_lines(slug: str, c: NovelCheck) -> list[str]:
+    r = c.report
     return [
         *numbers("gaps", r.gaps),
         *numbers("raw only", r.raw_only),
@@ -59,11 +98,13 @@ def check_lines(r: CheckReport) -> list[str]:
         *section("unmapped", [f"source {n.source_id} {n.item_ref} {n.title!r}" for n in r.unmapped]),
         *section("vanished", [f"source {n.source_id} {n.item_ref}" for n in r.vanished]),
         *section("failed", [f"source {n.source_id} {n.item_ref}: {n.detail}" for n in r.failed]),
+        *section("held", [f"source {n.source_id} {n.item_ref}: {n.detail}" for n in r.held]),
         *section("title mismatches", [f"{n.title!r} (title says {n.detail})" for n in r.title_mismatches]),
         *numbers("mixed parts", r.mixed_parts),
         *section("pin fallbacks", [f"{p.number}: pinned source {p.pinned_source} has nothing" for p in r.pin_fallbacks]),
         *section("legacy moved", [f"{o.kind} {o.built_key}: {o.item_ref}" for o in r.legacy_moved]),
         *section("legacy unselected", [f"{o.kind} {o.built_key}: {o.item_ref}" for o in r.legacy_unselected]),
+        *unchecked_lines(c.unchecked, slug),
     ]
 
 
@@ -135,7 +176,12 @@ def stale_lines(r: StaleReport) -> list[str]:
 def section(name: str, lines: Sequence[str]) -> list[str]:
     if not lines:
         return []
-    shown = [f"  {name}: {len(lines)}", *(f"    {line}" for line in lines[:LIST_LIMIT])]
+    return [f"  {name}: {len(lines)}", *listed(lines)]
+
+
+def listed(lines: Sequence[str]) -> list[str]:
+    """The lines indented under a heading, the first LIST_LIMIT of them."""
+    shown = [f"    {line}" for line in lines[:LIST_LIMIT]]
     if len(lines) > LIST_LIMIT:
         shown.append(f"    ... and {len(lines) - LIST_LIMIT} more")
     return shown
