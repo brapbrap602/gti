@@ -7,12 +7,14 @@ from pathlib import Path
 
 import pytest
 import uvicorn
-from firefox_page import PHONE, firefox
+from firefox_page import firefox
 from novel_app.jobs import JobBoard, JobRunner, JobState
 from novel_app.library import novel_dir
 from novel_app.service import Service, app_db
 from novel_app.web.app import create_app
-from novel_core import Kind, NewVersion, Paragraph, SourceItem, SourceSpec
+from novel_core import Kind, NewVersion, NovelStore, Paragraph, SourceItem, SourceSpec
+from novel_translate.glossary import Status, UpdateTerm
+from novel_translate.setups import TranslatorSetup
 
 pytestmark = pytest.mark.browser
 DESKTOP = (1280, 900)
@@ -47,6 +49,34 @@ def page(tmp_path):
         page.assert_no_errors()
 
 
+@pytest.fixture
+def desktop(tmp_path):
+    with firefox(tmp_path / "profile", size=DESKTOP) as page:
+        yield page
+        page.assert_no_errors()
+
+
+def compared(service) -> None:
+    """raw-novel gets an English chapter 1 and a model comparison of chapters 1-2."""
+    with NovelStore.open(novel_dir("raw-novel")) as store:
+        en = store.upsert_source(SourceSpec("custom:en", "https://en.test", "en", Kind.OFFICIAL_EN))
+        store.record_index(en, [SourceItem("/en1", 1, "Chapter 1: Official", number=1)])
+        store.put_version(en, "/en1", NewVersion("Chapter 1: Official", (Paragraph.of("Official words."),)))
+    assert service.run("compare", lambda _l: None, novel="raw-novel", models=["vendor/cheap", "vendor/other"],
+                       range="1-2", per_call=[1])[0] is JobState.DONE  # fmt: skip
+
+
+def needs_review(service) -> None:
+    """raw-novel's glossary holds 韩立 for review, which blocks every chapter."""
+    assert service.run("glossary-build", lambda _l: None, novel="raw-novel", model="vendor/cheap")[0] is JobState.DONE
+    han = next(t.id for t in service.glossary("raw-novel") if t.zh == "韩立")
+    service.glossary_edit("raw-novel", [UpdateTerm(han, status=Status.NEEDS_REVIEW)])
+
+
+def visible_panels(page) -> list[str]:
+    return page.js("[...document.querySelectorAll('[data-panel]')].filter(p => p.checkVisibility()).map(p => p.id)")
+
+
 def ended(board, target: str, state: JobState = JobState.DONE) -> int:
     job_id = board.claim(target, "sync", {})
     board.finish(job_id, state)
@@ -75,6 +105,7 @@ def test_jobs_drawer_on_a_phone_survives_live_updates(page, app_url, service):
     page.wait_for("document.getElementById('jobs').textContent.includes('running')")
     assert not drawer_open(page)
     assert page.js(RUNNING_DOT)
+    assert page.js("document.querySelector('.pill-label').textContent") == "1 running"
 
     page.click(".jobs-toggle")
     page.wait_for("getComputedStyle(document.querySelector('aside.jobs')).visibility === 'visible'")
@@ -111,7 +142,7 @@ def test_compare_jump_stays_in_view_when_the_page_reloads(page, app_url, service
               {"Chapter 1": (*filler, "He ran quickly.", *filler)})
     page.goto(app_url + "/novels/d/compare?number=1")
     in_view = "(() => { const t = document.getElementById('d1-l').getBoundingClientRect().top;" \
-              " return t >= 0 && t < innerHeight; })()"
+              " return t >= document.querySelector('.topbar').getBoundingClientRect().bottom && t < innerHeight; })()"
 
     page.click('.diff-summary a[href="#d1-l"]')
     page.frame()
@@ -173,23 +204,13 @@ def test_translate_form_enables_start_once_an_estimate_shows(openrouter, page, a
 SHOTS_ENV = "APP_UI_SHOTS"  # a folder to keep the screenshots in, for review
 
 
-@pytest.mark.parametrize("size", [PHONE, DESKTOP], ids=["phone", "desktop"])
-def test_screenshots_of_every_page(openrouter, two_texts, app_url, service, tmp_path, size):
-    from novel_core import NovelStore, Note, System
-    from novel_translate.glossary import Status, UpdateTerm
-    from novel_translate.setups import TranslatorSetup
+def test_screenshots_of_every_page(openrouter, two_texts, app_url, service, tmp_path):
+    from novel_core import Note, System
 
-    assert service.run("glossary-build", lambda _l: None, novel="raw-novel", model="vendor/cheap")[0] is JobState.DONE
     setup = service.add_setup("raw-novel", TranslatorSetup("vendor/cheap"))
     assert service.run("translate", lambda _l: None, novel="raw-novel", setup=setup, range="1-2")[0] is JobState.DONE
-    with NovelStore.open(novel_dir("raw-novel")) as store:
-        en = store.upsert_source(SourceSpec("custom:en", "https://en.test", "en", Kind.OFFICIAL_EN))
-        store.record_index(en, [SourceItem("/en1", 1, "Chapter 1: Official", number=1)])
-        store.put_version(en, "/en1", NewVersion("Chapter 1: Official", (Paragraph.of("Official words."),)))
-    assert service.run("compare", lambda _l: None, novel="raw-novel", models=["vendor/cheap", "vendor/other"],
-                       range="1-2", per_call=[1])[0] is JobState.DONE  # fmt: skip
-    han = next(t.id for t in service.glossary("raw-novel") if t.zh == "韩立")
-    service.glossary_edit("raw-novel", [UpdateTerm(han, status=Status.NEEDS_REVIEW)])  # holds back chapters 3-5
+    compared(service)
+    needs_review(service)  # makes the two translations stale
     filler = tuple(f"Paragraph {i} of the chapter, the same on both sides." for i in range(6))
     two_texts("d", {"Chapter 1": (*filler, "He ran fast.", System("[Strength +1]"), Note("TL note: a pun."))},
               {"Chapter 1": (*filler, "He ran quickly.", System("[Strength +1]"))})
@@ -212,14 +233,132 @@ def test_screenshots_of_every_page(openrouter, two_texts, app_url, service, tmp_
         "add": "/add",
         "error": "/novels/nope",
     }
-    name = "phone" if size == PHONE else "desktop"
-    with firefox(tmp_path / "profile", size=size) as page:
+    with firefox(tmp_path / "profile", size=DESKTOP) as page:
         for shot, path in pages.items():
             page.goto(app_url + path)
             page.js("document.fonts.ready.then(() => true)")
             page.js("scrollTo(0, 0)")  # a full-page shot of a scrolled page draws the sticky top bar mid-page
             page.frame()
             assert page.js("document.documentElement.scrollWidth <= innerWidth"), shot  # never sideways
-            page.screenshot(out / f"{name}-{shot}.png", full_page=True)
+            page.screenshot(out / f"{shot}.png", full_page=True)
         page.assert_no_errors()
     service.runner.board.finish(running, JobState.DONE)
+
+
+def test_jobs_sheet_on_a_desktop_and_the_pill_counts_problems(desktop, app_url, service):
+    board = service.runner.board
+    board.finish(board.claim("a", "sync", {}), JobState.DONE, ["chapter 3: HTTP 500"])
+
+    desktop.goto(app_url + "/")
+    assert not drawer_open(desktop)
+    label = "document.querySelector('.pill-label').textContent"
+    assert desktop.js(label) == "1 problem"
+    ended(board, "later")  # a jobs swap that changes nothing about problems
+    wait_for_swap(desktop, "later")
+    assert desktop.js(label) == "1 problem"
+
+    desktop.click(".jobs-toggle")
+    desktop.wait_for("getComputedStyle(document.querySelector('aside.jobs')).visibility === 'visible'")
+    desktop.js("document.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}))")
+    desktop.wait_for("getComputedStyle(document.querySelector('aside.jobs')).visibility === 'hidden'")
+    assert desktop.js("document.activeElement.classList.contains('jobs-toggle')")
+
+
+def test_a_card_shows_its_job_progress_without_a_reload(novels, desktop, app_url, service):
+    board = service.runner.board
+    running = board.claim("raw-novel", "sync", {})
+    board.start(running)
+
+    desktop.goto(app_url + "/")
+    mirror = "document.querySelector('[data-job-progress=\"raw-novel\"]')"
+    assert desktop.js(f"!{mirror}.hidden")
+    desktop.js("document.getElementById('main').dataset.before = 'kept'")
+    board.set_progress(running, 2, 7, "")  # no job starts or ends: main is not reloaded
+    desktop.wait_for(f"{mirror}.textContent.includes('2/7')")
+    assert desktop.js("document.querySelector('.pill-progress').value") == 2
+    assert desktop.js("document.getElementById('main').dataset.before") == "kept"
+    board.finish(running, JobState.DONE)
+
+
+def test_loading_at_a_hash_shows_only_that_tab(old_rules, desktop, app_url):
+    old_rules([1])  # a problem for the Check tab
+
+    desktop.goto(app_url + "/novels/raw-novel#check")
+    assert visible_panels(desktop) == ["check"]
+    assert desktop.js("document.querySelector('[data-tab-link=check]').getAttribute('aria-current')") == "true"
+    assert desktop.js("(() => { const r = document.querySelector('[data-tabs]').getBoundingClientRect();"
+                      " return r.top >= 0 && r.bottom <= innerHeight; })()")
+
+
+def test_the_tab_survives_a_live_reload(novels, desktop, app_url, service):
+    desktop.goto(app_url + "/novels/raw-novel#check")
+    desktop.js("document.getElementById('main').dataset.before = 'reload'")
+    job = service.runner.board.claim("other", "sync", {})  # a job starting reloads main
+    desktop.wait_for("!document.getElementById('main').dataset.before")
+
+    assert visible_panels(desktop) == ["check"]
+    assert desktop.js("document.querySelector('[data-tab-link=check]').getAttribute('aria-current')") == "true"
+    service.runner.board.finish(job, JobState.DONE)
+
+
+def test_a_link_to_check_switches_tabs_every_time(openrouter, desktop, app_url, service):
+    service.add_setup("raw-novel", TranslatorSetup("vendor/cheap"))
+    needs_review(service)
+    desktop.goto(app_url + "/novels/raw-novel#translate")
+    desktop.js("""(() => { const i = document.querySelector('#translate-form input[name=range]');
+        i.value = '1-5'; i.dispatchEvent(new Event('change', {bubbles: true})); })()""")
+    desktop.wait_for("!!document.querySelector('#estimate a[href=\"#check\"]')")
+
+    for link in ("[data-tab-link=check]", "[data-tab-link=chapters]", '#estimate a[href="#check"]',
+                 "[data-tab-link=chapters]", '#estimate a[href="#check"]'):
+        desktop.click(link)
+        expected = "chapters" if "chapters" in link else "check"
+        assert visible_panels(desktop) == [expected], link
+        assert desktop.js("location.hash") == "#" + expected
+
+
+def test_a_success_toast_fades_and_an_error_stays(novels, desktop, app_url, service):
+    page = desktop
+    service.runner.board.claim("english-only", "sync", {"novel": "english-only"})
+    page.goto(app_url + "/")
+    toast = "document.querySelector('#notice .toast')"
+
+    page.click("form:has(input[value=build-site]) button")
+    page.wait_for(f"{toast} && !{toast}.classList.contains('toast--destructive')")
+    page.js("htmx.ajax('POST', '/jobs', {target: '#notice', values: {kind: 'build-epub', novel: 'english-only'}})")
+    page.wait_for(f"{toast} && {toast}.classList.contains('toast--destructive')")
+    page.js("new Promise(r => setTimeout(r, 8000))")  # past the success toast's timer
+    assert "job already running for english-only" in page.js(f"{toast}.textContent")
+
+    page.click(".toast-close")
+    assert page.js(f"!{toast}")
+    page.js("htmx.ajax('POST', '/jobs', {target: '#notice', values: {kind: 'build-epub', novel: 'raw-novel'}})")
+    page.wait_for(f"!!{toast}")
+    page.js("new Promise(r => setTimeout(r, 7000))")
+    assert page.js(f"!{toast}")
+
+
+def test_without_javascript_everything_shows_inline(openrouter, app_url, service, tmp_path):
+    """The CSS gating: with `js` off <html> (as before any script runs), nothing hides behind a sheet or a tab.
+    A real javascript.enabled=false profile cannot be driven: BiDi script.evaluate never answers there."""
+    compared(service)
+    with firefox(tmp_path / "profile", size=DESKTOP) as page:
+        for path in ("/novels/raw-novel", "/novels/raw-novel/comparisons/n1"):
+            page.goto(app_url + path)
+            page.js("document.documentElement.classList.remove('js')")
+            assert page.js("document.getElementById('nav-raw-novel').checkVisibility()"), path
+            assert page.js("document.querySelector('aside.jobs').checkVisibility()"), path
+            assert page.js("getComputedStyle(document.querySelector('aside.jobs')).position") == "static"
+            assert page.js("getComputedStyle(document.getElementById('sidebar')).position") in ("static", "sticky")
+            assert not page.js("document.querySelector('.nav-toggle').checkVisibility()")
+        page.goto(app_url + "/novels/raw-novel")
+        page.js("document.documentElement.classList.remove('js')")
+        assert visible_panels(page) == ["sources", "chapters", "translate", "check"]
+        page.assert_no_errors()
+
+
+def test_fonts_and_icons_load(desktop, app_url):
+    desktop.goto(app_url + "/")
+    loaded = "[...document.fonts].some(f => f.family.replaceAll('\"', '') === 'Geist' && f.status === 'loaded')"
+    assert desktop.js(f"document.fonts.ready.then(() => {loaded})")
+    assert desktop.js("document.querySelector('svg.icon use').getBBox().width") > 0

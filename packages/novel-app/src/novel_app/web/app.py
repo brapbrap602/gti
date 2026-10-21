@@ -88,7 +88,9 @@ def create_app(service: Service) -> FastAPI:
         await run_in_threadpool(service.runner.shutdown)
 
     app = FastAPI(title="Novel library", lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None)
-    mimetypes.add_type("font/woff2", ".woff2")  # Python 3.12 guesses none, and text/plain fonts are refused
+    # Python 3.12 guesses no type for woff2, and browsers refuse text/plain fonts. Registered per app, not at
+    # import: anything that calls mimetypes.init() later resets the table.
+    mimetypes.add_type("font/woff2", ".woff2")
     app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
     templates = Jinja2Templates(directory=HERE / "templates")
     templates.env.filters["ago"] = _ago

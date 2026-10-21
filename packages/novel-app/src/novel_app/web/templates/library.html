@@ -9,7 +9,7 @@
     </div>
     <div class="page-actions">
         {% if rows %}{{ job_button("build-site", None, jobs | selectattr("target", "equalto", "_site") | selectattr("state.active") | first, "/", icon_name="hammer", small=False) }}{% endif %}
-        <a class="btn btn--primary" href="/add">{{ icon("plus") }}Add novel</a>
+        <a class="btn btn--outline" href="/add">{{ icon("plus") }}Add novel</a>
     </div>
 </div>
 {% if not rows %}
@@ -18,8 +18,8 @@
 {% set syncable = rows | selectattr("can_sync") | list %}
 {% set fetchable = syncable | selectattr("new_items") | list %}
 {% set raw_only = rows | selectattr("raw_only") | list | length %}
-{% set running = job_panel.attention | selectattr("state.active") | list | length %}
-{% set problems = job_panel.attention | rejectattr("state.active") | list | length %}
+{% set running = job_panel.active | length %}
+{% set problems = job_panel.problems %}
 <section class="stats" aria-label="Summary">
     {{ stat("Novels", rows | length, (raw_only ~ " raw only") if raw_only else None, icon_name="library") }}
     {{ stat("Chapters", "{:,}".format(rows | sum(attribute="selected")), "selected for the books", icon_name="book-open") }}

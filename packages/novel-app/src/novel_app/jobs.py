@@ -66,6 +66,15 @@ class JobPanel:
     attention: tuple[JobRow, ...]  # active jobs, then unresolved problems; each newest first
     recent: tuple[JobRow, ...]  # newest first, none of them in attention
 
+    @property
+    def active(self) -> tuple[JobRow, ...]:
+        return tuple(j for j in self.attention if j.state.active)
+
+    @property
+    def problems(self) -> int:
+        """Unresolved problems: what needs attention and is not active (app.js counts the same)."""
+        return sum(not j.state.active for j in self.attention)
+
 
 @dataclass(frozen=True)
 class Outcome:

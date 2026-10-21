@@ -345,3 +345,113 @@ def test_every_icon_a_template_uses_is_in_the_sprite():
     used = {name for t in (web / "templates").glob("*.html") for name in re.findall(named, t.read_text(encoding="utf-8"))}
     symbols = set(re.findall(r'<symbol id="([\w-]+)"', (web / "static/vendor/lucide.svg").read_text(encoding="utf-8")))
     assert used - symbols == set()
+
+
+def stat(page: str, label: str) -> tuple[str, str | None]:
+    """A stat card's value and hint, by its label."""
+    found = re.search(rf'<span class="stat-label">{label}</span>.*?<span class="stat-value[^"]*">([^<]*)</span>\s*'
+                      r'(?:<span class="stat-hint">([^<]*)</span>)?', page, re.S)
+    assert found, label
+    return found.group(1), found.group(2)
+
+
+def test_the_shell_has_the_sidebar_and_its_own_styles(client, novels):
+    page = client.get("/").text
+    assert 'id="nav-novels"' in page and 'data-novel="raw-novel"' in page and 'id="nav-raw-novel"' in page
+    assert "/site-assets/" not in page
+    assert page.index("/static/ui.css") < page.index("/static/app.css")
+    main = re.search(r"<main [^>]*>", page).group(0)
+    assert 'id="main"' in main and 'hx-select-oob="#nav-novels"' in main
+    assert page.index('id="notice"') < page.index("<main")
+
+
+def test_the_sidebar_falls_back_to_slugs_when_the_library_cannot_be_read(client, service, novels, monkeypatch):
+    calls = []
+
+    def broken():
+        calls.append(1)
+        raise RuntimeError("store locked")
+
+    monkeypatch.setattr(service, "library", broken)
+    page = client.get("/add")
+    assert page.status_code == 200 and calls
+    assert 'data-novel="raw-novel"' in page.text and ">raw-novel</span>" in page.text
+
+
+def test_library_stats_sum_the_rows(client, service, novels):
+    added(service)
+    rows = service.library()
+    page = client.get("/").text
+
+    raw_only = sum(r.raw_only for r in rows)
+    assert stat(page, "Novels") == ("3", f"{raw_only} raw only" if raw_only else None)
+    assert stat(page, "Chapters")[0] == f"{sum(r.selected for r in rows):,}"
+    assert stat(page, "New to fetch")[0] == f"{sum(r.new_items for r in rows if r.can_sync):,}"
+    assert stat(page, "Needs rebuild")[0] == "0"
+
+
+def test_the_jobs_pill_shows_a_running_job_and_its_progress(client, novels, service):
+    board = service.runner.board
+    running = board.claim("raw-novel", "sync", {})
+    board.start(running)
+    board.set_progress(running, 2, 7, "")
+
+    page = client.get("/").text
+    pill = re.search(r'<button type="button" class="jobs-toggle.*?</button>', page, re.S).group(0)
+    assert "jobs-toggle--running" in pill and '<span class="pill-label">1 running</span>' in pill
+    assert re.search(r'class="pill-progress"[^>]*max="7" value="2"', pill)
+    mirror = re.search(r'<div class="job-mirror" data-job-progress="raw-novel"[^>]*>', page).group(0)
+    assert "hidden" not in mirror and "Sync 2/7" in page
+    board.finish(running, JobState.DONE)
+
+
+def test_the_jobs_pill_counts_unresolved_problems_only(client, service):
+    board = service.runner.board
+    with_errors = board.claim("a", "sync", {})
+    board.finish(with_errors, JobState.DONE, ["chapter 3: HTTP 500"])
+    failed = board.claim("b", "sync", {})
+    board.finish(failed, JobState.FAILED)
+    board.finish(board.claim("b", "sync", {}), JobState.DONE)  # resolves b's failure, which moves to Recent
+
+    page = client.get("/").text
+    assert '<span class="pill-label">1 problem</span>' in page and "jobs-toggle--problem" in page
+
+
+def test_the_novel_page_has_four_tabs_and_their_panels(openrouter, client, service):
+    from novel_translate.setups import TranslatorSetup
+
+    service.add_setup("raw-novel", TranslatorSetup("vendor/cheap"))
+    page = client.get("/novels/raw-novel").text
+
+    panels = re.findall(r'<section id="(\w+)"[^>]* data-panel="(\w+)"', page)
+    assert panels == [(p, p) for p in ("sources", "chapters", "translate", "check")]
+    links = re.findall(r'<a class="tab" href="#(\w+)" data-tab-link="(\w+)">', page)
+    assert links == [(p, p) for p in ("sources", "chapters", "translate", "check")]
+    assert 'role="tablist"' not in page
+    problems = service.novel("raw-novel").check.problems
+    check_tab = re.search(r'data-tab-link="check">.*?</a>', page, re.S).group(0)
+    assert (f">{problems}</span>" if problems else "✓") in check_tab
+
+
+def test_a_novel_without_raws_has_no_translate_tab(client, novels):
+    page = client.get("/novels/english-only").text
+    assert 'data-panel="translate"' not in page and 'data-tab-link="translate"' not in page
+    assert 'data-panel="chapters"' in page
+
+
+def test_unpin_goes_back_to_the_sources_tab(client, service):
+    added(service)
+    added(service, url=URL + "/")
+    client.post("/novels/test-novel/pin", data={"numbers": "2", "source": "2"})
+    unpinned = client.post("/novels/test-novel/unpin", data={"numbers": "2"}, follow_redirects=False)
+    location = unpinned.headers["location"]
+    assert unpinned.status_code == 303 and location.startswith("/novels/test-novel?notice=") and location.endswith("#sources")
+
+
+def test_a_refused_htmx_job_is_an_error_toast(client, service):
+    added(service)
+    service.runner.board.claim("test-novel", "sync", {"novel": "test-novel"})
+    refused = client.post("/jobs", data={"kind": "sync", "novel": "test-novel"}, headers={"HX-Request": "true"})
+    assert refused.status_code == 409
+    assert "toast--destructive" in refused.text and "job already running for test-novel" in refused.text
+    assert 'class="toast-close"' in refused.text and "<html" not in refused.text
