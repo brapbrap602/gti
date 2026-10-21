@@ -161,7 +161,8 @@ def test_sync_held_then_other_source(zh_novel):
     store, ids, a, b = zh_novel
     first = sync(store, ids["a"], a, zh=rules("zh", "custom"))
     assert (first.inserted, [ref for ref, _ in first.held]) == (3, ["/book/2"])
-    assert first.held[0][1].startswith("poison: 有没×4 是止×4 退入×4")
+    found = first.held[0][1][0]
+    assert found.check == "poison" and found.detail.startswith("有没×4 是止×4 退入×4")
     second = sync(store, ids["b"], b, zh=rules("zh", "custom"))
     assert b.fetched == [2] and second.held == ()
     chosen = [(s.source_id, s.key.number) for s in store.view().raw_chapters()]

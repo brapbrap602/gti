@@ -5,6 +5,7 @@ from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
 from novel_audio.legacy import LegacyReport
+from novel_core import Finding
 from novel_sources.importing import ImportReport
 from novel_sources.reclean import RecleanReport
 from novel_sources.sync import SyncReport
@@ -14,7 +15,7 @@ from novel_translate.phase_b import Estimate as TranslateEstimate
 from novel_translate.phase_b import StaleReport, TranslateReport
 
 from novel_app.notation import ranges
-from novel_app.pages import NovelCheck, align_range_command
+from novel_app.pages import NovelCheck, align_range_command, findings_text, reclean_command
 
 if TYPE_CHECKING:  # service imports this module
     from novel_app.service import CompareEstimate
@@ -22,7 +23,7 @@ if TYPE_CHECKING:  # service imports this module
 LIST_LIMIT = 10
 
 
-def import_lines(slug: str, r: ImportReport) -> list[str]:
+def import_lines(r: ImportReport, slug: str) -> list[str]:
     lines = [
         f"{'created' if r.created else 'updated'} {slug} ({r.novel_dir}), source {r.source_id}",
         f"  index: {len(r.index.added)} new, {len(r.index.vanished)} vanished, {len(r.index.revived)} revived",
@@ -40,11 +41,11 @@ def sync_lines(r: SyncReport, other_raws: bool = False) -> list[str]:
         *section("failed", failed_lines(r.failed)),
     ]
     if r.held or r.refetched:
-        checks = Counter(check for _, detail in r.held for check in _checks(detail))
+        checks = Counter(f.check for _, found in r.held for f in found)
         line = f"  held: {len(r.held)}" + (f" ({', '.join(f'{c} {n}' for c, n in checks.items())})" if checks else "")
         if r.refetched:
             line += f"; refetched held: {r.refetched}, now clean {r.cleared}"
-        lines += [line, *listed(failed_lines(r.held))]
+        lines += [line, *listed(held_lines(r.held))]
         if r.held and other_raws:
             lines.append("  another source picks up held numbers on its next sync")
     if r.decoy_site:
@@ -58,14 +59,14 @@ def reclean_lines(r: RecleanReport) -> list[str]:
         f"  rechecked {r.chapters}: {r.rewritten} rewritten, {r.unchanged} unchanged",
         f"  cleaner hits: {hits}",
         f"  held: {len(r.held)} newly, {len(r.cleared)} no longer",
-        *listed(failed_lines(r.held)),
+        *listed(held_lines(r.held)),
     ]
 
 
 _SHOWN = 60  # chars of a paragraph shown in inspect lines
 
 
-def inspect_lines(slug: str, found: Sequence[Inspection]) -> list[str]:
+def inspect_lines(found: Sequence[Inspection], slug: str) -> list[str]:
     lines = []
     for i in found:
         c = i.chapter
@@ -117,12 +118,16 @@ def now_stale_line(setup: int, label: str, refs: Sequence[str]) -> str:
 
 
 def unchecked_lines(count: int, slug: str) -> list[str]:
-    return [f"  {count} chapters not checked with current rules: run nov reclean {slug}"] if count else []
+    return [f"  {count} chapters not checked with current rules: run {reclean_command(slug)}"] if count else []
 
 
-def _checks(detail: str) -> list[str]:
-    """The check names in a held item's detail ("check: detail; check: detail")."""
-    return [part.split(":", 1)[0] for part in detail.split("; ")]
+def unchecked_hint(count: int, slug: str) -> str:
+    """Why `count` raws were left out of an estimate, and what lets them through."""
+    return f"{count} not checked with current rules: run {reclean_command(slug)}"
+
+
+def held_lines(held: Sequence[tuple[str, Sequence[Finding]]]) -> list[str]:
+    return [f"{ref}: {findings_text(found)}" for ref, found in held]
 
 
 def failed_lines(failed: Sequence[tuple[str, str]]) -> list[str]:
@@ -139,7 +144,7 @@ def legacy_lines(r: LegacyReport) -> list[str]:
     ]
 
 
-def check_lines(slug: str, c: NovelCheck) -> list[str]:
+def check_lines(c: NovelCheck, slug: str) -> list[str]:
     r = c.report
     return [
         *numbers("gaps", r.gaps),
@@ -148,8 +153,8 @@ def check_lines(slug: str, c: NovelCheck) -> list[str]:
         *section("unmapped", [f"source {n.source_id} {n.item_ref} {n.title!r}" for n in r.unmapped]),
         *section("vanished", [f"source {n.source_id} {n.item_ref}" for n in r.vanished]),
         *section("failed", [f"source {n.source_id} {n.item_ref}: {n.detail}" for n in r.failed]),
-        *section("held", [f"source {n.source_id} {n.item_ref}: {n.detail}" for n in r.held]),
-        *numbering_lines(slug, c),
+        *section("held", [f"source {n.source_id} {n.item_ref}: {findings_text(n.findings)}" for n in r.held]),
+        *numbering_lines(c, slug),
         *section("title mismatches", [f"{n.title!r} (title says {n.detail})" for n in r.title_mismatches]),
         *numbers("mixed parts", r.mixed_parts),
         *section("pin fallbacks", [f"{p.number}: pinned source {p.pinned_source} has nothing" for p in r.pin_fallbacks]),
@@ -159,7 +164,7 @@ def check_lines(slug: str, c: NovelCheck) -> list[str]:
     ]
 
 
-def numbering_lines(slug: str, c: NovelCheck) -> list[str]:
+def numbering_lines(c: NovelCheck, slug: str) -> list[str]:
     if not c.numbering:
         return []
     return [
@@ -220,18 +225,20 @@ def translate_lines(r: TranslateReport, slug: str) -> list[str]:
 
 
 def translate_estimate_lines(e: TranslateEstimate, slug: str) -> list[str]:
-    unchecked = f", {e.unchecked} not checked with current rules: run nov reclean {slug}" if e.unchecked else ""
+    unchecked = f", {unchecked_hint(e.unchecked, slug)}" if e.unchecked else ""
     return [
         f"  {e.chapters} chapters to translate ({e.current} already current, {e.blocked} blocked by terms to review"
         f"{unchecked}); at most ${e.usd:.4f}"
     ]
 
 
-def compare_estimate_lines(e: "CompareEstimate") -> list[str]:
+def compare_estimate_lines(e: "CompareEstimate", slug: str) -> list[str]:
     missing = [ref for ref in e.chapters if ref not in e.references]
     lines = [f"  {len(e.chapters)} chapters ({', '.join(e.chapters)}); reference English for {len(e.references)}"]
     if missing:
         lines.append(f"  no reference for {', '.join(missing)}")
+    if e.unchecked:
+        lines.append(f"  {unchecked_hint(e.unchecked, slug)}")
     lines += [f"  {s.label}: at most ${e.usd[s.url]:.4f}" for s in e.setups]
     lines.append(f"  in all at most ${e.total:.4f}")
     return lines

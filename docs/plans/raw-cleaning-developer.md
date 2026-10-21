@@ -301,13 +301,14 @@ def is_reference(spec: SourceSpec) -> bool:  # site key "qidian"
 
   `Service._sync` and the importers pass `zh_rules(slug, spec)`.
 - **Decoy sites (decision 12).** With `zh.decoy_site`, `sync()` records the index and fetches `to_fetch(sid, refresh, only=refresh ∩ only)` when `refresh` is given, and nothing otherwise. The report says `decoy site: index only`. The skill tells samplers to use `--refresh` for a decoy site, because `only` alone fetches nothing.
-- **`SyncReport`** gains `held: tuple[tuple[ItemRef, str], ...]`, `cleared: int` and `decoy_site: bool`.
+- **`SyncReport`** gains `held: tuple[tuple[ItemRef, tuple[Finding, ...]], ...]` (formatted only in `report.py`), `cleared: int` and `decoy_site: bool`.
 - **`report.sync_lines`** prints `held: N (poison n, names n); refetched held: N, now clean M`. When another raw source exists it adds "another source picks up held numbers on its next sync".
 - **The unchecked line**, `N chapters not checked with current rules: run nov reclean <slug>`, is computed in novel_app. It is printed after sync, in `nov check` and in translate (§3.6).
 - **noveldl.**
   - `fetch_index` keeps a per-ref `accessible` flag.
   - `fetch_chapter` returns None **without a request** when it is False. The item becomes *unavailable*, not failed (Qidian VIP chapters).
   - Implementation verifies that no other site's parser sets the flag to False.
+    Verified (novel-downloader 3.1.1): the parsers that set it False all do so for paid or locked chapters (ciweimao, ciyuanji, fanqienovel, kadokado, n17k, qidian, qqbook, ruochu, shaoniandream), matching upstream's default `fetch_inaccessible=False`. Our noveldl_sites plugins never set it.
 
 ### 3.5 Reclean, release, inspect (owner: novel-app; logic in novel-sources)
 
@@ -357,7 +358,7 @@ Further rules:
 
 **Unchecked refusal (decisions 13, 14).**
 - A raw is **unchecked** when its `rules_rev != raw_rules[source].rev`.
-- **One `_Run.sendable(raw) -> str | None` decides** whether a chapter can be sent. It returns None, or the reason (`"unchecked: run nov reclean <slug>"` or the blocked reason). It is checked in this order: unchecked, then blocked. `state()` is `current` first, so an already-current translation is never re-counted.
+- **One `_Run.refusal(raw) -> Refusal | None` decides** whether a chapter can be sent. It returns None, `"unchecked"` or `"blocked"` (`blocked_reason` names the terms); no CLI text, novel_app adds the reclean hint. A compare attempt of an unchecked chapter fails with `"unchecked (not checked with current rules)"`. It is checked in this order: unchecked, then blocked. `state()` is `current` first, so an already-current translation is never re-counted.
   - All four send paths use it: `state`, `estimate_translate`, `estimate_compare` and `compare` (`phase_b.py:275, 303-306`, which today check only `blocking`).
   - A comparison records an unchecked chapter as `Attempt(failure=reason)`.
 - Unchecked chapters are not marked failed, and are not added to the setup's index (`_Run.index` `wanted`).

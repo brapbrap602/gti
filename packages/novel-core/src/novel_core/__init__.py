@@ -12,7 +12,7 @@ from novel_core.blocks import (
     System,
 )
 from novel_core.build import BuildPlan, OutputKind, OutputRow, VolumeRow
-from novel_core.check import CheckReport, Duplicate, ItemNote, NumberingRun
+from novel_core.check import CheckReport, Duplicate, HeldNote, ItemNote, NumberingRun
 from novel_core.finding import Finding
 from novel_core.keys import (
     ChapterKey,
@@ -47,7 +47,8 @@ from novel_core.view import ItemState, NovelView, StoreError
 
 __all__ = [
     "AlignmentDiff", "AlignmentRules", "Block", "BuildPlan", "ChapterKey", "CheckReport", "Duplicate", "Finding",
-    "Heading", "Image", "IndexDiff", "Inserted", "ItemNote", "ItemState", "ItemRef", "ItemStatus", "KeyRange", "Kind",
+    "Heading", "HeldNote", "Image", "IndexDiff", "Inserted", "ItemNote", "ItemState", "ItemRef", "ItemStatus",
+    "KeyRange", "Kind",
     "Moved", "NewVersion", "Note", "NovelMeta", "NovelStore", "NovelView", "NumberingRun", "OutputKind", "OutputRow",
     "Paragraph", "PinFallback", "PutResult", "RangeOverride", "RawChapter", "Run", "Selected", "Separator", "SourceId",
     "SourceInfo", "SourceItem", "SourceSpec", "StoreError", "System", "Unchanged", "Version", "VolumeRow",

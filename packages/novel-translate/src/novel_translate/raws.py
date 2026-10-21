@@ -36,13 +36,18 @@ class RawText:
     rules_rev: str | None  # the zh rules revision that checked it; None if never checked
 
     def unchecked(self, raw_rules: Mapping[SourceId, RawRules]) -> bool:
-        """Not checked with today's rules for its source; a source without rules fails closed."""
-        rules = raw_rules.get(self.source_id)
-        return rules is None or self.rules_rev != rules.rev
+        return unchecked_raw(self.source_id, self.rules_rev, raw_rules)
 
     @property
     def text(self) -> str:
         return "\n".join(self.paragraphs)
+
+
+def unchecked_raw(source_id: SourceId, rules_rev: str | None, raw_rules: Mapping[SourceId, RawRules]) -> bool:
+    """A raw of this source checked with `rules_rev` is not checked with today's rules for its source;
+    a source without rules fails closed."""
+    rules = raw_rules.get(source_id)
+    return rules is None or rules_rev != rules.rev
 
 
 def raw_chapters(novel: NovelStore, keys: KeyRange | None = None, view: NovelView | None = None) -> Iterator[RawText]:

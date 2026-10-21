@@ -67,10 +67,13 @@ This request holds several consecutive chapters. Translate each of them in full,
 in `chapters`, with the chapter number the request gives it. Paragraph ids start again at 1 in each chapter.
 Keep names and terms the same across the chapters."""
 NOTES_HEADING = "\n\n## About this source text\n"  # before a raw source's translator notes
-UNCHECKED = "unchecked"  # a refusal reason's first word, as "blocked" is
+UNCHECKED = "unchecked"  # a chapter's state when its raw was not checked with today's zh rules
+UNCHECKED_FAILURE = "unchecked (not checked with current rules)"  # its comparison attempt's failure
 VALIDATOR_RETRY = 2  # a first attempt may cost twice: the in-call retry after a failed check
 
 type Keys = KeyRange | Literal["stale"]
+type Refusal = Literal["unchecked", "blocked"]  # why a chapter is not sent: UNCHECKED first, then a term to review
+type State = Literal["current", "send"] | Refusal
 type Progress = Callable[[int, int, str], None]
 
 _REF = re.compile(r"^n(\d+)(?:p(\d+))?$")
@@ -256,7 +259,7 @@ class Attempt:
     ref: str
     title: str | None = None
     paragraphs: tuple[str, ...] = ()
-    failure: str | None = None  # "unchecked: ...", "blocked: ...", the call's failure reason, or "not sent" (budget)
+    failure: str | None = None  # UNCHECKED_FAILURE, "blocked: ...", the call's failure reason, or "not sent" (budget)
     soft_flags: tuple[str, ...] = ()
     charged: Charged = Charged()
     seconds: float = 0.0  # of its request
@@ -325,10 +328,10 @@ def estimate_compare(
         run = _comparing(novel, ts, setup, raw_rules)
         sendable, refused = [], Counter()
         for raw in run.selected(keys):
-            if (why := run.sendable(raw)) is None:
+            if (why := run.refusal(raw)) is None:
                 sendable.append(raw)
             else:
-                refused[_kind(why)] += 1
+                refused[why] += 1
         usd = sum(run.reservation(r, prices[setup.url]) for r in _requests(run, sendable, setup.group))
         estimates[setup.url] = Estimate(len(sendable), 0, refused["blocked"], refused[UNCHECKED], usd)
     return estimates
@@ -358,10 +361,11 @@ def compare(
         comparison.raws = comparison.raws or selected
         attempts = comparison.attempts.setdefault(setup.url, {})
         price = prices[setup.url]
-        refused = {raw.key: why for raw in selected if (why := run.sendable(raw)) is not None}
+        refused = {raw.key: why for raw in selected if (why := run.refusal(raw)) is not None}
         for raw in selected:
             if raw.key in refused:
-                attempts[ref_of(raw.key)] = Attempt(ref_of(raw.key), failure=refused[raw.key])
+                failure = UNCHECKED_FAILURE if refused[raw.key] == UNCHECKED else run.blocked_reason(raw)
+                attempts[ref_of(raw.key)] = Attempt(ref_of(raw.key), failure=failure)
         sendable = _requests(run, [raw for raw in selected if raw.key not in refused], setup.group)
 
         def call(llm: LLM, r: _Request, run=run, price=price) -> _Timed:
@@ -411,11 +415,6 @@ def _comparing(
     if setup.context == "sequential":
         raise SetupError("a comparison sends chapters on their own; use parallel setups")
     return _Run(novel, ts, setup, raw_rules)
-
-
-def _kind(reason: str) -> str:
-    """A refusal reason's kind: its first word, UNCHECKED or "blocked"."""
-    return reason.partition(":")[0]
 
 
 # -- one run's view of the novel ---------------------------------------------------
@@ -483,22 +482,21 @@ class _Run:
             self._matches[raw.key] = self.matcher.match(raw.text)
         return self._matches[raw.key]
 
-    def state(self, raw: RawText) -> str:
+    def state(self, raw: RawText) -> State:
         """current, UNCHECKED, blocked or send. Current comes first, so a translation that is
         current is never counted again."""
         row = self.ledger.get(ref_of(raw.key))
         if row is not None and row.outcome == "ok" and row.input_key == self.input_key(raw):
             return "current"
-        why = self.sendable(raw)
-        return "send" if why is None else _kind(why)
+        return self.refusal(raw) or "send"
 
-    def sendable(self, raw: RawText) -> str | None:
+    def refusal(self, raw: RawText) -> Refusal | None:
         """None when the chapter may be sent, else why not: unchecked by today's zh rules first, then
-        blocked by a term to review."""
+        blocked by a term to review (blocked_reason says which)."""
         if raw.unchecked(self.raw_rules):
-            return f"{UNCHECKED}: run nov reclean {self.novel.folder.name}"
+            return UNCHECKED
         if self.match(raw).blocking:
-            return self.blocked_reason(raw)
+            return "blocked"
         return None
 
     def blocked_reason(self, raw: RawText) -> str:

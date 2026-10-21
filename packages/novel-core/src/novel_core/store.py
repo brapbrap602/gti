@@ -250,11 +250,6 @@ class NovelStore:
     def __exit__(self, *exc) -> None:
         self.close()
 
-    @property
-    def folder(self) -> Path:
-        """The novel's folder; in a library its name is the novel's slug."""
-        return self._dir
-
     # -- novel and sources -------------------------------------------------
 
     @property

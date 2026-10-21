@@ -1,5 +1,5 @@
 {# The Translate form's estimate and its Start button: there is no Start without an estimate. #}
-{% set unchecked %}{% if estimate and estimate.unchecked %}, {{ estimate.unchecked }} not checked with current rules (run <code>nov reclean {{ slug }}</code>){% endif %}{% endset %}
+{% set unchecked %}{% if estimate and estimate.unchecked %}, {{ estimate.unchecked }} not checked with current rules (run <code>{{ reclean_command(slug) }}</code>){% endif %}{% endset %}
 {% if error %}
 <p class="muted">{{ error }}</p>
 <button type="submit" disabled>Start</button>

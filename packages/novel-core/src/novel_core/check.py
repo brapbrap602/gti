@@ -3,6 +3,7 @@
 from dataclasses import dataclass
 
 from novel_core.build import OutputRow
+from novel_core.finding import Finding
 from novel_core.keys import ChapterKey, ItemRef
 from novel_core.selection import PinFallback, SourceId
 
@@ -13,6 +14,16 @@ class ItemNote:
     item_ref: ItemRef
     title: str
     detail: str = ""
+
+
+@dataclass(frozen=True)
+class HeldNote:
+    """An item never translated: the findings on its current version not yet released."""
+
+    source_id: SourceId
+    item_ref: ItemRef
+    title: str
+    findings: tuple[Finding, ...]
 
 
 @dataclass(frozen=True)
@@ -43,7 +54,7 @@ class CheckReport:
     unmapped: tuple[ItemNote, ...]
     vanished: tuple[ItemNote, ...]
     failed: tuple[ItemNote, ...]  # detail = failure reason
-    held: tuple[ItemNote, ...]  # never translated; detail = the unreleased findings
+    held: tuple[HeldNote, ...]
     title_mismatches: tuple[ItemNote, ...]  # detail = number found in the title
     mixed_parts: tuple[int, ...]  # sources disagree on whether the number is split
     pin_fallbacks: tuple[PinFallback, ...]

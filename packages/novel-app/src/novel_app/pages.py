@@ -9,7 +9,7 @@ numbering is compared with.
 """
 
 from collections import defaultdict
-from collections.abc import Mapping, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from enum import StrEnum
 from pathlib import PurePosixPath
@@ -22,6 +22,7 @@ from novel_core import (
     Block,
     ChapterKey,
     CheckReport,
+    Finding,
     ItemStatus,
     KeyRange,
     Kind,
@@ -38,6 +39,7 @@ from novel_core.selection import Pin
 from novel_publish import epub, render
 from novel_publish import site as site_builder
 from novel_sources.backends import is_reference, is_web, zh_rules
+from novel_translate.raws import RawRules, unchecked_raw
 from novel_translate.setups import BACKEND as SETUP_BACKEND
 from novel_translate.setups import TranslatorSetup
 
@@ -281,13 +283,30 @@ def align_range_command(slug: str, run: NumberingRun) -> str:
     return f"nov align range {slug} {run.printed_start}-{run.printed_end} {run.offset} --source {run.source_id}"
 
 
+def reclean_command(slug: str) -> str:
+    """The command that checks a novel's raws with the current zh rules."""
+    return f"nov reclean {slug}"
+
+
+def findings_text(found: Sequence[Finding]) -> str:
+    """A held chapter's findings, as `nov check` and the Check section show them."""
+    return "; ".join(f"{f.check}: {f.detail}" for f in found)
+
+
 def unchecked(slug: str, view: NovelView) -> int:
-    """Current raw-zh chapters whose zh rules revision is not today's (never checked, or by older rules)."""
-    count = 0
-    for info in view.sources:
-        if (zh := zh_rules(slug, info.spec)) is not None:
-            count += sum(s.rules_rev != zh.rev for s in view.chapters(info.id))
-    return count
+    """Current raw-zh chapters not checked with today's zh rules (never checked, or by older rules),
+    by the rule translation refuses them by."""
+    rules = raw_rules(slug, view.sources)
+    return sum(
+        unchecked_raw(info.id, s.rules_rev, rules)
+        for info in view.sources if info.spec.kind is Kind.RAW_ZH
+        for s in view.chapters(info.id)
+    )  # fmt: skip
+
+
+def raw_rules(slug: str, sources: Iterable[SourceInfo]) -> dict[SourceId, RawRules]:
+    """What translation needs of each raw-zh source's zh rules: its translator notes and revision."""
+    return {info.id: RawRules(zh.notes, zh.rev) for info in sources if (zh := zh_rules(slug, info.spec))}
 
 
 @dataclass(frozen=True)
