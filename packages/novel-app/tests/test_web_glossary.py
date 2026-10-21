@@ -104,7 +104,7 @@ def test_search_and_tabs_filter_the_list(client, service):
 def test_a_novel_without_raws_cannot_build(client):
     page = client.get("/novels/english-only/glossary")
     assert page.status_code == 200 and "has no Chinese raws" in page.text and "disabled" in page.text
-    assert "Glossary</a>" not in client.get("/novels/english-only").text
+    assert 'href="/novels/english-only/glossary"' not in client.get("/novels/english-only").text
 
 
 def test_without_a_key_build_says_what_to_do(novels, monkeypatch):

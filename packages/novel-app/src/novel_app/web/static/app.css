@@ -2,6 +2,14 @@
    Behaviour that needs JavaScript (sheets, fixed toasts, tabs) is scoped to html.js, which the
    head script sets before paint; without it everything renders inline and every form still posts. */
 
+:root {
+  /* Chapter states, in the grid, its meters and the sidebar dots. */
+  --mine: #a78bfa;
+  --raw: #a16207;
+  --official: #2dd4bf;
+  --missing: #3f3f46;
+}
+
 .stale { color: var(--warn); }
 .fresh { color: var(--ok); }
 .url { font-size: 0.8125rem; overflow-wrap: anywhere; }

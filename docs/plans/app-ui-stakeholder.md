@@ -1,6 +1,6 @@
 # App UI overhaul (`nov serve`): plan summary
 
-Status: approved 2026-10-21. Not built yet. Details: [developer plan](app-ui-developer.md).
+Status: approved 2026-10-21; built 2026-10-21, waiting on your timing check (G2) and screenshot review (G3). The app is desktop-only. Details: [developer plan](app-ui-developer.md).
 
 ## Goal
 

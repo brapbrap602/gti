@@ -1,6 +1,6 @@
 {% from "_ui.html" import icon -%}
-{% set active_jobs = job_panel.attention | selectattr("state.active") | list -%}
-{% set problems = job_panel.attention | rejectattr("state.active") | list | length -%}
+{% set active_jobs = job_panel.active -%}
+{% set problems = job_panel.problems -%}
 {% set shown_progress = active_jobs | selectattr("total") | first -%}
 <!DOCTYPE html>
 <html lang="en">

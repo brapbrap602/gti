@@ -1,6 +1,6 @@
 # App UI overhaul (`nov serve`): developer plan
 
-Status: approved by the user 2026-10-21 (r2). Not implemented; building it needs the user's go-ahead. Three independent reviews are folded in: r1 reviewed the baseline (§9.1), r2 reviewed draft r1 (§9.2), and a focused follow-up checked the r2 changes (§9.3).
+Status: approved by the user 2026-10-21 (r2). Slices 0–6 built 2026-10-21 (local, not pushed); of slice 7, the W13 screenshots are done and G2 and G3 wait on the user (§10.1). Three independent reviews are folded in: r1 reviewed the baseline (§9.1), r2 reviewed draft r1 (§9.2), and a focused follow-up checked the r2 changes (§9.3).
 Related: [stakeholder plan](app-ui-stakeholder.md) · [reader UI plan](reader-ui-developer.md) (it built today's jobs drawer, compare diff and phone tables) · [platform plan](novel-platform-developer.md).
 
 Paths are relative to the repo root. App = `packages/novel-app/src/novel_app`, Web = `App/web`, Tests = `packages/novel-app/tests`.
@@ -525,6 +525,15 @@ Optional findings adopted:
   - Pass: median under 300 ms, and the SSE stream keeps ticking (`jobs` events about 1 s apart) during the timing.
   - Fallback if it fails: the sidebar reads each novel's title from its store metadata once per process, cached by slug (a small new Service read), and drops the stale dot; the library page keeps it.
 - **G3, look:** the user reviews the W13 screenshots (phone and desktop) and either approves or asks for token or layout changes before the work counts as done.
+
+### 10.1 Build notes (2026-10-21)
+- **Scope change from the user, mid-build:** `nov serve` is desktop-only ("Mobile is only for our reader"). The new browser cases and the W13 screenshots run at 1280×900 only; W9's phone pass and the phone halves of W11 and W13 were dropped. The phone CSS and the older phone browser tests from the reader UI work were left in place, not extended.
+- **G1 passed.** Geist 1.8.1 from the release zip: `Geist[wght].woff2` (69.5 KB) and `GeistMono[wght].woff2` (71.2 KB), 141 KB together, shipped as `Geist-Variable.woff2` and `GeistMono-Variable.woff2` (no brackets in URLs). lucide-static 1.61.0, 30 icons: the plan's list plus `circle-check`, `clock`, `globe` and `layers`. The sprite is built by `tools/make_lucide_sprite.py`; hashes in `vendor/README.md`. T12, T13 and W12 pass.
+- **W11 spike:** with `javascript.enabled=false`, BiDi `script.evaluate` never answers (30 s timeout), so W11 runs the fallback variant: load normally, remove `js` from `<html>`, assert the sidebar, the jobs panel (static) and all four panels show, on the novel page and the wide comparison chapter.
+- **W10** fires its 409 with `build-epub` on the claimed `english-only`: a `sync` there is refused earlier (no web source) with a 400, which is still an error toast but not the lock.
+- **Deviations:** the novel page's Outputs stat lists each kind with its staleness text, not a badge plus text (the badge repeated it). The Check summaries keep their exact text (`<summary>Held: 1</summary>` is a kept contract), so they carry no count badge. The bare Start and Build glossary buttons keep their exact markup (kept contracts) and get the primary look from `app.css`.
+- **G2 (timing) not run:** it needs the user's `nov serve` restarted on the new code.
+- **G3 (look) pending:** W13 writes full-page PNGs to `$APP_UI_SHOTS` when set.
 
 ## 11. Not included
 - A light theme or theme toggle.
