@@ -47,6 +47,15 @@ def test_a_comparison_asks_first_stores_nothing_and_writes_a_bundle(openrouter):
     assert all(a["cost"] > 0 and a["paragraphs"] for s in data["setups"] for a in s["attempts"].values())
 
 
+def test_a_shifted_reference_matches_raws_numbered_ahead_of_the_english(openrouter):
+    with_official_english([1, 2])
+    done = run("translate", "compare", "raw-novel", "3-4", "--model", "vendor/cheap", "--reference-shift", "-2", "--yes")
+    assert done.exit_code == 0, done.output
+    (bundle,) = compare_dir("raw-novel").iterdir()
+    assert "Chapter 1: Official" in (bundle / "chapters" / "n3.md").read_text(encoding="utf-8")
+    assert "Official words of 2." in (bundle / "chapters" / "n4.md").read_text(encoding="utf-8")
+
+
 def test_a_comparison_refuses_a_cap_below_the_estimate_and_bad_models(openrouter):
     low = run("translate", "compare", "raw-novel", "1-2", "--model", "vendor/cheap", "--cap", "0.0000001", "--yes")
     assert low.exit_code == 2 and "below the estimate" in low.output

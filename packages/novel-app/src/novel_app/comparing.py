@@ -101,7 +101,7 @@ def _chapter(
 ) -> str:
     out = [f"# {title}", ""]
     if reference is not None:
-        out += [f"Reference: source {reference.source}, {reference.title}", ""]
+        out += [f"Reference: source {reference.source}, {reference.title} (check it is this chapter)", ""]
     for s, a in attempts:
         if a is None or a.failure:
             out.append(f"- {s.model}: {a.failure if a else 'not run'}")
