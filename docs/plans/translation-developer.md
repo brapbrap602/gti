@@ -1,6 +1,6 @@
 # Translation pipeline: developer plan
 
-Status: approved by the user 2026-10-20 (r3). Not built; implementation needs the user's go-ahead. The baseline (§1) was approved by the user on 2026-10-20. Three independent reviews are folded in (§9).
+Status: approved by the user 2026-10-20 (r3). Slices 0–8 built 2026-10-20 (§10); slice 9 (walkthroughs and the G2 trial) and the G1 live call wait for the user's key and spend approval. The baseline (§1) was approved by the user on 2026-10-20. Three independent reviews are folded in (§9).
 Related: [stakeholder plan](translation-stakeholder.md) · [platform v1 developer plan](novel-platform-developer.md) · [reader UI plan](reader-ui-developer.md) · research: [LLM web novel translation tools](../research/LLM%20web%20novel%20translation%20tools.md) (notes in `docs/research/LLM web novel translation tools/`).
 
 ## 1. Approved decisions (user, 2026-10-20)
@@ -623,6 +623,33 @@ Soft checks (stored with flags):
   - **Hints are resumable per chapter:** `term.consulted_json` records the chapters already asked, so a resumed run never asks one twice or double-counts its votes.
   - **`import-hints` is deferred.** There is no `active_glossary.json` (or `data/glossary/`) in the local MtlTings checkout. Its README describes a glossary extracted from the *English* output, so it would carry no Chinese keys to vote on. It returns if the user points at a file with zh→en pairs.
   - **`nov glossary build` needs `--model`** until G2 sets a default.
+- **Slices 5–8 (2026-10-20):**
+  - 5cd75c8 and 144f752: glossary page.
+  - 87d9504: validation.
+  - 7c6e1a0 and bad4143: setups, ledger, Phase B and its CLI.
+  - ae0e7ee: novel-page translation UI.
+- **Changes from the plan, and things found while building:**
+  - **Cut-off retry.**
+    - pydantic-ai spends the call's one output retry on a truncated reply, using the same `max_tokens`. So one cut-off recovers inside the call.
+    - A second cut-off ends the call. The worker then sends the chapter once more with 1.5× `max_tokens`, after taking its own budget hold, which it releases at 0 because the pool settles the chapter's whole cost.
+    - That is still at most three requests, each covered by a reservation.
+    - The spend log gets one row per chapter outcome (all its requests, generation ids and cost) rather than one per request.
+  - **The output schema** (`Translated`, `Para`, `NewTerm`) lives in `chapter.py`, shared by `models.py` and `validate.py`. `glossary.Verdict` and `Seen` keep `tstore` independent of the model layer.
+  - **Validation:**
+    - `heading` ignores a body paragraph whose source paragraph itself has 第N章.
+    - The zlib loop ratio applies only to texts of at least 2000 bytes.
+  - **Novel page:**
+    - The Translations section is hidden for novels without raws, rather than shown disabled.
+    - The Start button exists only inside the estimate fragment.
+    - The estimate `div` sets its own `hx-target`, because a target is inherited from the enclosing form.
+  - **Glossary page:**
+    - Tabs are Needs review, All, Proposed, Locked and Rejected, at most 200 rows each.
+    - "Revive" sets a rejected term to `needs_review` as a user edit, so it waits for the user.
+    - Each term is one `<tbody>`, swapped whole. Ids keep keyboard focus through the swap (Firefox test).
+    - A click inside htmx's settle delay after a swap can still fall back to a plain form POST. The test waits; a person can't click that fast.
+  - **`translate.sqlite` schema 1** grew through slices 3–7 with no migrations. No real store existed yet. It is frozen from the first real use (W1): later changes need a migration, as in `novel.sqlite`.
+  - **Staleness counts** on the pages are cached per (novel, setup) until either database file changes.
+- **G3 status:** the glossary browser test (review, focus kept, lock, phone layout) passes on fixture data. Screenshots were checked at desktop and phone width. The real W2 walkthrough needs a built glossary (W1, which is paid).
 - **Key limits:** 402, or 403 with "limit" in the body, raises `OutOfCredit`. This is unconfirmed against a real key-limit reply.
 - **Reasoning "off"** sends no `reasoning` setting, so the model's default applies. Revisit at G2 for models that reason by default.
 - **G1 status:**
