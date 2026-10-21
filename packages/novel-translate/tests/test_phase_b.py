@@ -7,7 +7,16 @@ from novel_core import AlignmentRules, ChapterKey, KeyRange, Kind, NewVersion, N
 from novel_translate.budget import Budget
 from novel_translate.glossary import AddTerm, Category, Status, UpdateTerm
 from novel_translate.models import LLM, Price
-from novel_translate.phase_b import TranslateReport, estimate_translate, prune, stale, translate
+from novel_translate.phase_b import (
+    COMPARE_SPEND,
+    TranslateReport,
+    compare,
+    estimate_compare,
+    estimate_translate,
+    prune,
+    stale,
+    translate,
+)
 from novel_translate.setups import SetupError, TranslatorSetup, register
 from novel_translate.tstore import TranslateStore
 from pydantic_ai.messages import ModelResponse, ToolCallPart, UserPromptPart
@@ -306,3 +315,69 @@ def test_the_estimate_counts_what_would_be_sent(novel, ts):
     run(novel, ts, Translator(), KeyRange(1, 2))
     estimate = estimate_translate(novel.store, ts, SETUP, KeyRange(1, 5), PRICE)
     assert (estimate.chapters, estimate.current, estimate.blocked) == (3, 2, 0) and estimate.usd > 0
+
+
+# -- comparing setups ----------------------------------------------------------------
+
+OTHER = TranslatorSetup("vendor/other")
+PRICES = {SETUP.url: PRICE, OTHER.url: PRICE}
+
+
+def compare_with(novel, ts, translators, keys, budget=None, setups=(SETUP, OTHER)):
+    return compare(
+        novel.store, ts, setups, keys, lambda setup, cancel: translators[setup.model].llm(cancel), PRICES,
+        budget or Budget(100.0), 2, lambda *_: None,
+    )  # fmt: skip
+
+
+def test_a_comparison_sends_what_translate_sends_and_stores_nothing(novel, ts):
+    ts.put_summary((1, 0), novel.store.view().chapters(novel.raw)[0].content_hash, "m", "summary 1")
+    fakes = {"vendor/cheap": Translator(), "vendor/other": Translator({3: ["loop", "loop"]})}
+    sources_before, versions_before = novel.store.sources(), novel.store.view().selection
+
+    result = compare_with(novel, ts, fakes, KeyRange(2, 3))
+
+    assert [r.key.number for r in result.raws] == [2, 3]
+    cheap, other = result.attempts[SETUP.url], result.attempts[OTHER.url]
+    assert cheap["n2"].title == "The Title of 2" and len(cheap["n2"].paragraphs) == 4 and cheap["n2"].failure is None
+    assert cheap["n2"].charged.cost > 0 and cheap["n2"].seconds >= 0
+    assert other["n3"].failure == "invalid: loop" and other["n3"].paragraphs == ()
+    assert novel.store.sources() == sources_before and novel.store.view().selection == versions_before
+    assert ts.latest(SETUP.url) == {} and ts.spend(SETUP.url).cost == 0
+    assert ts.spend(COMPARE_SPEND + SETUP.url).cost == pytest.approx(cheap["n2"].charged.cost + cheap["n3"].charged.cost)
+    assert result.cost == pytest.approx(sum(ts.spend(COMPARE_SPEND + s.url).cost for s in (SETUP, OTHER)))
+
+    production = Translator()
+    run(novel, ts, production, KeyRange(2, 2))
+    assert fakes["vendor/cheap"].prompts[2] == production.prompts[2]  # the very prompt production sends
+
+
+def test_a_comparison_estimate_is_per_setup_and_bounds_the_spend(novel, ts):
+    estimates = estimate_compare(novel.store, ts, (SETUP, OTHER), KeyRange(1, 3), PRICES)
+    assert set(estimates) == {SETUP.url, OTHER.url} and estimates[SETUP.url] == estimates[OTHER.url] > 0
+    result = compare_with(novel, ts, {"vendor/cheap": Translator(), "vendor/other": Translator()}, KeyRange(1, 3))
+    assert result.cost <= sum(estimates.values())
+
+
+def test_the_budget_stops_a_comparison_and_the_rest_is_marked_not_sent(novel, ts):
+    one_chapter = estimate_compare(novel.store, ts, (SETUP,), KeyRange(1, 1), PRICES)[SETUP.url]
+    result = compare_with(
+        novel, ts, {"vendor/cheap": Translator(), "vendor/other": Translator()}, KeyRange(1, 3), Budget(one_chapter * 1.5)
+    )
+    outcomes = {url: sorted(a.failure or "ok" for a in by_ref.values()) for url, by_ref in result.attempts.items()}
+    assert outcomes[SETUP.url] == ["not sent", "not sent", "ok"]  # the first chapter's hold leaves no room for a second
+    assert len(outcomes[OTHER.url]) == 3 and "not sent" in outcomes[OTHER.url]  # what the first left unspent
+    assert result.cost <= one_chapter * 1.5
+
+
+def test_a_comparison_reports_blocked_chapters_and_refuses_sequential_setups(novel, ts):
+    novel.raws([2], lambda n: ["七玄门" + p for p in raw_paragraphs(n)])
+    ts.propose([("七玄门", "Seven Mysteries Sect", Category.SECT)])
+    gate = next(t.id for t in ts.entries() if t.zh == "七玄门")
+    ts.apply([UpdateTerm(gate, status=Status.NEEDS_REVIEW)])
+    fake = Translator()
+    result = compare_with(novel, ts, {"vendor/cheap": fake}, KeyRange(1, 2), setups=(SETUP,))
+    assert result.attempts[SETUP.url]["n2"].failure == "blocked: 七玄门 (Seven Mysteries Sect)"
+    assert set(fake.prompts) == {1}
+    with pytest.raises(SetupError, match="parallel"):
+        compare_with(novel, ts, {}, KeyRange(1, 1), setups=(TranslatorSetup("vendor/x", context="sequential"),))

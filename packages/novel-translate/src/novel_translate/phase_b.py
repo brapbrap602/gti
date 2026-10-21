@@ -17,8 +17,9 @@ import hashlib
 import json
 import re
 import threading
+import time
 from collections import Counter
-from collections.abc import Callable, Iterator
+from collections.abc import Callable, Iterator, Mapping, Sequence
 from dataclasses import dataclass, field, replace
 from typing import Literal
 
@@ -41,7 +42,7 @@ from novel_translate.matching import Match, Matcher
 from novel_translate.models import LLM, Attempted, CallFailed, Charged, CutOff, Price
 from novel_translate.pool import run_paid
 from novel_translate.raws import RawText, raw_chapters, version_text
-from novel_translate.setups import TranslatorSetup, prompt, register
+from novel_translate.setups import SetupError, TranslatorSetup, prompt, register
 from novel_translate.tstore import LedgerRow, StoredSummary, TranslateStore
 from novel_translate.validate import Norms, check
 
@@ -163,22 +164,7 @@ def translate(
                 yield run.request(raw)
 
     def call(llm: LLM, r: _Request) -> Attempted:
-        try:
-            return llm.translate(run.instructions, r.prompt, r.hard_checks, r.max_tokens)
-        except CutOff as cut:
-            # Once more with room to finish, after its own hold on the budget (the pool's hold
-            # settles the chapter's whole cost, so this one is released with nothing spent).
-            roomier = replace(r, max_tokens=int(r.max_tokens * CUTOFF_GROWTH))
-            hold = budget.reserve(run.reservation(roomier, price, retry=False))
-            if hold is None:
-                raise CallFailed("budget", cut.charged) from cut
-            try:
-                second = llm.translate(run.instructions, r.prompt, r.hard_checks, roomier.max_tokens, retry_invalid=False)
-            except CallFailed as e:
-                raise CallFailed(e.reason, cut.charged + e.charged) from e
-            finally:
-                budget.settle(hold, 0.0)
-            return Attempted(second.out, cut.charged + second.charged)
+        return run.attempt(llm, r, price, budget)
 
     def done(r: _Request, outcome: Attempted | CallFailed) -> None:
         ts.record_spend(setup.url, r.ref, outcome.charged)  # first, always: it was paid for
@@ -217,6 +203,120 @@ def prune(novel: NovelStore, ts: TranslateStore, setup: TranslatorSetup) -> tupl
         novel.set_alignment(source, replace(info.alignment, skip=info.alignment.skip - set(orphans)))
         novel.record_index(source, [_item(i.ref, pos, i.title) for pos, i in enumerate(keep, 1)])
     return tuple(orphans)
+
+
+# -- comparing setups ----------------------------------------------------------------
+
+COMPARE_SPEND = "compare:"  # spend-log prefix: comparison calls never count as a setup's own spend
+
+
+@dataclass(frozen=True)
+class Attempt:
+    """One setup's go at one chapter in a comparison; `failure` set means no text."""
+
+    ref: str
+    title: str | None = None
+    paragraphs: tuple[str, ...] = ()
+    failure: str | None = None  # "blocked: ...", the call's failure reason, or "not sent" (budget)
+    soft_flags: tuple[str, ...] = ()
+    charged: Charged = Charged()
+    seconds: float = 0.0
+
+
+@dataclass
+class Comparison:
+    raws: list[RawText] = field(default_factory=list)  # the chapters compared, in key order
+    attempts: dict[str, dict[str, Attempt]] = field(default_factory=dict)  # setup url -> ref -> attempt
+
+    @property
+    def cost(self) -> float:
+        return sum(a.charged.cost for by_ref in self.attempts.values() for a in by_ref.values())
+
+
+@dataclass(frozen=True)
+class _Timed:
+    attempted: Attempted
+    seconds: float
+
+    @property
+    def charged(self) -> Charged:
+        return self.attempted.charged
+
+
+def estimate_compare(
+    novel: NovelStore, ts: TranslateStore, setups: Sequence[TranslatorSetup], keys: KeyRange, prices: Mapping[str, Price]
+) -> dict[str, float]:
+    """Each setup's upper-bound cost (by URL) for comparing these chapters."""
+    estimates = {}
+    for setup in setups:
+        run = _comparing(novel, ts, setup)
+        estimates[setup.url] = sum(
+            run.reservation(run.request(raw), prices[setup.url]) for raw in run.selected(keys) if not run.match(raw).blocking
+        )
+    return estimates
+
+
+def compare(
+    novel: NovelStore,
+    ts: TranslateStore,
+    setups: Sequence[TranslatorSetup],
+    keys: KeyRange,
+    new_llm: Callable[[TranslatorSetup, threading.Event], LLM],
+    prices: Mapping[str, Price],
+    budget: Budget,
+    workers: int,
+    progress: Progress,
+    comparison: Comparison | None = None,
+) -> Comparison:
+    """Translate the chapters with each setup in turn, sending exactly what `translate` would send,
+    and keep the results only in the returned Comparison: nothing goes into the novel or the ledger.
+    Every paid attempt is in the spend log, under COMPARE_SPEND + the setup's URL. `comparison` is
+    filled in as it goes; raises like `translate`."""
+    comparison = comparison if comparison is not None else Comparison()
+    runs = [(setup, _comparing(novel, ts, setup)) for setup in setups]
+    for setup, run in runs:
+        selected = list(run.selected(keys))
+        comparison.raws = comparison.raws or selected
+        attempts = comparison.attempts.setdefault(setup.url, {})
+        price = prices[setup.url]
+        for raw in selected:
+            if run.match(raw).blocking:
+                attempts[ref_of(raw.key)] = Attempt(ref_of(raw.key), failure=run.blocked_reason(raw))
+        sendable = [run.request(raw) for raw in selected if not run.match(raw).blocking]
+
+        def call(llm: LLM, r: _Request, run=run, price=price) -> _Timed:
+            started = time.monotonic()
+            attempted = run.attempt(llm, r, price, budget)
+            return _Timed(attempted, time.monotonic() - started)
+
+        def done(r: _Request, outcome: _Timed | CallFailed, run=run, attempts=attempts, url=setup.url) -> None:
+            ts.record_spend(COMPARE_SPEND + url, r.ref, outcome.charged)
+            if isinstance(outcome, CallFailed):
+                attempts[r.ref] = Attempt(r.ref, failure=outcome.reason, charged=outcome.charged)
+                return
+            out = outcome.attempted.out
+            findings = check(r.raw.paragraphs, out, r.match, run.norms)
+            by_id = sorted(out.paragraphs, key=lambda p: p.id)
+            attempts[r.ref] = Attempt(
+                r.ref, out.title, tuple(p.text.strip() for p in by_id), None, findings.soft, outcome.charged, outcome.seconds
+            )
+
+        def tick(calls: int, total=len(sendable), model=setup.model) -> None:
+            progress(calls, max(calls, total), model)
+
+        run_paid(
+            sendable, lambda r, run=run, price=price: run.reservation(r, price), call, done,
+            new_llm=lambda cancel, setup=setup: new_llm(setup, cancel), budget=budget, workers=workers, progress=tick,
+        )  # fmt: skip
+        for r in sendable:
+            attempts.setdefault(r.ref, Attempt(r.ref, failure="not sent"))
+    return comparison
+
+
+def _comparing(novel: NovelStore, ts: TranslateStore, setup: TranslatorSetup) -> "_Run":
+    if setup.context == "sequential":
+        raise SetupError("a comparison sends chapters on their own; use parallel setups")
+    return _Run(novel, ts, setup)
 
 
 # -- one run's view of the novel ---------------------------------------------------
@@ -340,6 +440,25 @@ class _Run:
         tokens_in = chinese * ZH_TOKENS_PER_CHAR + (len(r.prompt) - chinese + len(self.instructions)) * EN_TOKENS_PER_CHAR
         cost = price.cost(int(tokens_in), r.max_tokens)
         return cost * VALIDATOR_RETRY if retry else cost
+
+    def attempt(self, llm: LLM, r: _Request, price: Price, budget: Budget) -> Attempted:
+        """One chapter on a worker thread: the call, and after a cut-off once more with more room."""
+        try:
+            return llm.translate(self.instructions, r.prompt, r.hard_checks, r.max_tokens)
+        except CutOff as cut:
+            # Once more with room to finish, after its own hold on the budget (the pool's hold
+            # settles the chapter's whole cost, so this one is released with nothing spent).
+            roomier = replace(r, max_tokens=int(r.max_tokens * CUTOFF_GROWTH))
+            hold = budget.reserve(self.reservation(roomier, price, retry=False))
+            if hold is None:
+                raise CallFailed("budget", cut.charged) from cut
+            try:
+                second = llm.translate(self.instructions, r.prompt, r.hard_checks, roomier.max_tokens, retry_invalid=False)
+            except CallFailed as e:
+                raise CallFailed(e.reason, cut.charged + e.charged) from e
+            finally:
+                budget.settle(hold, 0.0)
+            return Attempted(second.out, cut.charged + second.charged)
 
     # -- writes (the coordinating thread only) ------------------------------
 

@@ -1,6 +1,7 @@
 """Reports as text lines, for the terminal and for job logs."""
 
 from collections.abc import Sequence
+from typing import TYPE_CHECKING
 
 from novel_audio.legacy import LegacyReport
 from novel_core import CheckReport
@@ -11,6 +12,9 @@ from novel_translate.phase_b import Estimate as TranslateEstimate
 from novel_translate.phase_b import StaleReport, TranslateReport
 
 from novel_app.notation import ranges
+
+if TYPE_CHECKING:  # service imports this module
+    from novel_app.service import CompareEstimate
 
 LIST_LIMIT = 10
 
@@ -108,6 +112,16 @@ def translate_estimate_lines(e: TranslateEstimate) -> list[str]:
         f"  {e.chapters} chapters to translate ({e.current} already current, {e.blocked} blocked by terms to review); "
         f"at most ${e.usd:.4f}"
     ]
+
+
+def compare_estimate_lines(e: "CompareEstimate") -> list[str]:
+    missing = [ref for ref in e.chapters if ref not in e.references]
+    lines = [f"  {len(e.chapters)} chapters ({', '.join(e.chapters)}); reference English for {len(e.references)}"]
+    if missing:
+        lines.append(f"  no reference for {', '.join(missing)}")
+    lines += [f"  {s.label}: at most ${e.usd[s.url]:.4f}" for s in e.setups]
+    lines.append(f"  in all at most ${e.total:.4f}")
+    return lines
 
 
 def stale_lines(r: StaleReport) -> list[str]:
