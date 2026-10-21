@@ -42,6 +42,11 @@ def epub_dir(slug: str) -> Path:
     return data_dir() / "_epub" / slug
 
 
+def compare_dir(slug: str) -> Path:
+    """Where `nov translate compare` writes one novel's comparison bundles."""
+    return data_dir() / "_compare" / slug
+
+
 def novel_slugs() -> list[str]:
     """Every novel in the data dir, sorted."""
     root = data_dir()

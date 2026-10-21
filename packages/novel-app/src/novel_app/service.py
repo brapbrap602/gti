@@ -13,6 +13,7 @@ looked up when the Service is made.
 
 import os
 import shutil
+from datetime import datetime
 from collections.abc import Callable, Iterator, Mapping, Sequence
 from contextlib import AbstractContextManager, ExitStack, contextmanager
 from dataclasses import dataclass, replace
@@ -42,16 +43,30 @@ from novel_translate.glossary import Category, Edit, GlossaryError, Status, Term
 from novel_translate.models import ModelFactory, OutOfCredit, Price, PriceUnavailable
 from novel_translate.phase_a import Estimate, GlossaryOptions, build_glossary, estimate_glossary
 from novel_translate.phase_b import Estimate as TranslateEstimate
-from novel_translate.phase_b import StaleReport, TranslateReport, estimate_translate, prune, stale, translate
+from novel_translate.phase_b import (
+    Comparison,
+    StaleReport,
+    TranslateReport,
+    compare,
+    estimate_compare,
+    estimate_translate,
+    prune,
+    ref_of,
+    stale,
+    translate,
+)
+from novel_translate.raws import official_english, raw_chapters, version_text
 from novel_translate.setups import SetupError, TranslatorSetup, prompt_versions, register, setups
 from novel_translate.tstore import DB_NAME as TRANSLATE_DB
 from novel_translate.tstore import TranslateStore
 
 from novel_app import deploy, pages, report
+from novel_app.comparing import Reference, bundle_name, write_bundle
 from novel_app.glossary_page import GlossaryPage, TermRow, glossary_page, term_row
 from novel_app.jobs import SITE, JobPanel, JobRow, JobRunner, JobState, Outcome, Work
 from novel_app.library import (
     audio_dir,
+    compare_dir,
     data_dir,
     epub_dir,
     fetch_dir,
@@ -95,6 +110,18 @@ class TranslatePanel:
     setups: list[SetupRow]
     blocked: str | None  # why nothing can be translated now (no key)
     prompts: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class CompareEstimate:
+    setups: tuple[TranslatorSetup, ...]
+    usd: dict[str, float]  # setup url -> upper bound
+    chapters: tuple[str, ...]  # refs of the raw chapters compared
+    references: tuple[str, ...]  # of those, the ones with reference English
+
+    @property
+    def total(self) -> float:
+        return sum(self.usd.values())
 
 
 @dataclass(frozen=True)
@@ -144,6 +171,7 @@ class Service:
             "deploy-site": self._deploy_site,
             "glossary-build": self._glossary_build,
             "translate": self._translate,
+            "compare": self._compare,
         }
 
     # -- jobs ----------------------------------------------------------------
@@ -698,6 +726,87 @@ class Service:
         with self._store(novel) as store, self._tstore(novel) as ts:
             return estimate_translate(store, ts, chosen, keys, price)
 
+    # -- comparing models --------------------------------------------------------
+
+    def compare_estimate(
+        self, novel: str, models: Sequence[str], range: str, reference: int | str | None = None
+    ) -> CompareEstimate:
+        """What comparing these models on these chapters would cost at most, and which have reference English."""
+        chosen, keys = self._compare_args(novel, models, range)
+        factory = self._translator()
+        prices = {s.url: _price(factory, s.model) for s in chosen}
+        with self._store(novel) as store, self._tstore(novel) as ts:
+            usd = _setup_errors(lambda: estimate_compare(store, ts, chosen, keys, prices))
+            refs = tuple(ref_of(r.key) for r in raw_chapters(store, keys))
+            found = _references(store, keys, _reference_source(store, reference))
+        if not refs:
+            raise UserError(f"{novel} has no raw chapters in {range}")
+        return CompareEstimate(chosen, usd, refs, tuple(r for r in refs if r in found))
+
+    def _compare(
+        self,
+        novel: str,
+        models: Sequence[str],
+        range: str,
+        cap: float | str | None = None,
+        workers: int | str = 4,
+        reference: int | str | None = None,
+    ):
+        estimate = self.compare_estimate(novel, models, range, reference)
+        cap = estimate.total if cap in (None, "") else _number(float, cap, "the cap")
+        if cap < estimate.total:
+            raise UserError(
+                f"the cap ${cap:.4f} is below the estimate ${estimate.total:.4f}: a comparison cut short "
+                "gives the models different chapters"
+            )
+        if (workers := _number(int, workers, "workers")) < 1:
+            raise UserError("workers must be at least 1")
+        chosen, keys = self._compare_args(novel, models, range)
+        factory = self._translator()
+        prices = {s.url: _price(factory, s.model) for s in chosen}
+
+        def new_llm(setup, cancel):
+            return factory.llm(setup.model, cancel, data_collection=setup.data_collection, reasoning=_effort(setup))
+
+        def work(job) -> Outcome:
+            folder = compare_dir(novel) / bundle_name(range, datetime.now())
+            job.log(f"{novel}: comparing {len(chosen)} models on {range}, cap ${cap:.4f}")
+            comparison = Comparison()
+            with self._store(novel) as store, self._tstore(novel) as ts:
+                references = _references(store, keys, _reference_source(store, reference))
+                try:
+                    compare(
+                        store, ts, chosen, keys, new_llm, prices, Budget(cap), workers,
+                        lambda done, total, step: job.progress(done, total, step), comparison,
+                    )  # fmt: skip
+                except OutOfCredit as e:
+                    job.log(f"stopped: out of OpenRouter credit ({e})")
+                finally:
+                    readme = write_bundle(folder, novel, chosen, comparison, references, estimate.usd)
+                    job.log(f"  ${comparison.cost:.4f} spent; bundle: {readme}")
+            failed = [
+                f"{s.model} {a.ref}: {a.failure}" for s in chosen for a in comparison.attempts.get(s.url, {}).values() if a.failure
+            ]
+            return Outcome(tuple(failed))
+
+        return novel, work
+
+    def _compare_args(self, novel: str, models: Sequence[str], range: str) -> tuple[tuple[TranslatorSetup, ...], KeyRange]:
+        """Models as `id` or `id@effort` (reasoning low, medium or high); each is a parallel setup on prompt v1."""
+        self._require_raws(novel)
+        if not models:
+            raise UserError("name at least one model")
+        chosen = []
+        for text in models:
+            model, _, effort = text.strip().partition("@")
+            try:
+                chosen.append(TranslatorSetup(model, reasoning=effort or "off"))
+            except SetupError as e:
+                raise UserError(f"{text}: {e}") from e
+        if len({s.url for s in chosen}) < len(chosen):
+            raise UserError("a model is named twice")
+        return tuple(chosen), _parsed(parse_range, range)
+
     def stale(self, novel: str, setup: int) -> StaleReport:
         chosen = self._setup(novel, setup)
         with self._store(novel) as store, self._tstore(novel) as ts:
@@ -778,6 +887,43 @@ def _stat(path: Path):
         return path.stat()
     except FileNotFoundError:
         return None
+
+
+def _reference_source(store: NovelStore, reference: int | str | None) -> int | None:
+    """The source given as the reference (English), or None for the book's own selection."""
+    if reference in (None, ""):
+        return None
+    source = _number(int, reference, "the reference")
+    info = next((i for i in store.sources() if i.id == source), None)
+    if info is None or info.spec.lang != "en":
+        raise UserError(f"source {source} is not one of the novel's English sources")
+    return source
+
+
+def _references(store: NovelStore, keys: KeyRange, source: int | None) -> dict[str, Reference]:
+    """Reference English per raw chapter ref, matched by chapter number: the given source's text,
+    else the book's selection where it is official English."""
+    view = store.view()
+    if source is None:
+        by_number = official_english(view)
+    else:
+        by_number = {}
+        for s in view.chapters(source):
+            by_number.setdefault(s.key.number, []).append(s)
+    references = {}
+    for raw in raw_chapters(store, keys, view=view):
+        parts = sorted(by_number.get(raw.key.number, []), key=lambda s: s.key.part)
+        if parts:
+            paragraphs = tuple(p for s in parts for p in version_text(store, s.version_id).split("\n") if p)
+            references[ref_of(raw.key)] = Reference(parts[0].source_id, parts[0].title, paragraphs)
+    return references
+
+
+def _setup_errors[T](call: Callable[[], T]) -> T:
+    try:
+        return call()
+    except SetupError as e:
+        raise UserError(str(e)) from e
 
 
 def _effort(setup: TranslatorSetup) -> str | None:
