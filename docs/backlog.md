@@ -2,32 +2,11 @@
 
 Known gaps to come back to. Newest first; each item says what's wrong, why it matters and where to start.
 
-## Web raws of recent VIP chapters are poisoned (2026-10-20)
+## ixdzs8 raws: 「」 forms wait for a reference; invented sentences unguarded (2026-10-20)
 
-Pirate raw sites serve corrupted text for chapters still behind Qidian's paywall, and sync stores it as if it were fine:
-- **Decoy text.** biquge5 gives a few real paragraphs, then random sentences from other novels. It did this for every chapter of 以神通之名 that was tried (400, 600, 694–696), so the source is useless. biquge345 did the same on 苟在两界修仙.
-- **Antonym and name swaps.** ixdzs8's newest chapters (691–693) read clean at first, then drift: 好→坏, 快→慢, 不→是, 没有→有没, 后→前, and other characters' names put in place of the protagonist's. Its older chapters (300–685) are clean.
-
-A model translates both faithfully, so the damage only shows up as nonsense English. Wanted: a check at sync time that flags such chapters, as a hard warning in `nov check` and in the sync report. Markers that separated clean from poisoned on ixdzs8 were 有没 (0–2 per clean chapter, 14–21 per poisoned one), 是止, 最坏 and 然前. Decoy text needs another signal: names the novel never uses, or the chapter's own names dropping out after a few paragraphs. Start in `novel_sources/sync.py` after `store_chapters`, or in `novel_core/check.py`.
-
-## ixdzs8 raws carry formatting noise (2026-10-20)
-
-On 苟在两界修仙, ixdzs8's text needs normalising before translation:
-- every chapter ends with a lone `>` paragraph, and a closing `」` sometimes stands as a paragraph of its own;
-- "……" comes through as "————";
-- a stray `」` follows item names whose opening `「` is missing (大破障丹」, 琼华枝」).
-
-Each of these is a paragraph or mark the model has to carry through, or one the validator may count as missing. Start in the zh clean rules (`novel_sources/clean.py`): drop paragraphs with no CJK or letters, and map "————" to "……" for zh.
-
-The comparison on chapters 101–103 showed the cost:
-- most of DeepSeek's and Qwen's failures on short chapters, and Luna's one id failure, were likely these paragraphs;
-- one-at-a-time Luna **invented** sentences for two of them: 「」 became "She fell silent." and `>` became "She eyed him knowingly."
-
-The validator passed both. A soft check would catch it: the source paragraph has no CJK or letters, but the translation is a sentence (`novel_translate` validation).
-
-## Raw sources number the same chapter differently (2026-10-20)
-
-For 以神通之名, ixdzs8's printed numbers run 2 ahead of biquge5's and Qidian's at chapter 300, and 3 ahead near 690. Keys come from printed numbers, so two raw sources put different chapters under one key, and priority silently picks between different texts. `nov align` can shift a source, but only by a fixed offset. The same need as Beyond the Timescape's: match chapters across sources by title or content, not by printed number.
+Raw cleaning (`novel_sources/zh_tables.py`) now drops ixdzs8's lone `>`, `」`, `。` and digit lines and maps "————" to "……", and a translator note covers the stray `」` after item names. Two things are left:
+- **`「」`, `「————”`, `「...—..」` and `「7`-style openings** are left as they are. Which form they stand for waits for a clean reference to diff with (`nov inspect --against`, plan gate G2: Qidian's free chapters, not yet fetched).
+- **Invented sentences.** In the comparison on 苟在两界修仙 chapters 101–103, one-at-a-time Luna turned 「」 into "She fell silent." and `>` into "She eyed him knowingly.", and the validator passed both. The `>` lines are gone now; a `「」` line can still do it. A soft check would catch it: the source paragraph has no CJK or letters, but the translation is a sentence (`novel_translate` validation). The raw cleaning plan left it out.
 
 ## Qwen's provider rate-limits parallel requests (2026-10-20)
 
