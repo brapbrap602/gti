@@ -461,7 +461,7 @@ def test_a_group_setup_is_its_own_setup_and_not_for_production_yet(novel, ts):
 
 # -- held and unchecked raws, translator notes ------------------------------------------
 
-UNCHECKED = "unchecked: run nov reclean novel"  # the fixture's novel folder is "novel"
+UNCHECKED = "unchecked (not checked with current rules)"
 
 
 def grouped_compare(novel, ts, fake, keys, group=3):

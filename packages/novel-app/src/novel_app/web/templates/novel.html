@@ -166,7 +166,7 @@
     {% if items %}
     <details>
         <summary>{{ title }}: {{ items | length }}</summary>
-        <ul>{% for n in items[:200] %}<li>source {{ n.source_id }} <code>{{ n.item_ref }}</code> {{ n.title }}{% if n.detail %} — {{ n.detail }}{% endif %}</li>{% endfor %}</ul>
+        <ul>{% for n in items[:200] %}<li>source {{ n.source_id }} <code>{{ n.item_ref }}</code> {{ n.title }}{% if n.findings %} — {{ findings_text(n.findings) }}{% elif n.detail %} — {{ n.detail }}{% endif %}</li>{% endfor %}</ul>
         {% if items | length > 200 %}<p class="muted">… and {{ items | length - 200 }} more (see <code>nov check {{ r.slug }}</code>)</p>{% endif %}
     </details>
     {% endif %}
@@ -179,7 +179,7 @@
         <ul>{% for n in novel.check.numbering %}<li>source {{ n.source_id }} printed {{ n.printed_start }}–{{ n.printed_end }} are chapters {{ n.printed_start + n.offset }}–{{ n.printed_end + n.offset }} (offset {{ "%+d" | format(n.offset) }}, {{ n.matched }} titles match): <code>{{ align_range_command(r.slug, n) }}</code></li>{% endfor %}</ul>
     </details>
     {% endif %}
-    {% if novel.check.unchecked %}<p>Not checked with current rules: {{ novel.check.unchecked }} — run <code>nov reclean {{ r.slug }}</code></p>{% endif %}
+    {% if novel.check.unchecked %}<p>Not checked with current rules: {{ novel.check.unchecked }} — run <code>{{ reclean_command(r.slug) }}</code></p>{% endif %}
     {% for title, rows in (("Legacy moved", k.legacy_moved), ("Legacy unselected", k.legacy_unselected)) %}
     {% if rows %}<details><summary>{{ title }}: {{ rows | length }}</summary><ul>{% for o in rows[:200] %}<li>{{ o.kind }} {{ o.built_key.label }}: <code>{{ o.item_ref }}</code></li>{% endfor %}</ul></details>{% endif %}
     {% endfor %}

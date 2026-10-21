@@ -83,3 +83,11 @@ def test_a_comparison_with_nothing_checked_is_refused_with_the_reclean_hint(open
     assert refused.exit_code == 2, refused.output
     assert "not checked with current rules: run nov reclean raw-novel" in refused.output
     assert openrouter.calls == []
+
+
+def test_a_comparison_estimate_names_the_unchecked_chapters_it_leaves_out(openrouter, old_rules):
+    old_rules([2])
+    refused = run("translate", "compare", "raw-novel", "1-3", "--model", "vendor/cheap", input="n\n")
+    assert refused.exit_code == 1, refused.output
+    assert "  1 not checked with current rules: run nov reclean raw-novel" in refused.output
+    assert openrouter.calls == []

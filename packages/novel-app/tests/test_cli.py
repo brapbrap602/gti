@@ -187,6 +187,19 @@ def test_an_older_store_is_backed_up_before_its_first_open(data_dir):
     assert not backup.exists()  # a current store is not copied again
 
 
+def test_help_backs_up_nothing(data_dir):
+    NovelStore.create(data_dir / "a-novel", NovelMeta("A")).close()
+    db = data_dir / "a-novel" / "novel.sqlite"
+    with sqlite3.connect(db) as conn:
+        conn.execute("PRAGMA user_version=3")
+    conn.close()
+
+    for args in (["--help"], ["check", "--help"], ["translate", "setup", "add", "--help"], ["translate"]):
+        run(*args)
+    assert not [d for d in data_dir.iterdir() if d.name.startswith("_backup")]
+    assert user_version(db) == 3
+
+
 def user_version(db) -> int:
     with sqlite3.connect(db) as conn:
         (version,) = conn.execute("PRAGMA user_version").fetchone()

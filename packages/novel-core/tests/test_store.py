@@ -876,7 +876,7 @@ def test_release_not_new_check(book):
     book.store.release(a, [a_refs[0]])
     book.store.put_version(a, a_refs[0], zh("a 1", [POISON, NAMES], "rev2"))  # a reclean finds a new kind
     assert book.store.view().held(a, a_refs[0]) == (NAMES,)
-    assert [(n.item_ref, n.detail) for n in book.store.check().held] == [(a_refs[0], "decoy-names: 陆昭 2/0")]
+    assert [(n.item_ref, n.findings) for n in book.store.check().held] == [(a_refs[0], (NAMES,))]
 
 
 def test_raw_chapters_fall_back_past_held_numbers(book):

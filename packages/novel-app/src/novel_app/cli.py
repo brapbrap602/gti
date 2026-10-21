@@ -48,13 +48,14 @@ def _start() -> None:
     for stream in (sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
             stream.reconfigure(encoding="utf-8", errors="replace")
-    # Every command may open a store, which migrates it; keep the old schema's file first.
+
+
+def _service(workers: int = 2) -> Service:
+    """The Service a command runs on. Stores open only through it, and opening one migrates it:
+    the old schema's file is kept first (here, so `--help` and argument errors copy nothing)."""
     if made := back_up_old_stores(date.today()):
         typer.echo(f"backed up {len(made)} novel database(s) before upgrading them: {made[0].parent.parent}", err=True)
-
-
-def _service() -> Service:
-    return Service(JobRunner(JobBoard(app_db())))
+    return Service(JobRunner(JobBoard(app_db()), workers=workers))
 
 
 def _job(kind: str, **args) -> Outcome:
@@ -174,7 +175,7 @@ def check(novel: Novel) -> None:
     """Report gaps, duplicates, unmapped chapters, held and unchecked raws, and other problems."""
     selected, r = _calling(lambda: _service().check(novel))
     typer.echo(f"{novel}: {selected} chapters selected")
-    _echo(report.check_lines(novel, r))
+    _echo(report.check_lines(r, novel))
 
 
 @app.command()
@@ -201,7 +202,7 @@ def inspect(
 ) -> None:
     """Show what the zh rules make of raw chapters: findings, cleaner hits, suspicious lines; changes nothing."""
     _parsed(parse_range, numbers)
-    _echo(report.inspect_lines(novel, _calling(lambda: _service().inspect(novel, numbers, source, against))))
+    _echo(report.inspect_lines(_calling(lambda: _service().inspect(novel, numbers, source, against)), novel))
 
 
 @app.command()
@@ -568,7 +569,7 @@ def translate_compare(
     """Translate the same chapters with several models, store nothing, and write a bundle to judge them by."""
     groups = list(per_call or [1])
     estimate = _calling(lambda: _service().compare_estimate(novel, model, numbers, reference, reference_shift, groups))
-    _echo(report.compare_estimate_lines(estimate))
+    _echo(report.compare_estimate_lines(estimate, novel))
     if not yes and not typer.confirm(f"start, with a cap of ${cap if cap is not None else estimate.total:.4f}?"):
         raise typer.Exit(1)
     _job(
@@ -614,7 +615,7 @@ def serve(
 
     from novel_app.web.app import create_app
 
-    service = Service(JobRunner(JobBoard(app_db()), workers=workers))
+    service = _service(workers)
     typer.echo(f"serving the library on http://127.0.0.1:{port} (Ctrl-C stops; running jobs end as cancelled)")
     uvicorn.run(create_app(service), host="127.0.0.1", port=port, log_level="warning")
 

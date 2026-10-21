@@ -13,7 +13,7 @@ from itertools import groupby
 
 from novel_core.alignment import Derivation, Printed, derive_keys
 from novel_core.build import BuildPlan, OutputKind, OutputRow, plan_build
-from novel_core.check import CheckReport, Duplicate, ItemNote, NumberingRun
+from novel_core.check import CheckReport, Duplicate, HeldNote, ItemNote, NumberingRun
 from novel_core.finding import Finding
 from novel_core.keys import ChapterKey, ItemRef, KeyRange, title_name, title_number
 from novel_core.model import ItemStatus, Kind, NovelMeta, SourceInfo
@@ -183,6 +183,10 @@ class NovelView:
         the user has not released for that version's raw. Empty when it is not held."""
         return self._held.get((source, ref), ())
 
+    def held_items(self, source: SourceId, refs: Iterable[ItemRef]) -> dict[ItemRef, tuple[Finding, ...]]:
+        """Which of these items of one source are held, each with its findings (see held)."""
+        return {ref: found for ref in refs if (found := self.held(source, ref))}
+
     def raw_chapters(self, keys: KeyRange | None = None) -> tuple[Selected, ...]:
         """The raw text translation works from, in key order.
 
@@ -310,9 +314,11 @@ class NovelView:
             unmapped=notes(lambda i: (i.source_id, i.ref) in unmapped),
             vanished=notes(lambda i: i.vanished),
             failed=notes(lambda i: i.status is ItemStatus.FAILED, lambda i: i.reason or ""),
-            held=notes(
-                lambda i: not i.vanished and (i.source_id, i.ref) in self._held,
-                lambda i: "; ".join(f"{f.check}: {f.detail}" for f in self._held[i.source_id, i.ref]),
+            held=tuple(
+                HeldNote(i.source_id, i.ref, i.title, found)
+                for sid in sorted(self._items)
+                for i in self._items[sid]
+                if not i.vanished and (found := self._held.get((sid, i.ref)))
             ),
             title_mismatches=notes(
                 lambda i: not i.vanished
