@@ -54,9 +54,11 @@ class Hit:
 @dataclass(frozen=True)
 class Markers:
     """Poison: words a scrambling site swaps in. A chapter is poisoned when, per 1000 CJK chars,
-    at least `density` hits are found, from at least `distinct` markers and `hits` in all."""
+    at least `density` hits are found, from at least `distinct` markers and `hits` in all.
+    A marker inside one of the `ordinary` words (有没 in 有没有) is not a hit."""
 
     words: tuple[str, ...]
+    ordinary: tuple[str, ...] = ()
     density: float = 2.0
     distinct: int = 3
     hits: int = 6
@@ -158,7 +160,10 @@ class ZhRules:
         if self.markers is None:
             return None
         text = "\n".join(_paragraphs(blocks))
-        ranked = sorted(_found(self.markers.words, text), key=lambda kv: -kv[1])  # stable: ties keep the markers' order
+        scanned = text
+        for word in self.markers.ordinary:
+            scanned = scanned.replace(word, "\0")
+        ranked = sorted(_found(self.markers.words, scanned), key=lambda kv: -kv[1])  # stable: ties keep the markers' order
         return PoisonCount(tuple(ranked), len(_CJK.findall(text)))
 
     def name_count(self, blocks: Sequence[Block]) -> NameCount | None:
