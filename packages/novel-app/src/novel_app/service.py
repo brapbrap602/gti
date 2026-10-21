@@ -729,10 +729,16 @@ class Service:
     # -- comparing models --------------------------------------------------------
 
     def compare_estimate(
-        self, novel: str, models: Sequence[str], range: str, reference: int | str | None = None, reference_shift: int | str = 0
+        self,
+        novel: str,
+        models: Sequence[str],
+        range: str,
+        reference: int | str | None = None,
+        reference_shift: int | str = 0,
+        per_call: Sequence[int | str] = (1,),
     ) -> CompareEstimate:
         """What comparing these models on these chapters would cost at most, and which have reference English."""
-        chosen, keys = self._compare_args(novel, models, range)
+        chosen, keys = self._compare_args(novel, models, range, per_call)
         factory = self._translator()
         prices = {s.url: _price(factory, s.model) for s in chosen}
         with self._store(novel) as store, self._tstore(novel) as ts:
@@ -752,8 +758,9 @@ class Service:
         workers: int | str = 4,
         reference: int | str | None = None,
         reference_shift: int | str = 0,
+        per_call: Sequence[int | str] = (1,),
     ):
-        estimate = self.compare_estimate(novel, models, range, reference, reference_shift)
+        estimate = self.compare_estimate(novel, models, range, reference, reference_shift, per_call)
         cap = estimate.total if cap in (None, "") else _number(float, cap, "the cap")
         if cap < estimate.total:
             raise UserError(
@@ -762,7 +769,7 @@ class Service:
             )
         if (workers := _number(int, workers, "workers")) < 1:
             raise UserError("workers must be at least 1")
-        chosen, keys = self._compare_args(novel, models, range)
+        chosen, keys = self._compare_args(novel, models, range, per_call)
         factory = self._translator()
         prices = {s.url: _price(factory, s.model) for s in chosen}
 
@@ -771,7 +778,7 @@ class Service:
 
         def work(job) -> Outcome:
             folder = compare_dir(novel) / bundle_name(range, datetime.now())
-            job.log(f"{novel}: comparing {len(chosen)} models on {range}, cap ${cap:.4f}")
+            job.log(f"{novel}: comparing {len(chosen)} setups on {range}, cap ${cap:.4f}")
             comparison = Comparison()
             with self._store(novel) as store, self._tstore(novel) as ts:
                 references = _references(store, keys, _reference_source(store, reference), int(reference_shift))
@@ -792,20 +799,25 @@ class Service:
 
         return novel, work
 
-    def _compare_args(self, novel: str, models: Sequence[str], range: str) -> tuple[tuple[TranslatorSetup, ...], KeyRange]:
-        """Models as `id` or `id@effort` (reasoning low, medium or high); each is a parallel setup on prompt v1."""
+    def _compare_args(
+        self, novel: str, models: Sequence[str], range: str, per_call: Sequence[int | str] = (1,)
+    ) -> tuple[tuple[TranslatorSetup, ...], KeyRange]:
+        """Models as `id` or `id@effort` (reasoning low, medium or high), each sent `per_call` chapters
+        per request for every value given: parallel setups on prompt v1."""
         self._require_raws(novel)
         if not models:
             raise UserError("name at least one model")
+        groups = [_number(int, n, "chapters per request") for n in per_call] or [1]
         chosen = []
         for text in models:
             model, _, effort = text.strip().partition("@")
-            try:
-                chosen.append(TranslatorSetup(model, reasoning=effort or "off"))
-            except SetupError as e:
-                raise UserError(f"{text}: {e}") from e
+            for group in groups:
+                try:
+                    chosen.append(TranslatorSetup(model, reasoning=effort or "off", group=group))
+                except SetupError as e:
+                    raise UserError(f"{text}: {e}") from e
         if len({s.url for s in chosen}) < len(chosen):
-            raise UserError("a model is named twice")
+            raise UserError("a model or a number of chapters per request is named twice")
         return tuple(chosen), _parsed(parse_range, range)
 
     def stale(self, novel: str, setup: int) -> StaleReport:

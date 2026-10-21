@@ -381,3 +381,58 @@ def test_a_comparison_reports_blocked_chapters_and_refuses_sequential_setups(nov
     assert set(fake.prompts) == {1}
     with pytest.raises(SetupError, match="parallel"):
         compare_with(novel, ts, {}, KeyRange(1, 1), setups=(TranslatorSetup("vendor/x", context="sequential"),))
+
+
+class GroupTranslator:
+    """A fake model for group requests: translates every '### Chapter N' section; `drop_first` leaves
+    the last chapter out of its first answer."""
+
+    def __init__(self, drop_first: bool = False):
+        self.prompts: list[str] = []
+        self.instructions: list[str] = []
+        self.drop = drop_first
+
+    def llm(self, cancel: threading.Event) -> LLM:
+        return LLM(FunctionModel(self.answer), lambda: PRICE, cancel)
+
+    def answer(self, messages, info) -> ModelResponse:
+        prompt = next(p.content for p in messages[0].parts if isinstance(p, UserPromptPart))
+        self.prompts.append(prompt)
+        self.instructions.append(info.instructions)
+        chapters = []
+        for number, body in re.findall(r"^### Chapter (\d+) \(title: [^)]*\)\n((?:\[\d+\] .+\n?)+)", prompt, re.M):
+            source = re.findall(r"^\[(\d+)\] (.+)$", body, re.M)
+            paragraphs = [{"id": int(i), "text": ("Han Li " if "韩立" in t else "") + english(len(t), f"{number}-{i}")} for i, t in source]
+            chapters.append({"number": int(number), "title": f"The Title of {number}", "paragraphs": paragraphs, "new_terms": []})
+        if self.drop:
+            self.drop, chapters = False, chapters[:-1]
+        return ModelResponse(parts=[ToolCallPart(info.output_tools[0].name, {"chapters": chapters})])
+
+
+def test_a_group_setup_sends_several_chapters_in_one_request_and_splits_the_answer(novel, ts):
+    grouped = TranslatorSetup("vendor/cheap", group=3)
+    fake = GroupTranslator(drop_first=True)
+    result = compare(
+        novel.store, ts, (grouped,), KeyRange(2, 4), lambda setup, cancel: fake.llm(cancel), {grouped.url: PRICE},
+        Budget(100.0), 2, lambda *_: None,
+    )  # fmt: skip
+
+    (prompt,) = set(fake.prompts)  # one request, sent again once after the missing chapter
+    assert len(fake.prompts) == 2 and "several consecutive chapters" in fake.instructions[0]
+    assert prompt.count("## End of the previous chapter") == 1 and prompt.index("## End of the previous") < prompt.index("### Chapter 2")
+    assert [n for n in re.findall(r"^### Chapter (\d+)", prompt, re.M)] == ["2", "3", "4"]
+    attempts = result.attempts[grouped.url]
+    assert [a.title for a in attempts.values()] == ["The Title of 2", "The Title of 3", "The Title of 4"]
+    assert all(a.shared == 3 and len(a.paragraphs) == 4 for a in attempts.values())
+    assert sum(a.charged.cost for a in attempts.values()) == pytest.approx(ts.spend(COMPARE_SPEND + grouped.url).cost)
+
+
+def test_a_group_setup_is_its_own_setup_and_not_for_production_yet(novel, ts):
+    assert SETUP.url == "openrouter:vendor/cheap?prompt=v1&context=parallel&reasoning=off&dc=allow"
+    grouped = TranslatorSetup("vendor/cheap", group=5)
+    assert grouped.url == SETUP.url + "&group=5" and "5 chapters per request" in grouped.label
+    assert TranslatorSetup.from_spec(grouped.spec()) == grouped and TranslatorSetup.from_spec(SETUP.spec()) == SETUP
+    with pytest.raises(SetupError, match="comparisons only"):
+        run(novel, ts, Translator(), KeyRange(1, 2), setup=grouped)
+    with pytest.raises(SetupError, match="one chapter per request"):
+        TranslatorSetup("vendor/cheap", context="sequential", group=2)

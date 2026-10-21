@@ -37,7 +37,7 @@ from novel_core import (
 )
 
 from novel_translate.budget import Budget
-from novel_translate.chapter import Translated
+from novel_translate.chapter import Translated, TranslatedGroup
 from novel_translate.matching import Match, Matcher
 from novel_translate.models import LLM, Attempted, CallFailed, Charged, CutOff, Price
 from novel_translate.pool import run_paid
@@ -53,6 +53,11 @@ EN_TOKENS_PER_CHAR = 0.35
 OUTPUT_PER_SOURCE_TOKEN = 1.6
 MIN_OUTPUT_TOKENS = 512
 CUTOFF_GROWTH = 1.5
+GROUP_ADDENDUM = """
+
+This request holds several consecutive chapters. Translate each of them in full, in order, as its own entry
+in `chapters`, with the chapter number the request gives it. Paragraph ids start again at 1 in each chapter.
+Keep names and terms the same across the chapters."""
 VALIDATOR_RETRY = 2  # a first attempt may cost twice: the in-call retry after a failed check
 
 type Keys = KeyRange | Literal["stale"]
@@ -101,6 +106,7 @@ class StaleReport:
 def estimate_translate(
     novel: NovelStore, ts: TranslateStore, setup: TranslatorSetup, keys: Keys, price: Price
 ) -> Estimate:
+    _one_per_request(setup)
     run = _Run(novel, ts, setup)
     send = blocked = current = 0
     usd = 0.0
@@ -143,6 +149,7 @@ def translate(
     holding it still has the spend after a cancel. Raises OutOfCredit, or whatever `progress`
     raises, once the calls in flight have ended and their results are kept."""
     report = report if report is not None else TranslateReport()
+    _one_per_request(setup)
     run = _Run(novel, ts, setup)
     source = register(novel, setup)
     run.source = source
@@ -220,7 +227,8 @@ class Attempt:
     failure: str | None = None  # "blocked: ...", the call's failure reason, or "not sent" (budget)
     soft_flags: tuple[str, ...] = ()
     charged: Charged = Charged()
-    seconds: float = 0.0
+    seconds: float = 0.0  # of its request
+    shared: int = 1  # chapters in its request; `charged` is its even share of the request's cost
 
 
 @dataclass
@@ -231,6 +239,20 @@ class Comparison:
     @property
     def cost(self) -> float:
         return sum(a.charged.cost for by_ref in self.attempts.values() for a in by_ref.values())
+
+
+def _requests(run: "_Run", raws: Sequence[RawText], group: int) -> "list[_Request]":
+    if group == 1:
+        return [run.request(raw) for raw in raws]
+    return [run.group_request(raws[i : i + group]) for i in range(0, len(raws), group)]
+
+
+def _share(charged: Charged, n: int) -> Charged:
+    if n == 1:
+        return charged
+    return Charged(
+        charged.cost / n, charged.input_tokens // n, charged.output_tokens // n, charged.generation_ids, charged.requests
+    )
 
 
 @dataclass(frozen=True)
@@ -250,9 +272,8 @@ def estimate_compare(
     estimates = {}
     for setup in setups:
         run = _comparing(novel, ts, setup)
-        estimates[setup.url] = sum(
-            run.reservation(run.request(raw), prices[setup.url]) for raw in run.selected(keys) if not run.match(raw).blocking
-        )
+        sendable = [raw for raw in run.selected(keys) if not run.match(raw).blocking]
+        estimates[setup.url] = sum(run.reservation(r, prices[setup.url]) for r in _requests(run, sendable, setup.group))
     return estimates
 
 
@@ -282,7 +303,7 @@ def compare(
         for raw in selected:
             if run.match(raw).blocking:
                 attempts[ref_of(raw.key)] = Attempt(ref_of(raw.key), failure=run.blocked_reason(raw))
-        sendable = [run.request(raw) for raw in selected if not run.match(raw).blocking]
+        sendable = _requests(run, [raw for raw in selected if not run.match(raw).blocking], setup.group)
 
         def call(llm: LLM, r: _Request, run=run, price=price) -> _Timed:
             started = time.monotonic()
@@ -291,15 +312,21 @@ def compare(
 
         def done(r: _Request, outcome: _Timed | CallFailed, run=run, attempts=attempts, url=setup.url) -> None:
             ts.record_spend(COMPARE_SPEND + url, r.ref, outcome.charged)
+            raws = r.group or (r.raw,)
+            share = _share(outcome.charged, len(raws))  # a group's call is split evenly over its chapters
             if isinstance(outcome, CallFailed):
-                attempts[r.ref] = Attempt(r.ref, failure=outcome.reason, charged=outcome.charged)
+                for raw in raws:
+                    attempts[ref_of(raw.key)] = Attempt(ref_of(raw.key), failure=outcome.reason, charged=share, shared=len(raws))
                 return
             out = outcome.attempted.out
-            findings = check(r.raw.paragraphs, out, r.match, run.norms)
-            by_id = sorted(out.paragraphs, key=lambda p: p.id)
-            attempts[r.ref] = Attempt(
-                r.ref, out.title, tuple(p.text.strip() for p in by_id), None, findings.soft, outcome.charged, outcome.seconds
-            )
+            chapters = out.chapters if r.group else [out]
+            for raw, chapter in zip(raws, chapters, strict=True):
+                findings = check(raw.paragraphs, chapter, run.match(raw), run.norms)
+                by_id = sorted(chapter.paragraphs, key=lambda p: p.id)
+                attempts[ref_of(raw.key)] = Attempt(
+                    ref_of(raw.key), chapter.title, tuple(p.text.strip() for p in by_id), None, findings.soft,
+                    share, outcome.seconds, len(raws),
+                )  # fmt: skip
 
         def tick(calls: int, total=len(sendable), model=setup.model) -> None:
             progress(calls, max(calls, total), model)
@@ -309,8 +336,14 @@ def compare(
             new_llm=lambda cancel, setup=setup: new_llm(setup, cancel), budget=budget, workers=workers, progress=tick,
         )  # fmt: skip
         for r in sendable:
-            attempts.setdefault(r.ref, Attempt(r.ref, failure="not sent"))
+            for raw in r.group or (r.raw,):
+                attempts.setdefault(ref_of(raw.key), Attempt(ref_of(raw.key), failure="not sent"))
     return comparison
+
+
+def _one_per_request(setup: TranslatorSetup) -> None:
+    if setup.group > 1:
+        raise SetupError("setups with several chapters per request are for comparisons only, for now")
 
 
 def _comparing(novel: NovelStore, ts: TranslateStore, setup: TranslatorSetup) -> "_Run":
@@ -324,15 +357,20 @@ def _comparing(novel: NovelStore, ts: TranslateStore, setup: TranslatorSetup) ->
 
 @dataclass(frozen=True)
 class _Request:
-    raw: RawText
+    raw: RawText  # a group's first chapter
     match: Match
     input_key: str
     prompt: str
     max_tokens: int
-    hard_checks: Callable[[Translated], tuple[str, ...]]
+    hard_checks: Callable[[Translated], tuple[str, ...]] | Callable[[TranslatedGroup], tuple[str, ...]]
+    group: tuple[RawText, ...] = ()  # every chapter of a group request; empty for one chapter
+    output_type: type = Translated
+    addendum: str = ""  # added to the setup's instructions
 
     @property
     def ref(self) -> str:
+        if self.group:
+            return f"{ref_of(self.group[0].key)}-{ref_of(self.group[-1].key)}"
         return ref_of(self.raw.key)
 
 
@@ -404,8 +442,44 @@ class _Run:
     # -- requests -----------------------------------------------------------
 
     def request(self, raw: RawText) -> _Request:
-        i = self.position[raw.key]
         match = self.match(raw)
+        sections = self._context(raw, match.prompt_lines)
+        sections.append(f"## Chapter to translate (title: {raw.title})\n{_numbered(raw)}")
+        norms, paragraphs = self.norms, raw.paragraphs
+        return _Request(
+            raw, match, self.input_key(raw), "\n\n".join(sections), self._allowance([raw]),
+            lambda out: check(paragraphs, out, match, norms).hard,
+        )  # fmt: skip
+
+    def group_request(self, raws: Sequence[RawText]) -> _Request:
+        """Consecutive chapters in one request: the context once, before the first, then each chapter.
+        The answer must hold each chapter once, by number; each is checked as `request` checks one."""
+        if len({r.key.number for r in raws}) < len(raws):
+            raise SetupError("a group of chapters cannot hold two parts of one chapter number")
+        lines = list(dict.fromkeys(line for r in raws for line in self.match(r).prompt_lines))
+        sections = self._context(raws[0], lines)
+        sections.append("## Chapters to translate\n\n" + "\n\n".join(
+            f"### Chapter {r.key.number} (title: {r.title})\n{_numbered(r)}" for r in raws
+        ))  # fmt: skip
+        checks = [(r.key.number, r.paragraphs, self.match(r)) for r in raws]
+        norms = self.norms
+
+        def hard_checks(out: TranslatedGroup) -> tuple[str, ...]:
+            if [c.number for c in out.chapters] != [n for n, _, _ in checks]:
+                return ("chapters",)
+            return tuple(
+                f"{problem}@{n}" for (n, paragraphs, match), c in zip(checks, out.chapters)
+                for problem in check(paragraphs, c, match, norms).hard
+            )  # fmt: skip
+
+        return _Request(
+            raws[0], self.match(raws[0]), "", "\n\n".join(sections), self._allowance(raws), hard_checks,
+            tuple(raws), TranslatedGroup, GROUP_ADDENDUM,
+        )  # fmt: skip
+
+    def _context(self, first: RawText, glossary_lines: Sequence[str]) -> list[str]:
+        """The sections before the chapter(s): story so far, the previous chapter's end, the glossary."""
+        i = self.position[first.key]
         sections = []
         story = [
             f"Chapter {r.key.label}: {s.text}"
@@ -420,19 +494,16 @@ class _Run:
             if self.setup.context == "sequential" and previous.key in self.translated_version:
                 english = version_text(self.novel, self.translated_version[previous.key]).split("\n")
                 sections.append("## End of the previous chapter in English (context only)\n" + "\n".join(english[-TAIL_PARAGRAPHS:]))
-        if match.prompt_lines:
-            sections.append("## Glossary\n" + "\n".join(match.prompt_lines))
-        body = "\n".join(f"[{n}] {p}" for n, p in enumerate(raw.paragraphs, 1))
-        sections.append(f"## Chapter to translate (title: {raw.title})\n{body}")
-        source_tokens = sum(len(p) for p in raw.paragraphs) * ZH_TOKENS_PER_CHAR
-        allowance = max(MIN_OUTPUT_TOKENS, int(source_tokens * OUTPUT_PER_SOURCE_TOKEN))
-        if self.setup.reasoning != "off":
-            allowance *= 2
-        norms, paragraphs = self.norms, raw.paragraphs
-        return _Request(
-            raw, match, self.input_key(raw), "\n\n".join(sections), allowance,
-            lambda out: check(paragraphs, out, match, norms).hard,
-        )  # fmt: skip
+        if glossary_lines:
+            sections.append("## Glossary\n" + "\n".join(glossary_lines))
+        return sections
+
+    def _allowance(self, raws: Sequence[RawText]) -> int:
+        allowance = 0
+        for raw in raws:
+            source_tokens = sum(len(p) for p in raw.paragraphs) * ZH_TOKENS_PER_CHAR
+            allowance += max(MIN_OUTPUT_TOKENS, int(source_tokens * OUTPUT_PER_SOURCE_TOKEN))
+        return allowance * 2 if self.setup.reasoning != "off" else allowance
 
     def reservation(self, r: _Request, price: Price, retry: bool = True) -> float:
         """An upper bound on a request's cost; `retry` covers the call's one retry after a failed check."""
@@ -444,7 +515,7 @@ class _Run:
     def attempt(self, llm: LLM, r: _Request, price: Price, budget: Budget) -> Attempted:
         """One chapter on a worker thread: the call, and after a cut-off once more with more room."""
         try:
-            return llm.translate(self.instructions, r.prompt, r.hard_checks, r.max_tokens)
+            return llm.translate(self.instructions + r.addendum, r.prompt, r.hard_checks, r.max_tokens, output_type=r.output_type)
         except CutOff as cut:
             # Once more with room to finish, after its own hold on the budget (the pool's hold
             # settles the chapter's whole cost, so this one is released with nothing spent).
@@ -453,7 +524,10 @@ class _Run:
             if hold is None:
                 raise CallFailed("budget", cut.charged) from cut
             try:
-                second = llm.translate(self.instructions, r.prompt, r.hard_checks, roomier.max_tokens, retry_invalid=False)
+                second = llm.translate(
+                    self.instructions + r.addendum, r.prompt, r.hard_checks, roomier.max_tokens,
+                    retry_invalid=False, output_type=r.output_type,
+                )  # fmt: skip
             except CallFailed as e:
                 raise CallFailed(e.reason, cut.charged + e.charged) from e
             finally:
@@ -518,6 +592,10 @@ class _Run:
     def _summary(self, raw: RawText) -> StoredSummary | None:
         s = self.summaries.get((raw.key.number, raw.key.part))
         return s if s is not None and s.raw_hash == raw.content_hash else None
+
+
+def _numbered(raw: RawText) -> str:
+    return "\n".join(f"[{n}] {p}" for n, p in enumerate(raw.paragraphs, 1))
 
 
 def _item(ref: str, position: int, title: str | None) -> SourceItem:

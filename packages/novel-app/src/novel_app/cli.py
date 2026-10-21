@@ -490,18 +490,20 @@ def translate_compare(
     model: Annotated[list[str], typer.Option(help="an OpenRouter model id, or id@low|medium|high for reasoning (repeat)")],
     reference: Annotated[int | None, typer.Option(help="English source to judge against; default the book's official EN")] = None,
     reference_shift: Annotated[int, typer.Option(help="the reference for raw chapter n is chapter n + this")] = 0,
+    per_call: Annotated[list[int] | None, typer.Option(help="chapters per request (repeat to compare: every model runs each)")] = None,
     cap: Annotated[float | None, typer.Option(help="US dollars; default the estimate, and never below it")] = None,
     workers: Annotated[int, typer.Option(help="chapters at once, per model")] = 4,
     yes: Annotated[bool, typer.Option("--yes", help="start without asking")] = False,
 ) -> None:
     """Translate the same chapters with several models, store nothing, and write a bundle to judge them by."""
-    estimate = _calling(lambda: _service().compare_estimate(novel, model, numbers, reference, reference_shift))
+    groups = list(per_call or [1])
+    estimate = _calling(lambda: _service().compare_estimate(novel, model, numbers, reference, reference_shift, groups))
     _echo(report.compare_estimate_lines(estimate))
     if not yes and not typer.confirm(f"start, with a cap of ${cap if cap is not None else estimate.total:.4f}?"):
         raise typer.Exit(1)
     _job(
         "compare", novel=novel, models=list(model), range=numbers, cap=cap, workers=workers,
-        reference=reference, reference_shift=reference_shift,
+        reference=reference, reference_shift=reference_shift, per_call=groups,
     )  # fmt: skip
 
 
