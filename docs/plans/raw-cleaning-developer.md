@@ -1,6 +1,6 @@
 # Raw cleaning and checks: developer plan
 
-Status: approved by the user 2026-10-21 (r3). Slices 1–9 built (slice 9 without G2); slice 10 and rollout step 2 left.
+Status: approved by the user 2026-10-21 (r3). Slices 1–10 built (slice 9 without G2); rollout step 2 left.
 - The user approved the baseline (§1) on 2026-10-20.
 - Two independent reviews and one focused follow-up review (of r2's changes) are folded in (§9).
 - r3 adds only that review's remedies.
@@ -538,7 +538,7 @@ The translate estimate (`_estimate.html`) shows the unchecked count beside block
 - [ ] G1 and G4 passed and recorded. G2 passed, or its fallback recorded.
 - [ ] Rollout step 2 (`nov reclean --all` on the real library) run with the user's OK, and its counts reported.
 - [ ] Walkthroughs reported to the user.
-- [ ] The skill and backlog are updated.
+- [x] The skill and backlog are updated.
 - [ ] No paid run was made.
 
 ## 9. Review log
