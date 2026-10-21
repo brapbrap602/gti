@@ -44,6 +44,7 @@ class FakeFetcher:
         return [NOVEL_PAGE]
 
     async def fetch_chapter_content(self, book_id, chapter_id):
+        self.calls.append(f"chapter {chapter_id}")
         if chapter_id == self.fail:
             raise TimeoutError("read timed out")
         return [chapter_page(self.chapters.get(chapter_id, ""))]
@@ -83,7 +84,28 @@ def test_chapter_text_is_simplified_and_closes_the_fetcher():
     assert (raw.content_type, raw.final_url) == ("text", "https://www.biquges123.com/50537/1")
     assert [b.text for b in normalize(raw, site.clean_rules(raw), item.title)] == ["万古长青。", "仙人一剑！"]
     site.close()
-    assert fetcher.calls == ["init", "close"]
+    assert fetcher.calls == ["init", "chapter 1", "close"]
+
+
+class LockingParser(Biquges123Parser):
+    """Marks chapter 2 locked in the index, as Qidian's parser does for VIP chapters."""
+
+    def parse_book_info(self, raw_pages):
+        info = super().parse_book_info(raw_pages)
+        for volume in info["volumes"]:
+            for chapter in volume["chapters"]:
+                chapter["accessible"] = chapter["chapterId"] != "2"
+        return info
+
+
+def test_locked_chapter_is_unavailable_without_a_request():
+    fetcher = FakeFetcher({"1": "<p>萬古長青。</p>", "2": "<p>仙人一劍！</p>"})
+    site = NovelDownloaderSource(NovelDownloaderSource.spec_for(BOOK), fetcher, LockingParser(ParserConfig()))
+    first, locked, _ = site.fetch_index().items
+    assert site.fetch_chapter(locked) is None
+    assert site.fetch_chapter(first) is not None
+    site.close()
+    assert fetcher.calls == ["init", "chapter 1", "close"]
 
 
 def test_chapter_failures_are_fetch_errors():

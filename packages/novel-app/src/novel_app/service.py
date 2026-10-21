@@ -29,6 +29,7 @@ from novel_core.selection import Pin
 from novel_core.store import DB_NAME
 from novel_publish import epub
 from novel_publish.site import build_site
+from novel_sources import zh_inspect
 from novel_sources.backends import is_web, open_source, spec_for_url, zh_rules
 from novel_sources.calibre import CalibreImporter
 from novel_sources.decode_guide import Guides
@@ -299,6 +300,22 @@ class Service:
                 held = [s.item_ref for s in view.chapters(info.id) if s.key.number in keys and view.held(info.id, s.item_ref)]
                 released += [(info.id, ref, checks) for ref, checks in store.release(info.id, held).items()]
         return released
+
+    def inspect(
+        self, novel: str, numbers: str, source: int | None = None, against: int | None = None
+    ) -> list[zh_inspect.Inspection]:
+        """What today's zh rules make of the raw chapters at these numbers (every raw source but `against`,
+        or just `source`), each diffed with the chapter of the same title name in `against` when given."""
+        keys = _parsed(parse_range, numbers)
+        raws = self.raw_sources(novel, source)
+        reference = self.raw_sources(novel, against)[0] if against is not None else None
+        found = []
+        with self._store(novel) as store:
+            pair = (reference.id, zh_rules(novel, reference.spec)) if reference else None
+            for info in raws:
+                if info != reference:
+                    found += zh_inspect.inspect(store, info.id, zh_rules(novel, info.spec), keys, pair)
+        return found
 
     def guides(self) -> Guides:
         """The decode guides: shipped ones, with the user's own file applied."""
