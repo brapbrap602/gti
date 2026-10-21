@@ -88,6 +88,23 @@ def title_number(title: str) -> int | None:
     return None
 
 
+_CJK_HEADING = re.compile(r"第\s*[0-9零〇一二三四五六七八九十百千万两]+\s*[章节回]")
+_LEADING_DIGITS = re.compile(r"^\s*\d+\s*[.、:：\-–—]?")
+_NOTE_SUFFIX = re.compile(r"\s*(?:（[^（）]*）|\([^()]*\))\s*$")
+
+
+def title_name(title: str) -> str:
+    """A chapter's name without its number: what two sources' titles of one chapter share.
+
+    第…章 and a leading number go, then any （…） or (…) notes at the end (求月票, 二),
+    and whitespace runs become one space. "" when the title is only a number.
+    """
+    name = _LEADING_DIGITS.sub("", _CJK_HEADING.sub("", title))
+    while (stripped := _NOTE_SUFFIX.sub("", name)) != name:
+        name = stripped
+    return " ".join(name.split())
+
+
 # Up to and through "Chapter N", wherever it starts: some sources put the novel's name first
 # ("Who Let Him Cultivate?! (WX)-Chapter 1: Today Is ...").
 _CHAPTER_PREFIX = re.compile(

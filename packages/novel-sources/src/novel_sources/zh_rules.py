@@ -71,6 +71,32 @@ class Layer:
     names: tuple[str, ...] = ()  # novel layer: recurring names, for the decoy-names check
 
 
+@dataclass(frozen=True)
+class PoisonCount:
+    """What the poison check measured in a chapter."""
+
+    counts: tuple[tuple[str, int], ...]  # each marker found and its hits, most hits first
+    cjk: int  # CJK chars in the chapter
+
+    @property
+    def hits(self) -> int:
+        return sum(n for _, n in self.counts)
+
+    @property
+    def density(self) -> float:
+        """Hits per 1000 CJK chars."""
+        return self.hits * 1000 / self.cjk if self.cjk else 0.0
+
+
+@dataclass(frozen=True)
+class NameCount:
+    """What the decoy-names check measured: the listed names in the opening paragraphs and after them."""
+
+    opening: tuple[tuple[str, int], ...]  # each listed name found, with its count
+    rest: tuple[tuple[str, int], ...]
+    rest_cjk: int  # CJK chars after the opening
+
+
 def drop(name: str, pattern: str, examples: tuple[Example, ...]) -> Cleaner:
     """A cleaner that drops every line `pattern` matches whole."""
     regex = re.compile(pattern)
@@ -98,6 +124,7 @@ class ZhRules:
     cleaners: tuple[Cleaner, ...] = ()
     markers: Markers | None = None
     names: tuple[str, ...] = ()
+    keeps: tuple[str, ...] = ()  # lines known to be real prose though they look like noise
 
     def version(
         self, raw: RawChapter, title: str, base: CleanRules, provenance: Mapping[str, object]
@@ -123,9 +150,25 @@ class ZhRules:
         )
 
     def check(self, blocks: Sequence[Block]) -> tuple[Finding, ...]:
-        paragraphs = [b.text for b in blocks if isinstance(b, Paragraph)]
-        found = (_poison(paragraphs, self.markers), _decoy_names(paragraphs, self.names))
+        found = (_poison(self.poison_count(blocks), self.markers), _decoy_names(self.name_count(blocks)))
         return tuple(f for f in found if f is not None)
+
+    def poison_count(self, blocks: Sequence[Block]) -> PoisonCount | None:
+        """The poison markers in these blocks' paragraphs; None when these rules have no markers."""
+        if self.markers is None:
+            return None
+        text = "\n".join(_paragraphs(blocks))
+        ranked = sorted(_found(self.markers.words, text), key=lambda kv: -kv[1])  # stable: ties keep the markers' order
+        return PoisonCount(tuple(ranked), len(_CJK.findall(text)))
+
+    def name_count(self, blocks: Sequence[Block]) -> NameCount | None:
+        """The listed names in the opening paragraphs and after them; None when no names are listed."""
+        if not self.names:
+            return None
+        paragraphs = _paragraphs(blocks)
+        opening = "\n".join(paragraphs[:_OPENING])
+        rest = "\n".join(paragraphs[_OPENING:])
+        return NameCount(_found(self.names, opening), _found(self.names, rest), len(_CJK.findall(rest)))
 
     def trace(self, text: str) -> tuple[Hit, ...]:
         """What the cleaners do to a kept raw text: each rule that changed a line, in order."""
@@ -154,35 +197,32 @@ def compose(layers: Sequence[Layer | None], slug: str, site: str, notes: str = "
         cleaners=tuple(c for layer in present for c in layer.cleaners),
         markers=markers,
         names=tuple(n for layer in present for n in layer.names),
+        keeps=tuple(dict.fromkeys(k for layer in present for k in layer.keeps)),
     )
 
 
-def _poison(paragraphs: Sequence[str], markers: Markers | None) -> Finding | None:
-    if markers is None:
-        return None
-    text = "\n".join(paragraphs)
-    counts = {w: n for w in markers.words if (n := text.count(w))}
-    hits = sum(counts.values())
-    cjk = len(_CJK.findall(text))
-    density = hits * 1000 / cjk if cjk else 0.0
-    if density < markers.density or len(counts) < markers.distinct or hits < markers.hits:
-        return None
-    ranked = sorted(counts.items(), key=lambda kv: -kv[1])  # stable: ties keep the markers' order
-    return Finding("poison", " ".join(f"{w}×{n}" for w, n in ranked) + f" ({density:.1f}/1000)")
+def _paragraphs(blocks: Sequence[Block]) -> list[str]:
+    return [b.text for b in blocks if isinstance(b, Paragraph)]
 
 
-def _decoy_names(paragraphs: Sequence[str], names: Sequence[str]) -> Finding | None:
+def _found(words: Sequence[str], text: str) -> tuple[tuple[str, int], ...]:
+    return tuple((w, n) for w in words if (n := text.count(w)))
+
+
+def _poison(count: PoisonCount | None, markers: Markers | None) -> Finding | None:
+    if count is None or markers is None:
+        return None
+    if count.density < markers.density or len(count.counts) < markers.distinct or count.hits < markers.hits:
+        return None
+    return Finding("poison", " ".join(f"{w}×{n}" for w, n in count.counts) + f" ({count.density:.1f}/1000)")
+
+
+def _decoy_names(count: NameCount | None) -> Finding | None:
     """A decoy keeps the real chapter's opening, then drifts into text without its people."""
-    if not names:
+    if count is None or not count.opening or count.rest or count.rest_cjk < _DECOY_REST:
         return None
-    opening = "\n".join(paragraphs[:_OPENING])
-    rest = "\n".join(paragraphs[_OPENING:])
-    seen = {n: k for n in names if (k := opening.count(n))}
-    rest_cjk = len(_CJK.findall(rest))
-    if not seen or any(n in rest for n in names) or rest_cjk < _DECOY_REST:
-        return None
-    named = " ".join(f"{n}×{k}" for n, k in seen.items())
-    return Finding("decoy-names", f"{named} in the opening, no name in the {rest_cjk} CJK chars after it")
+    named = " ".join(f"{n}×{k}" for n, k in count.opening)
+    return Finding("decoy-names", f"{named} in the opening, no name in the {count.rest_cjk} CJK chars after it")
 
 
 def _code_digest(paths: Sequence[Path]) -> bytes:

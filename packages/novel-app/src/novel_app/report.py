@@ -8,6 +8,7 @@ from novel_audio.legacy import LegacyReport
 from novel_sources.importing import ImportReport
 from novel_sources.reclean import RecleanReport
 from novel_sources.sync import SyncReport
+from novel_sources.zh_inspect import Inspection, Reference
 from novel_translate.phase_a import Estimate, GlossaryReport
 from novel_translate.phase_b import Estimate as TranslateEstimate
 from novel_translate.phase_b import StaleReport, TranslateReport
@@ -59,6 +60,55 @@ def reclean_lines(r: RecleanReport) -> list[str]:
         f"  held: {len(r.held)} newly, {len(r.cleared)} no longer",
         *listed(failed_lines(r.held)),
     ]
+
+
+_SHOWN = 60  # chars of a paragraph shown in inspect lines
+
+
+def inspect_lines(slug: str, found: Sequence[Inspection]) -> list[str]:
+    lines = []
+    for i in found:
+        c = i.chapter
+        state = "checked" if i.checked else "not checked with current rules"
+        lines.append(f"{slug}: source {c.source_id} {c.item_ref}, chapter {c.key} {c.title}: {state}")
+        lines += [f"  finding {f.check}: {f.detail} ({'held' if f in i.held else 'released'})" for f in c.findings]
+        if (p := i.poison) is not None and (m := i.markers) is not None:
+            if p.counts:
+                lines.append(
+                    f"  poison: {_counts(p.counts)} = {p.hits} hits, {p.density:.1f} per 1000 of {p.cjk} CJK chars"
+                    f" (flags at {m.density}, {m.distinct} markers, {m.hits} hits)"
+                )
+            else:
+                lines.append(f"  poison: no markers in {p.cjk} CJK chars")
+        if (n := i.names) is not None:
+            lines.append(f"  names: {_counts(n.opening)} in the opening, {_counts(n.rest)} in the {n.rest_cjk} CJK chars after it")
+        hits = [f"{h.rule} ×{k}: {_short(h.before)} → {'(dropped)' if h.after is None else _short(h.after)}" for h, k in i.hits]
+        lines += _listing("cleaner hits", hits)
+        lines += _listing("suspicious", [f"{s.label}: {_short(s.text)}" for s in i.suspects])
+        if (r := i.reference) is not None:
+            lines += _reference_lines(r)
+    return lines
+
+
+def _reference_lines(r: Reference) -> list[str]:
+    if r.chapter is None:
+        return [f"  against source {r.source_id}: no single chapter named {r.name or '(no name)'}"]
+    head = f"  against source {r.source_id} {r.chapter.item_ref}, chapter {r.chapter.key} {r.chapter.title}:"
+    if not r.spans:
+        return [f"{head} same text"]
+    return [head, *listed([f"{_short(s.ours) or '(nothing)'} ↔ {_short(s.theirs) or '(nothing)'} ×{s.count}" for s in r.spans])]
+
+
+def _listing(name: str, lines: Sequence[str]) -> list[str]:
+    return [f"  {name}:", *listed(lines)] if lines else [f"  {name}: none"]
+
+
+def _counts(counts: Sequence[tuple[str, int]]) -> str:
+    return " ".join(f"{word}×{n}" for word, n in counts) or "none"
+
+
+def _short(text: str) -> str:
+    return text if len(text) <= _SHOWN else text[: _SHOWN - 1] + "…"
 
 
 def now_stale_line(setup: int, label: str, refs: Sequence[str]) -> str:

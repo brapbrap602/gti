@@ -62,6 +62,7 @@ class NovelDownloaderSource:
         self._loop = asyncio.Runner()
         self._started = False
         self._ids: dict[str, str] = {}  # item ref -> chapter id, from the last index
+        self._locked: set[str] = set()  # item refs the last index marked inaccessible (paid chapters)
 
     @staticmethod
     def spec_for(url: str) -> SourceSpec:
@@ -83,6 +84,10 @@ class NovelDownloaderSource:
         for position, chapter in enumerate(chapters, start=1):
             ref = url_ref(urljoin(url, chapter["url"])) if chapter.get("url") else f"#{chapter['chapterId']}"
             self._ids[ref] = chapter["chapterId"]
+            if not chapter.get("accessible", True):
+                self._locked.add(ref)
+            else:
+                self._locked.discard(ref)
             items.append(SourceItem(ref, position, _simplified(chapter["title"].strip()), ref_numbered=False))
         meta = NovelMeta(
             title=_simplified(info["book_name"]),
@@ -92,10 +97,13 @@ class NovelDownloaderSource:
         )
         return NovelIndex(meta, tuple(items))
 
-    def fetch_chapter(self, item: SourceItem) -> RawChapter:
+    def fetch_chapter(self, item: SourceItem) -> RawChapter | None:
+        """The chapter's text; None, without a request, when the index marked it locked (Qidian VIP)."""
         chapter_id = self._ids.get(item.ref)
         if chapter_id is None:
             raise FetchError(f"{item.ref}: not in the index fetched this run")
+        if item.ref in self._locked:
+            return None
         where = f"{self._spec.url} chapter {chapter_id}"
         pages = self._run(where, self._fetcher.fetch_chapter_content(self._book_id, chapter_id))
         chapter = self._parser.parse_chapter_content(pages, chapter_id) if pages else None
