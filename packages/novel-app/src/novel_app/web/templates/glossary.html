@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% from "_ui.html" import icon, empty %}
 {% from "_macros.html" import busy_reason %}
+{% import "_help.html" as help %}
 {% set g = page %}
 {% set here = "/novels/" ~ g.slug ~ "/glossary?tab=" ~ g.tab ~ ("&q=" ~ (g.search | urlencode) if g.search else "") ~ ("&category=" ~ g.category if g.category else "") %}
 {% set slug, back = g.slug, here %}
@@ -28,7 +29,7 @@
         <input type="hidden" name="back" value="{{ here }}">
         <div class="field-row">
             <label class="field field--wide"><span class="label">Model</span> <input name="model" required size="28" placeholder="google/gemini-2.5-flash-lite"></label>
-            <label class="field field--narrow"><span class="label">Cap $</span> <input name="cap" value="1.00" size="5" inputmode="decimal"></label>
+            <label class="field field--narrow"><span class="label">Cap $</span> <input name="cap" value="1.00" size="5" inputmode="decimal" title="{{ help.translate.cap }}"></label>
         </div>
         <div class="card-footer">
             <button type="submit"{% if g.build_blocked or g.job %} disabled{% endif %}
@@ -70,7 +71,7 @@
 <div class="toolbar">
     <nav class="tabs" aria-label="Terms by status">
         {% for tab, label, _statuses in tabs %}
-        <a class="tab" href="/novels/{{ g.slug }}/glossary?tab={{ tab }}{% if g.search %}&q={{ g.search | urlencode }}{% endif %}"{% if tab == g.tab %} aria-current="page"{% endif %}>{{ label }} <span class="count">{{ g.tab_count(tab) }}</span></a>
+        <a class="tab" href="/novels/{{ g.slug }}/glossary?tab={{ tab }}{% if g.search %}&q={{ g.search | urlencode }}{% endif %}" title="{{ help.glossary_tab[tab] }}"{% if tab == g.tab %} aria-current="page"{% endif %}>{{ label }} <span class="count">{{ g.tab_count(tab) }}</span></a>
         {% endfor %}
     </nav>
     <form method="get" action="/novels/{{ g.slug }}/glossary" class="glossary-filter" role="search">
@@ -89,7 +90,7 @@
 <form method="post" action="/novels/{{ g.slug }}/glossary/bulk" id="bulk" class="glossary-bulk">
     <input type="hidden" name="back" value="{{ here }}">
     <span class="muted">With the ticked terms:</span>
-    <button type="submit" class="btn btn--outline btn--sm" name="action" value="accept">Accept top</button>
+    <button type="submit" class="btn btn--outline btn--sm" name="action" value="accept" title="Accept each ticked term with the model's most-voted rendering">Accept top</button>
     <button type="submit" class="btn btn--outline btn--sm" name="action" value="lock">Lock</button>
     <button type="submit" class="btn btn--outline btn--sm" name="action" value="reject">Reject</button>
     <label><span class="muted">or set category</span> <select name="category"><option value="">—</option>{% for c in categories %}<option>{{ c }}</option>{% endfor %}</select></label>

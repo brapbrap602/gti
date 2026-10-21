@@ -77,6 +77,7 @@ JOB_LABELS = {
     "audio-retag": "Retag MP3s",
     "glossary-build": "Build glossary",
     "translate": "Translate",
+    "compare": "Compare models",  # CLI only: `nov translate compare`
 }
 
 

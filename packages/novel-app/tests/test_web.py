@@ -67,6 +67,19 @@ def test_library_row_and_novel_grid(client, service):
     assert "No problems found." in novel
 
 
+def test_terms_explain_themselves(client, service):
+    """Every page's jargon carries its meaning: a source kind, a job button, a stat, a table column, a legend."""
+    added(service)
+    page = client.get("/").text
+    assert 'title="official-en: a published English translation; the book can use it">official-en<' in page
+    assert re.search(r'name="kind" value="sync">.*?<button type="submit" class="[^"]*" title="Fetch the chapters', page, re.S)
+    assert '<div class="stat" title="Chapters a web source lists that no source has a text for yet' in page
+
+    novel = client.get("/novels/test-novel").text
+    assert '<th scope="col" class="num" title="Listed chapters no source has a text for yet; Sync fetches them">To fetch</th>' in novel
+    assert '<li title="Fetching failed; the next Sync tries again">' in novel
+
+
 def test_library_counts_leave_out_unpublished_sources(client, service):
     added(service)
     with NovelStore.open(novel_dir("test-novel")) as store:
@@ -86,7 +99,7 @@ def test_compare_then_pin(client, service, site):
     added(service, url=URL + "/")  # a second source with the same chapters
     page = client.get("/novels/test-novel/compare", params={"number": 2}).text
     assert "The book uses source 1" in page
-    assert "Source 2: lncrawl" in page and 'name="numbers" value="2"' in page
+    assert "Source 2: novelbuddy.me" in page and 'name="numbers" value="2"' in page
     assert 'title="2, official, source 1: Chapter 2"' in client.get("/novels/test-novel").text  # now cached
 
     pinned = client.post(

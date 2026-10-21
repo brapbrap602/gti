@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% from "_ui.html" import icon, badge, stat, empty %}
-{% from "_macros.html" import job_button, build_menu, output_badge, job_progress %}
+{% from "_macros.html" import job_button, build_menu, output_badge, job_progress, kind_badge %}
+{% import "_help.html" as help %}
 {% block main %}
 <div class="page-header">
     <div class="page-heading">
@@ -21,11 +22,11 @@
 {% set running = job_panel.active | length %}
 {% set problems = job_panel.problems %}
 <section class="stats" aria-label="Summary">
-    {{ stat("Novels", rows | length, (raw_only ~ " raw only") if raw_only else None, icon_name="library") }}
-    {{ stat("Chapters", "{:,}".format(rows | sum(attribute="selected")), "selected for the books", icon_name="book-open") }}
-    {{ stat("New to fetch", "{:,}".format(syncable | sum(attribute="new_items")), ("in " ~ fetchable | length ~ " novel" ~ ("s" if fetchable | length != 1)) if fetchable else "all caught up", icon_name="refresh-cw") }}
-    {{ stat("Needs rebuild", rows | selectattr("needs_rebuild") | list | length, "built outputs with stale chapters", icon_name="hammer") }}
-    {{ stat("Jobs", running ~ " running", (problems ~ " problem" ~ ("s" if problems != 1)) if problems else "no problems", icon_name="activity") }}
+    {{ stat("Novels", rows | length, (raw_only ~ " raw only") if raw_only else None, icon_name="library", help=help.stat.novels) }}
+    {{ stat("Chapters", "{:,}".format(rows | sum(attribute="selected")), "selected for the books", icon_name="book-open", help=help.stat.chapters) }}
+    {{ stat("New to fetch", "{:,}".format(syncable | sum(attribute="new_items")), ("in " ~ fetchable | length ~ " novel" ~ ("s" if fetchable | length != 1)) if fetchable else "all caught up", icon_name="refresh-cw", help=help.stat.new) }}
+    {{ stat("Needs rebuild", rows | selectattr("needs_rebuild") | list | length, "novels with stale outputs", icon_name="hammer", help=help.stat.rebuild) }}
+    {{ stat("Jobs", running ~ " running", (problems ~ " problem" ~ ("s" if problems != 1)) if problems else "no problems", icon_name="activity", help=help.stat.jobs) }}
 </section>
 <ul class="novel-cards">
     {% for r in rows %}
@@ -39,22 +40,22 @@
         <div class="card-content novel-card-body">
             <dl class="metrics">
                 <div>
-                    <dt>Chapters</dt>
+                    <dt title="{{ help.stat.selected }}">Chapters</dt>
                     <dd>{{ "{:,}".format(r.selected) }} selected
-                        <ul class="counts">{% for kind, n in r.numbers.items() %}<li>{{ n }} {{ kind }}</li>{% endfor %}</ul></dd>
+                        <ul class="counts" title="{{ help.stat.by_kind }}">{% for kind, n in r.numbers.items() %}<li>{{ n }} {{ kind }}</li>{% endfor %}</ul></dd>
                 </div>
-                <div><dt>Gaps</dt><dd{% if r.gaps %} class="stale"{% endif %}>{{ r.gaps or "none" }}</dd></div>
-                <div><dt>New</dt><dd>{% if r.can_sync %}{{ r.new_items }}{% else %}<span class="muted">no web source</span>{% endif %}</dd></div>
-                <div><dt>Last sync</dt><dd>{{ r.last_sync | ago }}</dd></div>
+                <div><dt title="{{ help.stat.gaps }}">Gaps</dt><dd{% if r.gaps %} class="stale"{% endif %}>{{ r.gaps or "none" }}</dd></div>
+                <div><dt title="{{ help.stat.new }}">New to fetch</dt><dd>{% if r.can_sync %}{{ r.new_items }}{% else %}<span class="muted">no web source</span>{% endif %}</dd></div>
+                <div><dt title="{{ help.stat.last_sync }}">Last sync</dt><dd>{{ r.last_sync | ago }}</dd></div>
             </dl>
             <div class="novel-card-row">
-                <span class="row-label">Sources</span>
+                <span class="row-label" title="{{ help.sources.rank }}">Sources</span>
                 <ol class="sources">
-                {% for s in r.sources %}{% set label = source_label(s.info.spec) %}<li title="{{ label.full }}"><span class="source-host">{{ label.short }}</span> {{ badge(s.info.spec.kind, "outline") }}</li>{% endfor %}
+                {% for s in r.sources %}{% set label = source_label(s.info.spec) %}<li title="{{ label.full }}"><span class="source-host">{{ label.short }}</span> {{ kind_badge(s.info.spec.kind) }}</li>{% endfor %}
                 </ol>
             </div>
             <div class="novel-card-row">
-                <span class="row-label">Outputs</span>
+                <span class="row-label" title="{{ help.stat.outputs }}">Outputs</span>
                 <ul class="outputs">{% for o in r.outputs %}<li>{{ output_badge(o) }}</li>{% endfor %}</ul>
             </div>
         </div>

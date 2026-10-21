@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% from "_ui.html" import icon, badge, empty %}
+{% from "_macros.html" import kind_badge %}
+{% import "_help.html" as help %}
 {% set title = (nav_rows | selectattr("slug", "equalto", slug) | map(attribute="title") | first) or slug %}
 {% block title %}{{ slug }} {{ c.number }} · compare{% endblock %}
 {% block crumbs %}<li><a href="/">Library</a></li><li><a href="/novels/{{ slug }}#chapters" title="{{ title }}">{{ title }}</a></li><li><a href="/novels/{{ slug }}/compare?number={{ c.number }}" aria-current="page">Chapter {{ c.number }}</a></li>{% endblock %}
@@ -24,7 +26,7 @@
         {% for side, text in (("left", c.left), ("right", c.right)) %}
         <label class="field field--wide"><span class="label">{{ side | capitalize }}</span>
             <select name="{{ side }}">
-                {% for o in c.offers %}<option value="{{ o.id }}"{% if text and text.source.id == o.id %} selected{% endif %}>source {{ o.id }}: {{ o.spec.backend }} ({{ o.spec.kind }})</option>{% endfor %}
+                {% for o in c.offers %}<option value="{{ o.id }}"{% if text and text.source.id == o.id %} selected{% endif %}>source {{ o.id }}: {{ source_label(o.spec).short }} ({{ o.spec.kind }})</option>{% endfor %}
             </select>
         </label>
         {% endfor %}
@@ -48,18 +50,19 @@
     <article class="card compare-side" aria-label="{% if text %}source {{ text.source.id }}{% else %}no second source{% endif %}">
         {% if text %}
         <header class="card-header compare-head">
-            <h2 class="card-title">Source {{ text.source.id }}: {{ text.source.spec.backend }} {{ badge(text.source.spec.kind, "outline") }}</h2>
+            {% set label = source_label(text.source.spec) %}
+            <h2 class="card-title" title="{{ label.full }}">Source {{ text.source.id }}: {{ label.short }} {{ kind_badge(text.source.spec.kind) }}</h2>
             {% if text.source.spec.kind == Kind.RAW_ZH %}
             <p class="card-description">Raw text is never published, so it cannot be pinned.</p>
             {% elif text.source.id == c.selected %}
-            <p>{{ badge("Used by the book", "ok") }}</p>
+            <p>{{ badge("Used by the book", "ok", "The book uses this text for chapter " ~ c.number ~ ", by the source order or a pin") }}</p>
             {% else %}
             <form method="post" action="/novels/{{ slug }}/pin" class="pin-form">
                 <input type="hidden" name="source" value="{{ text.source.id }}">
                 <input type="hidden" name="back" value="{{ here }}">
                 <label class="field"><span class="label">Pin this source for</span> <input name="numbers" value="{{ c.number }}" size="11" aria-describedby="pin-help-{{ loop.index }}"></label>
                 <button type="submit" class="btn btn--outline">{{ icon("pin") }}Pin</button>
-                <span id="pin-help-{{ loop.index }}" class="field-hint">a number or a range, like 834-836</span>
+                <span id="pin-help-{{ loop.index }}" class="field-hint">{{ help.pin }}; a number or a range, like 834-836</span>
             </form>
             {% endif %}
         </header>
