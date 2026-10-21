@@ -6,6 +6,13 @@ is given as context, and in sequential mode the previous chapter's translation).
 chapter whose latest good translation has the same input_key is current and skipped,
 so a stopped run resumes where it ended and `stale` lists exactly what changed.
 
+A raw not checked with today's zh rules for its source (`RawRules.rev`) is not sent
+either, nor marked failed: `nov reclean` checks it for free. In sequential mode the run
+stops there, since the next chapters need its translation as context. A held number
+(every raw copy of it is held, see NovelView.raw_chapters) is not a raw chapter: its
+translation is kept unpublished, apart from the orphans, and published again once
+the hold is released. A source's translator notes go into the system prompt.
+
 A chapter containing a term that needs review is not sent: it is marked failed as
 blocked. Output failing a hard check is retried once in the same call; output cut off
 at max_tokens is retried once with more room, after its own budget reservation.
@@ -27,6 +34,7 @@ from novel_core import (
     ChapterKey,
     ItemStatus,
     KeyRange,
+    Kind,
     NewVersion,
     NovelStore,
     NovelView,
@@ -41,7 +49,7 @@ from novel_translate.chapter import Translated, TranslatedGroup
 from novel_translate.matching import Match, Matcher
 from novel_translate.models import LLM, Attempted, CallFailed, Charged, CutOff, Price
 from novel_translate.pool import run_paid
-from novel_translate.raws import RawText, raw_chapters, version_text
+from novel_translate.raws import RawRules, RawText, raw_chapters, version_text
 from novel_translate.setups import SetupError, TranslatorSetup, prompt, register
 from novel_translate.tstore import LedgerRow, StoredSummary, TranslateStore
 from novel_translate.validate import Norms, check
@@ -58,6 +66,8 @@ GROUP_ADDENDUM = """
 This request holds several consecutive chapters. Translate each of them in full, in order, as its own entry
 in `chapters`, with the chapter number the request gives it. Paragraph ids start again at 1 in each chapter.
 Keep names and terms the same across the chapters."""
+NOTES_HEADING = "\n\n## About this source text\n"  # before a raw source's translator notes
+UNCHECKED = "unchecked"  # a refusal reason's first word, as "blocked" is
 VALIDATOR_RETRY = 2  # a first attempt may cost twice: the in-call retry after a failed check
 
 type Keys = KeyRange | Literal["stale"]
@@ -80,6 +90,7 @@ class Estimate:
     chapters: int  # to send
     current: int  # already translated with the same inputs
     blocked: int
+    unchecked: int  # not checked with today's zh rules: `nov reclean` lets them through
     usd: float
     upper_bound: bool = True
 
@@ -89,6 +100,8 @@ class TranslateReport:
     translated: list[str] = field(default_factory=list)
     skipped: int = 0  # current already
     blocked: list[str] = field(default_factory=list)  # "<ref>: <reason>"
+    unchecked: list[str] = field(default_factory=list)  # refs, not sent until `nov reclean` checks them
+    waiting: list[str] = field(default_factory=list)  # sequential mode: "<ref>: waits for <unchecked ref>"
     failed: list[str] = field(default_factory=list)
     orphans: list[str] = field(default_factory=list)
     soft_flags: Counter = field(default_factory=Counter)
@@ -101,41 +114,48 @@ class TranslateReport:
 class StaleReport:
     stale: tuple[str, ...]  # refs whose inputs changed since their translation
     orphans: tuple[str, ...]  # refs whose raw chapter no longer exists
+    held: tuple[str, ...]  # refs whose every raw copy is held: kept, unlike orphans
 
 
 def estimate_translate(
-    novel: NovelStore, ts: TranslateStore, setup: TranslatorSetup, keys: Keys, price: Price
+    novel: NovelStore,
+    ts: TranslateStore,
+    raw_rules: Mapping[SourceId, RawRules],
+    setup: TranslatorSetup,
+    keys: Keys,
+    price: Price,
 ) -> Estimate:
+    """What translating the keys would send, at most. In sequential mode the chapters after an
+    unchecked one count as sent: a reclean lets them through."""
     _one_per_request(setup)
-    run = _Run(novel, ts, setup)
-    send = blocked = current = 0
+    run = _Run(novel, ts, setup, raw_rules)
+    states: Counter = Counter()
     usd = 0.0
     for raw in run.selected(keys):
         state = run.state(raw)
-        if state == "current":
-            current += 1
-        elif state == "blocked":
-            blocked += 1
-        else:
-            send += 1
+        states[state] += 1
+        if state == "send":
             usd += run.reservation(run.request(raw), price)
-    return Estimate(send, current, blocked, usd)
+    return Estimate(states["send"], states["current"], states["blocked"], states[UNCHECKED], usd)
 
 
-def stale(novel: NovelStore, ts: TranslateStore, setup: TranslatorSetup) -> StaleReport:
-    run = _Run(novel, ts, setup)
+def stale(
+    novel: NovelStore, ts: TranslateStore, raw_rules: Mapping[SourceId, RawRules], setup: TranslatorSetup
+) -> StaleReport:
+    run = _Run(novel, ts, setup, raw_rules)
     ledger = ts.latest(setup.url)
     stale_refs = []
     for raw in run.raws:
         row = ledger.get(ref_of(raw.key))
         if row is not None and row.outcome == "ok" and row.input_key != run.input_key(raw):
             stale_refs.append(ref_of(raw.key))
-    return StaleReport(tuple(stale_refs), tuple(run.orphans()))
+    return StaleReport(tuple(stale_refs), tuple(run.orphans()), run.held)
 
 
 def translate(
     novel: NovelStore,
     ts: TranslateStore,
+    raw_rules: Mapping[SourceId, RawRules],
     setup: TranslatorSetup,
     keys: Keys,
     new_llm: Callable[[threading.Event], LLM],
@@ -150,7 +170,7 @@ def translate(
     raises, once the calls in flight have ended and their results are kept."""
     report = report if report is not None else TranslateReport()
     _one_per_request(setup)
-    run = _Run(novel, ts, setup)
+    run = _Run(novel, ts, setup, raw_rules)
     source = register(novel, setup)
     run.source = source
     report.orphans = run.index(source, keys)
@@ -159,14 +179,23 @@ def translate(
     selected = list(run.selected(keys))
 
     def requests() -> Iterator[_Request]:
+        waits_for = None  # sequential mode: the unchecked chapter the rest need as context
         for raw in selected:
+            ref = ref_of(raw.key)
+            if waits_for is not None:
+                report.waiting.append(f"{ref}: waits for {waits_for}")
+                continue
             state = run.state(raw)  # lazily: in sequential mode it depends on the previous chapter
             if state == "current":
                 report.skipped += 1
+            elif state == UNCHECKED:
+                report.unchecked.append(ref)
+                if setup.context == "sequential":
+                    waits_for = ref
             elif state == "blocked":
                 reason = run.blocked_reason(raw)
-                novel.mark_item(source, ref_of(raw.key), ItemStatus.FAILED, reason)
-                report.blocked.append(f"{ref_of(raw.key)}: {reason}")
+                novel.mark_item(source, ref, ItemStatus.FAILED, reason)
+                report.blocked.append(f"{ref}: {reason}")
             else:
                 yield run.request(raw)
 
@@ -196,9 +225,12 @@ def translate(
     return report
 
 
-def prune(novel: NovelStore, ts: TranslateStore, setup: TranslatorSetup) -> tuple[str, ...]:
-    """Drop the setup's orphans (translations of raw chapters that no longer exist) from its index."""
-    run = _Run(novel, ts, setup)
+def prune(
+    novel: NovelStore, ts: TranslateStore, raw_rules: Mapping[SourceId, RawRules], setup: TranslatorSetup
+) -> tuple[str, ...]:
+    """Drop the setup's orphans (translations of raw chapters that no longer exist) from its index.
+    Translations of held numbers stay, to be published again once released."""
+    run = _Run(novel, ts, setup, raw_rules)
     source = run.source
     if source is None:
         return ()
@@ -224,7 +256,7 @@ class Attempt:
     ref: str
     title: str | None = None
     paragraphs: tuple[str, ...] = ()
-    failure: str | None = None  # "blocked: ...", the call's failure reason, or "not sent" (budget)
+    failure: str | None = None  # "unchecked: ...", "blocked: ...", the call's failure reason, or "not sent" (budget)
     soft_flags: tuple[str, ...] = ()
     charged: Charged = Charged()
     seconds: float = 0.0  # of its request
@@ -242,9 +274,22 @@ class Comparison:
 
 
 def _requests(run: "_Run", raws: Sequence[RawText], group: int) -> "list[_Request]":
+    """One request per chapter, or groups of up to `group` chapters that follow on from each other:
+    a group ends where the raw source changes (its notes are in the system prompt) or where a
+    chapter between was not sent."""
     if group == 1:
         return [run.request(raw) for raw in raws]
-    return [run.group_request(raws[i : i + group]) for i in range(0, len(raws), group)]
+    groups: list[list[RawText]] = []
+    for raw in raws:
+        last = groups[-1][-1] if groups else None
+        if (
+            last is None or len(groups[-1]) == group or raw.source_id != last.source_id
+            or run.position[raw.key] != run.position[last.key] + 1
+        ):  # fmt: skip
+            groups.append([raw])
+        else:
+            groups[-1].append(raw)
+    return [run.group_request(g) for g in groups]
 
 
 def _share(charged: Charged, n: int) -> Charged:
@@ -266,20 +311,33 @@ class _Timed:
 
 
 def estimate_compare(
-    novel: NovelStore, ts: TranslateStore, setups: Sequence[TranslatorSetup], keys: KeyRange, prices: Mapping[str, Price]
-) -> dict[str, float]:
-    """Each setup's upper-bound cost (by URL) for comparing these chapters."""
+    novel: NovelStore,
+    ts: TranslateStore,
+    raw_rules: Mapping[SourceId, RawRules],
+    setups: Sequence[TranslatorSetup],
+    keys: KeyRange,
+    prices: Mapping[str, Price],
+) -> dict[str, Estimate]:
+    """Each setup's chapters to send and upper-bound cost (by URL) for comparing these chapters
+    (a comparison has no current chapters)."""
     estimates = {}
     for setup in setups:
-        run = _comparing(novel, ts, setup)
-        sendable = [raw for raw in run.selected(keys) if not run.match(raw).blocking]
-        estimates[setup.url] = sum(run.reservation(r, prices[setup.url]) for r in _requests(run, sendable, setup.group))
+        run = _comparing(novel, ts, setup, raw_rules)
+        sendable, refused = [], Counter()
+        for raw in run.selected(keys):
+            if (why := run.sendable(raw)) is None:
+                sendable.append(raw)
+            else:
+                refused[_kind(why)] += 1
+        usd = sum(run.reservation(r, prices[setup.url]) for r in _requests(run, sendable, setup.group))
+        estimates[setup.url] = Estimate(len(sendable), 0, refused["blocked"], refused[UNCHECKED], usd)
     return estimates
 
 
 def compare(
     novel: NovelStore,
     ts: TranslateStore,
+    raw_rules: Mapping[SourceId, RawRules],
     setups: Sequence[TranslatorSetup],
     keys: KeyRange,
     new_llm: Callable[[TranslatorSetup, threading.Event], LLM],
@@ -294,16 +352,17 @@ def compare(
     Every paid attempt is in the spend log, under COMPARE_SPEND + the setup's URL. `comparison` is
     filled in as it goes; raises like `translate`."""
     comparison = comparison if comparison is not None else Comparison()
-    runs = [(setup, _comparing(novel, ts, setup)) for setup in setups]
+    runs = [(setup, _comparing(novel, ts, setup, raw_rules)) for setup in setups]
     for setup, run in runs:
         selected = list(run.selected(keys))
         comparison.raws = comparison.raws or selected
         attempts = comparison.attempts.setdefault(setup.url, {})
         price = prices[setup.url]
+        refused = {raw.key: why for raw in selected if (why := run.sendable(raw)) is not None}
         for raw in selected:
-            if run.match(raw).blocking:
-                attempts[ref_of(raw.key)] = Attempt(ref_of(raw.key), failure=run.blocked_reason(raw))
-        sendable = _requests(run, [raw for raw in selected if not run.match(raw).blocking], setup.group)
+            if raw.key in refused:
+                attempts[ref_of(raw.key)] = Attempt(ref_of(raw.key), failure=refused[raw.key])
+        sendable = _requests(run, [raw for raw in selected if raw.key not in refused], setup.group)
 
         def call(llm: LLM, r: _Request, run=run, price=price) -> _Timed:
             started = time.monotonic()
@@ -346,10 +405,17 @@ def _one_per_request(setup: TranslatorSetup) -> None:
         raise SetupError("setups with several chapters per request are for comparisons only, for now")
 
 
-def _comparing(novel: NovelStore, ts: TranslateStore, setup: TranslatorSetup) -> "_Run":
+def _comparing(
+    novel: NovelStore, ts: TranslateStore, setup: TranslatorSetup, raw_rules: Mapping[SourceId, RawRules]
+) -> "_Run":
     if setup.context == "sequential":
         raise SetupError("a comparison sends chapters on their own; use parallel setups")
-    return _Run(novel, ts, setup)
+    return _Run(novel, ts, setup, raw_rules)
+
+
+def _kind(reason: str) -> str:
+    """A refusal reason's kind: its first word, UNCHECKED or "blocked"."""
+    return reason.partition(":")[0]
 
 
 # -- one run's view of the novel ---------------------------------------------------
@@ -375,11 +441,19 @@ class _Request:
 
 
 class _Run:
-    def __init__(self, novel: NovelStore, ts: TranslateStore, setup: TranslatorSetup):
-        self.novel, self.ts, self.setup = novel, ts, setup
+    def __init__(
+        self, novel: NovelStore, ts: TranslateStore, setup: TranslatorSetup, raw_rules: Mapping[SourceId, RawRules]
+    ):
+        self.novel, self.ts, self.setup, self.raw_rules = novel, ts, setup, raw_rules
         self.view: NovelView = novel.view()
         self.raws: list[RawText] = list(raw_chapters(novel, view=self.view))
         self.position = {r.key: i for i, r in enumerate(self.raws)}
+        usable = {r.key.number for r in self.raws}
+        held = {
+            s.key for info in self.view.sources if info.spec.kind is Kind.RAW_ZH
+            for s in self.view.chapters(info.id) if s.key.number not in usable
+        }  # fmt: skip
+        self.held: tuple[str, ...] = tuple(ref_of(k) for k in sorted(held))  # numbers whose every raw copy is held
         self.summaries: dict[tuple[int, int], StoredSummary] = ts.summaries()
         self.matcher: Matcher = ts.matcher()
         self.norms: Norms = ts.norms()
@@ -400,7 +474,7 @@ class _Run:
 
     def selected(self, keys: Keys) -> Iterator[RawText]:
         if keys == "stale":
-            wanted = set(stale(self.novel, self.ts, self.setup).stale)
+            wanted = set(stale(self.novel, self.ts, self.raw_rules, self.setup).stale)
             return (r for r in self.raws if ref_of(r.key) in wanted)
         return (r for r in self.raws if r.key.number in keys)
 
@@ -410,12 +484,22 @@ class _Run:
         return self._matches[raw.key]
 
     def state(self, raw: RawText) -> str:
-        if self.match(raw).blocking:
-            return "blocked"
+        """current, UNCHECKED, blocked or send. Current comes first, so a translation that is
+        current is never counted again."""
         row = self.ledger.get(ref_of(raw.key))
         if row is not None and row.outcome == "ok" and row.input_key == self.input_key(raw):
             return "current"
-        return "send"
+        why = self.sendable(raw)
+        return "send" if why is None else _kind(why)
+
+    def sendable(self, raw: RawText) -> str | None:
+        """None when the chapter may be sent, else why not: unchecked by today's zh rules first, then
+        blocked by a term to review."""
+        if raw.unchecked(self.raw_rules):
+            return f"{UNCHECKED}: run nov reclean {self.novel.folder.name}"
+        if self.match(raw).blocking:
+            return self.blocked_reason(raw)
+        return None
 
     def blocked_reason(self, raw: RawText) -> str:
         terms = []
@@ -435,6 +519,8 @@ class _Run:
             "summaries": [_hash(s.text) if (s := self._summary(r)) else None for r in before],
             "previous_raw": previous.content_hash if previous else None,
         }
+        if notes := self._notes(raw):
+            parts["notes"] = _hash(notes)
         if self.setup.context == "sequential":
             parts["previous_translation"] = self.translated.get(previous.key) if previous else None
         return _hash(json.dumps(parts, sort_keys=True))
@@ -498,6 +584,16 @@ class _Run:
             sections.append("## Glossary\n" + "\n".join(glossary_lines))
         return sections
 
+    def system(self, r: _Request) -> str:
+        """The system instructions: the setup's prompt, the raw source's translator notes (a group
+        has one source), then the request's addendum. Constant per source, so it caches."""
+        notes = self._notes(r.raw)
+        return self.instructions + (NOTES_HEADING + notes if notes else "") + r.addendum
+
+    def _notes(self, raw: RawText) -> str:
+        rules = self.raw_rules.get(raw.source_id)
+        return rules.notes if rules is not None else ""
+
     def _allowance(self, raws: Sequence[RawText]) -> int:
         allowance = 0
         for raw in raws:
@@ -508,14 +604,14 @@ class _Run:
     def reservation(self, r: _Request, price: Price, retry: bool = True) -> float:
         """An upper bound on a request's cost; `retry` covers the call's one retry after a failed check."""
         chinese = sum(1 for ch in r.prompt if "㐀" <= ch <= "鿿")
-        tokens_in = chinese * ZH_TOKENS_PER_CHAR + (len(r.prompt) - chinese + len(self.instructions)) * EN_TOKENS_PER_CHAR
+        tokens_in = chinese * ZH_TOKENS_PER_CHAR + (len(r.prompt) - chinese + len(self.system(r))) * EN_TOKENS_PER_CHAR
         cost = price.cost(int(tokens_in), r.max_tokens)
         return cost * VALIDATOR_RETRY if retry else cost
 
     def attempt(self, llm: LLM, r: _Request, price: Price, budget: Budget) -> Attempted:
         """One chapter on a worker thread: the call, and after a cut-off once more with more room."""
         try:
-            return llm.translate(self.instructions + r.addendum, r.prompt, r.hard_checks, r.max_tokens, output_type=r.output_type)
+            return llm.translate(self.system(r), r.prompt, r.hard_checks, r.max_tokens, output_type=r.output_type)
         except CutOff as cut:
             # Once more with room to finish, after its own hold on the budget (the pool's hold
             # settles the chapter's whole cost, so this one is released with nothing spent).
@@ -525,7 +621,7 @@ class _Run:
                 raise CallFailed("budget", cut.charged) from cut
             try:
                 second = llm.translate(
-                    self.instructions + r.addendum, r.prompt, r.hard_checks, roomier.max_tokens,
+                    self.system(r), r.prompt, r.hard_checks, roomier.max_tokens,
                     retry_invalid=False, output_type=r.output_type,
                 )  # fmt: skip
             except CallFailed as e:
@@ -566,28 +662,33 @@ class _Run:
 
     def index(self, source: SourceId, keys: Keys) -> list[str]:
         """Record the setup's index cumulatively: what it already lists whose raw chapter still
-        exists, plus these keys. Orphans with text are skipped (kept, never published); orphans
-        without text are dropped. Returns the orphans."""
+        exists, plus these keys (unchecked ones excepted). Listed refs without a raw chapter,
+        orphans and held numbers, are skipped when they have text (kept, never published) and
+        dropped otherwise; a skipped ref whose raw chapter is back (a release) is published
+        again. Returns the orphans."""
         view = self.novel.view()
         info = view.source(source)
         listed = {i.ref: i for i in view.items(source) if not i.vanished}
         raw_refs = {ref_of(r.key) for r in self.raws}
-        wanted = {ref_of(r.key) for r in self.selected(keys)} if keys != "stale" else set()
-        orphans = sorted(ref for ref in listed if ref not in raw_refs)
-        with_text = {ref for ref in orphans if listed[ref].has_text}
+        wanted = set()
+        if keys != "stale":
+            wanted = {ref_of(r.key) for r in self.selected(keys) if not r.unchecked(self.raw_rules)}
+        with_text = {ref for ref in listed if ref not in raw_refs and listed[ref].has_text}
         keep = [ref_of(r.key) for r in self.raws if ref_of(r.key) in listed or ref_of(r.key) in wanted]
         items = [_item(ref, pos, listed[ref].title if ref in listed else None) for pos, ref in enumerate(keep, 1)]
         items += [_item(ref, len(items) + n, listed[ref].title) for n, ref in enumerate(sorted(with_text), 1)]
-        if with_text - info.alignment.skip:
-            self.novel.set_alignment(source, replace(info.alignment, skip=info.alignment.skip | with_text))
+        skip = (info.alignment.skip - raw_refs) | with_text
+        if skip != info.alignment.skip:
+            self.novel.set_alignment(source, replace(info.alignment, skip=skip))
         self.novel.record_index(source, items)
-        return sorted(with_text)
+        return sorted(with_text - set(self.held))
 
     def orphans(self) -> list[str]:
+        """Refs with text whose raw chapter no longer exists; held numbers are not orphans."""
         if self.source is None:
             return []
-        raw_refs = {ref_of(r.key) for r in self.raws}
-        return sorted(i.ref for i in self.view.items(self.source) if not i.vanished and i.ref not in raw_refs and i.has_text)
+        gone = {ref_of(r.key) for r in self.raws} | set(self.held)
+        return sorted(i.ref for i in self.view.items(self.source) if not i.vanished and i.ref not in gone and i.has_text)
 
     def _summary(self, raw: RawText) -> StoredSummary | None:
         s = self.summaries.get((raw.key.number, raw.key.part))

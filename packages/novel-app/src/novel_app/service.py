@@ -55,7 +55,7 @@ from novel_translate.phase_b import (
     stale,
     translate,
 )
-from novel_translate.raws import official_english, raw_chapters, version_text
+from novel_translate.raws import RawRules, official_english, raw_chapters, version_text
 from novel_translate.setups import SetupError, TranslatorSetup, prompt_versions, register, setups
 from novel_translate.tstore import DB_NAME as TRANSLATE_DB
 from novel_translate.tstore import TranslateStore
@@ -275,13 +275,14 @@ class Service:
                 translators = setups(store.sources())
                 ts = stack.enter_context(self._tstore(novel)) if translators else None
                 # Staleness includes neighbours whose context changed, so compare whole reports.
-                before = {info.id: set(stale(store, ts, setup).stale) for info, setup in translators}
+                rules = _raw_rules(novel, store)
+                before = {info.id: set(stale(store, ts, rules, setup).stale) for info, setup in translators}
                 for info in raws:
                     job.log(f"{novel}: source {info.id} ({info.spec.backend}) {info.spec.url}")
                     for line in report.reclean_lines(reclean(store, info.id, zh_rules(novel, info.spec))):
                         job.log(line)
                 for info, setup in translators:
-                    now = [ref for ref in stale(store, ts, setup).stale if ref not in before[info.id]]
+                    now = [ref for ref in stale(store, ts, rules, setup).stale if ref not in before[info.id]]
                     job.log(report.now_stale_line(info.id, setup.label, now))
             return Outcome()
 
@@ -613,13 +614,13 @@ class Service:
                 job.log(f"{novel}: glossary pass with {model}, cap ${cap:.2f}")
                 try:
                     r = build_glossary(
-                        store, ts, lambda cancel: factory.llm(model, cancel), price, Budget(cap), options,
-                        lambda done, total, step: job.progress(done, total, step),
+                        store, ts, _raw_rules(novel, store), lambda cancel: factory.llm(model, cancel), price,
+                        Budget(cap), options, lambda done, total, step: job.progress(done, total, step),
                     )  # fmt: skip
                 except OutOfCredit as e:
                     job.log(f"stopped: out of OpenRouter credit ({e})")
                     return Outcome((f"out of OpenRouter credit: {e}",))
-            for line in report.glossary_lines(r):
+            for line in report.glossary_lines(r, novel):
                 job.log(line)
             return Outcome(tuple(r.failed))
 
@@ -629,7 +630,7 @@ class Service:
         options = self._glossary_options(novel, model)
         price = _price(self._translator(), model)
         with self._store(novel) as store, self._tstore(novel) as ts:
-            return estimate_glossary(store, ts, price, options)
+            return estimate_glossary(store, ts, _raw_rules(novel, store), price, options)
 
     def glossary(
         self, novel: str, status: Status | None = None, category: Category | None = None, search: str | None = None
@@ -731,7 +732,7 @@ class Service:
         stamp = _stamp(folder) + _stamp(folder, TRANSLATE_DB)
         cached = self._stale.get((novel, setup.url))
         if cached is None or cached[0] != stamp:
-            cached = (stamp, stale(store, ts, setup))
+            cached = (stamp, stale(store, ts, _raw_rules(novel, store), setup))
             self._stale[(novel, setup.url)] = cached
         return cached[1]
 
@@ -754,20 +755,20 @@ class Service:
             with self._store(novel) as store, self._tstore(novel) as ts:
                 try:
                     translate(
-                        store, ts, chosen, keys, new_llm, price, Budget(cap), workers,
+                        store, ts, _raw_rules(novel, store), chosen, keys, new_llm, price, Budget(cap), workers,
                         lambda done, total, step: job.progress(done, total, step), progress_report,
                     )  # fmt: skip
                 except OutOfCredit as e:
                     job.log(f"stopped: out of OpenRouter credit ({e})")
-                    for line in report.translate_lines(progress_report):
+                    for line in report.translate_lines(progress_report, novel):
                         job.log(line)
                     return Outcome((f"out of OpenRouter credit: {e}",))
                 except BaseException:
                     job.log("stopped before the end; what was paid for is kept:")
-                    for line in report.translate_lines(progress_report):
+                    for line in report.translate_lines(progress_report, novel):
                         job.log(line)
                     raise
-            for line in report.translate_lines(progress_report):
+            for line in report.translate_lines(progress_report, novel):
                 job.log(line)
             return Outcome(tuple(progress_report.failed + progress_report.blocked))
 
@@ -777,7 +778,7 @@ class Service:
         keys, chosen, _ = self._translate_args(novel, setup, range, 1)
         price = _price(self._translator(), chosen.model)
         with self._store(novel) as store, self._tstore(novel) as ts:
-            return estimate_translate(store, ts, chosen, keys, price)
+            return estimate_translate(store, ts, _raw_rules(novel, store), chosen, keys, price)
 
     # -- comparing models --------------------------------------------------------
 
@@ -795,11 +796,18 @@ class Service:
         factory = self._translator()
         prices = {s.url: _price(factory, s.model) for s in chosen}
         with self._store(novel) as store, self._tstore(novel) as ts:
-            usd = _setup_errors(lambda: estimate_compare(store, ts, chosen, keys, prices))
+            estimates = _setup_errors(lambda: estimate_compare(store, ts, _raw_rules(novel, store), chosen, keys, prices))
             refs = tuple(ref_of(r.key) for r in raw_chapters(store, keys))
             found = _references(store, keys, _reference_source(store, reference), _number(int, reference_shift, "the shift"))
         if not refs:
             raise UserError(f"{novel} has no raw chapters in {range}")
+        if not any(e.chapters for e in estimates.values()):
+            unchecked = max(e.unchecked for e in estimates.values())
+            blocked = max(e.blocked for e in estimates.values())
+            why = [f"{unchecked} not checked with current rules: run nov reclean {novel}"] if unchecked else []
+            why += [f"{blocked} blocked by terms to review"] if blocked else []
+            raise UserError(f"nothing to compare in {range}: " + "; ".join(why))
+        usd = {url: e.usd for url, e in estimates.items()}
         return CompareEstimate(chosen, usd, refs, tuple(r for r in refs if r in found))
 
     def _compare(
@@ -837,7 +845,7 @@ class Service:
                 references = _references(store, keys, _reference_source(store, reference), int(reference_shift))
                 try:
                     compare(
-                        store, ts, chosen, keys, new_llm, prices, Budget(cap), workers,
+                        store, ts, _raw_rules(novel, store), chosen, keys, new_llm, prices, Budget(cap), workers,
                         lambda done, total, step: job.progress(done, total, step), comparison,
                     )  # fmt: skip
                 except OutOfCredit as e:
@@ -892,7 +900,7 @@ class Service:
     def prune_orphans(self, novel: str, setup: int) -> tuple[str, ...]:
         chosen = self._setup(novel, setup)
         with self._store(novel) as store, self._tstore(novel) as ts:
-            return prune(store, ts, chosen)
+            return prune(store, ts, _raw_rules(novel, store), chosen)
 
     def set_published(self, novel: str, source: int, on: bool) -> None:
         with self._store(novel) as store:
@@ -994,6 +1002,11 @@ def _references(store: NovelStore, keys: KeyRange, source: int | None, shift: in
             paragraphs = tuple(p for s in parts for p in version_text(store, s.version_id).split("\n") if p)
             references[ref_of(raw.key)] = Reference(parts[0].source_id, parts[0].title, paragraphs)
     return references
+
+
+def _raw_rules(slug: str, store: NovelStore) -> dict[int, RawRules]:
+    """What translation needs of each raw-zh source's zh rules: its translator notes and revision."""
+    return {info.id: RawRules(zh.notes, zh.rev) for info in store.sources() if (zh := zh_rules(slug, info.spec))}
 
 
 def _setup_errors[T](call: Callable[[], T]) -> T:

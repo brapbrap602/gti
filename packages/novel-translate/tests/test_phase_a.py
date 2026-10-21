@@ -1,3 +1,4 @@
+import hashlib
 import random
 import re
 import threading
@@ -8,6 +9,7 @@ from novel_translate.budget import Budget
 from novel_translate.glossary import AddTerm, Category, Status, UpdateTerm
 from novel_translate.models import LLM, Charged, OutOfCredit, Price
 from novel_translate.phase_a import GlossaryOptions, build_glossary, estimate_glossary
+from novel_translate.raws import RawRules
 from novel_translate.tstore import TranslateStore
 from pydantic_ai.messages import ModelResponse, TextPart, ToolCallPart
 from pydantic_ai.models.function import FunctionModel
@@ -16,6 +18,7 @@ PRICE = Price(0.000001, 0.000002)
 FILLER = "山水风云天地日月花草木石金银铜铁春夏秋冬东西南北红黄蓝白黑青紫长短高低远近快慢冷热明暗新旧大小多少"
 NAMES = ["韩立", "七玄门", "墨大夫"]
 CHAPTERS = 12
+REV = "rules-1"  # the zh rules revision the raws were checked with
 
 
 def raw_text(number: int, seed: int = 0) -> list[str]:
@@ -32,19 +35,29 @@ def english(number: int) -> str:
 
 
 class Novel:
+    """Sources and their chapters; `rules` is what the app would pass as raw_rules."""
+
     def __init__(self, store: NovelStore):
         self.store = store
+        self.rules: dict[int, RawRules] = {}
 
     def source(self, name: str, kind: Kind) -> int:
-        return self.store.upsert_source(SourceSpec(f"custom:{name}", f"https://{name}.test", "zh" if kind is Kind.RAW_ZH else "en", kind))
+        source = self.store.upsert_source(SourceSpec(f"custom:{name}", f"https://{name}.test", "zh" if kind is Kind.RAW_ZH else "en", kind))
+        if kind is Kind.RAW_ZH:
+            self.rules[source] = RawRules("", REV)
+        return source
 
-    def chapters(self, source: int, numbers, text) -> None:
+    def chapters(self, source: int, numbers, text, rev=REV) -> None:
+        """Store these chapters; raws as checked by `rev`."""
         self.store.record_index(source, [SourceItem(f"/c/{n}", n, f"Chapter {n}", number=n) for n in numbers])
         for n in numbers:
             paragraphs = text(n)
             if isinstance(paragraphs, str):
                 paragraphs = [paragraphs]
-            self.store.put_version(source, f"/c/{n}", NewVersion(f"Chapter {n}", tuple(Paragraph.of(p) for p in paragraphs)))
+            rules_rev = rev if source in self.rules else None
+            self.store.put_version(
+                source, f"/c/{n}", NewVersion(f"Chapter {n}", tuple(Paragraph.of(p) for p in paragraphs), rules_rev=rules_rev)
+            )
 
 
 @pytest.fixture
@@ -111,7 +124,7 @@ class Script:
 
 def build(novel, ts, script, budget=None, **options):
     return build_glossary(
-        novel.store, ts, script.llm, PRICE, budget or Budget(100.0),
+        novel.store, ts, novel.rules, script.llm, PRICE, budget or Budget(100.0),
         GlossaryOptions("vendor/cheap", **options), lambda *_: None,
     )  # fmt: skip
 
@@ -225,7 +238,7 @@ def test_a_stopped_pass_resolves_what_it_tallied_and_the_next_run_continues(nove
 
 
 def first_classify_calls(novel, ts) -> int:
-    return estimate_glossary(novel.store, ts, PRICE, GlossaryOptions("m")).calls["classify"]
+    return estimate_glossary(novel.store, ts, novel.rules, PRICE, GlossaryOptions("m")).calls["classify"]
 
 
 def test_out_of_credit_ends_the_pass_with_an_error(novel, ts):
@@ -255,8 +268,23 @@ def test_hints_come_only_from_chapters_whose_selected_text_is_official(novel, ts
 
 
 def test_the_estimate_is_an_upper_bound_on_what_the_pass_spends(novel, ts):
-    estimate = estimate_glossary(novel.store, ts, PRICE, GlossaryOptions("vendor/cheap"))
+    estimate = estimate_glossary(novel.store, ts, novel.rules, PRICE, GlossaryOptions("vendor/cheap"))
     report = build(novel, ts, Script())
     assert estimate.upper_bound and estimate.chapters == CHAPTERS
     assert estimate.calls["summarize"] == CHAPTERS and estimate.calls["classify"] >= 1
     assert report.calls <= estimate.total_calls and report.cost <= estimate.usd
+
+
+def test_the_pass_skips_raws_not_checked_with_current_rules(novel, ts):
+    raw = next(iter(novel.rules))
+    paragraphs = (*raw_text(2), "厉飞雨走了。" * 3)
+    novel.store.put_version(raw, "/c/2", NewVersion("Chapter 2", tuple(map(Paragraph.of, paragraphs)), rules_rev="rules-0"))
+    assert estimate_glossary(novel.store, ts, novel.rules, PRICE, GlossaryOptions("m")).unchecked == 1
+    script = Script()
+    report = build(novel, ts, script)
+    assert report.unchecked == 1
+    assert not any("厉飞雨" in zh for kind, asked in script.calls if kind == "classify" for zh in asked)
+    assert {n for kind, n in script.calls if kind == "hint"} == {1, 3, 4}  # chapter 2 is not consulted
+    assert (2, 0) not in ts.summaries() and script.count("summarize") == CHAPTERS - 1
+    checked = [s for s in novel.store.view().raw_chapters() if s.key.number != 2]
+    assert ts.discovery(hashlib.sha256("\n".join(f"{s.key.label} {s.content_hash}" for s in checked).encode()).hexdigest())

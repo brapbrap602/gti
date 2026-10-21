@@ -216,9 +216,9 @@ def create_app(service: Service) -> FastAPI:
     async def translate_estimate(request: Request, novel: str, setup: str = "", range: str = ""):
         try:
             e = await run_in_threadpool(service.translate_estimate, novel, setup, range)
-            context = {"estimate": e, "error": None}
+            context = {"estimate": e, "error": None, "slug": novel}
         except UserError as err:
-            context = {"estimate": None, "error": str(err)}
+            context = {"estimate": None, "error": str(err), "slug": novel}
         return templates.TemplateResponse(request, "_estimate.html", context)
 
     # -- model comparisons -----------------------------------------------------------

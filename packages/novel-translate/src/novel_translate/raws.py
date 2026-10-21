@@ -4,12 +4,25 @@ For each chapter number, the raw comes from the first raw-zh source in priority
 order that can supply it (a current version, none of its parts held), with all of
 that source's parts of the number. Both phases use this rule, so overlapping raw
 sources count once.
+
+A raw is sent to a model only when it was checked by today's zh rules for its source
+(`RawRules.rev`); the app supplies those per raw source, since translation cannot read
+the rules themselves.
 """
 
-from collections.abc import Iterator
+from collections.abc import Iterator, Mapping
 from dataclasses import dataclass
 
 from novel_core import ChapterKey, ItemRef, KeyRange, Kind, Note, NovelStore, NovelView, Paragraph, SourceId, System
+
+
+@dataclass(frozen=True)
+class RawRules:
+    """What translation needs from a raw source's zh rules: the translator notes for its text, and
+    the rules revision a raw must have been checked with to be sent."""
+
+    notes: str
+    rev: str
 
 
 @dataclass(frozen=True)
@@ -20,6 +33,12 @@ class RawText:
     content_hash: str
     title: str
     paragraphs: tuple[str, ...]
+    rules_rev: str | None  # the zh rules revision that checked it; None if never checked
+
+    def unchecked(self, raw_rules: Mapping[SourceId, RawRules]) -> bool:
+        """Not checked with today's rules for its source; a source without rules fails closed."""
+        rules = raw_rules.get(self.source_id)
+        return rules is None or self.rules_rev != rules.rev
 
     @property
     def text(self) -> str:
@@ -29,7 +48,9 @@ class RawText:
 def raw_chapters(novel: NovelStore, keys: KeyRange | None = None, view: NovelView | None = None) -> Iterator[RawText]:
     """One raw per chapter key, in key order (see NovelView.raw_chapters); reads each version as it goes."""
     for s in (view or novel.view()).raw_chapters(keys):
-        yield RawText(s.key, s.source_id, s.item_ref, s.content_hash, s.title, _paragraphs(novel, s.version_id))
+        yield RawText(
+            s.key, s.source_id, s.item_ref, s.content_hash, s.title, _paragraphs(novel, s.version_id), s.rules_rev
+        )
 
 
 def official_english(view: NovelView) -> dict[int, list]:

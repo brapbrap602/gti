@@ -9,24 +9,25 @@ the next one:
    HINT_CHAPTERS chapters where the selected text is official English;
 4. resolve every unedited open term from its votes (also after a stop);
 5. summarize each chapter whose raw changed or has no summary yet.
+Raws not checked with today's zh rules are left out of every step, as translation leaves them out.
 A user's edit always wins: the store's writes skip edited terms.
 """
 
 import hashlib
 import threading
 from collections import defaultdict
-from collections.abc import Callable, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass, field
 
 import ahocorasick
-from novel_core import NovelStore
+from novel_core import NovelStore, SourceId
 
 from novel_translate.budget import Budget
 from novel_translate.discover import candidates
 from novel_translate.glossary import Seen, Status, normalize
 from novel_translate.models import LLM, CallFailed, Price, Sample
 from novel_translate.pool import run_paid
-from novel_translate.raws import RawText, official_english, raw_chapters, version_text
+from novel_translate.raws import RawRules, RawText, official_english, raw_chapters, version_text
 from novel_translate.tstore import TranslateStore
 
 BATCH = 30  # candidates per classification call
@@ -57,6 +58,7 @@ class Estimate:
     chapters: int
     calls: dict[str, int]  # per step: classify, hint, summarize
     usd: float
+    unchecked: int  # raws left out: not checked with today's zh rules
     upper_bound: bool = True
 
     @property
@@ -75,13 +77,16 @@ class GlossaryReport:
     calls: int = 0
     cost: float = 0.0
     stopped: str | None = None  # "budget reached" when the cap stopped it
+    unchecked: int = 0  # raws left out: not checked with today's zh rules
 
 
 type Progress = Callable[[int, int, str], None]
 
 
-def estimate_glossary(novel: NovelStore, ts: TranslateStore, price: Price, options: GlossaryOptions) -> Estimate:
-    plan = _plan(novel, ts)
+def estimate_glossary(
+    novel: NovelStore, ts: TranslateStore, raw_rules: Mapping[SourceId, RawRules], price: Price, options: GlossaryOptions
+) -> Estimate:
+    plan = _plan(novel, ts, raw_rules)
     official_chars = sum(len(t) for t in plan.official_sample_texts(novel))
     classify_calls = -(-len(plan.to_classify) // options.batch)
     hint_terms = len(plan.unhinted_keys) + len(plan.to_classify)
@@ -93,12 +98,13 @@ def estimate_glossary(novel: NovelStore, ts: TranslateStore, price: Price, optio
         + hint_calls * _hint_cost(price, avg_en, max(1, hint_terms // max(1, hint_calls)))
     )  # fmt: skip
     calls = {"classify": classify_calls, "hint": hint_calls, "summarize": len(plan.to_summarize)}
-    return Estimate(len(plan.raws), calls, usd)
+    return Estimate(len(plan.raws), calls, usd, plan.unchecked)
 
 
 def build_glossary(
     novel: NovelStore,
     ts: TranslateStore,
+    raw_rules: Mapping[SourceId, RawRules],
     new_llm: Callable[[threading.Event], LLM],
     price: Price,
     budget: Budget,
@@ -108,8 +114,8 @@ def build_glossary(
     """Run the glossary pass; raises OutOfCredit, or whatever `progress` raises to cancel, after
     keeping the paid results of calls already sent."""
     report = GlossaryReport()
-    plan = _plan(novel, ts)
-    report.candidates = len(plan.to_classify)
+    plan = _plan(novel, ts, raw_rules)
+    report.candidates, report.unchecked = len(plan.to_classify), plan.unchecked
     seen = _scan(plan.raws, [*plan.to_classify, *plan.unhinted_keys], set(plan.official))
     total = len(plan.to_summarize) + -(-len(plan.to_classify) // options.batch)  # hint calls are added once known
     done = 0
@@ -226,7 +232,8 @@ def build_glossary(
 
 @dataclass
 class _Plan:
-    raws: list[RawText]
+    raws: list[RawText]  # checked with today's zh rules
+    unchecked: int  # raws left out
     to_classify: list[str]  # new candidates, most frequent first, then proposed terms without votes
     unhinted_keys: list[str]
     to_summarize: list[RawText]
@@ -237,9 +244,10 @@ class _Plan:
         return [version_text(novel, s.version_id) for n in sorted(self.official)[:20] for s in self.official[n]]
 
 
-def _plan(novel: NovelStore, ts: TranslateStore) -> _Plan:
+def _plan(novel: NovelStore, ts: TranslateStore, raw_rules: Mapping[SourceId, RawRules]) -> _Plan:
     view = novel.view()
-    raws = list(raw_chapters(novel, view=view))
+    every = list(raw_chapters(novel, view=view))
+    raws = [r for r in every if not r.unchecked(raw_rules)]
     raws_hash = hashlib.sha256("\n".join(f"{r.key.label} {r.content_hash}" for r in raws).encode()).hexdigest()
     found = ts.discovery(raws_hash)
     if found is None:
@@ -253,7 +261,7 @@ def _plan(novel: NovelStore, ts: TranslateStore) -> _Plan:
     to_summarize = [
         r for r in raws if (s := summaries.get((r.key.number, r.key.part))) is None or s.raw_hash != r.content_hash
     ]
-    return _Plan(raws, to_classify, unhinted_keys, to_summarize, official_english(view))
+    return _Plan(raws, len(every) - len(raws), to_classify, unhinted_keys, to_summarize, official_english(view))
 
 
 @dataclass
