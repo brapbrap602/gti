@@ -619,6 +619,13 @@ Soft checks (stored with flags):
 - **Slice 4 (2026-10-20):** 4169a06 discovery, 273eabc Phase A + pool, then the CLI and Service.
   - **Discovery on real TM** (5.3M chars): 14,161 candidates in 69–82 s, 185 MiB peak. The protagonist 韩萧 is first. Many candidates are ordinary vocabulary (文明, 玩家). The classifier rejects them, and the cap bounds the cost, since candidates go most-frequent first.
     - Changes from the plan: `MIN_COUNT` is 10, not 5. There is a shipped `common_words.txt`. Strings containing 的, 了 or 着 are dropped. Tune at G2.
+    - Tuned 2026-10-20, offline:
+      - `everyday_words.txt` has 51k words from jieba's dictionary (MIT). It holds words with frequency ≥ 500, plus idioms and set phrases, but no proper nouns. `tools/make_everyday_words.py` rebuilds it.
+      - It drops whole strings only. A prefix/suffix rule on the long list dropped names like 世界树, 赤色帝国 and 闪耀世界.
+      - Pure-numeral strings are dropped.
+      - Result: Longevity went from 12,806 to 9,683 candidates and TM from 14,161 to 10,471.
+      - Generic genre words like 阵法, 长老 and 境界 now go too; translators render them consistently anyway.
+      - A "name + verb" phrase filter (李凡沉吟) was tried and rejected: it also drops organisation names (无限财团, 萌芽组织).
   - **Discovery is cached in `translate.sqlite`,** keyed by the raws' hash. The estimate and the build share one candidate list, and discovery reruns only when a raw changes. The first estimate on a long novel takes about a minute.
   - **Hints are resumable per chapter:** `term.consulted_json` records the chapters already asked, so a resumed run never asks one twice or double-counts its votes.
   - **`import-hints` is deferred.** There is no `active_glossary.json` (or `data/glossary/`) in the local MtlTings checkout. Its README describes a glossary extracted from the *English* output, so it would carry no Chinese keys to vote on. It returns if the user points at a file with zh→en pairs.

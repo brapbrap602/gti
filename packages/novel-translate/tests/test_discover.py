@@ -45,3 +45,12 @@ def test_counts_are_reported_and_rare_strings_left_out():
 
 def test_no_chapters_means_no_candidates():
     assert candidates([], known=set()) == []
+
+
+def test_everyday_words_and_numbers_are_left_out_but_names_made_of_them_stay():
+    texts = []
+    for planted in ("力量", "世界树", "三十", "熟视无睹"):
+        texts += chapters(planted, 40, seed=len(texts))
+    found = {c.zh for c in candidates(texts, known=set())}
+    assert "世界树" in found  # 世界 is an everyday word; the name built on it is not
+    assert not {"力量", "三十", "熟视无睹"} & found  # an everyday word, a number, an idiom
