@@ -1,0 +1,12 @@
+{# The Translate form's estimate and its Start button: there is no Start without an estimate. #}
+{% if error %}
+<p class="muted">{{ error }}</p>
+<button type="submit" disabled>Start</button>
+{% elif estimate.chapters == 0 %}
+<p class="muted">Nothing to translate: {{ estimate.current }} already current{% if estimate.blocked %}, <a href="#check">{{ estimate.blocked }} blocked</a> by terms to review{% endif %}.</p>
+<button type="submit" disabled>Start</button>
+{% else %}
+<p>{{ estimate.chapters }} chapters to translate, at most ${{ "%.4f" | format(estimate.usd) }}
+    <span class="muted">({{ estimate.current }} already current{% if estimate.blocked %}, <a href="#check">{{ estimate.blocked }} blocked</a> by terms to review{% endif %}; the cap stops it in any case)</span></p>
+<button type="submit">Start</button>
+{% endif %}

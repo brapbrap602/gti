@@ -33,6 +33,8 @@ from novel_core.selection import Pin
 from novel_publish import epub, render
 from novel_publish import site as site_builder
 from novel_sources.backends import is_web
+from novel_translate.setups import BACKEND as SETUP_BACKEND
+from novel_translate.setups import TranslatorSetup
 
 from novel_app.diff import BlockMark, Mark, TextDiff, diff_blocks, normalised
 from novel_app.jobs import JobRow
@@ -56,11 +58,14 @@ class SourceRow:
 
 @dataclass(frozen=True)
 class SourceLabel:
-    short: str  # what a table shows: a site's host, an imported folder's name, else the backend
+    short: str  # what a table shows: a site's host, an imported folder's name, a setup's model, else the backend
     full: str  # the source's URL, for a tooltip or a second line
 
 
 def source_label(spec: SourceSpec) -> SourceLabel:
+    if spec.backend == SETUP_BACKEND:  # a translator setup: its model, and the rest of its identity
+        setup = TranslatorSetup.from_spec(spec)
+        return SourceLabel(setup.model, setup.label)
     parts = urlsplit(spec.url)
     if parts.scheme in ("http", "https") and parts.hostname:
         short = parts.hostname.removeprefix("www.")

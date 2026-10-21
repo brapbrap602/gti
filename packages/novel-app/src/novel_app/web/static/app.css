@@ -337,3 +337,15 @@ aside.jobs:not(.show-recent) .job-list--recent { display: none; }
   .glossary-tools input, .glossary-filter input, .term-details input, .glossary-table input:not([type]) { max-width: 100%; }
   .glossary-tools label, .glossary-filter label, .term-details label { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; max-width: 100%; }
 }
+
+/* Translations on the novel page. */
+.translate-form, .setup-form { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; margin: 0.5rem 0; }
+.translate-form .estimate { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; }
+.translate-form .estimate p { margin: 0; }
+.add-setup { margin: 1rem 0; }
+.stale-panel ul { padding-left: 1.25rem; }
+@media (max-width: 640px) {
+  table.setups-table { margin-top: 0.5rem; }
+  .translate-form input, .setup-form input { max-width: 100%; }
+  .translate-form label, .setup-form label { display: flex; flex-wrap: wrap; gap: 0.25rem 0.5rem; max-width: 100%; }
+}

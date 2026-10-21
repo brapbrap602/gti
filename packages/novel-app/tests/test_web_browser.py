@@ -148,3 +148,18 @@ def test_glossary_review_keeps_focus_on_the_row(openrouter, page, app_url, servi
     assert page.js(f"document.getElementById('term-{han}-en').value") == "Han Li the Elder"
     page.screenshot(tmp_path / "glossary.png")
     assert (tmp_path / "glossary.png").stat().st_size > 1000
+
+
+def test_translate_form_enables_start_once_an_estimate_shows(openrouter, page, app_url, service):
+    from novel_translate.setups import TranslatorSetup
+
+    source = service.add_setup("raw-novel", TranslatorSetup("vendor/cheap"))
+    page.goto(app_url + "/novels/raw-novel")
+    start = "document.querySelector('#estimate button[type=submit]')"
+    assert page.js(f"{start}.disabled")
+    assert page.js("document.documentElement.scrollWidth <= innerWidth")
+    page.js("""(() => { const i = document.querySelector('#translate-form input[name=range]');
+        i.value = '1-3'; i.dispatchEvent(new Event('change', {bubbles: true})); })()""")
+    page.wait_for(f"!{start}.disabled")
+    assert "3 chapters to translate" in page.js("document.getElementById('estimate').textContent")
+    assert page.js(f"document.querySelector('#translate-form select[name=setup]').value") == str(source)
