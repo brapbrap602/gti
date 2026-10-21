@@ -1,1 +1,8 @@
-{% if error %}<p class="status-msg status-msg--error">{{ error }}</p>{% elif notice %}<p class="status-msg">{{ notice }}</p>{% endif %}
+{% from "_ui.html" import icon %}
+{% if error or notice %}
+<div class="toast{% if error %} toast--destructive{% endif %}">
+    {{ icon("circle-alert" if error else "circle-check") }}
+    <p class="toast-text">{{ error or notice }}</p>
+    <button type="button" class="toast-close" aria-label="Dismiss">{{ icon("x") }}</button>
+</div>
+{% endif %}

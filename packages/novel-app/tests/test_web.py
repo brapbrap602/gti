@@ -59,8 +59,8 @@ def test_library_row_and_novel_grid(client, service):
     assert 'href="/novels/test-novel">Test Novel</a>' in page
     assert "3 selected" in page
     assert re.search(r'name="kind" value="sync"', page)
-    assert '<span class="out out--missing" title="site: not built">site not built</span>' in page
-    assert '<li title="https://novelbuddy.me/test-novel">novelbuddy.me <span class="muted">official-en</span></li>' in page
+    assert re.search(r'class="[^"]*out--missing[^"]*" title="site: not built">site not built<', page)
+    assert re.search(r'<li title="https://novelbuddy\.me/test-novel">.*?novelbuddy\.me.*?official-en.*?</li>', page)
 
     novel = client.get("/novels/test-novel").text
     assert 'title="3, official, source 1: Chapter 3"' in novel
@@ -124,7 +124,7 @@ def test_job_one_per_novel(client, service):
     refused = client.post("/jobs", data={"kind": "sync", "novel": "test-novel", "back": "/"})
     assert refused.status_code == 409 and "job already running for test-novel" in refused.text
     page = client.get("/").text
-    assert re.search(r'<button type="submit" disabled title="Sync is queued \(job \d+\)">Sync</button>', page)
+    assert re.search(r'<button type="submit"(?: class="[^"]*")? disabled title="Sync is queued \(job \d+\)"(?: class="[^"]*")?>.*?Sync</button>', page)
     assert "running in another process" in page
 
     started = client.post("/jobs", data={"kind": "build-site", "back": "/"}, follow_redirects=False)
@@ -233,14 +233,26 @@ def test_jobs_panel_shows_attention_then_recent(client, service):
     board.finish(running, JobState.DONE)
 
 
-def test_table_cells_carry_labels_for_phones(client, service):
+def test_sources_table_cells_carry_labels_for_phones(client, service):
     added(service)
 
-    for path, table in (("/", "library"), ("/novels/test-novel", "sources-table")):
-        html = re.search(rf'<table class="{table}">.*?</table>', client.get(path).text, re.S).group(0)
-        body = html.split("<tbody>", 1)[1]
-        cells = re.findall(r"<td(?: [^>]*)?>", body)
-        assert cells and all("data-label=" in c for c in cells), (path, cells)
+    html = re.search(r'<table class="sources-table">.*?</table>', client.get("/novels/test-novel").text, re.S).group(0)
+    body = html.split("<tbody>", 1)[1]
+    cells = re.findall(r"<td(?: [^>]*)?>", body)
+    assert cells and all("data-label=" in c for c in cells), cells
+
+
+def test_library_cards_name_link_and_sync_each_novel(client, service, novels):
+    added(service)
+
+    page = client.get("/").text
+    listed = page.split("</main>")[0].split('<li class="card novel-card" data-novel="')[1:]
+    cards = {card.split('"', 1)[0]: card for card in listed}
+    assert sorted(cards) == ["english-only", "raw-novel", "test-novel"]
+    for slug, card in cards.items():
+        assert f'href="/novels/{slug}">' in card
+    syncable = cards["test-novel"]
+    assert 'name="kind" value="sync"' in syncable and 'name="novel" value="test-novel"' in syncable
 
 
 def compare_page(client, slug: str, number: int = 1) -> str:
@@ -329,6 +341,7 @@ def test_vendored_fonts_and_icons_are_served(client):
 
 def test_every_icon_a_template_uses_is_in_the_sprite():
     web = Path(create_app.__code__.co_filename).parent
-    used = {name for t in (web / "templates").glob("*.html") for name in re.findall(r"""icon\(["']([\w-]+)["']""", t.read_text(encoding="utf-8"))}
+    named = r"""(?:\bicon\(|\bempty\(|icon_name=)["']([\w-]+)["']"""
+    used = {name for t in (web / "templates").glob("*.html") for name in re.findall(named, t.read_text(encoding="utf-8"))}
     symbols = set(re.findall(r'<symbol id="([\w-]+)"', (web / "static/vendor/lucide.svg").read_text(encoding="utf-8")))
     assert used - symbols == set()

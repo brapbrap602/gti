@@ -1,37 +1,58 @@
+{% from "_ui.html" import icon %}
+
 {# A button that starts a job. While the novel has a job, it is disabled and says why. #}
-{% macro job_button(kind, novel, busy, back="/", label=None) %}
+{% macro job_button(kind, novel, busy, back="/", label=None, icon_name=None, variant="outline", small=True) %}
 <form method="post" action="/jobs" hx-post="/jobs" hx-target="#notice" class="inline">
     <input type="hidden" name="kind" value="{{ kind }}">
     {% if novel %}<input type="hidden" name="novel" value="{{ novel }}">{% endif %}
     <input type="hidden" name="back" value="{{ back }}">
-    <button type="submit"{% if busy %} disabled title="{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }})"{% endif %}>{{ label or job_labels[kind] }}</button>
+    <button type="submit" class="btn btn--{{ variant }}{% if small %} btn--sm{% endif %}"{% if busy %} disabled title="{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }})"{% endif %}>{% if icon_name %}{{ icon(icon_name) }}{% endif %}{{ label or job_labels[kind] }}</button>
 </form>
 {% endmacro %}
 
-{% macro build_menu(novel, busy, back="/") %}
-<details class="menu">
-    <summary>Build</summary>
+{% macro build_menu(novel, busy, back="/", small=True, end=False) %}
+<details class="menu{% if end %} menu--end{% endif %}">
+    <summary class="btn btn--outline{% if small %} btn--sm{% endif %}">{{ icon("hammer") }}Build{{ icon("chevron-down") }}</summary>
     <div class="menu-items">
-        {{ job_button("build-epub", novel, busy, back, "EPUB") }}
-        {{ job_button("build-audio", novel, busy, back, "Audio") }}
-        {{ job_button("build-volumes", novel, busy, back, "M4B volumes") }}
-        {{ job_button("audio-retag", novel, busy, back, "Retag MP3s") }}
+        {{ job_button("build-epub", novel, busy, back, "EPUB", icon_name="book-open") }}
+        {{ job_button("build-audio", novel, busy, back, "Audio", icon_name="file-text") }}
+        {{ job_button("build-volumes", novel, busy, back, "M4B volumes", icon_name="layers") }}
+        {{ job_button("audio-retag", novel, busy, back, "Retag MP3s", icon_name="rotate-ccw") }}
     </div>
 </details>
 {% endmacro %}
 
 {% macro busy_reason(busy) %}
-{% if busy %}<p class="busy">{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }}); actions wait until it ends.</p>{% endif %}
+{% if busy %}<div class="alert alert--warn busy">{{ icon("loader") }}<p class="alert-body">{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }}); actions wait until it ends.</p></div>{% endif %}
 {% endmacro %}
 
-{% macro badge(o) %}
+{# An output's state as a badge: up to date, stale (needs a rebuild), never built, or nothing to build. #}
+{% macro output_badge(o) %}
 {% set text, state = o.badge %}
-<span class="out out--{{ state }}" title="{{ o.kind }}: {{ {"fresh": "up to date", "stale": o.stale ~ " stale", "missing": "not built", "none": "nothing to build"}[state] }}">{{ text }}</span>
+<span class="badge badge--{{ {"fresh": "ok", "stale": "warn", "missing": "outline", "none": "muted"}[state] }} out out--{{ state }}" title="{{ o.kind }}: {{ {"fresh": "up to date", "stale": o.stale ~ " stale", "missing": "not built", "none": "nothing to build"}[state] }}">{{ text }}</span>
 {%- endmacro %}
 
 {% macro staleness(o) %}
 {% if o.built == 0 and o.stale == 0 %}<span class="muted">nothing to build</span>
-{% elif o.built == 0 %}<span class="stale">not built</span>
+{% elif o.built == 0 %}<span class="muted">not built</span>
 {% elif o.stale %}<span class="stale">{{ o.stale }} stale</span>
 {% else %}<span class="fresh">up to date</span>{% endif %}
+{% endmacro %}
+
+{# A novel's running job, shown where the novel is (a library card, the novel header). The server
+   renders the first frame; app.js mirrors the job's progress from #jobs between reloads. #}
+{% macro job_progress(slug, job) %}
+<div class="job-mirror" data-job-progress="{{ slug }}"{% if not job %} hidden{% endif %}>
+    <span class="job-mirror-head">{{ icon("loader") }}<span class="job-progress-text">{% if job %}{{ job_labels.get(job.kind, job.kind) }} {% if job.total %}{{ job.done }}/{{ job.total }}{% else %}{{ job.state }}{% endif %}{% endif %}</span></span>
+    <progress aria-label="{{ slug }} job progress"{% if job and job.total %} max="{{ job.total }}" value="{{ job.done }}"{% else %} hidden{% endif %}></progress>
+</div>
+{% endmacro %}
+
+{# A stacked bar of chapter states, in legend order. #}
+{% macro meter(counts, label) %}
+{% set parts = [] %}
+{% for state in CellState if counts.get(state) %}{% set _ = parts.append(counts[state] ~ " " ~ cell_labels[state]) %}{% endfor %}
+<div class="meter" role="img" aria-label="{{ label }}: {{ parts | join(", ") or "no chapters" }}">
+    {% for state in CellState if counts.get(state) %}<span class="seg seg--{{ state }}" style="flex-grow: {{ counts[state] }}" title="{{ counts[state] }} {{ cell_labels[state] }}"></span>{% endfor %}
+</div>
 {% endmacro %}

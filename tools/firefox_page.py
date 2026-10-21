@@ -119,9 +119,10 @@ class Page:
         self.js(action)
         self.wait_for(f"window.__left !== {token} && document.readyState === 'complete'")
 
-    def screenshot(self, path: Path) -> None:
-        """Save the viewport as a PNG."""
-        shot = self._b._rpc.send("browsingContext.captureScreenshot", {"context": self._b._context})
+    def screenshot(self, path: Path, full_page: bool = False) -> None:
+        """Save the viewport (or, with full_page, the whole document) as a PNG."""
+        params = {"context": self._b._context, **({"origin": "document"} if full_page else {})}
+        shot = self._b._rpc.send("browsingContext.captureScreenshot", params)
         path.write_bytes(base64.b64decode(shot["data"]))
 
     def assert_no_errors(self) -> None:

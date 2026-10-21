@@ -1,60 +1,109 @@
 {% extends "base.html" %}
-{% from "_macros.html" import job_button, build_menu, busy_reason, staleness %}
+{% from "_ui.html" import icon, badge %}
+{% from "_macros.html" import job_button, build_menu, busy_reason, staleness, job_progress, meter %}
 {% set r = novel.row %}
 {% set back = "/novels/" ~ r.slug %}
+{% set counts = state_counts(novel.grid) %}
 {% block title %}{{ r.title }} · Novel library{% endblock %}
+{% block crumbs %}<li><a href="/">Library</a></li><li><a href="{{ back }}" aria-current="page" title="{{ r.title }}">{{ r.title }}</a></li>{% endblock %}
 {% block main %}
-<h1>{{ r.title }} {% if r.raw_only %}<span class="badge">raw only</span>{% endif %}</h1>
-<p class="muted">{{ r.slug }} · {{ r.selected }} chapters selected · gaps: {{ r.gaps or "none" }} · last sync {{ r.last_sync | ago }}</p>
-<div class="novel-actions">
-    {% if r.can_sync %}{{ job_button("sync", r.slug, r.job, back) }}{% endif %}
-    {{ build_menu(r.slug, r.job, back) }}
-    <ul class="outputs inline-list">{% for o in r.outputs %}<li>{{ o.kind }}: {{ staleness(o) }}</li>{% endfor %}</ul>
+<div class="page-header">
+    <div class="page-heading">
+        <h1>{{ r.title }} {% if r.raw_only %}{{ badge("raw only", "warn") }}{% endif %}</h1>
+        <p class="muted">{{ r.slug }} · last sync {{ r.last_sync | ago }}</p>
+    </div>
+    <div class="page-actions">
+        {% if r.can_sync %}{{ job_button("sync", r.slug, r.job, back, icon_name="refresh-cw", small=False) }}{% endif %}
+        {{ build_menu(r.slug, r.job, back, small=False, end=True) }}
+    </div>
 </div>
-{{ busy_reason(r.job) }}
-{% if glossary is not none %}
-<p class="glossary-link"><a href="/novels/{{ r.slug }}/glossary">Glossary</a>
-    <span class="muted">{% if glossary %}{% for status, n in glossary | dictsort %}{{ n }} {{ status | replace("_", " ") }}{% if not loop.last %} · {% endif %}{% endfor %}{% else %}no entries yet{% endif %}</span></p>
+{% if glossary is not none or translate %}
+<ul class="page-links">
+    {% if glossary is not none %}
+    <li>{{ icon("languages") }}<a href="/novels/{{ r.slug }}/glossary">Glossary</a> <span class="muted">{% if glossary %}{% for status, n in glossary | dictsort %}{{ n }} {{ status | replace("_", " ") }}{% if not loop.last %} · {% endif %}{% endfor %}{% else %}no entries yet{% endif %}</span></li>
+    {% endif %}
+    {% if translate %}
+    <li>{{ icon("git-compare") }}<a href="/novels/{{ r.slug }}/comparisons">Model comparisons</a> <span class="muted">{% if comparisons %}{{ comparisons }} run{{ "s" if comparisons != 1 }}{% else %}none yet{% endif %}</span></li>
+    {% endif %}
+</ul>
 {% endif %}
+{{ busy_reason(r.job) }}
+{{ job_progress(r.slug, r.job) }}
 
-<section id="sources" aria-labelledby="sources-heading">
-    <h2 id="sources-heading">Sources</h2>
-    <p class="muted">The book takes each chapter from the first source in this order that has it, unless a pin says otherwise. Raw-zh sources are never published.</p>
+<section class="stats" aria-label="Summary">
+    <div class="stat">
+        <span class="stat-label">Chapters selected</span>{{ icon("book-open") }}
+        <span class="stat-value">{{ "{:,}".format(r.selected) }}</span>
+        <span class="stat-hint">{% for kind, n in r.numbers.items() %}{{ n }} {{ kind }}{% if not loop.last %} · {% endif %}{% else %}no texts yet{% endfor %}</span>
+    </div>
+    <div class="stat">
+        <span class="stat-label">Gaps</span>{{ icon("circle-alert") }}
+        <span class="stat-value{% if r.gaps %} stale{% endif %}">{{ r.gaps }}</span>
+        <span class="stat-hint">{% if r.gaps %}numbers with nothing publishable{% else %}none in the book's range{% endif %}</span>
+    </div>
+    <div class="stat">
+        <span class="stat-label">New to fetch</span>{{ icon("refresh-cw") }}
+        <span class="stat-value">{% if r.can_sync %}{{ r.new_items }}{% else %}–{% endif %}</span>
+        <span class="stat-hint">{% if r.can_sync %}listed by the web sources{% else %}no web source{% endif %}</span>
+    </div>
+    <div class="stat stat--outputs">
+        <span class="stat-label">Outputs</span>{{ icon("layers") }}
+        <ul class="outputs-list">{% for o in r.outputs %}<li><span class="kind">{{ o.kind }}</span> {{ staleness(o) }}</li>{% endfor %}</ul>
+    </div>
+</section>
+
+{% set problems = novel.check.problems %}
+{% set unfinished = counts.get(CellState.FAILED, 0) + counts.get(CellState.MISSING, 0) %}
+<nav class="tabs novel-tabs" aria-label="Novel sections" data-tabs>
+    <a class="tab" href="#sources" data-tab-link="sources">{{ icon("globe") }}Sources <span class="count">{{ r.sources | length }}</span></a>
+    <a class="tab" href="#chapters" data-tab-link="chapters">{{ icon("list") }}Chapters{% if unfinished %} <span class="count count--warn" title="failed or missing">{{ unfinished }}</span>{% endif %}</a>
+    {% if translate %}{% set stale = translate.setups | sum(attribute="stale") %}
+    <a class="tab" href="#translate" data-tab-link="translate">{{ icon("languages") }}Translate{% if stale %} <span class="count count--warn" title="stale chapters">{{ stale }}</span>{% endif %}</a>
+    {% endif %}
+    <a class="tab" href="#check" data-tab-link="check">{{ icon("search") }}Check {% if problems %}<span class="count count--warn">{{ problems }}</span>{% else %}<span class="count count--ok" title="no problems">✓</span>{% endif %}</a>
+</nav>
+
+<section id="sources" class="panel card" data-panel="sources" aria-labelledby="sources-heading">
+    <div class="card-header">
+        <h2 id="sources-heading" class="card-title">Sources</h2>
+        <p class="card-description">The book takes each chapter from the first source in this order that has it, unless a pin says otherwise. Raw-zh sources are never published.</p>
+    </div>
+    <div class="table-wrap">
     <table class="sources-table">
         <thead>
         <tr>
             <th scope="col">Rank</th><th scope="col">Source</th><th scope="col">Kind</th>
-            <th scope="col">Listed</th><th scope="col">Texts</th><th scope="col">To fetch</th><th scope="col">Book</th><th scope="col">Order</th>
+            <th scope="col" class="num">Listed</th><th scope="col" class="num">Texts</th><th scope="col" class="num">To fetch</th><th scope="col">Book</th><th scope="col">Order</th>
         </tr>
         </thead>
         <tbody>
         {% for s in r.sources %}
         <tr>
             {% set label = source_label(s.info.spec) %}
-            <td data-label="Rank">{{ s.rank }}</td>
-            <th scope="row">{{ s.id }}: {{ label.short }} <span class="muted">{{ s.info.spec.backend }}</span><br><span class="muted url">{{ label.full }}</span></th>
-            <td data-label="Kind">{{ s.info.spec.kind }}</td>
-            <td data-label="Listed">{{ s.listed }}</td>
-            <td data-label="Texts">{{ s.texts }}</td>
-            <td data-label="To fetch">{{ s.to_fetch if s.to_fetch is not none else "—" }}</td>
+            <td data-label="Rank" class="rank">{{ s.rank }}</td>
+            <th scope="row"><span class="source-name">{{ s.id }}: {{ label.short }}</span> <span class="muted">{{ s.info.spec.backend }}</span><br><span class="muted url">{{ label.full }}</span></th>
+            <td data-label="Kind">{{ badge(s.info.spec.kind, "outline") }}</td>
+            <td data-label="Listed" class="num">{{ s.listed }}</td>
+            <td data-label="Texts" class="num">{{ s.texts }}</td>
+            <td data-label="To fetch" class="num">{{ s.to_fetch if s.to_fetch is not none else "—" }}</td>
             <td data-label="Book">
                 {% if s.info.spec.kind == Kind.RAW_ZH %}<span class="muted">never</span>
                 {% else %}
-                <form method="post" action="/novels/{{ r.slug }}/publish" class="inline">
+                <form method="post" action="/novels/{{ r.slug }}/publish" class="inline publish-form">
                     <input type="hidden" name="source" value="{{ s.id }}">
                     <input type="hidden" name="on" value="{{ "off" if s.info.published else "on" }}">
-                    {% if s.info.published %}<span class="fresh">in</span>{% else %}<span class="stale">unpublished</span>{% endif %}
-                    <button type="submit" aria-label="{{ "Unpublish" if s.info.published else "Publish" }} source {{ s.id }}">{{ "Unpublish" if s.info.published else "Publish" }}</button>
+                    {% if s.info.published %}{{ badge("in the book", "ok") }}{% else %}{{ badge("unpublished", "warn") }}{% endif %}
+                    <button type="submit" class="btn btn--ghost btn--sm" aria-label="{{ "Unpublish" if s.info.published else "Publish" }} source {{ s.id }}">{{ "Unpublish" if s.info.published else "Publish" }}</button>
                 </form>
                 {% endif %}
             </td>
             <td class="order" data-label="Order">
-                {% for move, label in (("up", "↑"), ("down", "↓")) %}
+                {% for move, arrow in (("up", "arrow-up"), ("down", "arrow-down")) %}
                 <form method="post" action="/novels/{{ r.slug }}/priority" class="inline">
                     <input type="hidden" name="source" value="{{ s.id }}">
                     <input type="hidden" name="move" value="{{ move }}">
-                    <button type="submit" aria-label="Move source {{ s.id }} {{ move }}"
-                        {% if (move == "up" and s.rank == 1) or (move == "down" and s.rank == r.sources | length) %}disabled{% endif %}>{{ label }}</button>
+                    <button type="submit" class="btn btn--outline btn--sm btn--icon" aria-label="Move source {{ s.id }} {{ move }}"
+                        {% if (move == "up" and s.rank == 1) or (move == "down" and s.rank == r.sources | length) %}disabled{% endif %}>{{ icon(arrow) }}</button>
                 </form>
                 {% endfor %}
             </td>
@@ -62,31 +111,46 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
     {% if novel.pins %}
-    <h3>Pins</h3>
-    <ul>{% for p in novel.pins %}
-        <li>{{ p.range.start }}–{{ p.range.end }} → source {{ p.source_id }}
-            <form method="post" action="/novels/{{ r.slug }}/unpin" class="inline">
-                <input type="hidden" name="numbers" value="{{ p.range.start }}-{{ p.range.end }}">
-                <button type="submit" aria-label="Unpin {{ p.range.start }}–{{ p.range.end }}">Unpin</button>
-            </form>
-        </li>{% endfor %}
-    </ul>
+    <div class="pins">
+        <h3>{{ icon("pin") }} Pins</h3>
+        <ul>{% for p in novel.pins %}
+            <li><span>{{ p.range.start }}–{{ p.range.end }} → source {{ p.source_id }}</span>
+                <form method="post" action="/novels/{{ r.slug }}/unpin" class="inline">
+                    <input type="hidden" name="numbers" value="{{ p.range.start }}-{{ p.range.end }}">
+                    <button type="submit" class="btn btn--ghost btn--sm" aria-label="Unpin {{ p.range.start }}–{{ p.range.end }}">{{ icon("pin-off") }}Unpin</button>
+                </form>
+            </li>{% endfor %}
+        </ul>
+    </div>
     {% endif %}
 </section>
 
-<section aria-labelledby="chapters-heading">
-    <h2 id="chapters-heading">Chapters</h2>
+<section id="chapters" class="panel card" data-panel="chapters" aria-labelledby="chapters-heading">
+    <div class="card-header card-header--row">
+        <div>
+            <h2 id="chapters-heading" class="card-title">Chapters</h2>
+            <p class="card-description">{{ "{:,}".format(counts.values() | sum) }} chapter numbers; open a block, then a chapter to compare its sources.</p>
+        </div>
+    </div>
+    {% if not novel.grid %}<p class="empty">No chapters yet.</p>
+    {% else %}
+    {{ meter(counts, "Whole novel") }}
+    {% endif %}
     <ul class="legend" aria-label="Legend">
-        {% for state in CellState %}<li><span class="cell cell--{{ state }}" aria-hidden="true"></span> {{ cell_labels[state] }}</li>{% endfor %}
+        {% for state in CellState %}<li><span class="cell cell--{{ state }}" aria-hidden="true"></span> {{ cell_labels[state] }}{% if counts.get(state) %} <span class="muted">{{ counts[state] }}</span>{% endif %}</li>{% endfor %}
         <li><span class="cell cell--official cell--pinned" aria-hidden="true"></span> pinned</li>
     </ul>
-    {% if not novel.grid %}<p class="empty">No chapters yet.</p>{% endif %}
+    <div class="grid-blocks">
     {% for block in novel.grid %}
+    {% set block_counts = state_counts([block]) %}
     <details class="grid-block"{% if block.count(CellState.MISSING) or block.count(CellState.FAILED) %} open{% endif %}>
         <summary>
-            {{ block.range.start }}–{{ block.range.end }}
-            <span class="muted">
+            {{ icon("chevron-right") }}
+            <span class="block-range">{{ block.range.start }}–{{ block.range.end }}</span>
+            {{ meter(block_counts, block.range.start ~ "–" ~ block.range.end) }}
+            <span class="muted block-counts">
             {% for state in CellState %}{% set n = block.count(state) %}{% if n %} · {{ n }} {{ cell_labels[state] }}{% endif %}{% endfor %}
             </span>
         </summary>
@@ -98,67 +162,87 @@
         </ul>
     </details>
     {% endfor %}
+    </div>
 </section>
 
 {% if translate %}
-<section id="translate" aria-labelledby="translate-heading">
-    <h2 id="translate-heading">Translations</h2>
-    <p><a href="/novels/{{ r.slug }}/comparisons">Model comparisons</a> <span class="muted">{% if comparisons %}{{ comparisons }} run{{ "s" if comparisons != 1 }}{% else %}none yet{% endif %}</span></p>
-    <p class="muted">Each translator setup is its own source, unpublished until you publish it above; then the order decides, as for any source.</p>
-    {% if translate.setups %}
-    <table class="sources-table setups-table">
-        <thead><tr><th scope="col">Setup</th><th scope="col">Chapters</th><th scope="col">Flagged</th><th scope="col">Failed</th><th scope="col">Stale</th><th scope="col">Orphans</th><th scope="col">Spent</th></tr></thead>
-        <tbody>
-        {% for t in translate.setups %}
-        <tr>
-            <th scope="row">{{ t.source.id }}: {{ t.setup.label }}{% if not t.source.published %} <span class="muted">unpublished</span>{% endif %}</th>
-            <td data-label="Chapters">{{ t.chapters }}</td>
-            <td data-label="Flagged">{{ t.flagged }}</td>
-            <td data-label="Failed">{% if t.failed %}<a href="#check">{{ t.failed }}</a>{% else %}0{% endif %}</td>
-            <td data-label="Stale">{% if t.stale %}<a href="/novels/{{ r.slug }}?setup={{ t.source.id }}&range=stale#translate">{{ t.stale }}</a>{% else %}0{% endif %}</td>
-            <td data-label="Orphans">{{ t.orphans }}{% if t.orphans %} <span class="muted">(<code>nov translate prune {{ r.slug }} {{ t.source.id }}</code>)</span>{% endif %}</td>
-            <td data-label="Spent">${{ "%.4f" | format(t.cost) }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <h3>Translate</h3>
-    {% if translate.blocked %}<p class="busy">{{ translate.blocked }}</p>{% endif %}
-    <form method="post" action="/jobs" hx-post="/jobs" hx-target="#notice" class="translate-form" id="translate-form">
-        <input type="hidden" name="kind" value="translate">
-        <input type="hidden" name="novel" value="{{ r.slug }}">
-        <input type="hidden" name="back" value="{{ back }}#translate">
-        <label>Setup <select name="setup">{% for t in translate.setups %}<option value="{{ t.source.id }}"{% if prefill.setup == t.source.id | string %} selected{% endif %}>{{ t.source.id }}: {{ t.setup.model }}</option>{% endfor %}</select></label>
-        <label>Chapters <input name="range" value="{{ prefill.range }}" size="14" placeholder="1495-1504 or stale" required></label>
-        <label>Cap $ <input name="cap" value="1.00" size="5" inputmode="decimal"></label>
-        <label>Workers <input name="workers" value="4" size="2" inputmode="numeric"></label>
-        <div id="estimate" class="estimate" aria-live="polite"
-             hx-get="/novels/{{ r.slug }}/translate/estimate" hx-include="#translate-form" hx-target="this" hx-swap="innerHTML"
-             hx-trigger="{% if prefill.range %}load, {% endif %}change from:#translate-form, input delay:600ms from:#translate-form">
-            <p class="muted">Enter chapters to see what it would cost.</p>
-            <button type="submit" disabled>Start</button>
+<section id="translate" class="panel" data-panel="translate" aria-labelledby="translate-heading">
+    <div class="card">
+        <div class="card-header">
+            <h2 id="translate-heading" class="card-title">Translations</h2>
+            <p class="card-description">Each translator setup is its own source, unpublished until you publish it under Sources; then the order decides, as for any source.</p>
         </div>
-    </form>
+        {% if translate.setups %}
+        <div class="table-wrap">
+        <table class="sources-table setups-table">
+            <thead><tr><th scope="col">Setup</th><th scope="col" class="num">Chapters</th><th scope="col" class="num">Flagged</th><th scope="col" class="num">Failed</th><th scope="col" class="num">Stale</th><th scope="col" class="num">Orphans</th><th scope="col" class="num">Spent</th></tr></thead>
+            <tbody>
+            {% for t in translate.setups %}
+            <tr>
+                <th scope="row">{{ t.source.id }}: {{ t.setup.label }}{% if not t.source.published %} {{ badge("unpublished", "warn") }}{% endif %}</th>
+                <td data-label="Chapters" class="num">{{ t.chapters }}</td>
+                <td data-label="Flagged" class="num">{{ t.flagged }}</td>
+                <td data-label="Failed" class="num">{% if t.failed %}<a href="#check">{{ t.failed }}</a>{% else %}0{% endif %}</td>
+                <td data-label="Stale" class="num">{% if t.stale %}<a href="/novels/{{ r.slug }}?setup={{ t.source.id }}&range=stale#translate">{{ t.stale }}</a>{% else %}0{% endif %}</td>
+                <td data-label="Orphans" class="num">{{ t.orphans }}{% if t.orphans %} <span class="muted">(<code>nov translate prune {{ r.slug }} {{ t.source.id }}</code>)</span>{% endif %}</td>
+                <td data-label="Spent" class="num">${{ "%.4f" | format(t.cost) }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        {% endif %}
+    </div>
+    {% if translate.setups %}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Translate</h3>
+            <p class="card-description">Pick a setup and the chapters; the estimate shows what it would cost before Start is offered.</p>
+        </div>
+        {% if translate.blocked %}<div class="alert alert--warn busy">{{ icon("triangle-alert") }}<p class="alert-body">{{ translate.blocked }}</p></div>{% endif %}
+        <form method="post" action="/jobs" hx-post="/jobs" hx-target="#notice" class="translate-form" id="translate-form">
+            <input type="hidden" name="kind" value="translate">
+            <input type="hidden" name="novel" value="{{ r.slug }}">
+            <input type="hidden" name="back" value="{{ back }}#translate">
+            <div class="field-row">
+                <label class="field field--wide"><span class="label">Setup</span> <select name="setup">{% for t in translate.setups %}<option value="{{ t.source.id }}"{% if prefill.setup == t.source.id | string %} selected{% endif %}>{{ t.source.id }}: {{ t.setup.model }}</option>{% endfor %}</select></label>
+                <label class="field"><span class="label">Chapters</span> <input name="range" value="{{ prefill.range }}" size="14" placeholder="1495-1504 or stale" required></label>
+                <label class="field field--narrow"><span class="label">Cap $</span> <input name="cap" value="1.00" size="5" inputmode="decimal"></label>
+                <label class="field field--narrow"><span class="label">Workers</span> <input name="workers" value="4" size="2" inputmode="numeric"></label>
+            </div>
+            <div id="estimate" class="estimate" aria-live="polite"
+                 hx-get="/novels/{{ r.slug }}/translate/estimate" hx-include="#translate-form" hx-target="this" hx-swap="innerHTML"
+                 hx-trigger="{% if prefill.range %}load, {% endif %}change from:#translate-form, input delay:600ms from:#translate-form">
+                <p class="muted">Enter chapters to see what it would cost.</p>
+                <button type="submit" disabled>Start</button>
+            </div>
+        </form>
+    </div>
     {% endif %}
     <details class="add-setup"{% if not translate.setups %} open{% endif %}>
-        <summary>{% if translate.setups %}Add a translator setup{% else %}Add a translator setup to start translating{% endif %}</summary>
+        <summary>{{ icon("plus") }}{% if translate.setups %}Add a translator setup{% else %}Add a translator setup to start translating{% endif %}</summary>
         <form method="post" action="/novels/{{ r.slug }}/setups" class="setup-form">
-            <label>Model <input name="model" required size="30" placeholder="google/gemini-2.5-flash"></label>
-            <label>Prompt <select name="prompt">{% for v in translate.prompts %}<option>{{ v }}</option>{% endfor %}</select></label>
-            <label>Context <select name="context">{% for c in contexts %}<option>{{ c }}</option>{% endfor %}</select></label>
-            <label>Reasoning <select name="reasoning">{% for c in reasoning_levels %}<option>{{ c }}</option>{% endfor %}</select></label>
-            <label>Data collection <select name="data_collection">{% for c in data_collection %}<option>{{ c }}</option>{% endfor %}</select></label>
-            <button type="submit"{% if translate.blocked %} disabled title="{{ translate.blocked }}"{% endif %}>Add setup</button>
+            <div class="field-row">
+                <label class="field field--wide"><span class="label">Model</span> <input name="model" required size="30" placeholder="google/gemini-2.5-flash"></label>
+                <label class="field"><span class="label">Prompt</span> <select name="prompt">{% for v in translate.prompts %}<option>{{ v }}</option>{% endfor %}</select></label>
+                <label class="field"><span class="label">Context</span> <select name="context">{% for c in contexts %}<option>{{ c }}</option>{% endfor %}</select></label>
+                <label class="field"><span class="label">Reasoning</span> <select name="reasoning">{% for c in reasoning_levels %}<option>{{ c }}</option>{% endfor %}</select></label>
+                <label class="field"><span class="label">Data collection</span> <select name="data_collection">{% for c in data_collection %}<option>{{ c }}</option>{% endfor %}</select></label>
+            </div>
+            <div><button type="submit" class="btn btn--primary btn--sm"{% if translate.blocked %} disabled title="{{ translate.blocked }}"{% endif %}>Add setup</button></div>
         </form>
     </details>
 </section>
 {% endif %}
 
-<section id="check" aria-labelledby="check-heading">
-    <h2 id="check-heading">Check</h2>
+<section id="check" class="panel card check" data-panel="check" aria-labelledby="check-heading">
+    <div class="card-header">
+        <h2 id="check-heading" class="card-title">Check</h2>
+        <p class="card-description">What <code>nov check {{ r.slug }}</code> finds: chapters the book cannot use as they are, and how to fix them.</p>
+    </div>
     {% set k = novel.check.report %}
-    {% set problems = k.duplicates | length + k.unmapped | length + k.vanished | length + k.failed | length + k.held | length + k.title_mismatches | length + k.mixed_parts | length + k.pin_fallbacks | length + k.legacy_moved | length + k.legacy_unselected | length + novel.check.numbering | length + novel.check.unchecked %}
-    {% if not problems and not k.gaps %}<p class="fresh">No problems found.</p>{% endif %}
+    {% if not problems and not k.gaps %}<div class="alert alert--ok">{{ icon("circle-check") }}<p class="alert-body">No problems found.</p></div>{% endif %}
+    <div class="check-list">
     {% if k.gaps %}<p>Gaps: {{ k.gaps | length }} ({{ k.gaps | join(", ") | truncate(300) }})</p>{% endif %}
     {% if k.raw_only %}<p>Raw only: {{ k.raw_only | length }} ({{ k.raw_only | join(", ") | truncate(300) }})</p>{% endif %}
     {% if k.duplicates %}<details><summary>Duplicates: {{ k.duplicates | length }}</summary><ul>{% for d in k.duplicates[:200] %}<li>source {{ d.source_id }} key {{ d.key.label }}: {{ d.item_refs | join(", ") }}</li>{% endfor %}</ul></details>{% endif %}
@@ -183,5 +267,6 @@
     {% for title, rows in (("Legacy moved", k.legacy_moved), ("Legacy unselected", k.legacy_unselected)) %}
     {% if rows %}<details><summary>{{ title }}: {{ rows | length }}</summary><ul>{% for o in rows[:200] %}<li>{{ o.kind }} {{ o.built_key.label }}: <code>{{ o.item_ref }}</code></li>{% endfor %}</ul></details>{% endif %}
     {% endfor %}
+    </div>
 </section>
 {% endblock %}

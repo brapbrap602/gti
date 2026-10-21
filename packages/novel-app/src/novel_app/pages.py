@@ -122,6 +122,51 @@ class LibraryRow:
     def can_sync(self) -> bool:
         return any(s.to_fetch is not None for s in self.sources)
 
+    @property
+    def needs_rebuild(self) -> bool:
+        """Some output was built and has stale chapters; one never built is not a rebuild."""
+        return any(o.built and o.stale for o in self.outputs)
+
+    @property
+    def status(self) -> "NovelStatus":
+        if self.job:
+            return NovelStatus.RUNNING
+        if self.needs_rebuild:
+            return NovelStatus.REBUILD
+        return NovelStatus.RAW_ONLY if self.raw_only else NovelStatus.OK
+
+
+class NovelStatus(StrEnum):
+    """A novel's dot in the app's sidebar."""
+
+    RUNNING = "running"
+    REBUILD = "rebuild"
+    RAW_ONLY = "raw-only"
+    OK = "ok"
+    UNKNOWN = "unknown"  # its library row could not be read
+
+
+STATUS_LABELS = {
+    NovelStatus.RUNNING: "a job is running",
+    NovelStatus.REBUILD: "an output needs a rebuild",
+    NovelStatus.RAW_ONLY: "raw chapters only",
+    NovelStatus.OK: "up to date",
+    NovelStatus.UNKNOWN: "status unknown",
+}
+
+
+@dataclass(frozen=True)
+class NavRow:
+    """A novel in the app's sidebar."""
+
+    slug: str
+    title: str
+    status: NovelStatus = NovelStatus.UNKNOWN
+
+    @classmethod
+    def of(cls, row: LibraryRow) -> "NavRow":
+        return cls(row.slug, row.title, row.status)
+
 
 class CellState(StrEnum):
     OFFICIAL = "official"  # selected from an official-en source
@@ -168,6 +213,15 @@ class GridBlock:
 
     def count(self, state: CellState) -> int:
         return sum(c.state is state for c in self.cells)
+
+
+def state_counts(blocks: Iterable[GridBlock]) -> dict[CellState, int]:
+    """How many cells of the whole grid are in each state (states with none left out)."""
+    counts: dict[CellState, int] = defaultdict(int)
+    for block in blocks:
+        for cell in block.cells:
+            counts[cell.state] += 1
+    return dict(counts)
 
 
 def library_row(slug: str, view: NovelView, jobs: Sequence[JobRow], last_sync: float | None) -> LibraryRow:
@@ -262,6 +316,14 @@ class NovelCheck:
     numbering: tuple[NumberingRun, ...] = ()  # raw sources numbered unlike the anchor
     unchecked: int = 0  # raw-zh chapters not checked with the current zh rules
     anchor: SourceId | None = None  # the raw source numbering compares against
+
+    @property
+    def problems(self) -> int:
+        """Every finding to act on; gaps and raw-only numbers are facts about the book, not problems."""
+        k = self.report
+        listed = (k.duplicates, k.unmapped, k.vanished, k.failed, k.held, k.title_mismatches, k.mixed_parts,
+                  k.pin_fallbacks, k.legacy_moved, k.legacy_unselected, self.numbering)  # fmt: skip
+        return sum(len(found) for found in listed) + self.unchecked
 
 
 def novel_check(slug: str, view: NovelView) -> NovelCheck:

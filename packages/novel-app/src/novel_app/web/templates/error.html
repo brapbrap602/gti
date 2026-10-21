@@ -1,7 +1,14 @@
 {% extends "base.html" %}
+{% from "_ui.html" import icon %}
 {% block title %}Refused · Novel library{% endblock %}
+{% block crumbs %}<li><a href="/">Library</a></li><li><span aria-current="page">Refused</span></li>{% endblock %}
 {% block main %}
-<h1>Refused</h1>
-<p class="status-msg status-msg--error">{{ message }}</p>
-<p><a href="/">Back to the library</a></p>
+<div class="page-header">
+    <div class="page-heading"><h1>Refused</h1></div>
+</div>
+<div class="alert alert--destructive">
+    {{ icon("circle-alert") }}
+    <p class="alert-body">{{ message }}</p>
+</div>
+<p class="error-back"><a class="btn btn--outline" href="/">{{ icon("library") }}Back to the library</a></p>
 {% endblock %}

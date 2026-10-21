@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 {% block title %}{{ slug }} {{ s.ref[1:] }} · comparison{% endblock %}
 {% block page_class %}wide{% endblock %}
+{% block crumbs %}{% set title = (nav_rows | selectattr("slug", "equalto", slug) | map(attribute="title") | first) or slug %}<li><a href="/">Library</a></li><li><a href="/novels/{{ slug }}#translate" title="{{ title }}">{{ title }}</a></li><li><a href="/novels/{{ slug }}/comparisons">Model comparisons</a></li><li><a href="/novels/{{ slug }}/comparisons/{{ s.ref }}" aria-current="page">{{ s.ref[1:] }}</a></li>{% endblock %}
 {% block main %}
 {% set i = s.chapters.index(s.ref) %}
 {% set query = request.url.query %}
-<p><a href="/novels/{{ slug }}/comparisons">← model comparisons</a></p>
-<h1>{{ s.raw.title }}</h1>
-<nav class="compare-nav" aria-label="Compared chapters">
-    {% if i > 0 %}<a href="/novels/{{ slug }}/comparisons/{{ s.chapters[i - 1] }}{% if query %}?{{ query }}{% endif %}">← {{ s.chapters[i - 1][1:] }}</a>{% endif %}
-    {% if i + 1 < s.chapters | length %}<a href="/novels/{{ slug }}/comparisons/{{ s.chapters[i + 1] }}{% if query %}?{{ query }}{% endif %}">{{ s.chapters[i + 1][1:] }} →</a>{% endif %}
+<div class="page-header">
+<div class="page-heading"><h1>{{ s.raw.title }}</h1></div>
+<nav class="page-actions compare-nav" aria-label="Compared chapters">
+    {% if i > 0 %}<a class="btn btn--outline btn--sm" href="/novels/{{ slug }}/comparisons/{{ s.chapters[i - 1] }}{% if query %}?{{ query }}{% endif %}">← {{ s.chapters[i - 1][1:] }}</a>{% endif %}
+    {% if i + 1 < s.chapters | length %}<a class="btn btn--outline btn--sm" href="/novels/{{ slug }}/comparisons/{{ s.chapters[i + 1] }}{% if query %}?{{ query }}{% endif %}">{{ s.chapters[i + 1][1:] }} →</a>{% endif %}
 </nav>
+</div>
 
 {# Which columns: those ticked, else every version with text. A GET form, so the choice stays in the URL between chapters. #}
 {% set has_text = s.columns | selectattr("attempt") | rejectattr("attempt.failure") | map(attribute="key") | list %}
-<form method="get" class="column-pick">
+<form method="get" class="card column-pick">
     <fieldset>
         <legend>Columns</legend>
         <label><input type="checkbox" name="show" value="zh"{% if not shown or "zh" in shown %} checked{% endif %}> Chinese</label>
@@ -21,7 +23,7 @@
         <label><input type="checkbox" name="show" value="{{ c.key }}"{% if (shown and c.key in shown) or (not shown and c.key in has_text) %} checked{% endif %}> {{ setup_name(c.setup) }} <span class="muted">{{ c.when }}{% if c.key not in has_text %} · {{ c.attempt.failure if c.attempt else "not run" }}{% endif %}</span></label>
         {% endfor %}
         {% if s.reference %}<label><input type="checkbox" name="show" value="ref"{% if not shown or "ref" in shown %} checked{% endif %}> Reference</label>{% endif %}
-        <button type="submit">Show</button>
+        <button type="submit" class="btn btn--secondary btn--sm">Show</button>
     </fieldset>
 </form>
 
@@ -54,7 +56,7 @@
         {% endfor %}
         {% if with_ref and loop.first %}
         {# The reference's paragraphs do not line up with the Chinese ones: it is one cell down the whole table, scrolling on its own. #}
-        <td rowspan="{{ rows }}" class="reference" data-label="Reference"><div class="reference-text">
+        <td rowspan="{{ rows }}" class="reference" data-label="Reference"><div class="reference-text prose">
             {% for p in s.reference.paragraphs %}<p>{{ p }}</p>{% endfor %}
         </div></td>
         {% endif %}
@@ -65,7 +67,7 @@
 </div>
 {% if with_ref %}
 {# Phones read one paragraph at a time, so there the reference follows the table instead (the cell above is hidden). #}
-<section class="reference-after" aria-label="Reference">
+<section class="reference-after prose" aria-label="Reference">
     <h2>Reference <span class="muted">source {{ s.reference.source }}: {{ s.reference.title }}</span></h2>
     {% for p in s.reference.paragraphs %}<p>{{ p }}</p>{% endfor %}
 </section>
