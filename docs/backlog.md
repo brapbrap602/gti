@@ -27,3 +27,9 @@ A translator setup can send several consecutive chapters in one request (`group`
 - the ledger and stored versions per chapter from one shared call;
 - staleness for a group whose chapters change separately;
 - what a re-run sends when only some chapters of a group are stale.
+
+## Groups pass or fail whole; failed answers aren't kept (2026-10-20)
+
+In a five-chapter request, DeepSeek skipped paragraphs in 4 chapters, so its good chapter was thrown away too. The fix is to keep the chapters that pass the hard checks and resend only the failed ones, alone (`phase_b._Run.group_request` hard checks, and `compare`'s `done`).
+
+Separately, a failed attempt's raw answer is not kept anywhere. "Exceeded maximum output retries" (DeepSeek and Qwen on long chapters and on groups) can't be diagnosed after the fact. Keep the last raw response, or its first and last few kB, with the failure in the comparison bundle.
