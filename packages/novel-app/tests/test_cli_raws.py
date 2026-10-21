@@ -133,6 +133,80 @@ def test_reclean_all_skips_backups_and_novels_without_raws(novels):
     assert "not checked" not in run("check", "raw-novel").output
 
 
+def store_raws(slug: str, spec: SourceSpec, chapters: dict[str, str], today: bool = True) -> int:
+    """A raw-zh source of `slug` whose chapters (title -> kept text) are cleaned and checked by today's
+    rules, or by older rules without cleaners and checks; keys come from the titles."""
+    zh = zh_rules(slug, spec) if today else replace(zh_rules(slug, spec), rev="old", cleaners=(), markers=None)
+    path = novel_dir(slug)
+    with (NovelStore.open(path) if path.exists() else NovelStore.create(path, NovelMeta("书", language="zh"))) as store:
+        source = store.upsert_source(spec)
+        items = [SourceItem(f"/{source}/{n}", n, title) for n, title in enumerate(chapters, start=1)]
+        store.record_index(source, items)
+        for item in items:
+            raw = RawChapter(chapters[item.title], "text")
+            store.put_version(source, item.ref, zh.version(raw, item.title, CleanRules(content=()), {}))
+    return source
+
+
+def test_inspect_shows_findings_cleaner_hits_and_suspicious_paragraphs(novels):
+    store_raws("zh-novel", IXDZS, {"第3章 毒": POISONED})
+    noisy = f"{PROSE}\n>\n他说————走了。\n「他说\nOK\n……\nwωw赵二宝闻言大喜"
+    store_raws("zh-novel", replace(IXDZS, url="https://ixdzs8.com/read/38805/"), {"第4章 山门": noisy}, today=False)
+
+    result = run("inspect", "zh-novel", "3-4")
+    assert result.exit_code == 0, result.output
+    assert result.output == (
+        "zh-novel: source 1 /1/1, chapter 3 第3章 毒: checked\n"
+        "  finding poison: 有没×4 是止×4 退入×4 (6.8/1000) (held)\n"
+        "  poison: 有没×4 是止×4 退入×4 = 12 hits, 6.8 per 1000 of 1752 CJK chars"
+        " (flags at 2.0, 3 markers, 6 hits)\n"
+        "  cleaner hits: none\n"
+        "  suspicious: none\n"
+        "zh-novel: source 2 /2/1, chapter 4 第4章 山门: not checked with current rules\n"
+        "  poison: no markers in 71 CJK chars\n"
+        "  cleaner hits:\n"
+        "    lone-noise ×1: > → (dropped)\n"
+        "    dash-run ×1: 他说————走了。 → 他说……走了。\n"
+        "  suspicious:\n"
+        "    unbalanced quotes: 「他说\n"
+        "    no CJK: OK\n"
+        "    Latin/Cyrillic in a CJK line: wωw赵二宝闻言大喜\n"
+    )
+    assert run("inspect", "zh-novel", "4", "--source", 1).output == ""  # source 1 has no chapter 4
+
+
+def test_inspect_against_a_reference_pairs_chapters_by_title_name(novels):
+    raw = SourceSpec("custom:raw", "https://raw.test", "zh", Kind.RAW_ZH)
+    qidian = SourceSpec("novel-downloader", "https://www.qidian.com/book/1035420986/", "zh", Kind.RAW_ZH)
+    ours = {"第5章 山门": f"{PROSE}\n他转身————走了。\n山风————吹过。\n广告", "第6章 钟声": f"{MORE}————", "第7章 求票": MORE}
+    theirs = {
+        "第6章 山门（求月票）": f"{PROSE}\n他转身……走了。\n山风……吹过。",
+        "第7章 钟声": f"{MORE}……",
+        "第8章 求票": MORE, "第9章 求票": MORE,
+    }  # fmt: skip
+    store_raws("zh-novel", raw, ours)
+    store_raws("zh-novel", qidian, theirs)
+
+    result = run("inspect", "zh-novel", "5-7", "--against", 2)
+    assert result.exit_code == 0, result.output
+    lines = result.output.splitlines()
+    first = lines.index("zh-novel: source 1 /1/1, chapter 5 第5章 山门: checked")
+    assert lines[first + 4 :][:3] == [
+        "  against source 2 /2/1, chapter 6 第6章 山门（求月票）:",
+        "    ———— ↔ …… ×2",
+        "    广告 ↔ (nothing) ×1",
+    ]
+    assert "  against source 2 /2/2, chapter 7 第7章 钟声:" in lines
+    assert "  against source 2: no single chapter named 求票" in lines
+    assert not any(line.startswith("zh-novel: source 2") for line in lines)  # the reference itself is not inspected
+
+
+def test_inspect_needs_raw_sources(novels):
+    assert run("inspect", "english-only", "1").exit_code == 2
+    assert run("inspect", "raw-novel", "1", "--against", 9).exit_code == 2
+    assert run("inspect", "raw-novel", "x").exit_code == 2
+
+
 def test_reclean_needs_a_novel_with_raws(novels):
     assert run("reclean").exit_code == 2
     assert run("reclean", "raw-novel", "--all").exit_code == 2
