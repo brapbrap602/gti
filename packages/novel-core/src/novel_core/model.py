@@ -8,6 +8,7 @@ from typing import Literal
 
 from novel_core.alignment import AlignmentRules
 from novel_core.blocks import Block
+from novel_core.finding import Finding
 from novel_core.keys import ChapterKey, ItemRef
 from novel_core.selection import SourceId
 
@@ -104,10 +105,15 @@ class RawChapter:
 
 @dataclass(frozen=True)
 class NewVersion:
+    """A chapter text to store. Findings and rules_rev come from the checks that judged it (raw-zh only);
+    rules_rev None means no checks ran, so a stored text keeps the findings it has."""
+
     title: str
     blocks: Sequence[Block]
     raw: RawChapter | None = None
     provenance: Mapping[str, object] = field(default_factory=dict)
+    findings: tuple[Finding, ...] = ()
+    rules_rev: str | None = None
 
 
 @dataclass(frozen=True)
@@ -118,7 +124,10 @@ class Inserted:
 
 @dataclass(frozen=True)
 class Unchanged:
-    """The same text was already stored; its last_seen_at was bumped, making it current."""
+    """The same text was already stored; its last_seen_at was bumped, making it current.
+
+    It also took the put's raw (when given), and its findings and rules_rev (when rules_rev is given).
+    """
 
     version_id: int
     content_hash: str

@@ -11,8 +11,10 @@ Concurrency: WAL with a 5 s busy timeout; each thread uses its own connection.
 
 import hashlib
 import json
+import sqlite3
 from collections import defaultdict
-from collections.abc import Callable, Sequence
+from collections.abc import Callable, Iterable, Sequence
+from contextlib import closing
 from dataclasses import replace
 from datetime import UTC, datetime
 from pathlib import Path
@@ -25,6 +27,7 @@ from novel_core.alignment import AlignmentRules
 from novel_core.blocks import blocks_from_json, blocks_to_json, content_hash
 from novel_core.build import BuildPlan, OutputKind, OutputRow, VolumeRow
 from novel_core.check import CheckReport
+from novel_core.finding import Finding
 from novel_core.keys import ChapterKey, ItemRef, KeyRange, parse_printed
 from novel_core.model import (
     AlignmentDiff,
@@ -46,7 +49,7 @@ from novel_core.model import (
 from novel_core.selection import Pin, Selected, SourceId, rank, unpinned
 from novel_core.view import CurrentVersion, NovelView, StoreError, StoredItem, derive
 
-SCHEMA_VERSION = 3
+SCHEMA_VERSION = 4
 DB_NAME = "novel.sqlite"
 
 type Clock = Callable[[], datetime]
@@ -101,7 +104,24 @@ _version = sa.Table(
     sa.Column("last_seen_at", sa.String, nullable=False),
     sa.Column("provenance_json", sa.String, nullable=False),
     sa.Column("raw_path", sa.String),
+    sa.Column("rules_rev", sa.String),
+    sa.Column("raw_hash", sa.String),
     sa.UniqueConstraint("source_id", "item_ref", "content_hash"),
+)  # fmt: skip
+_finding = sa.Table(
+    "finding", _md,
+    sa.Column("version_id", sa.ForeignKey("version.id", ondelete="CASCADE"), primary_key=True),
+    sa.Column("check", sa.String, primary_key=True),
+    sa.Column("detail", sa.String, nullable=False),
+)  # fmt: skip
+# The user's word that the checks in checks_json are false positives for one kept raw of one item.
+_release = sa.Table(
+    "release", _md,
+    sa.Column("source_id", sa.ForeignKey("source.id"), primary_key=True),
+    sa.Column("item_ref", sa.String, primary_key=True),
+    sa.Column("raw_hash", sa.String, primary_key=True),  # "" for a version stored without a raw
+    sa.Column("checks_json", sa.String, nullable=False),
+    sa.Column("released_at", sa.String, nullable=False),
 )  # fmt: skip
 _pin = sa.Table(
     "pin", _md,
@@ -142,8 +162,27 @@ def _add_published(conn: sa.Connection) -> None:
     conn.exec_driver_sql("ALTER TABLE source ADD COLUMN published BOOLEAN NOT NULL DEFAULT 1")
 
 
+def _add_checks(conn: sa.Connection) -> None:
+    # Same DDL as the columns above; raw_hash is read back from the kept raw's file name (see _write_raw).
+    conn.exec_driver_sql("ALTER TABLE version ADD COLUMN rules_rev VARCHAR")
+    conn.exec_driver_sql("ALTER TABLE version ADD COLUMN raw_hash VARCHAR")
+    for r in conn.execute(sa.select(_version.c.id, _version.c.raw_path).where(_version.c.raw_path.is_not(None))).all():
+        conn.execute(_version.update().where(_version.c.id == r.id).values(raw_hash=_raw_hash_of(r.raw_path)))
+    _finding.create(conn)
+    _release.create(conn)
+
+
 # Each step upgrades a store from the version it is keyed by to the next one.
-_MIGRATIONS: dict[int, Callable[[sa.Connection], None]] = {1: _add_volumes, 2: _add_published}
+_MIGRATIONS: dict[int, Callable[[sa.Connection], None]] = {1: _add_volumes, 2: _add_published, 3: _add_checks}
+
+
+def stored_schema(novel_dir: Path) -> int:
+    """The schema version of a novel's database as stored, read without migrating it."""
+    db = novel_dir / DB_NAME
+    if not db.exists():
+        raise FileNotFoundError(db)
+    with closing(sqlite3.connect(db)) as conn:
+        return conn.execute("PRAGMA user_version").fetchone()[0]
 
 
 def _utc_now() -> datetime:
@@ -386,6 +425,7 @@ class NovelStore:
                 else:
                     conn.execute(_item.update().where(*_item_is(source, old)).values(item_ref=new))
                 self._move_versions(conn, source, old, new)
+                self._move_releases(conn, source, old, new)
                 conn.execute(
                     _output.update()
                     .where(_output.c.source_id == source, _output.c.item_ref == old)
@@ -412,10 +452,20 @@ class NovelStore:
             else:
                 conn.execute(_version.update().where(_version.c.id == v.id).values(item_ref=new))
 
+    def _move_releases(self, conn: sa.Connection, source: SourceId, old: ItemRef, new: ItemRef) -> None:
+        for r in conn.execute(sa.select(_release).where(*_release_is(source, old))).all():
+            _record_release(conn, source, new, r.raw_hash, json.loads(r.checks_json), r.released_at)
+        conn.execute(_release.delete().where(*_release_is(source, old)))
+
     # -- versions ----------------------------------------------------------
 
     def put_version(self, source: SourceId, item_ref: ItemRef, v: NewVersion) -> PutResult:
-        """Store a chapter text. Identical text (title + blocks) is stored once and made current again."""
+        """Store a chapter text. Identical text (title + blocks) is stored once and made current again.
+
+        The stored row ends up naming this put's raw (when given), so a current version's findings
+        are always those of the raw it names. Its findings and rules_rev are replaced only when
+        v.rules_rev is given: a put without checks never clears a hold.
+        """
         digest = content_hash(v.title, v.blocks)
         now = self._now()
         with self._engine.begin() as conn:
@@ -423,24 +473,29 @@ class NovelStore:
                 raise StoreError(f"unknown item {item_ref!r} in source {source}; record_index first")
             conn.execute(_item.update().where(*_item_is(source, item_ref)).values(status=ItemStatus.OK, reason=None))
             existing = conn.execute(
-                sa.select(_version.c.id).where(
+                sa.select(_version.c.id, _version.c.provenance_json).where(
                     _version.c.source_id == source,
                     _version.c.item_ref == item_ref,
                     _version.c.content_hash == digest,
                 )
-            ).scalar()
+            ).first()
             if existing is not None:
-                conn.execute(_version.update().where(_version.c.id == existing).values(last_seen_at=now))
-                return Unchanged(existing, digest)
+                values: dict = {"last_seen_at": now}
+                if v.raw is not None:
+                    provenance = json.loads(existing.provenance_json) | _raw_provenance(v.raw)
+                    values |= self._keep_raw(source, item_ref, v.raw)
+                    values["provenance_json"] = json.dumps(provenance, sort_keys=True, ensure_ascii=False)
+                if v.rules_rev is not None:
+                    values["rules_rev"] = v.rules_rev
+                    conn.execute(_finding.delete().where(_finding.c.version_id == existing.id))
+                    _insert_findings(conn, existing.id, v.findings)
+                conn.execute(_version.update().where(_version.c.id == existing.id).values(**values))
+                return Unchanged(existing.id, digest)
             provenance = dict(v.provenance)
-            raw_path = None
+            raw = {"raw_path": None, "raw_hash": None}
             if v.raw is not None:
-                raw_path = self._write_raw(source, item_ref, v.raw)
-                provenance |= {
-                    "content_type": v.raw.content_type,
-                    "final_url": v.raw.final_url,
-                    "fetched_at": v.raw.fetched_at.isoformat() if v.raw.fetched_at else None,
-                }
+                raw = self._keep_raw(source, item_ref, v.raw)
+                provenance |= _raw_provenance(v.raw)
             version_id = conn.execute(
                 _version.insert().values(
                     source_id=source,
@@ -451,10 +506,17 @@ class NovelStore:
                     first_seen_at=now,
                     last_seen_at=now,
                     provenance_json=json.dumps(provenance, sort_keys=True, ensure_ascii=False),
-                    raw_path=raw_path,
+                    rules_rev=v.rules_rev,
+                    **raw,
                 )
             ).inserted_primary_key[0]
+            _insert_findings(conn, version_id, v.findings)
         return Inserted(version_id, digest)
+
+    def _keep_raw(self, source: SourceId, item_ref: ItemRef, raw: RawChapter) -> dict[str, str]:
+        """Write the raw if it is new; returns the version columns that name it."""
+        path = self._write_raw(source, item_ref, raw)
+        return {"raw_path": path, "raw_hash": _raw_hash_of(path)}
 
     def _write_raw(self, source: SourceId, item_ref: ItemRef, raw: RawChapter) -> str:
         data = raw.content.encode("utf-8")
@@ -468,11 +530,56 @@ class NovelStore:
             tmp.replace(path)
         return rel.as_posix()
 
+    def release(self, source: SourceId, refs: Sequence[ItemRef]) -> dict[ItemRef, tuple[str, ...]]:
+        """Record that the checks firing now on these items' current versions are false positives.
+
+        A release covers one kept raw (the current version's raw hash) and the checks named in it,
+        so a reclean of the same raw keeps it, while a new raw or a new kind of finding holds the
+        item again. Returns the checks released per ref; refs with no finding are left out.
+        """
+        now = self._now()
+        released: dict[ItemRef, tuple[str, ...]] = {}
+        with self._engine.begin() as conn:
+            self._require_source(conn, source)
+            for ref in refs:
+                v = conn.execute(
+                    sa.select(_version.c.id, _version.c.raw_hash)
+                    .where(_version.c.source_id == source, _version.c.item_ref == ref)
+                    .order_by(_version.c.last_seen_at.desc(), _version.c.id.desc())
+                    .limit(1)
+                ).first()
+                if v is None:
+                    raise StoreError(f"no stored text for {ref!r} in source {source}")
+                checks = conn.execute(sa.select(_finding.c.check).where(_finding.c.version_id == v.id)).scalars().all()
+                if checks:
+                    released[ref] = tuple(sorted(checks))
+                    _record_release(conn, source, ref, v.raw_hash or "", checks, now)
+        return released
+
     def mark_item(self, source: SourceId, item_ref: ItemRef, status: ItemStatus, reason: str | None = None) -> None:
         with self._engine.begin() as conn:
             done = conn.execute(_item.update().where(*_item_is(source, item_ref)).values(status=status, reason=reason))
             if done.rowcount == 0:
                 raise StoreError(f"unknown item {item_ref!r} in source {source}")
+
+    def read_raw(self, version_id: int) -> RawChapter | None:
+        """The kept page a version was made from; None if it was stored without one."""
+        with self._engine.connect() as conn:
+            r = conn.execute(
+                sa.select(_version.c.raw_path, _version.c.provenance_json).where(_version.c.id == version_id)
+            ).one_or_none()
+        if r is None:
+            raise StoreError(f"unknown version {version_id}")
+        if r.raw_path is None:
+            return None
+        provenance = json.loads(r.provenance_json)
+        fetched_at = provenance.get("fetched_at")
+        return RawChapter(
+            zstandard.ZstdDecompressor().decompress((self._dir / r.raw_path).read_bytes()).decode("utf-8"),
+            r.raw_path.rsplit(".", 2)[1],  # <sha1(ref)>-<hash>.<type>.zst
+            provenance.get("final_url"),
+            datetime.fromisoformat(fetched_at) if fetched_at else None,
+        )
 
     def read_version(self, version_id: int) -> Version:
         with self._engine.connect() as conn:
@@ -492,20 +599,33 @@ class NovelStore:
             latest: dict[tuple[SourceId, ItemRef], sa.Row] = {}
             for v in conn.execute(
                 sa.select(_version.c.id, _version.c.source_id, _version.c.item_ref, _version.c.content_hash,
-                          _version.c.title, _version.c.last_seen_at)
+                          _version.c.title, _version.c.last_seen_at, _version.c.rules_rev, _version.c.raw_hash)
             ):  # fmt: skip
                 k = (v.source_id, v.item_ref)
                 if k not in latest or (v.last_seen_at, v.id) > (latest[k].last_seen_at, latest[k].id):
                     latest[k] = v
+            findings: dict[int, list[Finding]] = defaultdict(list)
+            for f in conn.execute(sa.select(_finding).order_by(_finding.c.version_id, _finding.c.check)):
+                findings[f.version_id].append(Finding(f.check, f.detail))
             priority, pins = _load_policy(conn)
             return NovelView(
                 _load_meta(conn),
                 _load_sources(conn),
                 _load_items(conn),
-                [CurrentVersion(v.source_id, v.item_ref, v.id, v.content_hash, v.title) for v in latest.values()],
+                [
+                    CurrentVersion(
+                        v.source_id, v.item_ref, v.id, v.content_hash, v.title, v.rules_rev,
+                        tuple(findings.get(v.id, ())), v.raw_hash,
+                    )  # fmt: skip
+                    for v in latest.values()
+                ],
                 priority,
                 pins,
                 {kind: _load_outputs(conn, kind) for kind in OutputKind},
+                {
+                    (r.source_id, r.item_ref, r.raw_hash): frozenset(json.loads(r.checks_json))
+                    for r in conn.execute(sa.select(_release))
+                },
             )
 
     def selection(self) -> tuple[Selected, ...]:
@@ -599,6 +719,43 @@ class NovelStore:
 
 def _sha1(data: bytes) -> str:
     return hashlib.sha1(data).hexdigest()
+
+
+def _raw_hash_of(raw_path: str) -> str:
+    """A kept raw's identity: the sha1 prefix of its content, from its name <sha1(ref)>-<hash>.<type>.zst."""
+    return raw_path.rsplit("/", 1)[-1].split(".", 1)[0].split("-", 1)[1]
+
+
+def _raw_provenance(raw: RawChapter) -> dict:
+    return {
+        "content_type": raw.content_type,
+        "final_url": raw.final_url,
+        "fetched_at": raw.fetched_at.isoformat() if raw.fetched_at else None,
+    }
+
+
+def _release_is(source: SourceId, ref: ItemRef):
+    return _release.c.source_id == source, _release.c.item_ref == ref
+
+
+def _record_release(
+    conn: sa.Connection, source: SourceId, ref: ItemRef, raw_hash: str, checks: Iterable[str], at: str
+) -> None:
+    """Add checks to the release of (source, ref, raw_hash); checks released before stay released."""
+    where = (*_release_is(source, ref), _release.c.raw_hash == raw_hash)
+    before = conn.execute(sa.select(_release.c.checks_json).where(*where)).scalar()
+    merged = sorted(set(checks) | set(json.loads(before) if before else ()))
+    conn.execute(_release.delete().where(*where))
+    conn.execute(
+        _release.insert().values(
+            source_id=source, item_ref=ref, raw_hash=raw_hash, checks_json=json.dumps(merged), released_at=at
+        )
+    )
+
+
+def _insert_findings(conn: sa.Connection, version_id: int, findings: Sequence[Finding]) -> None:
+    if findings:
+        conn.execute(_finding.insert(), [{"version_id": version_id, "check": f.check, "detail": f.detail} for f in findings])
 
 
 def _meta_row(meta: NovelMeta) -> dict:

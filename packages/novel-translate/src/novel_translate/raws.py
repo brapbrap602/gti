@@ -1,8 +1,9 @@
 """The raw text translation works from, and the official English that can hint at names.
 
 For each chapter number, the raw comes from the first raw-zh source in priority
-order that has a current version of it, with all of that source's parts of the
-number. Both phases use this rule, so overlapping raw sources count once.
+order that can supply it (a current version, none of its parts held), with all of
+that source's parts of the number. Both phases use this rule, so overlapping raw
+sources count once.
 """
 
 from collections.abc import Iterator
@@ -26,20 +27,9 @@ class RawText:
 
 
 def raw_chapters(novel: NovelStore, keys: KeyRange | None = None, view: NovelView | None = None) -> Iterator[RawText]:
-    """One raw per chapter key, in key order; reads each version as it goes."""
-    view = view or novel.view()
-    chosen: dict[int, list] = {}
-    for sid in view.priority:
-        if view.source(sid).spec.kind is not Kind.RAW_ZH:
-            continue
-        mine: dict[int, list] = {}
-        for s in view.chapters(sid):
-            if s.key.number not in chosen and (keys is None or s.key.number in keys):
-                mine.setdefault(s.key.number, []).append(s)
-        chosen.update(mine)
-    for number in sorted(chosen):
-        for s in chosen[number]:
-            yield RawText(s.key, s.source_id, s.item_ref, s.content_hash, s.title, _paragraphs(novel, s.version_id))
+    """One raw per chapter key, in key order (see NovelView.raw_chapters); reads each version as it goes."""
+    for s in (view or novel.view()).raw_chapters(keys):
+        yield RawText(s.key, s.source_id, s.item_ref, s.content_hash, s.title, _paragraphs(novel, s.version_id))
 
 
 def official_english(view: NovelView) -> dict[int, list]:

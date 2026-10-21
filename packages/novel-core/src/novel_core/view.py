@@ -13,6 +13,7 @@ from functools import cached_property
 from novel_core.alignment import Derivation, Printed, derive_keys
 from novel_core.build import BuildPlan, OutputKind, OutputRow, plan_build
 from novel_core.check import CheckReport, Duplicate, ItemNote
+from novel_core.finding import Finding
 from novel_core.keys import ChapterKey, ItemRef, KeyRange, title_number
 from novel_core.model import ItemStatus, Kind, NovelMeta, SourceInfo
 from novel_core.selection import Pin, PinFallback, Selected, Selection, SourceId, rank, select
@@ -59,6 +60,13 @@ class CurrentVersion:
     version_id: int
     content_hash: str
     title: str
+    rules_rev: str | None = None
+    findings: tuple[Finding, ...] = ()
+    raw_hash: str | None = None
+
+
+# A release: the checks the user cleared for one kept raw of one item.
+type ReleaseKey = tuple[SourceId, ItemRef, str]  # raw hash, "" for a version without a raw
 
 
 def derive(items: Iterable[StoredItem], info: SourceInfo) -> Derivation:
@@ -76,17 +84,32 @@ class NovelView:
         priority: Sequence[SourceId],
         pins: Sequence[Pin],
         outputs: Mapping[OutputKind, Sequence[OutputRow]],
+        releases: Mapping[ReleaseKey, frozenset[str]] | None = None,
     ):
         self.meta = meta
         self._sources = dict(sources)
         self._items = {sid: list(items.get(sid, [])) for sid in self._sources}
         self._derivations = {sid: derive(self._items[sid], info) for sid, info in self._sources.items()}
+        current = list(current)
         self._stored = {(v.source_id, v.ref) for v in current}
+        releases = releases or {}
+        # Held: the current version has a finding the user has not released for its raw.
+        self._held = {
+            (v.source_id, v.ref): held
+            for v in current
+            if (held := tuple(
+                f for f in v.findings if f.check not in releases.get((v.source_id, v.ref, v.raw_hash or ""), ())
+            ))
+        }  # fmt: skip
         self._current: dict[SourceId, list[Selected]] = defaultdict(list)
         for v in current:
             key = self._derivations[v.source_id].keys.get(v.ref)
             if key is not None:
-                self._current[v.source_id].append(Selected(key, v.source_id, v.ref, v.version_id, v.content_hash, v.title))
+                self._current[v.source_id].append(
+                    Selected(
+                        key, v.source_id, v.ref, v.version_id, v.content_hash, v.title, v.rules_rev, v.findings, v.raw_hash
+                    )
+                )
         self._priority = list(priority)
         self.pins = tuple(pins)
         self._outputs = {kind: tuple(outputs.get(kind, ())) for kind in OutputKind}
@@ -154,24 +177,51 @@ class NovelView:
         self.source(source)
         return tuple(sorted(self._current.get(source, []), key=lambda s: s.key))
 
+    def held(self, source: SourceId, ref: ItemRef) -> tuple[Finding, ...]:
+        """The findings that hold an item back from translation: those on its current version that
+        the user has not released for that version's raw. Empty when it is not held."""
+        return self._held.get((source, ref), ())
+
+    def raw_chapters(self, keys: KeyRange | None = None) -> tuple[Selected, ...]:
+        """The raw text translation works from, in key order.
+
+        Per number, every part from the first raw-zh source in priority that can supply it:
+        one with a current version at the number and none of its parts there held.
+        """
+        return tuple(s for n in sorted(self._usable_raws) if keys is None or n in keys for s in self._usable_raws[n])
+
+    @cached_property
+    def _usable_raws(self) -> dict[int, tuple[Selected, ...]]:
+        chosen: dict[int, tuple[Selected, ...]] = {}
+        for sid in self.priority:
+            if self._sources[sid].spec.kind is not Kind.RAW_ZH:
+                continue
+            parts: dict[int, list[Selected]] = defaultdict(list)
+            for s in self._current.get(sid, []):
+                parts[s.key.number].append(s)
+            for number, mine in parts.items():
+                if number not in chosen and not any((sid, s.item_ref) in self._held for s in mine):
+                    chosen[number] = tuple(sorted(mine, key=lambda s: s.key))
+        return chosen
+
     def to_fetch(
         self, source: SourceId, refresh: KeyRange | None = None, only: KeyRange | None = None
     ) -> tuple[ItemRef, ...]:
         """The items a sync of this source should fetch, in index order.
 
         An item is fetched when it has no version yet and the book lacks its number:
-        no other source has a text for it (for a raw-zh source, no other raw text;
-        for an official-en source, no other official text, so official English keeps
-        syncing where only my-translation text is published).
+        no other source has a text for it (for a raw-zh source, no raw source can supply
+        it, see raw_chapters; for an official-en source, no other official text, so
+        official English keeps syncing where only my-translation text is published).
         Unmapped items without a version are fetched too, so their text can show what
-        they are. Unavailable (locked), vanished and skipped items are left alone.
+        they are. Held items are fetched again, in case the source has fixed them.
+        Unavailable (locked), vanished and skipped items are left alone.
         Items whose key falls in `refresh` are fetched again whatever they hold.
         With `only`, items whose key falls outside it (or that have no key) are left alone.
         """
         info = self.source(source)
         if info.spec.kind is Kind.RAW_ZH:
-            raws = (c for sid, c in self._current.items() if self._sources[sid].spec.kind is Kind.RAW_ZH)
-            covered = {s.key.number for chapters in raws for s in chapters}
+            covered = set(self._usable_raws)
         elif info.spec.kind is Kind.OFFICIAL_EN:
             mine = {sid for sid, info in self._sources.items() if info.spec.kind is Kind.MY_TRANSLATION}
             covered = {s.key.number for s in self.selection if s.source_id not in mine}
@@ -186,6 +236,8 @@ class NovelView:
             if only is not None and (key is None or key.number not in only):
                 continue
             if refresh is not None and key is not None and key.number in refresh:
+                wanted.append(item.ref)
+            elif (source, item.ref) in self._held:
                 wanted.append(item.ref)
             elif (source, item.ref) not in self._stored and item.status is not ItemStatus.UNAVAILABLE:
                 if key is None or key.number not in covered:
@@ -204,7 +256,6 @@ class NovelView:
     # -- checks ------------------------------------------------------------
 
     def check(self) -> CheckReport:
-        raw = {sid for sid, info in self._sources.items() if info.spec.kind is Kind.RAW_ZH}
         hidden = self._unpublishable
         selection = self.selection
         selected_numbers = {s.key.number for s in selection}
@@ -214,7 +265,7 @@ class NovelView:
             key.number for sid, d in self._derivations.items() if sid not in hidden for key in d.keys.values()
         } | selected_numbers
         gaps = sorted(set(range(min(expected), max(expected) + 1)) - selected_numbers) if expected else []
-        raw_only = sorted({c.key.number for sid in raw for c in self._current.get(sid, [])} - selected_numbers)
+        raw_only = sorted(set(self._usable_raws) - selected_numbers)
 
         split_by_number: dict[int, set[bool]] = defaultdict(set)
         for sid, chapters in self._current.items():
@@ -258,6 +309,10 @@ class NovelView:
             unmapped=notes(lambda i: (i.source_id, i.ref) in unmapped),
             vanished=notes(lambda i: i.vanished),
             failed=notes(lambda i: i.status is ItemStatus.FAILED, lambda i: i.reason or ""),
+            held=notes(
+                lambda i: not i.vanished and (i.source_id, i.ref) in self._held,
+                lambda i: "; ".join(f"{f.check}: {f.detail}" for f in self._held[i.source_id, i.ref]),
+            ),
             title_mismatches=notes(
                 lambda i: not i.vanished
                 and i.printed_number is not None

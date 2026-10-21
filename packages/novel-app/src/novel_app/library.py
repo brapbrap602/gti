@@ -2,10 +2,13 @@
 
 import os
 import re
+import sqlite3
 import unicodedata
+from contextlib import closing
+from datetime import date
 from pathlib import Path
 
-from novel_core.store import DB_NAME
+from novel_core.store import DB_NAME, SCHEMA_VERSION, stored_schema
 
 DATA_DIR_ENV = "NOVELS_DATA_DIR"
 
@@ -48,9 +51,30 @@ def compare_dir(slug: str) -> Path:
 
 
 def novel_slugs() -> list[str]:
-    """Every novel in the data dir, sorted."""
+    """Every novel in the data dir, sorted. Folders starting with `_` (outputs, backups) are never novels."""
     root = data_dir()
-    return sorted(d.name for d in root.iterdir() if (d / DB_NAME).is_file()) if root.is_dir() else []
+    if not root.is_dir():
+        return []
+    return sorted(d.name for d in root.iterdir() if not d.name.startswith("_") and (d / DB_NAME).is_file())
+
+
+def back_up_old_stores(today: date) -> list[Path]:
+    """Copy each novel database that opening would migrate to _backup-schema<N>-<today>/<slug>/, once.
+
+    Run before anything opens a store, so the schema-N file survives the upgrade. Returns the copies made.
+    """
+    made = []
+    for slug in novel_slugs():
+        version = stored_schema(data_dir() / slug)
+        backup = data_dir() / f"_backup-schema{version}-{today.isoformat()}" / slug / DB_NAME
+        if version >= SCHEMA_VERSION or backup.exists():
+            continue
+        backup.parent.mkdir(parents=True, exist_ok=True)
+        # The backup API copies what the WAL holds too, which a file copy would miss.
+        with closing(sqlite3.connect(data_dir() / slug / DB_NAME)) as src, closing(sqlite3.connect(backup)) as dst:
+            src.backup(dst)
+        made.append(backup)
+    return made
 
 
 def novel_dir(slug: str) -> Path:

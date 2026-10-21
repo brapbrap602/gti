@@ -2,6 +2,7 @@
 
 import sys
 from collections.abc import Callable, Sequence
+from datetime import date
 from enum import StrEnum
 from pathlib import Path
 from typing import Annotated
@@ -18,6 +19,7 @@ from novel_translate.setups import SetupError, TranslatorSetup
 
 from novel_app import deploy, report
 from novel_app.jobs import JobBoard, JobRunner, JobRunning, Outcome
+from novel_app.library import back_up_old_stores
 from novel_app.notation import parse_range
 from novel_app.service import DEFAULT_CAP, Service, UserError, app_db
 
@@ -41,11 +43,14 @@ translate_app.add_typer(setup_app, name="setup")
 
 
 @app.callback()
-def _utf8_output() -> None:
+def _start() -> None:
     # Titles can be Chinese; on Windows a piped stdout defaults to the ANSI code page, which cannot print them.
     for stream in (sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
             stream.reconfigure(encoding="utf-8", errors="replace")
+    # Every command may open a store, which migrates it; keep the old schema's file first.
+    if made := back_up_old_stores(date.today()):
+        typer.echo(f"backed up {len(made)} novel database(s) before upgrading them: {made[0].parent.parent}", err=True)
 
 
 def _service() -> Service:
