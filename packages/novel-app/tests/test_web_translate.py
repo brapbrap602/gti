@@ -98,3 +98,11 @@ def test_without_a_key_setups_cannot_be_added(novels, monkeypatch):
         refused = c.post("/novels/raw-novel/setups", data={"model": "vendor/cheap"})
     assert 'disabled title="set OPENROUTER_API_KEY (and restart nov serve)">Add setup' in page
     assert refused.status_code == 400
+
+
+def test_the_estimate_shows_unchecked_raws_with_the_reclean_hint(client, openrouter, old_rules):
+    source = add_setup(client)
+    old_rules([2])
+    estimate = client.get("/novels/raw-novel/translate/estimate", params={"setup": source, "range": "1-3"}).text
+    assert "2 chapters to translate" in estimate
+    assert "1 not checked with current rules" in estimate and "nov reclean raw-novel" in estimate

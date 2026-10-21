@@ -30,7 +30,8 @@ def hold(slug: str, source: int, ref: str, check: str = "poison", detail: str = 
         store.put_version(source, ref, NewVersion(v.title, v.blocks, findings=(Finding(check, detail),), rules_rev=rev))
 
 
-def test_check_lists_held_chapters_and_counts_unchecked_ones(novels):
+def test_check_lists_held_chapters_and_counts_unchecked_ones(novels, old_rules):
+    old_rules([1, 2, 4, 5])
     hold("raw-novel", 1, "/3")
     result = run("check", "raw-novel")
     assert result.exit_code == 0, result.output

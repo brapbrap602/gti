@@ -63,3 +63,13 @@ def test_bad_setups_and_sources_are_refused(openrouter):
     assert run("translate", "setup", "add", "raw-novel", "--model", "m", "--context", "random").exit_code == 2
     assert "not a translator setup" in run("translate", "stale", "raw-novel", 1).output
     assert run("translate", "run", "raw-novel", 1).exit_code == 2  # neither numbers nor --stale
+
+
+def test_unchecked_raws_are_left_out_with_the_reclean_hint(openrouter, old_rules):
+    source = added_setup()
+    old_rules([2])
+    refused = run("translate", "run", "raw-novel", source, "1-3", input="n\n")
+    assert "2 chapters to translate" in refused.output and "1 not checked with current rules" in refused.output
+    done = run("translate", "run", "raw-novel", source, "1-3", "--yes")
+    assert "translated 2" in done.output
+    assert "1 chapters not checked with current rules: run nov reclean raw-novel" in done.output

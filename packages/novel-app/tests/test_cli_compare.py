@@ -75,3 +75,11 @@ def test_a_comparison_refuses_a_cap_below_the_estimate_and_bad_models(openrouter
     reference = run("translate", "compare", "raw-novel", "1-2", "--model", "vendor/cheap", "--reference", "1", "--yes")
     assert reference.exit_code == 2 and "not one of the novel's English sources" in reference.output
     assert openrouter.calls == []
+
+
+def test_a_comparison_with_nothing_checked_is_refused_with_the_reclean_hint(openrouter, old_rules):
+    old_rules(range(1, 6))
+    refused = run("translate", "compare", "raw-novel", "1-3", "--model", "vendor/cheap", "--yes")
+    assert refused.exit_code == 2, refused.output
+    assert "not checked with current rules: run nov reclean raw-novel" in refused.output
+    assert openrouter.calls == []

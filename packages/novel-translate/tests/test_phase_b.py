@@ -3,12 +3,13 @@ import re
 import threading
 
 import pytest
-from novel_core import AlignmentRules, ChapterKey, KeyRange, Kind, NewVersion, NovelMeta, NovelStore, Paragraph, SourceItem, SourceSpec
+from novel_core import AlignmentRules, ChapterKey, Finding, KeyRange, Kind, NewVersion, NovelMeta, NovelStore, Paragraph, SourceItem, SourceSpec
 from novel_translate.budget import Budget
 from novel_translate.glossary import AddTerm, Category, Status, UpdateTerm
 from novel_translate.models import LLM, Price
 from novel_translate.phase_b import (
     COMPARE_SPEND,
+    GROUP_ADDENDUM,
     TranslateReport,
     compare,
     estimate_compare,
@@ -17,13 +18,15 @@ from novel_translate.phase_b import (
     stale,
     translate,
 )
-from novel_translate.setups import SetupError, TranslatorSetup, register
+from novel_translate.raws import RawRules
+from novel_translate.setups import SetupError, TranslatorSetup, prompt, register
 from novel_translate.tstore import TranslateStore
 from pydantic_ai.messages import ModelResponse, ToolCallPart, UserPromptPart
 from pydantic_ai.models.function import FunctionModel
 
 PRICE = Price(0.000001, 0.000002)
 SETUP = TranslatorSetup("vendor/cheap")
+REV = "rules-1"  # the zh rules revision the raws were checked with
 FILLER = "山水风云天地日月花草木石金银铜铁春夏秋冬东西南北红黄蓝白黑青紫长短高低远近快慢冷热明暗新旧大小多少"
 
 
@@ -47,6 +50,7 @@ class Translator:
     def __init__(self, plan=None, gate: threading.Event | None = None):
         self.plan: dict[int, list[str]] = {k: list(v) for k, v in (plan or {}).items()}
         self.prompts: dict[int, list[str]] = {}
+        self.instructions: dict[int, list[str]] = {}
         self.max_tokens: dict[int, list[int]] = {}
         self.gate = gate
         self.lock = threading.Lock()
@@ -59,6 +63,7 @@ class Translator:
         number = int(re.search(r"\(title: 第(\d+)章\)", prompt).group(1))
         with self.lock:
             self.prompts.setdefault(number, []).append(prompt)
+            self.instructions.setdefault(number, []).append(info.instructions)
             self.max_tokens.setdefault(number, []).append(info.model_settings["max_tokens"])
             behaviour = self.plan.get(number, []).pop(0) if self.plan.get(number) else "clean"
         if self.gate is not None:
@@ -77,16 +82,32 @@ class Translator:
 
 
 class Novel:
+    """Raw sources and their zh rules: `rules` is what the app would pass as raw_rules."""
+
     def __init__(self, store: NovelStore, raw: int):
         self.store, self.raw = store, raw
-        self.numbers: set[int] = set()
+        self.numbers: dict[int, set[int]] = {raw: set()}
+        self.rules: dict[int, RawRules] = {raw: RawRules("", REV)}
 
-    def raws(self, numbers, text=raw_paragraphs) -> None:
-        """Store raw texts for these numbers; the index keeps every number stored before."""
-        self.numbers |= set(numbers)
-        self.store.record_index(self.raw, [SourceItem(f"/{n}", n, f"第{n}章", number=n) for n in sorted(self.numbers)])
+    def raw_source(self, name: str, notes: str = "") -> int:
+        source = self.store.upsert_source(SourceSpec("custom:raw", f"https://{name}.test", "zh", Kind.RAW_ZH))
+        self.numbers[source] = set()
+        self.rules[source] = RawRules(notes, REV)
+        return source
+
+    def raws(self, numbers, text=raw_paragraphs, source=None, rev=REV, findings=()) -> None:
+        """Store raw texts for these numbers, checked by `rev` with these findings; the index keeps
+        every number stored before."""
+        source = source or self.raw
+        self.numbers[source] |= set(numbers)
+        self.store.record_index(source, [SourceItem(f"/{n}", n, f"第{n}章", number=n) for n in sorted(self.numbers[source])])
         for n in numbers:
-            self.store.put_version(self.raw, f"/{n}", NewVersion(f"第{n}章", tuple(Paragraph.of(p) for p in text(n))))
+            paragraphs = tuple(Paragraph.of(p) for p in text(n))
+            self.store.put_version(source, f"/{n}", NewVersion(f"第{n}章", paragraphs, findings=findings, rules_rev=rev))
+
+    def hold(self, number: int, source=None) -> None:
+        """Poison the raw of this number (same text, now with a finding)."""
+        self.raws([number], source=source, findings=(Finding("poison", "有没×9"),))
 
     def setup_source(self, setup=SETUP) -> int:
         return next(i.id for i in self.store.sources() if i.spec.url == setup.url)
@@ -112,7 +133,7 @@ def ts(tmp_path):
 
 
 def run(novel, ts, translator, keys, setup=SETUP, budget=None, workers=4, progress=lambda *_: None, report=None):
-    return translate(novel.store, ts, setup, keys, translator.llm, PRICE, budget or Budget(100.0), workers, progress, report)
+    return translate(novel.store, ts, novel.rules, setup, keys, translator.llm, PRICE, budget or Budget(100.0), workers, progress, report)
 
 
 def test_chapters_are_stored_unpublished_with_a_ledger_row_each(novel, ts):
@@ -147,14 +168,14 @@ def test_a_glossary_edit_makes_its_chapters_stale_and_the_ledger_follows_unchang
     novel.raws(range(1, 13), text)
     ts.apply([AddTerm("墨大夫", "Doctor Mo", Category.TITLE)])
     run(novel, ts, Translator(), KeyRange(1, 3))
-    assert stale(novel.store, ts, SETUP).stale == ()
+    assert stale(novel.store, ts, novel.rules, SETUP).stale == ()
 
     mo = next(t.id for t in ts.entries() if t.zh == "墨大夫")
     ts.apply([UpdateTerm(mo, en="Physician Mo")])
-    assert stale(novel.store, ts, SETUP).stale == ("n2",)
+    assert stale(novel.store, ts, novel.rules, SETUP).stale == ("n2",)
     report = run(novel, ts, Translator(), "stale")  # the fake gives the same text again: put_version says Unchanged
     assert report.translated == ["n2"]
-    assert stale(novel.store, ts, SETUP).stale == ()
+    assert stale(novel.store, ts, novel.rules, SETUP).stale == ()
 
 
 def test_a_changed_raw_stales_its_chapter_and_the_next_ones(novel, ts):
@@ -164,7 +185,7 @@ def test_a_changed_raw_stales_its_chapter_and_the_next_ones(novel, ts):
     run(novel, ts, Translator(), KeyRange(1, 12))  # summaries are now part of every input
     novel.raws([2], lambda n: raw_paragraphs(n) + ["新的一段。"])
     ts.put_summary((2, 0), novel.store.view().chapters(novel.raw)[1].content_hash, "m", "a new summary 2")
-    assert stale(novel.store, ts, SETUP).stale == tuple(f"n{n}" for n in range(2, 13))
+    assert stale(novel.store, ts, novel.rules, SETUP).stale == tuple(f"n{n}" for n in range(2, 13))
 
 
 def test_a_term_needing_review_blocks_its_chapters_and_the_block_persists(novel, ts):
@@ -274,7 +295,7 @@ def test_sequential_mode_gives_the_previous_translation_and_chains_staleness(nov
 
     novel.raws([2], lambda n: raw_paragraphs(n) + ["新的一段。"])
     run(novel, ts, Translator(), KeyRange(2, 2), setup=sequential)
-    assert stale(novel.store, ts, sequential).stale == ("n3",)
+    assert stale(novel.store, ts, novel.rules, sequential).stale == ("n3",)
 
 
 def test_a_setup_is_immutable(novel, ts):
@@ -297,13 +318,13 @@ def test_an_orphan_is_never_published_and_prune_drops_it(novel, ts):
     assert report.orphans == ["n4411"]
     assert "n13" in novel.texts() and "n4411" not in {s.item_ref for s in novel.store.selection()}
     assert novel.store.check().gaps == ()
-    assert stale(novel.store, ts, SETUP).orphans == ("n4411",)
-    assert prune(novel.store, ts, SETUP) == ("n4411",)
-    assert stale(novel.store, ts, SETUP).orphans == ()
+    assert stale(novel.store, ts, novel.rules, SETUP).orphans == ("n4411",)
+    assert prune(novel.store, ts, novel.rules, SETUP) == ("n4411",)
+    assert stale(novel.store, ts, novel.rules, SETUP).orphans == ()
 
 
 def test_the_cap_holds_with_retries_in_flight(novel, ts):
-    one = estimate_translate(novel.store, ts, SETUP, KeyRange(1, 1), PRICE).usd
+    one = estimate_translate(novel.store, ts, novel.rules, SETUP, KeyRange(1, 1), PRICE).usd
     budget = Budget(one * 2.5)
     report = run(novel, ts, Translator({1: ["loop"], 2: ["cut"]}), KeyRange(1, 8), budget=budget, workers=4)
     assert report.stopped == "budget reached"
@@ -313,7 +334,7 @@ def test_the_cap_holds_with_retries_in_flight(novel, ts):
 
 def test_the_estimate_counts_what_would_be_sent(novel, ts):
     run(novel, ts, Translator(), KeyRange(1, 2))
-    estimate = estimate_translate(novel.store, ts, SETUP, KeyRange(1, 5), PRICE)
+    estimate = estimate_translate(novel.store, ts, novel.rules, SETUP, KeyRange(1, 5), PRICE)
     assert (estimate.chapters, estimate.current, estimate.blocked) == (3, 2, 0) and estimate.usd > 0
 
 
@@ -325,7 +346,7 @@ PRICES = {SETUP.url: PRICE, OTHER.url: PRICE}
 
 def compare_with(novel, ts, translators, keys, budget=None, setups=(SETUP, OTHER)):
     return compare(
-        novel.store, ts, setups, keys, lambda setup, cancel: translators[setup.model].llm(cancel), PRICES,
+        novel.store, ts, novel.rules, setups, keys, lambda setup, cancel: translators[setup.model].llm(cancel), PRICES,
         budget or Budget(100.0), 2, lambda *_: None,
     )  # fmt: skip
 
@@ -353,14 +374,14 @@ def test_a_comparison_sends_what_translate_sends_and_stores_nothing(novel, ts):
 
 
 def test_a_comparison_estimate_is_per_setup_and_bounds_the_spend(novel, ts):
-    estimates = estimate_compare(novel.store, ts, (SETUP, OTHER), KeyRange(1, 3), PRICES)
-    assert set(estimates) == {SETUP.url, OTHER.url} and estimates[SETUP.url] == estimates[OTHER.url] > 0
+    estimates = estimate_compare(novel.store, ts, novel.rules, (SETUP, OTHER), KeyRange(1, 3), PRICES)
+    assert set(estimates) == {SETUP.url, OTHER.url} and estimates[SETUP.url].usd == estimates[OTHER.url].usd > 0
     result = compare_with(novel, ts, {"vendor/cheap": Translator(), "vendor/other": Translator()}, KeyRange(1, 3))
-    assert result.cost <= sum(estimates.values())
+    assert result.cost <= sum(e.usd for e in estimates.values())
 
 
 def test_the_budget_stops_a_comparison_and_the_rest_is_marked_not_sent(novel, ts):
-    one_chapter = estimate_compare(novel.store, ts, (SETUP,), KeyRange(1, 1), PRICES)[SETUP.url]
+    one_chapter = estimate_compare(novel.store, ts, novel.rules, (SETUP,), KeyRange(1, 1), PRICES)[SETUP.url].usd
     result = compare_with(
         novel, ts, {"vendor/cheap": Translator(), "vendor/other": Translator()}, KeyRange(1, 3), Budget(one_chapter * 1.5)
     )
@@ -413,7 +434,7 @@ def test_a_group_setup_sends_several_chapters_in_one_request_and_splits_the_answ
     grouped = TranslatorSetup("vendor/cheap", group=3)
     fake = GroupTranslator(drop_first=True)
     result = compare(
-        novel.store, ts, (grouped,), KeyRange(2, 4), lambda setup, cancel: fake.llm(cancel), {grouped.url: PRICE},
+        novel.store, ts, novel.rules, (grouped,), KeyRange(2, 4), lambda setup, cancel: fake.llm(cancel), {grouped.url: PRICE},
         Budget(100.0), 2, lambda *_: None,
     )  # fmt: skip
 
@@ -436,3 +457,164 @@ def test_a_group_setup_is_its_own_setup_and_not_for_production_yet(novel, ts):
         run(novel, ts, Translator(), KeyRange(1, 2), setup=grouped)
     with pytest.raises(SetupError, match="one chapter per request"):
         TranslatorSetup("vendor/cheap", context="sequential", group=2)
+
+
+# -- held and unchecked raws, translator notes ------------------------------------------
+
+UNCHECKED = "unchecked: run nov reclean novel"  # the fixture's novel folder is "novel"
+
+
+def grouped_compare(novel, ts, fake, keys, group=3):
+    grouped = TranslatorSetup("vendor/cheap", group=group)
+    return compare(
+        novel.store, ts, novel.rules, (grouped,), keys, lambda setup, cancel: fake.llm(cancel), {grouped.url: PRICE},
+        Budget(100.0), 2, lambda *_: None,
+    ).attempts[grouped.url]  # fmt: skip
+
+
+def requested(fake: GroupTranslator) -> list[list[int]]:
+    return [[int(n) for n in re.findall(r"^### Chapter (\d+)", p, re.M)] for p in fake.prompts]
+
+
+def test_a_held_chapter_is_never_sent_and_is_held_not_orphaned(novel, ts):
+    novel.hold(3)
+    translator = Translator()
+    report = run(novel, ts, translator, KeyRange(1, 4))
+    assert sorted(translator.prompts) == [1, 2, 4] and report.orphans == []
+    behind = stale(novel.store, ts, novel.rules, SETUP)
+    assert (behind.held, behind.orphans) == (("n3",), ())
+
+
+def test_a_held_chapter_falls_back_to_the_next_raw_source(novel, ts):
+    other = novel.raw_source("other")
+    novel.raws([3], lambda n: ["别处" + p for p in raw_paragraphs(n)], source=other)
+    novel.hold(3)
+    translator = Translator()
+    run(novel, ts, translator, KeyRange(3, 3))
+    assert "别处" in translator.prompts[3][0]
+
+
+def test_unchecked_raws_are_refused_on_every_send_path(novel, ts):
+    novel.raws([2], rev="rules-0")  # checked by older rules
+    estimate = estimate_translate(novel.store, ts, novel.rules, SETUP, KeyRange(1, 3), PRICE)
+    assert (estimate.chapters, estimate.unchecked, estimate.blocked) == (2, 1, 0)
+
+    translator = Translator()
+    report = run(novel, ts, translator, KeyRange(1, 3))
+    assert sorted(translator.prompts) == [1, 3] and report.unchecked == ["n2"] and report.failed == []
+    assert novel.store.check().failed == ()  # not marked failed: a reclean is all it needs
+    assert "n2" not in {i.ref for i in novel.store.view().items(novel.setup_source())}  # nor indexed
+
+    compared = estimate_compare(novel.store, ts, novel.rules, (OTHER,), KeyRange(1, 3), PRICES)[OTHER.url]
+    assert (compared.chapters, compared.unchecked) == (2, 1)
+    fake = Translator()
+    attempts = compare_with(novel, ts, {"vendor/other": fake}, KeyRange(1, 3), setups=(OTHER,)).attempts[OTHER.url]
+    assert attempts["n2"].failure == UNCHECKED and sorted(fake.prompts) == [1, 3]
+
+
+def test_a_raw_source_without_rules_counts_as_unchecked(novel, ts):
+    estimate = estimate_translate(novel.store, ts, {}, SETUP, KeyRange(1, 3), PRICE)
+    assert (estimate.chapters, estimate.unchecked) == (0, 3)
+
+
+def test_unchecked_is_reported_before_blocked(novel, ts):
+    novel.raws([2], lambda n: ["七玄门" + p for p in raw_paragraphs(n)], rev=None)
+    ts.propose([("七玄门", "Seven Mysteries Sect", Category.SECT)])
+    gate = next(t.id for t in ts.entries() if t.zh == "七玄门")
+    ts.apply([UpdateTerm(gate, status=Status.NEEDS_REVIEW)])
+    estimate = estimate_translate(novel.store, ts, novel.rules, SETUP, KeyRange(1, 3), PRICE)
+    assert (estimate.unchecked, estimate.blocked) == (1, 0)
+
+
+def test_a_sequential_run_stops_at_the_first_unchecked_chapter(novel, ts):
+    novel.raws([3], rev="rules-0")
+    translator = Translator()
+    report = run(novel, ts, translator, KeyRange(2, 5), setup=TranslatorSetup("vendor/cheap", context="sequential"))
+    assert sorted(translator.prompts) == [2] and report.translated == ["n2"]
+    assert report.unchecked == ["n3"] and report.waiting == ["n4: waits for n3", "n5: waits for n3"]
+
+
+def test_a_group_is_split_where_a_chapter_between_is_not_sent(novel, ts):
+    novel.raws([3], rev="rules-0")
+    fake = GroupTranslator()
+    attempts = grouped_compare(novel, ts, fake, KeyRange(2, 4))
+    assert sorted(requested(fake)) == [[2], [4]]
+    assert attempts["n3"].failure == UNCHECKED
+
+
+def test_a_group_is_split_where_the_raw_source_changes(novel, ts):
+    other = novel.raw_source("other")
+    novel.raws([13], source=other)
+    fake = GroupTranslator()
+    grouped_compare(novel, ts, fake, KeyRange(12, 13))
+    assert sorted(requested(fake)) == [[12], [13]]
+
+
+def test_notes_are_in_the_system_prompt_on_every_path(novel, ts):
+    novel.rules[novel.raw] = RawRules("A 」 after a name is noise.", REV)
+    section = "\n\n## About this source text\nA 」 after a name is noise."
+    single = Translator()
+    run(novel, ts, single, KeyRange(1, 1))
+    assert single.instructions[1][0] == prompt("v1") + section
+    compared = Translator()
+    compare_with(novel, ts, {"vendor/other": compared}, KeyRange(1, 1), setups=(OTHER,))
+    assert compared.instructions[1][0] == prompt("v1") + section
+    group = GroupTranslator()
+    grouped_compare(novel, ts, group, KeyRange(1, 2))
+    assert group.instructions[0] == prompt("v1") + section + GROUP_ADDENDUM
+
+
+def test_without_notes_the_instructions_are_the_prompt(novel, ts):
+    single = Translator()
+    run(novel, ts, single, KeyRange(1, 1))
+    assert single.instructions[1][0] == prompt("v1").strip()  # pydantic-ai trims the ends
+    group = GroupTranslator()
+    grouped_compare(novel, ts, group, KeyRange(1, 2))
+    assert group.instructions[0] == prompt("v1") + GROUP_ADDENDUM
+
+
+# input_keys recorded with the code from before translator notes: without notes they must not change.
+GOLDEN_KEYS = {
+    "parallel": [
+        "abde21d0b4ed569da9d67ffe066171455f03cc99053a3774ce9a3ec05b5825da",
+        "02d467d22cc374b4506bd115bfd73d126c82647ad170158924c03ee24324106c",
+        "2a8741c8eeb40e2c617453f749a816a0d440b79484e5a240592aff913889fa2b",
+    ],
+    "sequential": "7bee125c91455cbb36535e1d7a8c40d2523709f9a7f234277df5ffebc956a3c8",
+}
+
+
+def test_without_notes_the_input_keys_are_unchanged(novel, ts):
+    run(novel, ts, Translator(), KeyRange(1, 3))
+    assert [ts.latest(SETUP.url)[f"n{n}"].input_key for n in (1, 2, 3)] == GOLDEN_KEYS["parallel"]
+    sequential = TranslatorSetup("vendor/cheap", context="sequential")
+    run(novel, ts, Translator(), KeyRange(1, 1), setup=sequential)
+    assert ts.latest(sequential.url)["n1"].input_key == GOLDEN_KEYS["sequential"]
+
+
+def test_changed_notes_stale_only_that_sources_chapters(novel, ts):
+    other = novel.raw_source("other")
+    novel.raws([13, 14], source=other)
+    run(novel, ts, Translator(), KeyRange(1, 14))
+    novel.rules[novel.raw] = RawRules("New notes.", REV)
+    assert stale(novel.store, ts, novel.rules, SETUP).stale == tuple(f"n{n}" for n in range(1, 13))
+
+
+def test_prune_keeps_held_translations(novel, ts):
+    run(novel, ts, Translator(), KeyRange(3, 3))
+    novel.hold(3)
+    assert prune(novel.store, ts, novel.rules, SETUP) == ()
+    assert "n3" in novel.texts() and stale(novel.store, ts, novel.rules, SETUP).held == ("n3",)
+
+
+def test_a_released_chapter_is_published_again_without_a_call(novel, ts):
+    run(novel, ts, Translator(), KeyRange(1, 3))
+    novel.store.set_published(novel.setup_source(), True)
+    novel.hold(3)
+    run(novel, ts, Translator(), KeyRange(1, 3))
+    assert "n3" not in {s.item_ref for s in novel.store.selection()}
+
+    novel.store.release(novel.raw, ["/3"])
+    again = Translator()
+    run(novel, ts, again, KeyRange(1, 3))
+    assert again.prompts == {} and "n3" in {s.item_ref for s in novel.store.selection()}

@@ -298,7 +298,8 @@ def test_compare_says_when_texts_are_identical(client, two_texts):
     assert "Identical text." in compare_page(client, "d")
 
 
-def test_check_section_lists_held_chapters_and_counts_unchecked_ones(client, novels):
+def test_check_section_lists_held_chapters_and_counts_unchecked_ones(client, novels, old_rules):
+    old_rules([1, 2, 4, 5])
     with NovelStore.open(novel_dir("raw-novel")) as store:
         current = next(s for s in store.view().chapters(1) if s.item_ref == "/3")
         v = store.read_version(current.version_id)

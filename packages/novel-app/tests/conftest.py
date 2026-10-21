@@ -10,6 +10,7 @@ import pytest
 from novel_app import service
 from novel_app.library import DATA_DIR_ENV, novel_dir
 from novel_core import Kind, NewVersion, NovelMeta, NovelStore, Paragraph, RawChapter, SourceItem, SourceSpec
+from novel_sources.backends import zh_rules
 from novel_sources.clean import CleanRules
 from novel_sources.fetch import FetchError
 from novel_sources.importing import NovelIndex
@@ -137,17 +138,33 @@ class FakeOpenRouter:
 
 @pytest.fixture
 def novels(tmp_path, monkeypatch):
-    """raw-novel: five raw chapters naming 韩立 nine times each; english-only: no raws."""
+    """raw-novel: five raw chapters naming 韩立 nine times each, checked with today's zh rules;
+    english-only: no raws."""
     monkeypatch.setenv(DATA_DIR_ENV, str(tmp_path / "data"))
     with NovelStore.create(novel_dir("raw-novel"), NovelMeta("Raw Novel")) as store:
-        raw = store.upsert_source(SourceSpec("custom:raw", "https://raw.test", "zh", Kind.RAW_ZH))
+        spec = SourceSpec("custom:raw", "https://raw.test", "zh", Kind.RAW_ZH)
+        raw, rev = store.upsert_source(spec), zh_rules("raw-novel", spec).rev
         store.record_index(raw, [SourceItem(f"/{n}", n, f"第{n}章", number=n) for n in range(1, 6)])
         for n in range(1, 6):
             words = [FILLER[(n * 7 + i * 13) % len(FILLER)] * (1 + i % 3) for i in range(600)]
             text = "韩立".join("".join(words[i : i + 60]) for i in range(0, 600, 60))  # 韩立 nine times a chapter
-            store.put_version(raw, f"/{n}", NewVersion(f"第{n}章", (Paragraph.of(text),)))
+            store.put_version(raw, f"/{n}", NewVersion(f"第{n}章", (Paragraph.of(text),), rules_rev=rev))
     with NovelStore.create(novel_dir("english-only"), NovelMeta("English Only")) as store:
         store.upsert_source(SourceSpec("custom:en", "https://en.test", "en", Kind.OFFICIAL_EN))
+
+
+@pytest.fixture
+def old_rules(novels):
+    """Mark raw-novel's raws at these numbers as checked by older zh rules (unchecked today)."""
+
+    def mark(numbers) -> None:
+        with NovelStore.open(novel_dir("raw-novel")) as store:
+            for s in store.view().chapters(1):
+                if s.key.number in numbers:
+                    v = store.read_version(s.version_id)
+                    store.put_version(1, s.item_ref, NewVersion(v.title, v.blocks, rules_rev="rules-0"))
+
+    return mark
 
 
 @pytest.fixture

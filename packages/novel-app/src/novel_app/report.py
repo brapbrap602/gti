@@ -112,7 +112,7 @@ def numbers(name: str, values: Sequence[int]) -> list[str]:
     return [f"  {name}: {len(values)} ({ranges(values)})"] if values else []
 
 
-def glossary_lines(r: GlossaryReport) -> list[str]:
+def glossary_lines(r: GlossaryReport, slug: str) -> list[str]:
     decided = ", ".join(f"{n} {status}" for status, n in sorted(r.decided.items())) or "none"
     lines = [
         f"  discovered {r.candidates} new strings; classified {r.classified}; "
@@ -120,19 +120,23 @@ def glossary_lines(r: GlossaryReport) -> list[str]:
         f"  decided: {decided}",
         f"  {r.calls} calls, ${r.cost:.4f}",
         *section("failed", r.failed),
+        *unchecked_lines(r.unchecked, slug),
     ]
     if r.stopped:
         lines.append(f"  stopped: {r.stopped}; run it again (with a higher --cap) to continue")
     return lines
 
 
-def estimate_lines(e: Estimate) -> list[str]:
+def estimate_lines(e: Estimate, slug: str) -> list[str]:
     calls = ", ".join(f"{n} {step}" for step, n in e.calls.items())
     bound = "at most " if e.upper_bound else "about "
-    return [f"  {e.chapters} chapters; {e.total_calls} calls ({calls}); {bound}${e.usd:.4f}"]
+    return [
+        f"  {e.chapters} chapters; {e.total_calls} calls ({calls}); {bound}${e.usd:.4f}",
+        *unchecked_lines(e.unchecked, slug),
+    ]
 
 
-def translate_lines(r: TranslateReport) -> list[str]:
+def translate_lines(r: TranslateReport, slug: str) -> list[str]:
     flags = ", ".join(f"{n} {flag}" for flag, n in sorted(r.soft_flags.items()))
     lines = [
         f"  translated {len(r.translated)}; {r.skipped} already current; "
@@ -140,6 +144,8 @@ def translate_lines(r: TranslateReport) -> list[str]:
         f"  {r.calls} calls, ${r.cost:.4f}" + (f"; stored with flags: {flags}" if flags else ""),
         *section("blocked (review these terms on the glossary page)", r.blocked),
         *section("failed", r.failed),
+        *unchecked_lines(len(r.unchecked), slug),
+        *section("waiting (sequential: the chapter before is not checked)", r.waiting),
     ]
     if r.orphans:
         lines.append(f"  orphans (their raw chapter is gone; `nov translate prune` drops them): {', '.join(r.orphans)}")
@@ -148,10 +154,11 @@ def translate_lines(r: TranslateReport) -> list[str]:
     return lines
 
 
-def translate_estimate_lines(e: TranslateEstimate) -> list[str]:
+def translate_estimate_lines(e: TranslateEstimate, slug: str) -> list[str]:
+    unchecked = f", {e.unchecked} not checked with current rules: run nov reclean {slug}" if e.unchecked else ""
     return [
-        f"  {e.chapters} chapters to translate ({e.current} already current, {e.blocked} blocked by terms to review); "
-        f"at most ${e.usd:.4f}"
+        f"  {e.chapters} chapters to translate ({e.current} already current, {e.blocked} blocked by terms to review"
+        f"{unchecked}); at most ${e.usd:.4f}"
     ]
 
 
@@ -170,7 +177,10 @@ def stale_lines(r: StaleReport) -> list[str]:
         more = " …" if len(refs) > LIST_LIMIT else ""
         return f" ({', '.join(refs[:LIST_LIMIT])}{more})" if refs else ""
 
-    return [f"  stale: {len(r.stale)}{listed(r.stale)}", f"  orphans: {len(r.orphans)}{listed(r.orphans)}"]
+    lines = [f"  stale: {len(r.stale)}{listed(r.stale)}", f"  orphans: {len(r.orphans)}{listed(r.orphans)}"]
+    if r.held:
+        lines.append(f"  held (every raw copy is held; kept, not published): {len(r.held)}{listed(r.held)}")
+    return lines
 
 
 def section(name: str, lines: Sequence[str]) -> list[str]:

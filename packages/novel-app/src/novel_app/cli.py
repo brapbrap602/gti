@@ -403,7 +403,7 @@ def glossary_build(
     """Find the novel's names, ask the model about them and summarize changed chapters (resumable)."""
     estimate = _calling(lambda: _service().glossary_estimate(novel, model))
     typer.echo(f"{novel}: glossary pass with {model}, cap ${cap:.2f}")
-    _echo(report.estimate_lines(estimate))
+    _echo(report.estimate_lines(estimate, novel))
     if not yes and not typer.confirm("start?"):
         raise typer.Exit(1)
     _job("glossary-build", novel=novel, model=model, cap=cap, revote=revote, workers=workers)
@@ -521,7 +521,7 @@ def translate_run(
         raise typer.BadParameter("give chapter numbers or --stale")
     span = numbers or ""
     estimate = _calling(lambda: _service().translate_estimate(novel, setup, span))
-    _echo(report.translate_estimate_lines(estimate))
+    _echo(report.translate_estimate_lines(estimate, novel))
     if not estimate.chapters:
         typer.echo("nothing to translate")
         return
