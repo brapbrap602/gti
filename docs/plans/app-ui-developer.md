@@ -1,6 +1,6 @@
 # App UI overhaul (`nov serve`): developer plan
 
-Status: approved by the user 2026-10-21 (r2). Slices 0–6 built 2026-10-21 (local, not pushed); of slice 7, the W13 screenshots are done and G2 and G3 wait on the user (§10.1). Three independent reviews are folded in: r1 reviewed the baseline (§9.1), r2 reviewed draft r1 (§9.2), and a focused follow-up checked the r2 changes (§9.3).
+Status: approved by the user 2026-10-21 (r2). Slices 0–6 built 2026-10-21 (local, not pushed); of slice 7, the W13 screenshots and G2 are done and G3 waits on the user (§10.1). Three independent reviews are folded in: r1 reviewed the baseline (§9.1), r2 reviewed draft r1 (§9.2), and a focused follow-up checked the r2 changes (§9.3).
 Related: [stakeholder plan](app-ui-stakeholder.md) · [reader UI plan](reader-ui-developer.md) (it built today's jobs drawer, compare diff and phone tables) · [platform plan](novel-platform-developer.md).
 
 Paths are relative to the repo root. App = `packages/novel-app/src/novel_app`, Web = `App/web`, Tests = `packages/novel-app/tests`.
@@ -532,7 +532,7 @@ Optional findings adopted:
 - **W11 spike:** with `javascript.enabled=false`, BiDi `script.evaluate` never answers (30 s timeout), so W11 runs the fallback variant: load normally, remove `js` from `<html>`, assert the sidebar, the jobs panel (static) and all four panels show, on the novel page and the wide comparison chapter.
 - **W10** fires its 409 with `build-epub` on the claimed `english-only`: a `sync` there is refused earlier (no web source) with a 400, which is still an error toast but not the lock.
 - **Deviations:** the novel page's Outputs stat lists each kind with its staleness text, not a badge plus text (the badge repeated it). The Check summaries keep their exact text (`<summary>Held: 1</summary>` is a kept contract), so they carry no count badge. The bare Start and Build glossary buttons keep their exact markup (kept contracts) and get the primary look from `app.css`.
-- **G2 (timing) not run:** it needs the user's `nov serve` restarted on the new code.
+- **G2 (timing) passed 2026-10-21:** on the real library (10 novels), with a sync of `beyond-the-timescape` running from the app, 15 calls each: `GET /` median 28 ms (max 292 ms), `GET /novels/beyond-the-timescape` median 93 ms (max 225 ms); idle they were 26 ms and 92 ms. The stream sent `jobs` events while the sync made progress (2 s apart). It sends only on a change, so it stays quiet while a sync waits on a slow site; that is by design, not a stall. The fallback is not needed.
 - **G3 (look) pending:** W13 writes full-page PNGs to `$APP_UI_SHOTS` when set.
 
 ## 11. Not included
