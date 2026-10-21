@@ -541,6 +541,15 @@ def test_to_fetch_refresh_range_refetches_stored_and_unavailable(book):
     assert book.store.to_fetch(a, refresh=KeyRange(2, 3)) == (refs[1], refs[2])
 
 
+def test_to_fetch_only_keeps_items_keyed_in_the_range(book):
+    a = book.source("a")
+    refs = book.chapters(a, titles(1, 2))
+    more = index(book, a, *titles(1, 2, 3, 4, 5), "Notice")
+    assert book.store.to_fetch(a) == (more[2], more[3], more[4], more[5])  # unmapped is fetched too
+    assert book.store.to_fetch(a, only=KeyRange(2, 4)) == (more[2], more[3])
+    assert book.store.to_fetch(a, refresh=KeyRange(1, 2), only=KeyRange(2, 4)) == (refs[1], more[2], more[3])
+
+
 def test_volumes_are_recorded_per_range(store):
     store.record_volume(VolumeRow(KeyRange(1, 100), "h1", "v1.m4b"))
     store.record_volume(VolumeRow(KeyRange(101, 200), "h2", "v2.m4b"))

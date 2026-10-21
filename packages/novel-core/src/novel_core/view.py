@@ -154,7 +154,9 @@ class NovelView:
         self.source(source)
         return tuple(sorted(self._current.get(source, []), key=lambda s: s.key))
 
-    def to_fetch(self, source: SourceId, refresh: KeyRange | None = None) -> tuple[ItemRef, ...]:
+    def to_fetch(
+        self, source: SourceId, refresh: KeyRange | None = None, only: KeyRange | None = None
+    ) -> tuple[ItemRef, ...]:
         """The items a sync of this source should fetch, in index order.
 
         An item is fetched when it has no version yet and the book lacks its number:
@@ -164,6 +166,7 @@ class NovelView:
         Unmapped items without a version are fetched too, so their text can show what
         they are. Unavailable (locked), vanished and skipped items are left alone.
         Items whose key falls in `refresh` are fetched again whatever they hold.
+        With `only`, items whose key falls outside it (or that have no key) are left alone.
         """
         info = self.source(source)
         if info.spec.kind is Kind.RAW_ZH:
@@ -180,6 +183,8 @@ class NovelView:
             if item.vanished or item.ref in info.alignment.skip:
                 continue
             key = keys.get(item.ref)
+            if only is not None and (key is None or key.number not in only):
+                continue
             if refresh is not None and key is not None and key.number in refresh:
                 wanted.append(item.ref)
             elif (source, item.ref) not in self._stored and item.status is not ItemStatus.UNAVAILABLE:

@@ -136,6 +136,7 @@ def add(
 @app.command("sync")
 def sync_cmd(
     novel: Annotated[str | None, typer.Argument(help="novel slug; leave out with --all")] = None,
+    numbers: Annotated[str | None, typer.Argument(help="fetch only these chapter numbers, e.g. 590-592")] = None,
     all_novels: Annotated[bool, typer.Option("--all", help="sync every novel with a web source")] = False,
     refresh: Annotated[str | None, typer.Option(help="also fetch these chapter numbers again, e.g. 1400-1414")] = None,
     source: SourceOpt = None,
@@ -143,15 +144,18 @@ def sync_cmd(
     """Fetch the chapters the book lacks from each web source; exit 1 if any chapter failed."""
     if all_novels == (novel is not None):
         raise typer.BadParameter("give a novel slug or --all")
-    if refresh:
-        _parsed(parse_range, refresh)
+    if all_novels and numbers:
+        raise typer.BadParameter("chapter numbers need a novel slug, not --all")
+    for r in (refresh, numbers):
+        if r:
+            _parsed(parse_range, r)
     service = _service()
     _calling(service.guides)
     slugs = [s for s in service.novels() if service.web_sources(s, source)] if all_novels else [novel]
     failed = False
     for slug in slugs:
         try:
-            _job("sync", novel=slug, refresh=refresh, source=source)
+            _job("sync", novel=slug, refresh=refresh, source=source, numbers=numbers)
         except typer.Exit as e:
             if e.exit_code != 1 or not all_novels:
                 raise

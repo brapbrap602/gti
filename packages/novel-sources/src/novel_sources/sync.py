@@ -49,11 +49,13 @@ def sync(
     source: Source,
     refresh: KeyRange | None = None,
     progress: Progress | None = None,
+    only: KeyRange | None = None,
 ) -> SyncReport:
-    """Fetch what the book lacks from this source, plus every item whose key is in `refresh`."""
+    """Fetch what the book lacks from this source, plus every item whose key is in `refresh`;
+    with `only`, just the items whose key is in it. The whole index is recorded either way."""
     index = source.fetch_index()
     diff = store.record_index(source_id, index.items)
-    wanted = set(store.to_fetch(source_id, refresh))
+    wanted = set(store.to_fetch(source_id, refresh, only))
     items = [i for i in index.items if i.ref in wanted]
     provenance = {"backend": source.spec.backend, **index.provenance}
     stored = store_chapters(store, source_id, items, source.fetch_chapter, source.clean_rules, provenance, progress)

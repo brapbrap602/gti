@@ -226,8 +226,9 @@ class Service:
         with self._store(novel) as store:
             return [s for s in store.sources() if is_web(s.spec) and source in (None, s.id)]
 
-    def _sync(self, novel: str, refresh: str | None = None, source: int | None = None):
+    def _sync(self, novel: str, refresh: str | None = None, source: int | None = None, numbers: str | None = None):
         keys = _parsed(parse_range, refresh) if refresh else None
+        only = _parsed(parse_range, numbers) if numbers else None
         web = self.web_sources(novel, source)
         if not web:
             raise UserError(f"{novel} has no web source{'' if source is None else f' {source}'}; add one with `nov add`")
@@ -239,7 +240,7 @@ class Service:
                 for info in web:
                     job.log(f"{novel}: source {info.id} ({info.spec.backend}) {info.spec.url}")
                     with self._open_source(info.spec, fetch_dir(), guides) as live:
-                        r = sync(store, info.id, live, keys, lambda d, t, item: job.progress(d, t, item.title))
+                        r = sync(store, info.id, live, keys, lambda d, t, item: job.progress(d, t, item.title), only)
                     for line in report.sync_lines(r):
                         job.log(line)
                     errors += report.failed_lines(r.failed)
