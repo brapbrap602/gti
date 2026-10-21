@@ -24,7 +24,18 @@ from novel_audio.legacy import Positions, TitleNumbers, register_legacy
 from novel_audio.media import MediaError
 from novel_audio.tts import DEFAULT_VOICE, EdgeTts, TtsEngine
 from novel_audio.volumes import VOLUME_SIZE, build_volumes
-from novel_core import AlignmentDiff, AlignmentRules, KeyRange, Kind, NovelStore, NovelView, SourceInfo, SourceSpec, StoreError
+from novel_core import (
+    AlignmentDiff,
+    AlignmentRules,
+    KeyRange,
+    Kind,
+    NovelStore,
+    NovelView,
+    RangeOverride,
+    SourceInfo,
+    SourceSpec,
+    StoreError,
+)
 from novel_core.selection import Pin
 from novel_core.store import DB_NAME
 from novel_publish import epub
@@ -578,6 +589,13 @@ class Service:
 
     def align_skip(self, novel: str, refs: Sequence[str], source: int | None = None) -> AlignmentDiff:
         return self._edit_alignment(novel, source, refs, lambda r: replace(r, skip=r.skip | set(refs)))
+
+    def align_range(self, novel: str, printed: str, offset: int, source: int | None = None) -> AlignmentDiff:
+        """Give printed numbers start-end this offset; it wins over the source offset and earlier ranges."""
+        r = _parsed(parse_range, printed)
+        return self._edit_alignment(
+            novel, source, [], lambda rules: replace(rules, ranges=(*rules.ranges, RangeOverride(r.start, r.end, offset)))
+        )
 
     def align_copy(self, novel: str, from_source: int, to_source: int) -> AlignmentDiff:
         """Give a source another's offsets, ranges, item keys and skips (for items it also lists)."""

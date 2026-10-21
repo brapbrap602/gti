@@ -1,5 +1,6 @@
 import hashlib
 import sqlite3
+from dataclasses import replace
 from datetime import UTC, datetime
 
 import pytest
@@ -909,3 +910,64 @@ def test_rebase_moves_releases_and_drops_findings_of_merged_versions(book):
 
     assert book.store.rebase_refs(a, "/old/", "/new/") == 1
     assert book.store.view().held(a, "/new/1") == ()
+
+
+# -- numbering ----------------------------------------------------------------
+
+NAMES_ = "山门 钟声 松林 溪水 月光 石阶 青石 远山 夜雨 古井 长街 飞雪 孤灯 渡口".split()
+
+
+def named(book, name: str, numbered: dict[int, str]) -> int:
+    """A raw source whose index lists `printed number -> chapter name` as 第N章 titles."""
+    source = book.source(name, Kind.RAW_ZH)
+    index(book, source, *(f"第{n}章 {title}" for n, title in numbered.items()))
+    return source
+
+
+def runs(view, anchor):
+    return [(r.source_id, r.printed_start, r.printed_end, r.offset, r.matched) for r in view.numbering(anchor)]
+
+
+def test_numbering_runs(book):
+    anchor = named(book, "anchor", {n: NAMES_[n - 1] for n in range(1, 13)})
+    # the other source prints anchor 3-8 as 1-6 (+2), anchor 10-12 as 7-9 (+3); anchor 1-2 as 10-11 is only two
+    other = named(book, "other", {
+        **{p: NAMES_[p + 1] for p in range(1, 7)}, **{p: NAMES_[p + 2] for p in range(7, 10)},
+        10: NAMES_[0], 11: NAMES_[1],
+    })  # fmt: skip
+    assert runs(book.store.view(), anchor) == [(other, 1, 6, 2, 6), (other, 7, 9, 3, 3)]
+
+
+def test_numbering_round_trip(book):
+    anchor = named(book, "anchor", {n: NAMES_[n - 1] for n in range(1, 15)})
+    # printed p is anchor p-1 for 2-6 (the base offset), p+1 for 7-9 (an existing range), p+2 for 10-13
+    other = named(book, "other", {p: NAMES_[p - 2] for p in range(2, 7)} | {p: NAMES_[p] for p in range(7, 10)}
+                  | {p: NAMES_[p + 1] for p in range(10, 13)})  # fmt: skip
+    book.store.set_alignment(other, AlignmentRules(offset=-1, ranges=(RangeOverride(7, 12, 1),)))
+    assert runs(book.store.view(), anchor) == [(other, 10, 12, 2, 3)]
+
+    for r in book.store.view().numbering(anchor):
+        rules = book.store.view().source(r.source_id).alignment
+        book.store.set_alignment(
+            r.source_id, replace(rules, ranges=(*rules.ranges, RangeOverride(r.printed_start, r.printed_end, r.offset)))
+        )
+    assert book.store.view().numbering(anchor) == ()
+
+
+def test_numbering_suffix_ignored(book):
+    anchor = named(book, "anchor", {1: "山门", 2: "钟声", 3: "松林"})
+    other = named(book, "other", {11: "山门（九千求月票）", 12: "钟声", 13: "松林"})
+    assert runs(book.store.view(), anchor) == [(other, 11, 13, -10, 3)]
+
+
+@pytest.mark.parametrize(
+    "anchor_extra, other_extra",
+    [
+        pytest.param({6: "上架感言"}, {}, id="repeated-in-anchor"),
+        pytest.param({}, {16: "上架感言"}, id="repeated-in-other"),
+    ],
+)
+def test_numbering_repeated_name_ignored(book, anchor_extra, other_extra):
+    anchor = named(book, "anchor", {1: "山门", 2: "钟声", 3: "松林", 4: "上架感言"} | anchor_extra)
+    other = named(book, "other", {11: "山门", 12: "钟声", 13: "松林", 14: "上架感言"} | other_extra)
+    assert runs(book.store.view(), anchor) == [(other, 11, 13, -10, 3)]

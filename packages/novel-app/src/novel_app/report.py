@@ -14,7 +14,7 @@ from novel_translate.phase_b import Estimate as TranslateEstimate
 from novel_translate.phase_b import StaleReport, TranslateReport
 
 from novel_app.notation import ranges
-from novel_app.pages import NovelCheck
+from novel_app.pages import NovelCheck, align_range_command
 
 if TYPE_CHECKING:  # service imports this module
     from novel_app.service import CompareEstimate
@@ -149,6 +149,7 @@ def check_lines(slug: str, c: NovelCheck) -> list[str]:
         *section("vanished", [f"source {n.source_id} {n.item_ref}" for n in r.vanished]),
         *section("failed", [f"source {n.source_id} {n.item_ref}: {n.detail}" for n in r.failed]),
         *section("held", [f"source {n.source_id} {n.item_ref}: {n.detail}" for n in r.held]),
+        *numbering_lines(slug, c),
         *section("title mismatches", [f"{n.title!r} (title says {n.detail})" for n in r.title_mismatches]),
         *numbers("mixed parts", r.mixed_parts),
         *section("pin fallbacks", [f"{p.number}: pinned source {p.pinned_source} has nothing" for p in r.pin_fallbacks]),
@@ -156,6 +157,20 @@ def check_lines(slug: str, c: NovelCheck) -> list[str]:
         *section("legacy unselected", [f"{o.kind} {o.built_key}: {o.item_ref}" for o in r.legacy_unselected]),
         *unchecked_lines(c.unchecked, slug),
     ]
+
+
+def numbering_lines(slug: str, c: NovelCheck) -> list[str]:
+    if not c.numbering:
+        return []
+    return [
+        f"  numbering: {len(c.numbering)} (against source {c.anchor})",
+        *listed([
+            f"source {n.source_id} printed {n.printed_start}-{n.printed_end} are chapters "
+            f"{n.printed_start + n.offset}-{n.printed_end + n.offset} (offset {n.offset:+d}, {n.matched} titles match): "
+            f"{align_range_command(slug, n)}"
+            for n in c.numbering
+        ]),
+    ]  # fmt: skip
 
 
 def numbers(name: str, values: Sequence[int]) -> list[str]:

@@ -4,7 +4,8 @@
 (one per chapter key, in blocks of 100 numbers) and `comparison` two sources' texts
 of one chapter number side by side, with their differences marked. `novel_check` is
 what `nov check` and the Check section show; `unchecked` counts raw-zh chapters
-not checked with the current zh rules.
+not checked with the current zh rules, and `anchor` picks the raw source the others'
+numbering is compared with.
 """
 
 from collections import defaultdict
@@ -26,7 +27,9 @@ from novel_core import (
     Kind,
     NovelStore,
     NovelView,
+    NumberingRun,
     OutputKind,
+    SourceId,
     SourceInfo,
     SourceSpec,
 )
@@ -34,7 +37,7 @@ from novel_core.keys import chapter_heading
 from novel_core.selection import Pin
 from novel_publish import epub, render
 from novel_publish import site as site_builder
-from novel_sources.backends import is_web, zh_rules
+from novel_sources.backends import is_reference, is_web, zh_rules
 from novel_translate.setups import BACKEND as SETUP_BACKEND
 from novel_translate.setups import TranslatorSetup
 
@@ -254,12 +257,28 @@ class NovelCheck:
     """What `nov check` and the novel page's Check section show."""
 
     report: CheckReport
-    numbering: tuple = ()  # numbering suggestions (raw cleaning slice 8)
+    numbering: tuple[NumberingRun, ...] = ()  # raw sources numbered unlike the anchor
     unchecked: int = 0  # raw-zh chapters not checked with the current zh rules
+    anchor: SourceId | None = None  # the raw source numbering compares against
 
 
 def novel_check(slug: str, view: NovelView) -> NovelCheck:
-    return NovelCheck(view.check(), (), unchecked(slug, view))
+    numbering = view.numbering(found) if (found := anchor(slug, view)) is not None else ()
+    return NovelCheck(view.check(), numbering, unchecked(slug, view), found)
+
+
+def anchor(slug: str, view: NovelView) -> SourceId | None:
+    """The raw source whose numbering counts as right: Qidian's, else the first raw source in
+    priority that is not a decoy site (whose printed numbers repeat); None without one."""
+    raws = [view.source(sid) for sid in view.priority if view.source(sid).spec.kind is Kind.RAW_ZH]
+    if reference := next((info for info in raws if is_reference(info.spec)), None):
+        return reference.id
+    return next((info.id for info in raws if not zh_rules(slug, info.spec).decoy_site), None)
+
+
+def align_range_command(slug: str, run: NumberingRun) -> str:
+    """The command that applies a numbering suggestion."""
+    return f"nov align range {slug} {run.printed_start}-{run.printed_end} {run.offset} --source {run.source_id}"
 
 
 def unchecked(slug: str, view: NovelView) -> int:

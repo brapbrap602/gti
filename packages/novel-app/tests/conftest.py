@@ -167,6 +167,20 @@ def old_rules(novels):
     return mark
 
 
+NAMES = ("山门", "钟声", "松林", "溪水", "月光")
+
+
+@pytest.fixture
+def misnumbered(novels):
+    """raw-novel's chapters get names, and a second raw source lists them one number later
+    (printed 2-6 for chapters 1-5): numbering suggests `nov align range raw-novel 2-6 -1 --source 2`."""
+    with NovelStore.open(novel_dir("raw-novel")) as store:
+        store.record_index(1, [SourceItem(f"/{n}", n, f"第{n}章 {NAMES[n - 1]}", number=n) for n in range(1, 6)])
+        later = store.upsert_source(SourceSpec("custom:later", "https://later.test", "zh", Kind.RAW_ZH))
+        store.record_index(later, [SourceItem(f"/b/{n + 1}", n, f"第{n + 1}章 {NAMES[n - 1]}") for n in range(1, 6)])
+    return later
+
+
 @pytest.fixture
 def openrouter(novels, monkeypatch):
     fake = FakeOpenRouter()
