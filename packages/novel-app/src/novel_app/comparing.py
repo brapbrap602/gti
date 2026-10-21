@@ -72,6 +72,7 @@ def _summary(
         f"Reference: {_reference_note(references, refs)}. Total spend ${comparison.cost:.4f}.",
         "Each chapter's file in `chapters/` has the Chinese, the reference and every setup's English.",
         "The verdict goes in `judgement.md`.",
+        "Setups with several chapters per request: a request's cost and time are split evenly over its chapters.",
         "",
         "| setup | done | failed | cost | $/chapter | s/chapter | words vs reference | soft flags |",
         "|---|---|---|---|---|---|---|---|",
@@ -81,7 +82,7 @@ def _summary(
         ok = [a for a in attempts if a.failure is None]
         cost = sum(a.charged.cost for a in attempts)
         per = f"${cost / len(ok):.4f}" if ok else "–"
-        seconds = f"{sum(a.seconds for a in ok) / len(ok):.0f}" if ok else "–"
+        seconds = f"{sum(a.seconds / a.shared for a in ok) / len(ok):.0f}" if ok else "–"
         flags = sorted({f.split(":")[0] for a in ok for f in a.soft_flags})
         lines.append(
             f"| {s.label} | {len(ok)} | {len(attempts) - len(ok)} | ${cost:.4f} | {per} | {seconds} | "
@@ -89,7 +90,7 @@ def _summary(
         )
     failures = [(s, a) for s in setups for a in comparison.attempts.get(s.url, {}).values() if a.failure]
     if failures:
-        lines += ["", "## Failures", "", *(f"- {s.model} {a.ref}: {a.failure}" for s, a in failures)]
+        lines += ["", "## Failures", "", *(f"- {_name(s)} {a.ref}: {a.failure}" for s, a in failures)]
     return "\n".join(lines) + "\n"
 
 
@@ -104,15 +105,16 @@ def _chapter(
         out += [f"Reference: source {reference.source}, {reference.title} (check it is this chapter)", ""]
     for s, a in attempts:
         if a is None or a.failure:
-            out.append(f"- {s.model}: {a.failure if a else 'not run'}")
+            out.append(f"- {_name(s)}: {a.failure if a else 'not run'}")
         else:
-            out.append(f"- {s.model}: {a.title} (${a.charged.cost:.4f}, {a.seconds:.0f} s, {_words(a.paragraphs)} words)")
+            shared = f", in a request of {a.shared} chapters" if a.shared > 1 else ""
+            out.append(f"- {_name(s)}: {a.title} (${a.charged.cost:.4f}, {a.seconds:.0f} s{shared}, {_words(a.paragraphs)} words)")
     out.append("")
     for n, zh in enumerate(raw, 1):
         out += [f"## ¶{n}", "", f"**zh** {zh}", ""]
         for s, a in attempts:
             if a is not None and not a.failure and n <= len(a.paragraphs):
-                out += [f"**{s.model}** {a.paragraphs[n - 1]}", ""]
+                out += [f"**{_name(s)}** {a.paragraphs[n - 1]}", ""]
     if reference is not None:
         # The reference's paragraphs need not line up with the Chinese ones, so it is given whole.
         out += ["## Reference", "", *(p + "\n" for p in reference.paragraphs)]
@@ -124,6 +126,7 @@ def _attempt_json(a: Attempt) -> dict:
         "title": a.title, "paragraphs": list(a.paragraphs), "failure": a.failure, "soft_flags": list(a.soft_flags),
         "cost": a.charged.cost, "input_tokens": a.charged.input_tokens, "output_tokens": a.charged.output_tokens,
         "requests": a.charged.requests, "generation_ids": list(a.charged.generation_ids), "seconds": round(a.seconds, 2),
+        "shared": a.shared,
     }  # fmt: skip
 
 
@@ -138,6 +141,14 @@ def _reference_note(references: Mapping[str, Reference], refs: Sequence[str]) ->
     missing = [ref for ref in refs if ref not in references]
     note = f"source {', '.join(map(str, sources))}" if sources else "none"
     return note + (f" (none for {', '.join(missing)})" if missing and sources else "")
+
+
+def _name(setup: TranslatorSetup) -> str:
+    """The setup's model, and what sets it apart from the others of a comparison."""
+    extras = ([f"reasoning {setup.reasoning}"] if setup.reasoning != "off" else []) + (
+        [f"{setup.group} per request"] if setup.group > 1 else []
+    )
+    return setup.model + (f" ({', '.join(extras)})" if extras else "")
 
 
 def _words(paragraphs: Sequence[str]) -> int:

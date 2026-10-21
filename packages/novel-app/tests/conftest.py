@@ -112,6 +112,14 @@ class FakeOpenRouter:
 
     def answer(self, messages, info) -> ModelResponse:
         prompt = messages[-1].parts[-1].content
+        if "several consecutive chapters" in info.instructions:
+            self.calls.append("translate-group")
+            chapters = []
+            for number, body in re.findall(r"^### Chapter (\d+) \(title: [^)]*\)\n((?:\[\d+\] .+\n?)+)", prompt, re.M):
+                source = re.findall(r"^\[(\d+)\] (.+)$", body, re.M)
+                paragraphs = [{"id": int(i), "text": _english(len(text), f"{i}{text[:4]}")} for i, text in source]
+                chapters.append({"number": int(number), "title": "A Title", "paragraphs": paragraphs, "new_terms": []})
+            return ModelResponse(parts=[ToolCallPart(info.output_tools[0].name, {"chapters": chapters})])
         if info.instructions.startswith("You translate"):
             self.calls.append("translate")
             source = re.findall(r"^\[(\d+)\] (.+)$", prompt.split("## Chapter to translate")[1], re.M)

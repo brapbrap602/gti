@@ -20,3 +20,13 @@ class Translated(BaseModel):
     title: str = Field(description="the chapter title in English, without 'Chapter N'")
     paragraphs: list[Para]
     new_terms: list[NewTerm] = Field(default=[], description="names you had to render yourself")
+
+
+class TranslatedChapter(Translated):
+    number: int = Field(description="the chapter's number, as the request gives it")
+
+
+class TranslatedGroup(BaseModel):
+    """What the translator returns for several consecutive chapters sent in one request."""
+
+    chapters: list[TranslatedChapter] = Field(description="every chapter of the request, in order, each once")

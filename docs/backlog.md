@@ -19,3 +19,11 @@ Reasoning "off" can't switch reasoning off for models that make it mandatory (e.
 ## Discovery: "name + verb" phrases still become candidates (2026-10-20)
 
 Strings like 李凡沉吟 and 韩萧无奈 (a name plus an everyday verb) pass discovery, and the model has to reject them. A filter for them was tried, but it also dropped organisation names (无限财团, 萌芽组织). It needs a better signal than jieba's part-of-speech tags.
+
+## Several chapters per request: comparisons only (2026-10-20)
+
+A translator setup can send several consecutive chapters in one request (`group`, `nov translate compare --per-call N`). Only comparisons use it so far: `nov translate run` refuses such setups. If a comparison shows grouping translates better, production needs the following:
+- an input_key per group;
+- the ledger and stored versions per chapter from one shared call;
+- staleness for a group whose chapters change separately;
+- what a re-run sends when only some chapters of a group are stale.

@@ -27,7 +27,7 @@ from pydantic_ai.models import Model
 from pydantic_ai.models.openrouter import OpenRouterModel
 from pydantic_ai.providers.openrouter import OpenRouterProvider
 
-from novel_translate.chapter import Translated
+from novel_translate.chapter import Translated, TranslatedGroup
 from novel_translate.glossary import Category, Verdict
 
 OPENROUTER_URL = "https://openrouter.ai/api/v1"
@@ -149,7 +149,7 @@ class Hinted:
 
 @dataclass(frozen=True)
 class Attempted:
-    out: Translated
+    out: Translated | TranslatedGroup
     charged: Charged
 
 
@@ -161,6 +161,7 @@ _FIXES = {
     "loop": "- The text repeats itself: translate each source paragraph once.",
     "length": "- The translation is far too short or too long for the source: translate fully, without padding.",
     "heading": "- A paragraph starts with 'Chapter N' although the source paragraph does not: drop it.",
+    "chapters": "- Give every chapter of the request exactly once, in order, with the number the request gives it.",
 }
 
 
@@ -241,24 +242,26 @@ class LLM:
         )
         return Hinted({u.zh: u.en.strip() for u in out.terms if u.zh in asked and u.en and u.en.strip()}, charged)
 
-    def translate(
+    def translate[T: (Translated, TranslatedGroup)](
         self,
         instructions: str,
         prompt: str,
-        hard_checks: Callable[[Translated], Sequence[str]],
+        hard_checks: Callable[[T], Sequence[str]],
         max_tokens: int,
         retry_invalid: bool = True,
+        output_type: type[T] = Translated,
     ) -> Attempted:
-        """One chapter. Output failing `hard_checks` is sent back once with what to fix (`retry_invalid`);
-        raises CallFailed("invalid: <checks>") if it still fails, CutOff if it hit `max_tokens`."""
-        agent = Agent(self._model, output_type=Translated, instructions=instructions)
+        """One chapter (or a group of them, as `output_type` TranslatedGroup). Output failing `hard_checks`
+        is sent back once with what to fix (`retry_invalid`); raises CallFailed("invalid: <checks>") if it
+        still fails, CutOff if it hit `max_tokens`."""
+        agent = Agent(self._model, output_type=output_type, instructions=instructions)
         failed: list[Sequence[str]] = []
 
         @agent.output_validator
-        def _valid(out: Translated) -> Translated:
+        def _valid(out: T) -> T:
             if problems := hard_checks(out):
                 failed.append(problems)
-                raise ModelRetry("Fix these problems and answer again in full:\n" + "\n".join(_FIXES[p] for p in problems))
+                raise ModelRetry("Fix these problems and answer again in full:\n" + "\n".join(map(_fix, problems)))
             return out
 
         try:
@@ -400,6 +403,12 @@ class ModelFactory:
             raise PriceUnavailable(f"could not read OpenRouter's model list: {e}") from e
         reasoning = {r["id"]: r["reasoning"] if isinstance(r.get("reasoning"), dict) else {} for r in rows}
         return prices, {m for m, r in reasoning.items() if r.get("default_enabled") and not r.get("mandatory")}
+
+
+def _fix(problem: str) -> str:
+    """What to fix for a check id, or for "<id>@<chapter>" from a group of chapters."""
+    check, _, chapter = problem.partition("@")
+    return _FIXES[check] + (f" (chapter {chapter})" if chapter else "")
 
 
 def _last_response(messages: list[ModelMessage]) -> ModelResponse | None:

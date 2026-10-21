@@ -40,7 +40,7 @@ def test_a_comparison_asks_first_stores_nothing_and_writes_a_bundle(openrouter):
     readme = (bundle / "README.md").read_text(encoding="utf-8")
     assert "| vendor/cheap · prompt v1 · parallel | 3 | 0 | $" in readme
     chapter = (bundle / "chapters" / "n1.md").read_text(encoding="utf-8")
-    assert "**zh** " in chapter and "**vendor/cheap** " in chapter and "**vendor/other** " in chapter
+    assert "**zh** " in chapter and "**vendor/cheap** " in chapter and "**vendor/other (reasoning low)** " in chapter
     assert "## Reference" in chapter and "Official words of 1." in chapter
     data = json.loads((bundle / "comparison.json").read_text(encoding="utf-8"))
     assert data["chapters"] == ["n1", "n2", "n3"] and set(data["references"]) == {"n1", "n2"}
@@ -54,6 +54,15 @@ def test_a_shifted_reference_matches_raws_numbered_ahead_of_the_english(openrout
     (bundle,) = compare_dir("raw-novel").iterdir()
     assert "Chapter 1: Official" in (bundle / "chapters" / "n3.md").read_text(encoding="utf-8")
     assert "Official words of 2." in (bundle / "chapters" / "n4.md").read_text(encoding="utf-8")
+
+
+def test_each_model_runs_each_number_of_chapters_per_request(openrouter):
+    done = run("translate", "compare", "raw-novel", "1-4", "--model", "vendor/cheap", "--per-call", "1", "--per-call", "2", "--yes")
+    assert done.exit_code == 0, done.output
+    assert openrouter.calls == ["translate"] * 4 + ["translate-group"] * 2
+    (bundle,) = compare_dir("raw-novel").iterdir()
+    assert "| vendor/cheap · prompt v1 · parallel, 2 chapters per request | 4 | 0 |" in (bundle / "README.md").read_text(encoding="utf-8")
+    assert "**vendor/cheap (2 per request)** " in (bundle / "chapters" / "n3.md").read_text(encoding="utf-8")
 
 
 def test_a_comparison_refuses_a_cap_below_the_estimate_and_bad_models(openrouter):
