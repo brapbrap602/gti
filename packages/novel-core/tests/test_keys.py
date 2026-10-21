@@ -1,5 +1,6 @@
 import pytest
 from novel_core import ChapterKey, KeyRange, chapter_heading, parse_printed, url_ref
+from novel_core.keys import title_name
 
 
 def test_key_order_parts():
@@ -64,3 +65,24 @@ def test_range_containing(number, start):
 )
 def test_chapter_heading(key, title, heading):
     assert chapter_heading(key, title) == heading
+
+
+@pytest.mark.parametrize(
+    ("title", "name"),
+    [
+        ("第12章 名字", "名字"),
+        ("第一千零六十章 长生", "长生"),
+        ("第12章 名字（九千求月票）", "名字"),
+        ("第12章 名字(求订阅)", "名字"),
+        ("第12章  名字 （二）", "名字"),
+        ("12. 名字", "名字"),
+        ("第十二节 山  门", "山 门"),
+        ("上架感言", "上架感言"),
+        ("第12章", ""),
+    ],
+    ids=["digits", "cn-numerals", "suffix-ignored", "ascii-suffix", "spaces", "bare-digits", "squashed", "no-number",
+         "number-only"],
+)  # fmt: skip
+def test_title_name(title, name):
+    """What two sources' titles of one chapter share: no printed number, no （…） note after it."""
+    assert title_name(title) == name

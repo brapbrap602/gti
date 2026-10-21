@@ -193,6 +193,18 @@ def release(
 
 
 @app.command()
+def inspect(
+    novel: Novel,
+    numbers: Annotated[str, typer.Argument(help="chapter numbers, e.g. 101-103")],
+    source: Annotated[int | None, typer.Option(help="only this raw source")] = None,
+    against: Annotated[int | None, typer.Option(help="a clean raw source to diff with, chapters paired by title")] = None,
+) -> None:
+    """Show what the zh rules make of raw chapters: findings, cleaner hits, suspicious lines; changes nothing."""
+    _parsed(parse_range, numbers)
+    _echo(report.inspect_lines(novel, _calling(lambda: _service().inspect(novel, numbers, source, against))))
+
+
+@app.command()
 def reclean(
     novel: Annotated[str | None, typer.Argument(help="novel slug; leave out with --all")] = None,
     all_novels: Annotated[bool, typer.Option("--all", help="every novel with Chinese raws")] = False,
