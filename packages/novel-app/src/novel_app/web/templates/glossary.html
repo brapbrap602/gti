@@ -34,6 +34,18 @@
     </form>
 </section>
 
+{% if setups %}
+<section class="stale-panel" aria-labelledby="stale-heading">
+    <h2 id="stale-heading">Translations behind the glossary</h2>
+    <ul>
+        {% for t in setups %}
+        <li>source {{ t.source.id }}: {{ t.setup.model }} · {{ t.stale }} stale{% if t.orphans %}, {{ t.orphans }} orphans{% endif %}
+            {% if t.stale %}<a href="/novels/{{ g.slug }}?setup={{ t.source.id }}&range=stale#translate">Translate stale</a>{% endif %}</li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}
+
 <nav class="tabs" aria-label="Terms by status">
     {% for tab, label, _statuses in tabs %}
     <a href="/novels/{{ g.slug }}/glossary?tab={{ tab }}{% if g.search %}&q={{ g.search | urlencode }}{% endif %}"{% if tab == g.tab %} aria-current="page"{% endif %}>{{ label }} <span class="count">{{ g.tab_count(tab) }}</span></a>

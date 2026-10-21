@@ -43,7 +43,7 @@ from novel_translate.models import ModelFactory, OutOfCredit, Price, PriceUnavai
 from novel_translate.phase_a import Estimate, GlossaryOptions, build_glossary, estimate_glossary
 from novel_translate.phase_b import Estimate as TranslateEstimate
 from novel_translate.phase_b import StaleReport, TranslateReport, estimate_translate, prune, stale, translate
-from novel_translate.setups import SetupError, TranslatorSetup, register, setups
+from novel_translate.setups import SetupError, TranslatorSetup, prompt_versions, register, setups
 from novel_translate.tstore import DB_NAME as TRANSLATE_DB
 from novel_translate.tstore import TranslateStore
 
@@ -86,6 +86,15 @@ class SetupRow:
     flagged: int  # of those, stored with soft flags
     failed: int
     cost: float  # every attempt, failed ones included
+    stale: int
+    orphans: int
+
+
+@dataclass(frozen=True)
+class TranslatePanel:
+    setups: list[SetupRow]
+    blocked: str | None  # why nothing can be translated now (no key)
+    prompts: tuple[str, ...]
 
 
 @dataclass(frozen=True)
@@ -120,6 +129,8 @@ class Service:
         self._translator = translator or openrouter
         # Page reads, per novel, until its database files change: (stamp, view, row without job state).
         self._cache: dict[str, tuple[tuple, NovelView, pages.LibraryRow]] = {}
+        # Staleness per (novel, setup url), until either of the novel's databases changes.
+        self._stale: dict[tuple[str, str], tuple[tuple, StaleReport]] = {}
         self._ops: Mapping[str, Callable[..., tuple[str, Work]]] = {
             "add": self._add,
             "sync": self._sync,
@@ -615,11 +626,33 @@ class Service:
             for info, setup in setups(store.sources()):
                 ledger = ts.latest(setup.url).values()
                 ok = [r for r in ledger if r.outcome == "ok"]
+                behind = self._stale_report(novel, store, ts, setup)
                 rows.append(SetupRow(
                     info, setup, len(ok), sum(1 for r in ok if r.soft_flags),
                     sum(1 for r in ledger if r.outcome == "failed"), ts.spend(setup.url).cost,
+                    len(behind.stale), len(behind.orphans),
                 ))  # fmt: skip
             return rows
+
+    def translate_panel(self, novel: str) -> TranslatePanel | None:
+        """The novel page's translation section; None for a novel without raws."""
+        if self.glossary_counts(novel) is None:
+            return None
+        try:
+            self._translator()
+            blocked = None
+        except UserError as e:
+            blocked = str(e)
+        return TranslatePanel(self.setups(novel), blocked, prompt_versions())
+
+    def _stale_report(self, novel: str, store: NovelStore, ts: TranslateStore, setup: TranslatorSetup) -> StaleReport:
+        folder = self._require(novel)
+        stamp = _stamp(folder) + _stamp(folder, TRANSLATE_DB)
+        cached = self._stale.get((novel, setup.url))
+        if cached is None or cached[0] != stamp:
+            cached = (stamp, stale(store, ts, setup))
+            self._stale[(novel, setup.url)] = cached
+        return cached[1]
 
     def _translate(
         self, novel: str, setup: int, range: str = "", cap: float | str = DEFAULT_CAP, workers: int | str = 4
@@ -668,7 +701,7 @@ class Service:
     def stale(self, novel: str, setup: int) -> StaleReport:
         chosen = self._setup(novel, setup)
         with self._store(novel) as store, self._tstore(novel) as ts:
-            return stale(store, ts, chosen)
+            return self._stale_report(novel, store, ts, chosen)
 
     def prune_orphans(self, novel: str, setup: int) -> tuple[str, ...]:
         chosen = self._setup(novel, setup)
@@ -692,7 +725,7 @@ class Service:
     def _translate_args(self, novel: str, setup: int | str, range: str, workers: int | str):
         self._require_raws(novel)
         chosen = self._setup(novel, _number(int, setup, "the setup"))
-        keys = _parsed(parse_range, range) if range.strip() else "stale"
+        keys = "stale" if range.strip().lower() in ("", "stale") else _parsed(parse_range, range)
         if (workers := _number(int, workers, "workers")) < 1:
             raise UserError("workers must be at least 1")
         return keys, chosen, workers
@@ -735,11 +768,9 @@ class Service:
         return source
 
 
-def _stamp(folder: Path) -> tuple:
-    """Changes with every commit to the novel's database (WAL appends, checkpoints)."""
-    return tuple(
-        (st.st_mtime_ns, st.st_size) if (st := _stat(folder / name)) else None for name in (DB_NAME, DB_NAME + "-wal")
-    )
+def _stamp(folder: Path, db: str = DB_NAME) -> tuple:
+    """Changes with every commit to one of the novel's databases (WAL appends, checkpoints)."""
+    return tuple((st.st_mtime_ns, st.st_size) if (st := _stat(folder / name)) else None for name in (db, db + "-wal"))
 
 
 def _stat(path: Path):

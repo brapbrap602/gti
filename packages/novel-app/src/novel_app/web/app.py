@@ -24,6 +24,7 @@ from fastapi.templating import Jinja2Templates
 from novel_core import Kind
 from novel_sources.backends import BACKENDS
 from novel_translate.glossary import AddAlias, AddTerm, Category, Edit, Status, UpdateTerm
+from novel_translate.setups import CONTEXTS, DATA_COLLECTION, REASONING, SetupError, TranslatorSetup
 from starlette.concurrency import run_in_threadpool
 
 from novel_app.glossary_page import TABS
@@ -45,6 +46,7 @@ WEB_JOBS: dict[str, tuple[str, ...]] = {
     "build-volumes": ("novel",),
     "audio-retag": ("novel",),
     "glossary-build": ("novel", "model", "cap"),
+    "translate": ("novel", "setup", "range", "cap", "workers"),
 }
 JOB_LABELS = {
     "add": "Add source",
@@ -55,6 +57,7 @@ JOB_LABELS = {
     "build-volumes": "Build M4B volumes",
     "audio-retag": "Retag MP3s",
     "glossary-build": "Build glossary",
+    "translate": "Translate",
 }
 
 
@@ -73,6 +76,7 @@ def create_app(service: Service) -> FastAPI:
     templates.env.globals.update(
         job_labels=JOB_LABELS, cell_labels=CELL_LABELS, CellState=CellState, Kind=Kind, JobState=JobState,
         backends=BACKENDS, owns=service.runner.owns, source_label=source_label,
+        contexts=CONTEXTS, reasoning_levels=REASONING, data_collection=DATA_COLLECTION,
     )  # fmt: skip
 
     def page(request: Request, name: str, status: int = 200, **context) -> HTMLResponse:
@@ -117,7 +121,11 @@ def create_app(service: Service) -> FastAPI:
     @app.get("/novels/{novel}", response_class=HTMLResponse)
     async def novel(request: Request, novel: str):
         n = await run_in_threadpool(service.novel, novel)
-        return page(request, "novel.html", novel=n, glossary=await run_in_threadpool(service.glossary_counts, novel))
+        return page(
+            request, "novel.html", novel=n, glossary=await run_in_threadpool(service.glossary_counts, novel),
+            translate=await run_in_threadpool(service.translate_panel, novel),
+            prefill={"setup": request.query_params.get("setup", ""), "range": request.query_params.get("range", "")},
+        )  # fmt: skip
 
     @app.get("/novels/{novel}/compare", response_class=HTMLResponse)
     async def compare(request: Request, novel: str, number: int, left: int | None = None, right: int | None = None):
@@ -171,12 +179,47 @@ def create_app(service: Service) -> FastAPI:
         await run_in_threadpool(service.unpin, novel, keys)
         return done(request, f"{keys.start}-{keys.end} unpinned", f"/novels/{novel}")
 
+    # -- translation ---------------------------------------------------------------
+
+    @app.post("/novels/{novel}/publish")
+    async def publish(request: Request, novel: str, source: int = Form(), on: str = Form()):
+        await run_in_threadpool(service.set_published, novel, source, on == "on")
+        state = "published: rank it in the order above" if on == "on" else "unpublished"
+        return done(request, f"source {source} {state}", f"/novels/{novel}#sources")
+
+    @app.post("/novels/{novel}/setups")
+    async def add_setup(
+        request: Request,
+        novel: str,
+        model: str = Form(),
+        prompt: str = Form("v1"),
+        context: str = Form("parallel"),
+        reasoning: str = Form("off"),
+        data_collection: str = Form("allow"),
+    ):
+        try:
+            setup = TranslatorSetup(model.strip(), prompt, context, reasoning, data_collection)
+        except SetupError as e:
+            raise UserError(str(e)) from e
+        source = await run_in_threadpool(service.add_setup, novel, setup)
+        return done(request, f"setup added as source {source} (unpublished)", f"/novels/{novel}#translate")
+
+    @app.get("/novels/{novel}/translate/estimate", response_class=HTMLResponse)
+    async def translate_estimate(request: Request, novel: str, setup: str = "", range: str = ""):
+        try:
+            e = await run_in_threadpool(service.translate_estimate, novel, setup, range)
+            context = {"estimate": e, "error": None}
+        except UserError as err:
+            context = {"estimate": None, "error": str(err)}
+        return templates.TemplateResponse(request, "_estimate.html", context)
+
     # -- glossary ------------------------------------------------------------------
 
     @app.get("/novels/{novel}/glossary", response_class=HTMLResponse)
     async def glossary(request: Request, novel: str, tab: str = "review", q: str = "", category: str = ""):
         g = await run_in_threadpool(service.glossary_page, novel, tab, q.strip(), _category(category))
-        return page(request, "glossary.html", page=g, tabs=TABS, categories=list(Category))
+        rows = await run_in_threadpool(service.setups, novel)
+        return page(request, "glossary.html", page=g, tabs=TABS, categories=list(Category), setups=rows)
 
     @app.post("/novels/{novel}/glossary")
     async def glossary_add(

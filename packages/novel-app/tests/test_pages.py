@@ -26,3 +26,10 @@ def test_source_label_names_the_site_or_folder(backend, url, short):
 ])  # fmt: skip
 def test_output_badges(built, stale, badge):
     assert Staleness(OutputKind.SITE, built, stale).badge == badge
+
+
+def test_a_translator_setup_is_labelled_by_its_model():
+    from novel_translate.setups import TranslatorSetup
+
+    label = source_label(TranslatorSetup("google/gemini-2.5-flash", data_collection="deny").spec())
+    assert label == SourceLabel("google/gemini-2.5-flash", "google/gemini-2.5-flash · prompt v1 · parallel, no data collection")
