@@ -1,0 +1,100 @@
+{# What the app's terms mean, for tooltips and hints: one place, so every page says the same thing.
+   Import it with {% import "_help.html" as help %}; each name below is a dict or a string. #}
+
+{% set kind = {
+    "official-en": "official-en: a published English translation; the book can use it",
+    "raw-zh": "raw-zh: the Chinese original; kept for translating, never published",
+    "my-translation": "my-translation: a translation made here by a translator setup; the book uses it once you publish it",
+} %}
+
+{% set stat = {
+    "novels": "Novels in the library; raw only means no English text yet",
+    "chapters": "Chapter numbers the books take a text for, across every novel",
+    "selected": "Chapter numbers the book takes a text for, from the best-ranked source that has one",
+    "new": "Chapters a web source lists that no source has a text for yet; Sync fetches them",
+    "rebuild": "Novels with an EPUB, audio or site output built from chapters that have changed since",
+    "jobs": "Jobs running now, and finished jobs that failed or had errors; open Jobs at the top right",
+    "by_kind": "Chapter numbers each kind of source has a text for; the book only uses official-en and published my-translation",
+    "gaps": "Numbers inside the book's range with nothing publishable: the reader skips from one side of a gap to the other",
+    "last_sync": "When Sync last fetched from this novel's web sources",
+    "outputs": "What has been built from the chapters; stale means a chapter changed after it was built",
+} %}
+
+{% set action = {
+    "sync": "Fetch the chapters the web sources list that no source has yet; a failed chapter is retried, a locked one is not",
+    "build-site": "Rebuild the reader site from every novel; only changed pages are written",
+    "build-epub": "An EPUB per 100 chapter numbers",
+    "build-audio": "An edge-tts MP3 per chapter; a stopped build resumes where it was",
+    "build-volumes": "An M4B audiobook per 100 chapter numbers, with chapter marks and the cover",
+    "audio-retag": "Rewrite the tags of every chapter MP3, old ones included",
+} %}
+
+{% set sources = {
+    "rank": "The book takes each chapter from the first source in this order that has it",
+    "listed": "Chapters the source's index lists",
+    "texts": "Chapters whose text has been fetched or imported",
+    "to_fetch": "Listed chapters no source has a text for yet; Sync fetches them",
+    "book": "Whether the book may use this source's text; raw-zh never is",
+    "order": "Move the source up or down the order",
+} %}
+
+{% set cell = {
+    "official": "The book uses an official English text",
+    "mine": "The book uses a translation made here",
+    "raw-only": "Only the Chinese original exists, so the book skips it",
+    "failed": "Fetching failed; the next Sync tries again",
+    "locked": "Fetching is locked (a paid or hidden chapter); Sync leaves it alone",
+    "missing": "Listed, but no source has a text yet",
+    "pinned": "A pin makes the book use a given source here, whatever the order says",
+} %}
+
+{% set check = {
+    "Unmapped": "Items with no chapter number in their title: give them one with nov align item, or leave them out with nov align skip",
+    "Vanished": "Items the site no longer lists; their text is kept but the book does not use it",
+    "Failed": "Items whose fetch failed; the next Sync tries them again",
+    "Held": "Raw chapters with a cleaning finding not yet released; they are not translated until it is",
+    "Title mismatches": "Items whose title shows a different number from the one they were given",
+    "Duplicates": "Several items of one source with the same number; none is used until you align or skip all but one",
+    "Mixed parts": "Numbers some sources split into parts and others do not",
+    "Pin fallbacks": "Pinned numbers the pinned source has no text for; the order decides there instead",
+    "Numbering": "Runs of a raw source whose printed numbers are off by a fixed amount; each line is the command that fixes it",
+    "Legacy moved": "Built audio whose item now counts as another chapter number",
+    "Legacy unselected": "Built audio made from an item the book no longer uses for that number",
+} %}
+
+{% set setup = {
+    "model": "An OpenRouter model id",
+    "prompt": "The version of the translation instructions",
+    "context": "parallel: chapters at once. sequential: one at a time, each shown the end of the one before",
+    "reasoning": "How much the model may think first; more costs more",
+    "data_collection": "deny: only providers that do not keep or train on what is sent (fewer, sometimes dearer)",
+} %}
+
+{% set translate = {
+    "range": "Chapter numbers like 1495-1504, or stale for the ones whose inputs changed since they were translated",
+    "cap": "The run stops once it has spent this much",
+    "workers": "Chapters translated at the same time",
+    "flagged": "Translated, with a soft warning worth a look",
+    "stale": "Translated before their inputs (raw text, glossary terms) changed; translate stale to redo them",
+    "orphans": "Translations whose raw chapter no longer exists",
+} %}
+
+{% set glossary_tab = {
+    "review": "Terms whose renderings disagree: each holds back every chapter it occurs in until you decide",
+    "all": "Every term, whatever its status",
+    "proposed": "Suggested by a glossary pass and not reviewed; given to the translator only once accepted",
+    "locked": "Terms you added or locked: a glossary pass never changes them",
+    "rejected": "Terms the translator is not given",
+} %}
+
+{% set comparison = {
+    "done": "Chapters this setup translated",
+    "failed": "Chapters whose translation was refused (skipped paragraphs, unparseable answer, …)",
+    "cost": "What the run spent on this setup",
+    "per_chapter": "Cost per translated chapter",
+    "seconds": "Seconds per chapter; a group request's time is split over its chapters",
+    "length": "Its words over the reference's: well under 1 often means something was left out",
+    "flags": "Soft warnings on its chapters",
+} %}
+
+{% set pin = "Pin: the book uses this source for these numbers, whatever the source order says" %}

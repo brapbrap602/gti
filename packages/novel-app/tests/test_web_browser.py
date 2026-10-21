@@ -290,6 +290,15 @@ def test_loading_at_a_hash_shows_only_that_tab(old_rules, desktop, app_url):
                       " return r.top >= 0 && r.bottom <= innerHeight; })()")
 
 
+def test_the_tab_bar_keeps_its_height_while_a_job_runs(novels, desktop, app_url, service):
+    """Main is a flex column; with a job's progress line above it, the scrolling tab bar used to shrink to a sliver."""
+    job = service.runner.board.claim("raw-novel", "sync", {})
+    desktop.goto(app_url + "/novels/raw-novel#chapters")
+    assert desktop.js("(() => { const bar = document.querySelector('[data-tabs]');"
+                      " return bar.getBoundingClientRect().height >= bar.querySelector('.tab').getBoundingClientRect().height; })()")
+    service.runner.board.finish(job, JobState.DONE)
+
+
 def test_the_tab_survives_a_live_reload(novels, desktop, app_url, service):
     desktop.goto(app_url + "/novels/raw-novel#check")
     desktop.js("document.getElementById('main').dataset.before = 'reload'")

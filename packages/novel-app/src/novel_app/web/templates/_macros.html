@@ -1,12 +1,13 @@
-{% from "_ui.html" import icon %}
+{% from "_ui.html" import icon, badge %}
+{% import "_help.html" as help %}
 
-{# A button that starts a job. While the novel has a job, it is disabled and says why. #}
+{# A button that starts a job. Its tooltip says what the job does; while the novel has a job, it is disabled and says why. #}
 {% macro job_button(kind, novel, busy, back="/", label=None, icon_name=None, variant="outline", small=True) %}
 <form method="post" action="/jobs" hx-post="/jobs" hx-target="#notice" class="inline">
     <input type="hidden" name="kind" value="{{ kind }}">
     {% if novel %}<input type="hidden" name="novel" value="{{ novel }}">{% endif %}
     <input type="hidden" name="back" value="{{ back }}">
-    <button type="submit" class="btn btn--{{ variant }}{% if small %} btn--sm{% endif %}"{% if busy %} disabled title="{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }})"{% endif %}>{% if icon_name %}{{ icon(icon_name) }}{% endif %}{{ label or job_labels[kind] }}</button>
+    <button type="submit" class="btn btn--{{ variant }}{% if small %} btn--sm{% endif %}"{% if busy %} disabled title="{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }})"{% elif help.action[kind] %} title="{{ help.action[kind] }}"{% endif %}>{% if icon_name %}{{ icon(icon_name) }}{% endif %}{{ label or job_labels[kind] }}</button>
 </form>
 {% endmacro %}
 
@@ -21,6 +22,11 @@
     </div>
 </details>
 {% endmacro %}
+
+{# A source kind as a badge whose tooltip says what that kind is. #}
+{% macro kind_badge(kind) -%}
+{{ badge(kind, "outline", help.kind[kind]) }}
+{%- endmacro %}
 
 {% macro busy_reason(busy) %}
 {% if busy %}<div class="alert alert--warn busy">{{ icon("loader") }}<p class="alert-body">{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }}); actions wait until it ends.</p></div>{% endif %}

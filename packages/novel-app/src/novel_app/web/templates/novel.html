@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% from "_ui.html" import icon, badge %}
-{% from "_macros.html" import job_button, build_menu, busy_reason, staleness, job_progress, meter %}
+{% from "_macros.html" import job_button, build_menu, busy_reason, staleness, job_progress, meter, kind_badge %}
+{% import "_help.html" as help %}
 {% set r = novel.row %}
 {% set back = "/novels/" ~ r.slug %}
 {% set counts = state_counts(novel.grid) %}
@@ -31,22 +32,22 @@
 {{ job_progress(r.slug, r.job) }}
 
 <section class="stats" aria-label="Summary">
-    <div class="stat">
+    <div class="stat" title="{{ help.stat.selected }}">
         <span class="stat-label">Chapters selected</span>{{ icon("book-open") }}
         <span class="stat-value">{{ "{:,}".format(r.selected) }}</span>
-        <span class="stat-hint">{% for kind, n in r.numbers.items() %}{{ n }} {{ kind }}{% if not loop.last %} · {% endif %}{% else %}no texts yet{% endfor %}</span>
+        <span class="stat-hint" title="{{ help.stat.by_kind }}">{% for kind, n in r.numbers.items() %}{{ n }} {{ kind }}{% if not loop.last %} · {% endif %}{% else %}no texts yet{% endfor %}</span>
     </div>
-    <div class="stat">
+    <div class="stat" title="{{ help.stat.gaps }}">
         <span class="stat-label">Gaps</span>{{ icon("circle-alert") }}
         <span class="stat-value{% if r.gaps %} stale{% endif %}">{{ r.gaps }}</span>
         <span class="stat-hint">{% if r.gaps %}numbers with nothing publishable{% else %}none in the book's range{% endif %}</span>
     </div>
-    <div class="stat">
+    <div class="stat" title="{{ help.stat.new }}">
         <span class="stat-label">New to fetch</span>{{ icon("refresh-cw") }}
         <span class="stat-value">{% if r.can_sync %}{{ r.new_items }}{% else %}–{% endif %}</span>
         <span class="stat-hint">{% if r.can_sync %}listed by the web sources{% else %}no web source{% endif %}</span>
     </div>
-    <div class="stat stat--outputs">
+    <div class="stat stat--outputs" title="{{ help.stat.outputs }}">
         <span class="stat-label">Outputs</span>{{ icon("layers") }}
         <ul class="outputs-list">{% for o in r.outputs %}<li><span class="kind">{{ o.kind }}</span> {{ staleness(o) }}</li>{% endfor %}</ul>
     </div>
@@ -72,8 +73,8 @@
     <table class="sources-table">
         <thead>
         <tr>
-            <th scope="col">Rank</th><th scope="col">Source</th><th scope="col">Kind</th>
-            <th scope="col" class="num">Listed</th><th scope="col" class="num">Texts</th><th scope="col" class="num">To fetch</th><th scope="col">Book</th><th scope="col">Order</th>
+            <th scope="col" title="{{ help.sources.rank }}">Rank</th><th scope="col">Source</th><th scope="col">Kind</th>
+            <th scope="col" class="num" title="{{ help.sources.listed }}">Listed</th><th scope="col" class="num" title="{{ help.sources.texts }}">Texts</th><th scope="col" class="num" title="{{ help.sources.to_fetch }}">To fetch</th><th scope="col" title="{{ help.sources.book }}">Book</th><th scope="col" title="{{ help.sources.order }}">Order</th>
         </tr>
         </thead>
         <tbody>
@@ -82,7 +83,7 @@
             {% set label = source_label(s.info.spec) %}
             <td data-label="Rank" class="rank">{{ s.rank }}</td>
             <th scope="row"><span class="source-name">{{ s.id }}: {{ label.short }}</span> <span class="muted">{{ s.info.spec.backend }}</span><br><span class="muted url">{{ label.full }}</span></th>
-            <td data-label="Kind">{{ badge(s.info.spec.kind, "outline") }}</td>
+            <td data-label="Kind">{{ kind_badge(s.info.spec.kind) }}</td>
             <td data-label="Listed" class="num">{{ s.listed }}</td>
             <td data-label="Texts" class="num">{{ s.texts }}</td>
             <td data-label="To fetch" class="num">{{ s.to_fetch if s.to_fetch is not none else "—" }}</td>
@@ -114,7 +115,7 @@
     </div>
     {% if novel.pins %}
     <div class="pins">
-        <h3>{{ icon("pin") }} Pins</h3>
+        <h3 title="{{ help.cell.pinned }}">{{ icon("pin") }} Pins</h3>
         <ul>{% for p in novel.pins %}
             <li><span>{{ p.range.start }}–{{ p.range.end }} → source {{ p.source_id }}</span>
                 <form method="post" action="/novels/{{ r.slug }}/unpin" class="inline">
@@ -139,8 +140,8 @@
     {{ meter(counts, "Whole novel") }}
     {% endif %}
     <ul class="legend" aria-label="Legend">
-        {% for state in CellState %}<li><span class="cell cell--{{ state }}" aria-hidden="true"></span> {{ cell_labels[state] }}{% if counts.get(state) %} <span class="muted">{{ counts[state] }}</span>{% endif %}</li>{% endfor %}
-        <li><span class="cell cell--official cell--pinned" aria-hidden="true"></span> pinned</li>
+        {% for state in CellState %}<li title="{{ help.cell[state] }}"><span class="cell cell--{{ state }}" aria-hidden="true"></span> {{ cell_labels[state] }}{% if counts.get(state) %} <span class="muted">{{ counts[state] }}</span>{% endif %}</li>{% endfor %}
+        <li title="{{ help.cell.pinned }}"><span class="cell cell--official cell--pinned" aria-hidden="true"></span> pinned</li>
     </ul>
     <div class="grid-blocks">
     {% for block in novel.grid %}
@@ -175,7 +176,7 @@
         {% if translate.setups %}
         <div class="table-wrap">
         <table class="sources-table setups-table">
-            <thead><tr><th scope="col">Setup</th><th scope="col" class="num">Chapters</th><th scope="col" class="num">Flagged</th><th scope="col" class="num">Failed</th><th scope="col" class="num">Stale</th><th scope="col" class="num">Orphans</th><th scope="col" class="num">Spent</th></tr></thead>
+            <thead><tr><th scope="col">Setup</th><th scope="col" class="num">Chapters</th><th scope="col" class="num" title="{{ help.translate.flagged }}">Flagged</th><th scope="col" class="num">Failed</th><th scope="col" class="num" title="{{ help.translate.stale }}">Stale</th><th scope="col" class="num" title="{{ help.translate.orphans }}">Orphans</th><th scope="col" class="num">Spent</th></tr></thead>
             <tbody>
             {% for t in translate.setups %}
             <tr>
@@ -206,9 +207,9 @@
             <input type="hidden" name="back" value="{{ back }}#translate">
             <div class="field-row">
                 <label class="field field--wide"><span class="label">Setup</span> <select name="setup">{% for t in translate.setups %}<option value="{{ t.source.id }}"{% if prefill.setup == t.source.id | string %} selected{% endif %}>{{ t.source.id }}: {{ t.setup.model }}</option>{% endfor %}</select></label>
-                <label class="field"><span class="label">Chapters</span> <input name="range" value="{{ prefill.range }}" size="14" placeholder="1495-1504 or stale" required></label>
-                <label class="field field--narrow"><span class="label">Cap $</span> <input name="cap" value="1.00" size="5" inputmode="decimal"></label>
-                <label class="field field--narrow"><span class="label">Workers</span> <input name="workers" value="4" size="2" inputmode="numeric"></label>
+                <label class="field"><span class="label">Chapters</span> <input name="range" value="{{ prefill.range }}" size="14" placeholder="1495-1504 or stale" required title="{{ help.translate.range }}"></label>
+                <label class="field field--narrow"><span class="label">Cap $</span> <input name="cap" value="1.00" size="5" inputmode="decimal" title="{{ help.translate.cap }}"></label>
+                <label class="field field--narrow"><span class="label">Workers</span> <input name="workers" value="4" size="2" inputmode="numeric" title="{{ help.translate.workers }}"></label>
             </div>
             <div id="estimate" class="estimate" aria-live="polite"
                  hx-get="/novels/{{ r.slug }}/translate/estimate" hx-include="#translate-form" hx-target="this" hx-swap="innerHTML"
@@ -223,11 +224,11 @@
         <summary>{{ icon("plus") }}{% if translate.setups %}Add a translator setup{% else %}Add a translator setup to start translating{% endif %}</summary>
         <form method="post" action="/novels/{{ r.slug }}/setups" class="setup-form">
             <div class="field-row">
-                <label class="field field--wide"><span class="label">Model</span> <input name="model" required size="30" placeholder="google/gemini-2.5-flash"></label>
-                <label class="field"><span class="label">Prompt</span> <select name="prompt">{% for v in translate.prompts %}<option>{{ v }}</option>{% endfor %}</select></label>
-                <label class="field"><span class="label">Context</span> <select name="context">{% for c in contexts %}<option>{{ c }}</option>{% endfor %}</select></label>
-                <label class="field"><span class="label">Reasoning</span> <select name="reasoning">{% for c in reasoning_levels %}<option>{{ c }}</option>{% endfor %}</select></label>
-                <label class="field"><span class="label">Data collection</span> <select name="data_collection">{% for c in data_collection %}<option>{{ c }}</option>{% endfor %}</select></label>
+                <label class="field field--wide"><span class="label">Model</span> <input name="model" required size="30" placeholder="google/gemini-2.5-flash"><span class="field-hint">{{ help.setup.model }}</span></label>
+                <label class="field"><span class="label">Prompt</span> <select name="prompt">{% for v in translate.prompts %}<option>{{ v }}</option>{% endfor %}</select><span class="field-hint">{{ help.setup.prompt }}</span></label>
+                <label class="field"><span class="label">Context</span> <select name="context">{% for c in contexts %}<option>{{ c }}</option>{% endfor %}</select><span class="field-hint">{{ help.setup.context }}</span></label>
+                <label class="field"><span class="label">Reasoning</span> <select name="reasoning">{% for c in reasoning_levels %}<option>{{ c }}</option>{% endfor %}</select><span class="field-hint">{{ help.setup.reasoning }}</span></label>
+                <label class="field"><span class="label">Data collection</span> <select name="data_collection">{% for c in data_collection %}<option>{{ c }}</option>{% endfor %}</select><span class="field-hint">{{ help.setup.data_collection }}</span></label>
             </div>
             <div><button type="submit" class="btn btn--primary btn--sm"{% if translate.blocked %} disabled title="{{ translate.blocked }}"{% endif %}>Add setup</button></div>
         </form>
@@ -243,29 +244,31 @@
     {% set k = novel.check.report %}
     {% if not problems and not k.gaps %}<div class="alert alert--ok">{{ icon("circle-check") }}<p class="alert-body">No problems found.</p></div>{% endif %}
     <div class="check-list">
-    {% if k.gaps %}<p>Gaps: {{ k.gaps | length }} ({{ k.gaps | join(", ") | truncate(300) }})</p>{% endif %}
-    {% if k.raw_only %}<p>Raw only: {{ k.raw_only | length }} ({{ k.raw_only | join(", ") | truncate(300) }})</p>{% endif %}
-    {% if k.duplicates %}<details><summary>Duplicates: {{ k.duplicates | length }}</summary><ul>{% for d in k.duplicates[:200] %}<li>source {{ d.source_id }} key {{ d.key.label }}: {{ d.item_refs | join(", ") }}</li>{% endfor %}</ul></details>{% endif %}
+    {% if k.gaps %}<p title="{{ help.stat.gaps }}">Gaps: {{ k.gaps | length }} ({{ k.gaps | join(", ") | truncate(300) }})</p>{% endif %}
+    {% if k.raw_only %}<p title="{{ help.cell['raw-only'] }}">Raw only: {{ k.raw_only | length }} ({{ k.raw_only | join(", ") | truncate(300) }})</p>{% endif %}
+    {% if k.duplicates %}<details><summary>Duplicates: {{ k.duplicates | length }}</summary><p class="check-help">{{ help.check.Duplicates }}</p><ul>{% for d in k.duplicates[:200] %}<li>source {{ d.source_id }} key {{ d.key.label }}: {{ d.item_refs | join(", ") }}</li>{% endfor %}</ul></details>{% endif %}
     {% for title, items in (("Unmapped", k.unmapped), ("Vanished", k.vanished), ("Failed", k.failed), ("Held", k.held), ("Title mismatches", k.title_mismatches)) %}
     {% if items %}
     <details>
         <summary>{{ title }}: {{ items | length }}</summary>
+        <p class="check-help">{{ help.check[title] }}</p>
         <ul>{% for n in items[:200] %}<li>source {{ n.source_id }} <code>{{ n.item_ref }}</code> {{ n.title }}{% if n.findings %} — {{ findings_text(n.findings) }}{% elif n.detail %} — {{ n.detail }}{% endif %}</li>{% endfor %}</ul>
         {% if items | length > 200 %}<p class="muted">… and {{ items | length - 200 }} more (see <code>nov check {{ r.slug }}</code>)</p>{% endif %}
     </details>
     {% endif %}
     {% endfor %}
-    {% if k.mixed_parts %}<p>Mixed parts: {{ k.mixed_parts | join(", ") | truncate(300) }}</p>{% endif %}
-    {% if k.pin_fallbacks %}<details><summary>Pin fallbacks: {{ k.pin_fallbacks | length }}</summary><ul>{% for p in k.pin_fallbacks[:200] %}<li>{{ p.number }}: pinned source {{ p.pinned_source }} has nothing</li>{% endfor %}</ul></details>{% endif %}
+    {% if k.mixed_parts %}<p title="{{ help.check['Mixed parts'] }}">Mixed parts: {{ k.mixed_parts | join(", ") | truncate(300) }}</p>{% endif %}
+    {% if k.pin_fallbacks %}<details><summary>Pin fallbacks: {{ k.pin_fallbacks | length }}</summary><p class="check-help">{{ help.check["Pin fallbacks"] }}</p><ul>{% for p in k.pin_fallbacks[:200] %}<li>{{ p.number }}: pinned source {{ p.pinned_source }} has nothing</li>{% endfor %}</ul></details>{% endif %}
     {% if novel.check.numbering %}
     <details>
         <summary>Numbering: {{ novel.check.numbering | length }} (against source {{ novel.check.anchor }})</summary>
+        <p class="check-help">{{ help.check.Numbering }}</p>
         <ul>{% for n in novel.check.numbering %}<li>source {{ n.source_id }} printed {{ n.printed_start }}–{{ n.printed_end }} are chapters {{ n.printed_start + n.offset }}–{{ n.printed_end + n.offset }} (offset {{ "%+d" | format(n.offset) }}, {{ n.matched }} titles match): <code>{{ align_range_command(r.slug, n) }}</code></li>{% endfor %}</ul>
     </details>
     {% endif %}
     {% if novel.check.unchecked %}<p>Not checked with current rules: {{ novel.check.unchecked }} — run <code>{{ reclean_command(r.slug) }}</code></p>{% endif %}
     {% for title, rows in (("Legacy moved", k.legacy_moved), ("Legacy unselected", k.legacy_unselected)) %}
-    {% if rows %}<details><summary>{{ title }}: {{ rows | length }}</summary><ul>{% for o in rows[:200] %}<li>{{ o.kind }} {{ o.built_key.label }}: <code>{{ o.item_ref }}</code></li>{% endfor %}</ul></details>{% endif %}
+    {% if rows %}<details><summary>{{ title }}: {{ rows | length }}</summary><p class="check-help">{{ help.check[title] }}</p><ul>{% for o in rows[:200] %}<li>{{ o.kind }} {{ o.built_key.label }}: <code>{{ o.item_ref }}</code></li>{% endfor %}</ul></details>{% endif %}
     {% endfor %}
     </div>
 </section>

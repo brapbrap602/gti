@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% from "_ui.html" import empty %}
+{% import "_help.html" as help %}
 {% set title = (nav_rows | selectattr("slug", "equalto", slug) | map(attribute="title") | first) or slug %}
 {% block title %}{{ slug }} · model comparisons{% endblock %}
 {% block crumbs %}<li><a href="/">Library</a></li><li><a href="/novels/{{ slug }}#translate" title="{{ title }}">{{ title }}</a></li><li><a href="/novels/{{ slug }}/comparisons" aria-current="page">Model comparisons</a></li>{% endblock %}
@@ -19,9 +20,9 @@
 <div class="table-wrap">
 <table class="comparison-table">
     <thead><tr>
-        <th scope="col">Run</th><th scope="col">Setup</th><th scope="col">Done</th><th scope="col">Failed</th>
-        <th scope="col">Cost</th><th scope="col">$/chapter</th><th scope="col">s/chapter</th>
-        <th scope="col" title="its words over the reference's">Length</th><th scope="col">Flags</th>
+        <th scope="col">Run</th><th scope="col">Setup</th><th scope="col" title="{{ help.comparison.done }}">Done</th><th scope="col" title="{{ help.comparison.failed }}">Failed</th>
+        <th scope="col" title="{{ help.comparison.cost }}">Cost</th><th scope="col" title="{{ help.comparison.per_chapter }}">$/chapter</th><th scope="col" title="{{ help.comparison.seconds }}">s/chapter</th>
+        <th scope="col" title="{{ help.comparison.length }}">Length</th><th scope="col" title="{{ help.comparison.flags }}">Flags</th>
     </tr></thead>
     <tbody>
     {% for b in runs %}{% set col = columns | selectattr("run", "equalto", b.name) | first %}

@@ -9,9 +9,9 @@
 <span class="badge badge--{{ variant }}"{% if title %} title="{{ title }}"{% endif %}>{{ text }}</span>
 {%- endmacro %}
 
-{# A stat card: a label, a big value, an optional hint and an optional icon. #}
-{% macro stat(label, value, hint=None, icon_name=None) -%}
-<div class="stat">
+{# A stat card: a label, a big value, an optional hint and an optional icon; help is its tooltip. #}
+{% macro stat(label, value, hint=None, icon_name=None, help=None) -%}
+<div class="stat"{% if help %} title="{{ help }}"{% endif %}>
     <span class="stat-label">{{ label }}</span>
     {% if icon_name %}{{ icon(icon_name) }}{% endif %}
     <span class="stat-value">{{ value }}</span>

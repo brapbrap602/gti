@@ -124,6 +124,8 @@ main#main {
   padding: 1.5rem 1.5rem 4rem;
 }
 body.wide main#main { max-width: none; }
+/* Main is a column: without this, a child that scrolls (the tab bar) shrinks to a sliver on a long page. */
+main#main > * { flex-shrink: 0; }
 
 /* Sheets (JS only): the jobs panel at every width, the sidebar below 1024px and on wide pages. */
 html.js aside.jobs {
@@ -359,6 +361,8 @@ html.js[data-tab="translate"] [data-panel="translate"], html.js[data-tab="check"
 .add-setup > summary { display: flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.25rem; cursor: pointer; list-style: none; font-weight: 500; }
 .add-setup > summary::-webkit-details-marker { display: none; }
 .setup-form { display: flex; flex-direction: column; gap: 1rem; padding: 0 1.25rem 1.25rem; }
+/* Its fields carry hints of different lengths: line the inputs up at the top, not the bottom. */
+.setup-form .field-row { align-items: start; }
 
 .check-list { display: flex; flex-direction: column; }
 .check-list > :is(p, details) { margin: 0; padding: 0.625rem 0; border-bottom: 1px solid var(--border); }
@@ -366,6 +370,7 @@ html.js[data-tab="translate"] [data-panel="translate"], html.js[data-tab="check"
 .check-list summary { cursor: pointer; font-weight: 500; }
 .check-list ul { padding-left: 1.25rem; margin-top: 0.5rem; color: var(--muted-foreground); font-size: 0.8125rem; overflow-wrap: anywhere; }
 .check-list li { margin: 0.125rem 0; }
+.check-help { margin: 0.375rem 0 0; color: var(--muted-foreground); font-size: 0.8125rem; }
 
 /* -- glossary ------------------------------------------------------------------------ */
 
