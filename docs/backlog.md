@@ -2,11 +2,40 @@
 
 Known gaps to come back to. Newest first; each item says what's wrong, why it matters and where to start.
 
-## nov sync can't fetch only some chapters (2026-10-20)
+## Web raws of recent VIP chapters are poisoned (2026-10-20)
 
-`nov sync <novel>` fetches every chapter the book lacks from every web source; there is no chapter range and no per-source choice. A new raw source means fetching the whole novel even when a few chapters are wanted, e.g. 5 chapters for a model comparison on Beyond the Timescape meant fetching all 1,363.
+Pirate raw sites serve corrupted text for chapters still behind Qidian's paywall, and sync stores it as if it were fine:
+- **Decoy text.** biquge5 gives a few real paragraphs, then random sentences from other novels. It did this for every chapter of 以神通之名 that was tried (400, 600, 694–696), so the source is useless. biquge345 did the same on 苟在两界修仙.
+- **Antonym and name swaps.** ixdzs8's newest chapters (691–693) read clean at first, then drift: 好→坏, 快→慢, 不→是, 没有→有没, 后→前, and other characters' names put in place of the protagonist's. Its older chapters (300–685) are clean.
 
-Wanted: `nov sync <novel> [numbers] [--source N]` (and the same on the web job), fetching only those chapter numbers from that source. Start in `novel_sources/sync.py` (`sync`, `to_fetch`) and the `sync` op in `novel_app/service.py`.
+A model translates both faithfully, so the damage only shows up as nonsense English. Wanted: a check at sync time that flags such chapters, as a hard warning in `nov check` and in the sync report. Markers that separated clean from poisoned on ixdzs8 were 有没 (0–2 per clean chapter, 14–21 per poisoned one), 是止, 最坏 and 然前. Decoy text needs another signal: names the novel never uses, or the chapter's own names dropping out after a few paragraphs. Start in `novel_sources/sync.py` after `store_chapters`, or in `novel_core/check.py`.
+
+## ixdzs8 raws carry formatting noise (2026-10-20)
+
+On 苟在两界修仙, ixdzs8's text needs normalising before translation:
+- every chapter ends with a lone `>` paragraph, and a closing `」` sometimes stands as a paragraph of its own;
+- "……" comes through as "————";
+- a stray `」` follows item names whose opening `「` is missing (大破障丹」, 琼华枝」).
+
+Each of these is a paragraph or mark the model has to carry through, or one the validator may count as missing. Start in the zh clean rules (`novel_sources/clean.py`): drop paragraphs with no CJK or letters, and map "————" to "……" for zh.
+
+The comparison on chapters 101–103 showed the cost:
+- most of DeepSeek's and Qwen's failures on short chapters, and Luna's one id failure, were likely these paragraphs;
+- one-at-a-time Luna **invented** sentences for two of them: 「」 became "She fell silent." and `>` became "She eyed him knowingly."
+
+The validator passed both. A soft check would catch it: the source paragraph has no CJK or letters, but the translation is a sentence (`novel_translate` validation).
+
+## Raw sources number the same chapter differently (2026-10-20)
+
+For 以神通之名, ixdzs8's printed numbers run 2 ahead of biquge5's and Qidian's at chapter 300, and 3 ahead near 690. Keys come from printed numbers, so two raw sources put different chapters under one key, and priority silently picks between different texts. `nov align` can shift a source, but only by a fixed offset. The same need as Beyond the Timescape's: match chapters across sources by title or content, not by printed number.
+
+## Qwen's provider rate-limits parallel requests (2026-10-20)
+
+In the 以神通之名 comparison, `qwen/qwen3.8-flash` got HTTP 429 on 2 of 3 chapters at the default 4 workers. `models.py` retries 429 three times (HTTP_RETRIES) and honours Retry-After up to 60 s, and both chapters still failed. A failure from rate-limiting costs nothing but loses the chapter. Options: fewer workers per model when a 429 comes back (back off the pool, not only the request), or more retries for 429 than for 5xx.
+
+## Range sync: not on the web job yet (2026-10-20)
+
+`nov sync <novel> [numbers] [--source N]` now fetches only those chapter numbers (`only` in `NovelView.to_fetch` and `sync`). The web Sync button still fetches everything; it needs a numbers field (`WEB_JOBS["sync"]` in `web/app.py`, and the form).
 
 ## Beyond the Timescape: raws and English numbered differently (2026-10-20)
 
