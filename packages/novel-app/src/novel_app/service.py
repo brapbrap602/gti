@@ -25,7 +25,6 @@ from novel_audio.media import MediaError
 from novel_audio.tts import DEFAULT_VOICE, EdgeTts, TtsEngine
 from novel_audio.volumes import VOLUME_SIZE, build_volumes
 from novel_core import AlignmentDiff, AlignmentRules, KeyRange, Kind, NovelStore, NovelView, SourceInfo, SourceSpec, StoreError
-from novel_core.check import CheckReport
 from novel_core.selection import Pin
 from novel_core.store import DB_NAME
 from novel_publish import epub
@@ -35,6 +34,7 @@ from novel_sources.calibre import CalibreImporter
 from novel_sources.decode_guide import Guides
 from novel_sources.importing import Importer, import_novel
 from novel_sources.mtl import MtlImporter
+from novel_sources.reclean import reclean
 from novel_sources.scribble import ScribbleImporter
 from novel_sources.sync import Source, add_source, sync
 from novel_sources.wns import WnsImporter, snapshot_refs
@@ -172,6 +172,7 @@ class Service:
             "glossary-build": self._glossary_build,
             "translate": self._translate,
             "compare": self._compare,
+            "reclean": self._reclean,
         }
 
     # -- jobs ----------------------------------------------------------------
@@ -244,12 +245,60 @@ class Service:
                             store, info.id, live, keys, lambda d, t, item: job.progress(d, t, item.title), only,
                             zh=zh_rules(novel, info.spec),
                         )  # fmt: skip
-                    for line in report.sync_lines(r):
+                    others = [s for s in store.sources() if s.spec.kind is Kind.RAW_ZH and s.id != info.id]
+                    for line in report.sync_lines(r, other_raws=bool(others)):
                         job.log(line)
                     errors += report.failed_lines(r.failed)
+                for line in report.unchecked_lines(pages.unchecked(novel, store.view()), novel):
+                    job.log(line)
             return Outcome(tuple(errors))
 
         return novel, work
+
+    def raw_sources(self, novel: str, source: int | None = None) -> list[SourceInfo]:
+        """The novel's raw-zh sources (or just `source`, which must be one); UserError if none."""
+        with self._store(novel) as store:
+            raws = [s for s in store.sources() if s.spec.kind is Kind.RAW_ZH]
+        if not raws:
+            raise UserError(f"{novel} has no Chinese raws")
+        chosen = [s for s in raws if source in (None, s.id)]
+        if not chosen:
+            raise UserError(f"source {source} is not one of {novel}'s raw sources {[s.id for s in raws]}")
+        return chosen
+
+    def _reclean(self, novel: str, source: int | None = None):
+        """Clean and check the stored raws again with today's zh rules; never fetches."""
+        raws = self.raw_sources(novel, source)
+
+        def work(job) -> Outcome:
+            with self._store(novel) as store, ExitStack() as stack:
+                translators = setups(store.sources())
+                ts = stack.enter_context(self._tstore(novel)) if translators else None
+                # Staleness includes neighbours whose context changed, so compare whole reports.
+                before = {info.id: set(stale(store, ts, setup).stale) for info, setup in translators}
+                for info in raws:
+                    job.log(f"{novel}: source {info.id} ({info.spec.backend}) {info.spec.url}")
+                    for line in report.reclean_lines(reclean(store, info.id, zh_rules(novel, info.spec))):
+                        job.log(line)
+                for info, setup in translators:
+                    now = [ref for ref in stale(store, ts, setup).stale if ref not in before[info.id]]
+                    job.log(report.now_stale_line(info.id, setup.label, now))
+            return Outcome()
+
+        return novel, work
+
+    def release(self, novel: str, numbers: str, source: int | None = None) -> list[tuple[int, str, tuple[str, ...]]]:
+        """Release every held chapter at these numbers: its findings now are false positives.
+        Returns (source, ref, checks released) per chapter."""
+        keys = _parsed(parse_range, numbers)
+        raws = self.raw_sources(novel, source)
+        released = []
+        with self._store(novel) as store:
+            view = store.view()
+            for info in raws:
+                held = [s.item_ref for s in view.chapters(info.id) if s.key.number in keys and view.held(info.id, s.item_ref)]
+                released += [(info.id, ref, checks) for ref, checks in store.release(info.id, held).items()]
+        return released
 
     def guides(self) -> Guides:
         """The decode guides: shipped ones, with the user's own file applied."""
@@ -438,7 +487,7 @@ class Service:
     def novel(self, novel: str) -> pages.NovelPage:
         row = self._row(novel, self.jobs(limit=50))
         view = self._read(novel)[0]
-        return pages.NovelPage(row, pages.chapter_grid(view), view.pins, view.check())
+        return pages.NovelPage(row, pages.chapter_grid(view), view.pins, pages.novel_check(novel, view))
 
     def compare(self, novel: str, number: int, left: int | None = None, right: int | None = None) -> pages.Comparison:
         with self._store(novel) as store:
@@ -473,11 +522,11 @@ class Service:
     def novels(self) -> list[str]:
         return novel_slugs()
 
-    def check(self, novel: str) -> tuple[int, CheckReport]:
-        """(chapters selected, report)."""
+    def check(self, novel: str) -> tuple[int, pages.NovelCheck]:
+        """(chapters selected, what the check found)."""
         with self._store(novel) as store:
             view = store.view()
-        return len(view.selection), view.check()
+        return len(view.selection), pages.novel_check(novel, view)
 
     def priority(self, novel: str, order: Sequence[int] | None = None) -> list[Ranked]:
         """The sources best first, after setting the order if given (unlisted sources rank after, by id)."""

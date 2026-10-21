@@ -2,7 +2,9 @@
 
 `library_row` is the library page's summary, `chapter_grid` the novel page's cells
 (one per chapter key, in blocks of 100 numbers) and `comparison` two sources' texts
-of one chapter number side by side, with their differences marked.
+of one chapter number side by side, with their differences marked. `novel_check` is
+what `nov check` and the Check section show; `unchecked` counts raw-zh chapters
+not checked with the current zh rules.
 """
 
 from collections import defaultdict
@@ -32,7 +34,7 @@ from novel_core.keys import chapter_heading
 from novel_core.selection import Pin
 from novel_publish import epub, render
 from novel_publish import site as site_builder
-from novel_sources.backends import is_web
+from novel_sources.backends import is_web, zh_rules
 from novel_translate.setups import BACKEND as SETUP_BACKEND
 from novel_translate.setups import TranslatorSetup
 
@@ -248,11 +250,33 @@ def chapter_grid(view: NovelView) -> tuple[GridBlock, ...]:
 
 
 @dataclass(frozen=True)
+class NovelCheck:
+    """What `nov check` and the novel page's Check section show."""
+
+    report: CheckReport
+    numbering: tuple = ()  # numbering suggestions (raw cleaning slice 8)
+    unchecked: int = 0  # raw-zh chapters not checked with the current zh rules
+
+
+def novel_check(slug: str, view: NovelView) -> NovelCheck:
+    return NovelCheck(view.check(), (), unchecked(slug, view))
+
+
+def unchecked(slug: str, view: NovelView) -> int:
+    """Current raw-zh chapters whose zh rules revision is not today's (never checked, or by older rules)."""
+    count = 0
+    for info in view.sources:
+        if (zh := zh_rules(slug, info.spec)) is not None:
+            count += sum(s.rules_rev != zh.rev for s in view.chapters(info.id))
+    return count
+
+
+@dataclass(frozen=True)
 class NovelPage:
     row: LibraryRow
     grid: tuple[GridBlock, ...]
     pins: tuple[Pin, ...]  # oldest first; a later pin wins
-    check: CheckReport
+    check: NovelCheck
 
 
 @dataclass(frozen=True)
