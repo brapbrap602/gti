@@ -4,6 +4,11 @@ It fetches the source's index, records it (so alignment maps the items to keys),
 asks the store which items to fetch (`NovelStore.to_fetch`: by default only the
 numbers the book lacks) and stores each fetched chapter in its own transaction.
 A failed chapter is marked failed and retried by the next sync.
+
+A raw-zh source syncs with its zh rules (`zh`): they clean and check each chapter,
+and a chapter with a finding is held (stored, never translated; another source
+fetches its number, and this one fetches it again next time). A decoy site serves
+no chapters unless `refresh` asks: only its index is recorded, for numbering.
 """
 
 from dataclasses import dataclass
@@ -14,7 +19,8 @@ from novel_core import IndexDiff, ItemRef, KeyRange, NovelStore, RawChapter, Sou
 from novel_core.store import Clock
 
 from novel_sources.clean import CleanRules
-from novel_sources.importing import NovelIndex, Progress, open_novel, store_chapters
+from novel_sources.importing import NovelIndex, Progress, chapter_version, open_novel, store_chapters
+from novel_sources.zh_rules import ZhRules
 
 
 class Source(Protocol):
@@ -41,6 +47,9 @@ class SyncReport:
     unchanged: int
     unavailable: tuple[ItemRef, ...]
     failed: tuple[tuple[ItemRef, str], ...]  # (ref, reason)
+    held: tuple[tuple[ItemRef, str], ...] = ()  # fetched now and held: (ref, "check: detail; ...")
+    cleared: int = 0  # held before, fetched again and no longer held
+    decoy_site: bool = False  # only the index was recorded (no `refresh`)
 
 
 def sync(
@@ -50,18 +59,52 @@ def sync(
     refresh: KeyRange | None = None,
     progress: Progress | None = None,
     only: KeyRange | None = None,
+    zh: ZhRules | None = None,
 ) -> SyncReport:
     """Fetch what the book lacks from this source, plus every item whose key is in `refresh`;
-    with `only`, just the items whose key is in it. The whole index is recorded either way."""
+    with `only`, just the items whose key is in it. The whole index is recorded either way.
+
+    `zh` is the source's zh rules (see backends.zh_rules), None for any other kind of source.
+    A decoy site fetches only what `refresh` names (within `only`).
+    """
     index = source.fetch_index()
     diff = store.record_index(source_id, index.items)
-    wanted = set(store.to_fetch(source_id, refresh, only))
+    decoy = zh is not None and zh.decoy_site
+    if not decoy:
+        wanted = set(store.to_fetch(source_id, refresh, only))
+    elif refresh is not None and (window := _overlap(refresh, only)):
+        wanted = set(store.to_fetch(source_id, refresh, window))
+    else:
+        wanted = set()
     items = [i for i in index.items if i.ref in wanted]
+    held_before = _held(store, source_id, items) if zh else {}
     provenance = {"backend": source.spec.backend, **index.provenance}
-    stored = store_chapters(store, source_id, items, source.fetch_chapter, source.clean_rules, provenance, progress)
+    version = chapter_version(source.clean_rules, provenance, zh)
+    stored = store_chapters(store, source_id, items, source.fetch_chapter, version, progress)
+    held_after = _held(store, source_id, items) if zh else {}
     return SyncReport(
-        source_id, diff, len(items), stored.inserted, stored.unchanged, stored.unavailable, stored.failed
-    )
+        source_id, diff, len(items), stored.inserted, stored.unchanged, stored.unavailable, stored.failed,
+        held=tuple(held_after.items()),
+        cleared=len(held_before.keys() - held_after.keys()),
+        decoy_site=decoy and refresh is None,
+    )  # fmt: skip
+
+
+def _held(store: NovelStore, source_id: SourceId, items: list[SourceItem]) -> dict[ItemRef, str]:
+    view = store.view()
+    return {
+        i.ref: "; ".join(f"{f.check}: {f.detail}" for f in found)
+        for i in items
+        if (found := view.held(source_id, i.ref))
+    }
+
+
+def _overlap(refresh: KeyRange, only: KeyRange | None) -> KeyRange | None:
+    """The numbers in both ranges; None when they share none."""
+    if only is None:
+        return refresh
+    start, end = max(refresh.start, only.start), min(refresh.end, only.end)
+    return KeyRange(start, end) if start <= end else None
 
 
 @dataclass(frozen=True)

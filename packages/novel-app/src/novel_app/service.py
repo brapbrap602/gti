@@ -30,7 +30,7 @@ from novel_core.selection import Pin
 from novel_core.store import DB_NAME
 from novel_publish import epub
 from novel_publish.site import build_site
-from novel_sources.backends import is_web, open_source, spec_for_url
+from novel_sources.backends import is_web, open_source, spec_for_url, zh_rules
 from novel_sources.calibre import CalibreImporter
 from novel_sources.decode_guide import Guides
 from novel_sources.importing import Importer, import_novel
@@ -240,7 +240,10 @@ class Service:
                 for info in web:
                     job.log(f"{novel}: source {info.id} ({info.spec.backend}) {info.spec.url}")
                     with self._open_source(info.spec, fetch_dir(), guides) as live:
-                        r = sync(store, info.id, live, keys, lambda d, t, item: job.progress(d, t, item.title), only)
+                        r = sync(
+                            store, info.id, live, keys, lambda d, t, item: job.progress(d, t, item.title), only,
+                            zh=zh_rules(novel, info.spec),
+                        )  # fmt: skip
                     for line in report.sync_lines(r):
                         job.log(line)
                     errors += report.failed_lines(r.failed)
@@ -350,7 +353,7 @@ class Service:
         slug = _slug(novel) if novel else slugify(reader.read_index().meta.title)
 
         def work(job) -> Outcome:
-            r = import_novel(novel_dir(slug), reader)
+            r = import_novel(novel_dir(slug), reader, zh=zh_rules(slug, reader.spec))
             for line in report.import_lines(slug, r):
                 job.log(line)
             return Outcome(tuple(report.failed_lines(r.failed)))

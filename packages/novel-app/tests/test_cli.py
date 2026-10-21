@@ -6,6 +6,7 @@ import pytest
 from novel_app.cli import app
 from novel_app.library import DATA_DIR_ENV, novel_dir, novel_slugs, slugify
 from novel_core import NovelMeta, NovelStore
+from novel_sources.backends import zh_rules
 from typer.testing import CliRunner
 
 TOC = "https://novelbin.me/novel-book/test-novel"
@@ -191,3 +192,17 @@ def user_version(db) -> int:
         (version,) = conn.execute("PRAGMA user_version").fetchone()
     conn.close()
     return version
+
+
+def test_import_of_raw_zh_cleans_and_checks_with_the_novels_zh_rules(data_dir, tmp_path):
+    raw = tmp_path / "MtlTings" / "data" / "raw" / "test_novel"
+    raw.mkdir(parents=True)
+    (raw / "chapter_1.txt").write_text("第1章 名字\n他笑了。\n5555\n", encoding="utf-8")
+
+    result = run("import", "mtl", raw)
+
+    assert result.exit_code == 0, result.output
+    with NovelStore.open(novel_dir("test-novel")) as store:
+        (source,) = store.sources()
+        (chapter,) = store.chapters(source.id)
+    assert chapter.rules_rev == zh_rules("test-novel", source.spec).rev

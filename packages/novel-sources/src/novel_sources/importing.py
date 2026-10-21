@@ -27,6 +27,7 @@ from novel_core import (
 from novel_core.store import DB_NAME, Clock
 
 from novel_sources.clean import CleanError, CleanRules, normalize
+from novel_sources.zh_rules import ZhRules
 
 
 @dataclass(frozen=True)
@@ -66,8 +67,13 @@ class ImportReport:
     notes: tuple[str, ...]
 
 
-def import_novel(novel_dir: Path, importer: Importer, clock: Clock | None = None) -> ImportReport:
-    """Import every chapter into the novel at novel_dir, creating it from the index's metadata if it is new."""
+def import_novel(
+    novel_dir: Path, importer: Importer, clock: Clock | None = None, zh: ZhRules | None = None
+) -> ImportReport:
+    """Import every chapter into the novel at novel_dir, creating it from the index's metadata if it is new.
+
+    `zh` is the zh rules for a raw-zh importer (see backends.zh_rules); they clean and check each chapter.
+    """
     index = importer.read_index()
     store, created = open_novel(novel_dir, index.meta, clock)
     with store:
@@ -75,7 +81,8 @@ def import_novel(novel_dir: Path, importer: Importer, clock: Clock | None = None
         _write_snapshot(novel_dir / "imports" / str(source), index.snapshot)
         diff = store.record_index(source, index.items)
         provenance = {"importer": importer.spec.backend, **index.provenance}
-        stored = store_chapters(store, source, index.items, importer.read_chapter, importer.clean_rules, provenance)
+        version = chapter_version(importer.clean_rules, provenance, zh)
+        stored = store_chapters(store, source, index.items, importer.read_chapter, version)
     return ImportReport(
         novel_dir, source, created, diff, stored.inserted, stored.unchanged, stored.unavailable, stored.failed,
         index.notes,
@@ -99,6 +106,17 @@ class Stored:
 
 
 type Progress = Callable[[int, int, SourceItem], None]  # (done, total, item just stored)
+type MakeVersion = Callable[[SourceItem, RawChapter], NewVersion]
+
+
+def chapter_version(
+    rules: Callable[[RawChapter], CleanRules], provenance: Mapping[str, object], zh: ZhRules | None
+) -> MakeVersion:
+    """How a source's chapters become versions: through its zh rules when it has them, else normalized
+    with its own clean rules."""
+    if zh is not None:
+        return lambda item, raw: zh.version(raw, item.title, rules(raw), provenance)
+    return lambda item, raw: NewVersion(item.title, normalize(raw, rules(raw), item.title), raw, provenance)
 
 
 def store_chapters(
@@ -106,11 +124,11 @@ def store_chapters(
     source: SourceId,
     items: Sequence[SourceItem],
     read: Callable[[SourceItem], RawChapter | None],
-    rules: Callable[[RawChapter], CleanRules],
-    provenance: Mapping[str, object],
+    version: MakeVersion,
     progress: Progress | None = None,
 ) -> Stored:
-    """Read, normalize and store each item; one transaction per item, so an interrupted run resumes.
+    """Read, make a version of (see chapter_version) and store each item; one transaction per item,
+    so an interrupted run resumes.
 
     `read` returning None marks the item unavailable (locked, never downloaded). One bad
     chapter never stops the run: an OSError (network failures included) or a CleanError
@@ -126,8 +144,7 @@ def store_chapters(
                 store.mark_item(source, item.ref, ItemStatus.UNAVAILABLE)
                 unavailable.append(item.ref)
             else:
-                blocks = normalize(raw, rules(raw), item.title)
-                result = store.put_version(source, item.ref, NewVersion(item.title, blocks, raw, provenance))
+                result = store.put_version(source, item.ref, version(item, raw))
                 if isinstance(result, Inserted):
                     inserted += 1
                 else:

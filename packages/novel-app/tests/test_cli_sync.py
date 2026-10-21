@@ -1,5 +1,12 @@
-from novel_app import cli
+from contextlib import contextmanager
+
+from novel_app import cli, service
 from novel_app.cli import app
+from novel_app.library import novel_dir
+from novel_core import Kind, NovelMeta, NovelStore, RawChapter, SourceItem, SourceSpec
+from novel_sources.backends import zh_rules
+from novel_sources.clean import CleanRules
+from novel_sources.importing import NovelIndex
 from typer.testing import CliRunner
 
 URL = "https://novelbuddy.me/test-novel"
@@ -65,3 +72,38 @@ def test_align_copy_gives_a_web_source_the_fixes_made_on_another(site):
     assert result.exit_code == 0, result.output
     assert "2 items moved" in result.output
     assert run("align", "copy", "test-novel", 1, 9).exit_code == 2
+
+
+def test_sync_of_a_raw_zh_source_uses_its_zh_rules(site, monkeypatch):
+    """The Service passes each raw-zh source its rules: chapters are stamped and poison is held."""
+    spec = SourceSpec("lncrawl", "https://zh.test/book", "zh", Kind.RAW_ZH)
+    store = NovelStore.create(novel_dir("zh-novel"), NovelMeta("书", language="zh"))
+    with store:
+        source = store.upsert_source(spec)
+    poisoned = "\n".join("天地玄黄宇宙洪荒日月盈昃" * 12 + m for m in ("有没", "是止", "退入") * 4)
+
+    class Live:
+        def __init__(self, spec):
+            self.spec = spec
+
+        def fetch_index(self):
+            return NovelIndex(NovelMeta("书"), tuple(SourceItem(f"/book/{n}", n, f"第{n}章") for n in (1, 2)))
+
+        def fetch_chapter(self, item):
+            text = poisoned if item.ref == "/book/2" else "他笑了。"
+            return RawChapter(text, "text")
+
+        def clean_rules(self, raw):
+            return CleanRules(content=())
+
+    @contextmanager
+    def open_source(spec, state, guides):
+        yield Live(spec)
+
+    monkeypatch.setattr(service, "open_source", open_source)
+    result = run("sync", "zh-novel")
+    assert result.exit_code == 0, result.output
+    with NovelStore.open(novel_dir("zh-novel")) as store:
+        view = store.view()
+        assert {s.rules_rev for s in view.chapters(source)} == {zh_rules("zh-novel", spec).rev}
+        assert [f.check for f in view.held(source, "/book/2")] == ["poison"]
