@@ -157,7 +157,7 @@
 <section id="check" aria-labelledby="check-heading">
     <h2 id="check-heading">Check</h2>
     {% set k = novel.check.report %}
-    {% set problems = k.duplicates | length + k.unmapped | length + k.vanished | length + k.failed | length + k.held | length + k.title_mismatches | length + k.mixed_parts | length + k.pin_fallbacks | length + k.legacy_moved | length + k.legacy_unselected | length + novel.check.unchecked %}
+    {% set problems = k.duplicates | length + k.unmapped | length + k.vanished | length + k.failed | length + k.held | length + k.title_mismatches | length + k.mixed_parts | length + k.pin_fallbacks | length + k.legacy_moved | length + k.legacy_unselected | length + novel.check.numbering | length + novel.check.unchecked %}
     {% if not problems and not k.gaps %}<p class="fresh">No problems found.</p>{% endif %}
     {% if k.gaps %}<p>Gaps: {{ k.gaps | length }} ({{ k.gaps | join(", ") | truncate(300) }})</p>{% endif %}
     {% if k.raw_only %}<p>Raw only: {{ k.raw_only | length }} ({{ k.raw_only | join(", ") | truncate(300) }})</p>{% endif %}
@@ -173,6 +173,12 @@
     {% endfor %}
     {% if k.mixed_parts %}<p>Mixed parts: {{ k.mixed_parts | join(", ") | truncate(300) }}</p>{% endif %}
     {% if k.pin_fallbacks %}<details><summary>Pin fallbacks: {{ k.pin_fallbacks | length }}</summary><ul>{% for p in k.pin_fallbacks[:200] %}<li>{{ p.number }}: pinned source {{ p.pinned_source }} has nothing</li>{% endfor %}</ul></details>{% endif %}
+    {% if novel.check.numbering %}
+    <details>
+        <summary>Numbering: {{ novel.check.numbering | length }} (against source {{ novel.check.anchor }})</summary>
+        <ul>{% for n in novel.check.numbering %}<li>source {{ n.source_id }} printed {{ n.printed_start }}–{{ n.printed_end }} are chapters {{ n.printed_start + n.offset }}–{{ n.printed_end + n.offset }} (offset {{ "%+d" | format(n.offset) }}, {{ n.matched }} titles match): <code>{{ align_range_command(r.slug, n) }}</code></li>{% endfor %}</ul>
+    </details>
+    {% endif %}
     {% if novel.check.unchecked %}<p>Not checked with current rules: {{ novel.check.unchecked }} — run <code>nov reclean {{ r.slug }}</code></p>{% endif %}
     {% for title, rows in (("Legacy moved", k.legacy_moved), ("Legacy unselected", k.legacy_unselected)) %}
     {% if rows %}<details><summary>{{ title }}: {{ rows | length }}</summary><ul>{% for o in rows[:200] %}<li>{{ o.kind }} {{ o.built_key.label }}: <code>{{ o.item_ref }}</code></li>{% endfor %}</ul></details>{% endif %}

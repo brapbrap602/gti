@@ -37,6 +37,14 @@ class AlignmentRules:
     items: Mapping[ItemRef, ChapterKey] = field(default_factory=dict)
     skip: frozenset[ItemRef] = frozenset()  # reposts and other items that are not chapters of the book
 
+    def offset_at(self, printed: int) -> int:
+        """The offset a printed number takes: the last range covering it, else the source offset."""
+        offset = self.offset
+        for r in self.ranges:
+            if r.start <= printed <= r.end:
+                offset = r.offset
+        return offset
+
     def to_json(self) -> str:
         return json.dumps(
             {
@@ -109,8 +117,4 @@ def _key(item: Printed, rules: AlignmentRules) -> ChapterKey | None:
         return rules.items[item.ref]
     if item.number is None:
         return None
-    offset = rules.offset
-    for r in rules.ranges:
-        if r.start <= item.number <= r.end:
-            offset = r.offset
-    return ChapterKey(item.number + offset, item.part)
+    return ChapterKey(item.number + rules.offset_at(item.number), item.part)

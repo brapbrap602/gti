@@ -3,6 +3,8 @@
 import sqlite3
 from dataclasses import replace
 
+import pytest
+
 from novel_app.cli import app
 from novel_app.library import data_dir, novel_dir
 from novel_core import Finding, Kind, NewVersion, NovelMeta, NovelStore, Paragraph, RawChapter, SourceItem, SourceSpec
@@ -30,12 +32,17 @@ def hold(slug: str, source: int, ref: str, check: str = "poison", detail: str = 
         store.put_version(source, ref, NewVersion(v.title, v.blocks, findings=(Finding(check, detail),), rules_rev=rev))
 
 
-def test_check_lists_held_chapters_and_counts_unchecked_ones(novels, old_rules):
+def test_check_lists_held_chapters_numbering_and_counts_unchecked_ones(novels, old_rules, misnumbered):
     old_rules([1, 2, 4, 5])
     hold("raw-novel", 1, "/3")
     result = run("check", "raw-novel")
     assert result.exit_code == 0, result.output
     assert "  held: 1\n    source 1 /3: poison: 有没×9\n" in result.output
+    assert (
+        "  numbering: 1 (against source 1)\n"
+        "    source 2 printed 2-6 are chapters 1-5 (offset -1, 5 titles match):"
+        " nov align range raw-novel 2-6 -1 --source 2\n"
+    ) in result.output
     assert result.output.endswith("  4 chapters not checked with current rules: run nov reclean raw-novel\n")
 
 
@@ -212,3 +219,41 @@ def test_reclean_needs_a_novel_with_raws(novels):
     assert run("reclean", "raw-novel", "--all").exit_code == 2
     assert run("reclean", "english-only").exit_code == 2
     assert run("reclean", "raw-novel", "--source", 9).exit_code == 2
+
+
+def test_align_range_moves_a_printed_range_and_settles_the_numbering(novels, misnumbered):
+    result = run("align", "range", "raw-novel", "2-6", "-1", "--source", misnumbered)
+    assert result.exit_code == 0, result.output
+    assert result.output == "".join(f"  /b/{n}: {n} -> {n - 1}\n" for n in range(2, 7)) + "5 items moved\n"
+    assert "numbering" not in run("check", "raw-novel").output
+
+    assert run("align", "range", "raw-novel", "4-6", "+2", "--source", misnumbered).output.endswith("3 items moved\n")
+    assert run("align", "range", "raw-novel", "6-2", "0", "--source", misnumbered).exit_code == 2
+    assert run("align", "range", "raw-novel", "2-6", "x", "--source", misnumbered).exit_code == 2
+    assert run("align", "range", "raw-novel", "2-6", "0").exit_code == 2  # two sources: --source needed
+
+
+BIQUGE5 = SourceSpec("novel-downloader", "https://www.biquge5.com/9_9194/", "zh", Kind.RAW_ZH)
+QIDIAN = SourceSpec("novel-downloader", "https://www.qidian.com/book/1035420986/", "zh", Kind.RAW_ZH)
+
+
+@pytest.mark.parametrize(
+    "specs, anchor",
+    [
+        pytest.param((BIQUGE5, IXDZS), 2, id="anchor-skips-decoy"),
+        pytest.param((IXDZS, BIQUGE5, QIDIAN), 3, id="anchor-is-qidian"),
+    ],
+)
+def test_numbering_is_against_qidian_else_the_first_raw_source_not_a_decoy_site(novels, specs, anchor):
+    names = ("山门", "钟声", "松林", "溪水")
+    with NovelStore.create(novel_dir("zh-novel"), NovelMeta("书", language="zh")) as store:
+        for i, spec in enumerate(specs):
+            source = store.upsert_source(spec)
+            shift = 0 if source == anchor else 10 * (i + 1)
+            items = [SourceItem(f"/{source}/{n}", n, f"第{n + shift}章 {t}") for n, t in enumerate(names, start=1)]
+            store.record_index(source, items)
+    lines = run("check", "zh-novel").output.splitlines()
+    numbering = lines.index(f"  numbering: {len(specs) - 1} (against source {anchor})")
+    assert sorted(line.split(" printed")[0].strip() for line in lines[numbering + 1 : numbering + len(specs)]) == [
+        f"source {s}" for s in range(1, len(specs) + 1) if s != anchor
+    ]

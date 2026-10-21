@@ -298,7 +298,7 @@ def test_compare_says_when_texts_are_identical(client, two_texts):
     assert "Identical text." in compare_page(client, "d")
 
 
-def test_check_section_lists_held_chapters_and_counts_unchecked_ones(client, novels, old_rules):
+def test_check_section_lists_held_chapters_numbering_and_unchecked_ones(client, novels, old_rules, misnumbered):
     old_rules([1, 2, 4, 5])
     with NovelStore.open(novel_dir("raw-novel")) as store:
         current = next(s for s in store.view().chapters(1) if s.item_ref == "/3")
@@ -308,6 +308,11 @@ def test_check_section_lists_held_chapters_and_counts_unchecked_ones(client, nov
 
     check = client.get("/novels/raw-novel").text.split('id="check-heading"')[1]
     assert "<summary>Held: 1</summary>" in check
-    assert "<li>source 1 <code>/3</code> 第3章 — poison: 有没×9</li>" in check
+    assert "<li>source 1 <code>/3</code> 第3章 松林 — poison: 有没×9</li>" in check
     assert "Not checked with current rules: 4 — run <code>nov reclean raw-novel</code>" in check
+    assert "<summary>Numbering: 1 (against source 1)</summary>" in check
+    assert (
+        "<li>source 2 printed 2–6 are chapters 1–5 (offset -1, 5 titles match):"
+        " <code>nov align range raw-novel 2-6 -1 --source 2</code></li>"
+    ) in check
     assert "No problems found." not in check

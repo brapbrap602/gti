@@ -9,12 +9,13 @@ from collections import defaultdict
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from functools import cached_property
+from itertools import groupby
 
 from novel_core.alignment import Derivation, Printed, derive_keys
 from novel_core.build import BuildPlan, OutputKind, OutputRow, plan_build
-from novel_core.check import CheckReport, Duplicate, ItemNote
+from novel_core.check import CheckReport, Duplicate, ItemNote, NumberingRun
 from novel_core.finding import Finding
-from novel_core.keys import ChapterKey, ItemRef, KeyRange, title_number
+from novel_core.keys import ChapterKey, ItemRef, KeyRange, title_name, title_number
 from novel_core.model import ItemStatus, Kind, NovelMeta, SourceInfo
 from novel_core.selection import Pin, PinFallback, Selected, Selection, SourceId, rank, select
 
@@ -325,3 +326,47 @@ class NovelView:
             legacy_moved=moved,
             legacy_unselected=unselected,
         )
+
+    def numbering(self, anchor: SourceId) -> tuple[NumberingRun, ...]:
+        """Where another raw-zh source's numbering disagrees with the anchor's, by chapter title name.
+
+        Names unique among both sources' listed items are matched; each match gives the offset
+        anchor number - printed number. Consecutive matches (by printed number) with one offset
+        form a run, and a run of at least NUMBERING_MIN_RUN matches is suggested when the source's
+        alignment gives some of its printed numbers another offset. Duplicates and items with an
+        explicit key are left out: no range would move them. In priority order, then printed order.
+        """
+        keys = self._derivations[self.source(anchor).id].keys
+        theirs = {name: keys.get(i.ref) for name, i in self._named(anchor).items()}
+        found: list[NumberingRun] = []
+        for sid in self.priority:
+            info = self._sources[sid]
+            if sid == anchor or info.spec.kind is not Kind.RAW_ZH:
+                continue
+            derivation, rules = self._derivations[sid], info.alignment
+            duplicated = {ref for refs in derivation.duplicates.values() for ref in refs}
+            matches = sorted(
+                (i.printed_number, key.number - i.printed_number)
+                for name, i in self._named(sid).items()
+                if (key := theirs.get(name)) is not None
+                and i.printed_number is not None
+                and i.ref not in duplicated
+                and i.ref not in rules.items
+            )
+            for offset, group in groupby(matches, key=lambda m: m[1]):
+                printed = [p for p, _ in group]
+                if len(printed) >= NUMBERING_MIN_RUN and any(rules.offset_at(p) != offset for p in printed):
+                    found.append(NumberingRun(sid, printed[0], printed[-1], offset, len(printed)))
+        return tuple(found)
+
+    def _named(self, source: SourceId) -> dict[str, StoredItem]:
+        """The source's listed items by title name, for names only one of them has."""
+        skip = self._sources[source].alignment.skip
+        by_name: dict[str, list[StoredItem]] = defaultdict(list)
+        for i in self._items[source]:
+            if not i.vanished and i.ref not in skip and (name := title_name(i.title)):
+                by_name[name].append(i)
+        return {name: items[0] for name, items in by_name.items() if len(items) == 1}
+
+
+NUMBERING_MIN_RUN = 3  # fewer matches with one offset are as likely a coincidence of names

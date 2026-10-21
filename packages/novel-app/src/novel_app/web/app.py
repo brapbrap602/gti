@@ -33,7 +33,7 @@ from novel_app.comparing import all_chapters, columns, setup_name, words
 from novel_app.glossary_page import TABS
 from novel_app.jobs import JobPanel, JobRunning, JobState
 from novel_app.notation import parse_range
-from novel_app.pages import CELL_LABELS, CellState, source_label
+from novel_app.pages import CELL_LABELS, CellState, align_range_command, source_label
 from novel_app.service import Service, UserError
 
 HERE = Path(__file__).parent
@@ -83,7 +83,7 @@ def create_app(service: Service) -> FastAPI:
         job_labels=JOB_LABELS, cell_labels=CELL_LABELS, CellState=CellState, Kind=Kind, JobState=JobState,
         backends=BACKENDS, owns=service.runner.owns, source_label=source_label,
         contexts=CONTEXTS, reasoning_levels=REASONING, data_collection=DATA_COLLECTION,
-        setup_name=setup_name, words=words,
+        setup_name=setup_name, words=words, align_range_command=align_range_command,
     )  # fmt: skip
 
     def page(request: Request, name: str, status: int = 200, **context) -> HTMLResponse:

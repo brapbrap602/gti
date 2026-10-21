@@ -23,6 +23,19 @@ class Duplicate:
 
 
 @dataclass(frozen=True)
+class NumberingRun:
+    """A numbering suggestion: printed start..end of a raw source match the anchor's chapters at
+    printed number + offset (by title name), which the source's alignment does not give them yet.
+    The offset is what a RangeOverride(printed_start, printed_end, offset) takes."""
+
+    source_id: SourceId
+    printed_start: int
+    printed_end: int
+    offset: int
+    matched: int  # title-name matches in the run
+
+
+@dataclass(frozen=True)
 class CheckReport:
     gaps: tuple[int, ...]  # numbers inside the book's range with nothing publishable
     raw_only: tuple[int, ...]  # numbers that only a raw-zh source has, and not only as held text

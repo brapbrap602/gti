@@ -286,6 +286,17 @@ def align_skip(novel: Novel, refs: Refs, source: SourceOpt = None) -> None:
     _echo_moved(_calling(lambda: _service().align_skip(novel, refs, source)))
 
 
+@align_app.command("range", context_settings={"ignore_unknown_options": True})  # a negative offset is no option
+def align_range(
+    novel: Novel,
+    printed: Annotated[str, typer.Argument(help="printed chapter numbers, e.g. 300-420")],
+    offset: Annotated[int, typer.Argument(help="added to each printed number, e.g. -2")],
+    source: SourceOpt = None,
+) -> None:
+    """Give a range of printed numbers its own offset (as `nov check` numbering suggests); a later range wins."""
+    _echo_moved(_calling(lambda: _service().align_range(novel, printed, offset, source)))
+
+
 @align_app.command("copy")
 def align_copy(
     novel: Novel,
