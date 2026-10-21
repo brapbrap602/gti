@@ -729,7 +729,7 @@ class Service:
     # -- comparing models --------------------------------------------------------
 
     def compare_estimate(
-        self, novel: str, models: Sequence[str], range: str, reference: int | str | None = None
+        self, novel: str, models: Sequence[str], range: str, reference: int | str | None = None, reference_shift: int | str = 0
     ) -> CompareEstimate:
         """What comparing these models on these chapters would cost at most, and which have reference English."""
         chosen, keys = self._compare_args(novel, models, range)
@@ -738,7 +738,7 @@ class Service:
         with self._store(novel) as store, self._tstore(novel) as ts:
             usd = _setup_errors(lambda: estimate_compare(store, ts, chosen, keys, prices))
             refs = tuple(ref_of(r.key) for r in raw_chapters(store, keys))
-            found = _references(store, keys, _reference_source(store, reference))
+            found = _references(store, keys, _reference_source(store, reference), _number(int, reference_shift, "the shift"))
         if not refs:
             raise UserError(f"{novel} has no raw chapters in {range}")
         return CompareEstimate(chosen, usd, refs, tuple(r for r in refs if r in found))
@@ -751,8 +751,9 @@ class Service:
         cap: float | str | None = None,
         workers: int | str = 4,
         reference: int | str | None = None,
+        reference_shift: int | str = 0,
     ):
-        estimate = self.compare_estimate(novel, models, range, reference)
+        estimate = self.compare_estimate(novel, models, range, reference, reference_shift)
         cap = estimate.total if cap in (None, "") else _number(float, cap, "the cap")
         if cap < estimate.total:
             raise UserError(
@@ -773,7 +774,7 @@ class Service:
             job.log(f"{novel}: comparing {len(chosen)} models on {range}, cap ${cap:.4f}")
             comparison = Comparison()
             with self._store(novel) as store, self._tstore(novel) as ts:
-                references = _references(store, keys, _reference_source(store, reference))
+                references = _references(store, keys, _reference_source(store, reference), int(reference_shift))
                 try:
                     compare(
                         store, ts, chosen, keys, new_llm, prices, Budget(cap), workers,
@@ -900,9 +901,9 @@ def _reference_source(store: NovelStore, reference: int | str | None) -> int | N
     return source
 
 
-def _references(store: NovelStore, keys: KeyRange, source: int | None) -> dict[str, Reference]:
-    """Reference English per raw chapter ref, matched by chapter number: the given source's text,
-    else the book's selection where it is official English."""
+def _references(store: NovelStore, keys: KeyRange, source: int | None, shift: int = 0) -> dict[str, Reference]:
+    """Reference English per raw chapter ref: the given source's text, else the book's selection where
+    it is official English, for chapter number + `shift` (where the raws are numbered differently)."""
     view = store.view()
     if source is None:
         by_number = official_english(view)
@@ -912,7 +913,7 @@ def _references(store: NovelStore, keys: KeyRange, source: int | None) -> dict[s
             by_number.setdefault(s.key.number, []).append(s)
     references = {}
     for raw in raw_chapters(store, keys, view=view):
-        parts = sorted(by_number.get(raw.key.number, []), key=lambda s: s.key.part)
+        parts = sorted(by_number.get(raw.key.number + shift, []), key=lambda s: s.key.part)
         if parts:
             paragraphs = tuple(p for s in parts for p in version_text(store, s.version_id).split("\n") if p)
             references[ref_of(raw.key)] = Reference(parts[0].source_id, parts[0].title, paragraphs)

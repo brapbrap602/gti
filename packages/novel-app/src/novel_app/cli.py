@@ -489,16 +489,20 @@ def translate_compare(
     numbers: Annotated[str, typer.Argument(help="chapter numbers, e.g. 1354-1358")],
     model: Annotated[list[str], typer.Option(help="an OpenRouter model id, or id@low|medium|high for reasoning (repeat)")],
     reference: Annotated[int | None, typer.Option(help="English source to judge against; default the book's official EN")] = None,
+    reference_shift: Annotated[int, typer.Option(help="the reference for raw chapter n is chapter n + this")] = 0,
     cap: Annotated[float | None, typer.Option(help="US dollars; default the estimate, and never below it")] = None,
     workers: Annotated[int, typer.Option(help="chapters at once, per model")] = 4,
     yes: Annotated[bool, typer.Option("--yes", help="start without asking")] = False,
 ) -> None:
     """Translate the same chapters with several models, store nothing, and write a bundle to judge them by."""
-    estimate = _calling(lambda: _service().compare_estimate(novel, model, numbers, reference))
+    estimate = _calling(lambda: _service().compare_estimate(novel, model, numbers, reference, reference_shift))
     _echo(report.compare_estimate_lines(estimate))
     if not yes and not typer.confirm(f"start, with a cap of ${cap if cap is not None else estimate.total:.4f}?"):
         raise typer.Exit(1)
-    _job("compare", novel=novel, models=list(model), range=numbers, cap=cap, workers=workers, reference=reference)
+    _job(
+        "compare", novel=novel, models=list(model), range=numbers, cap=cap, workers=workers,
+        reference=reference, reference_shift=reference_shift,
+    )  # fmt: skip
 
 
 @translate_app.command("stale")
