@@ -9,7 +9,7 @@ for that text; it is cached too, so it is not asked again.
 import asyncio
 import hashlib
 import os
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from pathlib import Path
 from typing import Protocol
 
@@ -17,6 +17,10 @@ import edge_tts
 from edge_tts.exceptions import NoAudioReceived
 
 DEFAULT_VOICE = "en-US-BrianNeural"
+# Requests in flight. The endpoint publishes no limit (per IP, its maintainer believes); each
+# request mostly waits on the server (~6 s), so speed grows with this: 2 gave 0.3 sentences/s,
+# 8 gave 1.3, 16 gave 2.0 (2026-11-03). Words were reported dropped at ~50 long requests.
+DEFAULT_CONCURRENCY = 8
 
 
 class TtsEngine(Protocol):
@@ -66,11 +70,31 @@ class SentenceCache:
         self.synthesized = 0
         self.reused = 0
 
-    async def render(self, sentences: Sequence[str], limit: asyncio.Semaphore) -> list[Path]:
-        """The cached MP3 of each sentence that has audio, in order; missing ones are synthesized."""
+    async def render(
+        self,
+        sentences: Sequence[str],
+        limit: asyncio.Semaphore,
+        on_sentence: Callable[[int, int], None] | None = None,
+    ) -> list[Path]:
+        """The cached MP3 of each sentence that has audio, in order; missing ones are synthesized.
+
+        `on_sentence(done, total)` is called with total distinct sentences before any is
+        ready (done 0) and after each one is cached or synthesized.
+        """
         paths = [self._path(s) for s in sentences]
         unique = dict(zip(paths, sentences))  # a repeated line is synthesized once
-        await asyncio.gather(*(self._ensure(s, p, limit) for p, s in unique.items()))
+        done = 0
+
+        async def ensure(sentence: str, path: Path) -> None:
+            nonlocal done
+            await self._ensure(sentence, path, limit)
+            done += 1
+            if on_sentence:
+                on_sentence(done, len(unique))
+
+        if on_sentence:
+            on_sentence(0, len(unique))
+        await asyncio.gather(*(ensure(s, p) for p, s in unique.items()))
         return [p for p in paths if p.stat().st_size > 0]
 
     async def _ensure(self, sentence: str, path: Path, limit: asyncio.Semaphore) -> None:

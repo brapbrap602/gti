@@ -11,12 +11,27 @@
 </form>
 {% endmacro %}
 
+{# Build audio for chapters From-To; either left blank runs to that end of the book. #}
+{% macro audio_button(novel, busy, back) %}
+<form method="post" action="/jobs" hx-post="/jobs" hx-target="#notice" class="menu-range">
+    <input type="hidden" name="kind" value="build-audio">
+    <input type="hidden" name="novel" value="{{ novel }}">
+    <input type="hidden" name="back" value="{{ back }}">
+    <button type="submit"{% if busy %} disabled title="{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }})"{% else %} title="{{ help.action['build-audio'] }}"{% endif %}>{{ icon("file-text") }}Audio</button>
+    <span class="menu-range-fields" title="{{ help.action['audio-range'] }}">
+        <input name="from" type="number" min="0" inputmode="numeric" placeholder="from" aria-label="Audio from chapter"{% if busy %} disabled{% endif %}>
+        <span aria-hidden="true">–</span>
+        <input name="to" type="number" min="0" inputmode="numeric" placeholder="to" aria-label="Audio to chapter"{% if busy %} disabled{% endif %}>
+    </span>
+</form>
+{% endmacro %}
+
 {% macro build_menu(novel, busy, back="/", small=True, end=False) %}
 <details class="menu{% if end %} menu--end{% endif %}">
     <summary class="btn btn--outline{% if small %} btn--sm{% endif %}">{{ icon("hammer") }}Build{{ icon("chevron-down") }}</summary>
     <div class="menu-items">
         {{ job_button("build-epub", novel, busy, back, "EPUB", icon_name="book-open") }}
-        {{ job_button("build-audio", novel, busy, back, "Audio", icon_name="file-text") }}
+        {{ audio_button(novel, busy, back) }}
         {{ job_button("build-volumes", novel, busy, back, "M4B volumes", icon_name="layers") }}
         {{ job_button("audio-retag", novel, busy, back, "Retag MP3s", icon_name="rotate-ccw") }}
     </div>
@@ -49,7 +64,7 @@
    renders the first frame; app.js mirrors the job's progress from #jobs between reloads. #}
 {% macro job_progress(slug, job) %}
 <div class="job-mirror" data-job-progress="{{ slug }}"{% if not job %} hidden{% endif %}>
-    <span class="job-mirror-head">{{ icon("loader") }}<span class="job-progress-text">{% if job %}{{ job_labels.get(job.kind, job.kind) }} {% if job.total %}{{ job.done }}/{{ job.total }}{% else %}{{ job.state }}{% endif %}{% endif %}</span></span>
+    <span class="job-mirror-head">{{ icon("loader") }}<span class="job-progress-text">{% if job %}{{ job_labels.get(job.kind, job.kind) }} {% if job.total %}{{ job.done }}/{{ job.total }}{% if job.current %} · {{ job.current }}{% endif %}{% else %}{{ job.state }}{% endif %}{% endif %}</span></span>
     <progress aria-label="{{ slug }} job progress"{% if job and job.total %} max="{{ job.total }}" value="{{ job.done }}"{% else %} hidden{% endif %}></progress>
 </div>
 {% endmacro %}

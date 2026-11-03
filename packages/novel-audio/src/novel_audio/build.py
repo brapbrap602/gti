@@ -20,12 +20,13 @@ from novel_core import ChapterKey, KeyRange, NovelMeta, NovelStore, OutputKind, 
 
 from novel_audio import script
 from novel_audio.media import Tags, join_mp3, tag_mp3
-from novel_audio.tts import SentenceCache, TtsEngine
+from novel_audio.tts import DEFAULT_CONCURRENCY, SentenceCache, TtsEngine
 
 SENTENCES = "_sentences"
 EVERYTHING = KeyRange(0, 10**9)
 
-type Progress = Callable[[Selected, int, int], None]  # (chapter, index from 1, total)
+# (chapter, index from 1, chapters total, its sentences ready, its distinct sentences)
+type Progress = Callable[[Selected, int, int, int, int], None]
 
 
 @dataclass(frozen=True)
@@ -53,7 +54,7 @@ def build_audio(
     keys: KeyRange | None = None,
     force: bool = False,
     cover: bytes | None = None,
-    concurrency: int = 2,
+    concurrency: int = DEFAULT_CONCURRENCY,
     progress: Progress | None = None,
 ) -> AudioReport:
     """Build the stale chapters numbered within `keys` (all when None) into out_dir.
@@ -89,11 +90,14 @@ async def _build(
     cache = SentenceCache(out_dir / SENTENCES, tts)
     limit = asyncio.Semaphore(concurrency)
     for i, selected in enumerate(todo, start=1):
-        if progress:
-            progress(selected, i, len(todo))
         version = store.read_version(selected.version_id)
         lines = script.chapter_script(selected.key, version.title, version.blocks)
-        parts = await cache.render(lines, limit)
+
+        def on_sentence(done: int, total: int, selected: Selected = selected, i: int = i) -> None:
+            if progress:
+                progress(selected, i, len(todo), done, total)
+
+        parts = await cache.render(lines, limit, on_sentence)
         name = chapter_file(selected.key)
         join_mp3(parts, out_dir / name)
         tag_mp3(out_dir / name, _tags(meta, selected.key, version.title, cover))

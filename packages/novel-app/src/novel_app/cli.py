@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Annotated
 
 import typer
-from novel_audio.tts import DEFAULT_VOICE
+from novel_audio.tts import DEFAULT_CONCURRENCY, DEFAULT_VOICE
 from novel_audio.volumes import VOLUME_SIZE
 from novel_core import AlignmentDiff
 from novel_publish import epub
@@ -348,7 +348,7 @@ def build_audio_cmd(
     chapters: Annotated[str | None, typer.Option("--range", help="only chapter numbers in this range, e.g. 1-100")] = None,
     force: Annotated[bool, typer.Option(help="rebuild every chapter in --range, legacy ones too")] = False,
     voice: Annotated[str, typer.Option(help="edge-tts voice; a different voice rebuilds every built chapter")] = DEFAULT_VOICE,
-    concurrency: Annotated[int, typer.Option(help="TTS requests in flight")] = 2,
+    concurrency: Annotated[int, typer.Option(help="TTS requests in flight")] = DEFAULT_CONCURRENCY,
     out: AudioOut = None,
 ) -> None:
     """Text-to-speech MP3 per selected chapter (incremental; sentences are cached)."""

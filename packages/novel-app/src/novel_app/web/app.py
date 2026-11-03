@@ -61,7 +61,7 @@ WEB_JOBS: dict[str, tuple[str, ...]] = {
     "sync": ("novel",),
     "build-site": (),
     "build-epub": ("novel",),
-    "build-audio": ("novel",),
+    "build-audio": ("novel", "range"),
     "build-volumes": ("novel",),
     "audio-retag": ("novel",),
     "glossary-build": ("novel", "model", "cap"),
@@ -329,6 +329,8 @@ def create_app(service: Service) -> FastAPI:
         if kind not in WEB_JOBS:
             raise UserError(f"no job kind {kind!r}")
         args = {f: str(form[f]) for f in WEB_JOBS[kind] if form.get(f)}
+        if "range" in WEB_JOBS[kind] and "range" not in args and (span := _span(form)):
+            args["range"] = span
         job_id = await run_in_threadpool(lambda: service.start(kind, **args))
         return done(request, f"started job {job_id}: {JOB_LABELS[kind]} {args.get('novel', '')}".rstrip(), _back(form))
 
@@ -387,6 +389,12 @@ async def job_events(
 def sse(event: str, data: str) -> str:
     lines = data.splitlines() or [""]
     return f"event: {event}\n" + "".join(f"data: {line}\n" for line in lines) + "\n"
+
+
+def _span(form) -> str:
+    """A range from a form's optional From and To chapter fields: "50-80", "50-", "-80", or "" for all."""
+    first, last = str(form.get("from", "")).strip(), str(form.get("to", "")).strip()
+    return f"{first}-{last}" if first or last else ""
 
 
 def _back(form) -> str:

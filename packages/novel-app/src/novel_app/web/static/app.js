@@ -79,7 +79,9 @@
             const source = li.querySelector('progress');
             const text = el.querySelector('.job-progress-text');
             if (text) {
-                text.textContent = source ? `${li.dataset.label} ${source.value}/${source.max}`
+                // The drawer's "done/total · current" line, e.g. "1/102 · chapter 1 · sentence 33/412".
+                const line = li.querySelector('.job-progress')?.textContent.trim();
+                text.textContent = source ? `${li.dataset.label} ${line || `${source.value}/${source.max}`}`
                     : `${li.dataset.label} ${li.querySelector('.job-state')?.textContent || ''}`.trim();
             }
             const bar = el.querySelector('progress');
