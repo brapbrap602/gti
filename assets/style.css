@@ -1,0 +1,676 @@
+/* Reader colours. The dark values are the defaults, because the nov serve app also loads
+   this file and must stay dark; the head script in base.html sets data-theme on the
+   reader site only. */
+:root {
+  --r-bg: #0a0a0a;
+  --r-text: #e0e0e0;
+  --r-heading: #ffffff;
+  --r-rule: #2a2a2a;
+  --r-quote: #cccccc;
+  --r-quote-rule: #333;
+  --r-link: #80cbc4;
+  --r-link-hover: #a7ffeb;
+  --r-selection: #444;
+  --r-selection-text: #ffffff;
+  --r-card: #161616;
+  --r-card-border: #333;
+  --r-pill: #1f1f1f;
+  --r-pill-border: #3a3a3a;
+  --r-pill-text: #9e9e9e;
+  --r-pill-hover: #263238;
+  --r-muted: #9e9e9e;
+  --r-status: #888;
+  --r-error: #ff6b6b;
+  --r-system: #a7ffeb;
+  --r-shadow: rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --r-bg: #faf8f3;
+  --r-text: #1f1f1f;
+  --r-heading: #111111;
+  --r-rule: #ddd8cc;
+  --r-quote: #444444;
+  --r-quote-rule: #cccccc;
+  --r-link: #00695c;
+  --r-link-hover: #004d40;
+  --r-selection: #b2dfdb;
+  --r-selection-text: #000000;
+  --r-card: #ffffff;
+  --r-card-border: #ddd8cc;
+  --r-pill: #f3f0e8;
+  --r-pill-border: #d6d0c2;
+  --r-pill-text: #4a4a4a;
+  --r-pill-hover: #e0f2f1;
+  --r-muted: #5f5f5f;
+  --r-status: #666666;
+  --r-error: #c62828;
+  --r-system: #00695c;
+  --r-shadow: rgba(0, 0, 0, 0.15);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--r-bg);
+  color: var(--r-text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: calc(1.175rem * var(--r-scale, 1));
+  line-height: 1.8;
+  margin: 0 auto;
+  padding: 3rem 1.25rem;
+  overflow-x: hidden;
+  max-width: 1200px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Main content wrapper */
+.calibre {
+  width: 100%;
+}
+
+/* Paragraph styling */
+p,
+.calibre2 {
+  margin: 0 0 1.5em;
+  color: var(--r-text);
+  font-size: calc(1.175rem * var(--r-scale, 1));
+}
+
+/* Spacer/divider blocks */
+.calibre1 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Chapter headings */
+.chapter {
+  font-size: clamp(2rem, 4.5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--r-heading);
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--r-rule);
+  padding-bottom: 0.5rem;
+  letter-spacing: 0.4px;
+}
+
+/* Blockquote for emphasis or thoughts */
+blockquote {
+  font-style: italic;
+  color: var(--r-quote);
+  border-left: 3px solid var(--r-quote-rule);
+  margin: 1.5em 0;
+  padding-left: 1rem;
+}
+
+/* Links */
+a {
+  color: var(--r-link);
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+a:hover,
+a:focus {
+  text-decoration: underline;
+  color: var(--r-link-hover);
+}
+
+/* Text selection highlight */
+::selection {
+  background-color: var(--r-selection);
+  color: var(--r-selection-text);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 2rem 1rem;
+    font-size: calc(1.125rem * var(--r-scale, 1));
+  }
+
+  .calibre {
+    padding-inline: 0.5rem;
+  }
+
+  .chapter {
+    font-size: clamp(1.6rem, 6vw, 2.1rem);
+  }
+
+  p,
+  .calibre2 {
+    font-size: calc(1.125rem * var(--r-scale, 1));
+  }
+
+  .calibre1 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* =====================
+   Library page styles
+   ===================== */
+
+.library-header {
+  text-align: center;
+  border-bottom: 2px solid var(--r-rule);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+.library-header h1 {
+  margin: 0;
+  color: var(--r-heading);
+  font-weight: 700;
+}
+
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+@media (max-width: 480px) {
+  .book-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Single-entry card: the whole card is a link */
+.book-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.book-card {
+  background-color: var(--r-card);
+  border: 1px solid var(--r-card-border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Hover for single-link cards */
+.book-link:hover .book-card,
+.book-link:focus-visible .book-card {
+  transform: translateY(-4px);
+  border-color: var(--r-link);
+  box-shadow: 0 6px 20px var(--r-shadow);
+}
+
+.book-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--r-text);
+  margin: 0;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+.book-link:hover .book-title {
+  color: var(--r-heading);
+}
+
+/* Chapter-range pills for multi-part novels */
+.book-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+.book-part-link {
+  display: inline-block;
+  padding: 0.3rem 0.65rem;
+  background-color: var(--r-pill);
+  border: 1px solid var(--r-pill-border);
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--r-pill-text);
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.book-part-link:hover,
+.book-part-link:focus-visible {
+  background-color: var(--r-pill-hover);
+  border-color: var(--r-link);
+  color: var(--r-link);
+  text-decoration: none;
+  outline: none;
+}
+
+/* Resume and "All chapters" on a card */
+.continue {
+  display: inline-block;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--r-link);
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.continue:hover,
+.continue:focus-visible {
+  background-color: var(--r-pill-hover);
+  text-decoration: none;
+}
+
+.book-card .goto {
+  justify-content: center;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.book-card .goto input {
+  width: 9rem;
+}
+
+.book-card .goto-status {
+  text-align: center;
+}
+
+.all-chapters {
+  width: 100%;
+}
+
+.all-chapters summary {
+  color: var(--r-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.all-chapters summary:hover {
+  color: var(--r-link);
+}
+
+.status-msg {
+  text-align: center;
+  color: var(--r-status);
+  font-style: italic;
+  grid-column: 1 / -1;
+}
+
+.status-msg--error {
+  color: var(--r-error);
+}
+
+/* =====================
+   Reading page navigation and blocks
+   ===================== */
+
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+  font-size: 0.95rem;
+}
+
+.toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem;
+  columns: 2 320px;
+  font-size: 0.95rem;
+}
+
+.toc li {
+  break-inside: avoid;
+  margin-bottom: 0.25rem;
+}
+
+.book-meta {
+  margin: 0;
+  color: var(--r-muted);
+  font-size: 0.9rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--r-link);
+  border-radius: 4px;
+  color: var(--r-link);
+  font-size: 0.8rem;
+}
+
+.separator {
+  border: 0;
+  border-top: 1px solid var(--r-rule);
+  margin: 2rem 0;
+}
+
+.system {
+  font-family: Consolas, 'Courier New', monospace;
+  color: var(--r-system);
+  font-size: calc(1.05rem * var(--r-scale, 1));
+}
+
+.note {
+  color: var(--r-muted);
+  font-style: italic;
+  border-left: 3px solid var(--r-quote-rule);
+  padding-left: 1rem;
+  margin: 0 0 1.5em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* =====================
+   Sheets: the chapters and text-settings dialogs
+   ===================== */
+
+.sheet {
+  width: min(32rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  padding: 1.25rem;
+  background-color: var(--r-card);
+  color: var(--r-text);
+  border: 1px solid var(--r-card-border);
+  border-radius: 10px;
+  box-shadow: 0 10px 40px var(--r-shadow);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.sheet::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.sheet-title {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  color: var(--r-heading);
+}
+
+.sheet button,
+.sheet input {
+  font: inherit;
+  color: inherit;
+}
+
+.sheet button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--r-pill);
+  border: 1px solid var(--r-pill-border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sheet button:hover:not(:disabled) {
+  border-color: var(--r-link);
+}
+
+.sheet button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.sheet-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+
+.sheet-row > :first-child {
+  flex: 1;
+}
+
+.sheet output {
+  min-width: 3.5rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.sheet fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 0;
+}
+
+.sheet legend {
+  padding: 0;
+  margin-bottom: 0.5rem;
+}
+
+.sheet label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  cursor: pointer;
+}
+
+.sheet-done {
+  display: block;
+  margin-left: auto;
+}
+
+.sheet :focus-visible {
+  outline: 2px solid var(--r-link);
+  outline-offset: 2px;
+}
+
+/* =====================
+   Reading page bar: slides in on scroll up, overlays the text
+   ===================== */
+
+:root {
+  --r-bar-height: 2.75rem;
+}
+
+:root:has(.reader-bar) {
+  scroll-padding-top: var(--r-bar-height);
+}
+
+.reader-bar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  height: var(--r-bar-height);
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0 max(0.25rem, calc((100vw - 1200px) / 2));
+  background: var(--r-bg);
+  border-bottom: 1px solid var(--r-rule);
+  font-size: 0.95rem;
+  line-height: 1.2;
+  transform: translateY(-100%);
+  transition: transform 0.2s ease;
+}
+
+.reader-bar--shown {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reader-bar {
+    transition: none;
+  }
+}
+
+.reader-bar a,
+.reader-bar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0 0.5rem;
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  color: var(--r-link);
+  font: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.reader-bar .bar-prev,
+.reader-bar .bar-next {
+  min-width: 2.5rem;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.reader-bar [aria-disabled="true"] {
+  color: var(--r-muted);
+  opacity: 0.4;
+  cursor: default;
+}
+
+.bar-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--r-text);
+  text-align: center;
+}
+
+.reader-bar :focus-visible {
+  outline: 2px solid var(--r-link);
+  outline-offset: -2px;
+}
+
+@media (max-width: 480px) {
+  .reader-bar {
+    font-size: 0.85rem;
+  }
+
+  .reader-bar a,
+  .reader-bar button {
+    padding: 0 0.35rem;
+  }
+}
+
+/* The chapters sheet and "Go to chapter" */
+
+.sheet-toc ol {
+  list-style: none;
+  max-height: 40vh;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.sheet-toc li {
+  margin: 0;
+}
+
+.sheet-toc a {
+  display: block;
+  padding: 0.4rem 0.25rem;
+  border-radius: 4px;
+}
+
+.sheet-toc a[aria-current] {
+  background-color: var(--r-pill-hover);
+  font-weight: 700;
+}
+
+.sheet .page-nav {
+  margin: 0 0 1rem;
+}
+
+.goto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
+
+.goto input,
+.goto button {
+  min-height: 2.5rem;
+  font: inherit;
+  font-size: 0.95rem;
+  border-radius: 6px;
+}
+
+.goto button {
+  min-width: 3rem;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--r-pill);
+  color: var(--r-text);
+  border: 1px solid var(--r-pill-border);
+  cursor: pointer;
+}
+
+.goto button:hover {
+  border-color: var(--r-link);
+}
+
+.goto input {
+  width: 10.5rem;
+  padding: 0.25rem 0.6rem;
+  background-color: var(--r-bg);
+  color: var(--r-text);
+  border: 1px solid var(--r-pill-border);
+}
+
+.goto input::placeholder {
+  color: var(--r-muted);
+}
+
+.goto-status:empty {
+  display: none;
+}
+
+.goto-status {
+  flex-basis: 100%;
+  margin: 0;
+  min-height: 1.5em;
+  color: var(--r-muted);
+  font-size: 0.9rem;
+}
