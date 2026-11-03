@@ -6,10 +6,12 @@ from novel_sources import fetch
 from novel_sources.backends import backend_for, spec_for_url
 from novel_sources.clean import normalize
 from novel_sources.fetch import FetchError, firefox_scraper
+from novel_sources.hangulplanet import HangulPlanetSource
 from novel_sources.lncrawl import LncrawlSource
 from novel_sources.skydemonorder import SkyDemonOrderSource, free_chapters
 
 PROJECT = "https://skydemonorder.com/projects/38-return"
+NOVEL = "https://hangulplanet.com/novel/tunnels"
 
 
 def test_fetch_error_is_an_os_error_so_one_chapter_never_stops_a_sync():
@@ -26,6 +28,8 @@ def test_backend_by_host():
     assert backend_for(f"{PROJECT}/") == "custom:skydemonorder"
     assert backend_for("https://novelbuddy.me/some-novel") == "lncrawl"
     assert spec_for_url(f"{PROJECT}/", "en").url == PROJECT
+    assert backend_for(f"{NOVEL}#chapters") == "custom:hangulplanet"
+    assert spec_for_url(f"{NOVEL}/#chapters", "en").url == NOVEL
     with pytest.raises(ValueError):
         spec_for_url("https://a.test/n", "en", backend="no-such-backend")
 
@@ -110,3 +114,62 @@ def test_skydemonorder_chapter_and_its_failures():
 def test_free_chapters_needs_the_list():
     with pytest.raises(FetchError, match="no free chapter list"):
         free_chapters(PROJECT, "<div x-data=\"{ activeTab: 'free' }\"></div>")
+
+
+# -- hangulplanet --------------------------------------------------------------
+
+NOVEL_PAGE = """<html><head><meta property="og:title" content="Tunnels "/></head><body>
+<a href="/novel/tunnels#chapters">Chapters</a><a href="/novel/tunnels/chapter-1">Start reading</a>
+<a href="/novel/tunnels/chapter-4">4</a><a href="/novel/tunnels/chapter-3">3</a>
+<a href="/novel/other/chapter-9">elsewhere</a></body></html>"""
+
+
+def sitemap(*locs):
+    return "<urlset>" + "".join(f"<url><loc>{loc}</loc></url>" for loc in locs) + "</urlset>"
+
+
+class HangulPlanetScraper:
+    """The site: a novel page linking its newest chapters, a sitemap index, two chapter sitemaps."""
+
+    def __init__(self, index=None, chapter_status=200):
+        self.pages = {
+            NOVEL: NOVEL_PAGE,
+            "https://hangulplanet.com/content/sitemap.xml": index or sitemap(
+                "https://hangulplanet.com/content/sitemap/novels-0.xml",
+                "https://hangulplanet.com/content/sitemap/chapters-0.xml",
+                "https://hangulplanet.com/content/sitemap/chapters-1.xml"),
+            "https://hangulplanet.com/content/sitemap/chapters-0.xml": sitemap(
+                f"{NOVEL}/chapter-1", f"{NOVEL}/chapter-2", "https://hangulplanet.com/novel/tunnels-two/chapter-5"),
+            "https://hangulplanet.com/content/sitemap/chapters-1.xml": sitemap(f"{NOVEL}/chapter-3"),
+        }
+        self.chapter_status = chapter_status
+        self.gets = []
+
+    def get(self, url):
+        self.gets.append(url)
+        if url in self.pages:
+            return Response(self.pages[url])
+        return Response(f'<div class="reader-prose"><p>Text at {url}.</p></div>', self.chapter_status)
+
+
+def test_hangulplanet_index_joins_the_chapter_sitemaps_and_the_novel_page():
+    scraper = HangulPlanetScraper()
+    index = HangulPlanetSource(HangulPlanetSource.spec_for(NOVEL), scraper).fetch_index()
+    assert index.meta.title == "Tunnels"
+    assert [(i.ref, i.position, i.number, i.title) for i in index.items] == [
+        (f"/novel/tunnels/chapter-{n}", n, n, f"Chapter {n}") for n in (1, 2, 3, 4)
+    ]
+    assert "https://hangulplanet.com/content/sitemap/novels-0.xml" not in scraper.gets
+
+
+def test_hangulplanet_chapter_and_its_failures():
+    source = HangulPlanetSource(HangulPlanetSource.spec_for(NOVEL), HangulPlanetScraper())
+    raw = source.fetch_chapter(SourceItem("/novel/tunnels/chapter-2", 2, "Chapter 2", number=2))
+    assert [b.text for b in normalize(raw, source.clean_rules(raw))] == [f"Text at {NOVEL}/chapter-2."]
+
+    gone = HangulPlanetSource(HangulPlanetSource.spec_for(NOVEL), HangulPlanetScraper(chapter_status=404))
+    with pytest.raises(FetchError, match="HTTP 404"):
+        gone.fetch_chapter(SourceItem("/novel/tunnels/chapter-9", 9, "Chapter 9", number=9))
+    no_sitemap = HangulPlanetSource(HangulPlanetSource.spec_for(NOVEL), HangulPlanetScraper(index=sitemap()))
+    with pytest.raises(FetchError, match="no chapter sitemap"):
+        no_sitemap.fetch_index()

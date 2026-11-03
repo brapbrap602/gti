@@ -188,9 +188,10 @@ def test_unknown_host_has_no_rules():
          "Who Let Him Cultivate?! (WX)-Chapter 135: Apothecary", 56, 2),
         ("skydemonorder", "https://skydemonorder.com/projects/3801994495-return-of-the-mount-hua-sect/235-what-is",
          "What Is With That One? (5)", 171, 0),
+        ("hangulplanet", "https://hangulplanet.com/novel/hiding-tunnels-in-xianxia/chapter-1", "Chapter 1", 135, 3),
     ],
     ids=["norm-host-freewebnovel", "norm-host-novelbin", "norm-host-novelbuddy-me", "norm-host-novelbuddy-com",
-         "norm-host-skydemon"],
+         "norm-host-skydemon", "norm-host-hangulplanet"],
 )  # fmt: skip
 def test_host_page(host_fixtures, fixture, url, title, paragraphs, separators):
     html = (host_fixtures / f"{fixture}.html").read_text(encoding="utf-8")

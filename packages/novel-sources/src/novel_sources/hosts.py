@@ -120,6 +120,7 @@ HOSTS: dict[str, CleanRules] = {
     # novelbuddy.me (current layout) and novelbuddy.com (older layout).
     "novelbuddy": CleanRules(content=("div.novel-tts-content", "div.content-inner")),
     "skydemonorder": CleanRules(content=("div#chapter-body",)),
+    "hangulplanet": CleanRules(content=("div.reader-prose",)),
 }
 
 
