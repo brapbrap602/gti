@@ -1,7 +1,8 @@
 """Which backend reads a URL, and opening a stored source spec as a live Source.
 
 A host with a custom backend uses it: those exist because lncrawl's crawler for
-the host fails (skydemonorder). A host the user wrote a decode guide for uses it.
+the host fails (skydemonorder) or lncrawl has none and its list needs more than
+one page (hangulplanet). A host the user wrote a decode guide for uses it.
 A Chinese raw site novel-downloader has a plugin for goes to it. Then lncrawl, when
 it has a crawler for the host (asking it loads lncrawl's crawler index); failing
 that, web-novel-scraper's shipped decode guide for the host (novelbin, which lncrawl
@@ -20,14 +21,14 @@ from pathlib import Path
 
 from novel_core import Kind, SourceSpec
 
-from novel_sources import decode_guide, lncrawl, lnreader, noveldl, skydemonorder, zh_notes, zh_tables
+from novel_sources import decode_guide, hangulplanet, lncrawl, lnreader, noveldl, skydemonorder, zh_notes, zh_tables
 from novel_sources.decode_guide import Guides
 from novel_sources.fetch import firefox_scraper
 from novel_sources.hosts import site_name
 from novel_sources.sync import Source
 from novel_sources.zh_rules import ZhRules
 
-CUSTOM = {"skydemonorder": skydemonorder.BACKEND}
+CUSTOM = {"skydemonorder": skydemonorder.BACKEND, "hangulplanet": hangulplanet.BACKEND}
 BACKENDS = (lncrawl.BACKEND, noveldl.BACKEND, decode_guide.BACKEND, lnreader.BACKEND, *CUSTOM.values())
 
 
@@ -67,6 +68,9 @@ def open_source(spec: SourceSpec, state: Path, guides: Guides = Guides()) -> Ite
         elif spec.backend == skydemonorder.BACKEND:
             scraper = stack.enter_context(firefox_scraper(spec.url, state))
             source = skydemonorder.SkyDemonOrderSource(spec, scraper)
+        elif spec.backend == hangulplanet.BACKEND:
+            scraper = stack.enter_context(firefox_scraper(spec.url, state))
+            source = hangulplanet.HangulPlanetSource(spec, scraper)
         elif spec.backend == decode_guide.BACKEND:
             scraper = stack.enter_context(firefox_scraper(spec.url, state))
             source = decode_guide.DecodeGuideSource(spec, guides, scraper)
@@ -79,6 +83,8 @@ def spec_for_url(url: str, lang: str, backend: str | None = None, guides: Guides
     backend = backend or backend_for(url, guides)
     if backend == skydemonorder.BACKEND:
         return skydemonorder.SkyDemonOrderSource.spec_for(url)
+    if backend == hangulplanet.BACKEND:
+        return hangulplanet.HangulPlanetSource.spec_for(url)
     if backend == noveldl.BACKEND:
         return noveldl.NovelDownloaderSource.spec_for(url)
     if backend == decode_guide.BACKEND:
