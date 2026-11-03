@@ -7,13 +7,22 @@ from novel_audio.legacy import Shift
 from novel_core import ChapterKey, KeyRange
 
 
+OPEN_END = 10**9  # the end of "50-": past any chapter number
+
+
 def parse_range(text: str) -> KeyRange:
-    """'1-100' or '7'."""
-    m = re.fullmatch(r"\s*(\d+)\s*(?:-\s*(\d+))?\s*", text)
-    if m is None:
-        raise ValueError(f"{text!r} is not a range of chapter numbers like 1-100 or 7")
-    start = int(m.group(1))
-    return KeyRange(start, int(m.group(2) or start))
+    """'1-100' or '7'; '50-' runs to the last chapter and '-80' from the first."""
+    m = re.fullmatch(r"\s*(?:(\d+)\s*(-)?\s*(\d*)|-\s*(\d+))\s*", text)
+    if m is None or (m.group(3) and not m.group(2)):  # "5 7" is not a range
+        raise ValueError(f"{text!r} is not a range of chapter numbers like 1-100, 7, 50- or -80")
+    first, dash, last, only_last = m.groups()
+    if only_last:
+        return KeyRange(0, int(only_last))
+    start = int(first)
+    end = int(last) if last else OPEN_END if dash else start
+    if start > end:
+        raise ValueError(f"{text!r} starts after it ends")
+    return KeyRange(start, end)
 
 
 def parse_key(text: str) -> ChapterKey:

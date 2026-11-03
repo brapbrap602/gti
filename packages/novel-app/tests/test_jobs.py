@@ -1,3 +1,4 @@
+import re
 import threading
 
 import pytest
@@ -119,6 +120,19 @@ def test_run_in_the_callers_thread_echoes_and_keeps_progress(board, runner):
     with pytest.raises(KeyboardInterrupt):
         runner.run("a", "sync", {}, lambda job: (_ for _ in ()).throw(KeyboardInterrupt), lines.append)
     assert board.jobs()[0].state is JobState.INTERRUPTED
+
+
+def test_the_log_gets_a_line_as_each_item_starts(board, runner):
+    def work(job):
+        for i in (1, 2):
+            for sentence in (0, 1, 2):  # progress within an item, like an audio chapter's sentences
+                job.progress(i, 2, f"chapter {i} · sentence {sentence}/2")
+        return Outcome()
+
+    runner.run("a", "build-audio", {}, work, lambda line: None)
+    lines = board.log_path(board.jobs()[0].id).read_text(encoding="utf-8").splitlines()
+    assert [line.split(" ", 1)[1] for line in lines] == ["[1/2] chapter 1 · sentence 0/2", "[2/2] chapter 2 · sentence 0/2"]
+    assert all(re.fullmatch(r"\d\d:\d\d:\d\d", line.split(" ", 1)[0]) for line in lines)
 
 
 def test_jobs_list_active_first(board, runner):

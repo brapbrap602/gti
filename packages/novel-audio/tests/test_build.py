@@ -31,6 +31,16 @@ def test_builds_tagged_chapter_mp3s_from_heading_and_sentences(book, tts, out):
     assert {k: r.artifact for k, r in rows(book.store).items()} == {"1": "chapter_0001.mp3", "2": "chapter_0002.mp3"}
 
 
+def test_progress_counts_each_chapters_sentences_as_they_are_ready(book, tts, out):
+    book.chapters(book.source(), [1, 2])
+    seen = []
+
+    build_audio(book.store, out, tts, progress=lambda s, i, n, d, m: seen.append((s.key.label, i, n, d, m)))
+
+    # three distinct sentences a chapter (heading and two paragraphs): 0/3 before any is ready
+    assert seen == [("1", 1, 2, d, 3) for d in range(4)] + [("2", 2, 2, d, 3) for d in range(4)]
+
+
 def test_second_build_does_nothing(book, tts, out):
     book.chapters(book.source(), [1, 2])
     build_audio(book.store, out, tts)

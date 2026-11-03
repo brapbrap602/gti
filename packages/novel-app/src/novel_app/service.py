@@ -22,7 +22,7 @@ from pathlib import Path
 from novel_audio.build import build_audio, retag_audio
 from novel_audio.legacy import Positions, TitleNumbers, register_legacy
 from novel_audio.media import MediaError
-from novel_audio.tts import DEFAULT_VOICE, EdgeTts, TtsEngine
+from novel_audio.tts import DEFAULT_CONCURRENCY, DEFAULT_VOICE, EdgeTts, TtsEngine
 from novel_audio.volumes import VOLUME_SIZE, build_volumes
 from novel_core import (
     AlignmentDiff,
@@ -375,7 +375,7 @@ class Service:
         range: str | None = None,
         force: bool = False,
         voice: str = DEFAULT_VOICE,
-        concurrency: int = 2,
+        concurrency: int = DEFAULT_CONCURRENCY,
         out: str | None = None,
     ):
         self._require(novel)
@@ -388,7 +388,8 @@ class Service:
                 try:
                     r = build_audio(
                         store, folder, tts, keys=keys, force=force, cover=self._cover(novel, store),
-                        concurrency=concurrency, progress=lambda s, i, n: job.progress(i, n, f"chapter {s.key.label}"),
+                        concurrency=concurrency,
+                        progress=lambda s, i, n, d, m: job.progress(i, n, f"chapter {s.key.label} · sentence {d}/{m}"),
                     )  # fmt: skip
                 except MediaError as e:
                     job.log(f"audio build stopped: {e}")

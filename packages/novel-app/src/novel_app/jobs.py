@@ -105,6 +105,7 @@ class Job:
         self._cancel = threading.Event()
         self._last_persist = 0.0
         self._last_echo = 0.0
+        self._logged_done = 0
         self.last_progress: tuple[int, int, str] | None = None
 
     def log(self, line: str) -> None:
@@ -119,6 +120,10 @@ class Job:
         if done == total or now - self._last_persist >= PERSIST_EVERY:
             self._board.set_progress(self.id, done, total, current)
             self._last_persist = now
+        if done != self._logged_done:  # one log line per item, as it starts, so a running job's log grows
+            stamp = time.strftime("%H:%M:%S", time.localtime(now))
+            self._board.append_log(self.id, f"{stamp} [{done}/{total}] {current}")
+            self._logged_done = done
         if self._echo and (done in (1, total) or now - self._last_echo >= 2.0):
             self._echo(f"  [{done}/{total}] {current}")
             self._last_echo = now

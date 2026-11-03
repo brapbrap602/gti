@@ -235,7 +235,9 @@ html.js .toast { animation: toast-in 0.2s ease-out; }
 aside.jobs:not(.show-recent) .job-list--recent { display: none; }
 
 /* A novel's running job where the novel is shown (card, header), mirrored from #jobs. */
-.job-mirror { display: flex; flex-direction: column; gap: 0.375rem; flex-basis: 100%; }
+.job-mirror { display: flex; flex-direction: column; gap: 0.375rem; }
+/* In a card footer (a wrapping row) the mirror takes a line of its own; in main#main, a column, a 100% basis would be its height. */
+.card-footer .job-mirror { flex-basis: 100%; }
 .job-mirror-head { display: flex; align-items: center; gap: 0.375rem; color: var(--info); font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
 .job-mirror-head .icon, .busy .icon--loader { animation: spin 1.4s linear infinite; }
 

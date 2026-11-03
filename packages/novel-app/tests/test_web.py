@@ -163,6 +163,34 @@ def test_retag_from_the_build_menu(client, service):
     assert finished(service, job_id).state is JobState.DONE
     assert "test-novel: 0 chapter MP3s tagged" in client.get(f"/jobs/{job_id}/log").text
 
+class SilentTts:
+    voice = "silent"
+
+    def __init__(self, voice):
+        pass
+
+    async def synthesize(self, text):
+        return b""
+
+
+@pytest.mark.parametrize(
+    ("first", "last", "range_"),
+    [("2", "3", "2-3"), ("2", "", "2-"), ("", "3", "-3"), ("", "", None)],
+    ids=["both", "from-only", "to-only", "all"],
+)
+def test_audio_from_the_build_menu_takes_an_optional_chapter_span(site, first, last, range_):
+    service = Service(JobRunner(JobBoard(app_db())), tts=SilentTts)
+    added(service)
+    with TestClient(create_app(service)) as client:
+        page = client.get("/novels/test-novel").text
+        assert 'name="from"' in page and 'name="to"' in page
+        form = {"kind": "build-audio", "novel": "test-novel", "from": first, "to": last}
+        ok = client.post("/jobs", data=form, headers={"HX-Request": "true"})
+        job_id = int(re.search(r"started job (\d+)", ok.text).group(1))
+        row = finished(service, job_id)
+    assert row.args.get("range") == range_
+
+
 def test_job_interrupted_at_startup(site, service):
     dead = JobBoard(app_db(), clock=lambda: 0.0)  # its heartbeat is decades old
     job_id = dead.claim("test-novel", "sync", {"novel": "test-novel"})
