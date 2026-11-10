@@ -154,6 +154,14 @@ STATUS_LABELS = {
     NovelStatus.UNKNOWN: "status unknown",
 }
 
+# The library's filter tabs, in order: each status a library row can have, and its tab label.
+LIBRARY_STATUSES = {
+    NovelStatus.RUNNING: "Running",
+    NovelStatus.REBUILD: "Needs rebuild",
+    NovelStatus.RAW_ONLY: "Raw only",
+    NovelStatus.OK: "Up to date",
+}
+
 
 @dataclass(frozen=True)
 class NavRow:

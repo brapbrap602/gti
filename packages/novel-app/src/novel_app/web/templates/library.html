@@ -28,8 +28,17 @@
     {{ stat("Needs rebuild", rows | selectattr("needs_rebuild") | list | length, "novels with stale outputs", icon_name="hammer", help=help.stat.rebuild) }}
     {{ stat("Jobs", running ~ " running", (problems ~ " problem" ~ ("s" if problems != 1)) if problems else "no problems", icon_name="activity", help=help.stat.jobs) }}
 </section>
+<nav class="tabs library-filter" aria-label="Novels by status">
+    <a class="tab" href="/"{% if not filter_status %} aria-current="page"{% endif %}>All <span class="count">{{ rows | length }}</span></a>
+    {% for s, label in library_statuses.items() %}
+    <a class="tab" href="/?status={{ s }}" title="{{ status_labels[s] }}"{% if s == filter_status %} aria-current="page"{% endif %}><span class="dot dot--{{ s }}" aria-hidden="true"></span>{{ label }} <span class="count">{{ rows | selectattr("status", "equalto", s) | list | length }}</span></a>
+    {% endfor %}
+</nav>
+{% if not shown %}
+{% call empty("library") %}<p>No novel is “{{ library_statuses[filter_status] | lower }}” right now. <a href="/">Show all novels</a>.</p>{% endcall %}
+{% endif %}
 <ul class="novel-cards">
-    {% for r in rows %}
+    {% for r in shown %}
     <li class="card novel-card" data-novel="{{ r.slug }}">
         <div class="card-header">
             <h2 class="card-title novel-card-title">

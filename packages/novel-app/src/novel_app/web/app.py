@@ -37,10 +37,12 @@ from novel_app.jobs import JobPanel, JobRunning, JobState
 from novel_app.notation import parse_range
 from novel_app.pages import (
     CELL_LABELS,
+    LIBRARY_STATUSES,
     STATUS_LABELS,
     CellState,
     LibraryRow,
     NavRow,
+    NovelStatus,
     align_range_command,
     findings_text,
     reclean_command,
@@ -97,7 +99,7 @@ def create_app(service: Service) -> FastAPI:
     templates.env.filters["ago"] = _ago
     templates.env.filters["markdown"] = lambda text: Markup(MARKDOWN.render(text))
     templates.env.globals.update(
-        job_labels=JOB_LABELS, cell_labels=CELL_LABELS, status_labels=STATUS_LABELS, CellState=CellState, Kind=Kind, JobState=JobState,
+        job_labels=JOB_LABELS, cell_labels=CELL_LABELS, status_labels=STATUS_LABELS, library_statuses=LIBRARY_STATUSES, CellState=CellState, Kind=Kind, JobState=JobState,
         backends=BACKENDS, owns=service.runner.owns, source_label=source_label,
         contexts=CONTEXTS, reasoning_levels=REASONING, data_collection=DATA_COLLECTION,
         setup_name=setup_name, words=words, align_range_command=align_range_command,
@@ -151,9 +153,13 @@ def create_app(service: Service) -> FastAPI:
     # -- pages -----------------------------------------------------------------
 
     @app.get("/", response_class=HTMLResponse)
-    async def library(request: Request):
+    async def library(request: Request, status: str = ""):
         rows = await run_in_threadpool(service.library)
-        return await page(request, "library.html", rows=rows, nav_rows=nav_rows(rows))
+        shown = NovelStatus(status) if status in NovelStatus else None  # anything else shows every novel
+        return await page(
+            request, "library.html", rows=rows, filter_status=shown, nav_rows=nav_rows(rows),
+            shown=[r for r in rows if shown in (None, r.status)],
+        )  # fmt: skip
 
     @app.get("/novels/{novel}", response_class=HTMLResponse)
     async def novel(request: Request, novel: str):

@@ -15,6 +15,9 @@
         document.documentElement.classList.add('js');
         document.documentElement.dataset.tab =
             ['sources', 'chapters', 'translate', 'check'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'chapters';
+        // The sidebar's status filter, remembered per browser (app.js keeps it).
+        try { document.documentElement.dataset.navStatus = localStorage.getItem('navStatus') || 'all'; }
+        catch (e) { document.documentElement.dataset.navStatus = 'all'; }
     </script>
     <link rel="preload" href="/static/vendor/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/static/ui.css">
@@ -37,9 +40,18 @@
     <h2 class="nav-heading">Novels</h2>
     {# Refreshed out of band whenever main reloads; ids keep keyboard focus across that swap. #}
     <ul id="nav-novels" class="nav-list nav-novels">
+        {% if nav_rows %}
+        {# Filters the list in the browser: <html data-nav-status> and app.css pick what shows. #}
+        <li class="nav-filter" role="group" aria-label="Show novels by status">
+            <button type="button" class="nav-chip" data-nav-status="all" title="All novels" aria-pressed="false">All <span class="count">{{ nav_rows | length }}</span></button>
+            {% for s, label in library_statuses.items() %}
+            <button type="button" class="nav-chip" data-nav-status="{{ s }}" title="{{ label }}" aria-pressed="false"><span class="dot dot--{{ s }}" aria-hidden="true"></span><span class="visually-hidden">{{ label }}: </span><span class="count">{{ nav_rows | selectattr("status", "equalto", s) | list | length }}</span></button>
+            {% endfor %}
+        </li>
+        {% endif %}
         {% for n in nav_rows %}
         {% set home = "/novels/" ~ n.slug %}
-        <li data-novel="{{ n.slug }}">
+        <li data-novel="{{ n.slug }}" data-status="{{ n.status }}">
             <a id="nav-{{ n.slug }}" class="nav-link" href="{{ home }}" title="{{ n.title }}"
                {% if request.url.path == home or request.url.path.startswith(home ~ "/") %} aria-current="page"{% endif %}>
                 <span class="dot dot--{{ n.status }}" title="{{ status_labels[n.status] }}"><span class="visually-hidden">{{ status_labels[n.status] }}: </span></span>

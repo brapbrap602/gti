@@ -123,6 +123,22 @@
         });
     }
 
+    // -- the sidebar's status filter -----------------------------------------------------
+
+    // The choice lives on <html data-nav-status> (set before paint from localStorage), so the
+    // sidebar list's live swaps keep it; app.css hides the other novels.
+    function setNavStatus(status) {
+        root.dataset.navStatus = status;
+        try { localStorage.setItem('navStatus', status); } catch (e) { /* not remembered */ }
+        syncNavFilter();
+    }
+
+    function syncNavFilter() {
+        const chips = [...document.querySelectorAll('.nav-chip')];
+        if (!chips.some((b) => b.dataset.navStatus === root.dataset.navStatus)) root.dataset.navStatus = 'all';
+        chips.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.navStatus === root.dataset.navStatus)));
+    }
+
     // -- events ---------------------------------------------------------------------
 
     document.addEventListener('click', (e) => {
@@ -145,6 +161,11 @@
         if (t.closest('.recent-toggle')) {
             document.querySelector('aside.jobs').classList.toggle('show-recent');
             sync();
+            return;
+        }
+        const chip = t.closest('.nav-chip');
+        if (chip) {
+            setNavStatus(chip.dataset.navStatus);
             return;
         }
         if (t.closest('.toast-close')) {
@@ -193,6 +214,7 @@
     document.addEventListener('htmx:afterSwap', (e) => {
         if (e.detail.target && e.detail.target.id === 'notice') armToast();
         showTab(root.dataset.tab);
+        syncNavFilter();
         sync();
     });
 
@@ -200,6 +222,7 @@
         const aside = document.querySelector('aside.jobs');
         if (aside) new MutationObserver(sync).observe(aside, { childList: true, subtree: true });
         showTab(root.dataset.tab);
+        syncNavFilter();
         sync();
         armToast();  // the ?notice= of a plain form's redirect
     });

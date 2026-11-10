@@ -310,6 +310,31 @@ def test_the_tab_survives_a_live_reload(novels, desktop, app_url, service):
     service.runner.board.finish(job, JobState.DONE)
 
 
+SHOWN_IN_SIDEBAR = "[...document.querySelectorAll('#nav-novels li[data-status]')].filter((li) => li.offsetParent).map((li) => li.dataset.novel)"
+
+
+def test_the_sidebar_filters_novels_by_status_across_pages_and_live_reloads(novels, desktop, app_url, service):
+    statuses = {r.slug: r.status for r in service.library()}
+    raw = sorted(s for s, st in statuses.items() if st == "raw-only")
+    assert raw and len(raw) < len(statuses)
+    desktop.goto(app_url + "/")
+    desktop.click(".nav-chip[data-nav-status=raw-only]")
+    assert sorted(desktop.js(SHOWN_IN_SIDEBAR)) == raw
+    assert desktop.js("document.querySelector('.nav-chip[data-nav-status=raw-only]').getAttribute('aria-pressed')") == "true"
+
+    desktop.goto(app_url + "/add")  # remembered on another page
+    assert sorted(desktop.js(SHOWN_IN_SIDEBAR)) == raw
+    desktop.js("document.getElementById('main').dataset.before = 'reload'")
+    job = service.runner.board.claim("other", "sync", {})  # a job starting swaps the sidebar list
+    desktop.wait_for("!document.getElementById('main').dataset.before")
+    assert sorted(desktop.js(SHOWN_IN_SIDEBAR)) == raw
+    assert desktop.js("document.querySelector('.nav-chip[data-nav-status=raw-only]').getAttribute('aria-pressed')") == "true"
+    service.runner.board.finish(job, JobState.DONE)
+
+    desktop.click(".nav-chip[data-nav-status=all]")
+    assert sorted(desktop.js(SHOWN_IN_SIDEBAR)) == sorted(statuses)
+
+
 def test_a_link_to_check_switches_tabs_every_time(openrouter, desktop, app_url, service):
     service.add_setup("raw-novel", TranslatorSetup("vendor/cheap"))
     needs_review(service)

@@ -296,6 +296,26 @@ def test_library_cards_name_link_and_sync_each_novel(client, service, novels):
     assert 'name="kind" value="sync"' in syncable and 'name="novel" value="test-novel"' in syncable
 
 
+def card_slugs(page: str) -> list[str]:
+    return re.findall(r'<li class="card novel-card" data-novel="([^"]+)"', page)
+
+
+def test_library_filters_novels_by_status(client, service, novels):
+    added(service)
+    by_status = {r.slug: r.status for r in service.library()}
+    assert "raw-only" in by_status.values() and "ok" in by_status.values()
+
+    for status in ("raw-only", "ok"):
+        page = client.get("/", params={"status": status}).text
+        assert sorted(card_slugs(page)) == sorted(s for s, st in by_status.items() if st == status)
+        assert re.findall(r'<a class="tab" href="([^"]*)"[^>]*aria-current="page"', page) == [f"/?status={status}"]
+
+    running = client.get("/", params={"status": "running"}).text
+    assert card_slugs(running) == [] and "Show all novels" in running
+    everything = client.get("/", params={"status": "bogus"}).text  # an unknown status shows every novel
+    assert sorted(card_slugs(everything)) == sorted(by_status)
+
+
 def compare_page(client, slug: str, number: int = 1) -> str:
     page = client.get(f"/novels/{slug}/compare", params={"number": number})
     assert page.status_code == 200
