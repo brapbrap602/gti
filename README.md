@@ -23,6 +23,7 @@ uv run nov import wns "%LOCALAPPDATA%\web-novel-scraper\web-novel-scraper\<Title
 uv run nov import mtl "<MtlTings>\data\raw\<novel>"         # raws as raw-zh; data\translated\<novel> as my-translation
 uv run nov import scribble "<file>" --novel <slug>          # scribblehub text dump ('## Chapter N: Title' markers)
 uv run nov import calibre "novels\<Novel>" --novel <slug>   # old site's Calibre HTML pages; import last (ranks lowest)
+uv run nov import epub "<book.epub>" --novel <slug>         # an EPUB: chapters from its table of contents (zh EPUBs as raw-zh)
 uv run nov add <url> [--novel <slug>]    # attach a web source (creates the novel if new); --lang zh for raws
 uv run nov sync <slug>|--all             # fetch the chapters the book lacks (--refresh 1400-1414 refetches)
 uv run nov priority <slug> [3,1,2]       # show the sources best first, or set the order

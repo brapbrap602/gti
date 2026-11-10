@@ -140,6 +140,25 @@ def test_import_legacy_stores_into_one_novel_then_rank_them(data_dir, tmp_path):
     assert run("priority", "test-novel", "5").exit_code == 2
 
 
+def test_import_epub(data_dir, tmp_path):
+    import zipfile
+
+    book = tmp_path / "book.epub"
+    with zipfile.ZipFile(book, "w") as z:
+        z.writestr("META-INF/container.xml", '<container><rootfiles><rootfile full-path="book.opf"/></rootfiles></container>')
+        z.writestr("book.opf", (
+            '<package xmlns:dc="http://purl.org/dc/elements/1.1/"><metadata><dc:title>Test Novel</dc:title></metadata>'
+            '<manifest><item id="c1" href="c1.html"/></manifest><spine><itemref idref="c1"/></spine></package>'
+        ))  # fmt: skip
+        z.writestr("c1.html", "<html><body><h2>Chapter 1: Start</h2><p>Text.</p></body></html>")
+
+    result = run("import", "epub", book)  # the slug comes from the book's title
+    assert result.exit_code == 0, result.output
+    assert "created test-novel" in result.output and "texts: 1 stored" in result.output
+    result = run("priority", "test-novel")
+    assert "1. source 1: import:epub official-en" in result.output
+
+
 def test_import_mtl_rejects_other_folders(data_dir, tmp_path):
     result = run("import", "mtl", tmp_path)
     assert result.exit_code == 2 and "data/raw or data/translated" in result.output

@@ -41,3 +41,18 @@ A translator setup can send several consecutive chapters in one request (`group`
 In a five-chapter request, DeepSeek skipped paragraphs in 4 chapters, so its good chapter was thrown away too. The fix is to keep the chapters that pass the hard checks and resend only the failed ones, alone (`phase_b._Run.group_request` hard checks, and `compare`'s `done`).
 
 Separately, a failed attempt's raw answer is not kept anywhere. "Exceeded maximum output retries" (DeepSeek and Qwen on long chapters and on groups) can't be diagnosed after the fact. Keep the last raw response, or its first and last few kB, with the failure in the comparison bundle.
+
+## Sources: gaps found while adding novels (2026-11-09)
+
+- **No command to set a title or author.** `NovelStore.set_meta(replace(meta, ...))` from Python works (sync never overwrites it); a `nov meta <slug> --title/--author` would do.
+- **Bulk keying has no CLI.** Split chapters (`26.1`/`26.2`), author notes (`Npt2` of the chapter before) and URL-numbered sources were keyed through `_service()._edit_alignment` from Python. A `nov align` mode that keys by the URL's number, or by `N.k` → `Nptk` in titles, would cover most cases.
+- **lnreader URLs need a trailing `/`** for Wuxiaworld: `plugin_for` (`novel_sources/lnreader.py`) could normalise it, or refuse a URL without one.
+- **lncrawl's Wuxiaworld crawler fails** with `MessageToDict() got an unexpected keyword argument 'float_precision'` (pyease-grpc 1.8.0, the latest, passes `float_precision`, which protobuf 7 removed; the user chose not to pin protobuf). Use `--backend lnreader`.
+- **freewebnovel's index order** comes back scrambled in 40-item blocks (pages finishing out of order), so positions are wrong; keys come from numbers and are fine.
+- **EPUB import limits** (`nov import epub`, `novel_sources/epub.py`; surveyed on ~215 books in the user's two Calibre folders):
+  - books whose only chapter numbers are file names (The Legendary Mechanic, Qi Peijia copy: `00001-Rebirth.html`) are refused;
+  - PDF conversions with no TOC and no headings, chapter titles in plain `<p>` (mount_hua_182-300, k) are refused;
+  - omnibus books that restart numbering per book (Godsfall, Star Rank Hunter, Grandmaster Strategist) import with duplicate keys and need `nov align`;
+  - images in chapters keep their in-book paths and are not extracted;
+  - an English EPUB is always `official-en`: the store has no fan-translation or MTL kind.
+- **`nov reclean` is zh-only.** English chapters keep the cleaning they were stored with, so `TL:` notes dropped before 2026-11-09 (when the credit rule began keeping them) stay dropped until refetched; their raws are kept, so an English reclean could restore them.

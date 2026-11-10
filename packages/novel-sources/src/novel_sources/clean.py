@@ -8,10 +8,11 @@ styles, <hr> and symbol-only lines ("***", "❄️❄️❄️") become separato
 """
 
 import re
+import warnings
 from collections.abc import Callable, Iterator, Sequence
 from dataclasses import dataclass
 
-from bs4 import BeautifulSoup, Comment, NavigableString, Tag
+from bs4 import BeautifulSoup, Comment, NavigableString, Tag, XMLParsedAsHTMLWarning
 from bs4.element import Script, Stylesheet
 from novel_core import Block, Heading, Image, Paragraph, RawChapter, Run, Separator
 
@@ -63,7 +64,9 @@ def normalize(raw: RawChapter, rules: CleanRules, title: str = "") -> tuple[Bloc
 
 
 def _html_blocks(html: str, rules: CleanRules) -> Iterator[Block]:
-    soup = BeautifulSoup(html, "lxml")
+    with warnings.catch_warnings():  # XHTML (EPUB pages) is read as HTML on purpose, like any page
+        warnings.simplefilter("ignore", XMLParsedAsHTMLWarning)
+        soup = BeautifulSoup(html, "lxml")
     body = next((found for sel in rules.content if (found := soup.select_one(sel)) is not None), None)
     if body is None:
         raise CleanError(f"no chapter body matches {list(rules.content)}")

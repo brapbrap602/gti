@@ -90,7 +90,23 @@ def cut_glued_watermarks(text: str) -> str:
     return text
 
 
-_CREDIT = re.compile(rf"^(?=.{{0,{_SHORT}}}$)\s*(?:translator|editor|proofreader|tl|ed)\s*:", re.IGNORECASE)
+# A credit line names people ("Translator: X Editor: Y"): fields of a short name with no sentence in it.
+# A lone "TL: ..." line, or a credit label followed by a sentence, is a translator's note and stays.
+_CREDIT_LABEL = re.compile(r"\b(translator|editor|proofreader|tl|ed)\s*:\s*", re.IGNORECASE)
+_CREDIT_NAME = 40  # a name, not a sentence
+_SENTENCE = re.compile(r"[.!?\u3002]")
+
+
+def is_credit(text: str) -> bool:
+    """A line that only names people: "Translator: X Editor: Y", "TL: X ED: Y"."""
+    labels = list(_CREDIT_LABEL.finditer(text))
+    if len(text) > _SHORT or not labels or text[: labels[0].start()].strip():
+        return False
+    ends = [m.start() for m in labels[1:]] + [len(text)]
+    names = [text[m.end() : end].strip(" ,;|/") for m, end in zip(labels, ends)]
+    if any(not name or len(name) > _CREDIT_NAME or _SENTENCE.search(name) for name in names):
+        return False
+    return len(labels) > 1 or labels[0].group(1).lower() not in ("tl", "ed")
 _NAVIGATION = re.compile(
     rf"^(?=.{{0,{_SHORT}}}$).*(?:\bprevious chapter\b|\bnext chapter\b|\bko-fi\b|\bproject page\b|discord\.gg/|patreon\.com/)",
     re.IGNORECASE,
@@ -110,7 +126,7 @@ _ADS = ('img[src*="pubfuture."]', 'img[src*="pubadx."]', 'div[class*="bg-ssp-"]'
 COMMON = CleanRules(
     content=(),
     remove=_ADS,
-    drop=(is_watermark, _CREDIT.search, _NAVIGATION.search, _STRAY_MARKUP.search, _SITE_UI.search, _END_MARK.search),
+    drop=(is_watermark, is_credit, _NAVIGATION.search, _STRAY_MARKUP.search, _SITE_UI.search, _END_MARK.search),
     strip=(cut_glued_watermarks,),
 )
 

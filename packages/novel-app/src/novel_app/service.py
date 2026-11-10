@@ -42,6 +42,7 @@ from novel_publish import epub
 from novel_publish.site import build_site
 from novel_sources import zh_inspect
 from novel_sources.backends import is_web, open_source, spec_for_url, zh_rules
+from novel_sources.epub import EpubImporter
 from novel_sources.calibre import CalibreImporter
 from novel_sources.decode_guide import Guides
 from novel_sources.importing import Importer, import_novel
@@ -95,6 +96,7 @@ IMPORTERS: Mapping[str, Callable[[Path], Importer]] = {
     "mtl": MtlImporter,
     "scribble": ScribbleImporter,
     "calibre": CalibreImporter,
+    "epub": EpubImporter,
 }
 LEGACY_KEYS = ("position", "title-number")
 KEY_ENV = "OPENROUTER_API_KEY"

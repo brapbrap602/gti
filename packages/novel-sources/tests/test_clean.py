@@ -131,6 +131,25 @@ def test_glued_watermark_sentence_is_cut(text, kept):
     assert cut_glued_watermarks(text) == kept
 
 
+@pytest.mark.parametrize(
+    ("line", "dropped"),
+    [
+        ("Translator: CKtalon", True),
+        ("Translator: Atlas Studios Editor: Atlas Studios", True),
+        ("TL: Snorri ED: Kurisu", True),
+        ("Translator: GodBrandy, Editor: Kurisu, Proofreader: Nyx", True),
+        ("TL: Dantian is the energy center below the navel.", False),  # a translator's note, not a credit
+        ("TL: Spirit Sea", False),  # a lone TL line is a note
+        ("Translator: the pun only works in Chinese.", False),
+        ("Translator's note: Lingzhi is a mushroom.", False),
+    ],
+)
+def test_common_rules_drop_credit_lines_but_keep_translator_notes(line, dropped):
+    rules = rules_for("https://novelbin.me/b/x/chapter-1")
+    raw = RawChapter(f"<div id='chr-content'><p>{line}</p><p>Story text.</p></div>")
+    assert texts(normalize(raw, rules)) == ["Story text."] if dropped else [line, "Story text."]
+
+
 def test_common_rules_drop_credits_navigation_and_watermarks():
     long = "Long paragraph " * 20
     html = (

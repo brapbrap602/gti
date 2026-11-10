@@ -55,6 +55,10 @@ What sites have done so far (update this list as you learn more, and put what ca
 | 69shuba, ttkan | 403 to our fetcher |
 | czbooks | traditional characters. Avoid unless nothing else exists |
 | qidian (plugin) | official text, but only the free chapters; locked chapters are unavailable (no request made). The clean reference for `--against` |
+| Wuxiaworld (en) | `nov add <url> --backend lnreader`, and the URL **must end in `/`** (the plugin builds chapter paths as `novel/<slug>/` + chapter slug). lncrawl's Wuxiaworld crawler is broken (`MessageToDict() got an unexpected keyword argument 'float_precision'`). Locked chapters list with 🔒 |
+| freewebnovel (en) | lncrawl; listing is slow (~20 s per 40-chapter page, 10+ min for 1,400 chapters). Titles' printed numbers can be wrong (doubled 139, "139.2"); its `/chapter-N` URL number is reliable, so key by URL. Early chapters of some novels are split `26.1`/`26.2` → key `Npt1`/`Npt2`. The index's list order can come back scrambled in 40-item blocks; keys are unaffected. Good filler for chapters locked on Wuxiaworld |
+| EPUB file | `nov import epub <file> --novel <slug>`: chapters from the book's TOC (cut at anchors), headless calibre splits joined to the chapter before, volume dividers and front/back matter left out by title (prologue/epilogue/afterword/extras kept). Set `nov priority` afterwards; imports rank last. Refused when no chapter numbers are found (titles only in file names, PDF conversions) |
+| decode-guide sites | sites with no plugin (mangotranslationsrecord.wordpress.com, bloodcoretl.com) are read through `%LOCALAPPDATA%\novels\decode_guide.json` (index selector, content selector, clean rules) |
 
 ## 4. Add the source and sample it
 
@@ -95,7 +99,7 @@ uv run --no-sync nov inspect <slug> 1-5 --source <id> --against <ref>   # diff w
   What a translator should know but no cleaner can fix (ixdzs8's stray `」` after item names) is a note in `zh_notes.py`, per site key or slug. Run the example tests: `uv run --no-sync pytest packages/novel-sources/tests/test_zh_rules.py`.
 - **After a rule change, reclean.** Any edit to `zh_tables.py` leaves every zh chapter unchecked, and translation and the glossary pass skip unchecked chapters ("not checked with current rules: run nov reclean <slug>"). `uv run --no-sync nov reclean <slug>` (or `--all`) is free and fetches nothing; it reports rewritten chapters, cleaner hits, newly held and cleared. Then `nov check <slug>`.
 - **Held chapters.** The sync report and `nov check` list them with their findings. If one is a false positive (read it with `nov inspect`), `nov release <slug> <numbers> --source <id>` lets it through until its raw changes. Real poison is never released; find another source.
-- **Author notes:** 上架感言, 请假, 抽奖, 月票 and 总结 items appear in the index, mostly without a chapter number. Pick chapters with none in between.
+- **Author notes:** 上架感言, 请假, 抽奖, 月票 and 总结 items appear in the index, mostly without a chapter number. Pick chapters with none in between. The user keeps them in the book: key the note `Npt2` of the chapter before it, and that chapter `Npt1`, on **every** source that lists the chapter, or `nov check` reports mixed parts.
 
 ## 6. Check numbering
 

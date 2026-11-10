@@ -124,6 +124,15 @@ def import_calibre(
     _import("calibre", folder, novel)
 
 
+@import_app.command("epub")
+def import_epub(
+    file: Annotated[Path, typer.Argument(exists=True, dir_okay=False, help="an .epub with one chapter per spine document")],
+    novel: Annotated[str | None, typer.Option(help="novel slug; defaults to the slug of the book's title")] = None,
+) -> None:
+    """Import an EPUB as a source: chapters in spine order, numbered from their headings."""
+    _import("epub", file, novel)
+
+
 def _import(importer: str, path: Path, novel: str | None) -> None:
     _job("import", importer=importer, path=str(path), novel=novel)
 
