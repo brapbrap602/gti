@@ -10,11 +10,15 @@
 {% block main %}
 <div class="page-header">
     <div class="page-heading">
-        <h1>{{ r.title }} {% if r.raw_only %}{{ badge("raw only", "warn") }}{% endif %}</h1>
+        <h1>{{ r.title }} {% if r.raw_only %}{{ badge("raw only", "warn") }}{% endif %}{% if not r.public %} {{ badge("off site", "secondary", help.off_site) }}{% endif %}</h1>
         <p class="muted">{{ r.slug }} · last sync {{ r.last_sync | ago }}</p>
     </div>
     <div class="page-actions">
         {% if r.can_sync %}{{ job_button("sync", r.slug, r.job_of("sync"), back, icon_name="refresh-cw", small=False) }}{% endif %}
+        <form method="post" action="/novels/{{ r.slug }}/public" class="inline">
+            <input type="hidden" name="on" value="{{ "off" if r.public else "on" }}">
+            <button type="submit" class="btn btn--outline" title="{{ help.off_site }}">{{ icon("globe") }}{{ "Take off site" if r.public else "Put on site" }}</button>
+        </form>
         {{ build_menu(r.slug, r, back, small=False, end=True) }}
     </div>
 </div>

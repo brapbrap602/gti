@@ -114,6 +114,7 @@ class LibraryRow:
     outputs: tuple[Staleness, ...]
     jobs: tuple[JobRow, ...]  # the novel's active jobs, newest first; at most one of each kind
     epub_size: int  # chapter numbers per EPUB volume, as the last EPUB build had it
+    public: bool = True  # on the public reading site
 
     def job_of(self, kind: str) -> JobRow | None:
         """The novel's active job of this kind: what keeps another of that kind from starting."""
@@ -276,6 +277,7 @@ def library_row(
         outputs=tuple(outputs),
         jobs=active_jobs(jobs, slug),
         epub_size=epub_size,
+        public=view.public,
     )
 
 

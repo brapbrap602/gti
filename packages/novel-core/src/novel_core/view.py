@@ -86,8 +86,10 @@ class NovelView:
         pins: Sequence[Pin],
         outputs: Mapping[OutputKind, Sequence[OutputRow]],
         releases: Mapping[ReleaseKey, frozenset[str]] | None = None,
+        public: bool = True,
     ):
         self.meta = meta
+        self.public = public  # on the public reading site (see NovelStore.public)
         self._sources = dict(sources)
         self._items = {sid: list(items.get(sid, [])) for sid in self._sources}
         self._derivations = {sid: derive(self._items[sid], info) for sid, info in self._sources.items()}

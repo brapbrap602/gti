@@ -44,7 +44,7 @@
             <h2 class="card-title novel-card-title">
                 <a title="{{ r.title }}" href="/novels/{{ r.slug }}">{{ r.title }}</a>
             </h2>
-            <p class="card-description">{{ r.slug }}{% if r.raw_only %} {{ badge("raw only", "warn") }}{% endif %}</p>
+            <p class="card-description">{{ r.slug }}{% if r.raw_only %} {{ badge("raw only", "warn") }}{% endif %}{% if not r.public %} {{ badge("off site", "secondary", help.off_site) }}{% endif %}</p>
         </div>
         <div class="card-content novel-card-body">
             <dl class="metrics">

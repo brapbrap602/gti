@@ -231,6 +231,12 @@ def create_app(service: Service) -> FastAPI:
 
     # -- translation ---------------------------------------------------------------
 
+    @app.post("/novels/{novel}/public")
+    async def public(request: Request, novel: str, on: str = Form()):
+        await run_in_threadpool(service.set_public, novel, on == "on")
+        state = "goes on the site" if on == "on" else "leaves the site"
+        return done(request, f"{novel} {state} at the next site build and deploy", f"/novels/{novel}")
+
     @app.post("/novels/{novel}/publish")
     async def publish(request: Request, novel: str, source: int = Form(), on: str = Form()):
         await run_in_threadpool(service.set_published, novel, source, on == "on")

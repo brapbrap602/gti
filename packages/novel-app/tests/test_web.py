@@ -131,6 +131,24 @@ def test_priority_buttons_reorder_sources(client, service):
     assert [r.source.id for r in service.priority("test-novel")] == [2, 1]
 
 
+def test_the_public_switch_takes_a_novel_off_the_site_and_back(client, service):
+    added(service)
+    assert "Take off site" in client.get("/novels/test-novel").text
+    assert "off site</span>" not in client.get("/").text
+
+    off = client.post("/novels/test-novel/public", data={"on": "off"}, follow_redirects=False)
+
+    assert off.status_code == 303 and off.headers["location"].startswith("/novels/test-novel?notice=")
+    page = client.get("/novels/test-novel").text
+    assert "Put on site" in page and "off site</span>" in page
+    assert "off site</span>" in client.get("/").text
+    with NovelStore.open(novel_dir("test-novel")) as store:
+        assert not store.public
+
+    client.post("/novels/test-novel/public", data={"on": "on"})
+    assert "Take off site" in client.get("/novels/test-novel").text
+
+
 def test_one_job_per_novel_and_kind(client, service):
     added(service)
     service.runner.board.claim("test-novel", "sync", {"novel": "test-novel"})  # say, a CLI sync

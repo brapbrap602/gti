@@ -273,7 +273,7 @@ class NovelStore:
     def public(self) -> bool:
         """Whether the novel is on the public reading site; EPUB and audio ignore it."""
         with self._engine.connect() as conn:
-            return conn.execute(sa.select(_novel.c.public)).scalar_one()
+            return _load_public(conn)
 
     def set_public(self, on: bool) -> None:
         with self._engine.begin() as conn:
@@ -644,6 +644,7 @@ class NovelStore:
                     (r.source_id, r.item_ref, r.raw_hash): frozenset(json.loads(r.checks_json))
                     for r in conn.execute(sa.select(_release))
                 },
+                public=_load_public(conn),
             )
 
     def selection(self) -> tuple[Selected, ...]:
@@ -802,6 +803,10 @@ def _volume_is(keys: KeyRange):
 def _load_meta(conn: sa.Connection) -> NovelMeta:
     r = conn.execute(sa.select(_novel)).one()
     return NovelMeta(r.title, r.author, r.language, r.status, r.cover_path, tuple(json.loads(r.tags_json)))
+
+
+def _load_public(conn: sa.Connection) -> bool:
+    return conn.execute(sa.select(_novel.c.public)).scalar_one()
 
 
 def _load_sources(conn: sa.Connection) -> dict[SourceId, SourceInfo]:
