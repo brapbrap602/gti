@@ -74,9 +74,13 @@ class JobPanel:
         return tuple(j for j in self.attention if j.state.active)
 
     @property
-    def problems(self) -> int:
+    def problem_jobs(self) -> tuple[JobRow, ...]:
         """Unresolved problems: what needs attention and is not active (app.js counts the same)."""
-        return sum(not j.state.active for j in self.attention)
+        return tuple(j for j in self.attention if not j.state.active)
+
+    @property
+    def problems(self) -> int:
+        return len(self.problem_jobs)
 
 
 @dataclass(frozen=True)
@@ -164,6 +168,9 @@ class JobBoard:
             )
         finally:
             db.close()
+        with self._connect(immediate=True) as db:  # one process adds the column; another waits, then sees it
+            if "dismissed" not in {c[1] for c in db.execute("PRAGMA table_info(job)")}:
+                db.execute("ALTER TABLE job ADD COLUMN dismissed INTEGER NOT NULL DEFAULT 0")
 
     @contextmanager
     def _connect(self, immediate: bool = False) -> Iterator[sqlite3.Connection]:
@@ -218,6 +225,17 @@ class JobBoard:
             )
             db.execute("DELETE FROM lock WHERE job_id = ?", (job_id,))
 
+    def dismiss(self, job_ids: Sequence[int]) -> int:
+        """Take ended jobs out of the problems (they stay in the recent jobs); returns how many ended jobs
+        were found. Unknown and active jobs are left alone."""
+        if not job_ids:
+            return 0
+        with self._connect() as db:
+            return db.executemany(
+                "UPDATE job SET dismissed = 1 WHERE id = ? AND state NOT IN (?, ?)",
+                [(j, JobState.QUEUED, JobState.RUNNING) for j in job_ids],
+            ).rowcount
+
     def reconcile(self) -> int:
         """Mark active jobs whose lock is gone or stale interrupted (their process stopped); returns how many."""
         now = self._clock()
@@ -246,7 +264,7 @@ class JobBoard:
         """Active jobs first, then the most recent."""
         with self._connect() as db:
             rows = db.execute(
-                "SELECT * FROM job ORDER BY state IN (?, ?) DESC, id DESC LIMIT ?",
+                f"SELECT {_COLUMNS} FROM job ORDER BY state IN (?, ?) DESC, id DESC LIMIT ?",
                 (JobState.QUEUED, JobState.RUNNING, limit),
             ).fetchall()
         return [_row(r) for r in rows]
@@ -255,7 +273,7 @@ class JobBoard:
         """Active jobs and unresolved problems, then the `recent` newest other jobs.
 
         A problem is a job that failed, was interrupted, or ended done with item errors.
-        It stays until a later job of the same kind for the same target (args are
+        It stays until it is dismissed, or a later job of the same kind for the same target (args are
         ignored) ends: a clean run resolves it, and a later problem replaces it, so only
         the newest problem of a (target, kind) shows. Cancelled and active jobs neither
         resolve nor replace one.
@@ -263,30 +281,31 @@ class JobBoard:
         ended = (JobState.DONE, JobState.FAILED, JobState.INTERRUPTED)
         with self._connect() as db:
             active = db.execute(
-                "SELECT * FROM job WHERE state IN (?, ?) ORDER BY id DESC", (JobState.QUEUED, JobState.RUNNING)
+                f"SELECT {_COLUMNS} FROM job WHERE state IN (?, ?) ORDER BY id DESC", (JobState.QUEUED, JobState.RUNNING)
             ).fetchall()
             problems = db.execute(
-                "SELECT * FROM job AS j WHERE (j.state IN (?, ?) OR (j.state = ? AND j.errors != '[]'))"
+                f"SELECT {_COLUMNS} FROM job AS j WHERE NOT j.dismissed"
+                " AND (j.state IN (?, ?) OR (j.state = ? AND j.errors != '[]'))"
                 " AND NOT EXISTS (SELECT 1 FROM job AS k WHERE k.target = j.target AND k.kind = j.kind"
                 " AND k.id > j.id AND k.state IN (?, ?, ?)) ORDER BY j.id DESC",
                 (JobState.FAILED, JobState.INTERRUPTED, JobState.DONE, *ended),
             ).fetchall()
             attention = [_row(r) for r in active + problems]
             shown = {j.id for j in attention}
-            newest = db.execute("SELECT * FROM job ORDER BY id DESC LIMIT ?", (recent + len(shown),)).fetchall()
+            newest = db.execute(f"SELECT {_COLUMNS} FROM job ORDER BY id DESC LIMIT ?", (recent + len(shown),)).fetchall()
         rest = [row for row in map(_row, newest) if row.id not in shown]
         return JobPanel(tuple(attention), tuple(rest[:recent]))
 
     def job(self, job_id: int) -> JobRow | None:
         with self._connect() as db:
-            r = db.execute("SELECT * FROM job WHERE id = ?", (job_id,)).fetchone()
+            r = db.execute(f"SELECT {_COLUMNS} FROM job WHERE id = ?", (job_id,)).fetchone()
         return _row(r) if r else None
 
     def last_ended(self, target: str, kind: str) -> JobRow | None:
         """The target's most recent job of this kind that ran to the end (done)."""
         with self._connect() as db:
             r = db.execute(
-                "SELECT * FROM job WHERE target = ? AND kind = ? AND state = ? ORDER BY id DESC LIMIT 1",
+                f"SELECT {_COLUMNS} FROM job WHERE target = ? AND kind = ? AND state = ? ORDER BY id DESC LIMIT 1",
                 (target, kind, JobState.DONE),
             ).fetchone()
         return _row(r) if r else None
@@ -303,6 +322,9 @@ class JobBoard:
 def _lock_key(target: str, kind: str) -> str:
     """The lock table's `target` column holds this key; a space never occurs in a slug or a kind."""
     return f"{target} {kind}"
+
+
+_COLUMNS = "id, target, kind, args, state, created_at, ended_at, done, total, current, errors"
 
 
 def _row(r: tuple) -> JobRow:

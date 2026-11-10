@@ -32,6 +32,12 @@
                 <button type="submit" class="btn btn--outline btn--sm">Re-run</button>
             </form>
             {% endif %}
+            {% if not recent and not j.state.active %}
+            <form method="post" action="/jobs/{{ j.id }}/dismiss" hx-post="/jobs/{{ j.id }}/dismiss" hx-target="#notice">
+                <input type="hidden" name="back" value="/">
+                <button type="submit" class="btn btn--ghost btn--sm">Dismiss</button>
+            </form>
+            {% endif %}
         </div>
     </li>
 {% endmacro %}
@@ -39,6 +45,13 @@
 <p class="jobs-empty muted">No jobs yet.</p>
 {% else %}
 {% if job_panel.attention %}
+{% if job_panel.problems > 1 %}
+<form class="jobs-clear" method="post" action="/jobs/dismiss" hx-post="/jobs/dismiss" hx-target="#notice">
+    <input type="hidden" name="back" value="/">
+    {% for j in job_panel.problem_jobs %}<input type="hidden" name="job" value="{{ j.id }}">{% endfor %}
+    <button type="submit" class="btn btn--ghost btn--sm">Clear {{ job_panel.problems }} problems</button>
+</form>
+{% endif %}
 <ol class="job-list">
 {% for j in job_panel.attention %}
 {{ job_item(j) }}

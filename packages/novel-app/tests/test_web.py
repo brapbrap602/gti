@@ -556,3 +556,34 @@ def test_epub_volume_size_is_chosen_in_the_build_menu_and_remembered(client, ser
 
     bad = client.post("/jobs", data={"kind": "build-epub", "novel": "test-novel", "size": "0"})
     assert bad.status_code == 400 and "at least 1 chapter" in bad.text
+
+
+def test_problems_are_cleared_one_at_a_time_or_all_at_once(client, service):
+    board = service.runner.board
+    jobs = []
+    for target in ("a", "b", "c"):
+        jobs.append(board.claim(target, "sync", {}))
+        board.finish(jobs[-1], JobState.FAILED)
+
+    page = client.get("/").text
+    assert f'action="/jobs/{jobs[0]}/dismiss"' in page and "Clear 3 problems" in page
+    one = client.post(f"/jobs/{jobs[0]}/dismiss", data={"back": "/"}, headers={"HX-Request": "true"})
+    assert f"cleared job {jobs[0]}" in one.text
+    page = client.get("/").text
+    assert '<span class="pill-label">2 problems</span>' in page
+    shown = re.findall(r'name="job" value="(\d+)"', page)
+    assert shown == [str(jobs[2]), str(jobs[1])]
+    later = board.claim("d", "sync", {})  # fails after the drawer was drawn
+    board.finish(later, JobState.FAILED)
+
+    rest = client.post("/jobs/dismiss", data={"back": "/", "job": shown}, follow_redirects=False)
+    assert rest.status_code == 303 and "cleared+2+problems" in rest.headers["location"]
+    assert [j.id for j in service.job_panel().attention] == [later]
+
+
+def test_dismissing_a_running_or_unknown_job_says_so(client, service):
+    running = service.runner.board.claim("a", "sync", {})
+    for job_id in (running, 999):
+        r = client.post(f"/jobs/{job_id}/dismiss", data={"back": "/"}, headers={"HX-Request": "true"})
+        assert f"no ended job {job_id}" in r.text
+    service.runner.board.finish(running, JobState.DONE)

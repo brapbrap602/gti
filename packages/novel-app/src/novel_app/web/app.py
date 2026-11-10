@@ -359,6 +359,22 @@ def create_app(service: Service) -> FastAPI:
         new = await run_in_threadpool(service.rerun, job_id)
         return done(request, f"started job {new} (again as job {job_id})", _back(form))
 
+    @app.post("/jobs/{job_id}/dismiss")
+    async def dismiss(request: Request, job_id: int):
+        form = await request.form()
+        await run_in_threadpool(service.dismiss, job_id)
+        return done(request, f"cleared job {job_id}", _back(form))
+
+    @app.post("/jobs/dismiss")
+    async def dismiss_all(request: Request):
+        form = await request.form()
+        try:
+            shown = [int(j) for j in form.getlist("job")]
+        except ValueError:
+            raise UserError("job ids must be numbers") from None
+        n = await run_in_threadpool(service.dismiss_problems, shown)
+        return done(request, f"cleared {n} problem{'s' if n != 1 else ''}", _back(form))
+
     @app.get("/jobs/{job_id}/log", response_class=PlainTextResponse)
     async def job_log(job_id: int):
         return service.job_log(job_id)

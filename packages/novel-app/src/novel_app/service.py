@@ -227,6 +227,15 @@ class Service:
             raise UserError(f"no job {job_id}")
         return self.start(row.kind, **row.args)
 
+    def dismiss(self, job_id: int) -> None:
+        """Clear one problem from the jobs drawer; raises UserError unless the job has ended."""
+        if not self.runner.board.dismiss([job_id]):
+            raise UserError(f"no ended job {job_id}")
+
+    def dismiss_problems(self, job_ids: Sequence[int]) -> int:
+        """Clear the problems the drawer showed (not ones that appeared since); returns how many."""
+        return self.runner.board.dismiss(job_ids)
+
     def _prepare(self, kind: str, args: Mapping[str, object]) -> tuple[str, Work]:
         op = self._ops.get(kind)
         if op is None:

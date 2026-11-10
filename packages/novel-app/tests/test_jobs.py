@@ -1,4 +1,5 @@
 import re
+import sqlite3
 import threading
 
 import pytest
@@ -263,3 +264,50 @@ def test_a_run_with_item_errors_is_a_problem_that_replaces_but_does_not_resolve(
     partial_y = ended(board, "y", JobState.DONE, errors=("ch 9: HTTP 500",))
 
     assert ids(board.panel().attention) == [partial_y, partial]
+
+
+def test_a_dismissed_problem_leaves_attention_for_recent(board):
+    running = board.claim("run", "sync", {})
+    board.start(running)
+    failed = ended(board, "x", JobState.FAILED)
+    kept = ended(board, "y", JobState.INTERRUPTED)
+
+    board.dismiss([failed, running])  # an active job cannot be dismissed
+
+    panel = board.panel()
+    assert ids(panel.attention) == [running, kept]
+    assert ids(panel.recent) == [failed]
+
+
+def test_a_new_problem_shows_after_an_older_one_was_dismissed(board):
+    board.dismiss([ended(board, "x", JobState.FAILED)])
+    again = ended(board, "x", JobState.FAILED)
+
+    assert ids(board.panel().attention) == [again]
+
+
+def test_dismiss_counts_only_ended_jobs(board):
+    running = board.claim("run", "sync", {})
+    failed = ended(board, "x", JobState.FAILED)
+
+    assert board.dismiss([running, failed, 999]) == 1
+    assert board.dismiss([]) == 0
+
+
+def test_a_board_from_before_dismissing_gains_it_and_keeps_its_jobs(tmp_path, clock):
+    path = tmp_path / "app.sqlite"
+    with sqlite3.connect(path) as db:
+        db.execute(
+            "CREATE TABLE job (id INTEGER PRIMARY KEY, target TEXT NOT NULL, kind TEXT NOT NULL, args TEXT NOT NULL,"
+            " state TEXT NOT NULL, created_at REAL NOT NULL, ended_at REAL,"
+            " done INTEGER NOT NULL DEFAULT 0, total INTEGER NOT NULL DEFAULT 0,"
+            " current TEXT NOT NULL DEFAULT '', errors TEXT NOT NULL DEFAULT '[]')"
+        )
+        db.execute("INSERT INTO job (target, kind, args, state, created_at) VALUES ('x', 'sync', '{}', 'failed', 1)")
+    db.close()
+
+    board = JobBoard(path, clock=clock)
+    (old,) = board.panel().attention
+    board.dismiss([old.id])
+
+    assert JobBoard(path, clock=clock).panel().attention == ()
