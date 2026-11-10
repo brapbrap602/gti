@@ -6,7 +6,8 @@ missing. Chapters are built one at a time and recorded as soon as each is
 done, so an interrupted build resumes where it stopped; the sentence cache
 keeps whatever was synthesized for the chapter in flight. Legacy chapters
 (registered from the old tts_out folders) are never rebuilt unless forced,
-and their files are never deleted.
+and their files are never deleted. The cover goes beside the MP3s as a folder
+image, not into their tags (see novel_audio.media).
 """
 
 import asyncio
@@ -19,7 +20,7 @@ from pathlib import Path
 from novel_core import ChapterKey, KeyRange, NovelMeta, NovelStore, OutputKind, Selected, chapter_heading
 
 from novel_audio import script
-from novel_audio.media import Tags, join_mp3, tag_mp3
+from novel_audio.media import Tags, join_mp3, tag_mp3, write_folder_cover
 from novel_audio.tts import DEFAULT_CONCURRENCY, SentenceCache, TtsEngine
 
 SENTENCES = "_sentences"
@@ -87,6 +88,8 @@ async def _build(
     ]  # fmt: skip
 
     meta = store.meta
+    if cover and todo:
+        write_folder_cover(out_dir, cover)
     cache = SentenceCache(out_dir / SENTENCES, tts)
     limit = asyncio.Semaphore(concurrency)
     for i, selected in enumerate(todo, start=1):
@@ -100,7 +103,7 @@ async def _build(
         parts = await cache.render(lines, limit, on_sentence)
         name = chapter_file(selected.key)
         join_mp3(parts, out_dir / name)
-        tag_mp3(out_dir / name, _tags(meta, selected.key, version.title, cover))
+        tag_mp3(out_dir / name, _tags(meta, selected.key, version.title))
         store.record_output(OutputKind.AUDIO, selected, fp, name)
 
     for row in plan.to_prune:
@@ -114,20 +117,28 @@ async def _build(
 
 
 def retag_audio(store: NovelStore, out_dir: Path, cover: bytes | None = None) -> int:
-    """Rewrite the tags of every chapter MP3 that has audio, legacy ones included; returns how many."""
+    """Rewrite the tags of every chapter MP3 that has audio, legacy ones included; returns how many.
+
+    The cover is written beside them, once per folder they sit in.
+    """
     meta = store.meta
     selection = {s.key: s for s in store.selection()}
+    folders: set[Path] = set()
     done = 0
     for row in store.outputs(OutputKind.AUDIO):
         path = out_dir / row.artifact
         if row.built_key in selection and path.exists():
-            tag_mp3(path, _tags(meta, row.built_key, selection[row.built_key].title, cover))
+            tag_mp3(path, _tags(meta, row.built_key, selection[row.built_key].title))
+            folders.add(path.parent)
             done += 1
+    if cover:
+        for folder in folders:
+            write_folder_cover(folder, cover)
     return done
 
 
-def _tags(meta: NovelMeta, key: ChapterKey, title: str, cover: bytes | None) -> Tags:
-    return Tags(chapter_heading(key, title), meta.title, meta.author, key.number, cover=cover)
+def _tags(meta: NovelMeta, key: ChapterKey, title: str) -> Tags:
+    return Tags(chapter_heading(key, title), meta.title, meta.author, key.number)
 
 
 def _remove_inside(folder: Path, artifact: str) -> None:

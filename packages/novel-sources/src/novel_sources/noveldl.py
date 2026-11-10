@@ -95,7 +95,7 @@ class NovelDownloaderSource:
             language="zh",
             tags=tuple(info.get("tags") or ()),
         )
-        return NovelIndex(meta, tuple(items))
+        return NovelIndex(meta, tuple(items), cover_url=info.get("cover_url") or None)
 
     def fetch_chapter(self, item: SourceItem) -> RawChapter | None:
         """The chapter's text; None, without a request, when the index marked it locked (Qidian VIP)."""

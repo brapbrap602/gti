@@ -2,6 +2,11 @@
 
 Every writer goes through a temporary file and an atomic replace, so an
 interrupted build never leaves a truncated MP3 or M4B behind.
+
+Chapter MP3s carry no embedded cover: phone players that estimate a CBR file's
+length from its size count the image as audio (a 700 KB cover is ~2 phantom
+minutes at 48 kbps), so the cover sits beside them as a folder image instead.
+M4B volumes embed it; MP4 stores its duration exactly.
 """
 
 import os
@@ -13,7 +18,7 @@ from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
 
-from mutagen.id3 import APIC, COMM, ID3, TALB, TCON, TIT2, TPE1, TRCK, ID3NoHeaderError
+from mutagen.id3 import COMM, ID3, TALB, TCON, TIT2, TPE1, TPE2, TRCK, ID3NoHeaderError
 from mutagen.mp3 import MP3
 
 GENRE = "Audiobook"
@@ -64,24 +69,36 @@ def duration_ms(path: Path) -> int:
 
 
 def tag_mp3(path: Path, tags: Tags) -> None:
+    """Write text tags and remove any embedded picture; `tags.cover` is ignored (see write_folder_cover)."""
     try:
         id3 = ID3(path)
     except ID3NoHeaderError:
         id3 = ID3()
-    for frame in ("TIT2", "TALB", "TPE1", "TRCK", "TCON", "COMM", "APIC"):
+    for frame in ("TIT2", "TALB", "TPE1", "TPE2", "TRCK", "TCON", "COMM", "APIC"):
         id3.delall(frame)
     id3.add(TIT2(encoding=3, text=tags.title))
     id3.add(TALB(encoding=3, text=tags.album))
     id3.add(TCON(encoding=3, text=GENRE))
     if tags.artist:
         id3.add(TPE1(encoding=3, text=tags.artist))
+        id3.add(TPE2(encoding=3, text=tags.artist))  # players group albums by this
     if tags.track is not None:
         id3.add(TRCK(encoding=3, text=str(tags.track)))
     if tags.comment:
         id3.add(COMM(encoding=3, lang="eng", desc="", text=tags.comment))
-    if tags.cover:
-        id3.add(APIC(encoding=0, mime=_image_mime(tags.cover), type=3, desc="Cover", data=tags.cover))
     id3.save(path, v2_version=3)
+
+
+def write_folder_cover(folder: Path, cover: bytes) -> Path:
+    """Save the cover as cover.jpg or cover.png in `folder`, where players look for album art."""
+    name = "cover.png" if _image_mime(cover) == "image/png" else "cover.jpg"
+    other = folder / ("cover.jpg" if name == "cover.png" else "cover.png")
+    folder.mkdir(parents=True, exist_ok=True)
+    with _temp_beside(folder / name) as tmp:
+        tmp.write_bytes(cover)
+        os.replace(tmp, folder / name)
+    other.unlink(missing_ok=True)
+    return folder / name
 
 
 def encode_m4b(parts: Sequence[Path], markers: Sequence[Marker], out: Path, tags: Tags) -> None:

@@ -37,6 +37,7 @@ class NovelIndex:
     notes: tuple[str, ...] = ()  # what the reader skipped or doubted, for the import report
     snapshot: Mapping[str, bytes] = field(default_factory=dict)  # files kept as provenance, by name
     provenance: Mapping[str, object] = field(default_factory=dict)  # added to every version's provenance
+    cover_url: str | None = None  # the novel's cover on the site; may be relative to the source's URL
 
 
 class Importer(Protocol):

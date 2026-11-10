@@ -118,7 +118,7 @@ def test_free_chapters_needs_the_list():
 
 # -- hangulplanet --------------------------------------------------------------
 
-NOVEL_PAGE = """<html><head><meta property="og:title" content="Tunnels "/></head><body>
+NOVEL_PAGE = """<html><head><meta property="og:title" content="Tunnels "/><meta property="og:image" content="https://cdn.test/tunnels.jpg"/></head><body>
 <a href="/novel/tunnels#chapters">Chapters</a><a href="/novel/tunnels/chapter-1">Start reading</a>
 <a href="/novel/tunnels/chapter-4">4</a><a href="/novel/tunnels/chapter-3">3</a>
 <a href="/novel/other/chapter-9">elsewhere</a></body></html>"""
@@ -156,6 +156,7 @@ def test_hangulplanet_index_joins_the_chapter_sitemaps_and_the_novel_page():
     scraper = HangulPlanetScraper()
     index = HangulPlanetSource(HangulPlanetSource.spec_for(NOVEL), scraper).fetch_index()
     assert index.meta.title == "Tunnels"
+    assert index.cover_url == "https://cdn.test/tunnels.jpg"
     assert [(i.ref, i.position, i.number, i.title) for i in index.items] == [
         (f"/novel/tunnels/chapter-{n}", n, n, f"Chapter {n}") for n in (1, 2, 3, 4)
     ]

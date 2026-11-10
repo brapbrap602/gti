@@ -92,6 +92,7 @@ class LncrawlSource:
                 tags=tuple(novel.tags or ()),
             ),
             items=tuple(items),
+            cover_url=novel.cover_url or None,
         )
 
     def fetch_chapter(self, item: SourceItem) -> RawChapter:

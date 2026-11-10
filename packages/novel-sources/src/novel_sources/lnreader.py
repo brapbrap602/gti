@@ -186,7 +186,10 @@ class LnreaderSource:
             language=self._spec.lang,
             tags=tuple(g.strip() for g in novel["genres"].split(",") if g.strip()),
         )
-        return NovelIndex(meta, tuple(items), provenance={"plugin": self._plugin["id"], "plugins_commit": PLUGINS_COMMIT})
+        return NovelIndex(
+            meta, tuple(items), provenance={"plugin": self._plugin["id"], "plugins_commit": PLUGINS_COMMIT},
+            cover_url=novel.get("cover") or None,
+        )  # fmt: skip
 
     def fetch_chapter(self, item: SourceItem) -> RawChapter:
         path = self._paths.get(item.ref)

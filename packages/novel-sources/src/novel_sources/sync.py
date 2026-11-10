@@ -11,9 +11,10 @@ fetches its number, and this one fetches it again next time). A decoy site serve
 no chapters unless `refresh` asks: only its index is recorded, for numbering.
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Protocol
+from urllib.parse import urljoin
 
 from novel_core import Finding, IndexDiff, ItemRef, KeyRange, NovelStore, RawChapter, SourceId, SourceItem, SourceSpec
 from novel_core.store import Clock
@@ -51,6 +52,7 @@ class SyncReport:
     refetched: int = 0  # held before and fetched again
     cleared: int = 0  # held before, fetched again and no longer held
     decoy_site: bool = False  # only the index was recorded (no `refresh`)
+    cover_wanted: str | None = None  # the site's cover, when the novel has none yet
 
 
 def sync(
@@ -71,6 +73,7 @@ def sync(
     index = source.fetch_index()
     diff = store.record_index(source_id, index.items)
     decoy = zh is not None and zh.decoy_site
+    cover_wanted = None if decoy else adopt_site_metadata(store, source.spec, index)
     if not decoy:
         wanted = set(store.to_fetch(source_id, refresh, only))
     elif refresh is not None and (window := _overlap(refresh, only)):
@@ -89,7 +92,21 @@ def sync(
         refetched=len(held_before),
         cleared=len(held_before.keys() - held_after.keys()),
         decoy_site=decoy and refresh is None,
+        cover_wanted=cover_wanted,
     )  # fmt: skip
+
+
+def adopt_site_metadata(store: NovelStore, spec: SourceSpec, index: NovelIndex) -> str | None:
+    """Fill the author, status and tags the novel lacks from a site in the novel's language; a value
+    already set is never replaced. Returns the site's absolute cover URL if the novel still needs one."""
+    meta = store.meta
+    if spec.lang != meta.language:  # a raw site's names are not how an English novel's should read
+        return None
+    site = index.meta
+    filled = replace(meta, author=meta.author or site.author, status=meta.status or site.status, tags=meta.tags or site.tags)
+    if filled != meta:
+        store.set_meta(filled)
+    return urljoin(spec.url, index.cover_url) if index.cover_url and not meta.cover_path else None
 
 
 def _overlap(refresh: KeyRange, only: KeyRange | None) -> KeyRange | None:
@@ -108,6 +125,7 @@ class AddReport:
     title: str  # the title the site gives
     items: int
     index: IndexDiff
+    cover_wanted: str | None = None  # the site's cover, when the novel has none yet
 
 
 def add_source(novel_dir: Path, spec: SourceSpec, index: NovelIndex, clock: Clock | None = None) -> AddReport:
@@ -117,4 +135,5 @@ def add_source(novel_dir: Path, spec: SourceSpec, index: NovelIndex, clock: Cloc
     with store:
         source_id = store.upsert_source(spec)
         diff = store.record_index(source_id, index.items)
-    return AddReport(novel_dir, source_id, created, index.meta.title, len(index.items), diff)
+        cover_wanted = adopt_site_metadata(store, spec, index)
+    return AddReport(novel_dir, source_id, created, index.meta.title, len(index.items), diff, cover_wanted)

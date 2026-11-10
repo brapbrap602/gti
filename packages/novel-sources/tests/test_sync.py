@@ -1,7 +1,9 @@
+from dataclasses import replace
+
 import pytest
 from novel_core import KeyRange, Kind, NovelMeta, NovelStore, RawChapter, SourceItem, SourceSpec
 from novel_sources.clean import CleanRules
-from novel_sources.fetch import FetchError
+from novel_sources.fetch import FetchError, cover_suffix
 from novel_sources.importing import NovelIndex
 from novel_sources.sync import add_source, sync
 from novel_sources.zh_tables import rules
@@ -214,3 +216,65 @@ def test_sync_english_unchanged_reports_no_holds(novel):
     with NovelStore.open(novel_dir) as store:
         r = sync(store, source, site)
     assert (r.inserted, r.held, r.cleared, r.decoy_site) == (5, (), 0, False)
+
+
+# -- the site's metadata -------------------------------------------------------
+
+
+def blank_novel(tmp_path, clock, lang="en", **meta):
+    """A novel that has none of the site's metadata, and the site."""
+    site = FakeSite(range(1, 3))
+    site.spec = replace(site.spec, lang=lang)
+    index = NovelIndex(NovelMeta("Fake Novel", **meta), site.fetch_index().items)
+    add_source(tmp_path / "fake", site.spec, index, clock)
+    return tmp_path / "fake", site
+
+
+class CoveredSite(FakeSite):
+    def fetch_index(self):
+        return replace(super().fetch_index(), cover_url="/covers/fake.jpg")
+
+
+def test_sync_fills_what_the_novel_lacks_and_asks_for_the_cover(tmp_path, clock):
+    novel_dir, site = blank_novel(tmp_path, clock)
+    covered = CoveredSite(range(1, 3))
+    with NovelStore.open(novel_dir) as store:
+        report = sync(store, 1, covered)
+        assert store.meta.author == "A. Writer"
+    assert report.cover_wanted == "https://fake.test/covers/fake.jpg"
+
+
+def test_sync_keeps_what_the_novel_already_has(tmp_path, clock):
+    novel_dir, _ = blank_novel(tmp_path, clock, author="Me", cover_path="cover.png")
+    with NovelStore.open(novel_dir) as store:
+        report = sync(store, 1, CoveredSite(range(1, 3)))
+        assert store.meta.author == "Me" and store.meta.cover_path == "cover.png"
+    assert report.cover_wanted is None
+
+
+def test_a_site_in_another_language_leaves_the_metadata_alone(tmp_path, clock):
+    novel_dir, _ = blank_novel(tmp_path, clock)
+    raw = CoveredSite(range(1, 3))
+    raw.spec = replace(raw.spec, url="https://fake.test/raw", lang="zh")
+    with NovelStore.open(novel_dir) as store:
+        report = sync(store, store.upsert_source(raw.spec), raw)
+        assert store.meta.author is None
+    assert report.cover_wanted is None
+
+
+def test_adding_a_source_to_an_existing_novel_fills_its_metadata(tmp_path, clock):
+    novel_dir, _ = blank_novel(tmp_path, clock)
+    second = CoveredSite(range(1, 3))
+    second.spec = replace(second.spec, url="https://fake.test/other")
+    report = add_source(novel_dir, second.spec, second.fetch_index(), clock)
+    assert report.cover_wanted == "https://fake.test/covers/fake.jpg"
+    with NovelStore.open(novel_dir) as store:
+        assert store.meta.author == "A. Writer"
+
+
+@pytest.mark.parametrize(
+    ("data", "suffix"),
+    [(b"\xff\xd8\xff\xe0rest", ".jpg"), (b"\x89PNG\r\n\x1a\nrest", ".png"), (b"RIFF0000WEBP", None), (b"<html>", None)],
+)
+def test_cover_format_is_judged_by_its_bytes(data, suffix):
+    assert cover_suffix(data) == suffix

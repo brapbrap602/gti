@@ -55,7 +55,8 @@ class HangulPlanetSource:
             raise FetchError(f"{url}: no chapter links in the novel page or the chapter sitemaps")
         og = page.select_one('meta[property="og:title"]')
         title = og["content"].strip() if og else url.rsplit("/", 1)[-1]
-        return NovelIndex(meta=NovelMeta(title=title), items=items)
+        cover = page.select_one('meta[property="og:image"]')
+        return NovelIndex(meta=NovelMeta(title=title), items=items, cover_url=cover["content"] if cover else None)
 
     def fetch_chapter(self, item: SourceItem) -> RawChapter:
         url = _origin(self._spec.url) + item.ref

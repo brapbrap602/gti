@@ -26,7 +26,9 @@ def test_builds_tagged_chapter_mp3s_from_heading_and_sentences(book, tts, out):
     tags = ID3(out / "chapter_0001.mp3")
     assert str(tags["TIT2"]) == "Chapter 1: Title 1" and str(tags["TALB"]) == "Test Novel"
     assert str(tags["TPE1"]) == "Gen, Er" and str(tags["TRCK"]) == "1"
-    assert tags.getall("APIC")[0].mime == "image/png"
+    assert str(tags["TPE2"]) == "Gen, Er"
+    assert not tags.getall("APIC")  # an embedded cover reads as phantom minutes on phone players
+    assert (out / "cover.png").read_bytes() == b"\x89PNG\r\n\x1a\nfake"
     assert duration_ms(out / "chapter_0001.mp3") > 0
     assert {k: r.artifact for k, r in rows(book.store).items()} == {"1": "chapter_0001.mp3", "2": "chapter_0002.mp3"}
 
@@ -135,4 +137,5 @@ def test_retag_rewrites_legacy_and_built_tags(book, tts, out, tmp_path):
     assert retag_audio(book.store, out, cover=b"\xff\xd8jpeg") == 2
     tags = ID3(legacy_mp3)
     assert str(tags["TIT2"]) == "Chapter 1: Title 1" and str(tags["TRCK"]) == "1"
-    assert tags.getall("APIC")[0].mime == "image/jpeg"
+    assert not tags.getall("APIC")
+    assert (out / "cover.jpg").read_bytes() == (tmp_path / "cover.jpg").read_bytes() == b"\xff\xd8jpeg"

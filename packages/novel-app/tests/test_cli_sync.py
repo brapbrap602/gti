@@ -1,13 +1,15 @@
 from contextlib import contextmanager
+from dataclasses import replace
 
 import pytest
 
 from novel_app import cli, service
 from novel_app.cli import app
-from novel_app.library import novel_dir
+from novel_app.library import audio_dir, novel_dir
 from novel_core import Kind, NewVersion, NovelMeta, NovelStore, Paragraph, RawChapter, SourceItem, SourceSpec
 from novel_sources.backends import zh_rules
 from novel_sources.clean import CleanRules
+from novel_sources.fetch import FetchError
 from novel_sources.importing import NovelIndex
 from typer.testing import CliRunner
 
@@ -163,3 +165,74 @@ def test_sync_of_a_decoy_site_records_its_index_only(zh_site):
     zh_novel(SourceSpec("novel-downloader", "https://www.biquge5.com/9_9194/", "zh", Kind.RAW_ZH))
     output = run("sync", "zh-novel").output
     assert "fetched 0: 0 stored" in output and "  decoy site: index only" in output
+
+
+# -- the site's cover ----------------------------------------------------------
+
+
+@pytest.fixture
+def covered(site, monkeypatch):
+    """The site lists a cover; `images` is what downloading it gives (an exception is raised)."""
+    original = site.source
+
+    def source(spec):
+        live = original(spec)
+        index = live.fetch_index
+        live.fetch_index = lambda: replace(index(), cover_url="/cover.jpg")
+        return live
+
+    monkeypatch.setattr(site, "source", source)
+    images = {"next": (b"\xff\xd8\xffjpeg", ".jpg")}
+
+    def fetch_cover(url, data_dir):
+        images["url"] = url
+        if isinstance(images["next"], Exception):
+            raise images["next"]
+        return images["next"]
+
+    monkeypatch.setattr(service, "fetch_cover", fetch_cover)
+    return images
+
+
+def test_add_saves_the_sites_cover(covered):
+    result = run("add", URL)
+    assert result.exit_code == 0, result.output
+    assert "cover saved from https://novelbuddy.me/cover.jpg" in result.output
+    assert (novel_dir("test-novel") / "cover.jpg").read_bytes() == b"\xff\xd8\xffjpeg"
+    with NovelStore.open(novel_dir("test-novel")) as store:
+        assert store.meta.cover_path == "cover.jpg"
+
+
+def test_a_cover_that_cannot_be_fetched_does_not_fail_the_sync_and_is_tried_again(covered):
+    covered["next"] = FetchError("https://novelbuddy.me/cover.jpg: not a JPEG or PNG")
+    assert run("add", URL).exit_code == 0
+    result = run("sync", "test-novel")
+    assert result.exit_code == 0, result.output
+    assert "cover not saved" in result.output
+
+    covered["next"] = (b"\x89PNG\r\n\x1a\npng", ".png")
+    result = run("sync", "test-novel")
+    assert "cover saved" in result.output
+    assert (novel_dir("test-novel") / "cover.png").exists()
+
+
+def test_a_cover_set_by_hand_stays(covered, tmp_path):
+    covered["next"] = FetchError("down")
+    run("add", URL)
+    mine = tmp_path / "mine.png"
+    mine.write_bytes(b"\x89PNG\r\n\x1a\nmine")
+    assert run("cover", "test-novel", mine).exit_code == 0
+    covered["next"] = (b"\xff\xd8\xffjpeg", ".jpg")
+    assert "cover saved" not in run("sync", "test-novel").output
+    assert (novel_dir("test-novel") / "cover.png").read_bytes().endswith(b"mine")
+
+
+def test_sync_says_when_existing_mp3s_need_retagging(covered):
+    covered["next"] = FetchError("down")
+    run("add", URL)
+    audio = audio_dir("test-novel")
+    audio.mkdir(parents=True)
+    (audio / "chapter_0001.mp3").write_bytes(b"")
+    covered["next"] = (b"\xff\xd8\xffjpeg", ".jpg")
+    assert "nov audio retag test-novel" in run("sync", "test-novel").output
+    assert "nov audio retag" not in run("sync", "test-novel").output

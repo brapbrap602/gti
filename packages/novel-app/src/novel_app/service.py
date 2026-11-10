@@ -12,7 +12,6 @@ looked up when the Service is made.
 """
 
 import os
-import shutil
 from datetime import datetime
 from collections.abc import Callable, Iterator, Mapping, Sequence
 from contextlib import AbstractContextManager, ExitStack, contextmanager
@@ -42,9 +41,10 @@ from novel_publish import epub
 from novel_publish.site import build_site
 from novel_sources import zh_inspect
 from novel_sources.backends import is_web, open_source, spec_for_url, zh_rules
-from novel_sources.epub import EpubImporter
 from novel_sources.calibre import CalibreImporter
+from novel_sources.epub import EpubImporter
 from novel_sources.decode_guide import Guides
+from novel_sources.fetch import FetchError, fetch_cover
 from novel_sources.importing import Importer, import_novel
 from novel_sources.mtl import MtlImporter
 from novel_sources.reclean import reclean
@@ -234,6 +234,7 @@ class Service:
             job.log(f"{'created' if r.created else 'updated'} {slug}: source {r.source_id} ({spec.backend}), {r.items} chapters listed")
             with NovelStore.open(novel_dir(slug)) as store:
                 job.log(f"  to fetch: {len(store.to_fetch(r.source_id))}; run `nov sync {slug}`")
+                self._adopt_cover(slug, store, r.cover_wanted, job)
             return Outcome()
 
         return novel or url, work
@@ -253,6 +254,7 @@ class Service:
         def work(job) -> Outcome:
             errors: list[str] = []
             with self._store(novel) as store:
+                tagged_before = store.meta.author, store.meta.cover_path
                 for info in web:
                     job.log(f"{novel}: source {info.id} ({info.spec.backend}) {info.spec.url}")
                     with self._open_source(info.spec, fetch_dir(), guides) as live:
@@ -264,8 +266,11 @@ class Service:
                     for line in report.sync_lines(r, other_raws=bool(others)):
                         job.log(line)
                     errors += report.failed_lines(r.failed)
+                    self._adopt_cover(novel, store, r.cover_wanted, job)
                 for line in report.unchecked_lines(pages.unchecked(novel, store.view()), novel):
                     job.log(line)
+                if (store.meta.author, store.meta.cover_path) != tagged_before and any(audio_dir(novel).glob("*.mp3")):
+                    job.log(f"  new author or cover: run `nov audio retag {novel}` to update the MP3s")
             return Outcome(tuple(errors))
 
         return novel, work
@@ -632,11 +637,27 @@ class Service:
         if suffix not in {".jpg", ".png"}:
             raise UserError(f"{image.name}: expected a .jpg or .png")
         with self._store(novel) as store:
-            folder = novel_dir(novel)
-            for old in folder.glob("cover.*"):
-                old.unlink()
-            shutil.copyfile(image, folder / f"cover{suffix}")
-            store.set_meta(replace(store.meta, cover_path=f"cover{suffix}"))
+            self._save_cover(novel, store, image.read_bytes(), suffix)
+
+    @staticmethod
+    def _save_cover(novel: str, store: NovelStore, data: bytes, suffix: str) -> None:
+        folder = novel_dir(novel)
+        for old in folder.glob("cover.*"):
+            old.unlink()
+        (folder / f"cover{suffix}").write_bytes(data)
+        store.set_meta(replace(store.meta, cover_path=f"cover{suffix}"))
+
+    def _adopt_cover(self, novel: str, store: NovelStore, url: str | None, job) -> None:
+        """Save the site's cover. A cover is never worth failing the job: the next sync tries again."""
+        if url is None:
+            return
+        try:
+            data, suffix = fetch_cover(url, fetch_dir())
+        except FetchError as e:
+            job.log(f"  cover not saved: {e}")
+            return
+        self._save_cover(novel, store, data, suffix)
+        job.log(f"  cover saved from {url}")
 
     # -- glossary ------------------------------------------------------------
 
