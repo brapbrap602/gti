@@ -20,7 +20,7 @@ from pathlib import Path
 from novel_core import ChapterKey, KeyRange, NovelMeta, NovelStore, OutputKind, Selected, chapter_heading
 
 from novel_audio import script
-from novel_audio.media import Tags, join_mp3, tag_mp3, write_folder_cover
+from novel_audio.media import Tags, join_mp3, mp3_cover, tag_mp3, write_folder_cover
 from novel_audio.tts import DEFAULT_CONCURRENCY, SentenceCache, TtsEngine
 
 SENTENCES = "_sentences"
@@ -88,8 +88,10 @@ async def _build(
     ]  # fmt: skip
 
     meta = store.meta
+    embedded = None
     if cover and todo:
         write_folder_cover(out_dir, cover)
+        embedded = mp3_cover(cover)
     cache = SentenceCache(out_dir / SENTENCES, tts)
     limit = asyncio.Semaphore(concurrency)
     for i, selected in enumerate(todo, start=1):
@@ -103,7 +105,7 @@ async def _build(
         parts = await cache.render(lines, limit, on_sentence)
         name = chapter_file(selected.key)
         join_mp3(parts, out_dir / name)
-        tag_mp3(out_dir / name, _tags(meta, selected.key, version.title, cover))
+        tag_mp3(out_dir / name, _tags(meta, selected.key, version.title, embedded))
         store.record_output(OutputKind.AUDIO, selected, fp, name)
 
     for row in plan.to_prune:
@@ -119,16 +121,17 @@ async def _build(
 def retag_audio(store: NovelStore, out_dir: Path, cover: bytes | None = None) -> int:
     """Rewrite the tags of every chapter MP3 that has audio, legacy ones included; returns how many.
 
-    The cover is embedded and also written beside them, once per folder they sit in.
+    A shrunk cover (mp3_cover) is embedded; the full one is written beside them, once per folder they sit in.
     """
     meta = store.meta
+    embedded = mp3_cover(cover) if cover else None
     selection = {s.key: s for s in store.selection()}
     folders: set[Path] = set()
     done = 0
     for row in store.outputs(OutputKind.AUDIO):
         path = out_dir / row.artifact
         if row.built_key in selection and path.exists():
-            tag_mp3(path, _tags(meta, row.built_key, selection[row.built_key].title, cover))
+            tag_mp3(path, _tags(meta, row.built_key, selection[row.built_key].title, embedded))
             folders.add(path.parent)
             done += 1
     if cover:

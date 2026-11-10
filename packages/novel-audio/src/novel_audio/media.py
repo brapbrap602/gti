@@ -4,7 +4,9 @@ Every writer goes through a temporary file and an atomic replace, so an
 interrupted build never leaves a truncated MP3 or M4B behind.
 
 Chapter MP3s and M4B volumes embed the cover; builds and retags also write it
-beside the MP3s as a folder image for players that look there.
+beside the MP3s as a folder image for players that look there. Each MP3 gets a
+shrunk copy (mp3_cover): phone players that estimate a CBR file's length from its
+size count the image as audio (a 700 KB cover is ~2 phantom minutes at 48 kbps).
 """
 
 import os
@@ -20,6 +22,8 @@ from mutagen.id3 import APIC, COMM, ID3, TALB, TCON, TIT2, TPE1, TPE2, TRCK, ID3
 from mutagen.mp3 import MP3
 
 GENRE = "Audiobook"
+MP3_COVER_PX = 500  # longest side of the cover embedded in chapter MP3s
+MP3_COVER_BYTES = 60_000  # covers at most this size are embedded as they are
 
 
 class MediaError(Exception):
@@ -98,6 +102,23 @@ def write_folder_cover(folder: Path, cover: bytes) -> Path:
         os.replace(tmp, folder / name)
     other.unlink(missing_ok=True)
     return folder / name
+
+
+def mp3_cover(cover: bytes) -> bytes:
+    """The cover to embed in every chapter MP3: as is when small, else a JPEG at most MP3_COVER_PX a side.
+
+    Raises MediaError when ffmpeg cannot read the image.
+    """
+    if len(cover) <= MP3_COVER_BYTES:
+        return cover
+    with tempfile.TemporaryDirectory() as tmpdir:
+        src = Path(tmpdir) / ("in.png" if _image_mime(cover) == "image/png" else "in.jpg")
+        out = Path(tmpdir) / "out.jpg"
+        src.write_bytes(cover)
+        fit = f"scale='min({MP3_COVER_PX},iw)':'min({MP3_COVER_PX},ih)':force_original_aspect_ratio=decrease"
+        _run([ffmpeg(), "-y", "-v", "error", "-i", str(src), "-vf", fit, "-frames:v", "1", "-q:v", "4", str(out)])
+        small = out.read_bytes()
+    return small if len(small) < len(cover) else cover
 
 
 def encode_m4b(parts: Sequence[Path], markers: Sequence[Marker], out: Path, tags: Tags) -> None:
