@@ -44,7 +44,9 @@ uv run nov serve                         # web UI on http://127.0.0.1:8765: libr
 
 Long commands (add, sync, builds, imports, deploy) run as jobs: one at a time per novel, whether
 started from the CLI or from `nov serve`, and a second one for the same novel is refused with
-"job already running". Jobs, their logs and locks live in `<data dir>/app.sqlite` and `_jobs/`.
+"job already running". In `nov serve`, jobs for different novels run at the same time, except
+audio builds, which queue and run one at a time so the TTS service does not rate-limit them.
+Jobs, their logs and locks live in `<data dir>/app.sqlite` and `_jobs/`.
 
 `nov sync` reads sites with lightnovel-crawler's crawlers (in-process), except hosts with a
 custom backend (skydemonorder). By default it fetches only chapter numbers no source has yet;

@@ -51,6 +51,26 @@ def test_job_one_per_novel(board, runner):
     assert wait_for(board, runner.submit("a", "sync", {}, lambda job: Outcome())).state is JobState.DONE
 
 
+def test_jobs_run_at_once_but_serial_jobs_queue(board, runner):
+    release, started = threading.Event(), threading.Semaphore(0)
+
+    def blocking(job):
+        started.release()
+        release.wait(5)
+        return Outcome()
+
+    plain = [runner.submit(f"n{i}", "sync", {}, blocking) for i in range(5)]
+    for _ in plain:  # all five are running together; a fixed pool would stall here
+        assert started.acquire(timeout=5)
+    first = runner.submit("a", "build-audio", {}, blocking, serial=True)
+    assert started.acquire(timeout=5)
+    second = runner.submit("b", "build-audio", {}, blocking, serial=True)
+    assert not started.acquire(timeout=0.3)  # waits behind the first audio job
+    assert board.job(second).state is JobState.QUEUED
+    release.set()
+    assert all(wait_for(board, j).state is JobState.DONE for j in [*plain, first, second])
+
+
 def test_a_lock_whose_heartbeat_expired_can_be_taken(board, clock):
     dead = board.claim("a", "sync", {})  # a process that died while holding the lock
     clock.now += 30
@@ -71,6 +91,25 @@ def test_job_interrupted_at_startup(board, clock):
     assert board.job(dead).state is JobState.INTERRUPTED
     assert board.job(live).state is JobState.QUEUED
     board.claim("a", "sync", {})  # the dead job's lock is gone
+
+
+def test_a_running_process_ends_jobs_left_by_one_that_stopped(board, clock, monkeypatch):
+    """A restart within STALE_AFTER: startup's reconcile still saw the dead job's heartbeat as fresh."""
+    monkeypatch.setattr("novel_app.jobs.HEARTBEAT_EVERY", 0.02)
+    dead = board.claim("a", "sync", {})
+    board.start(dead)
+    runner = JobRunner(board, clock=clock)
+    try:
+        assert board.reconcile() == 0
+        clock.now += 61
+        gate = threading.Event()
+        for _ in range(250):
+            if board.job(dead).state is JobState.INTERRUPTED:
+                break
+            gate.wait(0.02)
+        assert board.job(dead).state is JobState.INTERRUPTED
+    finally:
+        runner.shutdown()
 
 
 def test_cancel_stops_work_at_its_next_item(board, runner):

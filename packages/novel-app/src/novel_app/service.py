@@ -157,6 +157,10 @@ def openrouter() -> ModelFactory:
     return ModelFactory(key)
 
 
+# Jobs that call a rate-limited service: `start` runs them one at a time, the rest at once.
+SERIAL_KINDS = frozenset({"build-audio"})
+
+
 class Service:
     def __init__(
         self,
@@ -195,7 +199,7 @@ class Service:
     def start(self, kind: str, **args) -> int:
         """Queue a job; raises UserError for bad input and JobRunning if its target is busy."""
         target, work = self._prepare(kind, args)
-        return self.runner.submit(target, kind, args, work)
+        return self.runner.submit(target, kind, args, work, serial=kind in SERIAL_KINDS)
 
     def run(self, kind: str, echo: Callable[[str], None], **args) -> tuple[JobState, Outcome]:
         """Run a job in this thread, echoing its log; the work's own exceptions propagate."""

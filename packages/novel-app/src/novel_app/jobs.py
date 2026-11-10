@@ -6,7 +6,8 @@ BEGIN IMMEDIATE and kept alive by a heartbeat; one whose heartbeat is older than
 `stale_after` seconds belongs to a dead process and can be taken over. The CLI and
 `nov serve` share the board, so either refuses a second job for the same target.
 
-`JobRunner` runs work on a small thread pool (web) or in the calling thread (CLI).
+`JobRunner` runs work on a thread of its own per job (web) or in the calling thread (CLI);
+serial jobs (audio builds, which call a rate-limited TTS service) queue on one thread instead.
 Work receives a `Job` to log lines and report progress; a cancel request is raised
 as `Cancelled` from `Job.progress`, so cancelling is cooperative, between items.
 """
@@ -306,20 +307,29 @@ def _row(r: tuple) -> JobRow:
 class JobRunner:
     """Runs work under the board's locks: `submit` on worker threads, `run` in the caller's thread."""
 
-    def __init__(self, board: JobBoard, workers: int = 2, clock: Clock = time.time):
+    def __init__(self, board: JobBoard, clock: Clock = time.time):
         self.board = board
         self._clock = clock
-        self._pool = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="job")
+        self._serial = ThreadPoolExecutor(max_workers=1, thread_name_prefix="serial-job")
+        self._threads: list[threading.Thread] = []
         self._active: dict[int, Job] = {}
         self._mutex = threading.Lock()
         self._stop = threading.Event()
         self._beat = threading.Thread(target=self._heartbeats, name="job-heartbeat", daemon=True)
         self._beat.start()
 
-    def submit(self, target: str, kind: str, args: Mapping[str, object], work: Work) -> int:
-        """Queue work; raises JobRunning if the target already has a job (in any process)."""
+    def submit(self, target: str, kind: str, args: Mapping[str, object], work: Work, serial: bool = False) -> int:
+        """Start work now on its own thread, or, if serial, queue it behind this process's other serial
+        jobs. Raises JobRunning if the target already has a job (in any process)."""
         job = self._claim(target, kind, args, echo=None)
-        self._pool.submit(self._execute, job, work)
+        if serial:
+            self._serial.submit(self._execute, job, work)
+        else:
+            thread = threading.Thread(target=self._execute, args=(job, work), name=f"job-{job.id}")
+            with self._mutex:
+                self._threads = [t for t in self._threads if t.is_alive()]
+                self._threads.append(thread)
+            thread.start()
         return job.id
 
     def run(
@@ -349,7 +359,11 @@ class JobRunner:
             jobs = list(self._active.values())
         for job in jobs:
             job._cancel.set()
-        self._pool.shutdown(wait=True)
+        self._serial.shutdown(wait=True)
+        with self._mutex:
+            threads = list(self._threads)
+        for thread in threads:
+            thread.join()
         self._stop.set()
 
     def _claim(self, target: str, kind: str, args: Mapping[str, object], echo) -> Job:
@@ -392,5 +406,8 @@ class JobRunner:
                 ids = list(self._active)
             try:
                 self.board.heartbeat(ids)
+                # Also end jobs a stopped process left behind: one that stopped just before this
+                # process started still had a fresh heartbeat when startup reconciled.
+                self.board.reconcile()
             except sqlite3.Error:
                 pass  # the next beat retries; a lock only goes stale after several missed beats
