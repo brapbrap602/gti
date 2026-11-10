@@ -31,7 +31,9 @@ Run these from the repo root. Both commands are free: they don't translate or ca
   - On 2026-11-03 the whole site was 131 MiB; the largest novel, cultivation-chat-group, was 36 MB.
   - Raw-only novels add nothing. Audio MP3s are what would fill the 1 GB limit.
   - Removing a novel shrinks both the site and the repo, because old orphan commits become unreachable.
-  - There's no command that leaves a whole novel out of the site. `nov publish` switches individual sources in or out.
+  - `nov public <novel> off` leaves a whole novel out of the site (EPUB and audio unaffected); the next build and deploy drop it from gh-pages. `nov publish` switches individual sources in or out of the whole book.
+  - Never commit site output or novel text to `main`. On 2026-11-09 main's history was rewritten (git-filter-repo) to strip the old pre-cutover site; backup bundle at `%LOCALAPPDATA%
+ovels\_backup-git-2026-11-09.bundle`.
 
 ## Account rule
 
