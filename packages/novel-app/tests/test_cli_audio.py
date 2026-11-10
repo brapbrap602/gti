@@ -85,7 +85,7 @@ def test_build_audio_and_volumes(novel, data_dir, silent_tts, tmp_path):
     assert "[1/2] chapter 1" in result.output and "2 chapters built, 0 pruned" in result.output
     assert silent_tts == ["en-GB-RyanNeural"]
     audio = data_dir / "_audio" / novel
-    assert not ID3(audio / "chapter_0001.mp3").getall("APIC")
+    assert ID3(audio / "chapter_0001.mp3").getall("APIC")
     assert (audio / "cover.png").read_bytes() == png.read_bytes()
     again = run("build", "audio", novel, "--voice", "en-GB-RyanNeural").output
     assert "1 chapters built, 0 pruned; 4 sentences synthesized, 0 from the cache" in again  # heading + 3 distinct paragraphs

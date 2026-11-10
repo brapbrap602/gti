@@ -6,8 +6,8 @@ missing. Chapters are built one at a time and recorded as soon as each is
 done, so an interrupted build resumes where it stopped; the sentence cache
 keeps whatever was synthesized for the chapter in flight. Legacy chapters
 (registered from the old tts_out folders) are never rebuilt unless forced,
-and their files are never deleted. The cover goes beside the MP3s as a folder
-image, not into their tags (see novel_audio.media).
+and their files are never deleted. The cover is embedded in each MP3 and also
+written beside them as a folder image.
 """
 
 import asyncio
@@ -103,7 +103,7 @@ async def _build(
         parts = await cache.render(lines, limit, on_sentence)
         name = chapter_file(selected.key)
         join_mp3(parts, out_dir / name)
-        tag_mp3(out_dir / name, _tags(meta, selected.key, version.title))
+        tag_mp3(out_dir / name, _tags(meta, selected.key, version.title, cover))
         store.record_output(OutputKind.AUDIO, selected, fp, name)
 
     for row in plan.to_prune:
@@ -119,7 +119,7 @@ async def _build(
 def retag_audio(store: NovelStore, out_dir: Path, cover: bytes | None = None) -> int:
     """Rewrite the tags of every chapter MP3 that has audio, legacy ones included; returns how many.
 
-    The cover is written beside them, once per folder they sit in.
+    The cover is embedded and also written beside them, once per folder they sit in.
     """
     meta = store.meta
     selection = {s.key: s for s in store.selection()}
@@ -128,7 +128,7 @@ def retag_audio(store: NovelStore, out_dir: Path, cover: bytes | None = None) ->
     for row in store.outputs(OutputKind.AUDIO):
         path = out_dir / row.artifact
         if row.built_key in selection and path.exists():
-            tag_mp3(path, _tags(meta, row.built_key, selection[row.built_key].title))
+            tag_mp3(path, _tags(meta, row.built_key, selection[row.built_key].title, cover))
             folders.add(path.parent)
             done += 1
     if cover:
@@ -137,8 +137,8 @@ def retag_audio(store: NovelStore, out_dir: Path, cover: bytes | None = None) ->
     return done
 
 
-def _tags(meta: NovelMeta, key: ChapterKey, title: str) -> Tags:
-    return Tags(chapter_heading(key, title), meta.title, meta.author, key.number)
+def _tags(meta: NovelMeta, key: ChapterKey, title: str, cover: bytes | None) -> Tags:
+    return Tags(chapter_heading(key, title), meta.title, meta.author, key.number, cover=cover)
 
 
 def _remove_inside(folder: Path, artifact: str) -> None:

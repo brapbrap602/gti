@@ -27,6 +27,7 @@ from pathlib import Path
 
 from mutagen.id3 import (
     ID3,
+    APIC,  # Cover art
     TIT2,  # Title
     TALB,  # Album
     TPE1,  # Artist
@@ -77,8 +78,10 @@ def chapter_number_from_filename(filename: str) -> int | None:
     return None
 
 
-def tag_mp3(mp3_path: Path, meta: dict, dry_run: bool = False):
-    """Apply ID3 tags to a single MP3 file and remove any embedded cover (see write_folder_cover)."""
+def tag_mp3(
+    mp3_path: Path, cover_data: bytes | None, meta: dict, dry_run: bool = False
+):
+    """Apply ID3 tags, cover included, to a single MP3 file."""
     ch_num = chapter_number_from_filename(mp3_path.name)
     if ch_num is None:
         print(f"  [SKIP] Cannot determine chapter number: {mp3_path.name}")
@@ -113,15 +116,24 @@ def tag_mp3(mp3_path: Path, meta: dict, dry_run: bool = False):
     tags["TCON"] = TCON(encoding=3, text=meta["genre"])
     tags["COMM"] = COMM(encoding=3, lang="eng", desc="", text=meta["comment"])
 
+    if cover_data:
+        mime = "image/png" if cover_data[:8] == b"PNG
+
+
+" else "image/jpeg"
+        tags["APIC"] = APIC(
+            encoding=0,
+            mime=mime,
+            type=3,  # Front cover
+            desc="Cover",
+            data=cover_data,
+        )
+
     tags.save(str(mp3_path), v2_version=3)
 
 
 def write_folder_cover(folder: Path, cover_data: bytes) -> None:
-    """Save the cover beside the MP3s instead of inside them.
-
-    Phone players that estimate an MP3's length from its file size count an
-    embedded cover as audio (a 700 KB cover is ~2 phantom minutes at 48 kbps).
-    """
+    """Save the cover beside the MP3s too, for players that look for a folder image."""
     is_png = cover_data[:8] == b"\x89PNG\r\n\x1a\n"
     (folder / ("cover.png" if is_png else "cover.jpg")).write_bytes(cover_data)
     (folder / ("cover.jpg" if is_png else "cover.png")).unlink(missing_ok=True)
@@ -217,7 +229,7 @@ def main():
     print(f"  Artist : {meta['artist']}")
     print(f"  Cover  : {cover_path}\n")
     for mp3_path in mp3s:
-        tag_mp3(mp3_path, meta, dry_run=args.dry_run)
+        tag_mp3(mp3_path, cover_data, meta, dry_run=args.dry_run)
     if cover_data and not args.dry_run:
         for folder in sorted({p.parent for p in mp3s}):
             write_folder_cover(folder, cover_data)

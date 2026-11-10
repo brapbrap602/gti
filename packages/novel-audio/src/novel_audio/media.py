@@ -3,10 +3,8 @@
 Every writer goes through a temporary file and an atomic replace, so an
 interrupted build never leaves a truncated MP3 or M4B behind.
 
-Chapter MP3s carry no embedded cover: phone players that estimate a CBR file's
-length from its size count the image as audio (a 700 KB cover is ~2 phantom
-minutes at 48 kbps), so the cover sits beside them as a folder image instead.
-M4B volumes embed it; MP4 stores its duration exactly.
+Chapter MP3s and M4B volumes embed the cover; builds and retags also write it
+beside the MP3s as a folder image for players that look there.
 """
 
 import os
@@ -18,7 +16,7 @@ from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
 
-from mutagen.id3 import COMM, ID3, TALB, TCON, TIT2, TPE1, TPE2, TRCK, ID3NoHeaderError
+from mutagen.id3 import APIC, COMM, ID3, TALB, TCON, TIT2, TPE1, TPE2, TRCK, ID3NoHeaderError
 from mutagen.mp3 import MP3
 
 GENRE = "Audiobook"
@@ -69,7 +67,6 @@ def duration_ms(path: Path) -> int:
 
 
 def tag_mp3(path: Path, tags: Tags) -> None:
-    """Write text tags and remove any embedded picture; `tags.cover` is ignored (see write_folder_cover)."""
     try:
         id3 = ID3(path)
     except ID3NoHeaderError:
@@ -86,6 +83,8 @@ def tag_mp3(path: Path, tags: Tags) -> None:
         id3.add(TRCK(encoding=3, text=str(tags.track)))
     if tags.comment:
         id3.add(COMM(encoding=3, lang="eng", desc="", text=tags.comment))
+    if tags.cover:
+        id3.add(APIC(encoding=0, mime=_image_mime(tags.cover), type=3, desc="Cover", data=tags.cover))
     id3.save(path, v2_version=3)
 
 
