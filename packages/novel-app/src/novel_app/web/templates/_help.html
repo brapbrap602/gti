@@ -23,7 +23,8 @@
 {% set action = {
     "sync": "Fetch the chapters the web sources list that no source has yet; a failed chapter is retried, a locked one is not",
     "build-site": "Rebuild the reader site from every novel; only changed pages are written",
-    "build-epub": "An EPUB per 100 chapter numbers",
+    "build-epub": "EPUB volumes, each holding the chapter numbers set beside it",
+    "epub-size": "Chapter numbers per EPUB volume; changing it rebuilds every volume and deletes the old ones",
     "build-audio": "An edge-tts MP3 per chapter; a stopped build resumes where it was",
     "audio-range": "Chapters to build audio for; leave From or To blank to run to that end of the book, both blank for every chapter",
     "build-volumes": "An M4B audiobook per 100 chapter numbers, with chapter marks and the cover",

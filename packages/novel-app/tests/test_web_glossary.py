@@ -114,7 +114,9 @@ def test_without_a_key_build_says_what_to_do(novels, monkeypatch):
     assert "set OPENROUTER_API_KEY (and restart nov serve)" in page and "disabled" in page
 
 
-def test_a_busy_novel_disables_build(client, service):
-    service.runner.board.claim("raw-novel", "sync", {"novel": "raw-novel"})
+def test_only_a_running_glossary_pass_disables_build(client, service):
+    service.runner.board.claim("raw-novel", "sync", {"novel": "raw-novel"})  # another kind does not
+    assert not re.search(r'disabled\s+title="a glossary pass[^"]*">Build glossary', client.get("/novels/raw-novel/glossary").text)
+    service.runner.board.claim("raw-novel", "glossary-build", {"novel": "raw-novel"})
     page = client.get("/novels/raw-novel/glossary").text
-    assert re.search(r'<button type="submit" disabled\s+title="novel busy: Sync \(job \d+\)">Build glossary', page)
+    assert re.search(r'<button type="submit" disabled\s+title="a glossary pass is running \(job \d+\)">Build glossary', page)

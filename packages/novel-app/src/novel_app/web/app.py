@@ -62,7 +62,7 @@ WEB_JOBS: dict[str, tuple[str, ...]] = {
     "add": ("url", "novel", "lang", "backend"),
     "sync": ("novel",),
     "build-site": (),
-    "build-epub": ("novel",),
+    "build-epub": ("novel", "size"),
     "build-audio": ("novel", "range"),
     "build-volumes": ("novel",),
     "audio-retag": ("novel",),
@@ -168,6 +168,7 @@ def create_app(service: Service) -> FastAPI:
             request, "novel.html", novel=n, glossary=await run_in_threadpool(service.glossary_counts, novel),
             translate=await run_in_threadpool(service.translate_panel, novel),
             comparisons=len(await run_in_threadpool(service.comparisons, novel)),
+            folders=await run_in_threadpool(service.folders, novel),
             prefill={"setup": request.query_params.get("setup", ""), "range": request.query_params.get("range", "")},
         )  # fmt: skip
 
@@ -222,6 +223,11 @@ def create_app(service: Service) -> FastAPI:
             raise UserError(str(e)) from e
         await run_in_threadpool(service.unpin, novel, keys)
         return done(request, f"{keys.start}-{keys.end} unpinned", f"/novels/{novel}#sources")
+
+    @app.post("/novels/{novel}/folders/{name}")
+    async def open_folder(request: Request, novel: str, name: str):
+        folder = await run_in_threadpool(service.open_folder, novel, name)
+        return done(request, f"opened {folder}", f"/novels/{novel}")
 
     # -- translation ---------------------------------------------------------------
 

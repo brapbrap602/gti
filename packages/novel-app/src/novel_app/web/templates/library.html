@@ -69,10 +69,10 @@
             </div>
         </div>
         <div class="card-footer novel-card-footer">
-            {% if r.can_sync %}{{ job_button("sync", r.slug, r.job, icon_name="refresh-cw") }}{% endif %}
-            {{ build_menu(r.slug, r.job) }}
+            {% if r.can_sync %}{{ job_button("sync", r.slug, r.job_of("sync"), icon_name="refresh-cw") }}{% endif %}
+            {{ build_menu(r.slug, r) }}
             <a class="btn btn--ghost btn--sm open-link" href="/novels/{{ r.slug }}">Open{{ icon("chevron-right") }}</a>
-            {{ job_progress(r.slug, r.job) }}
+            {{ job_progress(r.jobs) }}
         </div>
     </li>
     {% endfor %}

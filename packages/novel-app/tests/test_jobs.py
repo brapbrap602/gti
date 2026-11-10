@@ -39,11 +39,13 @@ def wait_for(board, job_id, timeout=10.0):
     raise AssertionError(f"job {job_id} still {board.job(job_id).state}")
 
 
-def test_job_one_per_novel(board, runner):
+def test_one_job_per_novel_and_kind(board, runner):
     release = threading.Event()
     held = runner.submit("a", "sync", {"novel": "a"}, lambda job: release.wait(5) and Outcome())
-    with pytest.raises(JobRunning, match="job already running for a"):
-        runner.submit("a", "build-epub", {"novel": "a"}, lambda job: Outcome())
+    with pytest.raises(JobRunning, match="sync already running for a"):
+        runner.submit("a", "sync", {"novel": "a"}, lambda job: Outcome())
+    beside = runner.submit("a", "build-epub", {"novel": "a"}, lambda job: Outcome())  # another kind runs alongside
+    assert wait_for(board, beside).state is JobState.DONE
     other = runner.submit("b", "sync", {"novel": "b"}, lambda job: Outcome())
     assert wait_for(board, other).state is JobState.DONE
     release.set()

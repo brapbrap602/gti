@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% from "_ui.html" import icon, empty %}
-{% from "_macros.html" import busy_reason %}
 {% import "_help.html" as help %}
 {% set g = page %}
 {% set here = "/novels/" ~ g.slug ~ "/glossary?tab=" ~ g.tab ~ ("&q=" ~ (g.search | urlencode) if g.search else "") ~ ("&category=" ~ g.category if g.category else "") %}
@@ -15,8 +14,7 @@
     </div>
 </div>
 
-{% if g.building %}<div class="alert alert--warn busy">{{ icon("loader") }}<p class="alert-body">Glossary pass running (job {{ g.job.id }}): your edits are kept.</p></div>
-{% else %}{{ busy_reason(g.job) }}{% endif %}
+{% if g.building %}<div class="alert alert--warn busy">{{ icon("loader") }}<p class="alert-body">Glossary pass running (job {{ g.job.id }}): your edits are kept.</p></div>{% endif %}
 
 <section class="glossary-tools" aria-label="Glossary pass and new terms">
     <form method="post" action="/jobs" hx-post="/jobs" hx-target="#notice" class="card glossary-build">
@@ -33,7 +31,7 @@
         </div>
         <div class="card-footer">
             <button type="submit"{% if g.build_blocked or g.job %} disabled{% endif %}
-                {% if g.build_blocked %}title="{{ g.build_blocked }}"{% elif g.job %}title="novel busy: {{ job_labels.get(g.job.kind, g.job.kind) }} (job {{ g.job.id }})"{% endif %}>Build glossary</button>
+                {% if g.build_blocked %}title="{{ g.build_blocked }}"{% elif g.job %}title="a glossary pass is running (job {{ g.job.id }})"{% endif %}>Build glossary</button>
             {% if g.build_blocked %}<span class="muted">{{ g.build_blocked }}</span>{% endif %}
         </div>
     </form>

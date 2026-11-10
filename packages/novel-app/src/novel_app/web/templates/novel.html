@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% from "_ui.html" import icon, badge %}
-{% from "_macros.html" import job_button, build_menu, busy_reason, staleness, job_progress, meter, kind_badge %}
+{% from "_macros.html" import job_button, build_menu, staleness, job_progress, meter, kind_badge %}
 {% import "_help.html" as help %}
 {% set r = novel.row %}
 {% set back = "/novels/" ~ r.slug %}
@@ -14,8 +14,8 @@
         <p class="muted">{{ r.slug }} · last sync {{ r.last_sync | ago }}</p>
     </div>
     <div class="page-actions">
-        {% if r.can_sync %}{{ job_button("sync", r.slug, r.job, back, icon_name="refresh-cw", small=False) }}{% endif %}
-        {{ build_menu(r.slug, r.job, back, small=False, end=True) }}
+        {% if r.can_sync %}{{ job_button("sync", r.slug, r.job_of("sync"), back, icon_name="refresh-cw", small=False) }}{% endif %}
+        {{ build_menu(r.slug, r, back, small=False, end=True) }}
     </div>
 </div>
 {% if glossary is not none or translate %}
@@ -28,8 +28,7 @@
     {% endif %}
 </ul>
 {% endif %}
-{{ busy_reason(r.job) }}
-{{ job_progress(r.slug, r.job) }}
+{{ job_progress(r.jobs) }}
 
 <section class="stats" aria-label="Summary">
     <div class="stat" title="{{ help.stat.selected }}">
@@ -62,6 +61,7 @@
     <a class="tab" href="#translate" data-tab-link="translate">{{ icon("languages") }}Translate{% if stale %} <span class="count count--warn" title="stale chapters">{{ stale }}</span>{% endif %}</a>
     {% endif %}
     <a class="tab" href="#check" data-tab-link="check">{{ icon("search") }}Check {% if problems %}<span class="count count--warn">{{ problems }}</span>{% else %}<span class="count count--ok" title="no problems">✓</span>{% endif %}</a>
+    <a class="tab" href="#files" data-tab-link="files">{{ icon("file-text") }}Files</a>
 </nav>
 
 <section id="sources" class="panel card" data-panel="sources" aria-labelledby="sources-heading">
@@ -270,6 +270,32 @@
     {% for title, rows in (("Legacy moved", k.legacy_moved), ("Legacy unselected", k.legacy_unselected)) %}
     {% if rows %}<details><summary>{{ title }}: {{ rows | length }}</summary><p class="check-help">{{ help.check[title] }}</p><ul>{% for o in rows[:200] %}<li>{{ o.kind }} {{ o.built_key.label }}: <code>{{ o.item_ref }}</code></li>{% endfor %}</ul></details>{% endif %}
     {% endfor %}
+    </div>
+</section>
+
+<section id="files" class="panel card" data-panel="files" aria-labelledby="files-heading">
+    <div class="card-header">
+        <h2 id="files-heading" class="card-title">Files</h2>
+        <p class="card-description">Where this novel is kept on disk. Open shows a folder in Explorer; output folders appear when something is first built there.</p>
+    </div>
+    <div class="table-wrap">
+    <table class="sources-table folders-table">
+        <thead><tr><th scope="col">Folder</th><th scope="col">Holds</th><th scope="col">Path</th><th scope="col"><span class="visually-hidden">Open</span></th></tr></thead>
+        <tbody>
+        {% for f, exists in folders %}
+        <tr>
+            <th scope="row">{{ f.name }}</th>
+            <td data-label="Holds">{{ f.holds }}</td>
+            <td data-label="Path" class="path">{{ f.path }}</td>
+            <td>{% if exists %}
+                <form method="post" action="/novels/{{ r.slug }}/folders/{{ f.name }}" hx-post="/novels/{{ r.slug }}/folders/{{ f.name }}" hx-target="#notice" class="inline">
+                    <button type="submit" class="btn btn--outline btn--sm" aria-label="Open the {{ f.name }} folder">{{ icon("external-link") }}Open</button>
+                </form>
+            {% else %}<span class="muted">not built yet</span>{% endif %}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
     </div>
 </section>
 {% endblock %}

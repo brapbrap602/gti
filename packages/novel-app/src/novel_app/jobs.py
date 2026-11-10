@@ -1,10 +1,12 @@
-"""Jobs: long operations (sync, builds) run one at a time per novel, across processes.
+"""Jobs: long operations (sync, builds), one at a time per novel and kind, across processes.
 
 `JobBoard` owns app.sqlite: a row per job (state, progress, errors) and a lock row
-per target (a novel slug, or SITE for library-wide builds). A lock is taken with
-BEGIN IMMEDIATE and kept alive by a heartbeat; one whose heartbeat is older than
-`stale_after` seconds belongs to a dead process and can be taken over. The CLI and
-`nov serve` share the board, so either refuses a second job for the same target.
+per (target, kind), the target being a novel slug or SITE for library-wide builds.
+Different kinds of job on one novel run side by side (retag MP3s while audio builds);
+two of the same kind would fight over the same files, so the second is refused. A lock
+is taken with BEGIN IMMEDIATE and kept alive by a heartbeat; one whose heartbeat is
+older than `stale_after` seconds belongs to a dead process and can be taken over. The
+CLI and `nov serve` share the board, so either refuses a second job of a kind for a target.
 
 `JobRunner` runs work on a thread of its own per job (web) or in the calling thread (CLI);
 serial jobs (audio builds, which call a rate-limited TTS service) queue on one thread instead.
@@ -85,9 +87,10 @@ class Outcome:
 
 
 class JobRunning(Exception):
-    def __init__(self, target: str, job_id: int):
-        super().__init__(f"job already running for {target} (job {job_id})")
+    def __init__(self, target: str, kind: str, job_id: int):
+        super().__init__(f"{kind} already running for {target} (job {job_id})")
         self.target = target
+        self.kind = kind
         self.job_id = job_id
 
 
@@ -177,19 +180,20 @@ class JobBoard:
             db.close()
 
     def claim(self, target: str, kind: str, args: Mapping[str, object]) -> int:
-        """A new queued job holding target's lock; raises JobRunning if a live job holds it."""
+        """A new queued job holding the (target, kind) lock; raises JobRunning if a live job holds it."""
         now = self._clock()
+        key = _lock_key(target, kind)
         with self._connect(immediate=True) as db:
-            held = db.execute("SELECT job_id, heartbeat FROM lock WHERE target = ?", (target,)).fetchone()
+            held = db.execute("SELECT job_id, heartbeat FROM lock WHERE target = ?", (key,)).fetchone()
             if held is not None:
                 if now - held[1] <= self._stale_after:
-                    raise JobRunning(target, held[0])
+                    raise JobRunning(target, kind, held[0])
                 self._interrupt(db, held[0], now)
             job_id = db.execute(
                 "INSERT INTO job (target, kind, args, state, created_at) VALUES (?, ?, ?, ?, ?)",
                 (target, kind, json.dumps(dict(args), sort_keys=True), JobState.QUEUED, now),
             ).lastrowid
-            db.execute("INSERT INTO lock VALUES (?, ?, ?, ?)", (target, job_id, os.getpid(), now))
+            db.execute("INSERT INTO lock VALUES (?, ?, ?, ?)", (key, job_id, os.getpid(), now))
         return job_id
 
     def heartbeat(self, job_ids: Sequence[int]) -> None:
@@ -294,6 +298,11 @@ class JobBoard:
 
     def log_path(self, job_id: int) -> Path:
         return self._logs / f"{job_id}.log"
+
+
+def _lock_key(target: str, kind: str) -> str:
+    """The lock table's `target` column holds this key; a space never occurs in a slug or a kind."""
+    return f"{target} {kind}"
 
 
 def _row(r: tuple) -> JobRow:

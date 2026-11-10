@@ -18,7 +18,7 @@ def rows(store):
 def test_builds_tagged_chapter_mp3s_from_heading_and_sentences(book, tts, out):
     book.chapters(book.source(), [1, 2])
 
-    report = build_audio(book.store, out, tts, cover=b"\x89PNG\r\n\x1a\nfake")
+    report = build_audio(book.store, out, tts, cover=lambda: b"\x89PNG\r\n\x1a\nfake")
 
     assert report.built == (ChapterKey(1), ChapterKey(2)) and report.synthesized == 6
     assert tts.calls[:3] == ["Chapter 1: Title 1", "First paragraph of chapter 1.", "Second paragraph of chapter 1."]
@@ -31,6 +31,17 @@ def test_builds_tagged_chapter_mp3s_from_heading_and_sentences(book, tts, out):
     assert (out / "cover.png").read_bytes() == b"\x89PNG\r\n\x1a\nfake"
     assert duration_ms(out / "chapter_0001.mp3") > 0
     assert {k: r.artifact for k, r in rows(book.store).items()} == {"1": "chapter_0001.mp3", "2": "chapter_0002.mp3"}
+
+
+def test_a_cover_set_during_a_build_reaches_the_chapters_after_it(book, tts, out):
+    book.chapters(book.source(), [1, 2])
+    covers = iter([None, b"\x89PNG\r\n\x1a\nnew"])  # asked once per chapter: none yet, then the new one
+
+    build_audio(book.store, out, tts, cover=lambda: next(covers))
+
+    assert ID3(out / "chapter_0001.mp3").getall("APIC") == []
+    assert ID3(out / "chapter_0002.mp3").getall("APIC")[0].data == b"\x89PNG\r\n\x1a\nnew"
+    assert (out / "cover.png").read_bytes() == b"\x89PNG\r\n\x1a\nnew"
 
 
 def test_progress_counts_each_chapters_sentences_as_they_are_ready(book, tts, out):

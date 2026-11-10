@@ -131,14 +131,15 @@ def test_priority_buttons_reorder_sources(client, service):
     assert [r.source.id for r in service.priority("test-novel")] == [2, 1]
 
 
-def test_job_one_per_novel(client, service):
+def test_one_job_per_novel_and_kind(client, service):
     added(service)
     service.runner.board.claim("test-novel", "sync", {"novel": "test-novel"})  # say, a CLI sync
     refused = client.post("/jobs", data={"kind": "sync", "novel": "test-novel", "back": "/"})
-    assert refused.status_code == 409 and "job already running for test-novel" in refused.text
+    assert refused.status_code == 409 and "sync already running for test-novel" in refused.text
     page = client.get("/").text
     assert re.search(r'<button type="submit"(?: class="[^"]*")? disabled title="Sync is queued \(job \d+\)"(?: class="[^"]*")?>.*?Sync</button>', page)
     assert "running in another process" in page
+    assert re.search(r'<button type="submit" title="[^"]*">.*?EPUB</button>', page)  # other kinds can start
 
     started = client.post("/jobs", data={"kind": "build-site", "back": "/"}, follow_redirects=False)
     assert started.status_code == 303 and "started+job" in started.headers["location"]
@@ -461,8 +462,10 @@ def test_the_jobs_pill_shows_a_running_job_and_its_progress(client, novels, serv
     pill = re.search(r'<button type="button" class="jobs-toggle.*?</button>', page, re.S).group(0)
     assert "jobs-toggle--running" in pill and '<span class="pill-label">1 running</span>' in pill
     assert re.search(r'class="pill-progress"[^>]*max="7" value="2"', pill)
-    mirror = re.search(r'<div class="job-mirror" data-job-progress="raw-novel"[^>]*>', page).group(0)
-    assert "hidden" not in mirror and "Sync 2/7" in page
+    assert f'<div class="job-mirror" data-job-progress="{running}">' in page and "Sync 2/7" in page
+    beside = board.claim("raw-novel", "build-epub", {})  # a second kind on the same novel gets its own bar
+    assert f'data-job-progress="{beside}"' in client.get("/").text
+    board.finish(beside, JobState.DONE)
     board.finish(running, JobState.DONE)
 
 
@@ -478,16 +481,16 @@ def test_the_jobs_pill_counts_unresolved_problems_only(client, service):
     assert '<span class="pill-label">1 problem</span>' in page and "jobs-toggle--problem" in page
 
 
-def test_the_novel_page_has_four_tabs_and_their_panels(openrouter, client, service):
+def test_the_novel_page_has_five_tabs_and_their_panels(openrouter, client, service):
     from novel_translate.setups import TranslatorSetup
 
     service.add_setup("raw-novel", TranslatorSetup("vendor/cheap"))
     page = client.get("/novels/raw-novel").text
 
     panels = re.findall(r'<section id="(\w+)"[^>]* data-panel="(\w+)"', page)
-    assert panels == [(p, p) for p in ("sources", "chapters", "translate", "check")]
+    assert panels == [(p, p) for p in ("sources", "chapters", "translate", "check", "files")]
     links = re.findall(r'<a class="tab" href="#(\w+)" data-tab-link="(\w+)">', page)
-    assert links == [(p, p) for p in ("sources", "chapters", "translate", "check")]
+    assert links == [(p, p) for p in ("sources", "chapters", "translate", "check", "files")]
     assert 'role="tablist"' not in page
     problems = service.novel("raw-novel").check.problems
     check_tab = re.search(r'data-tab-link="check">.*?</a>', page, re.S).group(0)
@@ -514,5 +517,42 @@ def test_a_refused_htmx_job_is_an_error_toast(client, service):
     service.runner.board.claim("test-novel", "sync", {"novel": "test-novel"})
     refused = client.post("/jobs", data={"kind": "sync", "novel": "test-novel"}, headers={"HX-Request": "true"})
     assert refused.status_code == 409
-    assert "toast--destructive" in refused.text and "job already running for test-novel" in refused.text
+    assert "toast--destructive" in refused.text and "sync already running for test-novel" in refused.text
     assert 'class="toast-close"' in refused.text and "<html" not in refused.text
+
+
+def test_files_tab_shows_where_the_novel_lives_and_opens_its_folders(site):
+    shown = []
+    service = Service(JobRunner(JobBoard(app_db())), show=shown.append)
+    added(service)
+    with TestClient(create_app(service)) as client:
+        page = client.get("/novels/test-novel").text
+        assert f'<td data-label="Path" class="path">{novel_dir("test-novel")}</td>' in page
+        assert 'action="/novels/test-novel/folders/novel"' in page
+        assert 'action="/novels/test-novel/folders/epub"' not in page  # nothing built yet
+
+        opened = client.post("/novels/test-novel/folders/novel", follow_redirects=False)
+        assert opened.status_code == 303 and shown == [novel_dir("test-novel")]
+
+        assert client.post("/novels/test-novel/folders/epub").status_code == 400  # not built
+        assert client.post("/novels/test-novel/folders/raw").status_code == 400  # only the listed folders
+        assert client.post("/novels/nobody/folders/novel").status_code == 400
+    assert shown == [novel_dir("test-novel")]
+
+
+def test_epub_volume_size_is_chosen_in_the_build_menu_and_remembered(client, service):
+    added(service)
+    menu = client.get("/novels/test-novel").text
+    assert re.search(r'<input name="size" type="number" min="1" inputmode="numeric" value="100"', menu)
+
+    ok = client.post("/jobs", data={"kind": "build-epub", "novel": "test-novel", "size": "2"}, headers={"HX-Request": "true"})
+    job_id = int(re.search(r"started job (\d+)", ok.text).group(1))
+    assert finished(service, job_id).state is JobState.DONE
+    assert "2 of 2 volumes built" in client.get(f"/jobs/{job_id}/log").text  # chapters 1-3 in volumes of 2
+
+    page = client.get("/novels/test-novel").text
+    assert re.search(r'<input name="size" type="number" min="1" inputmode="numeric" value="2"', page)
+    assert re.search(r'<span class="kind">epub</span>\s*<span class="fresh">up to date</span>', page)  # not stale at size 2
+
+    bad = client.post("/jobs", data={"kind": "build-epub", "novel": "test-novel", "size": "0"})
+    assert bad.status_code == 400 and "at least 1 chapter" in bad.text

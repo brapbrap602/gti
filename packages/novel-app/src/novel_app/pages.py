@@ -112,7 +112,12 @@ class LibraryRow:
     new_items: int  # items the web sources list that the book lacks
     last_sync: float | None
     outputs: tuple[Staleness, ...]
-    job: JobRow | None  # the novel's active job
+    jobs: tuple[JobRow, ...]  # the novel's active jobs, newest first; at most one of each kind
+    epub_size: int  # chapter numbers per EPUB volume, as the last EPUB build had it
+
+    def job_of(self, kind: str) -> JobRow | None:
+        """The novel's active job of this kind: what keeps another of that kind from starting."""
+        return next((j for j in self.jobs if j.kind == kind), None)
 
     @property
     def raw_only(self) -> bool:
@@ -129,7 +134,7 @@ class LibraryRow:
 
     @property
     def status(self) -> "NovelStatus":
-        if self.job:
+        if self.jobs:
             return NovelStatus.RUNNING
         if self.needs_rebuild:
             return NovelStatus.REBUILD
@@ -232,7 +237,10 @@ def state_counts(blocks: Iterable[GridBlock]) -> dict[CellState, int]:
     return dict(counts)
 
 
-def library_row(slug: str, view: NovelView, jobs: Sequence[JobRow], last_sync: float | None) -> LibraryRow:
+def library_row(
+    slug: str, view: NovelView, jobs: Sequence[JobRow], last_sync: float | None, epub_size: int = epub.VOLUME_SIZE
+) -> LibraryRow:
+    """The novel's row; EPUB staleness is judged against volumes of `epub_size` chapter numbers."""
     counts: dict[Kind, set[int]] = defaultdict(set)
     rows = []
     to_fetch_total = 0
@@ -249,7 +257,7 @@ def library_row(slug: str, view: NovelView, jobs: Sequence[JobRow], last_sync: f
     cover = view.meta.cover_path
     fingerprints = {
         OutputKind.SITE: site_builder.fingerprint(),
-        OutputKind.EPUB: epub.fingerprint(view.meta, (novel_dir(slug) / cover).read_bytes() if cover else None, epub.VOLUME_SIZE),
+        OutputKind.EPUB: epub.fingerprint(view.meta, (novel_dir(slug) / cover).read_bytes() if cover else None, epub_size),
         OutputKind.AUDIO: audio_fingerprint(DEFAULT_VOICE),
     }
     outputs = []
@@ -266,8 +274,13 @@ def library_row(slug: str, view: NovelView, jobs: Sequence[JobRow], last_sync: f
         new_items=to_fetch_total,
         last_sync=last_sync,
         outputs=tuple(outputs),
-        job=next((j for j in jobs if j.target == slug and j.state.active), None),
+        jobs=active_jobs(jobs, slug),
+        epub_size=epub_size,
     )
+
+
+def active_jobs(jobs: Sequence[JobRow], target: str) -> tuple[JobRow, ...]:
+    return tuple(j for j in jobs if j.target == target and j.state.active)
 
 
 def chapter_grid(view: NovelView) -> tuple[GridBlock, ...]:

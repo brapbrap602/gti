@@ -10,7 +10,7 @@
     'use strict';
 
     const root = document.documentElement;
-    const PANELS = ['sources', 'chapters', 'translate', 'check'];
+    const PANELS = ['sources', 'chapters', 'translate', 'check', 'files'];
     const TOAST_MS = 6000;
     const SHEETS = [
         { sheet: 'aside.jobs', toggle: '.jobs-toggle', close: '.jobs-close' },
@@ -71,9 +71,9 @@
             b.setAttribute('aria-expanded', String(aside.classList.contains('show-recent')));
         });
 
-        // A novel's card or header shows its job's progress; #main only reloads when a job starts or ends.
+        // A novel's card or header shows each running job's progress; #main only reloads when a job starts or ends.
         document.querySelectorAll('[data-job-progress]').forEach((el) => {
-            const li = active.find((j) => j.dataset.target === el.dataset.jobProgress);
+            const li = active.find((j) => j.dataset.job === el.dataset.jobProgress);
             el.hidden = !li;
             if (!li) return;
             const source = li.querySelector('progress');

@@ -7,7 +7,9 @@ done, so an interrupted build resumes where it stopped; the sentence cache
 keeps whatever was synthesized for the chapter in flight. Legacy chapters
 (registered from the old tts_out folders) are never rebuilt unless forced,
 and their files are never deleted. The cover is embedded in each MP3 and also
-written beside them as a folder image.
+written beside them as a folder image; title, author and cover are read again
+before each chapter, so a change made while a long build runs reaches the
+chapters built after it (a retag covers those built before).
 """
 
 import asyncio
@@ -54,14 +56,15 @@ def build_audio(
     *,
     keys: KeyRange | None = None,
     force: bool = False,
-    cover: bytes | None = None,
+    cover: Callable[[], bytes | None] | None = None,
     concurrency: int = DEFAULT_CONCURRENCY,
     progress: Progress | None = None,
 ) -> AudioReport:
     """Build the stale chapters numbered within `keys` (all when None) into out_dir.
 
     `force` rebuilds every chapter in `keys`, legacy ones included. Chapters that
-    are no longer selected are pruned whatever `keys` says.
+    are no longer selected are pruned whatever `keys` says. `cover` gives the
+    novel's cover as it is now; it is asked before each chapter.
     """
     return asyncio.run(_build(store, out_dir, tts, keys or EVERYTHING, force, cover, concurrency, progress))
 
@@ -72,7 +75,7 @@ async def _build(
     tts: TtsEngine,
     keys: KeyRange,
     force: bool,
-    cover: bytes | None,
+    cover: Callable[[], bytes | None] | None,
     concurrency: int,
     progress: Progress | None,
 ) -> AudioReport:
@@ -87,11 +90,7 @@ async def _build(
         if s.key.number in keys and (s.key in planned or s.key in missing)
     ]  # fmt: skip
 
-    meta = store.meta
-    embedded = None
-    if cover and todo:
-        write_folder_cover(out_dir, cover)
-        embedded = mp3_cover(cover)
+    current = _CurrentCover(out_dir, cover)
     cache = SentenceCache(out_dir / SENTENCES, tts)
     limit = asyncio.Semaphore(concurrency)
     for i, selected in enumerate(todo, start=1):
@@ -105,7 +104,7 @@ async def _build(
         parts = await cache.render(lines, limit, on_sentence)
         name = chapter_file(selected.key)
         join_mp3(parts, out_dir / name)
-        tag_mp3(out_dir / name, _tags(meta, selected.key, version.title, embedded))
+        tag_mp3(out_dir / name, _tags(store.meta, selected.key, version.title, current.embedded()))
         store.record_output(OutputKind.AUDIO, selected, fp, name)
 
     for row in plan.to_prune:
@@ -116,6 +115,25 @@ async def _build(
     return AudioReport(
         tuple(s.key for s in todo), tuple(r.built_key for r in plan.to_prune), cache.synthesized, cache.reused
     )
+
+
+class _CurrentCover:
+    """The cover to embed now: shrunk again, and written beside the MP3s again, only when it changed."""
+
+    def __init__(self, out_dir: Path, cover: Callable[[], bytes | None] | None):
+        self._out_dir = out_dir
+        self._cover = cover
+        self._seen: bytes | None = None
+        self._embedded: bytes | None = None
+
+    def embedded(self) -> bytes | None:
+        cover = self._cover() if self._cover else None
+        if cover != self._seen:
+            self._seen = cover
+            self._embedded = mp3_cover(cover) if cover else None
+            if cover:
+                write_folder_cover(self._out_dir, cover)
+        return self._embedded
 
 
 def retag_audio(store: NovelStore, out_dir: Path, cover: bytes | None = None) -> int:

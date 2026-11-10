@@ -69,8 +69,8 @@ def test_state_counts_add_up_the_blocks():
     assert state_counts(blocks) == {CellState.OFFICIAL: 3, CellState.MISSING: 1, CellState.FAILED: 1}
 
 
-def row(outputs=(), numbers=None, selected=10, job=None) -> LibraryRow:
-    return LibraryRow("n", "N", (), numbers or {Kind.OFFICIAL_EN: selected}, selected, 0, 0, None, tuple(outputs), job)
+def row(outputs=(), numbers=None, selected=10, jobs=()) -> LibraryRow:
+    return LibraryRow("n", "N", (), numbers or {Kind.OFFICIAL_EN: selected}, selected, 0, 0, None, tuple(outputs), jobs, 100)
 
 
 @pytest.mark.parametrize(("r", "status"), [

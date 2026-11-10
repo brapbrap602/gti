@@ -7,11 +7,13 @@ mistake is reported at once instead of as a failed job. Each job logs what the C
 prints. The rest are quick reads and writes that return what they did.
 
 Composition: `sources` (the backends' `open_source`), `tts` and `translator` (what
-makes OpenRouter models) can be passed in; left out, they are this module's names,
-looked up when the Service is made.
+makes OpenRouter models) and `show` (what opens a folder on the desktop) can be passed
+in; left out, they are this module's names, looked up when the Service is made.
 """
 
 import os
+import subprocess
+import sys
 from datetime import datetime
 from collections.abc import Callable, Iterator, Mapping, Sequence
 from contextlib import AbstractContextManager, ExitStack, contextmanager
@@ -78,6 +80,7 @@ from novel_app.comparing import Bundle, ChapterScreen, Reference, bundles, chapt
 from novel_app.glossary_page import GlossaryPage, TermRow, glossary_page, term_row
 from novel_app.jobs import SITE, JobPanel, JobRow, JobRunner, JobState, Outcome, Work
 from novel_app.library import (
+    Folder,
     audio_dir,
     compare_dir,
     data_dir,
@@ -85,6 +88,7 @@ from novel_app.library import (
     fetch_dir,
     guide_file,
     novel_dir,
+    novel_folders,
     novel_slugs,
     site_dir,
     slugify,
@@ -149,6 +153,14 @@ def app_db() -> Path:
     return data_dir() / "app.sqlite"
 
 
+def show_folder(folder: Path) -> None:
+    """Open the folder in the desktop's file manager (Explorer on Windows)."""
+    if sys.platform == "win32":
+        os.startfile(folder)
+    else:
+        subprocess.Popen(["open" if sys.platform == "darwin" else "xdg-open", str(folder)])
+
+
 def openrouter() -> ModelFactory:
     """OpenRouter, with the key from the environment it was started in."""
     key = os.environ.get(KEY_ENV)
@@ -168,11 +180,13 @@ class Service:
         sources: Callable[..., AbstractContextManager[Source]] | None = None,
         tts: Callable[[str], TtsEngine] | None = None,
         translator: Callable[[], ModelFactory] | None = None,
+        show: Callable[[Path], None] | None = None,
     ):
         self.runner = runner
         self._open_source = sources or open_source
         self._tts = tts or EdgeTts
         self._translator = translator or openrouter
+        self._show = show or show_folder
         # Page reads, per novel, until its database files change: (stamp, view, row without job state).
         self._cache: dict[str, tuple[tuple, NovelView, pages.LibraryRow]] = {}
         # Staleness per (novel, setup url), until either of the novel's databases changes.
@@ -365,8 +379,9 @@ class Service:
 
         return SITE, work
 
-    def _build_epub(self, novel: str, size: int = epub.VOLUME_SIZE, force: bool = False, out: str | None = None):
+    def _build_epub(self, novel: str, size: int | str = epub.VOLUME_SIZE, force: bool = False, out: str | None = None):
         self._require(novel)
+        size = _parsed(_volume_size, size)
         folder = Path(out) if out else epub_dir(novel)
 
         def work(job) -> Outcome:
@@ -398,7 +413,7 @@ class Service:
             with self._store(novel) as store:
                 try:
                     r = build_audio(
-                        store, folder, tts, keys=keys, force=force, cover=self._cover(novel, store),
+                        store, folder, tts, keys=keys, force=force, cover=lambda: self._cover(novel, store),
                         concurrency=concurrency,
                         progress=lambda s, i, n, d, m: job.progress(i, n, f"chapter {s.key.label} · sentence {d}/{m}"),
                     )  # fmt: skip
@@ -531,6 +546,22 @@ class Service:
         view = self._read(novel)[0]
         return pages.NovelPage(row, pages.chapter_grid(view), view.pins, pages.novel_check(novel, view))
 
+    def folders(self, novel: str) -> list[tuple[Folder, bool]]:
+        """Where this novel's files are, each with whether it exists yet (output folders appear on first build)."""
+        self._require(novel)
+        return [(f, f.path.is_dir()) for f in novel_folders(novel)]
+
+    def open_folder(self, novel: str, name: str) -> Path:
+        """Show one of the novel's folders in the file manager; only those `folders` lists, never a given path."""
+        self._require(novel)
+        folder = next((f.path for f in novel_folders(novel) if f.name == name), None)
+        if folder is None:
+            raise UserError(f"no folder {name!r}")
+        if not folder.is_dir():
+            raise UserError(f"{folder} does not exist yet: nothing has been built there")
+        self._show(folder)
+        return folder
+
     def compare(self, novel: str, number: int, left: int | None = None, right: int | None = None) -> pages.Comparison:
         with self._store(novel) as store:
             return pages.comparison(store, store.view(), number, left, right)
@@ -545,19 +576,20 @@ class Service:
     def _read(self, novel: str) -> tuple[NovelView, pages.LibraryRow]:
         """The novel's view and library row, read again only after its database changed."""
         folder = self._require(novel)
-        stamp = _stamp(folder)
+        built = self.runner.board.last_ended(novel, "build-epub")
+        epub_size = int(built.args.get("size", epub.VOLUME_SIZE)) if built else epub.VOLUME_SIZE
+        stamp = (_stamp(folder), epub_size)  # an EPUB build ends in app.sqlite, after its last write here
         cached = self._cache.get(novel)
         if cached is None or cached[0] != stamp:
             with NovelStore.open(folder) as store:
                 view = store.view()
-            cached = (stamp, view, pages.library_row(novel, view, (), None))
+            cached = (stamp, view, pages.library_row(novel, view, (), None, epub_size))
             self._cache[novel] = cached
         return cached[1], cached[2]
 
     def _row(self, novel: str, jobs: Sequence[JobRow]) -> pages.LibraryRow:
         last = self.runner.board.last_ended(novel, "sync")
-        job = next((j for j in jobs if j.target == novel and j.state.active), None)
-        return replace(self._read(novel)[1], job=job, last_sync=last.ended_at if last else None)
+        return replace(self._read(novel)[1], jobs=pages.active_jobs(jobs, novel), last_sync=last.ended_at if last else None)
 
     # -- quick reads and writes ------------------------------------------------
 
@@ -713,7 +745,7 @@ class Service:
         except UserError as e:
             blocked = str(e)
         with self._tstore(novel) as ts:
-            return glossary_page(novel, row.title, ts, tab, search, category, blocked, row.job)
+            return glossary_page(novel, row.title, ts, tab, search, category, blocked, row.job_of("glossary-build"))
 
     def glossary_counts(self, novel: str) -> dict[Status, int] | None:
         """Terms per status, for the novel page; None when the novel has no raws to translate."""
@@ -1099,6 +1131,13 @@ def _slug(novel: str) -> str:
     except ValueError as e:
         raise UserError(str(e)) from e
     return novel
+
+
+def _volume_size(text: int | str) -> int:
+    size = int(text)
+    if size < 1:
+        raise ValueError(f"volume size must be at least 1 chapter, not {size}")
+    return size
 
 
 def _parsed[T, A](parse: Callable[[A], T], text: A) -> T:

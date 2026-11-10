@@ -270,7 +270,7 @@ def test_a_card_shows_its_job_progress_without_a_reload(novels, desktop, app_url
     board.start(running)
 
     desktop.goto(app_url + "/")
-    mirror = "document.querySelector('[data-job-progress=\"raw-novel\"]')"
+    mirror = f"document.querySelector('[data-job-progress=\"{running}\"]')"
     assert desktop.js(f"!{mirror}.hidden")
     desktop.js("document.getElementById('main').dataset.before = 'kept'")
     board.set_progress(running, 2, 7, "")  # no job starts or ends: main is not reloaded
@@ -353,7 +353,7 @@ def test_a_link_to_check_switches_tabs_every_time(openrouter, desktop, app_url, 
 
 def test_a_success_toast_fades_and_an_error_stays(novels, desktop, app_url, service):
     page = desktop
-    service.runner.board.claim("english-only", "sync", {"novel": "english-only"})
+    service.runner.board.claim("english-only", "build-epub", {"novel": "english-only"})
     page.goto(app_url + "/")
     toast = "document.querySelector('#notice .toast')"
 
@@ -362,7 +362,7 @@ def test_a_success_toast_fades_and_an_error_stays(novels, desktop, app_url, serv
     page.js("htmx.ajax('POST', '/jobs', {target: '#notice', values: {kind: 'build-epub', novel: 'english-only'}})")
     page.wait_for(f"{toast} && {toast}.classList.contains('toast--destructive')")
     page.js("new Promise(r => setTimeout(r, 8000))")  # past the success toast's timer
-    assert "job already running for english-only" in page.js(f"{toast}.textContent")
+    assert "build-epub already running for english-only" in page.js(f"{toast}.textContent")
 
     page.click(".toast-close")
     assert page.js(f"!{toast}")
@@ -387,7 +387,7 @@ def test_without_javascript_everything_shows_inline(openrouter, app_url, service
             assert not page.js("document.querySelector('.nav-toggle').checkVisibility()")
         page.goto(app_url + "/novels/raw-novel")
         page.js("document.documentElement.classList.remove('js')")
-        assert visible_panels(page) == ["sources", "chapters", "translate", "check"]
+        assert visible_panels(page) == ["sources", "chapters", "translate", "check", "files"]
         page.assert_no_errors()
 
 

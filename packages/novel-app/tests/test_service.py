@@ -56,7 +56,7 @@ def test_job_lock_cross_process(service, site, tmp_path):
         [sys.executable, "-c", "from novel_app.cli import app; app()", "sync", "a"],
         capture_output=True, text=True, env={**os.environ}, timeout=120,
     )  # fmt: skip
-    assert cli.returncode == 1 and "job already running for a" in cli.stderr, cli.stdout + cli.stderr
+    assert cli.returncode == 1 and "sync already running for a" in cli.stderr, cli.stdout + cli.stderr
 
     later = JobBoard(app_db(), clock=lambda: 10**12)  # long after the heartbeat
     later.claim("a", "sync", {})

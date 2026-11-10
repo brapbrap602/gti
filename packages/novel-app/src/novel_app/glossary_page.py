@@ -44,7 +44,7 @@ class GlossaryPage:
     matching: int  # terms under this tab and filter; rows holds at most ROW_LIMIT of them
     revision: int
     build_blocked: str | None  # why Build cannot start (no raws, no key)
-    job: JobRow | None  # the novel's active job
+    job: JobRow | None  # the novel's running glossary pass
 
     @property
     def total(self) -> int:
@@ -55,7 +55,7 @@ class GlossaryPage:
 
     @property
     def building(self) -> bool:
-        return self.job is not None and self.job.kind == "glossary-build"
+        return self.job is not None
 
 
 def glossary_page(

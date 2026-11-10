@@ -5,6 +5,7 @@ import re
 import sqlite3
 import unicodedata
 from contextlib import closing
+from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 
@@ -81,6 +82,24 @@ def novel_dir(slug: str) -> Path:
     if slug != slugify(slug):
         raise ValueError(f"{slug!r} is not a slug (lowercase ASCII letters, digits and dashes)")
     return data_dir() / slug
+
+
+@dataclass(frozen=True)
+class Folder:
+    name: str  # also its address: /novels/<slug>/folders/<name>
+    path: Path
+    holds: str
+
+
+def novel_folders(slug: str) -> list[Folder]:
+    """Every folder that holds something of this novel: its store first, then what builds write."""
+    return [
+        Folder("novel", novel_dir(slug), "chapter texts and sources (novel.sqlite), fetched raw pages, cover, translations"),
+        Folder("audio", audio_dir(slug), "chapter MP3s and M4B volumes"),
+        Folder("epub", epub_dir(slug), "EPUB volumes"),
+        Folder("comparisons", compare_dir(slug), "model comparison bundles"),
+        Folder("site", site_dir(), "the built reading site, every novel"),
+    ]
 
 
 def guide_file() -> Path:
