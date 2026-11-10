@@ -379,7 +379,10 @@ class Service:
         def work(job) -> Outcome:
             with ExitStack() as stack:
                 stores = {slug: stack.enter_context(NovelStore.open(novel_dir(slug))) for slug in novel_slugs()}
-                r = build_site(stores, folder, force=force)
+                private = sorted(slug for slug, store in stores.items() if not store.public)
+                r = build_site({s: store for s, store in stores.items() if s not in private}, folder, force=force)
+            for slug in private:
+                job.log(f"{slug}: not public, left off the site")
             for n in r.novels:
                 state = "raw only" if n.raw_only else f"{n.chapters} chapters"
                 job.log(f"{n.slug}: {state}, {n.pages_written} pages written, {n.pages_deleted} deleted")
@@ -1006,6 +1009,11 @@ class Service:
         chosen = self._setup(novel, setup)
         with self._store(novel) as store, self._tstore(novel) as ts:
             return prune(store, ts, pages.raw_rules(novel, store.sources()), chosen)
+
+    def set_public(self, novel: str, on: bool) -> None:
+        """Put the novel on the public reading site or take it off at the next site build."""
+        with self._store(novel) as store:
+            store.set_public(on)
 
     def set_published(self, novel: str, source: int, on: bool) -> None:
         with self._store(novel) as store:

@@ -568,7 +568,7 @@ def test_open_migrates_a_version_1_store(tmp_path):
     folder = tmp_path / "old"
     NovelStore.create(folder, NovelMeta("Old")).close()
     with sqlite3.connect(folder / "novel.sqlite") as conn:
-        undo_version_4(conn)
+        undo_versions_from_4(conn)
         conn.execute("DROP TABLE volume")
         conn.execute("ALTER TABLE source DROP COLUMN published")
         conn.execute("PRAGMA user_version=1")
@@ -583,7 +583,9 @@ def test_open_migrates_a_version_1_store(tmp_path):
     assert source_columns(folder) == source_columns(tmp_path / "new")
 
 
-def undo_version_4(conn):
+def undo_versions_from_4(conn):
+    """Take a fresh store back to version 3 (callers undo older versions themselves)."""
+    conn.execute("ALTER TABLE novel DROP COLUMN public")
     conn.execute("DROP TABLE finding")
     conn.execute("DROP TABLE release")
     conn.execute("ALTER TABLE version DROP COLUMN rules_rev")
@@ -603,7 +605,7 @@ def test_open_migrates_a_version_2_store_keeping_every_source_published(tmp_path
         store.upsert_source(SourceSpec("custom:a", "https://a.test", "en", Kind.OFFICIAL_EN))
         store.upsert_source(SourceSpec("custom:raw", "https://raw.test", "zh", Kind.RAW_ZH))
     with sqlite3.connect(folder / "novel.sqlite") as conn:
-        undo_version_4(conn)
+        undo_versions_from_4(conn)
         conn.execute("ALTER TABLE source DROP COLUMN published")
         conn.execute("PRAGMA user_version=2")
     conn.close()
@@ -611,7 +613,7 @@ def test_open_migrates_a_version_2_store_keeping_every_source_published(tmp_path
     with NovelStore.open(folder) as store:
         assert [s.published for s in store.sources()] == [True, True]
     with sqlite3.connect(folder / "novel.sqlite") as conn:
-        assert conn.execute("PRAGMA user_version").fetchone() == (4,)
+        assert conn.execute("PRAGMA user_version").fetchone() == (5,)
     conn.close()
 
 
@@ -817,7 +819,7 @@ def test_open_migrates_a_version_3_store(tmp_path):
         store.put_version(raw, "/r/1", NewVersion("T", (Paragraph.of("一"),), raw=RawChapter("一 raw", "text")))
         store.put_version(raw, "/r/2", NewVersion("T", (Paragraph.of("二"),)))
     with sqlite3.connect(folder / "novel.sqlite") as conn:
-        undo_version_4(conn)
+        undo_versions_from_4(conn)
         conn.execute("PRAGMA user_version=3")
     conn.close()
 
@@ -830,8 +832,33 @@ def test_open_migrates_a_version_3_store(tmp_path):
     for table in ("version", "finding", "release"):
         assert table_columns(folder, table) == table_columns(tmp_path / "new", table)
     with sqlite3.connect(folder / "novel.sqlite") as conn:
-        assert conn.execute("PRAGMA user_version").fetchone() == (4,)
+        assert conn.execute("PRAGMA user_version").fetchone() == (5,)
     conn.close()
+
+
+def test_open_migrates_a_version_4_store_keeping_the_novel_public(tmp_path):
+    folder = tmp_path / "old"
+    NovelStore.create(folder, NovelMeta("Old")).close()
+    with sqlite3.connect(folder / "novel.sqlite") as conn:
+        conn.execute("ALTER TABLE novel DROP COLUMN public")
+        conn.execute("PRAGMA user_version=4")
+    conn.close()
+
+    with NovelStore.open(folder) as store:
+        assert store.public
+    NovelStore.create(tmp_path / "new", NovelMeta("New")).close()
+    assert table_columns(folder, "novel") == table_columns(tmp_path / "new", "novel")
+
+
+def test_a_novel_starts_public_and_the_switch_survives_a_meta_change(tmp_path):
+    with NovelStore.create(tmp_path / "n", NovelMeta("N")) as store:
+        assert store.public
+        store.set_public(False)
+        store.set_meta(replace(store.meta, author="A"))
+    with NovelStore.open(tmp_path / "n") as store:
+        assert not store.public and store.meta.author == "A"
+        store.set_public(True)
+        assert store.public
 
 
 def table_columns(folder, table):

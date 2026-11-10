@@ -96,6 +96,25 @@ def test_build_site_for_every_novel(data_dir, wns_folder):
     assert "test-novel: 3 chapters, 0 pages written" in run("build", "site").output
 
 
+def test_a_novel_that_is_not_public_leaves_the_site_and_comes_back(data_dir, wns_folder):
+    run("import", "wns", wns_folder)
+    run("build", "site")
+    folder = data_dir / "_site" / "novels" / "test-novel"
+
+    assert run("public", "test-novel", "off").exit_code == 0
+    result = run("build", "site")
+
+    assert "test-novel: not public, left off the site" in result.output
+    assert not folder.exists()
+    assert "test-novel" not in (data_dir / "_site" / "index.html").read_text(encoding="utf-8")
+    assert run("build", "epub", "test-novel").exit_code == 0  # the book itself is unaffected
+
+    run("public", "test-novel", "on")
+    assert "test-novel: 3 chapters, 1 pages written" in run("build", "site").output
+    assert (folder / "1-50.html").exists()
+    assert run("public", "test-novel", "maybe").exit_code == 2
+
+
 def test_build_epub(data_dir, wns_folder):
     run("import", "wns", wns_folder)
 
@@ -193,12 +212,13 @@ def test_an_older_store_is_backed_up_before_its_first_open(data_dir):
         conn.execute("DROP TABLE release")
         conn.execute("ALTER TABLE version DROP COLUMN rules_rev")
         conn.execute("ALTER TABLE version DROP COLUMN raw_hash")
+        conn.execute("ALTER TABLE novel DROP COLUMN public")
         conn.execute("PRAGMA user_version=3")
     conn.close()
 
     assert run("check", "a-novel").exit_code == 0
     backup = data_dir / f"_backup-schema3-{date.today().isoformat()}" / "a-novel" / "novel.sqlite"
-    assert user_version(backup) == 3 and user_version(db) == 4
+    assert user_version(backup) == 3 and user_version(db) == 5
     assert novel_slugs() == ["a-novel"]
 
     backup.unlink()

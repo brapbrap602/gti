@@ -49,7 +49,7 @@ from novel_core.model import (
 from novel_core.selection import Pin, Selected, SourceId, rank, unpinned
 from novel_core.view import CurrentVersion, NovelView, StoreError, StoredItem, derive
 
-SCHEMA_VERSION = 4
+SCHEMA_VERSION = 5
 DB_NAME = "novel.sqlite"
 
 type Clock = Callable[[], datetime]
@@ -66,6 +66,7 @@ _novel = sa.Table(
     sa.Column("cover_path", sa.String),
     sa.Column("tags_json", sa.String, nullable=False),
     sa.Column("priority_json", sa.String, nullable=False),
+    sa.Column("public", sa.Boolean, nullable=False, server_default=sa.true()),
 )  # fmt: skip
 _source = sa.Table(
     "source", _md,
@@ -172,8 +173,15 @@ def _add_checks(conn: sa.Connection) -> None:
     _release.create(conn)
 
 
+def _add_public(conn: sa.Connection) -> None:
+    # Same DDL as the column above; existing novels stay on the site.
+    conn.exec_driver_sql("ALTER TABLE novel ADD COLUMN public BOOLEAN DEFAULT 1 NOT NULL")
+
+
 # Each step upgrades a store from the version it is keyed by to the next one.
-_MIGRATIONS: dict[int, Callable[[sa.Connection], None]] = {1: _add_volumes, 2: _add_published, 3: _add_checks}
+_MIGRATIONS: dict[int, Callable[[sa.Connection], None]] = {
+    1: _add_volumes, 2: _add_published, 3: _add_checks, 4: _add_public,
+}  # fmt: skip
 
 
 def stored_schema(novel_dir: Path) -> int:
@@ -260,6 +268,16 @@ class NovelStore:
     def set_meta(self, meta: NovelMeta) -> None:
         with self._engine.begin() as conn:
             conn.execute(_novel.update().values(**_meta_row(meta)))
+
+    @property
+    def public(self) -> bool:
+        """Whether the novel is on the public reading site; EPUB and audio ignore it."""
+        with self._engine.connect() as conn:
+            return conn.execute(sa.select(_novel.c.public)).scalar_one()
+
+    def set_public(self, on: bool) -> None:
+        with self._engine.begin() as conn:
+            conn.execute(_novel.update().values(public=on))
 
     def upsert_source(self, spec: SourceSpec, *, published: bool = True) -> SourceId:
         """Add a source, or update the spec of the one with the same (backend, url).

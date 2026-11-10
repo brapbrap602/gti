@@ -614,6 +614,19 @@ def publish(
 
 
 @app.command()
+def public(
+    novel: Novel,
+    switch: Annotated[str, typer.Argument(help="on or off")],
+) -> None:
+    """Put the novel on the public reading site or take it off (EPUB and audio are unaffected)."""
+    if switch not in ("on", "off"):
+        raise typer.BadParameter("on or off")
+    _calling(lambda: _service().set_public(novel, switch == "on"))
+    where = "on the site" if switch == "on" else "off the site"
+    typer.echo(f"{novel}: {where} from the next `nov build site`; then `nov deploy site`")
+
+
+@app.command()
 def serve(
     port: Annotated[int, typer.Option(help="port on 127.0.0.1")] = 8765,
 ) -> None:
