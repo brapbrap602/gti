@@ -109,13 +109,13 @@ Paths are relative to the repo root. Pub = `packages/novel-publish/src/novel_pub
 - `data-slug` and `data-toc` attributes.
 - A Continue link and a go-to form, both `hidden` until JS reveals them.
 - `<details class="all-chapters"><summary>All chapters (N pages)</summary>` containing the existing `.book-part-link`s, with no max-height box.
-- The raw-only card is unchanged.
+- The raw-only card is unchanged. (Superseded by [reader-redesign-developer.md](reader-redesign-developer.md) U2: novels with nothing to read are left off the site.)
 
 ### 3.3 Site behaviour (`static/site.js`, one IIFE)
 
 **Storage**
 - All reads and writes go through a try/catch wrapper. Keys:
-  - `reader:settings`: `{scale: 0-4, theme: "system"|"light"|"dark"}`
+  - `reader:settings`: `{scale: 0-4, theme: "system"|"light"|"dark"}` (superseded by [reader-redesign-developer.md](reader-redesign-developer.md) §3.4: `{scale, theme, font, spacing, width}`, with a sepia theme)
   - `reader:pos:<slug>`: `{file, anchor, para, label, t}`
 - When storage throws, everything still works for the current visit and nothing is saved.
 

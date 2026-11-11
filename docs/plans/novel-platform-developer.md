@@ -48,7 +48,7 @@ Put all novel tooling in one repo, **gti** (`github.com/brapbrap602/gti`, public
 15. CLI plus local web UI over the same service. Web UI v1: dashboard, sync/build with live progress, add novel by URL, side-by-side version compare plus pin.
 16. Proposed and baseline-confirmed: `sync` (fetch and normalize) is separate from `build site|epub|audio`.
 17. Site is deployed by force-pushing an **orphan `gh-pages`** branch. main has no site HTML. **Old URLs break** (no redirects).
-18. Chinese-only novels (Transcendental Mechanic) are imported and shown as "raw only". Builds skip them.
+18. Chinese-only novels (Transcendental Mechanic) are imported and shown as "raw only". Builds skip them. (On the public site, superseded by [reader-redesign-developer.md](reader-redesign-developer.md) U2: they are left off the site until they have a published chapter. The app keeps its "raw only" badge.)
 19. Legacy per-novel scraper `.py` files are copied to `gti/legacy/<name>/` with keys scrubbed. Original folders are untouched.
 20. gti is licensed GPL-3.0. Secrets are read only from env. The user rotates the OpenRouter and Google keys.
 21. Test fixtures keep real structure with **scrubbed text**. No novel prose goes in git.
