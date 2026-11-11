@@ -34,7 +34,7 @@ from starlette.concurrency import run_in_threadpool
 
 from novel_app.comparing import all_chapters, columns, setup_name, words
 from novel_app.glossary_page import TABS
-from novel_app.jobs import JobPanel, JobRunning, JobState
+from novel_app.jobs import CancelResult, JobPanel, JobRunning, JobState
 from novel_app.notation import parse_range
 from novel_app.pages import (
     CELL_LABELS,
@@ -386,9 +386,11 @@ def create_app(service: Service) -> FastAPI:
     @app.post("/jobs/{job_id}/cancel")
     async def cancel(request: Request, job_id: int):
         form = await request.form()
-        if not service.cancel(job_id):
+        result = await run_in_threadpool(service.cancel, job_id)
+        if result is None:
             raise UserError(f"job {job_id} is not running in this server")
-        return done(request, f"job {job_id} will stop after its current item", _back(form))
+        said = "cancelled" if result is CancelResult.REMOVED else "will stop after its current item"
+        return done(request, f"job {job_id} {said}", _back(form))
 
     @app.post("/jobs/{job_id}/rerun")
     async def rerun(request: Request, job_id: int):
@@ -436,7 +438,7 @@ async def job_events(
     disconnected: Callable,
     every: float = STREAM_EVERY,
 ) -> AsyncIterator[str]:
-    """SSE events: `jobs` (the drawer's HTML) when it changes, `active` when a job starts or ends."""
+    """SSE events: `jobs` (the drawer's HTML) when it changes, `active` when a job is queued, starts or ends."""
     shown, active = None, None
     while not await disconnected():
         panel = await run_in_threadpool(service.job_panel)
@@ -444,7 +446,7 @@ async def job_events(
         if html != shown:
             shown = html
             yield sse("jobs", html)
-        now_active = {j.id for j in panel.attention if j.state.active}
+        now_active = {(j.id, j.state) for j in panel.attention if j.state.active}
         if active is not None and active != now_active:
             yield sse("active", "")
         active = now_active

@@ -262,6 +262,7 @@ def test_audio_from_the_build_menu_takes_an_optional_chapter_span(site, first, l
 def test_job_interrupted_at_startup(site, service):
     dead = JobBoard(app_db(), clock=lambda: 0.0)  # its heartbeat is decades old
     job_id = dead.claim("test-novel", "sync", {"novel": "test-novel"})
+    dead.start(job_id)  # it was running (one only queued would end cancelled)
     added(service)  # the stale lock does not block new jobs
     with TestClient(create_app(service)) as client:
         assert service.runner.board.job(job_id).state is JobState.INTERRUPTED
@@ -283,6 +284,26 @@ def test_cancel_from_the_drawer(client, service, site):
     assert client.post(f"/jobs/{job_id}/cancel", data={"back": "/"}, follow_redirects=False).status_code == 303
     row = finished(service, job_id)
     assert row.state is JobState.CANCELLED and row.done < 297
+
+
+def test_an_audio_build_waits_for_its_novels_sync_and_can_be_cancelled_at_once(client, service):
+    added(service)
+    board = service.runner.board
+    sync = board.claim("test-novel", "sync", {"novel": "test-novel"})  # say, a CLI sync
+    audio = service.start("build-audio", novel="test-novel")
+    gate = threading.Event()
+    while board.job(audio).current != "waiting for sync":
+        gate.wait(0.02)
+
+    panel = re.search(rf'data-job="{audio}".*?</li>', client.get("/").text, re.S).group(0)
+    assert '<span class="job-state">queued</span>' in panel and "waiting for sync" in panel
+
+    cancelled = client.post(f"/jobs/{audio}/cancel", data={"back": "/"}, headers={"HX-Request": "true"})
+    assert f"job {audio} cancelled" in cancelled.text
+    assert board.job(audio).state is JobState.CANCELLED
+    again = client.post(f"/jobs/{audio}/cancel", data={"back": "/"}, headers={"HX-Request": "true"})
+    assert f"job {audio} is not running in this server" in again.text
+    board.finish(sync, JobState.DONE)
 
 
 def test_unknown_novel_and_job_kind(client):
@@ -314,6 +335,26 @@ def test_job_events_push_changes_and_starts_and_ends(service):
     events = asyncio.run(collect())
     assert [e.splitlines()[0] for e in events] == ["event: jobs", "event: jobs", "event: active", "event: jobs", "event: active"]
     assert events[1].split("\n") == ["event: jobs", f"data: {claimed[0]}:queued", "", ""]
+
+
+def test_main_reloads_when_a_queued_job_starts_too(service):
+    board, polls, claimed = service.runner.board, [], []
+
+    async def disconnected():
+        polls.append(len(polls) + 1)
+        if len(polls) == 2:
+            claimed.append(board.claim("other", "sync", {}))
+        if len(polls) == 3:
+            board.start(claimed[0])
+        if len(polls) == 4:
+            board.finish(claimed[0], JobState.DONE)
+        return len(polls) > 5
+
+    async def collect():
+        return [e async for e in job_events(service, lambda panel: "", disconnected, every=0.0)]
+
+    events = asyncio.run(collect())
+    assert [e.splitlines()[0] for e in events].count("event: active") == 3  # claimed, started, ended
 
 
 def test_jobs_panel_shows_attention_then_recent(client, service):

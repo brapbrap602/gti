@@ -9,9 +9,12 @@ older than `stale_after` seconds belongs to a dead process and can be taken over
 CLI and `nov serve` share the board, so either refuses a second job of a kind for a target.
 
 `JobRunner` runs work on a thread of its own per job (web) or in the calling thread (CLI);
-serial jobs (audio builds, which call a rate-limited TTS service) queue on one thread instead.
+a job given a lane takes its turn there instead, one at a time (Sync all's syncs; audio
+builds, which call a rate-limited TTS service), and may wait while its novel has a job of
+another kind. Which kind goes where is the service's policy; the runner knows no kinds.
 Work receives a `Job` to log lines and report progress; a cancel request is raised
-as `Cancelled` from `Job.progress`, so cancelling is cooperative, between items.
+as `Cancelled` from `Job.progress`, so cancelling a started job is cooperative, between
+items. A job still waiting its turn is ended at once.
 """
 
 import json
@@ -20,7 +23,6 @@ import sqlite3
 import threading
 import time
 from collections.abc import Callable, Iterator, Mapping, Sequence
-from concurrent.futures import ThreadPoolExecutor
 from contextlib import contextmanager
 from dataclasses import dataclass
 from enum import StrEnum
@@ -208,9 +210,16 @@ class JobBoard:
             with self._connect() as db:
                 db.executemany("UPDATE lock SET heartbeat = ? WHERE job_id = ?", [(self._clock(), j) for j in job_ids])
 
-    def start(self, job_id: int) -> None:
+    def held(self, target: str, kind: str) -> bool:
+        """Whether a live job (queued or running, in any process) holds the (target, kind) lock."""
         with self._connect() as db:
-            db.execute("UPDATE job SET state = ? WHERE id = ?", (JobState.RUNNING, job_id))
+            row = db.execute("SELECT heartbeat FROM lock WHERE target = ?", (_lock_key(target, kind),)).fetchone()
+        return row is not None and self._clock() - row[0] <= self._stale_after
+
+    def start(self, job_id: int) -> None:
+        """The job runs; a note it had while queued ("waiting for sync") goes."""
+        with self._connect() as db:
+            db.execute("UPDATE job SET state = ?, current = '' WHERE id = ?", (JobState.RUNNING, job_id))
 
     def set_progress(self, job_id: int, done: int, total: int, current: str) -> None:
         with self._connect() as db:
@@ -237,7 +246,7 @@ class JobBoard:
             ).rowcount
 
     def reconcile(self) -> int:
-        """Mark active jobs whose lock is gone or stale interrupted (their process stopped); returns how many."""
+        """End active jobs whose lock is gone or stale (their process stopped), as `_interrupt` says; returns how many."""
         now = self._clock()
         with self._connect(immediate=True) as db:
             orphans = [
@@ -254,9 +263,11 @@ class JobBoard:
         return len(orphans)
 
     def _interrupt(self, db: sqlite3.Connection, job_id: int, now: float) -> None:
+        """End a job whose process stopped: interrupted if it had started (a problem), else cancelled
+        (it never ran, so nothing is half done; Sync all can simply be run again)."""
         db.execute(
-            "UPDATE job SET state = ?, ended_at = ? WHERE id = ? AND state IN (?, ?)",
-            (JobState.INTERRUPTED, now, job_id, JobState.QUEUED, JobState.RUNNING),
+            "UPDATE job SET state = CASE state WHEN ? THEN ? ELSE ? END, ended_at = ? WHERE id = ? AND state IN (?, ?)",
+            (JobState.QUEUED, JobState.CANCELLED, JobState.INTERRUPTED, now, job_id, JobState.QUEUED, JobState.RUNNING),
         )
         db.execute("DELETE FROM lock WHERE job_id = ?", (job_id,))
 
@@ -335,13 +346,97 @@ def _row(r: tuple) -> JobRow:
     )  # fmt: skip
 
 
-class JobRunner:
-    """Runs work under the board's locks: `submit` on worker threads, `run` in the caller's thread."""
+class CancelResult(StrEnum):
+    REMOVED = "removed"  # it was waiting in a lane: ended cancelled at once
+    SIGNALLED = "signalled"  # it had started (or was just starting): it stops at its next item
 
-    def __init__(self, board: JobBoard, clock: Clock = time.time):
+
+@dataclass
+class _Queued:
+    job: Job
+    target: str
+    work: Work
+    waits_for: str | None
+    marked: bool = False  # its waiting note is on the board
+
+
+class _Lane:
+    """Jobs that take turns: a FIFO with one worker thread. The first job that is ready runs; one whose
+    target holds a `waits_for` lock (in any process, so the board is polled) is passed over meanwhile."""
+
+    def __init__(self, name: str, runner: "JobRunner", poll: float):
+        self._runner = runner
+        self._poll = poll
+        self._queue: list[_Queued] = []
+        self._cond = threading.Condition()
+        self._closed = False
+        self.thread = threading.Thread(target=self._work, name=f"job-lane-{name}", daemon=True)
+        self.thread.start()
+
+    def put(self, entry: _Queued) -> None:
+        with self._cond:
+            self._queue.append(entry)
+            self._cond.notify()
+
+    def take(self, job_id: int) -> Job | None:
+        """Remove a job that has not started; None if it is not queued here (any more)."""
+        with self._cond:
+            entry = next((e for e in self._queue if e.job.id == job_id), None)
+            if entry is not None:
+                self._queue.remove(entry)
+                self._cond.notify()
+        return entry.job if entry else None
+
+    def close(self) -> list[Job]:
+        """Stop taking jobs; returns those still queued, now out of the lane."""
+        with self._cond:
+            self._closed = True
+            left, self._queue = [e.job for e in self._queue], []
+            self._cond.notify_all()
+        return left
+
+    def _work(self) -> None:
+        while True:
+            with self._cond:
+                while not self._queue and not self._closed:
+                    self._cond.wait()
+                if self._closed:
+                    return
+                waiting = list(self._queue)
+            # Readiness is a database read: done outside the condition, so submit and cancel never wait on it.
+            ready = next((e for e in waiting if e.waits_for is None
+                          or not self._runner.board.held(e.target, e.waits_for)), None)  # fmt: skip
+            if ready is None:
+                for e in waiting:
+                    if not e.marked:
+                        self._runner.board.set_progress(e.job.id, 0, 0, f"waiting for {e.waits_for}")
+                        e.marked = True
+                with self._cond:
+                    if not self._closed:
+                        self._cond.wait(self._poll)
+                continue
+            with self._cond:
+                if ready not in self._queue:  # cancelled meanwhile
+                    continue
+                self._queue.remove(ready)
+            self._runner._execute(ready.job, ready.work)
+
+
+class JobRunner:
+    """Runs work under the board's locks: `submit` on worker threads, `run` in the caller's thread.
+
+    A job submitted to a named lane takes its turn there, one at a time, instead of starting at once; with
+    `waits_for`, it waits while its target has a job of that kind (queued or running, in any process).
+    `poll` is how often a waiting job looks again; `sleep` is the CLI's wait between looks."""
+
+    def __init__(
+        self, board: JobBoard, clock: Clock = time.time, poll: float = 2.0, sleep: Callable[[float], None] = time.sleep
+    ):
         self.board = board
         self._clock = clock
-        self._serial = ThreadPoolExecutor(max_workers=1, thread_name_prefix="serial-job")
+        self._poll = poll
+        self._sleep = sleep
+        self._lanes: dict[str, _Lane] = {}
         self._threads: list[threading.Thread] = []
         self._active: dict[int, Job] = {}
         self._mutex = threading.Lock()
@@ -349,35 +444,53 @@ class JobRunner:
         self._beat = threading.Thread(target=self._heartbeats, name="job-heartbeat", daemon=True)
         self._beat.start()
 
-    def submit(self, target: str, kind: str, args: Mapping[str, object], work: Work, serial: bool = False) -> int:
-        """Start work now on its own thread, or, if serial, queue it behind this process's other serial
-        jobs. Raises JobRunning if the target already has a job (in any process)."""
+    def submit(
+        self, target: str, kind: str, args: Mapping[str, object], work: Work,
+        lane: str | None = None, waits_for: str | None = None,
+    ) -> int:  # fmt: skip
+        """Start work now on its own thread, or queue it in the named lane (created on first use).
+        Raises JobRunning if the target already has a job of this kind (in any process)."""
+        if waits_for is not None and lane is None:
+            raise ValueError("only a lane job can wait for another kind")
         job = self._claim(target, kind, args, echo=None)
-        if serial:
-            self._serial.submit(self._execute, job, work)
-        else:
-            thread = threading.Thread(target=self._execute, args=(job, work), name=f"job-{job.id}")
+        if lane is not None:
             with self._mutex:
-                self._threads = [t for t in self._threads if t.is_alive()]
-                self._threads.append(thread)
-            thread.start()
+                if lane not in self._lanes:
+                    self._lanes[lane] = _Lane(lane, self, self._poll)
+                queue = self._lanes[lane]
+            queue.put(_Queued(job, target, work, waits_for))
+            return job.id
+        thread = threading.Thread(target=self._execute, args=(job, work), name=f"job-{job.id}")
+        with self._mutex:
+            self._threads = [t for t in self._threads if t.is_alive()]
+            self._threads.append(thread)
+        thread.start()
         return job.id
 
     def run(
-        self, target: str, kind: str, args: Mapping[str, object], work: Work, echo: Callable[[str], None]
-    ) -> tuple[JobState, Outcome]:
-        """Run work now in this thread. Ctrl-C ends the job as interrupted and is re-raised."""
+        self, target: str, kind: str, args: Mapping[str, object], work: Work, echo: Callable[[str], None],
+        waits_for: str | None = None,
+    ) -> tuple[JobState, Outcome]:  # fmt: skip
+        """Run work now in this thread; with `waits_for`, first wait while the target has a job of that kind.
+        Ctrl-C (waiting or running) ends the job as interrupted and is re-raised."""
         job = self._claim(target, kind, args, echo)
-        return self._execute(job, work, reraise=True)
+        return self._execute(job, work, reraise=True, wait=(target, waits_for) if waits_for else None)
 
-    def cancel(self, job_id: int) -> bool:
-        """Ask a job of this process to stop at its next item; False if it is not running here."""
+    def cancel(self, job_id: int) -> CancelResult | None:
+        """End a queued job of this process at once, or ask a started one to stop at its next item;
+        None if the job is not this process's."""
+        with self._mutex:
+            lanes = list(self._lanes.values())
+        for lane in lanes:
+            if (job := lane.take(job_id)) is not None:
+                self._drop(job)
+                return CancelResult.REMOVED
         with self._mutex:
             job = self._active.get(job_id)
         if job is None:
-            return False
-        job._cancel.set()
-        return True
+            return None
+        job._cancel.set()  # if a lane has just taken it, _execute ends it before it starts
+        return CancelResult.SIGNALLED
 
     def owns(self, job_id: int) -> bool:
         """Whether the job is queued or running in this process, so `cancel` can reach it."""
@@ -385,12 +498,18 @@ class JobRunner:
             return job_id in self._active
 
     def shutdown(self) -> None:
-        """Cancel this process's jobs and wait for them to stop."""
+        """End the queued jobs as cancelled, ask the running ones to stop, and wait for them."""
+        with self._mutex:
+            lanes = list(self._lanes.values())
+        for lane in lanes:
+            for job in lane.close():
+                self._drop(job)
         with self._mutex:
             jobs = list(self._active.values())
         for job in jobs:
             job._cancel.set()
-        self._serial.shutdown(wait=True)
+        for lane in lanes:
+            lane.thread.join()
         with self._mutex:
             threads = list(self._threads)
         for thread in threads:
@@ -403,9 +522,20 @@ class JobRunner:
             self._active[job.id] = job
         return job
 
-    def _execute(self, job: Job, work: Work, reraise: bool = False) -> tuple[JobState, Outcome]:
+    def _drop(self, job: Job) -> None:
+        """End a job that never started as cancelled, releasing its lock."""
+        with self._mutex:
+            self._active.pop(job.id, None)
+        job.log("cancelled")
+        self.board.finish(job.id, JobState.CANCELLED)
+
+    def _execute(
+        self, job: Job, work: Work, reraise: bool = False, wait: tuple[str, str] | None = None
+    ) -> tuple[JobState, Outcome]:
         state, outcome = JobState.FAILED, Outcome()
         try:
+            if wait is not None:
+                self._wait_turn(job, *wait)
             if job._cancel.is_set():
                 state = JobState.CANCELLED
                 return state, outcome
@@ -430,6 +560,16 @@ class JobRunner:
             with self._mutex:
                 del self._active[job.id]
         return state, outcome
+
+    def _wait_turn(self, job: Job, target: str, kind: str) -> None:
+        """The CLI's wait, before the job starts: polled with `sleep`, which Ctrl-C interrupts
+        (an untimed lock or condition wait would not, on Windows)."""
+        if not self.board.held(target, kind):
+            return
+        job.log(f"waiting for {kind} of {target}…")
+        self.board.set_progress(job.id, 0, 0, f"waiting for {kind}")
+        while self.board.held(target, kind) and not job._cancel.is_set():
+            self._sleep(self._poll)
 
     def _heartbeats(self) -> None:
         while not self._stop.wait(HEARTBEAT_EVERY):

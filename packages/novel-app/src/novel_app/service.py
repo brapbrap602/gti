@@ -81,7 +81,7 @@ from novel_translate.tstore import TranslateStore
 from novel_app import deploy, pages, report
 from novel_app.comparing import Bundle, ChapterScreen, Reference, bundles, chapter_screen, new_bundle, write_bundle
 from novel_app.glossary_page import GlossaryPage, TermRow, glossary_page, term_row
-from novel_app.jobs import SITE, JobPanel, JobRow, JobRunner, JobState, Outcome, Work
+from novel_app.jobs import SITE, CancelResult, JobPanel, JobRow, JobRunner, JobState, Outcome, Work
 from novel_app.library import (
     Folder,
     audio_dir,
@@ -191,8 +191,19 @@ def openrouter() -> ModelFactory:
     return ModelFactory(key)
 
 
-# Jobs that call a rate-limited service: `start` runs them one at a time, the rest at once.
-SERIAL_KINDS = frozenset({"build-audio"})
+@dataclass(frozen=True)
+class Turn:
+    """How a job takes its turn: the lane it queues in (None: it starts at once, on a thread of its
+    own), and the kind of job on the same novel it waits for. No kind waits for audio, so waits never cycle."""
+
+    lane: str | None = None
+    waits_for: str | None = None
+
+
+# Audio builds call a rate-limited TTS service, so they run one at a time; and each waits while its
+# novel syncs, so it never reads chapters a sync is changing. Every other kind starts at once.
+TURNS: Mapping[str, Turn] = {"build-audio": Turn("audio", waits_for="sync")}
+SYNC_ALL = Turn("sync")  # Sync all's syncs take turns; a single Sync click does not
 
 
 class Service:
@@ -235,12 +246,14 @@ class Service:
     def start(self, kind: str, **args) -> int:
         """Queue a job; raises UserError for bad input and JobRunning if its target is busy."""
         target, work = self._prepare(kind, args)
-        return self.runner.submit(target, kind, args, work, serial=kind in SERIAL_KINDS)
+        turn = TURNS.get(kind, Turn())
+        return self.runner.submit(target, kind, args, work, lane=turn.lane, waits_for=turn.waits_for)
 
     def run(self, kind: str, echo: Callable[[str], None], **args) -> tuple[JobState, Outcome]:
-        """Run a job in this thread, echoing its log; the work's own exceptions propagate."""
+        """Run a job in this thread, echoing its log (after waiting, as its kind does, for another kind to
+        end on the novel); the work's own exceptions propagate."""
         target, work = self._prepare(kind, args)
-        return self.runner.run(target, kind, args, work, echo)
+        return self.runner.run(target, kind, args, work, echo, waits_for=TURNS.get(kind, Turn()).waits_for)
 
     def rerun(self, job_id: int) -> int:
         """Start a job again with the same arguments (after it was interrupted or failed)."""
@@ -568,8 +581,8 @@ class Service:
         path = self.runner.board.log_path(job_id)
         return path.read_text(encoding="utf-8") if path.exists() else ""
 
-    def cancel(self, job_id: int) -> bool:
-        """Ask a job of this process to stop after its current item."""
+    def cancel(self, job_id: int) -> CancelResult | None:
+        """End a queued job of this process at once, or ask a started one to stop after its current item."""
         return self.runner.cancel(job_id)
 
     # -- pages ---------------------------------------------------------------

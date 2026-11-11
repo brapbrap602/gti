@@ -8,6 +8,8 @@
         {% if j.total %}
         <progress max="{{ j.total }}" value="{{ j.done }}" aria-label="job {{ j.id }} progress">{{ j.done }}/{{ j.total }}</progress>
         <div class="job-progress">{{ j.done }}/{{ j.total }}{% if j.current and j.state.active %} · {{ j.current }}{% endif %}</div>
+        {% elif j.current and j.state == JobState.QUEUED %}
+        <div class="job-progress">{{ j.current }}</div>
         {% endif %}
         {% if j.errors %}
         <details class="job-errors">
