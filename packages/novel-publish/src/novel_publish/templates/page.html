@@ -39,8 +39,13 @@
 </article>
 {% endfor %}
 </main>
-<nav class="page-nav" aria-label="Pages">
-{{ page_links() }}
+<nav class="page-end" aria-label="Pages">
+{% if next %}
+    <a class="next-page" href="{{ next.filename }}" rel="next">Next: Chs {{ next.label }} &rarr;</a>
+{% else %}
+    <p class="caught-up">You're caught up: chapter {{ latest }} is the latest.</p>
+{% endif %}
+    <p class="page-end-links">{% if prev %}<a href="{{ prev.filename }}" rel="prev">&larr; Chs {{ prev.label }}</a> · {% endif %}<a href="../../index.html">Library</a></p>
 </nav>
 <dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
     <h2 id="chapters-title" class="sheet-title">{{ novel.title }} · Chs {{ page.label }}</h2>

@@ -137,20 +137,20 @@ def test_second_build_writes_nothing(stores, site):
     assert report.novels[0].pages_written == 0
 
 
-def test_new_chapters_rebuild_their_page_and_its_neighbour(stores, site):
+def test_new_chapters_rebuild_their_page_and_its_neighbours(stores, site):
     store = stores("n")
     a = add_source(store, "a")
     add_chapters(store, a, chapters(60))
     build_site({"n": store}, site)
-    before = read(site, "n", "1-50.html")
 
     add_chapters(store, a, chapters(110))  # 61-110: page 51 grows, page 101 is new
     report = build_site({"n": store}, site)
 
     assert page_files(site, "n") == ["1-50.html", "101-150.html", "51-100.html"]
-    assert report.novels[0].pages_written == 2  # page 51 (new chapters, new next link) and page 101
-    assert read(site, "n", "1-50.html") == before
-    assert 'href="101-150.html" rel="next"' in read(site, "n", "51-100.html")
+    # page 51 (new chapters, new next link), page 101, and page 1, whose Next label names page 51's range
+    assert report.novels[0].pages_written == 3
+    assert next_page(read(site, "n", "1-50.html")) == ("51-100.html", "Next: Chs 51–100 →")
+    assert next_page(read(site, "n", "51-100.html")) == ("101-150.html", "Next: Chs 101–110 →")
 
 
 def test_select_switch_source_single_row(stores, site):
@@ -358,19 +358,20 @@ def test_cross_page_links_carry_no_chapter_anchors(stores, site):
     assert 'data-prev-page="51-100.html#last"' in last and "data-next-page" not in last
 
 
-def test_filling_a_page_gap_rewrites_only_that_page(stores, site):
+def test_filling_a_page_gap_rewrites_that_page_and_the_labels_naming_it(stores, site):
     store = stores("n")
     a = add_source(store, "a")
-    add_numbered(store, a, [*range(1, 49), 51])
+    add_numbered(store, a, [*range(1, 49), 51, 101])
     build_site({"n": store}, site)
-    second = read(site, "n", "51-100.html")
+    third = read(site, "n", "101-150.html")
 
-    add_numbered(store, a, range(1, 52))  # 49 and 50 arrive; 51 is unchanged
+    add_numbered(store, a, [*range(1, 52), 101])  # 49 and 50 arrive; 51 and 101 are unchanged
     report = build_site({"n": store}, site)
 
-    assert report.novels[0].pages_written == 1
+    assert report.novels[0].pages_written == 2  # page 1, and page 51, whose back link names page 1's range
     assert last_marker_chapter(read(site, "n", "1-50.html")) == "c50"
-    assert read(site, "n", "51-100.html") == second
+    assert 'rel="prev">&larr; Chs 1–50</a>' in read(site, "n", "51-100.html")
+    assert read(site, "n", "101-150.html") == third  # two pages away: untouched
 
 
 def test_hidden_attribute_always_hides():
@@ -453,3 +454,64 @@ def test_an_author_edit_rewrites_only_the_library(stores, site):
     assert report.novels[0].pages_written == 0
     library = (site / "index.html").read_text(encoding="utf-8")
     assert "New Author" in library and "Old Author" not in library
+
+
+def next_page(html: str) -> tuple[str, str] | None:
+    """The page end's Next button: (href, text), or None."""
+    end = re.search(r'<nav class="page-end".*?</nav>', html, re.S).group(0)
+    m = re.search(r'<a class="next-page" href="([^"]+)" rel="next">([^<]+)</a>', end)
+    return (m.group(1), m.group(2).replace("&rarr;", "→")) if m else None
+
+
+def caught_up(html: str) -> str | None:
+    m = re.search(r'<p class="caught-up">([^<]+)</p>', html)
+    return m.group(1).replace("&#39;", "'") if m else None
+
+
+def test_a_page_ends_with_a_next_button_naming_the_chapters(stores, site):
+    store = stores("n")
+    add_chapters(store, add_source(store, "a"), chapters(3) + ["Chapter 51", "Chapter 52", "Chapter 53"])
+
+    build_site({"n": store}, site)
+
+    first, second = read(site, "n", "1-50.html"), read(site, "n", "51-100.html")
+    assert next_page(first) == ("51-100.html", "Next: Chs 51–53 →") and caught_up(first) is None
+    end = re.search(r'<nav class="page-end".*?</nav>', second, re.S).group(0)
+    assert 'href="1-50.html" rel="prev">&larr; Chs 1–3</a>' in end and 'href="../../index.html">Library</a>' in end
+    assert next_page(second) is None
+
+
+def test_more_chapters_on_the_next_page_refresh_the_next_label(stores, site):
+    store = stores("n")
+    a = add_source(store, "a")
+    add_numbered(store, a, [1, 2, 3, 51, 52, 53])
+    build_site({"n": store}, site)
+
+    add_numbered(store, a, [1, 2, 3, 51, 52, 53, 54])
+    build_site({"n": store}, site)
+
+    assert next_page(read(site, "n", "1-50.html")) == ("51-100.html", "Next: Chs 51–54 →")
+
+
+def test_the_last_page_says_you_are_caught_up(stores, site):
+    store = stores("n")
+    add_chapters(store, add_source(store, "a"), [*chapters(49), "Chapter 50 (part 1)", "Chapter 50 (part 2)"])
+
+    build_site({"n": store}, site)
+
+    html = read(site, "n", "1-50.html")
+    assert caught_up(html) == "You're caught up: chapter 50 pt 2 is the latest."
+    assert next_page(html) is None
+
+
+def test_a_page_that_becomes_last_says_caught_up(stores, site):
+    store = stores("n")
+    a = add_source(store, "a")
+    refs = add_chapters(store, a, chapters(3) + ["Chapter 51"])
+    build_site({"n": store}, site)
+    assert caught_up(read(site, "n", "1-50.html")) is None
+
+    store.set_alignment(a, AlignmentRules(skip=frozenset(refs[3:])))
+    build_site({"n": store}, site)
+
+    assert caught_up(read(site, "n", "1-50.html")) == "You're caught up: chapter 3 is the latest."

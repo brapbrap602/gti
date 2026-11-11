@@ -2,9 +2,10 @@
 
 The site directory is owned by `build_site`: it holds exactly the pages the
 current selections call for. A page is rebuilt when one of its chapters is
-stale (new, changed, re-selected or pruned, as `NovelStore.plan_build` reports),
-when its file is missing, or when a neighbouring page appeared or disappeared
-(its prev/next links changed). Everything else is left untouched.
+stale (new, changed, re-selected or pruned, as `NovelStore.plan_build` reports,
+against the novel's fingerprint, which includes its title), when its file is
+missing, or when a neighbouring page appeared, disappeared or was rebuilt for its
+chapters (its prev/next links name that page's range). Everything else is left untouched.
 """
 
 import hashlib
@@ -116,10 +117,11 @@ def _build_novel(slug: str, store: NovelStore, folder: Path, fp: str, force: boo
     stale_starts = {_page_start(s.key) for s in plan.to_build} | {_page_start(r.built_key) for r in plan.to_prune}
     added = {i for i, n in enumerate(names) if n not in existing}
     removed_neighbours = _neighbours_of_removed(names, existing)
+    # A page's prev/next labels name its neighbours' chapter ranges, so it is rebuilt with them.
+    changed = {i for i, p in enumerate(pages) if p.start in stale_starts} | added
     rebuild = [
-        i for i, p in enumerate(pages)
-        if force or p.start in stale_starts or i in added or i in removed_neighbours
-        or (i - 1) in added or (i + 1) in added
+        i for i in range(len(pages))
+        if force or i in changed or i in removed_neighbours or (i - 1) in changed or (i + 1) in changed
     ]  # fmt: skip
 
     template = _env().get_template("page.html")
@@ -132,6 +134,7 @@ def _build_novel(slug: str, store: NovelStore, folder: Path, fp: str, force: boo
             page=page,
             prev=pages[i - 1] if i > 0 else None,
             next=pages[i + 1] if i + 1 < len(pages) else None,
+            latest=pages[-1].chapters[-1].key.label,
             chapters=[_chapter_view(store, s) for s in page.chapters],
         )
         _write(folder / page.filename, html)

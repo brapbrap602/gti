@@ -429,9 +429,52 @@ main[data-slug] {
   font-size: 0.95rem;
 }
 
-main[data-slug] ~ .page-nav {
+/* The end of a page: a full-width Next button (or "caught up"), then the way back. */
+main[data-slug] ~ .page-end {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
   max-width: 68ch;
-  margin-inline: auto;
+  margin: 2.5rem auto 2rem;
+}
+
+.next-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--r-link);
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.next-page:hover,
+.next-page:focus-visible {
+  background-color: var(--r-pill-hover);
+  text-decoration: none;
+}
+
+.caught-up,
+.page-end-links {
+  margin: 0;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--r-muted);
+}
+
+.caught-up {
+  font-size: 1.05rem;
+  color: var(--r-text);
+}
+
+.page-end-links a {
+  display: inline-block;
+  padding: 0.6rem 0.4rem;
 }
 
 .toc ol {
