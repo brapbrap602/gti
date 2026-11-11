@@ -599,6 +599,25 @@ def test_problems_are_cleared_one_at_a_time_or_all_at_once(client, service):
     assert [j.id for j in service.job_panel().attention] == [later]
 
 
+def test_a_hand_edited_url_gets_the_error_page_not_json(client, service):
+    added(service)
+    for url in ("/novels/test-novel/compare", "/novels/test-novel/compare?number=x"):
+        r = client.get(url)
+        assert r.status_code == 400 and r.headers["content-type"].startswith("text/html"), url
+        assert "This page needs a valid number." in r.text and "<title>Refused · Novel library</title>" in r.text
+
+
+def test_page_titles_name_the_novel_by_its_title_then_the_page(client, service):
+    added(service)
+    for url, title in (
+        ("/novels/test-novel", "Test Novel · Novel library"),
+        ("/novels/test-novel/compare?number=1", "Test Novel · Chapter 1 · Novel library"),
+        ("/novels/test-novel/comparisons", "Test Novel · Model comparisons · Novel library"),
+        ("/novels/test-novel/glossary", "Test Novel · Glossary · Novel library"),
+    ):
+        assert f"<title>{title}</title>" in client.get(url).text, url
+
+
 def test_a_job_that_ended_with_errors_is_not_shown_as_done(client, service):
     board = service.runner.board
     flawed = board.claim("a", "sync", {})

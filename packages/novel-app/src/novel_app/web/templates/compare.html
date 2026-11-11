@@ -3,7 +3,7 @@
 {% from "_macros.html" import kind_badge %}
 {% import "_help.html" as help %}
 {% set title = (nav_rows | selectattr("slug", "equalto", slug) | map(attribute="title") | first) or slug %}
-{% block title %}{{ slug }} {{ c.number }} · compare{% endblock %}
+{% block title %}{{ title }} · Chapter {{ c.number }} · Novel library{% endblock %}
 {% block crumbs %}<li><a href="/">Library</a></li><li><a href="/novels/{{ slug }}#chapters" title="{{ title }}">{{ title }}</a></li><li><a href="/novels/{{ slug }}/compare?number={{ c.number }}" aria-current="page">Chapter {{ c.number }}</a></li>{% endblock %}
 {% block main %}
 {% set here = "/novels/" ~ slug ~ "/compare?number=" ~ c.number %}

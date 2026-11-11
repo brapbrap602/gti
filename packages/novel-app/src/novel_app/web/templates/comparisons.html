@@ -2,7 +2,7 @@
 {% from "_ui.html" import empty %}
 {% import "_help.html" as help %}
 {% set title = (nav_rows | selectattr("slug", "equalto", slug) | map(attribute="title") | first) or slug %}
-{% block title %}{{ slug }} · model comparisons{% endblock %}
+{% block title %}{{ title }} · Model comparisons · Novel library{% endblock %}
 {% block crumbs %}<li><a href="/">Library</a></li><li><a href="/novels/{{ slug }}#translate" title="{{ title }}">{{ title }}</a></li><li><a href="/novels/{{ slug }}/comparisons" aria-current="page">Model comparisons</a></li>{% endblock %}
 {% block main %}
 <div class="page-header">

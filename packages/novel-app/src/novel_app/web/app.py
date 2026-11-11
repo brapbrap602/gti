@@ -20,6 +20,7 @@ from pathlib import Path
 from urllib.parse import urlencode, urlsplit
 
 from fastapi import FastAPI, Form, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import HTMLResponse, PlainTextResponse, RedirectResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -149,6 +150,12 @@ def create_app(service: Service) -> FastAPI:
     @app.exception_handler(JobRunning)
     async def job_running(request: Request, e: JobRunning):
         return await refused(request, str(e), 409)
+
+    @app.exception_handler(RequestValidationError)
+    async def bad_request(request: Request, e: RequestValidationError):
+        """A missing or malformed query or form field (a hand-edited URL): the error page, not FastAPI's JSON."""
+        fields = ", ".join(dict.fromkeys(str(err["loc"][-1]) for err in e.errors()))
+        return await refused(request, f"This page needs a valid {fields}.", 400)
 
     # -- pages -----------------------------------------------------------------
 

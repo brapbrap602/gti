@@ -86,7 +86,7 @@ a:hover { text-decoration-color: currentColor; }
 
 code {
   font-family: var(--font-mono);
-  font-size: 0.8125em;
+  font-size: max(0.9em, 0.75rem);  /* never under 12px, even inside small print */
   padding: 0.1em 0.35em;
   border-radius: 0.3rem;
   background: var(--muted);

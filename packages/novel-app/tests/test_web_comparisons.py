@@ -61,6 +61,7 @@ def test_a_chapter_screen_has_every_version_from_every_run_and_the_reference(ser
     compared(service, 2)
     page = client.get("/novels/raw-novel/comparisons/n1")
     assert page.status_code == 200
+    assert "<title>Raw Novel · Comparison 1 · Novel library</title>" in page.text
     assert page.text.count('<td data-label="vendor/') == 4  # 2 runs × 2 setups; raw-novel's chapters are one paragraph
     assert 'lang="zh"' in page.text and "Official words." in page.text and "2 →" in page.text
 

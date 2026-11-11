@@ -1,7 +1,8 @@
 {% extends "base.html" %}
-{% block title %}{{ slug }} {{ s.ref[1:] }} · comparison{% endblock %}
+{% set title = (nav_rows | selectattr("slug", "equalto", slug) | map(attribute="title") | first) or slug %}
+{% block title %}{{ title }} · Comparison {{ s.ref[1:] }} · Novel library{% endblock %}
 {% block page_class %}wide{% endblock %}
-{% block crumbs %}{% set title = (nav_rows | selectattr("slug", "equalto", slug) | map(attribute="title") | first) or slug %}<li><a href="/">Library</a></li><li><a href="/novels/{{ slug }}#translate" title="{{ title }}">{{ title }}</a></li><li><a href="/novels/{{ slug }}/comparisons">Model comparisons</a></li><li><a href="/novels/{{ slug }}/comparisons/{{ s.ref }}" aria-current="page">{{ s.ref[1:] }}</a></li>{% endblock %}
+{% block crumbs %}<li><a href="/">Library</a></li><li><a href="/novels/{{ slug }}#translate" title="{{ title }}">{{ title }}</a></li><li><a href="/novels/{{ slug }}/comparisons">Model comparisons</a></li><li><a href="/novels/{{ slug }}/comparisons/{{ s.ref }}" aria-current="page">{{ s.ref[1:] }}</a></li>{% endblock %}
 {% block main %}
 {% set i = s.chapters.index(s.ref) %}
 {% set query = request.url.query %}

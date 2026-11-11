@@ -4,7 +4,7 @@
 {% set g = page %}
 {% set here = "/novels/" ~ g.slug ~ "/glossary?tab=" ~ g.tab ~ ("&q=" ~ (g.search | urlencode) if g.search else "") ~ ("&category=" ~ g.category if g.category else "") %}
 {% set slug, back = g.slug, here %}
-{% block title %}{{ g.title }} · glossary{% endblock %}
+{% block title %}{{ g.title }} · Glossary · Novel library{% endblock %}
 {% block crumbs %}<li><a href="/">Library</a></li><li><a href="/novels/{{ g.slug }}" title="{{ g.title }}">{{ g.title }}</a></li><li><a href="{{ here }}" aria-current="page">Glossary</a></li>{% endblock %}
 {% block main %}
 <div class="page-header">
