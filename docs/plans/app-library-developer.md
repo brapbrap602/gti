@@ -1,6 +1,6 @@
 # nov serve library, Sync all and compare: developer plan
 
-Status: approved 2026-11-11. Not built yet. Summary for the requester: [stakeholder plan](app-library-stakeholder.md).
+Status: approved 2026-11-11. Built 2026-11-11, slices 1-7 (local, not pushed). G1 and G2' passed; the W5 screenshots await the user's review (§10). Summary for the requester: [stakeholder plan](app-library-stakeholder.md).
 Source: the Firefox UI review of 2026-11-11 (app items 2-4).
 - App item 1 ("done with errors") shipped in `79f9188`.
 - The small items (page titles, error page for a bad query, inline code size) shipped in `f7a50a4`.
@@ -365,3 +365,29 @@ Builds on [app-ui-developer.md](app-ui-developer.md). Its constraints stand: des
     - A11/A12 consequences stated (a queued novel's sidebar dot; Ctrl-C versus hard kill)
 
   Verdict: the changed sections are ready.
+
+## 10. Build notes (2026-11-11)
+
+- **Gates.**
+  - **G1 passed.** The lane, waiting and CLI tests (25 of them, including J1-J8b) passed in 3 of 3 runs.
+  - **G2' passed.** The setup:
+    - a copy of the real library (25 novels, databases only) with every source faked, so a sync's index fetch blocks and nothing is fetched
+    - Sync all queued 21 syncs: 1 running, 20 queued
+    - 20 calls of `GET /` over uvicorn
+
+    The result: median 104 ms (max 151 ms), against 97 ms idle.
+- **W5.** Screenshots at 1280 and 1440 were taken on the same copy, with an audio build waiting for its novel's queued sync. They cover:
+  - the table sorted by attention and by title
+  - the cards view
+  - the New to fetch tab
+  - the jobs panel showing "queued · waiting for sync"
+  - compare: an English pair, a raw pair, and a chapter past the end
+- **Deviations and details.**
+  - **Short output badges.** The table shows `site 3` (the kind, plus a stale count). The tooltip and colour carry the rest, so rows stay one line. On the real library at 1280px, long counts made the table about 90px too wide; the badges now wrap there.
+  - **Filter counts.** The route computes the filter counts (`filter_counts`), so a tab and its tile share one predicate. Jinja's `select` cannot take a callable.
+  - **Returning to attention order.** A "Needs a look first" link sits in the actions header. It shows only when another order is active. Sorted headers show an arrow.
+  - **The `stat` macro** takes `href` and `attrs`. `attrs` is used for `data-open-jobs`.
+  - **The policy table in `service.py`** is `TURNS: {kind: Turn(lane, waits_for)}`, plus `SYNC_ALL = Turn("sync")`. `JobRunner.submit` refuses `waits_for` without a lane.
+  - **Cancel** returns `CancelResult.REMOVED` or `CancelResult.SIGNALLED`, or None.
+  - **Compare.** The aligned rows are `AlignedRow(left, right)` of `AlignedCell(kind, html)`, where kind is block, heading or blank. ← 0 still shows on chapter 1, as before: chapter 0 can exist.
+  - **Test fixture.** `conftest.Site` gained `hold`, an Event that chapter fetches wait on. J9 uses it to keep a Sync-all sync running.

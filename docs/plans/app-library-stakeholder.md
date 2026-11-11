@@ -1,6 +1,6 @@
 # nov serve library, Sync all and compare: plan summary
 
-Status: approved 2026-11-11. Not built yet. Details: [developer plan](app-library-developer.md).
+Status: approved 2026-11-11, built 2026-11-11 (local, not pushed). The speed check passed. The screenshots are waiting for your review. Details: [developer plan](app-library-developer.md).
 
 ## Goal
 

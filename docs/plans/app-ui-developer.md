@@ -381,6 +381,16 @@ Both count the unresolved problems in `attention`: failed, interrupted, and done
 - `test_web_glossary.py:107`: `"Glossary</a>" not in page` becomes `'href="/novels/english-only/glossary"' not in page`. The old form would pass even if the link wrongly appeared.
 - Any other exact string that breaks is loosened only to tolerate added attributes, never to drop the fact it asserts.
 
+**Changed later by [app-library-developer.md](app-library-developer.md) §4.1** (built 2026-11-11)
+- The library is a table by default. The card contract above holds under `?view=cards`. The default view's contract is `<tr class="novel-row" data-novel=`, with a title link and, for a novel that can sync, the Sync form.
+- The card-only facts (`3 selected`, the sources `li`, `<li>3 official-en</li>`, the kind badge's tooltip) are asserted under `?view=cards`.
+- The table's output badges are short (`site 3`), so "site 3 stale" is asserted through the badge's tooltip, `title="site: 3 stale"`.
+- Linked stat tiles are `<a class="stat stat--link" href=…`. The Chapters tile keeps `<div class="stat"`.
+- A row's job mirror is asserted inside its table row.
+- A stale lock of a job that never started now ends it CANCELLED, not INTERRUPTED. The startup-reconcile and Re-run test starts its job first, so it still covers INTERRUPTED.
+- `serial=True` became `lane="audio"`.
+- The compare jump test runs at desktop width. It checks the target against the sticky compare bar, not the top bar, and that the bar stays on screen.
+
 ### 7.2 New cases
 TestClient (`test_web.py` unless named otherwise; fixture novels: `raw-novel`, `english-only` and `test-novel` via `added()`):
 
