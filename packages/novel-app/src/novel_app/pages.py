@@ -257,7 +257,7 @@ def library_row(
     rows.sort(key=lambda r: r.rank)
     cover = view.meta.cover_path
     fingerprints = {
-        OutputKind.SITE: site_builder.fingerprint(),
+        OutputKind.SITE: site_builder.novel_fingerprint(view.meta),
         OutputKind.EPUB: epub.fingerprint(view.meta, (novel_dir(slug) / cover).read_bytes() if cover else None, epub_size),
         OutputKind.AUDIO: audio_fingerprint(DEFAULT_VOICE),
     }

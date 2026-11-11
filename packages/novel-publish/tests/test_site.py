@@ -369,3 +369,32 @@ def test_library_cards_hold_resume_go_to_and_all_chapters(stores, site):
     assert re.findall(r'href="([^"]+)"', all_chapters) == ["novels/novel-a/1-50.html", "novels/novel-a/51-100.html"]
     assert "continue" not in cards["修真聊天群"] and "goto" not in cards["修真聊天群"]
     assert "all-chapters" not in cards["修真聊天群"]
+
+
+def test_a_title_edit_rewrites_that_novels_pages_once(stores, site):
+    a, b = stores("a", "Old Title"), stores("b", "Other")
+    for store in (a, b):
+        add_chapters(store, add_source(store, "x"), chapters(60))
+    build_site({"a": a, "b": b}, site)
+
+    a.update_meta(title="New Title")
+    first = build_site({"a": a, "b": b}, site)
+    second = build_site({"a": a, "b": b}, site)
+
+    assert [n.pages_written for n in first.novels] == [2, 0]
+    assert "<title>New Title Chs 1–50</title>" in read(site, "a", "1-50.html")
+    assert "<title>New Title Chs 51–60</title>" in read(site, "a", "51-100.html")
+    assert [n.pages_written for n in second.novels] == [0, 0]
+
+
+def test_an_author_edit_rewrites_only_the_library(stores, site):
+    store = stores("a", "A", author="Old Author")
+    add_chapters(store, add_source(store, "x"), chapters(3))
+    build_site({"a": store}, site)
+
+    store.update_meta(author="New Author")
+    report = build_site({"a": store}, site)
+
+    assert report.novels[0].pages_written == 0
+    library = (site / "index.html").read_text(encoding="utf-8")
+    assert "New Author" in library and "Old Author" not in library

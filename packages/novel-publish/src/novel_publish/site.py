@@ -20,7 +20,7 @@ from pathlib import Path
 
 import jinja2
 from markupsafe import Markup
-from novel_core import ChapterKey, Kind, KeyRange, NovelStore, OutputKind, Selected, chapter_heading
+from novel_core import ChapterKey, Kind, KeyRange, NovelMeta, NovelStore, OutputKind, Selected, chapter_heading
 
 from novel_publish import render
 
@@ -77,6 +77,12 @@ def fingerprint() -> str:
     return h.hexdigest()
 
 
+def novel_fingerprint(meta: NovelMeta) -> str:
+    """What a novel's reading pages are built from besides their chapters: the renderer, plus the title
+    and language every page shows. The author is only on the library page, which every build rewrites."""
+    return hashlib.sha256(f"{fingerprint()}\n{meta.title}\0{meta.language}".encode()).hexdigest()
+
+
 # -- one novel --------------------------------------------------------------
 
 
@@ -96,7 +102,8 @@ class _Page:
 
 def _build_novel(slug: str, store: NovelStore, folder: Path, fp: str, force: bool) -> tuple[NovelBuild, dict]:
     meta = store.meta
-    plan = store.plan_build(OutputKind.SITE, fp)
+    novel_fp = novel_fingerprint(meta)
+    plan = store.plan_build(OutputKind.SITE, novel_fp)
     pages = _paginate(store.selection())
     names = [p.filename for p in pages]
 
@@ -124,7 +131,7 @@ def _build_novel(slug: str, store: NovelStore, folder: Path, fp: str, force: boo
         )
         _write(folder / page.filename, html)
         for s in page.chapters:
-            store.record_output(OutputKind.SITE, s, fp, f"{NOVELS}/{slug}/{page.filename}")
+            store.record_output(OutputKind.SITE, s, novel_fp, f"{NOVELS}/{slug}/{page.filename}")
     for row in plan.to_prune:
         store.prune_output(OutputKind.SITE, row.built_key)
     deleted = existing - set(names)
