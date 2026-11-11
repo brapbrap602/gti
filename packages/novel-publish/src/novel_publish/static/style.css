@@ -336,12 +336,23 @@ a:focus {
    Reading page navigation and blocks
    ===================== */
 
+/* A readable line: about 68 characters, centred; ch follows the text size setting. */
+main[data-slug] {
+  max-width: 68ch;
+  margin-inline: auto;
+}
+
 .page-nav {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   margin: 1rem 0 2rem;
   font-size: 0.95rem;
+}
+
+main[data-slug] ~ .page-nav {
+  max-width: 68ch;
+  margin-inline: auto;
 }
 
 .toc ol {
