@@ -171,7 +171,7 @@ a:focus {
 }
 
 /* =====================
-   Library page styles
+   Library page: the Continue row, then every novel as a compact row
    ===================== */
 
 .library-header {
@@ -187,72 +187,198 @@ a:focus {
   font-weight: 700;
 }
 
-.book-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
+.library {
+  max-width: 48rem;
+  margin-inline: auto;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.library-h {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--r-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.library-h:focus {
+  outline: none;
+}
+
+.continue-row {
+  margin-bottom: 2rem;
+}
+
+.continue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   list-style: none;
+  margin: 0;
   padding: 0;
 }
 
-@media (max-width: 480px) {
-  .book-list {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+.continue-list li {
+  display: flex;
+  background-color: var(--r-card);
+  border: 1px solid var(--r-card-border);
+  border-radius: 8px;
+}
+
+.continue-link {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px 0 0 8px;
+  color: var(--r-text);
+}
+
+.continue-link:hover,
+.continue-link:focus-visible {
+  background-color: var(--r-pill-hover);
+  color: var(--r-text);
+  text-decoration: none;
+}
+
+.continue-title {
+  font-weight: 600;
+  color: var(--r-heading);
+  overflow-wrap: anywhere;
+}
+
+.continue-meta {
+  color: var(--r-muted);
+  font-size: 0.9rem;
+}
+
+.forget {
+  min-width: 2.75rem;
+  padding: 0 0.75rem;
+  background: none;
+  border: 0;
+  border-left: 1px solid var(--r-card-border);
+  border-radius: 0 8px 8px 0;
+  color: var(--r-muted);
+  font: inherit;
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+
+.forget:hover,
+.forget:focus-visible {
+  color: var(--r-error);
+  background-color: var(--r-pill-hover);
+}
+
+.continue-undo {
+  margin: -1.25rem 0 2rem;
+  color: var(--r-muted);
+  font-size: 1rem;
+}
+
+.continue-undo:empty {
+  display: none;
+}
+
+.continue-undo button {
+  min-height: 2.75rem;
+  padding: 0 0.75rem;
+  background-color: var(--r-pill);
+  color: var(--r-link);
+  border: 1px solid var(--r-pill-border);
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.novel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--r-rule);
+}
+
+.novel-row {
+  border-bottom: 1px solid var(--r-rule);
+}
+
+.novel-row summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.75rem;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.25rem;
+  cursor: pointer;
+}
+
+/* display:flex drops the native marker; this chevron says the row opens. */
+.novel-row summary {
+  list-style: none;
+}
+
+.novel-row summary::-webkit-details-marker {
+  display: none;
+}
+
+.novel-row summary::before {
+  content: "\203A";
+  display: inline-block;
+  width: 0.75rem;
+  color: var(--r-muted);
+  transition: transform 0.15s ease;
+}
+
+.novel-row details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .novel-row summary::before {
+    transition: none;
   }
 }
 
-/* Single-entry card: the whole card is a link */
-.book-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  height: 100%;
+.novel-row summary:hover .row-title {
+  color: var(--r-link);
 }
 
-.book-card {
-  background-color: var(--r-card);
-  border: 1px solid var(--r-card-border);
-  border-radius: 10px;
-  padding: 1.5rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  text-align: center;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  box-sizing: border-box;
-}
-
-/* Hover for single-link cards */
-.book-link:hover .book-card,
-.book-link:focus-visible .book-card {
-  transform: translateY(-4px);
-  border-color: var(--r-link);
-  box-shadow: 0 6px 20px var(--r-shadow);
-}
-
-.book-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--r-text);
-  margin: 0;
-  word-wrap: break-word;
-  line-height: 1.4;
-}
-
-.book-link:hover .book-title {
+.row-title {
+  font-weight: 600;
   color: var(--r-heading);
+  overflow-wrap: anywhere;
 }
 
-/* Chapter-range pills for multi-part novels */
+.row-author,
+.row-count {
+  color: var(--r-muted);
+  font-size: 0.9rem;
+}
+
+.row-count {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.novel-row details[open] {
+  padding-bottom: 1rem;
+}
+
+.novel-row .goto {
+  margin: 0.25rem 0 0.75rem;
+}
+
 .book-parts {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  justify-content: center;
-  margin-top: 0.75rem;
 }
 
 .book-part-link {
@@ -261,7 +387,7 @@ a:focus {
   background-color: var(--r-pill);
   border: 1px solid var(--r-pill-border);
   border-radius: 5px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--r-pill-text);
   text-decoration: none;
@@ -278,58 +404,11 @@ a:focus {
   outline: none;
 }
 
-/* Resume and "All chapters" on a card */
-.continue {
-  display: inline-block;
-  padding: 0.5rem 1.1rem;
-  border: 1px solid var(--r-link);
-  border-radius: 6px;
-  font-weight: 600;
-}
-
-.continue:hover,
-.continue:focus-visible {
-  background-color: var(--r-pill-hover);
-  text-decoration: none;
-}
-
-.book-card .goto {
-  justify-content: center;
-  margin: 0;
-  font-size: 0.95rem;
-}
-
-.book-card .goto input {
-  width: 9rem;
-}
-
-.book-card .goto-status {
-  text-align: center;
-}
-
-.all-chapters {
-  width: 100%;
-}
-
-.all-chapters summary {
-  color: var(--r-muted);
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-
-.all-chapters summary:hover {
-  color: var(--r-link);
-}
-
 .status-msg {
   text-align: center;
   color: var(--r-status);
+  font-size: 1rem;
   font-style: italic;
-  grid-column: 1 / -1;
-}
-
-.status-msg--error {
-  color: var(--r-error);
 }
 
 /* =====================
@@ -366,21 +445,6 @@ main[data-slug] ~ .page-nav {
 .toc li {
   break-inside: avoid;
   margin-bottom: 0.25rem;
-}
-
-.book-meta {
-  margin: 0;
-  color: var(--r-muted);
-  font-size: 0.9rem;
-}
-
-.badge {
-  display: inline-block;
-  padding: 0.1rem 0.5rem;
-  border: 1px solid var(--r-link);
-  border-radius: 4px;
-  color: var(--r-link);
-  font-size: 0.8rem;
 }
 
 .separator {

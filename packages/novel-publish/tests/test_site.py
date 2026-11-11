@@ -210,7 +210,7 @@ def test_missing_page_file_is_rebuilt(stores, site):
 
 
 def library_titles(site) -> list[str]:
-    return re.findall(r'<h2 class="book-title">([^<]+)</h2>', (site / "index.html").read_text(encoding="utf-8"))
+    return re.findall(r'<span class="row-title">([^<]+)</span>', (site / "index.html").read_text(encoding="utf-8"))
 
 
 def test_novels_with_nothing_to_read_are_left_off(stores, site):
@@ -259,8 +259,8 @@ def test_a_novel_without_an_author_shows_no_author(stores, site):
 
     build_site({"n": store}, site)
 
-    assert 'class="book-meta"></p>' not in (site / "index.html").read_text(encoding="utf-8")
-    assert "unknown" not in (site / "index.html").read_text(encoding="utf-8")
+    library = (site / "index.html").read_text(encoding="utf-8")
+    assert "row-author" not in library and "unknown" not in library
 
 
 def test_an_empty_library_says_so_without_admin_instructions(stores, site):
@@ -406,22 +406,24 @@ def test_reader_controls_start_hidden(stores, site):
     assert re.search(r'<form class="goto" hidden', html)
 
 
-def test_library_cards_hold_resume_go_to_and_all_chapters(stores, site):
-    a, zh = stores("novel-a", "Novel A"), stores("zh", "修真聊天群")
-    add_chapters(a, add_source(a, "a"), chapters(60))
-    add_chapters(zh, add_source(zh, "zh", Kind.RAW_ZH), ["第1章"])
+def test_library_rows_hold_go_to_and_every_page_under_a_hidden_continue_row(stores, site):
+    novels = {slug: stores(slug, title) for slug, title in (("n", "Test Novel"), ("z-first", "Alpha Tale"), ("b", "beta"))}
+    for store in novels.values():
+        add_chapters(store, add_source(store, "a"), chapters(60))
 
-    build_site({"novel-a": a, "zh": zh}, site)
+    build_site(novels, site)
 
     library = (site / "index.html").read_text(encoding="utf-8")
-    cards = dict(re.findall(r'<section class="book-card"[^>]*>.*?<h2 class="book-title">([^<]+)</h2>(.*?)</section>', library, re.S))
-    card = re.search(r'<section class="book-card"[^>]*>', library).group(0)
-    assert 'data-slug="novel-a"' in card and 'data-toc="novels/novel-a/toc.json"' in card
-    assert re.search(r'<a class="continue" hidden>', cards["Novel A"])
-    assert re.search(r'<form class="goto" hidden', cards["Novel A"])
-    all_chapters = re.search(r'<details class="all-chapters">\s*<summary>All chapters \(2 pages\)</summary>(.*?)</details>',
-                             cards["Novel A"], re.S).group(1)
-    assert re.findall(r'href="([^"]+)"', all_chapters) == ["novels/novel-a/1-50.html", "novels/novel-a/51-100.html"]
+    assert re.search(r'<section class="continue-row" hidden', library)
+    assert re.search(r'<h2 id="all-h"[^>]*>All novels \(3\)</h2>', library)
+    rows = re.findall(r'(<li class="novel-row"[^>]*>)(.*?)</li>', library, re.S)
+    assert len(rows) == 3
+    tag, body = next((t, b) for t, b in rows if 'data-slug="n"' in t)
+    assert 'data-toc="novels/n/toc.json"' in tag and 'data-title="Test Novel"' in tag
+    details = re.search(r"<details>\s*<summary>(.*?)</summary>(.*?)</details>", body, re.S)
+    assert '<span class="row-title">Test Novel</span>' in details.group(1) and "60 chapters" in details.group(1)
+    assert re.search(r'<form class="goto" hidden', details.group(2))
+    assert re.findall(r'href="([^"]+)"', details.group(2)) == ["novels/n/1-50.html", "novels/n/51-100.html"]
 
 
 def test_a_title_edit_rewrites_that_novels_pages_once(stores, site):

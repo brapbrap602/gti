@@ -1,4 +1,4 @@
-// The reader site: the reading page's bar and chapter navigation, resume ("Continue"),
+// The reader site: the reading page's bar and chapter navigation, resume (the library's Continue row),
 // "Go to chapter", and text settings. One file, no framework; sections are independent and each starts from
 // its own markup. Everything here must keep working when localStorage throws: then
 // nothing is saved.
@@ -14,7 +14,16 @@
             try { return JSON.parse(localStorage.getItem(key)); } catch (e) { return null; }
         },
         set(key, value) {
-            try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* not saved */ }
+            this.setRaw(key, JSON.stringify(value));
+        },
+        raw(key) { // the stored text, or null
+            try { return localStorage.getItem(key); } catch (e) { return null; }
+        },
+        setRaw(key, text) {
+            try { localStorage.setItem(key, text); } catch (e) { /* not saved */ }
+        },
+        remove(key) {
+            try { localStorage.removeItem(key); } catch (e) { /* nothing to remove */ }
         },
     };
 
@@ -195,22 +204,141 @@
         return paragraphs.length ? paragraphs[Math.min(Number(p), paragraphs.length - 1)] : article;
     }
 
-    // -- library: Continue links -----------------------------------------------
+    // -- library: the Continue row ---------------------------------------------
+    //
+    // One entry per listed novel with a saved place in this browser, most recent first,
+    // built from the list rows (titles from data-title, so a renamed novel shows its new
+    // title). × forgets the place at once; Undo puts it back unless something newer was
+    // saved meanwhile. The Undo line sits outside the row, so it survives the row emptying.
 
     const SAVED_FILE = /^\d+-\d+\.html$/;
     const SAVED_ANCHOR = /^c\d+(-\d+)?$/;
+    const UNDO_FOR = 6000; // ms
+    const YEAR = 365 * 86400;
+    const AGES = [['month', 30 * 86400], ['week', 7 * 86400], ['day', 86400], ['hour', 3600], ['minute', 60]];
 
-    function fillContinue() {
-        document.querySelectorAll('.book-card[data-slug]').forEach((card) => {
-            const link = card.querySelector('.continue');
-            const pos = storage.get(POSITION + card.dataset.slug);
-            const valid = pos && SAVED_FILE.test(pos.file) && SAVED_ANCHOR.test(pos.anchor)
-                && Number.isInteger(pos.para) && pos.para >= 0;
-            link.hidden = !valid;
-            if (!valid) return;
-            link.href = `novels/${card.dataset.slug}/${pos.file}?p=${pos.para}#${pos.anchor}`;
-            link.textContent = `Continue · Ch ${pos.label}`;
+    function validPlace(pos) {
+        return !!pos && SAVED_FILE.test(pos.file) && SAVED_ANCHOR.test(pos.anchor)
+            && Number.isInteger(pos.para) && pos.para >= 0;
+    }
+
+    // "just now", "5 minutes ago", ... "3 months ago"; '' when t is missing or over a year old.
+    function ago(t, now) {
+        if (!Number.isFinite(t)) return '';
+        const seconds = (now - t) / 1000;
+        if (seconds > YEAR) return '';
+        const found = AGES.find(([, size]) => seconds >= size);
+        if (!found) return 'just now';
+        const [unit, size] = found;
+        return new Intl.RelativeTimeFormat('en', { numeric: 'auto' }).format(-Math.floor(seconds / size), unit);
+    }
+
+    function initContinue() {
+        const row = document.querySelector('.continue-row');
+        if (!row) return;
+        const list = row.querySelector('.continue-list');
+        const undoLine = document.querySelector('.continue-undo');
+        const allHeading = document.getElementById('all-h');
+        const novels = Array.from(document.querySelectorAll('li.novel-row[data-slug]'));
+        let undoTimer = 0;
+
+        function places() {
+            const found = [];
+            novels.forEach((novel) => {
+                const pos = storage.get(POSITION + novel.dataset.slug);
+                if (!validPlace(pos)) return;
+                const files = Array.from(novel.querySelectorAll('.book-parts a'), (a) => a.getAttribute('href').split('/').pop());
+                if (!files.includes(pos.file)) return; // its page has left the site
+                found.push({ slug: novel.dataset.slug, title: novel.dataset.title, pos });
+            });
+            const time = (p) => (Number.isFinite(p.pos.t) ? p.pos.t : 0);
+            return found.sort((a, b) => time(b) - time(a));
+        }
+
+        function entry(place, now) {
+            const li = document.createElement('li');
+            li.dataset.slug = place.slug;
+            const link = document.createElement('a');
+            link.className = 'continue-link';
+            link.href = `novels/${place.slug}/${place.pos.file}?p=${place.pos.para}#${place.pos.anchor}`;
+            const title = document.createElement('span');
+            title.className = 'continue-title';
+            title.textContent = place.title;
+            const meta = document.createElement('span');
+            meta.className = 'continue-meta';
+            const ch = document.createElement('span');
+            ch.className = 'continue-ch';
+            ch.textContent = `Ch ${place.pos.label}`;
+            meta.append(ch);
+            const when = ago(place.pos.t, now);
+            if (when) {
+                const time = document.createElement('span');
+                time.className = 'continue-time';
+                time.textContent = when;
+                meta.append(' · ', time);
+            }
+            link.append(title, meta);
+            const forget = document.createElement('button');
+            forget.type = 'button';
+            forget.className = 'forget';
+            forget.setAttribute('aria-label', `Forget your place in ${place.title}`);
+            forget.textContent = '×';
+            li.append(link, forget);
+            return li;
+        }
+
+        function render() {
+            const now = Date.now();
+            list.replaceChildren(...places().map((p) => entry(p, now)));
+            row.hidden = !list.children.length;
+        }
+
+        function firstLinkOrHeading() {
+            return list.querySelector('a') || allHeading;
+        }
+
+        function endUndo(moveFocus) {
+            clearTimeout(undoTimer);
+            const hadFocus = undoLine.contains(document.activeElement);
+            undoLine.replaceChildren();
+            if (moveFocus && hadFocus) firstLinkOrHeading().focus();
+        }
+
+        function offerUndo(place, json) {
+            endUndo(false);
+            const undo = document.createElement('button');
+            undo.type = 'button';
+            undo.id = 'continue-undo-button';
+            undo.textContent = 'Undo';
+            undo.addEventListener('click', () => {
+                if (storage.raw(POSITION + place.slug) === null) storage.setRaw(POSITION + place.slug, json);
+                endUndo(false);
+                render();
+                const back = list.querySelector(`li[data-slug="${CSS.escape(place.slug)}"] a`);
+                (back || firstLinkOrHeading()).focus();
+            });
+            undoLine.append(`Forgot your place in ${place.title}. `, undo);
+            undo.focus();
+            undoTimer = setTimeout(() => endUndo(true), UNDO_FOR);
+        }
+
+        list.addEventListener('click', (e) => {
+            const button = e.target.closest('button.forget');
+            if (!button) return;
+            const slug = button.closest('li').dataset.slug;
+            const key = POSITION + slug;
+            const json = storage.raw(key);
+            storage.remove(key);
+            render();
+            if (json !== null) offerUndo(novels.find((n) => n.dataset.slug === slug).dataset, json);
         });
+        // Leaving the page ends the offer: the place stays forgotten.
+        addEventListener('pagehide', () => endUndo(false));
+        // Back from the back/forward cache: places may have changed on the pages read meanwhile.
+        addEventListener('pageshow', (e) => {
+            if (e.persisted) render();
+        });
+        render();
     }
 
     // -- dialogs --------------------------------------------------------------
@@ -326,10 +454,8 @@
         show(current());
     }
 
-    // pageshow also fires when the library comes back from the back/forward cache.
-    addEventListener('pageshow', fillContinue);
-
     document.addEventListener('DOMContentLoaded', () => {
+        initContinue();
         initResume(initReader());
         initDialogs();
         document.querySelectorAll('form.goto').forEach(initGoto);

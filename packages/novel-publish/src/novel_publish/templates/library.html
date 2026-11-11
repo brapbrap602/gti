@@ -5,31 +5,39 @@
 <header class="library-header">
     <h1>My Library</h1>
 </header>
-<main class="book-list">
-{% for novel in novels %}
-    <section class="book-card" data-slug="{{ novel.slug }}" data-toc="{{ novel.toc }}">
-        <h2 class="book-title">{{ novel.title }}</h2>
-        {% if novel.author %}
-        <p class="book-meta">{{ novel.author }}</p>
-        {% endif %}
-        <p class="book-meta">{{ novel.chapters }} chapters</p>
-        <a class="continue" hidden>Continue</a>
-        <form class="goto" hidden>
-            <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
-            <button>Go</button>
-            <p class="goto-status" role="status"></p>
-        </form>
-        <details class="all-chapters">
-            <summary>All chapters ({{ novel.pages | length }} pages)</summary>
-            <nav class="book-parts" aria-label="{{ novel.title }} chapters">
-                {% for page in novel.pages %}
-                <a class="book-part-link" href="{{ page.href }}">Chs {{ page.label }}</a>
-                {% endfor %}
-            </nav>
-        </details>
+<main class="library">
+{% if novels %}
+    {# Filled by site.js from this browser's saved places; hidden until it has an entry. #}
+    <section class="continue-row" hidden aria-labelledby="continue-h">
+        <h2 id="continue-h" class="library-h">Continue reading</h2>
+        <ol class="continue-list"></ol>
+    </section>
+    {# Outside the row, so Undo survives the row emptying. #}
+    <p class="continue-undo" role="status"></p>
+    <section aria-labelledby="all-h">
+        <h2 id="all-h" class="library-h" tabindex="-1">All novels ({{ novels | length }})</h2>
+        <ul class="novel-list">
+        {% for novel in novels %}
+            <li class="novel-row" data-slug="{{ novel.slug }}" data-toc="{{ novel.toc }}" data-title="{{ novel.title }}">
+                <details>
+                    <summary><span class="row-title">{{ novel.title }}</span>{% if novel.author %} <span class="row-author">{{ novel.author }}</span>{% endif %} <span class="row-count">{{ novel.chapters }} chapters</span></summary>
+                    <form class="goto" hidden>
+                        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+                        <button>Go</button>
+                        <p class="goto-status" role="status"></p>
+                    </form>
+                    <nav class="book-parts" aria-label="{{ novel.title }} chapters">
+                        {% for page in novel.pages %}
+                        <a class="book-part-link" href="{{ page.href }}">Chs {{ page.label }}</a>
+                        {% endfor %}
+                    </nav>
+                </details>
+            </li>
+        {% endfor %}
+        </ul>
     </section>
 {% else %}
     <p class="status-msg">No novels yet.</p>
-{% endfor %}
+{% endif %}
 </main>
 {% endblock %}

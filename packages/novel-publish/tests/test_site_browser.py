@@ -1,6 +1,7 @@
 """Reader site behaviour in headless Firefox (local only: `pytest -m browser`)."""
 
 import json
+import time
 
 import pytest
 from firefox_page import firefox, serve
@@ -94,9 +95,42 @@ def scroll_into(page, anchor: str, extra: float = 0) -> None:
                         " - document.querySelector('.reader-bar').offsetHeight") + extra)
 
 
-def continue_link(page) -> dict | None:
-    return page.js("""(() => { const a = document.querySelector('.book-card[data-slug="n"] .continue');
-        return a.hidden ? null : {text: a.textContent, href: a.getAttribute('href')}; })()""")
+def continue_link(page, slug: str = "n") -> dict | None:
+    """Test Novel's entry in the Continue row: {ch: "Ch N", href}, or None when it has none or the row is hidden."""
+    return page.js(f"""(() => {{ const row = document.querySelector('.continue-row');
+        const a = document.querySelector('.continue-list li[data-slug="{slug}"] a');
+        return row.hidden || !a ? null : {{ch: a.querySelector('.continue-ch').textContent, href: a.getAttribute('href')}}; }})()""")
+
+
+def continue_entries(page) -> list[dict]:
+    """The Continue row's entries in order: {title, ch, time}; [] when the row is hidden."""
+    return page.js("""document.querySelector('.continue-row').hidden ? [] :
+        [...document.querySelectorAll('.continue-list li')].map(li => ({
+            title: li.querySelector('.continue-title').textContent,
+            ch: li.querySelector('.continue-ch').textContent,
+            time: li.querySelector('.continue-time') ? li.querySelector('.continue-time').textContent : null}))""")
+
+
+def place(file: str = "1-50.html", anchor: str = "c2", para: int = 3, label: str = "2", age: float | None = None) -> dict:
+    """A saved place, `age` seconds old (the browser shares this machine's clock); no `t` when age is None."""
+    t = {} if age is None else {"t": int((time.time() - age) * 1000)}
+    return {"file": file, "anchor": anchor, "para": para, "label": label, **t}
+
+
+def seed_places(page, site, places: dict) -> None:
+    """Open the library with these saved places (slug -> place()) and nothing else saved."""
+    page.goto(site + "index.html")
+    page.js("localStorage.clear()")
+    for slug, pos in places.items():
+        seed(page, f"reader:pos:{slug}", pos)
+    page.goto(site + "index.html")
+
+
+def focused(page) -> str:
+    return page.js("(() => { const e = document.activeElement; return e.id || e.className || e.tagName; })()")
+
+
+HOUR, DAY = 3600, 86400
 
 
 def save_position(page, site, file: str, anchor: str, para: int, label: str) -> None:
@@ -106,7 +140,7 @@ def save_position(page, site, file: str, anchor: str, para: int, label: str) -> 
 
 def open_first_page(page) -> None:
     """From the library, follow Test Novel's link to its first page (Chs 1-3)."""
-    page.navigate_by("""document.querySelector('[data-slug="n"] .all-chapters a').click()""")
+    page.navigate_by("""document.querySelector('.novel-row[data-slug="n"] .book-parts a').click()""")
 
 
 def back_to_library(page) -> None:
@@ -293,8 +327,8 @@ def test_continue_reopens_the_paragraph_last_read(page, site):
                 - page.js("document.querySelector('.reader-bar').offsetHeight") + 5)
     page.goto(site + "index.html")
 
-    assert continue_link(page) == {"text": "Continue · Ch 2", "href": "novels/n/1-50.html?p=7#c2"}
-    page.navigate_by("""document.querySelector('[data-slug="n"] .continue').click()""")
+    assert continue_link(page) == {"ch": "Ch 2", "href": "novels/n/1-50.html?p=7#c2"}
+    page.navigate_by("""document.querySelector('.continue-list li[data-slug="n"] a').click()""")
     page.frame()
     top = page.js("document.querySelectorAll('#c2 p')[7].getBoundingClientRect().top")
     assert abs(top - page.js("document.querySelector('.reader-bar').offsetHeight")) <= 2
@@ -317,7 +351,7 @@ def test_a_quick_look_keeps_the_saved_place(page, site):
     page.scroll(page.js("innerHeight") * 0.5)
     back_to_library(page)
 
-    assert continue_link(page)["text"] == "Continue · Ch 52"
+    assert continue_link(page)["ch"] == "Ch 52"
 
 
 def test_reading_on_in_another_range_moves_the_saved_place(page, site):
@@ -339,7 +373,7 @@ def test_jumps_alone_keep_the_saved_place(page, site):
     page.wait_for("location.hash === '#c3'")
     page.goto(site + "index.html")
 
-    assert continue_link(page)["text"] == "Continue · Ch 52"
+    assert continue_link(page)["ch"] == "Ch 52"
 
 
 def test_scroll_restored_on_reload_is_not_reading(page, site):
@@ -352,4 +386,134 @@ def test_scroll_restored_on_reload_is_not_reading(page, site):
     assert page.js("scrollY") > 0  # the browser put us back
     page.goto(site + "index.html")
 
-    assert continue_link(page)["text"] == "Continue · Ch 52"
+    assert continue_link(page)["ch"] == "Ch 52"
+
+
+# -- library: Continue row ------------------------------------------------------
+
+
+def test_a_new_visitor_sees_only_the_list(page, site):
+    page.goto(site + "index.html")  # the fixture cleared storage after this page had rendered
+    assert page.js("document.querySelector('.continue-row').hidden") is True
+    assert page.js("[...document.querySelectorAll('.row-title')].map(e => e.textContent)") == ["Alpha Tale", "Test Novel"]
+
+
+def test_continue_lists_saved_places_most_recent_first(page, site):
+    seed_places(page, site, {
+        "z-first": place("1-50.html", "c40", 1, "40", age=2 * DAY),
+        "n": place("51-100.html", "c52", 3, "52", age=HOUR),
+        "gone": place(age=60),  # not on the site
+    })
+
+    assert continue_entries(page) == [
+        {"title": "Test Novel", "ch": "Ch 52", "time": "1 hour ago"},
+        {"title": "Alpha Tale", "ch": "Ch 40", "time": "2 days ago"},
+    ]
+    assert continue_link(page)["href"] == "novels/n/51-100.html?p=3#c52"
+
+    seed_places(page, site, {"n": place("9001-9050.html", "c9001", 0, "9001", age=60),
+                             "z-first": place(age=HOUR)})  # n's page is gone from the site
+    assert [e["title"] for e in continue_entries(page)] == ["Alpha Tale"]
+
+
+def test_continue_times(page, site):
+    seed_places(page, site, {"n": place(age=20), "z-first": place()})
+    assert [e["time"] for e in continue_entries(page)] == ["just now", None]
+
+    seed_places(page, site, {"n": place(age=2 * 365 * DAY)})
+    assert [e["time"] for e in continue_entries(page)] == [None]
+
+
+def forget(page, slug: str = "n") -> None:
+    page.click(f'.continue-list li[data-slug="{slug}"] button')
+
+
+def undo_text(page) -> str:
+    return page.js("document.querySelector('.continue-undo').textContent")
+
+
+def saved(page, slug: str = "n"):
+    return page.js(f"localStorage.getItem('reader:pos:{slug}')")
+
+
+def two_places(page, site) -> str:
+    seed_places(page, site, {"n": place(age=HOUR), "z-first": place(age=2 * DAY)})
+    return saved(page)
+
+
+def test_forget_then_undo(page, site):
+    before = two_places(page, site)
+
+    forget(page)
+
+    assert saved(page) is None and [e["title"] for e in continue_entries(page)] == ["Alpha Tale"]
+    assert undo_text(page) == "Forgot your place in Test Novel. Undo"
+    assert focused(page) == "continue-undo-button"
+
+    page.click(".continue-undo button")
+
+    assert saved(page) == before
+    assert [e["title"] for e in continue_entries(page)] == ["Test Novel", "Alpha Tale"]
+    assert undo_text(page) == ""
+    assert page.js("document.activeElement === document.querySelector('.continue-list li[data-slug=\"n\"] a')")
+
+
+def test_a_forgotten_place_stays_forgotten(page, site):
+    two_places(page, site)
+    forget(page)
+
+    page.wait_for("document.querySelector('.continue-undo').textContent === ''", timeout=10)
+
+    assert saved(page) is None
+    assert page.js("document.activeElement === document.querySelector('.continue-list a')")
+
+
+def test_leaving_the_page_ends_the_undo(page, site):
+    two_places(page, site)
+    forget(page)
+
+    open_first_page(page)
+    back_to_library(page)
+
+    assert saved(page) is None and undo_text(page) == ""
+    assert [e["title"] for e in continue_entries(page)] == ["Alpha Tale"]
+
+
+def test_undo_keeps_a_newer_place(page, site):
+    two_places(page, site)
+    forget(page)
+    newer = json.dumps(place("51-100.html", "c53", 0, "53", age=0))
+    page.js(f"localStorage.setItem('reader:pos:n', {json.dumps(newer)})")  # another tab read on
+
+    page.click(".continue-undo button")
+
+    assert saved(page) == newer
+
+
+def test_forgetting_the_last_place_keeps_undo(page, site):
+    seed_places(page, site, {"n": place(age=HOUR)})
+
+    forget(page)
+
+    assert page.js("document.querySelector('.continue-row').hidden") is True
+    assert undo_text(page).startswith("Forgot your place in Test Novel.")
+    assert focused(page) == "continue-undo-button"
+    page.click(".continue-undo button")
+    assert saved(page) is not None and [e["title"] for e in continue_entries(page)] == ["Test Novel"]
+
+
+def test_a_row_opens_to_go_to_and_its_pages(page, site):
+    page.click('.novel-row[data-slug="n"] summary')
+    assert page.js("""document.querySelector('.novel-row[data-slug="n"] .goto').getBoundingClientRect().height""") > 0
+
+    page.js("""document.querySelector('.novel-row[data-slug="n"] .goto input').value = '2'""")
+    page.navigate_by("""document.querySelector('.novel-row[data-slug="n"] .goto').requestSubmit()""")
+
+    assert page.js("location.pathname + location.hash").endswith("/novels/n/1-50.html#c2")
+
+
+def test_storage_off_hides_the_continue_row(tmp_path, site):
+    with firefox(tmp_path / "profile", throwing_storage=True) as page:
+        page.goto(site + "index.html")
+        assert page.js("document.querySelector('.continue-row').hidden") is True
+        page.assert_no_errors()
