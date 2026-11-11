@@ -18,6 +18,7 @@ items. A job still waiting its turn is ended at once.
 """
 
 import json
+import logging
 import os
 import sqlite3
 import threading
@@ -28,6 +29,7 @@ from dataclasses import dataclass
 from enum import StrEnum
 from pathlib import Path
 
+log = logging.getLogger(__name__)
 SITE = "_site"  # the lock target of library-wide jobs; slugs never start with "_"
 STALE_AFTER = 60.0
 HEARTBEAT_EVERY = 10.0
@@ -370,13 +372,17 @@ class _Lane:
         self._queue: list[_Queued] = []
         self._cond = threading.Condition()
         self._closed = False
-        self.thread = threading.Thread(target=self._work, name=f"job-lane-{name}", daemon=True)
-        self.thread.start()
+        self._thread = threading.Thread(target=self._work, name=f"job-lane-{name}", daemon=True)
+        self._thread.start()
 
-    def put(self, entry: _Queued) -> None:
+    def put(self, entry: _Queued) -> bool:
+        """Queue a job; False once the lane is closed (the caller ends the job)."""
         with self._cond:
+            if self._closed:
+                return False
             self._queue.append(entry)
             self._cond.notify()
+        return True
 
     def take(self, job_id: int) -> Job | None:
         """Remove a job that has not started; None if it is not queued here (any more)."""
@@ -395,6 +401,10 @@ class _Lane:
             self._cond.notify_all()
         return left
 
+    def join(self) -> None:
+        """Wait for the worker to finish the job it is running (after `close`)."""
+        self._thread.join()
+
     def _work(self) -> None:
         while True:
             with self._cond:
@@ -403,14 +413,12 @@ class _Lane:
                 if self._closed:
                     return
                 waiting = list(self._queue)
-            # Readiness is a database read: done outside the condition, so submit and cancel never wait on it.
-            ready = next((e for e in waiting if e.waits_for is None
-                          or not self._runner.board.held(e.target, e.waits_for)), None)  # fmt: skip
+            try:
+                ready = self._first_ready(waiting)
+            except sqlite3.Error:
+                log.exception("job lane: reading the board")  # the next look retries; the lane carries on
+                ready = None
             if ready is None:
-                for e in waiting:
-                    if not e.marked:
-                        self._runner.board.set_progress(e.job.id, 0, 0, f"waiting for {e.waits_for}")
-                        e.marked = True
                 with self._cond:
                     if not self._closed:
                         self._cond.wait(self._poll)
@@ -419,7 +427,21 @@ class _Lane:
                 if ready not in self._queue:  # cancelled meanwhile
                     continue
                 self._queue.remove(ready)
-            self._runner._execute(ready.job, ready.work)
+            try:
+                self._runner._execute(ready.job, ready.work)
+            except Exception:
+                log.exception("job lane: job %s", ready.job.id)  # its work's errors end the job; this is the board's
+
+    def _first_ready(self, waiting: Sequence[_Queued]) -> _Queued | None:
+        """The first job free to start. Each held job before it gets its waiting note, once. A database read:
+        done outside the condition, so submit and cancel never wait on it."""
+        for e in waiting:
+            if e.waits_for is None or not self._runner.board.held(e.target, e.waits_for):
+                return e
+            if not e.marked:
+                self._runner.board.set_progress(e.job.id, 0, 0, f"waiting for {e.waits_for}")
+                e.marked = True
+        return None
 
 
 class JobRunner:
@@ -437,6 +459,7 @@ class JobRunner:
         self._poll = poll
         self._sleep = sleep
         self._lanes: dict[str, _Lane] = {}
+        self._closed = False  # shutting down: no new lanes
         self._threads: list[threading.Thread] = []
         self._active: dict[int, Job] = {}
         self._mutex = threading.Lock()
@@ -455,10 +478,11 @@ class JobRunner:
         job = self._claim(target, kind, args, echo=None)
         if lane is not None:
             with self._mutex:
-                if lane not in self._lanes:
+                if lane not in self._lanes and not self._closed:
                     self._lanes[lane] = _Lane(lane, self, self._poll)
-                queue = self._lanes[lane]
-            queue.put(_Queued(job, target, work, waits_for))
+                turns = self._lanes.get(lane)
+            if turns is None or not turns.put(_Queued(job, target, work, waits_for)):
+                self._drop(job)  # shutting down: it would never run
             return job.id
         thread = threading.Thread(target=self._execute, args=(job, work), name=f"job-{job.id}")
         with self._mutex:
@@ -500,6 +524,7 @@ class JobRunner:
     def shutdown(self) -> None:
         """End the queued jobs as cancelled, ask the running ones to stop, and wait for them."""
         with self._mutex:
+            self._closed = True
             lanes = list(self._lanes.values())
         for lane in lanes:
             for job in lane.close():
@@ -509,7 +534,7 @@ class JobRunner:
         for job in jobs:
             job._cancel.set()
         for lane in lanes:
-            lane.thread.join()
+            lane.join()
         with self._mutex:
             threads = list(self._threads)
         for thread in threads:

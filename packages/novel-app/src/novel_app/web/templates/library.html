@@ -12,7 +12,7 @@
         {% if rows %}
         <nav class="segmented" aria-label="Show novels as">
             {% for v, tip in help.library_view.items() %}
-            <a class="segment" href="/?view={{ v }}" title="{{ tip }}"{% if v == view %} aria-current="true"{% endif %}>{{ v | capitalize }}</a>
+            <a class="segment" href="/?view={{ v }}{% if filter_name %}&amp;status={{ filter_name }}{% endif %}" title="{{ tip }}"{% if v == view %} aria-current="true"{% endif %}>{{ v | capitalize }}</a>
             {% endfor %}
         </nav>
         {% if rows | selectattr("can_sync") | first %}

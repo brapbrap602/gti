@@ -522,3 +522,42 @@ def test_ctrl_c_while_the_cli_waits_ends_the_job_interrupted(board):
     (audio,) = (j for j in board.jobs() if j.kind == "build-audio")
     assert audio.state is JobState.INTERRUPTED
     board.claim("x", "build-audio", {})  # its lock was released
+
+
+def test_a_waiting_job_says_so_even_while_a_ready_one_behind_it_runs(board, lanes):
+    first, y = Gate(), Gate()
+    lanes.submit("z", "build-audio", {}, first, lane="audio")
+    assert first.started.wait(5)
+    board.claim("x", "sync", {})
+    audio_x = lanes.submit("x", "build-audio", {}, lambda job: Outcome(), lane="audio", waits_for="sync")
+    lanes.submit("y", "build-audio", {}, y, lane="audio", waits_for="sync")  # both queued before the lane looks
+
+    first.release.set()
+
+    assert y.started.wait(5)
+    assert board.job(audio_x).current == "waiting for sync"
+    y.release.set()
+
+
+def test_a_database_error_does_not_stop_a_lane(board, lanes, monkeypatch):
+    real, failures = board.held, []
+
+    def flaky(target, kind):
+        if not failures:
+            failures.append(1)
+            raise sqlite3.OperationalError("database is locked")
+        return real(target, kind)
+
+    monkeypatch.setattr(board, "held", flaky)
+    job_id = lanes.submit("x", "build-audio", {}, lambda job: Outcome(), lane="audio", waits_for="sync")
+
+    assert wait_for(board, job_id).state is JobState.DONE and failures
+
+
+def test_a_lane_job_submitted_after_shutdown_ends_cancelled(board):
+    runner = JobRunner(board, poll=POLL)
+    runner.shutdown()
+
+    job_id = runner.submit("a", "sync", {}, lambda job: Outcome(), lane="sync")
+
+    assert board.job(job_id).state is JobState.CANCELLED and not runner.owns(job_id)

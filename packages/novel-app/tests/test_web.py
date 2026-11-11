@@ -488,6 +488,7 @@ def test_the_cards_view_is_remembered(client, service):
     for page in (first.text, again.text):
         assert '<li class="card novel-card" data-novel="test-novel"' in page and "novel-row" not in page
     assert 'href="/?view=table"' in again.text
+    assert 'href="/?view=table&amp;status=ok"' in client.get("/", params={"status": "ok"}).text  # keeps the tab
 
 
 def test_the_sort_is_remembered_and_tabs_keep_it(client, service):
