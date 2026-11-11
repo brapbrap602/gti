@@ -12,7 +12,7 @@ from novel_app.jobs import JobBoard, JobRunner, JobState
 from novel_app.library import novel_dir
 from novel_app.service import Service, app_db
 from novel_app.web.app import create_app
-from novel_core import Kind, NewVersion, NovelStore, Paragraph, SourceItem, SourceSpec
+from novel_core import Kind, NewVersion, NovelMeta, NovelStore, Paragraph, SourceItem, SourceSpec
 from novel_translate.glossary import Status, UpdateTerm
 from novel_translate.setups import TranslatorSetup
 
@@ -136,17 +136,18 @@ def test_expanded_recent_jobs_stay_expanded_across_live_updates(page, app_url, s
     assert page.js("document.querySelector('.recent-toggle').getAttribute('aria-expanded')") == "true"
 
 
-def test_compare_jump_stays_in_view_when_the_page_reloads(page, app_url, service, two_texts):
-    filler = tuple(f"Same paragraph {i}, long enough to wrap on a phone screen twice over." for i in range(40))
+def test_compare_jump_stays_in_view_when_the_page_reloads(desktop, app_url, service, two_texts):
+    page = desktop
+    filler = tuple(f"Same paragraph {i}, long enough to wrap in a column of its own, twice over at least." for i in range(80))
     two_texts("d", {"Chapter 1": (*filler, "He ran fast.", *filler)},
               {"Chapter 1": (*filler, "He ran quickly.", *filler)})
     page.goto(app_url + "/novels/d/compare?number=1")
     in_view = "(() => { const t = document.getElementById('d1-l').getBoundingClientRect().top;" \
-              " return t >= document.querySelector('.topbar').getBoundingClientRect().bottom && t < innerHeight; })()"
+              " return t >= document.querySelector('.compare-bar').getBoundingClientRect().bottom && t < innerHeight; })()"
 
     page.click('.diff-summary a[href="#d1-l"]')
     page.frame()
-    assert page.js(in_view)
+    assert page.js(in_view)  # below the sticky bar, not under it
 
     page.js("document.getElementById('main').dataset.before = 'reload'")
     board = service.runner.board
@@ -157,6 +158,11 @@ def test_compare_jump_stays_in_view_when_the_page_reloads(page, app_url, service
     page.js("new Promise(r => setTimeout(r, 1500))")  # past the reload that follows the job's end
 
     assert page.js(in_view)
+    page.js("scrollTo(0, 0)")
+    page.scroll(3 * DESKTOP[1])
+    bar = "document.querySelector('.compare-bar').getBoundingClientRect()"
+    assert page.js(f"{bar}.top") == page.js("document.querySelector('.topbar').getBoundingClientRect().bottom")
+    assert page.js(f"{bar}.height") > 0 and page.js("scrollY") > 2 * DESKTOP[1]
 
 
 def test_glossary_review_keeps_focus_on_the_row(openrouter, page, app_url, service, tmp_path):
@@ -264,13 +270,41 @@ def test_jobs_sheet_on_a_desktop_and_the_pill_counts_problems(desktop, app_url, 
     assert desktop.js("document.activeElement.classList.contains('jobs-toggle')")
 
 
-def test_a_card_shows_its_job_progress_without_a_reload(novels, desktop, app_url, service):
+def test_the_jobs_tile_opens_the_jobs_sheet_and_focus_comes_back_to_it(novels, desktop, app_url):
+    desktop.goto(app_url + "/")
+    desktop.click("[data-open-jobs]")
+    desktop.wait_for("getComputedStyle(document.querySelector('aside.jobs')).visibility === 'visible'")
+    assert desktop.js("location.hash") == ""  # the link's #jobs is for pages without JavaScript
+
+    desktop.js("document.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}))")
+
+    desktop.wait_for("getComputedStyle(document.querySelector('aside.jobs')).visibility === 'hidden'")
+    assert desktop.js("document.activeElement.hasAttribute('data-open-jobs')")
+
+
+def test_the_build_menu_of_the_last_row_opens_unclipped(desktop, app_url, service):
+    for i in range(6):
+        with NovelStore.create(novel_dir(f"n{i}"), NovelMeta(f"Novel {i}")) as store:
+            store.upsert_source(SourceSpec("custom:en", f"https://en{i}.test", "en", Kind.OFFICIAL_EN))
+    desktop.goto(app_url + "/?sort=title")
+    menu = "document.querySelector('tr.novel-row:last-child details.menu')"
+
+    desktop.click("tr.novel-row:last-child details.menu > summary")
+
+    # No scrolling: a menu inside an overflow box would be clipped by it, or scroll it, not the page.
+    field = f"{menu}.querySelector('input[name=to]')"
+    assert desktop.js(f"{field}.getBoundingClientRect().bottom") < DESKTOP[1]
+    assert desktop.js(f"""(() => {{ const r = {field}.getBoundingClientRect();
+        return document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2) === {field}; }})()""")
+
+
+def test_a_row_shows_its_job_progress_without_a_reload(novels, desktop, app_url, service):
     board = service.runner.board
     running = board.claim("raw-novel", "sync", {})
     board.start(running)
 
     desktop.goto(app_url + "/")
-    mirror = f"document.querySelector('[data-job-progress=\"{running}\"]')"
+    mirror = f"document.querySelector('tr.novel-row[data-novel=\"raw-novel\"] [data-job-progress=\"{running}\"]')"
     assert desktop.js(f"!{mirror}.hidden")
     desktop.js("document.getElementById('main').dataset.before = 'kept'")
     board.set_progress(running, 2, 7, "")  # no job starts or ends: main is not reloaded
