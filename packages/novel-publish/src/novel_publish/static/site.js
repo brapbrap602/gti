@@ -431,11 +431,14 @@
         const larger = dialog.querySelector('[data-size="1"]');
         const { key, apply, scales, current } = window.readerSettings;
 
+        const radios = Array.from(dialog.querySelectorAll('fieldset input[type="radio"]'));
+
         function show(s) {
             output.textContent = Math.round(scales[s.scale] * 100) + '%';
             smaller.disabled = s.scale === 0;
             larger.disabled = s.scale === scales.length - 1;
-            dialog.querySelector(`input[name="theme"][value="${s.theme}"]`).checked = true;
+            // Every radio group is named after its settings field; a value with no radio checks none.
+            radios.forEach((radio) => { radio.checked = s[radio.name] === radio.value; });
         }
 
         function change(patch) {
@@ -449,7 +452,7 @@
             if (button) change({ scale: current().scale + Number(button.dataset.size) });
         });
         dialog.addEventListener('change', (e) => {
-            if (e.target.name === 'theme') change({ theme: e.target.value });
+            if (radios.includes(e.target)) change({ [e.target.name]: e.target.value });
         });
         show(current());
     }

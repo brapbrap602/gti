@@ -260,7 +260,7 @@ def test_a_novel_without_an_author_shows_no_author(stores, site):
     build_site({"n": store}, site)
 
     library = (site / "index.html").read_text(encoding="utf-8")
-    assert "row-author" not in library and "unknown" not in library
+    assert 'class="row-author"' not in library and "&lt;unknown&gt;" not in library
 
 
 def test_an_empty_library_says_so_without_admin_instructions(stores, site):

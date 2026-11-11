@@ -517,3 +517,116 @@ def test_storage_off_hides_the_continue_row(tmp_path, site):
         page.goto(site + "index.html")
         assert page.js("document.querySelector('.continue-row').hidden") is True
         page.assert_no_errors()
+
+
+# -- text settings: theme, font, spacing, width ------------------------------------
+
+
+def text_settings(page) -> dict:
+    return page.js("""(() => { const r = document.documentElement;
+        return {theme: r.dataset.theme, font: r.dataset.font || null,
+                leading: r.style.getPropertyValue('--r-leading'), measure: r.style.getPropertyValue('--r-measure')}; })()""")
+
+
+def saved_settings(page) -> dict | None:
+    return page.js("JSON.parse(localStorage.getItem('reader:settings'))")
+
+
+def test_new_settings_apply_and_follow_to_the_next_page(page, site):
+    page.goto(site + "novels/n/1-50.html")
+    assert text_settings(page) == {"theme": "dark", "font": "sans", "leading": "1.8", "measure": "68ch"}
+
+    for value in ("serif", "loose", "sepia"):
+        page.click(f'#settings input[value="{value}"]')
+
+    expected = {"theme": "sepia", "font": "serif", "leading": "2", "measure": "68ch"}
+    assert text_settings(page) == expected
+    page.goto(site + "novels/n/51-100.html")
+    assert text_settings(page) == expected
+    assert saved_settings(page) == {"scale": 1, "theme": "sepia", "font": "serif", "spacing": "loose", "width": "normal"}
+    assert page.js("getComputedStyle(document.querySelector('main')).fontFamily").startswith("Georgia")
+    assert page.js("getComputedStyle(document.body).fontFamily").lstrip('"').startswith("Segoe UI")  # outside main: unaffected
+
+
+def test_an_old_settings_object_keeps_its_fields_and_gains_the_new_ones(page, site):
+    seed(page, "reader:settings", {"scale": 3, "theme": "light"})
+    page.goto(site + "novels/n/1-50.html")
+
+    assert text_settings(page) == {"theme": "light", "font": "sans", "leading": "1.8", "measure": "68ch"}
+    page.click('#settings [data-size="1"]')
+
+    assert saved_settings(page) == {"scale": 4, "theme": "light", "font": "sans", "spacing": "normal", "width": "normal"}
+
+
+def test_bad_saved_values_fall_back_to_defaults(page, site):
+    seed(page, "reader:settings", {"font": "comic", "width": 9, "spacing": None})
+    page.goto(site + "novels/n/1-50.html")
+
+    assert text_settings(page) == {"theme": "dark", "font": "sans", "leading": "1.8", "measure": "68ch"}
+    assert page.js("document.querySelector('#settings input[name=font]:checked').value") == "sans"
+
+
+def width_fieldset_shown(page) -> bool:
+    return page.js("getComputedStyle(document.querySelector('#settings .width-setting')).display") != "none"
+
+
+def test_width_is_offered_on_wide_screens_only(page, desktop, site):
+    page.goto(site + "novels/n/1-50.html")
+    page.click('[data-open="settings"]')
+    assert not width_fieldset_shown(page)
+
+    desktop.goto(site + "novels/n/1-50.html")
+    desktop.click('[data-open="settings"]')
+    assert width_fieldset_shown(desktop)
+    desktop.click('#settings input[value="narrow"]')
+
+    main = desktop.js("document.querySelector('main').getBoundingClientRect().width")
+    sixty_ch = desktop.js("""(() => { const s = document.createElement('span');
+        s.style.cssText = 'display:inline-block;width:60ch'; document.querySelector('main p').append(s);
+        const w = s.getBoundingClientRect().width; s.remove(); return w; })()""")
+    assert main <= sixty_ch + 1
+
+
+# -- the chapters sheet ---------------------------------------------------------------
+
+
+def open_chapters_at(page, site, anchor: str) -> dict:
+    """Open Alpha Tale's page scrolled to the chapter, then the Chapters sheet; its geometry."""
+    page.goto(site + "novels/z-first/1-50.html")
+    scroll_into(page, anchor, 20)
+    page.click('[data-open="chapters"]')
+    page.frame()
+    return page.js("""(() => {
+        const d = document.getElementById('chapters').getBoundingClientRect();
+        const list = document.querySelector('#chapters .sheet-toc ol').getBoundingClientRect();
+        const here = document.querySelector('#chapters [aria-current]').getBoundingClientRect();
+        const go = document.querySelector('#chapters .goto').getBoundingClientRect();
+        return {top: d.top, bottom: d.bottom, left: d.left, right: d.right, height: d.height,
+                vw: innerWidth, vh: innerHeight,
+                here_visible: here.top >= list.top - 1 && here.bottom <= list.bottom + 1,
+                goto_visible: go.top >= d.top && go.bottom <= Math.min(d.bottom, innerHeight) && go.height > 0,
+                here: document.querySelector('#chapters [aria-current]').getAttribute('href')}; })()""")
+
+
+def test_chapters_sheet_on_a_phone_is_a_tall_bottom_sheet(page, site):
+    box = open_chapters_at(page, site, "c40")
+
+    assert box["here"] == "#c40"
+    assert box["height"] >= 0.85 * box["vh"]
+    assert abs(box["bottom"] - box["vh"]) <= 1
+    assert box["here_visible"] and box["goto_visible"]
+
+
+def test_chapters_sheet_on_a_desktop_is_a_tall_centred_panel(desktop, site):
+    box = open_chapters_at(desktop, site, "c40")
+
+    assert box["height"] >= 0.7 * box["vh"]
+    assert abs(box["top"] + box["bottom"] - box["vh"]) <= 2 and abs(box["left"] + box["right"] - box["vw"]) <= 2
+    assert box["here_visible"] and box["goto_visible"]
+
+
+def test_the_text_dialog_keeps_its_size(page, site):
+    page.goto(site + "novels/n/1-50.html")
+    page.click('[data-open="settings"]')
+
+    assert page.js("document.getElementById('settings').getBoundingClientRect().height") < 0.9 * page.js("innerHeight")
