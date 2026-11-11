@@ -53,7 +53,7 @@ from novel_app.pages import (
     source_label,
     state_counts,
 )
-from novel_app.service import Service, UserError
+from novel_app.service import Service, SyncAll, UserError
 
 HERE = Path(__file__).parent
 log = logging.getLogger(__name__)
@@ -383,6 +383,12 @@ def create_app(service: Service) -> FastAPI:
         job_id = await run_in_threadpool(lambda: service.start(kind, **args))
         return done(request, f"started job {job_id}: {JOB_LABELS[kind]} {args.get('novel', '')}".rstrip(), _back(form))
 
+    @app.post("/jobs/sync-all")
+    async def sync_all(request: Request):
+        form = await request.form()
+        result = await run_in_threadpool(service.sync_all)
+        return done(request, _sync_all_notice(result), _back(form))
+
     @app.post("/jobs/{job_id}/cancel")
     async def cancel(request: Request, job_id: int):
         form = await request.form()
@@ -456,6 +462,17 @@ async def job_events(
 def sse(event: str, data: str) -> str:
     lines = data.splitlines() or [""]
     return f"event: {event}\n" + "".join(f"data: {line}\n" for line in lines) + "\n"
+
+
+def _sync_all_notice(result: SyncAll) -> str:
+    """Sync all's notice, like "Queued 7 syncs (one at a time); skipped 2 already syncing", then why any
+    other novel was skipped."""
+    n = len(result.queued)
+    parts = [f"Queued {n} sync{'s' if n != 1 else ''} (one at a time)" if n else "Nothing to sync"]
+    if busy := sum(why == "already syncing" for _, why in result.skipped):
+        parts.append(f"skipped {busy} already syncing")
+    parts += [f"skipped {slug}: {why}" for slug, why in result.skipped if why != "already syncing"]
+    return "; ".join(parts)
 
 
 def _by_title(row: NavRow) -> tuple[str, str]:

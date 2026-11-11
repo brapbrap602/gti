@@ -166,7 +166,7 @@ def sync_cmd(
             _parsed(parse_range, r)
     service = _service()
     _calling(service.guides)
-    slugs = [s for s in service.novels() if service.web_sources(s, source)] if all_novels else [novel]
+    slugs = service.syncable_novels(source) if all_novels else [novel]
     failed = False
     for slug in slugs:
         try:

@@ -306,6 +306,55 @@ def test_an_audio_build_waits_for_its_novels_sync_and_can_be_cancelled_at_once(c
     board.finish(sync, JobState.DONE)
 
 
+def test_sync_all_queues_every_web_novel_but_those_already_syncing(client, service, novels):
+    titled(service, "a", "Ant", fetched=True)
+    titled(service, "b", "Bee", fetched=True)
+    board = service.runner.board
+    busy = board.claim("b", "sync", {"novel": "b"})  # say, a CLI sync
+
+    r = client.post("/jobs/sync-all", data={"back": "/"}, headers={"HX-Request": "true"})
+
+    assert r.status_code == 200 and "Queued 1 sync (one at a time); skipped 1 already syncing" in r.text
+    assert "raw-novel" not in r.text and "english-only" not in r.text  # no web source: not an error
+    (queued,) = (j for j in board.jobs(limit=50) if j.kind == "sync" and j.id > busy)
+    assert queued.target == "a" and finished(service, queued.id).state is JobState.DONE
+    board.finish(busy, JobState.DONE)
+    assert 'action="/jobs/sync-all"' in client.get("/").text
+
+
+def test_sync_all_without_javascript_goes_back_with_a_notice(client, service):
+    r = client.post("/jobs/sync-all", data={"back": "/?status=new"}, follow_redirects=False)
+
+    assert r.status_code == 303 and r.headers["location"] == "/?status=new&notice=Nothing+to+sync"
+
+
+def test_a_sync_click_or_a_rerun_starts_at_once_beside_a_sync_all_batch(client, service, site):
+    for slug, title in (("a", "Ant"), ("b", "Bee"), ("f", "Fox")):
+        titled(service, slug, title, fetched=True)
+    board = service.runner.board
+    site.count, site.hold = 4, threading.Event()  # one new chapter each, whose fetch waits
+    client.post("/jobs/sync-all", data={"back": "/"})
+    batch = {j.target: j.id for j in board.jobs(limit=50) if j.kind == "sync" and j.state.active}
+    gate = threading.Event()
+    while board.job(batch["a"]).state is not JobState.RUNNING:
+        gate.wait(0.02)
+    client.post(f"/jobs/{batch['f']}/cancel", data={"back": "/"})  # an ended Sync-all job
+    titled(service, "e", "Eel", fetched=False)
+
+    clicked = client.post("/jobs", data={"kind": "sync", "novel": "e"}, headers={"HX-Request": "true"})
+    rerun = client.post(f"/jobs/{batch['f']}/rerun", data={"back": "/"}, headers={"HX-Request": "true"})
+
+    started = [int(re.search(r"started job (\d+)", r.text).group(1)) for r in (clicked, rerun)]
+    for job_id in started:
+        while board.job(job_id).state is JobState.QUEUED:
+            gate.wait(0.02)
+    assert [board.job(j).state for j in started] == [JobState.RUNNING] * 2
+    assert board.job(batch["b"]).state is JobState.QUEUED  # the batch's next sync still waits its turn
+    site.hold.set()
+    for job_id in (*started, batch["a"], batch["b"]):
+        assert finished(service, job_id).state is JobState.DONE
+
+
 def test_unknown_novel_and_job_kind(client):
     assert client.get("/novels/nope").status_code == 400
     assert client.post("/jobs", data={"kind": "deploy-site"}).status_code == 400

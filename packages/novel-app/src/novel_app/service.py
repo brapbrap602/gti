@@ -81,7 +81,7 @@ from novel_translate.tstore import TranslateStore
 from novel_app import deploy, pages, report
 from novel_app.comparing import Bundle, ChapterScreen, Reference, bundles, chapter_screen, new_bundle, write_bundle
 from novel_app.glossary_page import GlossaryPage, TermRow, glossary_page, term_row
-from novel_app.jobs import SITE, CancelResult, JobPanel, JobRow, JobRunner, JobState, Outcome, Work
+from novel_app.jobs import SITE, CancelResult, JobPanel, JobRow, JobRunner, JobRunning, JobState, Outcome, Work
 from novel_app.library import (
     Folder,
     audio_dir,
@@ -206,6 +206,12 @@ TURNS: Mapping[str, Turn] = {"build-audio": Turn("audio", waits_for="sync")}
 SYNC_ALL = Turn("sync")  # Sync all's syncs take turns; a single Sync click does not
 
 
+@dataclass(frozen=True)
+class SyncAll:
+    queued: tuple[int, ...]  # job ids, in the order they run
+    skipped: tuple[tuple[str, str], ...]  # (slug, why)
+
+
 class Service:
     def __init__(
         self,
@@ -254,6 +260,25 @@ class Service:
         end on the novel); the work's own exceptions propagate."""
         target, work = self._prepare(kind, args)
         return self.runner.run(target, kind, args, work, echo, waits_for=TURNS.get(kind, Turn()).waits_for)
+
+    def syncable_novels(self, source: int | None = None) -> list[str]:
+        """Novels with a web source (that source, if given): the ones Sync all syncs."""
+        return [slug for slug in self.novels() if self.web_sources(slug, source)]
+
+    def sync_all(self) -> SyncAll:
+        """Queue a sync of every novel with a web source, to run one at a time; a novel already syncing
+        (here or in another process) is skipped. A Re-run of one of these syncs starts at once, like a click."""
+        queued, skipped = [], []
+        for slug in self.syncable_novels():
+            args = {"novel": slug}
+            try:
+                target, work = self._prepare("sync", args)
+                queued.append(self.runner.submit(target, "sync", args, work, lane=SYNC_ALL.lane))
+            except JobRunning:
+                skipped.append((slug, "already syncing"))
+            except UserError as e:
+                skipped.append((slug, str(e)))
+        return SyncAll(tuple(queued), tuple(skipped))
 
     def rerun(self, job_id: int) -> int:
         """Start a job again with the same arguments (after it was interrupted or failed)."""

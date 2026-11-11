@@ -29,6 +29,7 @@ class Site:
         self.fail: set[int] = set()
         self.down = False
         self.delay = 0.0  # seconds per chapter fetch
+        self.hold: threading.Event | None = None  # when set to an Event, chapter fetches wait for it
 
     def source(self, spec):
         site = self
@@ -46,6 +47,8 @@ class Site:
             def fetch_chapter(self, item):
                 n = int(item.ref.rsplit("-", 1)[1])
                 time.sleep(site.delay)
+                if site.hold is not None:
+                    assert site.hold.wait(10)
                 if n in site.fail:
                     raise FetchError(f"{item.ref}: HTTP 500 after 3 attempts")
                 return RawChapter(f'<div id="b"><p>Text {n}.</p></div>')

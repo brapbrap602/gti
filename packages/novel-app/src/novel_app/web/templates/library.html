@@ -15,6 +15,12 @@
             <a class="segment" href="/?view={{ v }}" title="{{ tip }}"{% if v == view %} aria-current="true"{% endif %}>{{ v | capitalize }}</a>
             {% endfor %}
         </nav>
+        {% if rows | selectattr("can_sync") | first %}
+        <form method="post" action="/jobs/sync-all" hx-post="/jobs/sync-all" hx-target="#notice" class="inline">
+            <input type="hidden" name="back" value="/">
+            <button type="submit" class="btn btn--outline" title="{{ help.action['sync-all'] }}">{{ icon("refresh-cw") }}Sync all</button>
+        </form>
+        {% endif %}
         {{ job_button("build-site", None, job_panel.active | selectattr("target", "equalto", "_site") | first, "/", icon_name="hammer", small=False) }}
         {% endif %}
         <a class="btn btn--outline" href="/add">{{ icon("plus") }}Add novel</a>
