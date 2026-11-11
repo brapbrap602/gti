@@ -1,5 +1,7 @@
 import pytest
+from novel_app.jobs import JobRow, JobState
 from novel_app.pages import (
+    LIBRARY_FILTERS,
     Cell,
     CellState,
     GridBlock,
@@ -8,11 +10,15 @@ from novel_app.pages import (
     NovelCheck,
     NovelStatus,
     SourceLabel,
+    SourceRow,
     Staleness,
+    attention,
+    sort_rows,
     source_label,
     state_counts,
 )
-from novel_core import ChapterKey, CheckReport, HeldNote, KeyRange, Kind, NumberingRun, OutputKind, SourceSpec
+from novel_core import ChapterKey, CheckReport, HeldNote, KeyRange, Kind, NumberingRun, OutputKind, SourceInfo, SourceSpec
+from novel_core.alignment import AlignmentRules
 
 
 def spec(backend: str, url: str) -> SourceSpec:
@@ -69,8 +75,94 @@ def test_state_counts_add_up_the_blocks():
     assert state_counts(blocks) == {CellState.OFFICIAL: 3, CellState.MISSING: 1, CellState.FAILED: 1}
 
 
-def row(outputs=(), numbers=None, selected=10, jobs=()) -> LibraryRow:
-    return LibraryRow("n", "N", (), numbers or {Kind.OFFICIAL_EN: selected}, selected, 0, 0, None, tuple(outputs), jobs, 100)
+def row(outputs=(), numbers=None, selected=10, jobs=(), slug="n", title="N", gaps=0, new=0, last_sync=None,
+        web=True) -> LibraryRow:
+    info = SourceInfo(1, spec("noveldl", "https://x.test"), AlignmentRules())
+    sources = (SourceRow(info, 1, 0, 0, new if web else None),)
+    return LibraryRow(slug, title, sources, numbers or {Kind.OFFICIAL_EN: selected}, selected, gaps, new, last_sync,
+                      tuple(outputs), tuple(jobs), 100)  # fmt: skip
+
+
+def job(state: JobState, kind: str = "sync") -> JobRow:
+    return JobRow(1, "n", kind, {}, state, 0.0, None, 0, 0, "", ())
+
+
+STALE = Staleness(OutputKind.SITE, 40, 2)
+
+
+def titles(rows) -> list[str]:
+    return [r.title for r in rows]
+
+
+def test_attention_ranks_running_then_problems_rebuilds_new_gaps_then_the_rest():
+    rows = [
+        row(slug="bee", title="Bee"),
+        row(slug="vee", title="Vee", gaps=2),
+        row(slug="wo", title="Wo", new=5),
+        row(slug="xu", title="Xu", outputs=[STALE]),
+        row(slug="yak", title="Yak"),
+        row(slug="zed", title="Zed", jobs=[job(JobState.RUNNING)]),
+        row(slug="ant", title="Ant"),
+    ]
+    assert titles(sort_rows(rows, "attention", frozenset({"yak"}))) == ["Zed", "Yak", "Xu", "Wo", "Vee", "Ant", "Bee"]
+
+
+def test_a_running_row_that_needs_a_rebuild_ranks_as_running():
+    both = row(title="Both", outputs=[STALE], jobs=[job(JobState.RUNNING)])
+    assert attention(both, frozenset()) == 0
+
+
+def test_a_queued_job_is_not_running():
+    abe = row(slug="abe", title="Abe", outputs=[STALE], jobs=[job(JobState.QUEUED)])
+    cat = row(slug="cat", title="Cat")
+    assert attention(abe, frozenset()) == 2
+    assert abe.queued and not cat.queued
+    assert abe.status is NovelStatus.REBUILD
+    assert not LIBRARY_FILTERS["running"].test(abe)
+    assert abe.job_of("sync") is not None  # still what keeps another sync from starting
+
+
+@pytest.mark.parametrize(("sort", "order"), [
+    ("title", ["Ant", "Bee", "Cat"]),
+    ("chapters", ["Cat", "Ant", "Bee"]),
+    ("gaps", ["Bee", "Ant", "Cat"]),  # Ant and Cat tie at 0: by title
+    ("new", ["Ant", "Cat", "Bee"]),
+    ("sync", ["Cat", "Bee", "Ant"]),  # never synced last
+    ("outputs", ["Bee", "Ant", "Cat"]),
+])  # fmt: skip
+def test_each_column_sorts_one_way_then_by_title(sort, order):
+    rows = [
+        row(slug="c", title="Cat", selected=30, gaps=0, new=4, last_sync=200.0),
+        row(slug="b", title="Bee", selected=10, gaps=5, new=0, last_sync=100.0,
+            outputs=[Staleness(OutputKind.SITE, 40, 9)]),
+        row(slug="a", title="Ant", selected=20, gaps=0, new=7, last_sync=None, outputs=[STALE]),
+    ]  # fmt: skip
+    assert titles(sort_rows(rows, sort, frozenset())) == order
+
+
+def test_an_unknown_sort_is_attention():
+    rows = [row(slug="a", title="Ant"), row(slug="z", title="Zed", new=3)]
+    assert titles(sort_rows(rows, "bogus", frozenset())) == titles(sort_rows(rows, "attention", frozenset())) == ["Zed", "Ant"]
+
+
+def test_library_filters_may_overlap():
+    both = row(slug="both", outputs=[STALE], new=3)
+    rebuild = row(slug="rebuild", outputs=[STALE], jobs=[job(JobState.RUNNING, "build-epub")])
+    new = row(slug="new", new=2)
+    offline = row(slug="offline", new=0, web=False)
+    raw = row(slug="raw", numbers={Kind.RAW_ZH: 5}, selected=0)
+    plain = row(slug="plain")
+    rows = [both, rebuild, new, offline, raw, plain]
+
+    def shown(name: str) -> list[str]:
+        return [r.slug for r in rows if LIBRARY_FILTERS[name].test(r)]
+
+    assert shown("running") == ["rebuild"]
+    assert shown("rebuild") == ["both", "rebuild"]
+    assert shown("new") == ["both", "new"]
+    assert shown("raw-only") == ["raw"]
+    assert shown("ok") == ["new", "offline", "plain"]
+    assert list(LIBRARY_FILTERS) == ["running", "rebuild", "new", "raw-only", "ok"]
 
 
 @pytest.mark.parametrize(("r", "status"), [

@@ -9,7 +9,7 @@ numbering is compared with.
 """
 
 from collections import defaultdict
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from enum import StrEnum
 from pathlib import PurePosixPath
@@ -44,7 +44,7 @@ from novel_translate.setups import BACKEND as SETUP_BACKEND
 from novel_translate.setups import TranslatorSetup
 
 from novel_app.diff import BlockMark, Mark, TextDiff, diff_blocks, normalised
-from novel_app.jobs import JobRow
+from novel_app.jobs import JobRow, JobState
 from novel_app.library import novel_dir
 
 GRID_BLOCK = 100
@@ -134,8 +134,18 @@ class LibraryRow:
         return any(o.built and o.stale for o in self.outputs)
 
     @property
+    def running(self) -> bool:
+        """A job of the novel has started; one only queued does not count."""
+        return any(j.state is JobState.RUNNING for j in self.jobs)
+
+    @property
+    def queued(self) -> bool:
+        """The novel's jobs are all waiting their turn."""
+        return bool(self.jobs) and not self.running
+
+    @property
     def status(self) -> "NovelStatus":
-        if self.jobs:
+        if self.running:
             return NovelStatus.RUNNING
         if self.needs_rebuild:
             return NovelStatus.REBUILD
@@ -160,13 +170,64 @@ STATUS_LABELS = {
     NovelStatus.UNKNOWN: "status unknown",
 }
 
-# The library's filter tabs, in order: each status a library row can have, and its tab label.
+# The sidebar's status chips, in order: each status a library row can have, and its label.
 LIBRARY_STATUSES = {
     NovelStatus.RUNNING: "Running",
     NovelStatus.REBUILD: "Needs rebuild",
     NovelStatus.RAW_ONLY: "Raw only",
     NovelStatus.OK: "Up to date",
 }
+
+
+@dataclass(frozen=True)
+class Filter:
+    label: str
+    test: Callable[[LibraryRow], bool]
+
+
+# The library's filter tabs (`?status=`), in order. Unlike the sidebar's statuses they may overlap,
+# so a stat tile and the tab it links to count the same rows.
+LIBRARY_FILTERS: dict[str, Filter] = {
+    "running": Filter("Running", lambda r: r.running),
+    "rebuild": Filter("Needs rebuild", lambda r: r.needs_rebuild),
+    "new": Filter("New to fetch", lambda r: r.can_sync and r.new_items > 0),
+    "raw-only": Filter("Raw only", lambda r: r.raw_only),
+    "ok": Filter("Up to date", lambda r: r.status is NovelStatus.OK),
+}
+
+
+def attention(row: LibraryRow, problem_targets: frozenset[str]) -> int:
+    """How soon the novel wants a look, 0 first: a job running, an unresolved job problem,
+    a stale output, chapters to fetch, gaps, else nothing."""
+    if row.running:
+        return 0
+    if row.slug in problem_targets:
+        return 1
+    if row.needs_rebuild:
+        return 2
+    if row.new_items > 0:
+        return 3
+    return 4 if row.gaps > 0 else 5
+
+
+type SortKey = Callable[[LibraryRow, frozenset[str]], tuple]
+
+# The library's orders (`?sort=`): one natural direction per column; ties go by title.
+LIBRARY_SORTS: dict[str, SortKey] = {
+    "attention": lambda r, p: (attention(r, p),),
+    "title": lambda r, p: (),
+    "chapters": lambda r, p: (-r.selected,),
+    "gaps": lambda r, p: (-r.gaps,),
+    "new": lambda r, p: (-r.new_items,),
+    "sync": lambda r, p: (r.last_sync is None, -(r.last_sync or 0.0)),  # most recent first, never synced last
+    "outputs": lambda r, p: (-sum(o.stale for o in r.outputs),),
+}
+
+
+def sort_rows(rows: Iterable[LibraryRow], sort: str, problem_targets: frozenset[str]) -> list[LibraryRow]:
+    """The rows in the named order (an unknown name is attention), a total order: then title, then slug."""
+    key = LIBRARY_SORTS.get(sort, LIBRARY_SORTS["attention"])
+    return sorted(rows, key=lambda r: (*key(r, problem_targets), r.title.casefold(), r.slug))
 
 
 @dataclass(frozen=True)
