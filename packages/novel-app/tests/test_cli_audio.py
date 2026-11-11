@@ -1,11 +1,14 @@
 import json
 import subprocess
+import threading
 
 import pytest
 from mutagen.id3 import ID3
 from novel_app import service
 from novel_app.cli import app
+from novel_app.jobs import JobBoard, JobState
 from novel_app.library import DATA_DIR_ENV
+from novel_app.service import app_db
 from novel_audio.media import ffmpeg
 from typer.testing import CliRunner
 
@@ -120,3 +123,25 @@ def test_bad_shift_is_rejected(novel, tmp_path):
     (tmp_path / "tts_out").mkdir()
     result = run("audio", "register", novel, tmp_path / "tts_out", "--key", "position", "--shift", "736+4")
     assert result.exit_code == 2 and "not a shift like 736-1442:+4" in result.output
+
+
+def test_build_audio_waits_while_the_novel_syncs(novel, silent_tts):
+    board = JobBoard(app_db())
+    sync = board.claim(novel, "sync", {"novel": novel})  # say, Sync in nov serve
+    result = []
+    cli = threading.Thread(target=lambda: result.append(run("build", "audio", novel, "--range", "1")))
+    cli.start()
+    gate = threading.Event()
+    for _ in range(500):
+        audio = next((j for j in board.jobs() if j.kind == "build-audio"), None)
+        if audio and audio.current == "waiting for sync":
+            break
+        gate.wait(0.02)
+    assert audio.state is JobState.QUEUED and audio.current == "waiting for sync"  # nov serve's panel shows it
+
+    board.finish(sync, JobState.DONE)
+
+    cli.join(30)
+    assert result[0].exit_code == 0, result[0].output
+    assert result[0].output.count(f"waiting for sync of {novel}…") == 1
+    assert "1 chapters built" in result[0].output
