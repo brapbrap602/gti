@@ -1,6 +1,6 @@
 # Reader redesign: plan summary
 
-Status: approved 2026-11-11. Not built yet. Details: [developer plan](reader-redesign-developer.md).
+Status: approved 2026-11-11. Built 2026-11-11 (not pushed or deployed yet). Details: [developer plan](reader-redesign-developer.md).
 
 ## Goal
 

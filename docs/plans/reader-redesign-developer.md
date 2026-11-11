@@ -1,6 +1,6 @@
 # Reader redesign: developer plan
 
-Status: approved 2026-11-11. Not built yet. Summary for the requester: [stakeholder plan](reader-redesign-stakeholder.md).
+Status: approved 2026-11-11. Slices 0-8 built 2026-11-11 (local, not pushed or deployed); G1 passed; W1 screenshots await the user's review (§10). Summary for the requester: [stakeholder plan](reader-redesign-stakeholder.md).
 Source: the Firefox UI review of 2026-11-11 (reader items 2-6). Reader item 1 (68ch line length) shipped in `91c22fc`.
 Builds on [reader-ui-developer.md](reader-ui-developer.md); where this plan says otherwise, this plan wins (see §1.2).
 
@@ -323,3 +323,27 @@ Builds on [reader-ui-developer.md](reader-ui-developer.md); where this plan says
     - line references
 
   Verdict after the fixes: ready with gate G1.
+
+## 10. Implementation notes (2026-11-11)
+
+All slices are done on `main` (not pushed): 765 default tests and 35 local reader `browser` tests pass (16 app `browser` tests passed after slice 2), and `lint-imports` keeps its contract. One commit per slice: ccf1203 (0), 2b6f247 (1), 99d0648 (2), 2d83bf8 (3), b84e332 (4), 115e501 (5), bfa12be (6), 887f0e6 (7), 4d3087e (row layout after W1, superseded notes).
+
+**Gates**
+- G1: the open `#chapters` dialog is a flex column at `90dvh` on a phone and `min(85dvh, 52rem)` on desktop; the list is the only scroller, so the current chapter and the go-to box are both in view. H1-H3 and the whole browser suite passed 3 of 3 runs. No fallback needed.
+
+**Deviations and additions**
+- `UNSET` and `Unset` (the "leave as is" marker for `update_meta`) and `clean_author` are exported from novel-core. `update_meta` also trims the title.
+- `Service.meta(novel)` was added so `nov meta <novel>` with no options and the novel page's form can show the current values. `MetaChange.notes` holds the rebuild and retag text, so the CLI and the web notice say the same thing. The novel page header now shows the author after the last-sync line.
+- U5b also rewrites `test_filling_a_page_gap_rewrites_only_that_page` (not listed in §4.1): filling page 1's gap changes the "← Chs 1–48" label on page 51, so page 51 is now rebuilt too. A page two away is still untouched.
+- B10b's three seeded places became two runs, because only two novels are listed in the fixture.
+- Continue entries are `.continue-ch` and `.continue-time` spans, so tests read the chapter and the time separately. The Undo button has the id `continue-undo-button`.
+- After W1, a library row's summary became a grid (chevron, title, count; the author sits under the title on phones and beside it from 769px), because long real titles wrapped badly in the flex row.
+- The page end's small links got padding, to make them proper tap targets.
+
+**Walkthroughs**
+- W1: the novel folders, `_site`, `app.sqlite` and `decode_guide.json` were copied to a scratch folder (1.3 GiB; audio and EPUBs were not needed). The site was rebuilt there: 18 novels are listed; `no-money-to-cultivate-immortality` and `the-quest-for-immortality` are left off (no readable chapters), and 5 are private. The site is 221 MiB, and the live `_site` was already 209 MiB before this work. The growth comes from chapters synced since the 128 MiB deploy. Screenshots at 390 and 1440 px: the library (new visitor; three saved places), a page end, the Lord of the Mysteries last page ("chapter 1432 is the latest"), the chapters sheet, and the Aa panel in all four themes.
+- W2: `nov meta beware-of-chicken --title "Beware of Chicken"` on the copy printed the rebuild note, and the next build rewrote that novel's 13 pages and no others. The copy had no `_audio`, so the retag hint didn't show there. On the real data it shows if MP3s exist.
+
+**Not done (needs the user)**
+- Review the W1 screenshots.
+- Real title fixes (`nov meta`), push, and the deploy (`nov build site --force` + `nov deploy site`, a full push of about 220 MiB).
