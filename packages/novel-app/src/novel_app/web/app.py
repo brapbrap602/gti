@@ -176,6 +176,7 @@ def create_app(service: Service) -> FastAPI:
             translate=await run_in_threadpool(service.translate_panel, novel),
             comparisons=len(await run_in_threadpool(service.comparisons, novel)),
             folders=await run_in_threadpool(service.folders, novel),
+            meta=await run_in_threadpool(service.meta, novel),
             prefill={"setup": request.query_params.get("setup", ""), "range": request.query_params.get("range", "")},
         )  # fmt: skip
 
@@ -237,6 +238,12 @@ def create_app(service: Service) -> FastAPI:
         return done(request, f"opened {folder}", f"/novels/{novel}")
 
     # -- translation ---------------------------------------------------------------
+
+    @app.post("/novels/{novel}/meta")
+    async def meta(request: Request, novel: str, title: str = Form(""), author: str = Form(""), back: str = Form("")):
+        # Form(""): FastAPI treats an empty field as missing, and an empty author means "clear it".
+        change = await run_in_threadpool(service.set_meta, novel, title, author)
+        return done(request, "; ".join(change.notes), _local(back, f"/novels/{novel}"))
 
     @app.post("/novels/{novel}/public")
     async def public(request: Request, novel: str, on: str = Form()):

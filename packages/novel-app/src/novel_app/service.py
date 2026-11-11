@@ -26,16 +26,19 @@ from novel_audio.media import MediaError
 from novel_audio.tts import DEFAULT_CONCURRENCY, DEFAULT_VOICE, EdgeTts, TtsEngine
 from novel_audio.volumes import VOLUME_SIZE, build_volumes
 from novel_core import (
+    UNSET,
     AlignmentDiff,
     AlignmentRules,
     KeyRange,
     Kind,
+    NovelMeta,
     NovelStore,
     NovelView,
     RangeOverride,
     SourceInfo,
     SourceSpec,
     StoreError,
+    Unset,
 )
 from novel_core.selection import Pin
 from novel_core.store import DB_NAME
@@ -141,6 +144,25 @@ class CompareEstimate:
     @property
     def total(self) -> float:
         return sum(self.usd.values())
+
+
+@dataclass(frozen=True)
+class MetaChange:
+    """What `Service.set_meta` did, and what the user should do about it."""
+
+    novel: str
+    before: NovelMeta
+    after: NovelMeta
+    audio_built: bool  # chapter MP3s exist, so their tags now lag
+
+    @property
+    def notes(self) -> tuple[str, ...]:
+        if self.before == self.after:
+            return (f"{self.novel}: nothing changed",)
+        lines = [f"{self.novel}: site and EPUB rebuild at the next build"]
+        if self.audio_built:
+            lines.append(f"run `nov audio retag {self.novel}` to update the MP3s")
+        return tuple(lines)
 
 
 @dataclass(frozen=True)
@@ -1009,6 +1031,21 @@ class Service:
         chosen = self._setup(novel, setup)
         with self._store(novel) as store, self._tstore(novel) as ts:
             return prune(store, ts, pages.raw_rules(novel, store.sources()), chosen)
+
+    def meta(self, novel: str) -> NovelMeta:
+        with self._store(novel) as store:
+            return store.meta
+
+    def set_meta(self, novel: str, title: str | None = None, author: str | None | Unset = UNSET) -> MetaChange:
+        """Change the title (when given) and the author (unless UNSET; None or blank clears it).
+        Slugs and URLs never change; a blank title is a UserError."""
+        with self._store(novel) as store:
+            before = store.meta
+            try:
+                after = store.update_meta(title=title, author=author)
+            except ValueError as e:
+                raise UserError(str(e)) from e
+        return MetaChange(novel, before, after, any(audio_dir(novel).glob("*.mp3")))
 
     def set_public(self, novel: str, on: bool) -> None:
         """Put the novel on the public reading site or take it off at the next site build."""

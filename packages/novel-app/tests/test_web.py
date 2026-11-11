@@ -8,7 +8,7 @@ from fastapi.testclient import TestClient
 from novel_app.jobs import JobBoard, JobRunner, JobState
 from novel_app.service import Service, app_db
 from novel_app.web.app import create_app, job_events
-from novel_app.library import novel_dir
+from novel_app.library import audio_dir, novel_dir
 from novel_core import Finding, Kind, NewVersion, NovelStore, Paragraph, SourceItem, SourceSpec
 from novel_sources.backends import zh_rules
 
@@ -147,6 +147,40 @@ def test_the_public_switch_takes_a_novel_off_the_site_and_back(client, service):
 
     client.post("/novels/test-novel/public", data={"on": "on"})
     assert "Take off site" in client.get("/novels/test-novel").text
+
+
+def test_the_meta_form_edits_title_and_clears_author(client, service):
+    added(service)
+    with NovelStore.open(novel_dir("test-novel")) as store:
+        store.update_meta(author="Someone")
+    audio = audio_dir("test-novel")
+    audio.mkdir(parents=True)
+    (audio / "0001.mp3").write_bytes(b"")
+    assert 'action="/novels/test-novel/meta"' in client.get("/novels/test-novel").text
+
+    edited = client.post("/novels/test-novel/meta", data={"title": "New Title", "author": "", "back": "/novels/test-novel"},
+                         follow_redirects=False)
+
+    assert edited.status_code == 303 and edited.headers["location"].startswith("/novels/test-novel?notice=")
+    notice = client.get(edited.headers["location"]).text
+    assert "site and EPUB rebuild at the next build" in notice and "nov audio retag test-novel" in notice
+    assert "<h1>New Title" in notice
+    with NovelStore.open(novel_dir("test-novel")) as store:
+        assert (store.meta.title, store.meta.author) == ("New Title", None)
+    in_place = client.post("/novels/test-novel/meta", data={"title": "New Title", "author": "A"}, headers={"HX-Request": "true"})
+    assert in_place.status_code == 200 and "site and EPUB rebuild" in in_place.text
+
+
+def test_the_meta_form_refuses_a_blank_title(client, service):
+    added(service)
+    with NovelStore.open(novel_dir("test-novel")) as store:
+        before = store.meta
+
+    refused = client.post("/novels/test-novel/meta", data={"title": "", "author": "X", "back": "/novels/test-novel"})
+
+    assert refused.status_code == 400 and "A title can&#39;t be blank." in refused.text
+    with NovelStore.open(novel_dir("test-novel")) as store:
+        assert store.meta == before
 
 
 def test_one_job_per_novel_and_kind(client, service):

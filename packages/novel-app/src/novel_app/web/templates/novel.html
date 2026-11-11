@@ -11,7 +11,19 @@
 <div class="page-header">
     <div class="page-heading">
         <h1>{{ r.title }} {% if r.raw_only %}{{ badge("raw only", "warn") }}{% endif %}{% if not r.public %} {{ badge("off site", "secondary", help.off_site) }}{% endif %}</h1>
-        <p class="muted">{{ r.slug }} · last sync {{ r.last_sync | ago }}</p>
+        <p class="muted">{{ r.slug }} · last sync {{ r.last_sync | ago }}{% if meta.author %} · {{ meta.author }}{% endif %}</p>
+        <details class="meta-edit">
+            <summary>Edit title and author</summary>
+            <form method="post" action="/novels/{{ r.slug }}/meta" hx-post="/novels/{{ r.slug }}/meta" hx-target="#notice" class="meta-form">
+                <input type="hidden" name="back" value="{{ back }}">
+                <div class="field-row">
+                    <label class="field field--wide"><span class="label">Title</span> <input name="title" required value="{{ meta.title }}"></label>
+                    <label class="field field--wide"><span class="label">Author</span> <input name="author" value="{{ meta.author or "" }}" placeholder="none"></label>
+                </div>
+                <p class="field-hint">{{ help.meta_edit }}</p>
+                <div><button type="submit" class="btn btn--primary btn--sm">Save</button></div>
+            </form>
+        </details>
     </div>
     <div class="page-actions">
         {% if r.can_sync %}{{ job_button("sync", r.slug, r.job_of("sync"), back, icon_name="refresh-cw", small=False) }}{% endif %}

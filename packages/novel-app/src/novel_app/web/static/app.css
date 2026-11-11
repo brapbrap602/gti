@@ -397,6 +397,10 @@ html.js[data-tab="files"] [data-panel="files"] { display: flex; }
 /* Its fields carry hints of different lengths: line the inputs up at the top, not the bottom. */
 .setup-form .field-row { align-items: start; }
 
+.meta-edit { margin-top: 0.25rem; font-size: 0.875rem; }
+.meta-edit > summary { cursor: pointer; color: var(--muted-foreground); width: max-content; }
+.meta-form { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.75rem; max-width: 40rem; }
+
 .check-list { display: flex; flex-direction: column; }
 .check-list > :is(p, details) { margin: 0; padding: 0.625rem 0; border-bottom: 1px solid var(--border); }
 .check-list > :last-child { border-bottom: 0; }

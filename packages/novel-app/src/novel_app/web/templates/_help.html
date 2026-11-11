@@ -31,6 +31,8 @@
     "audio-retag": "Rewrite the tags of every chapter MP3, old ones included",
 } %}
 
+{% set meta_edit = "The title and author the site, EPUBs and audio tags show; the slug and the site's URLs stay as they are. A blank author clears it, and the next Sync may fill it from a source. Built MP3s keep their old tags until you run nov audio retag." %}
+
 {% set sources = {
     "rank": "The book takes each chapter from the first source in this order that has it",
     "listed": "Chapters the source's index lists",

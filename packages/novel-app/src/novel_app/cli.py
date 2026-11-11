@@ -10,7 +10,7 @@ from typing import Annotated
 import typer
 from novel_audio.tts import DEFAULT_CONCURRENCY, DEFAULT_VOICE
 from novel_audio.volumes import VOLUME_SIZE
-from novel_core import AlignmentDiff
+from novel_core import UNSET, AlignmentDiff
 from novel_publish import epub
 from novel_sources.backends import BACKENDS
 from novel_sources.fetch import FetchError
@@ -611,6 +611,24 @@ def publish(
         raise typer.BadParameter("on or off")
     _calling(lambda: _service().set_published(novel, source, switch == "on"))
     typer.echo(f"{novel}: source {source} {'published' if switch == 'on' else 'unpublished'}; rank it with `nov priority`")
+
+
+@app.command()
+def meta(
+    novel: Novel,
+    title: Annotated[str | None, typer.Option(help="the title the site, EPUB and audio show")] = None,
+    author: Annotated[str | None, typer.Option(help='the author; "" clears it')] = None,
+) -> None:
+    """Show or change the novel's title and author. The slug and the site's URLs stay as they are."""
+    if title is not None or author is not None:
+        change = _calling(lambda: _service().set_meta(novel, title, UNSET if author is None else author))
+        for line in change.notes:
+            typer.echo(line)
+        shown = change.after
+    else:
+        shown = _calling(lambda: _service().meta(novel))
+    typer.echo(f"title: {shown.title}")
+    typer.echo(f"author: {shown.author or '(none)'}")
 
 
 @app.command()

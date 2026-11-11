@@ -258,3 +258,37 @@ def test_import_of_raw_zh_cleans_and_checks_with_the_novels_zh_rules(data_dir, t
         (source,) = store.sources()
         (chapter,) = store.chapters(source.id)
     assert chapter.rules_rev == zh_rules("test-novel", source.spec).rev
+
+
+def test_meta_edits_the_title_and_shows_both_fields(data_dir, wns_folder):
+    run("import", "wns", wns_folder)
+
+    changed = run("meta", "test-novel", "--title", "Beware of Chicken")
+    shown = run("meta", "test-novel")
+
+    assert changed.exit_code == 0 and "site and EPUB rebuild at the next build" in changed.output
+    assert "nov audio retag" not in changed.output
+    assert shown.exit_code == 0
+    assert "title: Beware of Chicken" in shown.output and "author: (none)" in shown.output
+    assert "title: Beware of Chicken" in run("meta", "test-novel", "--author", "Casualfarmer").output
+    with NovelStore.open(novel_dir("test-novel")) as store:
+        assert (store.meta.title, store.meta.author) == ("Beware of Chicken", "Casualfarmer")
+
+
+def test_meta_tells_you_to_retag_built_mp3s(data_dir, wns_folder):
+    run("import", "wns", wns_folder)
+    audio = data_dir / "_audio" / "test-novel"
+    audio.mkdir(parents=True)
+    (audio / "0001.mp3").write_bytes(b"")
+
+    result = run("meta", "test-novel", "--author", "Y")
+
+    assert result.exit_code == 0 and "nov audio retag test-novel" in result.output
+
+
+def test_meta_refuses_a_blank_title(data_dir, wns_folder):
+    run("import", "wns", wns_folder)
+
+    result = run("meta", "test-novel", "--title", " ")
+
+    assert result.exit_code == 2 and "A title can't be blank." in result.output
