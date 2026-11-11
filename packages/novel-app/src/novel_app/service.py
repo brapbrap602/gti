@@ -406,8 +406,11 @@ class Service:
             for slug in private:
                 job.log(f"{slug}: not public, left off the site")
             for n in r.novels:
-                state = "raw only" if n.raw_only else f"{n.chapters} chapters"
-                job.log(f"{n.slug}: {state}, {n.pages_written} pages written, {n.pages_deleted} deleted")
+                if n.listed:
+                    job.log(f"{n.slug}: {n.chapters} chapters, {n.pages_written} pages written, {n.pages_deleted} deleted")
+                else:
+                    gone = f" ({n.pages_deleted} pages deleted)" if n.pages_deleted else ""
+                    job.log(f"{n.slug}: not on the site: no readable chapters{gone}")
             job.log(f"site: {folder} ({deploy.site_size(folder) / 2**20:.0f} MiB)")
             return Outcome()
 

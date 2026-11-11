@@ -7,16 +7,11 @@
 </header>
 <main class="book-list">
 {% for novel in novels %}
-    <section class="book-card"{% if novel.pages %} data-slug="{{ novel.slug }}" data-toc="{{ novel.toc }}"{% endif %}>
+    <section class="book-card" data-slug="{{ novel.slug }}" data-toc="{{ novel.toc }}">
         <h2 class="book-title">{{ novel.title }}</h2>
         {% if novel.author %}
         <p class="book-meta">{{ novel.author }}</p>
         {% endif %}
-        {% if novel.raw_only %}
-        <p class="book-meta"><span class="badge">raw only</span> not published until translated</p>
-        {% elif not novel.pages %}
-        <p class="book-meta">no chapters yet</p>
-        {% else %}
         <p class="book-meta">{{ novel.chapters }} chapters</p>
         <a class="continue" hidden>Continue</a>
         <form class="goto" hidden>
@@ -32,10 +27,9 @@
                 {% endfor %}
             </nav>
         </details>
-        {% endif %}
     </section>
 {% else %}
-    <p class="status-msg">No novels yet. Import one with <code>nov import</code>, then run <code>nov build site</code>.</p>
+    <p class="status-msg">No novels yet.</p>
 {% endfor %}
 </main>
 {% endblock %}

@@ -18,7 +18,7 @@ from novel_core import (
     SourceSpec,
     System,
 )
-from novel_publish.site import build_site, fingerprint
+from novel_publish.site import build_site, fingerprint, novel_fingerprint
 
 
 @pytest.fixture
@@ -209,14 +209,68 @@ def test_missing_page_file_is_rebuilt(stores, site):
     assert anchors(read(site, "n", "51-100.html")) == [f"c{i}" for i in range(51, 61)]
 
 
-def test_raw_only_novel_gets_a_badge_and_no_pages(stores, site):
-    store = stores("zh", "修真聊天群")
-    add_chapters(store, add_source(store, "zh", Kind.RAW_ZH), ["第1章"])
+def library_titles(site) -> list[str]:
+    return re.findall(r'<h2 class="book-title">([^<]+)</h2>', (site / "index.html").read_text(encoding="utf-8"))
 
-    report = build_site({"zh": store}, site)
 
-    assert report.novels[0].raw_only and page_files(site, "zh") == []
-    assert "raw only" in (site / "index.html").read_text(encoding="utf-8")
+def test_novels_with_nothing_to_read_are_left_off(stores, site):
+    zh, empty, n = stores("raw", "修真聊天群"), stores("empty", "Empty Novel"), stores("n")
+    add_chapters(zh, add_source(zh, "zh", Kind.RAW_ZH), ["第1章"])
+    add_chapters(n, add_source(n, "a"), chapters(1))
+
+    report = build_site({"raw": zh, "empty": empty, "n": n}, site)
+
+    assert {b.slug: b.listed for b in report.novels} == {"empty": False, "n": True, "raw": False}
+    library = (site / "index.html").read_text(encoding="utf-8")
+    assert "修真聊天群" not in library and "Empty Novel" not in library and "raw only" not in library
+    assert library_titles(site) == ["Test Novel"]
+    assert not (site / "novels" / "raw").exists() and not (site / "novels" / "empty").exists()
+
+
+def test_a_novel_emptied_of_chapters_leaves_the_site_and_its_records(stores, site):
+    store = stores("n")
+    a = add_source(store, "a")
+    refs = add_chapters(store, a, chapters(60))
+    build_site({"n": store}, site)
+
+    store.set_alignment(a, AlignmentRules(skip=frozenset(refs)))
+    report = build_site({"n": store}, site)
+
+    assert not report.novels[0].listed and report.novels[0].pages_deleted == 2
+    assert not (site / "novels" / "n").exists() and library_titles(site) == []
+    assert not store.outputs(OutputKind.SITE)
+    plan = store.plan_build(OutputKind.SITE, novel_fingerprint(store.meta))
+    assert not plan.to_build and not plan.to_prune
+
+
+def test_the_library_lists_novels_by_title(stores, site):
+    novels = {slug: stores(slug, title) for slug, title in (("n", "Test Novel"), ("z-first", "Alpha Tale"), ("b", "beta"))}
+    for store in novels.values():
+        add_chapters(store, add_source(store, "a"), chapters(1))
+
+    build_site(novels, site)
+
+    assert library_titles(site) == ["Alpha Tale", "beta", "Test Novel"]
+
+
+def test_a_novel_without_an_author_shows_no_author(stores, site):
+    store = stores("n", author="<unknown>")
+    add_chapters(store, add_source(store, "a"), chapters(1))
+
+    build_site({"n": store}, site)
+
+    assert 'class="book-meta"></p>' not in (site / "index.html").read_text(encoding="utf-8")
+    assert "unknown" not in (site / "index.html").read_text(encoding="utf-8")
+
+
+def test_an_empty_library_says_so_without_admin_instructions(stores, site):
+    zh = stores("raw", "修真聊天群")
+    add_chapters(zh, add_source(zh, "zh", Kind.RAW_ZH), ["第1章"])
+
+    build_site({"raw": zh}, site)
+
+    library = (site / "index.html").read_text(encoding="utf-8")
+    assert "No novels yet." in library and "nov import" not in library and "All novels" not in library
 
 
 def test_removed_novel_folder_is_deleted(stores, site):
@@ -231,10 +285,11 @@ def test_removed_novel_folder_is_deleted(stores, site):
 
 
 def test_output_is_deterministic(stores, tmp_path):
-    store = stores("n")
-    add_chapters(store, add_source(store, "a"), chapters(3))
-    build_site({"n": store}, tmp_path / "one")
-    build_site({"n": store}, tmp_path / "two", force=True)
+    novels = {slug: stores(slug, title) for slug, title in (("n", "Test Novel"), ("z-first", "Alpha Tale"), ("b", "beta"))}
+    for store in novels.values():
+        add_chapters(store, add_source(store, "a"), chapters(3))
+    build_site(novels, tmp_path / "one")
+    build_site(novels, tmp_path / "two", force=True)
 
     for name in ("index.html", "novels/n/1-50.html"):
         assert (tmp_path / "one" / name).read_bytes() == (tmp_path / "two" / name).read_bytes()
@@ -367,8 +422,6 @@ def test_library_cards_hold_resume_go_to_and_all_chapters(stores, site):
     all_chapters = re.search(r'<details class="all-chapters">\s*<summary>All chapters \(2 pages\)</summary>(.*?)</details>',
                              cards["Novel A"], re.S).group(1)
     assert re.findall(r'href="([^"]+)"', all_chapters) == ["novels/novel-a/1-50.html", "novels/novel-a/51-100.html"]
-    assert "continue" not in cards["修真聊天群"] and "goto" not in cards["修真聊天群"]
-    assert "all-chapters" not in cards["修真聊天群"]
 
 
 def test_a_title_edit_rewrites_that_novels_pages_once(stores, site):

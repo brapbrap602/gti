@@ -104,6 +104,11 @@ def save_position(page, site, file: str, anchor: str, para: int, label: str) -> 
     seed(page, "reader:pos:n", {"file": file, "anchor": anchor, "para": para, "label": label, "t": 1})
 
 
+def open_first_page(page) -> None:
+    """From the library, follow Test Novel's link to its first page (Chs 1-3)."""
+    page.navigate_by("""document.querySelector('[data-slug="n"] .all-chapters a').click()""")
+
+
 def back_to_library(page) -> None:
     page.navigate_by("history.back()")
     page.frame()
@@ -289,7 +294,7 @@ def test_continue_reopens_the_paragraph_last_read(page, site):
     page.goto(site + "index.html")
 
     assert continue_link(page) == {"text": "Continue · Ch 2", "href": "novels/n/1-50.html?p=7#c2"}
-    page.navigate_by("document.querySelector('.continue').click()")
+    page.navigate_by("""document.querySelector('[data-slug="n"] .continue').click()""")
     page.frame()
     top = page.js("document.querySelectorAll('#c2 p')[7].getBoundingClientRect().top")
     assert abs(top - page.js("document.querySelector('.reader-bar').offsetHeight")) <= 2
@@ -300,14 +305,14 @@ def test_opening_a_range_starts_at_its_top(page, site):
     save_position(page, site, "1-50.html", "c2", 7, "2")
     page.goto(site + "index.html")
 
-    page.navigate_by("document.querySelector('.all-chapters a').click()")
+    open_first_page(page)
 
     assert page.js("scrollY") == 0
 
 
 def test_a_quick_look_keeps_the_saved_place(page, site):
     save_position(page, site, "51-100.html", "c52", 7, "52")
-    page.navigate_by("document.querySelector('.all-chapters a').click()")
+    open_first_page(page)
 
     page.scroll(page.js("innerHeight") * 0.5)
     back_to_library(page)
@@ -317,7 +322,7 @@ def test_a_quick_look_keeps_the_saved_place(page, site):
 
 def test_reading_on_in_another_range_moves_the_saved_place(page, site):
     save_position(page, site, "51-100.html", "c52", 7, "52")
-    page.navigate_by("document.querySelector('.all-chapters a').click()")
+    open_first_page(page)
 
     page.scroll(page.js("innerHeight") * 3)
     back_to_library(page)
@@ -327,7 +332,7 @@ def test_reading_on_in_another_range_moves_the_saved_place(page, site):
 
 def test_jumps_alone_keep_the_saved_place(page, site):
     save_position(page, site, "51-100.html", "c52", 7, "52")
-    page.navigate_by("document.querySelector('.all-chapters a').click()")
+    open_first_page(page)
 
     page.click('[data-open="chapters"]')
     goto(page, "3")
@@ -339,7 +344,7 @@ def test_jumps_alone_keep_the_saved_place(page, site):
 
 def test_scroll_restored_on_reload_is_not_reading(page, site):
     save_position(page, site, "51-100.html", "c52", 7, "52")
-    page.navigate_by("document.querySelector('.all-chapters a').click()")
+    open_first_page(page)
 
     page.scroll(page.js("innerHeight"))
     page.navigate_by("location.reload()")

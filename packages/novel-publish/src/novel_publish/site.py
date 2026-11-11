@@ -20,7 +20,7 @@ from pathlib import Path
 
 import jinja2
 from markupsafe import Markup
-from novel_core import ChapterKey, Kind, KeyRange, NovelMeta, NovelStore, OutputKind, Selected, chapter_heading
+from novel_core import ChapterKey, KeyRange, NovelMeta, NovelStore, OutputKind, Selected, chapter_heading
 
 from novel_publish import render
 
@@ -36,7 +36,7 @@ class NovelBuild:
     chapters: int
     pages_written: int
     pages_deleted: int
-    raw_only: bool
+    listed: bool  # on the library page: False when it has nothing to read (raw-only, or no chapters)
 
 
 @dataclass(frozen=True)
@@ -45,9 +45,10 @@ class SiteReport:
 
 
 def build_site(novels: Mapping[str, NovelStore], out_dir: Path, force: bool = False) -> SiteReport:
-    """Build the whole library (every novel, by slug) into out_dir, incrementally unless `force`.
+    """Build the whole library (every novel; the report is by slug) into out_dir, incrementally unless `force`.
 
-    Folders of novels that are no longer in `novels` are removed.
+    The library lists the novels with something to read, by title. Folders of novels that are no
+    longer in `novels`, or have nothing to read, are removed.
     """
     fp = fingerprint()
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -58,9 +59,11 @@ def build_site(novels: Mapping[str, NovelStore], out_dir: Path, force: bool = Fa
     for slug, store in sorted(novels.items()):
         build, card = _build_novel(slug, store, out_dir / NOVELS / slug, fp, force)
         builds.append(build)
-        cards.append(card)
-    for stale in _subdirs(out_dir / NOVELS) - set(novels):
+        if card:
+            cards.append(card)
+    for stale in _subdirs(out_dir / NOVELS) - {c["slug"] for c in cards}:
         shutil.rmtree(out_dir / NOVELS / stale)
+    cards.sort(key=lambda c: (c["title"].casefold(), c["slug"]))
     _write(out_dir / "index.html", _env().get_template("library.html").render(novels=cards, assets_v=fp[:12]))
     return SiteReport(tuple(builds))
 
@@ -100,7 +103,9 @@ class _Page:
         return f"{self.chapters[0].key.label}–{self.chapters[-1].key.label}"
 
 
-def _build_novel(slug: str, store: NovelStore, folder: Path, fp: str, force: bool) -> tuple[NovelBuild, dict]:
+def _build_novel(slug: str, store: NovelStore, folder: Path, fp: str, force: bool) -> tuple[NovelBuild, dict | None]:
+    """Bring the novel's pages and output records up to date (always, so a novel left with no pages
+    is cleaned up too); returns its library card, or None when it has nothing to read."""
     meta = store.meta
     novel_fp = novel_fingerprint(meta)
     plan = store.plan_build(OutputKind.SITE, novel_fp)
@@ -137,22 +142,19 @@ def _build_novel(slug: str, store: NovelStore, folder: Path, fp: str, force: boo
     deleted = existing - set(names)
     for name in deleted:
         (folder / name).unlink()
-    if pages:
-        _write_if_changed(folder / TOC, _toc_json(pages))
-    else:
-        (folder / TOC).unlink(missing_ok=True)
-
-    raw_only = not pages and any(src.spec.kind is Kind.RAW_ZH for src in store.sources())
+    chapters = sum(len(p.chapters) for p in pages)
+    build = NovelBuild(slug, chapters, len(rebuild), len(deleted), listed=bool(pages))
+    if not pages:  # nothing to read: off the library; build_site removes the folder
+        return build, None
+    _write_if_changed(folder / TOC, _toc_json(pages))
     card = {
         "slug": slug,
         "toc": f"{NOVELS}/{slug}/{TOC}",
         "title": meta.title,
         "author": meta.author,
-        "chapters": sum(len(p.chapters) for p in pages),
-        "raw_only": raw_only,
+        "chapters": chapters,
         "pages": [{"href": f"{NOVELS}/{slug}/{p.filename}", "label": p.label} for p in pages],
     }
-    build = NovelBuild(slug, card["chapters"], len(rebuild), len(deleted), raw_only)
     return build, card
 
 
