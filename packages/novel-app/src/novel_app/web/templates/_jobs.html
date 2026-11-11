@@ -1,8 +1,9 @@
 {% macro job_item(j, recent=False) %}
-    <li class="job job--{{ j.state }}{% if recent %} job--recent{% endif %}" data-job="{{ j.id }}" data-target="{{ j.target }}" data-label="{{ job_labels.get(j.kind, j.kind) }}">
+    {% set with_errors = j.state == JobState.DONE and j.errors %}
+    <li class="job job--{{ j.state }}{% if with_errors %} job--with-errors{% endif %}{% if recent %} job--recent{% endif %}" data-job="{{ j.id }}" data-target="{{ j.target }}" data-label="{{ job_labels.get(j.kind, j.kind) }}">
         <div class="job-head">
             <span class="job-title">{{ job_labels.get(j.kind, j.kind) }} {% if j.target != "_site" %}{{ j.target }}{% endif %}</span>
-            <span class="job-state">{{ j.state }}</span>
+            <span class="job-state">{{ "done with errors" if with_errors else j.state }}</span>
         </div>
         {% if j.total %}
         <progress max="{{ j.total }}" value="{{ j.done }}" aria-label="job {{ j.id }} progress">{{ j.done }}/{{ j.total }}</progress>

@@ -247,6 +247,9 @@ html.js .toast { animation: toast-in 0.2s ease-out; }
 .job--failed .job-state, .job--interrupted .job-state { border-color: color-mix(in srgb, var(--destructive) 40%, transparent); color: var(--destructive); }
 .job--cancelled .job-state { color: var(--warn); }
 .job--done .job-state { color: var(--ok); }
+.job--with-errors .job-state { border-color: color-mix(in srgb, var(--warn) 40%, transparent); color: var(--warn); }
+.job--with-errors progress::-webkit-progress-value { background: var(--warn); }
+.job--with-errors progress::-moz-progress-bar { background: var(--warn); }
 .job-progress { color: var(--muted-foreground); font-size: 0.75rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .job-actions { display: flex; gap: 0.25rem; align-items: center; margin-left: -0.75rem; }
 .job-actions .muted { font-size: 0.75rem; padding-left: 0.75rem; }

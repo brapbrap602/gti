@@ -599,6 +599,19 @@ def test_problems_are_cleared_one_at_a_time_or_all_at_once(client, service):
     assert [j.id for j in service.job_panel().attention] == [later]
 
 
+def test_a_job_that_ended_with_errors_is_not_shown_as_done(client, service):
+    board = service.runner.board
+    flawed = board.claim("a", "sync", {})
+    board.finish(flawed, JobState.DONE, ["ch 1: 404"])
+    clean = board.claim("b", "sync", {})
+    board.finish(clean, JobState.DONE)
+
+    page = client.get("/").text
+    assert re.search(rf'data-job="{flawed}"[^>]*>\s*<div class="job-head">.*?<span class="job-state">done with errors</span>', page, re.S)
+    assert f'class="job job--done job--with-errors' in page
+    assert re.search(rf'data-job="{clean}"[^>]*>\s*<div class="job-head">.*?<span class="job-state">done</span>', page, re.S)
+
+
 def test_dismissing_a_running_or_unknown_job_says_so(client, service):
     running = service.runner.board.claim("a", "sync", {})
     for job_id in (running, 999):
