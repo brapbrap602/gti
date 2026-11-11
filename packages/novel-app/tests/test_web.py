@@ -177,13 +177,13 @@ def test_the_meta_form_edits_title_and_clears_author(client, service):
 def test_a_title_edit_marks_the_built_site_stale(client, service):
     added(service)
     assert service.run("build-site", quiet)[0] is JobState.DONE
-    assert "site 3 stale" not in client.get("/").text
+    assert 'title="site: 3 stale"' not in client.get("/").text
 
     client.post("/novels/test-novel/meta", data={"title": "Renamed", "author": ""})
 
-    assert "site 3 stale" in client.get("/").text
+    assert 'title="site: 3 stale"' in client.get("/").text
     assert service.run("build-site", quiet)[0] is JobState.DONE
-    assert "site 3 stale" not in client.get("/").text
+    assert 'title="site: 3 stale"' not in client.get("/").text
 
 
 def test_the_meta_form_refuses_a_blank_title(client, service):
