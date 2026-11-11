@@ -9,7 +9,7 @@ from novel_app.jobs import JobBoard, JobRunner, JobState
 from novel_app.service import Service, app_db
 from novel_app.web.app import create_app, job_events
 from novel_app.library import audio_dir, novel_dir
-from novel_core import Finding, Kind, NewVersion, NovelStore, Paragraph, SourceItem, SourceSpec
+from novel_core import Finding, Kind, NewVersion, NovelMeta, NovelStore, Paragraph, SourceItem, SourceSpec
 from novel_sources.backends import zh_rules
 
 URL = "https://novelbuddy.me/test-novel"
@@ -638,6 +638,94 @@ def test_compare_does_not_diff_raw_text(client, two_texts):
     page = compare_page(client, "d")
 
     assert "Raw text: no diff" in page and "<mark>" not in page and "diff--" not in page
+
+
+def compare_rows(page: str, heading: bool = False) -> list[str]:
+    """The compare page's aligned rows, in order: paragraph rows, or with `heading` the part-heading rows."""
+    body = page.split('<div class="compare-rows', 1)[1].split("</main>", 1)[0]
+    rows = body.split('<div class="compare-row')[1:]
+    return [r for r in rows if r.startswith(' compare-row--heading">' if heading else '">')]
+
+
+def cells(row: str) -> list[tuple[str, str]]:
+    """A row's two cells: (class modifier, e.g. "--blank" or "", and the HTML after the cell's tag)."""
+    return [tuple(c.split('">', 1)) for c in row.split('<div class="compare-cell')[1:]]
+
+
+def test_english_texts_line_up_paragraph_by_paragraph(client, two_texts):
+    two_texts("d", {"Chapter 1": ("A.", "B.", "C.")}, {"Chapter 1": ("A.", "B.", "New.", "C.")})
+
+    page = compare_page(client, "d")
+
+    rows = compare_rows(page)
+    assert len(rows) == 4
+    blank, new = cells(rows[2])
+    assert "--blank" in blank[0] and blank[1].startswith('<span class="diff-gap" id="d1-l"></span>')
+    assert "New." in new[1] and 'id="d1-r"' in new[1]
+    assert all("--blank" not in c[0] for r in (rows[0], rows[1], rows[3]) for c in cells(r))
+    ids = re.findall(r'id="(d\d+-[lr])"', page)
+    assert len(ids) == len(set(ids))
+
+
+def test_a_part_heading_on_one_side_faces_a_blank(client, two_texts):
+    two_texts("d", {"Chapter 1 (part 1)": ("Same one.",), "Chapter 1 (part 2)": ("Left two.",)},
+              {"Chapter 1": ("Same one.", "Right two.")})
+
+    page = compare_page(client, "d")
+
+    first, second = (cells(r) for r in compare_rows(page, heading=True))
+    assert "Chapter 1 pt 1" in first[0][1] and "Chapter 1" in first[1][1]
+    assert "Chapter 1 pt 2" in second[0][1] and "--blank" in second[1][0]
+    assert len(compare_rows(page)) == 2
+
+
+def test_raw_text_keeps_two_columns(client, two_texts):
+    two_texts("d", {"Chapter 1": ("English text.",)}, {"Chapter 1": ("中文。",)}, right_kind=Kind.RAW_ZH)
+
+    page = compare_page(client, "d")
+
+    assert page.count('class="card compare-side"') == 2 and "compare-row" not in page
+
+
+def five_sources(slug: str, numbers: dict[int, tuple[int, ...]]) -> None:
+    """Sources 1-5 of a novel, each with English chapters at the given numbers."""
+    with NovelStore.create(novel_dir(slug), NovelMeta("Five")) as store:
+        for s in range(1, 6):
+            source = store.upsert_source(SourceSpec(f"custom:s{s}", f"https://s{s}.test/n", "en", Kind.OFFICIAL_EN))
+            items = [SourceItem(f"/{n}", i, f"Chapter {n}", number=n) for i, n in enumerate(numbers[s], start=1)]
+            store.record_index(source, items)
+            for item in items:
+                store.put_version(source, item.ref, NewVersion(item.title, (Paragraph.of(f"Source {s}, {item.title}."),)))
+
+
+def test_prev_and_next_keep_the_sources_asked_for(client, site):
+    five_sources("five", {s: (119, 121) if s == 3 else (119, 120, 121) for s in range(1, 6)})
+
+    page = client.get("/novels/five/compare", params={"number": 120, "left": 3, "right": 5}).text
+
+    assert "Source 1: s1.test" in page and "Source 5: s5.test" in page  # source 3 lacks 120: the book's shows
+    assert 'href="/novels/five/compare?number=119&amp;left=3&amp;right=5"' in page
+    assert 'href="/novels/five/compare?number=121&amp;left=3&amp;right=5"' in page
+    assert 'name="back" value="/novels/five/compare?number=120&amp;left=3&amp;right=5"' in page
+
+
+def test_next_stops_at_the_last_chapter_any_source_has(client, two_texts):
+    two_texts("d", {f"Chapter {n}": (f"L{n}.",) for n in (1, 2, 3)}, {f"Chapter {n}": (f"R{n}.",) for n in (1, 2, 3)})
+
+    assert "compare?number=3" in compare_page(client, "d", 2)
+    last = compare_page(client, "d", 3)
+    assert "compare?number=4" not in last and "compare?number=2" in last
+
+
+def test_a_chapter_no_source_has_still_gets_the_bar(client, two_texts):
+    two_texts("d", {"Chapter 1": ("A.",)}, {"Chapter 1": ("B.",)})
+
+    page = compare_page(client, "d", 50)
+
+    bar = re.search(r'<div class="compare-bar">.*?</nav>', page, re.S).group(0)
+    assert 'href="/novels/d/compare?number=1"' in bar  # back to the last chapter there is
+    assert "number=51" not in bar and "<select" not in bar
+    assert "No source has a text for chapter 50" in page
 
 
 def test_compare_says_when_texts_are_identical(client, two_texts):

@@ -504,7 +504,28 @@ html.js[data-tab="files"] [data-panel="files"] { display: flex; }
 
 /* -- compare ------------------------------------------------------------------------ */
 
-.compare-pick { padding: 1rem 1.25rem; }
+/* The source pickers and prev/next, stuck under the top bar while the texts scroll (the window scrolls,
+   not main). A fixed height that never wraps, so jump targets can clear it exactly. */
+:root { --compare-bar-h: 3.25rem; }
+.compare-bar {
+  position: sticky;
+  top: var(--topbar-h);
+  z-index: 10;  /* under the top bar (20) and menus (30) */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: var(--compare-bar-h);
+  margin: 0 -1.5rem;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+  white-space: nowrap;
+}
+.compare-pick { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
+.compare-pick-field { display: inline-flex; align-items: center; gap: 0.5rem; min-width: 0; color: var(--muted-foreground); font-size: 0.8125rem; }
+.compare-pick-field select { width: auto; max-width: 17rem; height: 2rem; overflow: hidden; text-overflow: ellipsis; }
+.compare-nav { display: flex; gap: 0.5rem; margin-left: auto; }
 .diff-summary a {
   display: inline-flex;
   align-items: center;
@@ -528,7 +549,23 @@ html.js[data-tab="files"] [data-panel="files"] { display: flex; }
 .diff { margin: 0 -0.75rem 1em; padding: 0.125rem 0.75rem; border-left: 3px solid var(--warn); background: color-mix(in srgb, var(--warn) 7%, transparent); }
 .diff p { margin: 0.4em 0; }
 .diff--only { border-left-color: var(--mine); background: color-mix(in srgb, var(--mine) 8%, transparent); }
-.compare-text [id^="d"] { scroll-margin-top: calc(var(--topbar-h) + 1rem); }
+.compare-text [id^="d"] { scroll-margin-top: calc(var(--topbar-h) + var(--compare-bar-h) + 1rem); }
+
+/* Two English texts lined up: a row per paragraph pair, in two equal columns. */
+.compare-aligned { padding: 0 1.25rem 1rem; }
+.compare-heads, .compare-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 2rem; }
+.compare-heads { padding: 1.25rem 0 1rem; border-bottom: 1px solid var(--border); }
+.compare-heads .compare-head { display: flex; flex-direction: column; gap: 0.75rem; }
+.compare-rows { padding-top: 0.5rem; }
+.compare-cell { min-width: 0; }
+.compare-cell > :first-child { margin-top: 0; }
+.compare-row--heading .compare-cell { padding-top: 0.75rem; }
+/* A paragraph only the other side has: a hatched gap where it would be. */
+.compare-row:not(.compare-row--heading) .compare-cell--blank {
+  margin-bottom: 1em;
+  border-radius: 0.25rem;
+  background: repeating-linear-gradient(135deg, transparent 0 6px, color-mix(in srgb, var(--muted) 45%, transparent) 6px 7px);
+}
 
 /* -- model comparisons ------------------------------------------------------------------ */
 

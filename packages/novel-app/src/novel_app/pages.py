@@ -12,7 +12,9 @@ from collections import defaultdict
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from enum import StrEnum
+from itertools import zip_longest
 from pathlib import PurePosixPath
+from typing import Literal
 from urllib.parse import unquote, urlsplit
 
 from markupsafe import Markup, escape
@@ -487,6 +489,24 @@ class Text:
 
 
 @dataclass(frozen=True)
+class AlignedCell:
+    kind: Literal["block", "heading", "blank"]
+    html: Markup = Markup("")  # a blank holds the jump target of a group its side has no block of
+
+
+@dataclass(frozen=True)
+class AlignedRow:
+    """A row of two English texts side by side: a block and its counterpart, or a part's heading."""
+
+    left: AlignedCell
+    right: AlignedCell
+
+    @property
+    def heading(self) -> bool:
+        return "heading" in (self.left.kind, self.right.kind)
+
+
+@dataclass(frozen=True)
 class Comparison:
     number: int
     offers: tuple[SourceInfo, ...]  # sources with a text for the number, best first
@@ -494,13 +514,17 @@ class Comparison:
     left: Text | None
     right: Text | None
     diff: TextDiff | None  # None when a side is missing or either side is raw text
+    rows: tuple[AlignedRow, ...] | None  # the texts lined up, when there is a diff
+    last: int  # the highest chapter number any source has a text for; 0 if none
 
 
 def comparison(store: NovelStore, view: NovelView, number: int, left: int | None, right: int | None) -> Comparison:
     """The number's texts from `left` and `right`; left defaults to the selected source, right to the next offer."""
     by_source: dict[int, list] = defaultdict(list)
+    last = 0
     for info in view.sources:
         for c in view.chapters(info.id):
+            last = max(last, c.key.number)
             if c.key.number == number:
                 by_source[info.id].append(c)
     offers = tuple(view.source(sid) for sid in view.priority if sid in by_source)
@@ -531,7 +555,55 @@ def comparison(store: NovelStore, view: NovelView, number: int, left: int | None
             marks, gaps = (diff.left, diff.left_gaps) if side == "l" else (diff.right, diff.right_gaps)
         return Text(view.source(sid), _marked_parts(sides[sid], marks, gaps, side))
 
-    return Comparison(number, offers, selected, text(left, "l"), text(right, "r"), diff)
+    rows = _aligned_rows(sides[left], sides[right], diff) if diff else None
+    return Comparison(number, offers, selected, text(left, "l"), text(right, "r"), diff, rows, last)
+
+
+def _aligned_rows(
+    left: Sequence[tuple[str, Sequence[Block]]], right: Sequence[tuple[str, Sequence[Block]]], diff: TextDiff
+) -> tuple[AlignedRow, ...]:
+    """Both sides' blocks in the diff's pairs, a blank facing an extra block. A heading row comes wherever
+    either side starts a part. Ids as in `_marked_parts`: a group's first block on a side, else (when that
+    side has none of the group) the first blank facing it."""
+    sides = {"l": _flat(left), "r": _flat(right)}
+    marks = {"l": diff.left, "r": diff.right}
+    gapped = {"l": {g for _, g in diff.left_gaps}, "r": {g for _, g in diff.right_gaps}}
+    targeted: dict[str, set[int | None]] = {"l": set(), "r": set()}
+    rows: list[AlignedRow] = []
+
+    def headings(at: dict[str, int | None]) -> None:
+        found = {side: sides[side][1].pop(i, []) if i is not None else [] for side, i in at.items()}
+        for a, b in zip_longest(found["l"], found["r"]):
+            rows.append(AlignedRow(*(AlignedCell("heading", Markup('<h3 class="chapter">{}</h3>').format(h))
+                                     if h is not None else AlignedCell("blank") for h in (a, b))))  # fmt: skip
+
+    def cell(side: str, index: int | None, facing: BlockMark) -> AlignedCell:
+        if index is None:
+            if facing.group in gapped[side]:
+                gapped[side].discard(facing.group)
+                return AlignedCell("blank", _gap(facing.group, side))
+            return AlignedCell("blank")
+        mark = marks[side][index]
+        html = _marked_block(sides[side][0][index], mark, side, mark.group not in targeted[side])
+        targeted[side].add(mark.group)
+        return AlignedCell("block", html)
+
+    for i, j in diff.pairs:
+        headings({"l": i, "r": j})
+        rows.append(AlignedRow(cell("l", i, diff.right[j] if j is not None else BlockMark(Mark.SAME)),
+                               cell("r", j, diff.left[i] if i is not None else BlockMark(Mark.SAME))))  # fmt: skip
+    headings({"l": len(sides["l"][0]), "r": len(sides["r"][0])})  # parts with no blocks, at the end
+    return tuple(rows)
+
+
+def _flat(parts: Sequence[tuple[str, Sequence[Block]]]) -> tuple[list[Block], dict[int, list[str]]]:
+    """A side's blocks in order, and the headings of the parts starting at each block index."""
+    blocks: list[Block] = []
+    starts: dict[int, list[str]] = defaultdict(list)
+    for heading, part in parts:
+        starts[len(blocks)].append(heading)
+        blocks.extend(part)
+    return blocks, starts
 
 
 def _marked_parts(

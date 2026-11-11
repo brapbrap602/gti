@@ -85,3 +85,15 @@ def test_a_rewritten_paragraph_is_highlighted_without_word_marks():
     d = diff_blocks(paras("Li Fan narrowed his eyes and looked down."), paras("Squinting, the cultivator surveyed the mortals."))
 
     assert d.left[0].state is Mark.CHANGED and d.left[0].spans == () and d.right[0].spans == ()
+
+
+def test_pairs_line_up_blocks_and_leave_blanks_for_extras():
+    same = diff_blocks(paras("A.", "B."), paras("A.", "B."))
+    inserted = diff_blocks(paras("A.", "B.", "C."), paras("A.", "B.", "New.", "C."))
+    deleted = diff_blocks(paras("A.", "Gone.", "C."), paras("A.", "C."))
+    uneven = diff_blocks(paras("x", "a1", "a2", "y"), paras("x", "b1", "b2", "b3", "y"))
+
+    assert same.pairs == ((0, 0), (1, 1))
+    assert inserted.pairs == ((0, 0), (1, 1), (None, 2), (2, 3))
+    assert deleted.pairs == ((0, 0), (1, None), (2, 1))
+    assert uneven.pairs == ((0, 0), (1, 1), (2, 2), (None, 3), (3, 4))

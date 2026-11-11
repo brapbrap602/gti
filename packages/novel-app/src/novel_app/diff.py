@@ -49,6 +49,8 @@ class TextDiff:
     changes: int  # left blocks that differ, plus right-only blocks
     total: int  # left blocks
     groups: int
+    # The blocks side by side, in order: (left index, right index), None where one side has an extra block.
+    pairs: tuple[tuple[int | None, int | None], ...]
 
 
 def block_text(block: Block) -> str:
@@ -76,13 +78,16 @@ def diff_blocks(left: Sequence[Block], right: Sequence[Block]) -> TextDiff:
     lm = [BlockMark(Mark.SAME)] * len(lt)
     rm = [BlockMark(Mark.SAME)] * len(rt)
     left_gaps, right_gaps = [], []
+    pairs: list[tuple[int | None, int | None]] = []
     group = 0
     # Between two matching runs difflib yields exactly one opcode, so each non-equal one is a group.
     for tag, i1, i2, j1, j2 in SequenceMatcher(None, lt, rt, autojunk=False).get_opcodes():
+        paired = min(i2 - i1, j2 - j1)  # equal and replace pair 1:1 first; the rest face a blank
+        pairs += [(i1 + k, j1 + k) for k in range(paired)]
+        pairs += [(i, None) for i in range(i1 + paired, i2)] + [(None, j) for j in range(j1 + paired, j2)]
         if tag == "equal":
             continue
         group += 1
-        paired = min(i2 - i1, j2 - j1)
         for k in range(paired):
             ls, rs = _changed_words(lt[i1 + k], rt[j1 + k]) if words else (None, None)
             lm[i1 + k] = BlockMark(Mark.CHANGED, ls, group)
@@ -96,7 +101,7 @@ def diff_blocks(left: Sequence[Block], right: Sequence[Block]) -> TextDiff:
         if j1 == j2:
             right_gaps.append((j1, group))
     changes = sum(m.state is not Mark.SAME for m in lm) + sum(m.state is Mark.ONLY for m in rm)
-    return TextDiff(tuple(lm), tuple(rm), tuple(left_gaps), tuple(right_gaps), changes, len(lt), group)
+    return TextDiff(tuple(lm), tuple(rm), tuple(left_gaps), tuple(right_gaps), changes, len(lt), group, tuple(pairs))
 
 
 def _changed_words(a: str, b: str) -> tuple[tuple[Span, ...], tuple[Span, ...]]:

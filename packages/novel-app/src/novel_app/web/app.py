@@ -200,7 +200,9 @@ def create_app(service: Service) -> FastAPI:
     @app.get("/novels/{novel}/compare", response_class=HTMLResponse)
     async def compare(request: Request, novel: str, number: int, left: int | None = None, right: int | None = None):
         c = await run_in_threadpool(service.compare, novel, number, left, right)
-        return await page(request, "compare.html", slug=novel, c=c)
+        # Links keep the sources asked for, not the ones shown: a chapter one of them lacks falls back to another.
+        keep = urlencode({side: v for side, v in (("left", left), ("right", right)) if v is not None})
+        return await page(request, "compare.html", slug=novel, c=c, keep=f"&{keep}" if keep else "")
 
     @app.get("/add", response_class=HTMLResponse)
     async def add_form(request: Request):
