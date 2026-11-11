@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Overlord of Puluo Chs 51–100</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1-50.html#last" data-next-page="101-150.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c51">Chapter 51: Madam, Let&#39;s Go Buy Groceries 🔒</a></li>
+        <li><a href="#c52">Chapter 52: Millionaire 🔒</a></li>
+        <li><a href="#c53">Chapter 53: The Order of Puluo 🔒</a></li>
+        <li><a href="#c54">Chapter 54: Yu&#39;s Cloth Shop 🔒</a></li>
+        <li><a href="#c55">Chapter 55: Oil Cultivator 🔒</a></li>
+        <li><a href="#c56">Chapter 56: Rules and Boundaries 🔒</a></li>
+        <li><a href="#c57">Chapter 57: The Blood-Drinking Pendulum 🔒</a></li>
+        <li><a href="#c58">Chapter 58: For my Husband, I added a Chamber 🔒</a></li>
+        <li><a href="#c59">Chapter 59: Write Me a Promissory Note 🔒</a></li>
+        <li><a href="#c60">Chapter 60: Old Mister Yao 🔒</a></li>
+        <li><a href="#c61">Chapter 61: Exquisite Senses and Golden Discerning Eyes 🔒</a></li>
+        <li><a href="#c62">Chapter 62: Shopkeeper Yu, What Do You Think? 🔒</a></li>
+        <li><a href="#c63">Chapter 63: Watermelon 🔒</a></li>
+        <li><a href="#c64">Chapter 64: Give and Take in the Jianghu 🔒</a></li>
+        <li><a href="#c65">Chapter 65: The Crimson Lotus Does Not Eat Raw and This Wifey Does Not Eat the Dead 🔒</a></li>
+        <li><a href="#c66">Chapter 66: Whose Medicine Is the Best? 🔒</a></li>
+        <li><a href="#c67">Chapter 67: My Dear Wife, Let’s Consummate Our Marriage 🔒</a></li>
+        <li><a href="#c68">Chapter 68: Spider Detective 🔒</a></li>
+        <li><a href="#c69">Chapter 69: New Land 🔒</a></li>
+        <li><a href="#c70">Chapter 70: The Rare Purple Pill 🔒</a></li>
+        <li><a href="#c71">Chapter 71: A Basket Hanging From the Tree 🔒</a></li>
+        <li><a href="#c72">Chapter 72: Madam Bagworm Moth 🔒</a></li>
+        <li><a href="#c73">Chapter 73: Land-Activating Covenant 🔒</a></li>
+        <li><a href="#c74">Chapter 74: Once a Deal Is Done, There&#39;s No Backing Out 🔒</a></li>
+        <li><a href="#c75">Chapter 75: The Branches of Jiangxiang Gang 🔒</a></li>
+        <li><a href="#c76">Chapter 76: Reading the Newspaper 🔒</a></li>
+        <li><a href="#c77">Chapter 77: Elysian Melody Dancehall 🔒</a></li>
+        <li><a href="#c78">Chapter 78: Nightfiend Cultivation 🔒</a></li>
+        <li><a href="#c79">Chapter 79: I Once Had a Love 🔒</a></li>
+        <li><a href="#c80">Chapter 80: If You All Still Don&#39;t Know What Pain Feels Like 🔒</a></li>
+        <li><a href="#c81">Chapter 81: Don&#39;t Do Anything 🔒</a></li>
+        <li><a href="#c82">Chapter 82: Adding Another Chamber for My Husband 🔒</a></li>
+        <li><a href="#c83">Chapter 83: Perceiving the Spirit&#39;s Melody 🔒</a></li>
+        <li><a href="#c84">Chapter 84: Blood and Qi, Break Through 🔒</a></li>
+        <li><a href="#c85">Chapter 85: Ascetic Cultivator 🔒</a></li>
+        <li><a href="#c86">Chapter 86: Let&#39;s Head to the Branch Hall 🔒</a></li>
+        <li><a href="#c87">Chapter 87: Let’s See Who Can Last Longer! 🔒</a></li>
+        <li><a href="#c88">Chapter 88: Tang Saber 🔒</a></li>
+        <li><a href="#c89">Chapter 89: It Turned Out to Be an Old Acquaintance 🔒</a></li>
+        <li><a href="#c90">Chapter 90: He Smiled 🔒</a></li>
+        <li><a href="#c91">Chapter 91: Unexpected Visitor 🔒</a></li>
+        <li><a href="#c92">Chapter 92: Fate    🔒</a></li>
+        <li><a href="#c93">Chapter 93: The Disease Cultivator 🔒</a></li>
+        <li><a href="#c94">Chapter 94: The Boundary Line   🔒</a></li>
+        <li><a href="#c95">Chapter 95: Someone of the Same Name, Peddler Road 🔒</a></li>
+        <li><a href="#c96">Chapter 96: The Border Package 🔒</a></li>
+        <li><a href="#c97">Chapter 97: The Honest Folk of Blue Poplar Village 🔒</a></li>
+        <li><a href="#c98">Chapter 98: The Fallen Young Master 🔒</a></li>
+        <li><a href="#c99">Chapter 99: Ma Wu and His Seventeenth Sister-in-law 🔒</a></li>
+        <li><a href="#c100">Chapter 100: The Dao of Growing Money 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="the-overlord-of-puluo">
+<article id="c51" data-label="51">
+<h2 class="chapter">Chapter 51: Madam, Let&#39;s Go Buy Groceries 🔒</h2>
+<p>「 Remember my love, remember my heart,</p>
+<p>Remember I&#39;m waiting for you every day.</p>
+<p>I&#39;m waiting, waiting for you to come back,</p>
+<p>Don&#39;t you forget me, don&#39;t leave me alone~</p>
+<p>Don&#39;t you forget me, don&#39;t leave me alone~~ ♪」</p>
+<p>The gramophone played out a cheerful tune.</p>
+<p>Amid the lively song, Li Banfeng quietly made his way toward the door while thinking, <em>I&#39;d better leave.</em></p>
+<p>He had experienced how vicious and fierce the old clock was and he knew that he had almost died just now. Yet, it seemed now that the gramophone was even more dangerous than that old pendulum clock.</p>
+<p>Just as Li Banfeng reached the door, he heard a different song being played out by the gramophone. She went from a lovesick maiden sending her sweetheart off to a wandering songstress.</p>
+<p>「 Oh my love, oh my love, where are you bound?</p>
+<p>Before you leave, take the trash on out.</p>
+<p>Our little house is small, no place to spare,</p>
+<p>Oh my love, the trash has nowhere to go~~ ♪」</p>
+<p><em>She can even change the lyrics,</em> Li Banfeng thought. <em>Should I even have the fucking mood to care about the lyrics right now?</em></p>
+<p>Li Banfeng shoved the door open and was about to leave when a wall of steam surged and blocked his way.</p>
+<p>「Oh my love, our trash really has nowhere to go! ♪」</p>
+<p>&#34;Uh… right… I&#39;ll take it out later,&#34; he mumbled. When he moved to leave again, the steam flared hotter, wrapping tighter around him as the gramophone sang again.</p>
+<p>「Oh my love, our trash really has nowhere to go! ♪ 」</p>
+<p>Each note sounded colder and gloomier,...</p>
+</article>
+<article id="c52" data-label="52">
+<h2 class="chapter">Chapter 52: Millionaire 🔒</h2>
+<p>Li Banfeng did not think about the short saber at all. He was sitting by the doorway of the central room, talking to himself like he was two people.</p>
+<p>&#34;The gramophone didn&#39;t kill me. She&#39;s still fond of me. But when she suddenly sings, it&#39;s a little scary.</p>
+<p>&#34;What&#39;s scary about it? She sings so well.</p>
+<p>&#34;It doesn&#39;t matter how well she sings. One day, she could eat you and not even spit out your bones.</p>
+<p>&#34;If she wanted to eat me, she would have already. She probably does not like eating the living.</p>
+<p>&#34;What if her tastes change one day? When she&#39;s angry, she might roast you until your outside is crisp and your insides tender and devour body and soul, without even leaving crumbs!</p>
+<p>&#34;You are heartless; the gramophone has protected you from the start. How can you speak so badly of a young lady?</p>
+<p>&#34;How do you know she&#39;s a young lady? Maybe she&#39;s a fearsome fiend that sings!&#34;</p>
+<p>Li Banfeng waved his hand over his forehead, trying to clear his mind. Arguing with himself was utterly pointless.</p>
+<p>He gathered his thoughts and tried to figure out how to deal with the gramophone.</p>
+<p><em>Should I throw her away? </em>he thought.</p>
+<p>Of course, it would be a pity to discard such a good dwelling spirit, but that wasn&#39;t the reason for his...</p>
+</article>
+<article id="c53" data-label="53">
+<h2 class="chapter">Chapter 53: The Order of Puluo 🔒</h2>
+<p>Li Banfeng&#39;s thoughts lingered on the contrast between the village that had disappeared without a trace and the well-secured train ticket office.</p>
+<p>This world was far too unfamiliar to Li Banfeng. There were too many things he still had to adapt to.</p>
+<p>Xiao Yeci urged, &#34;Benefactor, let&#39;s hurry on. That old hag said she&#39;s part of the Jiangxiang Gang. I don&#39;t think she was lying about that, eh.&#34;</p>
+<p>Li Banfeng turned back and asked, &#34;Just what is this Jiangxiang Gang?&#34;</p>
+<p>Xiao Yeci froze.</p>
+<p><em>This man is both courageous and cunning, and he looks like a seasoned wanderer of the jianghu. How could he not know the Jiangxiang Gang?</em></p>
+<p><em>Still, it&#39;s just as well. I&#39;ll give him a good explanation, let him learn something from me. It&#39;ll make traveling together easier, eh.</em></p>
+<p>&#34;The Jiangxiang Gang is a powerful organization. They have disciples in Medicine King Gully, Greenwater Bay, and the Ridges of Bottomless Stomachs. But they almost never go to Girdle-Slipping Hollow. People there kill any Jiangxiang Gang member they see, eh.&#34;</p>
+<p>Hearing the familiar place names, Li Banfeng grew interested. &#34;What grudge is there between Girdle-Slipping Hollow and the Jiangxiang Gang?&#34;</p>
+<p>&#34;The Jiangxiang Gang has all kinds of people among its members. There are plenty like that old hag, bandits who murder people to steal their stuff. There are also many swindlers and frauds among them. The inhabitants of Girdle-Slipping Hollow turn a blind eye to people like...</p>
+</article>
+<article id="c54" data-label="54">
+<h2 class="chapter">Chapter 54: Yu&#39;s Cloth Shop 🔒</h2>
+<p>Li Banfeng was demanding to be paid for his services, the one thousand yuan he had been promised!</p>
+<p>&#34;All right, all right...&#34; Xiao Yeci muttered.</p>
+<p>She quickly pulled out a thousand yuan in cash from a wicker box and handed it to Li Banfeng. He counted the money twice before tucking it into his inner pocket.</p>
+<p>&#34;I&#39;ll remind you once more. If you don&#39;t want to die, stay away from the He Family&#39;s old residence!&#34;</p>
+<p>With that, they parted ways. Xiao Yeci and her daughter did not head to the He Family&#39;s old estate. Instead, they made their way toward the train station.</p>
+<p>Li Banfeng followed them from a distance until he saw them enter the ticket office.</p>
+<p><em>So they went to buy tickets. I didn&#39;t expect them to actually have a travel permit.</em></p>
+<p><em>It&#39;s good that they have a travel permit. Hurry up and leave. The farther you go, the better. It&#39;s good for you, and it&#39;s good for me too.</em></p>
+<p>Li Banfeng returned to the Inner Gully. He first went to Feng&#39;s General Store, but seeing that the doors were still shut, he went into the cloth shop next door instead.</p>
+<p>Yu Nan, the gorgeously dressed proprietress, stepped over to him. &#34;Looking to buy some fabric? Take a look here. This is imitation satin, this is plain satin. Over here, we have Ningbo silk and patterned spring thread. Here&#39;s flower gauze and Hangzhou linen, and over here Hangzhou cotton...</p>
+</article>
+<article id="c55" data-label="55">
+<h2 class="chapter">Chapter 55: Oil Cultivator 🔒</h2>
+<p>Night had fallen, and Tail Lane was almost empty of passersby. Whether Chubby Qin would get his first bite of food for the day depended entirely on the man in the mandarin jacket.</p>
+<p>The man in the mandarin jacket was eating a bowl of mutton noodles. Half of the soup was meat broth, and the other half was rendered mutton fat that floated with bright red chillies. He was sweating from the heat as he ate.</p>
+<p>The aroma of the mutton and chillies drifted into Chubby Qin&#39;s nostrils, slowly eroding the last of his dignity bit by bit.</p>
+<p>&#34;Kowtow to me. If you kowtow to me, I&#39;ll give you a sip of soup,&#34; said the man in the mandarin jacket as he carried the bowl over to Chubby Qin.</p>
+<p>Nevertheless, there was no way Chubby Qin would kowtow to him.</p>
+<p>The man in the mandarin jacket slurped a mouthful of scalding soup. &#34;You&#39;ve been kneeling here all day, yet you&#39;re not willing to kowtow to me?&#34;</p>
+<p>Chubby Qin was kneeling because he had been hit by a spell. His lower body was immobilized, and only some joints in his upper body could move. Otherwise, he would have fought the man in the mandarin jacket to the death, even if he only had one breath left in him.</p>
+<p>The man sighed. &#34;I know about you Gourmandism Cultivators. Go a day without eating, and your stomach catches fire. The flames burn all the way up to your throat, spreading inch by inch through your heart, liver, and spleen. Sounds awful just thinking about it.&#34;</p>
+<p>He slurped another mouthful of soup. &#34;I really do pity you. Give me a sincere kowtow, and I&#39;ll give you a sip of broth right away. I guarantee it will keep you alive another...</p>
+</article>
+<article id="c56" data-label="56">
+<h2 class="chapter">Chapter 56: Rules and Boundaries 🔒</h2>
+<p>The man in the mandarin jacket first smelled the smoke, then he burst into flames. That was when he finally realized he&#39;d run into a mortal enemy. &#34;Nanny Butch[1]!&#34;</p>
+<p><em>No wonder that man in the red suit knew so much about Oil Cultivators.</em></p>
+<p><em>No wonder he even knew about my killing move.</em></p>
+<p><em>So it was Yu Nan who taught him about me.</em></p>
+<p>Yu Nan had indeed given Li Banfeng some tips. Otherwise, if he had been left to his own devices, Li Banfeng would have suffered a devastating loss against the man in the mandarin jacket, who was on the rare Daoist path of Oil Cultivation.</p>
+<p>Oil Cultivators feared fire, so the best tactic was to use fire against them.</p>
+<p>In that case, why hadn&#39;t Li Banfeng used fire from the start?</p>
+<p>That was because the right method had to be used at the right time.</p>
+<p>Li Banfeng had succeeded in his surprise attack because he&#39;d kept his weapon concealed. If he had approached the man in the mandarin jacket carrying a torch, the man would have cut...</p>
+</article>
+<article id="c57" data-label="57">
+<h2 class="chapter">Chapter 57: The Blood-Drinking Pendulum 🔒</h2>
+<p>Li Banfeng stabbed the pendulum straight into Rong Jin&#39;an&#39;s head.</p>
+<p>Rong Jin&#39;an dropped to the floor and twitched in violent spasms. However, Li Banfeng knew he was not dead. The act was convincing, but Li Banfeng could still sense danger coming from him.</p>
+<p>He dragged him into the Pocket Dwelling only to make the dwelling spirit happy. Though strictly speaking, this gramophone could not be considered an actual dwelling spirit as Li Banfeng still could not call her by her name. For now, he could only call her his lady.</p>
+<p>His lady had complained that the food was always stale, and knowing this filled Li Banfeng with shame.</p>
+<p><em>Srkkk~~</em></p>
+<p>The gramophone moved.</p>
+<p><em>Clang, clang, clang~</em></p>
+<p>The gramophone had been waiting a long time. &#34;Ah, my husband! How you dote upon your little wife, to grace me with such fresh offerings~&#34;</p>
+<p>Li Banfeng nodded. &#34;Please, my lady, partake of your feast.&#34;</p>
+<p>&#34;I thank you, my good husband~&#34;</p>
+<p>A cloud of steam wrapped around Rong Jin&#39;an and his body shook even harder.</p>
+<p><em>Slurp, slurp~</em></p>
+<p>Li Banfeng thought he heard the sound of noodles...</p>
+</article>
+<article id="c58" data-label="58">
+<h2 class="chapter">Chapter 58: For my Husband, I added a Chamber 🔒</h2>
+<p>Even though Li Banfeng was a little afraid of the gramophone, Li Banfeng always managed to sleep well in the Pocket Dwelling.</p>
+<p>When he woke, he lit a candle and pressed the catch. The pocket watch snapped open, showing that it was already ten o&#39;clock.</p>
+<p>Li Banfeng felt a little thirsty, so he crouched down to look for the water bucket under his bed. Yet it was gone again.</p>
+<p>Before going to bed last night, he had fetched a bucket of water from the river, boiled it, let it cool, and placed it by his bedside. Now, after just one night&#39;s sleep, it had vanished again.</p>
+<p>Li Banfeng knew well that the dwelling spirit liked to keep things tidy, but he couldn&#39;t help but complain in his heart, <em>Can&#39;t you take my living habits into account when you tidy up?</em></p>
+<p>With the candle raised, Li Banfeng looked high and low for the bucket, yet after searching for quite some time, he still couldn&#39;t find it.</p>
+<p>A missing bucket wasn&#39;t a problem. He could always buy another. However, there was something else missing. The bronze lotus flower was gone!</p>
+<p>The veins on Li Banfeng&#39;s forehead bulged instantly!</p>
+<p>Last night, the bronze lotus flower had refined Rong Jin&#39;an&#39;s corpse into two red pills. Li Banfeng had personally collected the lotus seeds with his own hands and had clearly seen the flower fold its petals shut in the corner. How could it be gone in the blink of an eye? Could the gramophone have...</p>
+</article>
+<article id="c59" data-label="59">
+<h2 class="chapter">Chapter 59: Write Me a Promissory Note 🔒</h2>
+<p><em>So every enchanted artifact demands a price. Does this mean I have to pay some kind of cost? If that is true, then what is the price of using the bronze lotus flower?</em> Li Banfeng muttered to himself. He wanted to speak a little more with the gramophone, but it had fallen silent. Clearly, she was tired.</p>
+<p>It was not a matter of much importance anyway, since all she had done was put some makeup on him. What truly mattered was that he had gained the first level of the Homebound Cultivator. His strength had risen sharply, and for now he no longer had to worry about the gap between his Wanderlust Cultivation and Homebound Cultivation.</p>
+<p>Li Banfeng was overjoyed. He chose not to disturb his wife&#39;s rest and instead set out to visit Chubby Qin.</p>
+<p>After leaving the Pocket Dwelling, he went straight to the riverside. There, under the curious gazes of several women washing clothes, he washed off the heavy makeup from his face.</p>
+<p>The women whispered among themselves.</p>
+<p>&#34;Is that a man or a woman? Why is he dressed like that?&#34;</p>
+<p>&#34;Could he be a bunny from Beehive Alley?&#34;</p>
+<p>&#34;Just look at how perky his butt is! He must be from Beehive Alley!&#34;</p>
+<p>The Beehive Alley was known for its houses of male courtesans, and a &#34;bunny&#34; was what people called them.</p>
+<p>Li Banfeng couldn&#39;t be bothered to explain himself to such shallow people. He strode off quickly, heading toward the Yu Family Cloth Shop. When he was still half a street away, however, a carriage rolled to a stop and blocked his path.</p>
+<p>The carriage driver asked, &#34;Sir, did you call for a carriage?&#34;</p>
+<p>Li Banfeng was caught off guard. &#34;No, I didn&#39;t.&#34;</p>
+<p>The driver didn&#39;t care what Li Banfeng...</p>
+</article>
+<article id="c60" data-label="60">
+<h2 class="chapter">Chapter 60: Old Mister Yao 🔒</h2>
+<p>When Li Banfeng said he wanted a promissory note, Chubby Qin, Yu Nan, and the cloth shop clerk all froze and thought, <em>What on earth is he talking about?</em></p>
+<p>Li Banfeng, however, looked completely serious. He wanted a promissory note, and not just a casual one. He demanded every detail to be written down. He said, &#34;Since you promised to pay me back in your next life, you have to write down what your name is in your next life, your house address, occupation, Daoist Path, and levels of cultivation. You must write down everything clearly.&#34;</p>
+<p>&#34;Th-this… how can I possibly explain that?&#34; Chubby Qin asked in confusion.</p>
+<p>&#34;If you cannot explain it clearly, then how will you ever pay me back?&#34; Li Banfeng asked as he stared at Chubby Qin with a serious expression.</p>
+<p>This very simple question explained a very simple logic, which was that no matter how touching those promises about the next life sounded, they were all complete bullshit.</p>
+<p>Yu Nan gave Chubby Qin a quick glance. &#34;Trader Qin, Master Qi doesn&#39;t want you to commit suicide.&#34;</p>
+<p>Chubby Qin&#39;s eyes grew red as he looked at Li Banfeng.</p>
+<p>Li Banfeng was a good man, but where was Chubby Qin supposed to find two hundred thousand? Even if he sold everything he owned, he wouldn’t be able to scrape together a hundred ...</p>
+</article>
+<article id="c61" data-label="61">
+<h2 class="chapter">Chapter 61: Exquisite Senses and Golden Discerning Eyes 🔒</h2>
+<p>Flames engulfed Chubby Qin. In a panic, he dropped to the ground and rolled frantically.</p>
+<p>Yet everyone present, except for Chubby Qin himself, remained completely unmoved. Yu Nan and the clerks from her cloth shop all knew that Old Mister Yao truly had real skill while Li Banfeng held great trust for Old Mister Yao.</p>
+<p>After all, the fact that Chubby Qin could roll on the ground meant that his legs were already able to straighten.</p>
+<p>In less than two minutes, Chubby Qin&#39;s clothes had turned to ash, and his hair and every strand of body hair were gone. He lay on the ground, groaning and writhing in pain.</p>
+<p>Old Mister Yao bent down with a look of concern and asked, &#34;Young man, what&#39;s the matter? Are you hungry?&#34;</p>
+<p>Yu Nan looked embarrassed. She knew Old Mister Yao liked to joke around, but this was hardly the right time. Li Banfeng, however, didn&#39;t find it awkward at all. He even thought Old Mister Yao&#39;s question made perfect sense.</p>
+<p>On the other hand,...</p>
+</article>
+<article id="c62" data-label="62">
+<h2 class="chapter">Chapter 62: Shopkeeper Yu, What Do You Think? 🔒</h2>
+<p>Old Mister Yao was not someone from the living world. When he was alive, he must have been a high-level Inebriate Cultivator. As for why his soul still lingered in the mortal realm after death, this remained a mystery.</p>
+<p>Yu Nan changed the conversation. &#34;Master Qi, let&#39;s not talk about that. Trader Qin&#39;s spell has already been lifted. He ate a few bowls of rice and then fell asleep.&#34; As she spoke, she felt more and more that Li Banfeng was not as simple as he appeared.</p>
+<p>Chubby Qin was already sleeping comfortably, and Li Banfeng chose not to disturb him.</p>
+<p>That night, he told the others he would stay in the east-side room with Chubby Qin. In reality, he hid the key outside the courtyard and slept inside his Pocket Dwelling.</p>
+<p>When Li Banfeng woke up the next day, he checked his pocket watch and saw that it was still early. It was only seven o&#39; clock, so he thought about going back to sleep. But then, he was feeling a bit thirsty, so he stepped out of the Pocket Dwelling to find water.</p>
+<p>The moment he left the Pocket Dwelling and entered the courtyard to find water, he spotted twenty to thirty people gathered there, exuding murderous intent.</p>
+<p>At first, Li Banfeng thought the Jiangxiang Gang had come for revenge. But when he looked closer,...</p>
+</article>
+<article id="c63" data-label="63">
+<h2 class="chapter">Chapter 63: Watermelon 🔒</h2>
+<p>Geng Zhiwei laid out three conditions. First, the Yu Family Cloth Shop must hand over half of its shares. Second, Yu Nan must marry him and become his sixth concubine. Third, Yu Nan must be whipped in public.</p>
+<p>Yu Nan&#39;s face turned pale.</p>
+<p>From the side, Jia Quansheng added, &#34;I think my brother&#39;s three conditions are quite fair. Shopkeeper Yu, it would be a blessing for you to marry into the Geng Family.&#34;</p>
+<p>Before Yu Nan could respond, one of her guards behind her couldn&#39;t hold back. &#34;Geng Zhiwei, you bastard! I&#39;ll curse your ancestors for eight generations!&#34;</p>
+<p>Geng Zhiwei spat on the floor. &#34;Which kennel did you crawl out of? Do you think you have any right to speak here? Shopkeeper Yu, I&#39;ve already stated my terms. Do you agree or not?&#34;</p>
+<p>At this moment, Yu Nan realized Geng Zhiwei hadn&#39;t come for a discussion at all. He had come only to gross people out. She stood and said, &#34;Young Master Geng, it seems we can&#39;t settle this peacefully. Since you refuse to show courtesy, then let&#39;s schedule a time and settle it with a fight next time.&#34;</p>
+<p>Yu Nan was declaring...</p>
+</article>
+<article id="c64" data-label="64">
+<h2 class="chapter">Chapter 64: Give and Take in the Jianghu 🔒</h2>
+<p>Li Banfeng found a few more watermelon seeds stuck to the other weapons and said, &#34;Shopkeeper Yu, I&#39;m not wrong. You really did spend the whole day chopping watermelons,&#34; he says.</p>
+<p>Yu Nan carefully recalled the fight. Whether the clerks from the Geng Family Medicinal Trading House were shot or cut, they bled, yet none of them fell.</p>
+<p>Throughout the entire fight, she did not hear the clerks of the Geng Family Medicinal Trading House speak a word. She did not even hear a shout.</p>
+<p><em>Are they all watermelons? And the blood was watermelon juice? Why are these watermelons in the form of humans and why are they able to fight?</em> These questions crossed Yu Nan&#39;s mind.</p>
+<p>Zhang Shiquan, the oldest warehouse keeper in the cloth shop, inhaled a mouthful of dry pipe and speculated, &#34;An Agrarian Cultivator who grinds long enough is fully fledged. At the fifth level, he lords it like a marquis. I&#39;m afraid we ran into one.&#34;</p>
+<p><em>An Agrarian Cultivator? </em>Li Banfeng thought.</p>
+<p>Aside from knowing that this Daoist Path was arduous, Li Banfeng did not know much about this cultivation.</p>
+<p>&#34;What do you mean when you say fully fledged?&#34; Li Banfeng asked outright.</p>
+<p>The old warehouse keeper said, &#34;It&#39;s a saying in this path. Agrarian Cultivation is harsh, so few choose it. If someone makes it to the fifth level, he is considered established, and he can grow all kinds of strange things.&#34;</p>
+<p>&#34;I&#39;ve lived a long life, and I&#39;ve never seen...</p>
+</article>
+<article id="c65" data-label="65">
+<h2 class="chapter">Chapter 65: The Crimson Lotus Does Not Eat Raw and This Wifey Does Not Eat the Dead 🔒</h2>
+<p>After a long, fruitless search, the watermelon men returned to the front courtyard. One was injured, and watermelon juice leaked from the wound.</p>
+<p>Immediately, Geng Zhiwei ordered a clerk to bandage the injured watermelon man. Beside him, Jia Quansheng said, &#34;Brother, you&#39;re too cautious. They aren&#39;t even living.&#34;</p>
+<p>Geng Zhiwei shot him a look. &#34;Do you know what one of these costs? If not for you, would I be investing this much money?&#34;</p>
+<p>&#34;Right, right,&#34; Jia Quansheng said with a fawning smile. &#34;It&#39;s all because of me.&#34;</p>
+<p>Jia Quansheng said the words, but bitterness rose in him. Geng Zhiwei acted like he was taking a loss, yet he had already taken Chubby Qin&#39;s ten Speckled-Snake Pills, and Yu Nan&#39;s cloth shop would end up his too.</p>
+<p>In the end, he had sacrificed only one Rong Jin&#39;an and bought a little over twenty watermelon men.</p>
+<p>Jia Quansheng had met the Agrarian Cultivator before. Each watermelon man sold for just over twenty thousand. All the watermelon men that Geng Zhiwei bought would help him gain a cloth shop. How was this a loss?</p>
+<p>Besides, these watermelon men could serve for a year, and if they were hurt, a splash of water would heal them. At that price for something so useful, how was Geng Zhiwei losing anything? Of course, Jia Quansheng kept all of this to himself and did not dare say it out loud.</p>
+<p>The watermelon men...</p>
+</article>
+<article id="c66" data-label="66">
+<h2 class="chapter">Chapter 66: Whose Medicine Is the Best? 🔒</h2>
+<p>Li Banfeng changed into the guard&#39;s uniform and slipped into the medicine storeroom without making a sound. In the storeroom, he saw shelves stacked with all kinds of medicinal herbs.</p>
+<p>He couldn&#39;t recognize the medicinal herbs or the prepared concoctions. There were large sacks filled with medicinal herbs, but he assumed those were the cheap ones and ignored them.</p>
+<p>He figured the ones in bottles and jars were the good stuff, so he moved everything into the Pocket Dwelling, taking trips after trips.</p>
+<p>He spotted a wooden chest secured with a lock. Judging from that, its contents must be the most valuable of all, so he took that as well. When the gramophone saw the pile he had hauled back, it let out a puff of steam in clear disdain.</p>
+<p>After emptying the storeroom, Li Banfeng checked the front counter and found eighty-three thousand two hundred and eighteen yuan in cash as well as one hundred twenty-six silver dollars. He tucked them all into his Pocket Dwelling.</p>
+<p>Once Li Banfeng had gathered nearly everything, he went back to the room where the watermelon men were kept. He ate a few pieces of watermelon pulp before dragging a burlap sack out of the corner.</p>
+<p>He shoved the fertilizer into the watermelon man&#39;s mouth. The dull-eyed creature&#39;s eyes snapped wide open, now blazing with murderous intent. However, with the scent of watermelon emanating from Li Banfeng, it recognized him...</p>
+</article>
+<article id="c67" data-label="67">
+<h2 class="chapter">Chapter 67: My Dear Wife, Let’s Consummate Our Marriage 🔒</h2>
+<p>&#34;Take deep breaths, hold on. You&#39;ll be fine!&#34;</p>
+<p>Geng Zhiwei had suffered a fatal wound, and blood was gushing from his neck.</p>
+<p>&#34;Stay with me. You can do this!&#34; Li Banfeng said, pressing the blood-soaked pendulum into Geng Zhiwei&#39;s neck to stem the bleeding.</p>
+<p>Geng Zhiwei was struggling to breathe. He didn&#39;t want to die. He was riddled with wounds and wracked with pain, but he truly did not want to die.</p>
+<p>Seeing that Geng Zhiwei&#39;s condition was worsening, sweat formed on Li Banfeng&#39;s brow. &#34;Keep breathing. You must hold on. Think of your vast family fortune. You don&#39;t want to hand it over to someone else, do you? Think of your countless assets. You don&#39;t want them to be divided among your family members, right? Think of all your concubines. You don&#39;t want them crawling into another man&#39;s bed, do you? Breathe deep, hold on! You can&#39;t die yet!&#34;</p>
+<p>Hearing Li Banfeng&#39;s goading, Geng Zhiwei&#39;s breathing suddenly became strong and rushed.</p>
+<p>He refused to accept it. He refused to lose everything he possessed.</p>
+<p>Driven by rage and an unwillingness to lose everything he...</p>
+</article>
+<article id="c68" data-label="68">
+<h2 class="chapter">Chapter 68: Spider Detective 🔒</h2>
+<p>Li Banfeng traversed through Mount River Moon in the Outer Gully, trekking more than fifty kilometers through the mountains. Then, at three in the morning, he finally reached a gorge.</p>
+<p>According to Yu Nan&#39;s description, once he passed through this gorge, he would arrive at the newly formed land.</p>
+<p>However, the gorge was hard to walk through. At its widest, it spanned two or three meters, and at its narrowest, he could only edge through sideways.</p>
+<p>He squeezed sideways through a long, narrow fissure for more than half a kilometer. According to his senses as a Wanderlust Cultivator, that distance took more effort than walking five kilometers in the Inner Gully.</p>
+<p>As Li Banfeng stepped out of the fissure, he failed to notice the sheer drop beneath his feet and tumbled off a cliff more than ten meters high.</p>
+<p>Fortunately, as a Wanderlust Cultivator, he was exceptional on his feet. He slid along a slope, letting it absorb the momentum of the fall before landing. Ultimately, he walked away unscathed.</p>
+<p>His clothes were torn, but that hardly mattered. It was just the Geng Family&#39;s guard uniform.</p>
+<p>However, his shoes had worn through, and that pained him a little.</p>
+<p>He brushed the dust off his clothes and glanced back at the cliff face. A spider emerged from the crack....</p>
+</article>
+<article id="c69" data-label="69">
+<h2 class="chapter">Chapter 69: New Land 🔒</h2>
+<p>Before discussing business, Daboinsky said one thing. &#34;Madam, with your high status, you have plenty of people who can handle things for you. You don&#39;t need to hire me for any of these three matters.&#34;</p>
+<p>Zhuo Yuling fell silent for a moment. Then she replied, &#34;For the latter two, I don&#39;t want anyone to know about them, especially not the Lu Family.&#34;</p>
+<p>Daboinsky gave her a knowing smile. &#34;So, the land-activating job is for the Lu Family, but that&#39;s just a front. And the rescue and the killing are for you, Madam?&#34;</p>
+<p>Zhuo Yuling frowned slightly. &#34;You didn&#39;t talk this much in the past. Just name your price.&#34;</p>
+<p>After thinking it over, Daboinsky quoted prices for the three jobs Zhuo Yuling had requested.</p>
+<p>&#34;First job, land activation. There&#39;s a market rate. The plot you want will cost three thousand silver dollars to activate. That needs no further discussion.&#34;</p>
+<p>Zhuo Yuling nodded in agreement.</p>
+<p>Daboinsky continued, &#34;Second job, finding your daughter. This is a very difficult task, harder than finding a needle in a haystack.</p>
+<p>&#34;A needle in a haystack will stay put, but your daughter is currently hiding from the He Family&#39;s pursuit. That means she&#39;ll be running around, so it won&#39;t be easy to find her.&#34;</p>
+<p>Zhuo Yuling wasn&#39;t happy to hear that, but she didn&#39;t let it show on her face....</p>
+</article>
+<article id="c70" data-label="70">
+<h2 class="chapter">Chapter 70: The Rare Purple Pill 🔒</h2>
+<p><em>Who burned down the Geng Family&#39;s medicinal trading house?</em></p>
+<p>Yu Nan fell into deep thought, but her shop assistants did not think much about it.</p>
+<p>They swung their fists and roared, and many even shed tears.</p>
+<p>Wang Xuejiao was the first to cry. &#34;Old Eight, do you hear that? The Geng Family&#39;s medicinal trading house was burned down, and that bastard Geng Zhiwei was burned to death. Old Eight, I can&#39;t avenge you, but the heavens have opened their eyes and sent immortals down here to avenge us.&#34;</p>
+<p>The people around them shouted, &#34;That scoundrel Geng Zhiwei has done every evil under the sun. The heavens will surely punish him!&#34;</p>
+<p>&#34;He just launched a sneak attack on us… and now the Geng Family&#39;s medicinal trading house has been burned down. This is karmic retribution. This is justice!&#34;</p>
+<p>The group grew even more agitated, but Yu Nan still had not arrived at an answer to the question she was pondering.</p>
+<p><em>The Geng Family became a tyrannical presence over the years and offended many people. That means there are plenty of people who would have wanted revenge on Geng Zhiwei.</em></p>
+<p><em>However, with the Jiangxiang Gang backing the Geng Family, how many people would even dare to make a move against the Geng Family?</em></p>
+<p><em>The four powerful families?</em></p>
+<p><em>Impossible. They look down on the Geng Family,...</em></p>
+</article>
+<article id="c71" data-label="71">
+<h2 class="chapter">Chapter 71: A Basket Hanging From the Tree 🔒</h2>
+<p>Li Banfeng had practiced with the iron ruler for two hours and felt he had gotten a better grasp on how to use it.</p>
+<p>The gramophone kept encouraging him. &#34;My dear husband, a true man has ambitions that stretch for miles. Why are you staying at home all day? Hurry up and go buy groceries!&#34;</p>
+<p><em>Buying groceries will make me a true man?</em></p>
+<p>Li Banfeng clicked open his pocket watch; it was already ten o&#39;clock. It was indeed about time he headed out and took a look around.</p>
+<p>He stepped out of the Pocket Dwelling and returned to the Yu Family Stockade. Li Banfeng first went to find Old Zhu for lunch. After lunch, he decided to take a walk through the new land.</p>
+<p>As a Wanderlust Cultivator, Li Banfeng had to cover twenty-five kilometers a day. He had walked quite a long distance yesterday and exceeded the daily requirement, accumulating some extra time.</p>
+<p>But just because he had extra time, it didn&#39;t mean he should waste it on ordinary training.</p>
+<p>Unable to dissuade Li Banfeng from exploring the new land, Old Zhu settled for telling Li Banfeng about the taboo things he could not do on it. &#34;Trader Li, don&#39;t chop down any trees, don&#39;t pull up any grass, and don&#39;t harm any birds or beasts in the forest. Don&#39;t eat the fruit or drink the water in the forest. If you...</p>
+</article>
+<article id="c72" data-label="72">
+<h2 class="chapter">Chapter 72: Madam Bagworm Moth 🔒</h2>
+<p>A little after nine o&#39;clock, Yu Nan led everyone to the Yu Family Village and Old Zhu hurried out to greet them.</p>
+<p>As soon as everyone stepped into the Yu Family Village, Old Zhu mentioned that Li Qi came by.</p>
+<p>&#34;Master Qi came?&#34; Yu Nan lit up with joy. &#34;Where is he?&#34;</p>
+<p>&#34;He said he would head into the woods to look around. It&#39;s been seven or eight hours.&#34;</p>
+<p>Yu Nan&#39;s face tightened with worry. She could not understand why Li Banfeng would dare to roam the new land alone.</p>
+<p>Wang Xuejiao said, &#34;Boss, if you&#39;re worried, we can go into the forest and look for him.&#34;</p>
+<p>Yu Nan shook her head. &#34;The new land is too dangerous. If we rush into the forest recklessly, we may not find him, and we may not make it back alive. Li Qi is a Wanderlust Cultivator. He knows the way back. Let&#39;s wait and see.&#34;</p>
+<p>Two more hours passed. After two days on the road, they could not fight the exhaustion and fell asleep.</p>
+<p>Yu Nan could not sleep. She was pacing outside the log cabin when a middle-aged man in a tailcoat and fedora suddenly appeared before her. He took off his hat and bowed. &#34;May I inquire if you are Shopkeeper Yu, from Yu Family Cloth Shop?&#34;</p>
+<p>Yu Nan froze. She did not know this man.</p>
+<p>He smiled and...</p>
+</article>
+<article id="c73" data-label="73">
+<h2 class="chapter">Chapter 73: Land-Activating Covenant 🔒</h2>
+<p>Out in the wilderness, Daboinsky raced forward, running like crazy.</p>
+<p>Half the tails of his coat had been torn away, and his fedora was clenched in the Bagworm Moth Madam&#39;s mouth. She chewed it a few times, found the taste unpleasant, and spat it onto the roadside.</p>
+<p>She then spat out a strand of silk that snared Daboinsky&#39;s leg. Leaning close, she said, &#34;Be my man. I will treat you well.&#34;</p>
+<p>&#34;Madam, I may not be the type you fancy,&#34; Daboinsky said. His body swelled rapidly as he transformed into a massive spider. He tore free of the silk and released a strand of his own, anchoring himself to a tree.</p>
+<p>The Bagworm Moth Madam beamed with delight. &#34;I like men just like you. I like the way you spin silk.&#34;</p>
+<p>Daboinsky fixed all eight eyes on her. &#34;Madam, I don&#39;t know what you&#39;ve been through, but I already have a wife.&#34;</p>
+<p>She smiled sweetly. &#34;Is your wife prettier than me? Does she love you more than I would?&#34;</p>
+<p>Daboinsky thought of running again, but she was already crouched, ready to chase.</p>
+<p><em>Can I escape? Yes. She has never tried to kill. Whether it was Li Banfeng or me, she was never ruthless. She has no intention of killing. She just wants to play.</em></p>
+<p><em>I can&#39;t defeat her and I can&#39;t shake her off. So what then? Should I just let her toy with me? Is this something I can endure?</em></p>
+<p>At that thought, Daboinsky grinned. It was the fearless and carefree smile of a hero. <em>How much pain and struggle have I endured to reach...</em></p>
+</article>
+<article id="c74" data-label="74">
+<h2 class="chapter">Chapter 74: Once a Deal Is Done, There&#39;s No Backing Out 🔒</h2>
+<p>Li Banfeng would indeed need to return to the Inner Gully.</p>
+<p>If the private investigator Daboinsky truly had been sent by the Jiangxiang Gang, then staying at the Yu Family Village was impossible. Once the Jiangxiang Gang sent men to surround it, he would have no chance to escape. If Daboinsky had not been sent by the Jiangxiang Gang, Li Banfeng would need to find out where the man came from.</p>
+<p>He would also need to track down Shopkeeper Feng to figure out the origin of the gramophone. On top of that, he would need to ask about a travel permit. It was too difficult to get a travel permit to the Outer Provinces. If Yu Nan couldn&#39;t do it, he would need to see whether Shopkeeper Feng had contacts who could help.</p>
+<p>If a sum of twenty million Huan yuan was really needed, Li Banfeng would have to carefully reconsider returning to Yuezhou.</p>
+<p>Regardless, returning to the Inner Gully now would be the most correct decision.</p>
+<p>Li Banfeng prepared to leave, and Chubby Qin insisted on following him.</p>
+<p>&#34;Big Bro Qi, this life of mine, Qin Tianjiu[1]&#39;s life, belongs to you from now on,&#34; Chubby Qin said. &#34;Whether it&#39;s following you up a mountain of blades or down into a sea of flames, I will do it without a blink of an eye!&#34;</p>
+<p>Li Banfeng frowned. &#34;You can do it without blinking; I do not mind. But you must stop me. If I really climb a mountain of blades, don&#39;t pretend like you didn&#39;t see it.&#34;</p>
+<p>Chubby Qin thought for a long moment, then nodded. &#34;What you said was reasonable. Let...</p>
+</article>
+<article id="c75" data-label="75">
+<h2 class="chapter">Chapter 75: The Branches of Jiangxiang Gang 🔒</h2>
+<p>Shopkeeper Feng poured Li Banfeng a cup of tea. After pondering in silence for a long while, he said, &#34;I can&#39;t say for sure what&#39;s inside this gramophone. A merchant from Greenwater Bay sold it to me.</p>
+<p>&#34;He asked for one hundred and eighty thousand. I examined the gramophone carefully. I verified that the brand was authentic, the craftsmanship was solid, and the condition was nearly new. It was worth the price, so I didn&#39;t bargain and bought it from him. However, within less than three days of it being at my home, trouble struck.</p>
+<p>&#34;When I tried to track that merchant down, I discovered that he had already left Medicine King Gully. Since most residents of Greenwater Bay are wealthy, it was easy to ask friends there to look into him. I later learned that he had once belonged to a moderately wealthy family in Greenwater Bay. After attaching himself to the Lu Family, he managed to profit from several successful business deals. With his newfound wealth, he purchased a large mansion. However, on the very day he moved in, more than a dozen members of his family died under mysterious circumstances.</p>
+<p>&#34;I suspected that this was connected to the gramophone, but I found no proof. Even if I had, it would have been useless. If I had realized the gramophone was strange before agreeing to the purchase, I would have told him to get the fuck out. Unfortunately, the deal was already sealed, and nothing I said afterward could change that. In the end, I could only blame myself for having...</p>
+</article>
+<article id="c76" data-label="76">
+<h2 class="chapter">Chapter 76: Reading the Newspaper 🔒</h2>
+<p>Hiding inside the Pocket Dwelling might have seemed safe, but that plan would not work.</p>
+<p>If Li Banfeng hid in the Pocket Dwelling and never came out, he would be completely cut off from the outside world. This would be even worse than hiding in the Yu Family Village. Without knowing how events were unfolding outside, he could not make any real preparations or responses. Unless he chose to remain in the Pocket Dwelling for the rest of his life, there was a chance he would die the moment he stepped outside.</p>
+<p>Since passive defense would not work, he needed to change his strategy.</p>
+<p>Li Banfeng looked down at the paper in his hand and asked, &#34;What kind of places are Trailhead Inn, Elysian Melody Dancehall, and Azure Pond Teahouse?&#34;</p>
+<p>Shopkeeper Feng replied, &#34;They are all businesses owned by the Jiangxiang Gang. They are on this very street and very close to the Yu Family Cloth Shop. I won&#39;t bother explaining the inn and the teahouse. As for the dancehall, it is a place of pleasure filled with singing and dancing.&#34;</p>
+<p>Li Banfeng nodded. &#34;Its name is Elysian Melody, so it must be a place devoted to studying music.&#34;</p>
+<p>&#34;Music… erm… how should I put it?&#34; Shopkeeper Feng said, struggling to find the right words.</p>
+<p>Li Banfeng took a sip of tea....</p>
+</article>
+<article id="c77" data-label="77">
+<h2 class="chapter">Chapter 77: Elysian Melody Dancehall 🔒</h2>
+<p>&#34;Can&#39;t you see I&#39;m busy?&#34; Li Banfeng said irritably as he tidied the newspapers.</p>
+<p>&#34;To save my darling Li, I left my home ah~ Yet darling Li rose high, crowned top scholar in the imperial hall ah~</p>
+<p>&#34;Hey ya~ my good husband, beneath the candle&#39;s glow, are you studying still for that grand exam~?&#34;</p>
+<p><em>She can even sing Huangmei opera</em>[1], Li Banfeng thought. &#34;I am not studying for the imperial exam. I am checking how many enemies I have.&#34;</p>
+<p>The more he read, the more the rigid and tense his expression grew.</p>
+<p>The gramophone hissed and released a puff of steam. Then, keeping a steady rhythm, it began to sing.</p>
+<p>&#34;Fear not the many foes that come our way~</p>
+<p>&#34;If one appears, my husband shall strike one down~</p>
+<p>&#34;If two appear, he shall strike a pair~</p>
+<p>&#34;But don&#39;t be too cruel, spare a breath~</p>
+<p>We&#39;ll bring a dish home for our meal today~&#34;</p>
+<p>Li Banfeng sat beside the gramophone, caressing the side of its wooden cabinet with a rueful smile. &#34;Wifey, exactly. That&#39;s my plan. But all my enemies are stronger than me. If I can&#39;t kill them, who&#39;s going to bring you any ingredients? No enemies, no dinner.&#34;</p>
+<p><em>Pop... crackle... pop...</em></p>
+<p>The gramophone let out a few hissing laughs.</p>
+<p>Li Banfeng frowned. &#34;What are you laughing at?&#34;</p>
+<p>&#34;My...</p>
+</article>
+<article id="c78" data-label="78">
+<h2 class="chapter">Chapter 78: Nightfiend Cultivation 🔒</h2>
+<p>Zhou Yujuan, the owner of the Elysian Melody Dancehall, stood on the second-floor balcony in a dark purple cheongsam. She rested one arm on the railing and lightly fanned herself with a round fan in her other hand. Her gaze moved across the dance floor below and came to rest on Li Banfeng. After watching him for a while, her brows drew together in a faint frown.</p>
+<p>On the dance floor, Li Banfeng had already danced six songs in a row and switched partners six times.</p>
+<p><em>This guest doesn&#39;t know the rules too well</em>, Zhou Yujuan thought.</p>
+<p>In a dancehall like this, dancing was never the real purpose. The real objective was to find a partner. After two or three songs, once a match was made, the pair would usually head upstairs or step outside to find a more private spot for what came next.</p>
+<p>However, Li Banfeng was only dancing and not picking anyone, which was not a suitable behavior in such a place.</p>
+<p>Zhou Yujuan beckoned one of the girls over and whispered, &#34;Tell that man it&#39;s eighty yuan per dance. Have him pay first.&#34;</p>
+<p>A song lasted barely three minutes. Charging Li Banfeng eighty yuan was her way of telling him to leave and stop taking advantage of the girls.</p>
+<p>The girl returned soon after,...</p>
+</article>
+<article id="c79" data-label="79">
+<h2 class="chapter">Chapter 79: I Once Had a Love 🔒</h2>
+<p>Li Banfeng knew that his wifey&#39;s singing could lure ghosts as Shopkeeper Feng had told him about it.</p>
+<p>At first, he had wanted to bring his little wifey out to take care of the problem directly, but his wifey had refused, saying that a dwelling spirit wasn’t allowed to leave the house. She also reminded him that, as a proper married woman, she couldn’t be showing herself in public all the time. Buying groceries and such still had to be done by Li Banfeng himself.</p>
+<p>His little wifey had recorded a vinyl for Li Banfeng. It was this very song called <em>I Once Had a Love.</em></p>
+<p>All the ghost servants were utterly entranced as they listened, seemingly unaware of Li Banfeng’s presence.</p>
+<p>In truth, they weren’t so lost in the music that they didn’t notice him. Whenever Li Banfeng turned the gramophone a bit too fast, the ghost servants would immediately grow upset and cast a few sharp glares his way.</p>
+<p>Operating the gramophone truly required skill. With one hand turning the winding handle, Li Banfeng used the other to unlock the Pocket Dwelling with his key.</p>
+<p>From the open doorway of the Pocket Dwelling, the ghost servants heard an even lovelier voice, one far more beautiful than the tune played by the hand-cranked gramophon...</p>
+</article>
+<article id="c80" data-label="80">
+<h2 class="chapter">Chapter 80: If You All Still Don&#39;t Know What Pain Feels Like 🔒</h2>
+<p>Zhou Yujuan jolted awake. From the corridor came faint noises that sounded like a fight.</p>
+<p>She was not mistaken. Du Hongxi&#39;s two men had fought briefly with Li Banfeng before dying.</p>
+<p>She slipped into her robe and crept to the door. Her hand brushed the doorknob, but before she could turn it, she stopped and pulled her hand back.</p>
+<p>Through the door, she heard someone breathing.</p>
+<p><em>Is it Du Hongxi? No, it doesn&#39;t sound like him</em>, Zhoui Yujuan thought.</p>
+<p>The breathing was lighter than his and came from higher up, at a height that didn&#39;t match where Du Hongxi would normally be.</p>
+<p><em>Knock, knock, knock!</em></p>
+<p>The knocking began.</p>
+<p><em>It&#39;s definitely not Du Hongxi! Du Hongxi would never knock on the door! </em>Zhou Yujuan muttered inwardly.</p>
+<p>Zhou Yujuan stepped back toward the bed and pulled a pair of scissors from the drawer beside her pillow.</p>
+<p>As a first-level Spycraft Cultivator, she was not skilled in combat, so she had spent a large sum of money on this special weapon.</p>
+<p>The scissors measured more than twenty centimeters and were completely black except for a few dark red stains along the blades.</p>
+<p>The knocking stopped. Zhou Yujuan held her breath and listened. The breathing outside the door continued.</p>
+<p><em>Click!</em></p>
+<p>The doorknob turned. The person outside...</p>
+</article>
+<article id="c81" data-label="81">
+<h2 class="chapter">Chapter 81: Don&#39;t Do Anything 🔒</h2>
+<p>Standing before the ruins of the Elysian Melody Dancehall, Shi Boyu, the master of the second branch of the Medicine King Hall of Jiangxiang Gang, remained silent for a long time.</p>
+<p>The Elysian Melody Dancehall had exploded!</p>
+<p>Someone had blown up the Elysian Melody Dancehall!</p>
+<p>That was the Jiangxiang Gang&#39;s business. It had been the second branch&#39;s most profitable venture. Just yesterday, it had been perfectly fine, and now it lay in ruins after the explosion.</p>
+<p>Not only was the dancehall gone, but Wind Watcher Du Hongxi and the manager of the dancehall, Zhou Yujuan, were missing. It was uncertain as to whether they were dead or alive.</p>
+<p><em>Who did this? Was that person insane? Who would dare blow up the Jiangxiang Gang&#39;s dancehall and kill their people? What did he take the Jiangxiang Gang for? </em>Shi Boyu&#39;s thoughts churned in anger.</p>
+<p>Shi Boyu had once served as a Redstaff Enforcer under the Third Branch of the Greenwater Hall. After earning great merit, he was promoted to master of the second branch of the Medicine King Hall, yet he had been in office for less than two months when this disaster struck.</p>
+<p>It started to rain, and Shi Boyu&#39;s mood sank to its lowest point.</p>
+<p>Xiang Guicheng, the third-level Martial Cultivator and also the Redstaff Enforcer of the second branch, glared at the...</p>
+</article>
+<article id="c82" data-label="82">
+<h2 class="chapter">Chapter 82: Adding Another Chamber for My Husband 🔒</h2>
+<p><em>Do nothing?</em></p>
+<p>Shi Boyu was clearly very unsatisfied with Sun Xiao&#39;an&#39;s answer. &#34;The dancehall was blown up, and the Geng Family&#39;s medicinal trading house was burned down. And you&#39;re saying that we should just let it be and not do anything?&#34;</p>
+<p>Sun Xiao&#39;an shook his head repeatedly. &#34;Branch Master Shi, those two matters might not even be related.&#34;</p>
+<p>&#34;How could they not be? The Geng Family and Yu&#39;s Cloth Shop were at each other&#39;s throats. Nanny Butch was obviously the person who burned down the Geng Family&#39;s place. I sent people to keep watch on the Yu&#39;s Cloth Shop, and right after that, the dancehall exploded. Isn&#39;t that Nanny Butch getting revenge on us?&#34;</p>
+<p>Holding his water pipe, Sun Xiao&#39;an sighed. &#34;Branch Master Shi, I&#39;ll say it again. Nanny Butch doesn&#39;t have the ability to blow up a dancehall. You know what Du Hongxi does for a living, and yet, Nanny Butch somehow managed to kill him? Furthermore, even if she really did burn down the Geng Family&#39;s medicinal trading house, that was her personal feud with Geng Zhiwei. Now that Geng Zhiwei&#39;s dead, that grudge should be over now.&#34;</p>
+<p>Shi Boyu looked even more displeased. &#34;How can you say the grudge is over? The Geng Family is under the Jiangxiang Gang&#39;s protection. Someone died, and you expect us to just stand by and do nothing?&#34;</p>
+<p>Sun Xiao&#39;an shook his head again. &#34;Who says we&#39;re doing nothing? Haven&#39;t we already done enough? Out of the four supervisors in this branch, we&#39;ve sent three to look into it. Haven&#39;t we shown them enough respect?</p>
+<p>&#34;And let&#39;s look even further back....</p>
+</article>
+<article id="c83" data-label="83">
+<h2 class="chapter">Chapter 83: Perceiving the Spirit&#39;s Melody 🔒</h2>
+<p><em>The second level?</em></p>
+<p><em>I&#39;ve become a level-two Homebound Cultivator?</em></p>
+<p><em>Doesn&#39;t it take ten years to gain even one level of cultivation?</em></p>
+<p><em>It has only been two months since I started cultivating, and I&#39;m already a level-two Homebound Cultivator?</em></p>
+<p><em>Oh, I almost forgot. A Homebound Cultivator&#39;s advancement depends on their dwelling spirit. According to Luo Yuni, it doesn&#39;t matter how long they cultivate for. If a cultivator fails to please the dwelling spirit, they will never advance.</em></p>
+<p>That had led Li Banfeng to misunderstand, thinking that the dwelling spirit could only hinder one&#39;s advancement.</p>
+<p>Unexpectedly, a dwelling spirit could also <em>assist</em> in the advancement. The Gramophone had provided him with such a huge boost that he found it hard to believe it was real.</p>
+<p><em>Ten years&#39; worth of cultivation!</em></p>
+<p>Li Banfeng had been a Homebound Cultivator for less than three months. Yet, he had somehow, in the blink of an eye, just gained the...</p>
+</article>
+<article id="c84" data-label="84">
+<h2 class="chapter">Chapter 84: Blood and Qi, Break Through 🔒</h2>
+<p>Under the steam&#39;s gentle caress, Li Banfeng slowly opened his eyes.</p>
+<p>&#34;Heyaaaa~ Husband dear~ You&#39;re finally awake!&#34;</p>
+<p>The steam supported Li Banfeng and helped him sit on the edge of the bed.</p>
+<p>Li Banfeng rubbed the back of his aching head and asked the Gramophone, &#34;What sound did I just hear?&#34;</p>
+<p>&#34;An indescribable sound.&#34;</p>
+<p>&#34;Can I try listening again?&#34;</p>
+<p>&#34;Oh, dear husband, if you listen to it again, I will become a widow.&#34;</p>
+<p>&#34;Why can&#39;t I listen again? Is it because this dwelling&#39;s level is too high?&#34;</p>
+<p>&#34;Yes, dear husband. Its level is so high that it is unfathomable.&#34;</p>
+<p>&#34;But I did hear something earlier.&#34;</p>
+<p>&#34;This, this...&#34; The Gramophone could not explain it either. &#34;Maybe the dwelling isn&#39;t shy, so it gave you a hint. Dear husband, every enchanted artifact in this world has a price that must be paid each time it is used. This earring doesn&#39;t cost much to use once, but if you use it too often, you will hear strange sounds. Some sounds are fine to hear, but others will invite disaster. You must be careful.&#34;</p>
+<p><em>Hear strange sounds?</em></p>
+<p><em>That&#39;s about the same as putting on heavy makeup; it&#39;s nothing serious.</em></p>
+<p>Li Banfeng then wondered what else he had at home that possessed spirit essence.</p>
+<p>However, it seemed that the Arcane Crimson Lotus had already consumed and refined everything that had spirit essence.</p>
+<p>The Gramophone reminded Li Banfeng, &#34;Dear husband, I&#39;m not sure if you did it intentionally. But Crimson Lotus, that hussy, just refined an enchanted artifact for you. Why don&#39;t you try it? Do you loathe enchanted artifacts, or do you loathe that hussy?&#34;</p>
+<p><em>It&#39;s not about loathing; I simply forgot.</em></p>
+<p>Li Banfeng took out the earring, held it to his ear, and listened for a moment. He shook his head and said, &#34;There&#39;s no sound.&#34;</p>
+<p>&#34;Dear...</p>
+</article>
+<article id="c85" data-label="85">
+<h2 class="chapter">Chapter 85: Ascetic Cultivator 🔒</h2>
+<p>Chubby Qin&#39;s qi and blood surged out of control. He had reached the limits of his body.</p>
+<p>There was a very simple reason for that.</p>
+<p>A Gourmandism Cultivator could rapidly convert food into vital nourishment, and a large portion of that nourishment would transform into new blood cells.</p>
+<p>For older Gourmandism Cultivators, their slower blood production would balance things out, so it rarely caused problems.</p>
+<p>However, Chubby Qin was still young, so he had a good blood production rate. The food transformed too quickly, and now his blood vessels were on the verge of bursting!</p>
+<p>Zhang Liuze had once seen a Gourmandism Cultivator die from ruptured blood vessels. He should have been more cautious.</p>
+<p>However, that had been more than twenty years ago, so Zhang Liuze hadn&#39;t thought of it beforehand.</p>
+<p>&#34;Brother, stop eating!&#34; Zhang Liuze exclaimed quickly to stop Chubby Qin from eating any more. Then he turned to his men and ordered, &#34;Go to the pond and catch some leeches!&#34;</p>
+<p>&#34;What for?&#34;</p>
+<p>&#34;Don&#39;t fucking ask. Just go!&#34;</p>
+<p>Just after saying that, Zhang Liuze noticed Chubby Qin was still stuffing buns into his mouth.</p>
+<p>Zhang Liuze grabbed him tightly. &#34;Brother, didn&#39;t I tell you to stop eating?&#34;</p>
+<p>Panting, Chubby Qin said, &#34;Brother Liu, with all these people watching, I&#39;d rather die than fail to finish these ten kilograms of buns.&#34;</p>
+<p>&#34;As if I&#39;ll fucking let you do that!&#34; Zhang Liuze growled, pressing Chubby Qin against his chair to stop him from eating.</p>
+<p>Murmurs rippled through the crowd.</p>
+<p>&#34;What&#39;s going on?&#34;</p>
+<p>&#34;His qi and blood are surging. He has to stop eating. If he keeps eating, he&#39;ll die.&#34;</p>
+<p>&#34;Look how red his face is. It might already be too late. Everything he&#39;s eaten has turned to blood. If he doesn&#39;t let some of his blood out, he&#39;s finished!&#34;</p>
+<p>&#34;Isn&#39;t that easy to resolve? Just slice him open and let him bleed.&#34;</p>
+<p>&#34;Are you trying to kill him? It&#39;s not that simple! His blood and qi are raging within...</p>
+</article>
+<article id="c86" data-label="86">
+<h2 class="chapter">Chapter 86: Let&#39;s Head to the Branch Hall 🔒</h2>
+<p>Li Banfeng stomped down and kicked Zhong Desong into the boiling water. Steam rose at once, scalding his foot, and he quickly pulled it back.</p>
+<p>As a second-level Homebound Cultivator and a level-one Wanderlust Cultivator, Li Banfeng already found the heat painfully unbearable from a single touch, not to mention Zhong Desong, who was completely submerged in the boiling water.</p>
+<p>With all his strength, Zhong Desong lifted his head out of the water. In that instant, Li Banfeng took out his iron ruler and thrust it into the top of Zhong Desong&#39;s head, pushing him back underwater.</p>
+<p>The iron ruler burned red, and Li Banfeng quickly pulled it back before stomping hard on Zhong Desong&#39;s head again.</p>
+<p>When Zhong Desong swam to the opposite wall and tried to lift his head above the surface, Li Banfeng leapt over and kicked him back down.</p>
+<p>Zhong Desong tried again and again to escape the pool of scalding tea, but Li Banfeng never gave him the chance.</p>
+<p>He was boiled alive in the water for nearly five minutes.</p>
+<p>Ascetic Cultivators were known to endure pain beyond human imagination. However, this kind of agony was beyond what a second-level Ascetic Cultivator could endure.</p>
+<p>Holding...</p>
+</article>
+<article id="c87" data-label="87">
+<h2 class="chapter">Chapter 87: Let’s See Who Can Last Longer! 🔒</h2>
+<p>Branch Master Shi Boyu returned to the Branch Hall and sat quietly in the main hall.</p>
+<p>Something had happened to Zhong Desong, and it left Shi Boyu feeling deeply irritated and restless.</p>
+<p>Once again, the second branch had lost yet another leader. Shi Boyu knew that this would make it hard for him to hold his head high before the hall master. Still, all he felt was irritation, one that had yet to flare into real anger. After all, those leaders were already on the list of people he planned to have killed sooner or later.</p>
+<p>The Redstaff Enforcer, Xiang Guicheng, constantly opposed him in public and he thought this person deserved to be killed the most. As for the Wind Watcher, Du Hongxi, he was no better, though he was already dead.</p>
+<p>The Virtuous Adept, Zhong Desong, never revealed his thoughts and always remained expressionless. Yet, when recommending new candidates for leadership positions, he never consulted Shi Boyu. That alone showed his lack of respect for the branch master.</p>
+<p>Even Sun Xiao’an, the Heartkeeper, was not someone Shi Boyu could fully trust. Whenever he watched him puffing on that bubbling water pipe, he could never tell what the man was thinking.</p>
+<p>Currently, Shi Boyu had placed a slow-acting poison on all of them. He would let the obedient ones live for a few more years. As for the disobedient ones, he would send them to their graves soon.</p>
+<p>Yet misfortune suddenly befell Zhong Desong, and it left Shi Boyu deeply puzzled.</p>
+<p>The Elysian Melody Dancehall had been blown up, and the master of the Medicine King Hall under the Jiangxiang Gang believed that neither Yu Nan nor Qin Tianjiu was behind it.</p>
+<p>Someone else...</p>
+</article>
+<article id="c88" data-label="88">
+<h2 class="chapter">Chapter 88: Tang Saber 🔒</h2>
+<p>Li Banfeng vomited yellow bile, then green, then bitter, and finally salty water, until nothing more came out. When his stomach was completely empty, he stumbled and forced himself to his feet.</p>
+<p>The record turned slowly on the gramophone as it sang in a soft, lilting voice, &#34;Husband dear~ Why must you fight such a bitter battle?&#34;</p>
+<p>Li Banfeng shook his head. &#34;If I end up winning, it won&#39;t be a tough fight. Wifey, I&#39;ll trouble you to clean up here. I&#39;ll be right back.&#34;</p>
+<p>&#34;Husband dear~ Where art thou going again?&#34;</p>
+<p>&#34;To buy groceries.&#34;</p>
+<p>&#34;This little wifey is not hungry today~ So husband dear~ You need not stray.&#34;</p>
+<p>Li Banfeng paused and glanced at the gramophone. &#34;Feeling sorry for me now?&#34;</p>
+<p>The gramophone replied sweetly, &#34;This little wifey~ loves her husband night and day~ My heart aches for thee in every way.&#34;</p>
+<p>Li Banfeng chuckled under his breath and left the Pocket Dwelling.</p>
+<p>The needle swayed gently as a wisp of steam rose from the gramophone.</p>
+<p>Its voice faded into a whisper. &#34;This is a man who will achieve great things.&#34;</p>
+<hr class="separator">
+<p>When Li Banfeng returned to the Branch Hall, the tea on the floor had already dissipated.</p>
+<p>Shi Boyu lay motionless on the ground, and Li Banfeng didn&#39;t approach recklessly.</p>
+<p>He first picked up the keys. Whether Shi Boyu was dead or alive, Li Banfeng had to retrieve them, or he would not be able to leave the Branch Hall.</p>
+<p>After putting the keys away, Li Banfeng picked up the teapot. A voice came from within the enchanted artifact, whispering in his ear, &#34;Are you cold? Do you want to get warm?&#34;</p>
+<p>Li Banfeng ignored it, pocketed the scissors on the floor, and walked toward Shi Boyu.</p>
+<p>He first took out an iron ruler...</p>
+</article>
+<article id="c89" data-label="89">
+<h2 class="chapter">Chapter 89: It Turned Out to Be an Old Acquaintance 🔒</h2>
+<p>At three in the afternoon, Li Banfeng woke groggily and heard a voice in his ear.</p>
+<p>&#34;Over the vast desert, a single plume of smoke rises straight,</p>
+<p>&#34;Along the long river, the sun sets round and full.&#34;</p>
+<p>“What do you mean, round and full?” Li Banfeng muttered. When he opened his eyes, he saw the Tang saber standing upright in midair before him.</p>
+<p>Li Banfeng stood frozen for a long moment, then heard the Tang saber say slowly, “The time for the decisive battle has come.”</p>
+<p>Li Banfeng had almost forgotten. Last night, he and the Tang saber had agreed to settle their duel today.</p>
+<p>Flames leapt from the gramophone’s oil tank, and through bursts of steam came a lilting voice singing, “Husband dear~ this little wifey told you so~ this saber cannot stay~ oh no~ it cannot be kept~!”</p>
+<p>The Tang saber turned toward the gramophone, looking somewhat wary. “This duel is one of honor between us. None other shall intrude.”</p>
+<p><em>Hiss~</em></p>
+<p>The gramophone sneered, “Why bother talking about rules with a woman like me?”</p>
+<p>The Tang saber stepped back two paces and said to Li Banfeng, &#34;You outnumber me, yet call this a fair fight? Even if I am defeated, I will not gladly admit defeat.&#34;</p>
+<p><em>Whoosh!</em></p>
+<p>Steam hissed from the gramophone.</p>
+<p>The gramophone sang slowly, “Is it many bullying few? Without him lifting a hand, I can make your soul disperse into nothing.”</p>
+<p>&#34;You are… This is…&#34;</p>
+<p>While the Tang saber was still searching for an excuse, Li Banfeng got up, scooped...</p>
+</article>
+<article id="c90" data-label="90">
+<h2 class="chapter">Chapter 90: He Smiled 🔒</h2>
+<p>Qiu Zhiheng followed Xiao Yeci and Lu Chunying to the old He Family residence.</p>
+<p>As they arrived at the gate, he stopped abruptly and moved in front of them, keeping the two safely behind him.</p>
+<p>He quietly observed the residence and immediately noticed something unusual.</p>
+<p>In the distance, Li Banfeng watched in silence. He took out the Threaded Earring, put it on, and tapped it twice.</p>
+<p>A faint voice came through. &#34;Master, awaiting your orders.&#34;</p>
+<p>It turned out to be a spirit-bound enchanted artifact.</p>
+<p>&#34;Listen to their conversation,&#34; Li Banfeng said in a low voice.</p>
+<p>As the Threaded Earring gave a slight tremble, Li Banfeng could clearly hear Monkey Qiu and Xiao Yeci talking.</p>
+<p>Monkey Qiu said, &#34;There&#39;s a dwelling spirit in the house. It&#39;s not a high-level one, but since this is its house, it&#39;s not an easy one to deal with.&#34;</p>
+<p>Xiao Yeci exclaimed in surprise, &#34;Steward Qiu, so Miss Xiaolan is a Homebound Cultivator?&#34;</p>
+<p>Qiu Zhiheng shook his head. &#34;No. She isn&#39;t a Homebound Cultivator, and this spirit doesn&#39;t belong to her. She&#39;s trapped inside this place.&#34;</p>
+<p>Xiao Yeci...</p>
+</article>
+<article id="c91" data-label="91">
+<h2 class="chapter">Chapter 91: Unexpected Visitor 🔒</h2>
+<p>It was eleven o&#39;clock at night in the underground cell of the Lu Family residence in Greenwater Bay.</p>
+<p>Lu Xiaolan sat inside, facing Lu Dongliang&#39;s younger brother, Lu Dongjun.</p>
+<p>&#34;Xiaolan, you have to tell me first how you ended up at the He Family&#39;s old residence,&#34; Lu Dongjun asked with a warm and gentle smile.</p>
+<p>Lu Xiaolan shook her head. &#34;I will only tell my father. Why won&#39;t my father come see me?&#34;</p>
+<p>Lu Dongjun sighed. &#34;Xiaolan, your father heard some rumors and took them the wrong way. I came here to hear your side of the story and help clear things up.&#34;</p>
+<p>Lu Xiaolan turned her head aside, not wanting to pay Lu Dongjun any attention.</p>
+<p>Zhuo Yuling entered the cell, frowned at her daughter, and said sternly, &#34;Xiaolan, you mustn&#39;t be unruly. Whatever your Second Uncle asks, you must answer honestly.&#34;</p>
+<p>At the sight of Zhuo Yuling, Lu Xiaolan&#39;s eyes reddened. &#34;Mom...&#34;</p>
+<p>&#34;Good girl, Mom believes you. Talk properly with your Second Uncle and tell the whole truth,&#34; Zhuo Yuling said as she draped a coat over Lu Xiaolan&#39;s shoulders.</p>
+<p>The guard thought such an act was against the rules, but he couldn&#39;t bring himself to speak up as a mother draped a coat over her daughter.</p>
+<p>Lu Xiaolan let out a quiet sob, adjusted her tone, and answered Lu Dongjun, &#34;I boarded the train with He Jiaqing. We were seated in the same carriage, but not long after he boarded, he said he needed to step out. He left and never came back.</p>
+<p>&#34;When I went looking for him, I found many members of the He family on the train. Their cultivation levels were all above the fifth level,...</p>
+</article>
+<article id="c92" data-label="92">
+<h2 class="chapter">Chapter 92: Fate    🔒</h2>
+<p>At Greenwater Bay, in the Lu Family residence.</p>
+<p>Lu Xiaolan was released from the underground cell and sent back to her bedroom.</p>
+<p>To be honest, she wasn&#39;t sure if this was a good sign.</p>
+<p>That night, Lu Dongliang came to see her. Since her return to the Lu Family residence, it was the first time she had seen her father.</p>
+<p>When she bowed properly to her father, he gave her a gentle, fatherly smile and said, &#34;Sit down. You&#39;re home now. There&#39;s no need to be so tense.&#34;</p>
+<p>He continued, &#34;Xiaolan, you&#39;ve suffered these past few days, but I had no choice. Some things had to be done for the He Family to see.&#34;</p>
+<p>&#34;I&#39;ve heard what your mother said about He Jiaqing, and I believe you. However, there&#39;s still some questions I must ask you about Li Banfeng. I have already hired someone to investigate this.</p>
+<p>&#34;It is true that Li Banfeng arrived in Puluo Province. He got off the train at Medicine King Gully and proceeded to disappear without a trace. I believed you when you said that he was at the He Family&#39;s old residence. But I received news from people at the Outer Provinces that he is a bleater. He has no cultivation power. Even if he did meet the Peddler after he got off the train, he should just be some scumbag who hasn&#39;t even reached the level one of cultivation. So how did he escape from the He Family&#39;s old residence?&#34;</p>
+<p>Lu Xiaolan shook her head. &#34;I already told Mother and Second Uncle. I really don&#39;t know how he got out.&#34;</p>
+<p>Lu Dongliang fell silent for a moment, his brows knitting slightly. &#34;Xiaolan, we all know...</p>
+</article>
+<article id="c93" data-label="93">
+<h2 class="chapter">Chapter 93: The Disease Cultivator 🔒</h2>
+<p>The sudden appearance of the foreigner Cedric surprised Daboinsky.</p>
+<p>He remembered the foreigner vividly from their first encounter outside the general store. The man’s body had been covered in strange rashes that left Daboinsky so uneasy he kept checking himself afterward, afraid of being infected.</p>
+<p>His behavior had been odd too. He had come all the way to Medicine King Gully yet hadn’t even known where to buy medicine, which had already made Daboinsky suspicious.</p>
+<p>What Daboinsky never expected was that this foreigner was also after Li Banfeng.</p>
+<p>Cedric did not even work on investigating Li Banfeng&#39;s whereabouts. He had simply waited for Daboinsky to find Li Banfeng, intending to swoop in and claim the prize for himself.</p>
+<p>Could there really be such a good deal in the world?</p>
+<p>Daboinsky laughed. “Very well, then. I shall be generous. He is right there. Come along, old chap, and take him if you can.”</p>
+<p>Li Banfeng was trapped within layers of spiderwebs, and Daboinsky was curious to see how Cedric planned to get close to him.</p>
+<p>Cedric&#39;s green eyes blinked. “Would you be so kind as to clear these webs away? It would make things far easier for me.”</p>
+<p>Daboinsky stared at him for a moment...</p>
+</article>
+<article id="c94" data-label="94">
+<h2 class="chapter">Chapter 94: The Boundary Line   🔒</h2>
+<p>In the Outer Gully of Mount Pricklebamboo, Li Banfeng crouched among the bamboo. He wore a fedora and a fake beard that concealed his face as he silently watched the clearing ahead.</p>
+<p>The clearing lay beneath a thick layer of dust, barren of even a single blade of grass. Aside from that, nothing seemed unusual.</p>
+<p>A butterfly fluttered toward the center, but the instant it reached it, its wings dissolved into a wisp of smoke and vanished.</p>
+<p>A rabbit hopped into the clearing, took two leaps forward, and disintegrated into a cloud of dust that got carried away by the wind.</p>
+<p>A bamboo leaf swept across the clearing on the wind and likewise crumbled into dust.</p>
+<p>A mosquito buzzed by, and when Li Banfeng swatted it toward the clearing, it too became a tiny puff of dust.</p>
+<p>Li Banfeng folded a paper airplane and sent it gliding across the boundary line. It, too, disintegrated into dust.</p>
+<p>He picked up a small stone and tossed it over. That, as well, crumbled into dust.</p>
+<p>A dark cloud drifted overhead and released a few drops of rain. Each drop struck the boundary with a faint pop, evaporating in an instant.</p>
+<p>Mount Pricklebamboo sat on the border between Medicine King Gully and Greenwater Bay. Travelers taking the train would pass through Greenwater Bay first, then Girdle-Slipping Hollow, before finally arriving at Medicine King Gully.</p>
+<p>Geographically, the three places were right next to each other with their borders overlapping like threads on a map. However, the stretch of land between Greenwater Bay and Medicine King Gully was remote and rarely visited.</p>
+<p>Why did Li Banfeng choose to visit the Greenwater Bay instead of the Girdle-Slipping Hollow? This decision was thanks to the many...</p>
+</article>
+<article id="c95" data-label="95">
+<h2 class="chapter">Chapter 95: Someone of the Same Name, Peddler Road 🔒</h2>
+<p>Nectarine went into the specifics of the checkpoint. &#34;There&#39;s only one border checkpoint within fifty kilometers, but it isn&#39;t fixed.&#34;</p>
+<p>Li Banfeng still didn&#39;t get it. &#34;If there&#39;s only one checkpoint, why isn&#39;t it fixed in one place?&#34;</p>
+<p>Nectarine patiently explained, &#34;That&#39;s the rule set by the Border Controller. The checkpoint changes location every day. Anyone who wants to cross brings a travel permit to the patrol office in the morning, and they cross through the checkpoint together at noon. They say it&#39;s to make it impossible for anyone to make preparations to pass through the checkpoint illegally.&#34;</p>
+<p>It truly was hard to make preparations for a checkpoint with no fixed location. That meant Li Banfeng found no chance to set things up in advance.</p>
+<p>After thinking for a moment, Li Banfeng asked, &#34;Do you have a way to cross through the checkpoint?&#34;</p>
+<p>Nectarine blinked. &#34;What do you mean? Just have your friend bring a travel permit. In two days, I&#39;ll take him to the patrol office, and he can go straight through.&#34;</p>
+<p>Li Banfeng raised his brows. &#34;And what if he doesn&#39;t have a travel permit? How can he cross through?&#34;</p>
+<p>&#34;No permit means you&#39;d be passing the border illegally, doesn&#39;t it? What&#39;s your friend&#39;s background?&#34; Nectarine said as she stepped closer...</p>
+</article>
+<article id="c96" data-label="96">
+<h2 class="chapter">Chapter 96: The Border Package 🔒</h2>
+<p>At dusk, Li Banfeng took a walk through the wilderness.</p>
+<p>The previous night, he had practiced using the iron ruler with the Gramophone inside the Pocket Dwelling for the entire night. After eating two cans of food, he went to sleep. When he woke up, it was already five in the afternoon.</p>
+<p>Making use of the remaining daylight, Li Banfeng quickly finished his daily foundational cultivation requirement as a Wanderlust Cultivator.</p>
+<p>Mount Pricklebamboo was vast and treacherous. Walking five hundred meters along its steep mountain paths yielded the same cultivation progress as walking seven hundred and fifty meters under normal conditions.</p>
+<p>After trekking for over one hundred and fifty kilometers, Li Banfeng felt a response within his body. He had completed his daily foundational cultivation requirement.</p>
+<p>Since beginning his journey on the Wanderlust Cultivator&#39;s path more than two months ago, Li Banfeng had never missed a day of cultivation. By his calculations, after accounting for the time he spent following the proper order of his cultivation path, he had still managed to accumulate more than three months&#39; worth of cultivation progress.</p>
+<p>That was mainly because he often chose to cultivate in dangerous environments, where his life was always on the line.</p>
+<p>Li Banfeng intended to walk a few more kilometers to gather additional cultivation progress, but he suddenly spotted figures moving among the bamboo trees.</p>
+<p>Taking out the Threaded Earring, Li Banfeng listened for a moment and heard Wu Jinming&#39;s voice.</p>
+<p>&#34;Keep your eyes peeled. Once we get past this ridge, we&#39;ll call it a day.&#34;</p>
+<p>&#34;Come on, Captain, we&#39;ve been patrolling this mountain since last night. Not once in my entire career as a patrol officer have I done a patrol like this before.&#34;</p>
+<p>&#34;What can we do? The Lu Family&#39;s got too much power. They insisted we search for Li Banfeng.&#34;</p>
+<p>&#34;We work for the Border Controller, and he&#39;s from the Outer Provinces. Why should we get involved in the...</p>
+</article>
+<article id="c97" data-label="97">
+<h2 class="chapter">Chapter 97: The Honest Folk of Blue Poplar Village 🔒</h2>
+<p>Greenwater Bay housed the largest city in Puluo.</p>
+<p>But Blue Poplar Village didn&#39;t look much like a city at all.</p>
+<p>And in truth, it wasn&#39;t. The real city was Greenwater City. Blue Poplar Village could be considered a remote suburb at best.</p>
+<p>Standing by the roadside, Li Banfeng looked into the distance. The place didn&#39;t resemble an ordinary village either. The houses were packed far too closely together, and there were hardly any fields in sight.</p>
+<p>Blue Poplar Village wasn&#39;t a town either; it didn&#39;t quite resemble the Inner Gully in Medicine King Gully.</p>
+<p>The houses here were shabbier, filthier, and built with less care than those in the Inner Gully. Many were made of stacked bricks and stones, still considerably sturdy. However, some were just simple wooden huts without foundations. Worse still, some others were nothing more than thatched shacks.</p>
+<p>As Li Banfeng studied the strange landscape of Blue Poplar Village, he heard a deep rumble.</p>
+<p><em>Huff~ Clang! Huff~ Clang!</em></p>
+<p><em>What was that?!</em></p>
+<p>Li Banfeng flinched, thinking a train was coming.</p>
+<p>He turned around and found there was indeed something massive rolling toward him.</p>
+<p>But it wasn&#39;t a train. There were no rails beneath it.</p>
+<p>Its shape, however, was strikingly similar: a cylindrical,...</p>
+</article>
+<article id="c98" data-label="98">
+<h2 class="chapter">Chapter 98: The Fallen Young Master 🔒</h2>
+<p>How could Ma Wu possibly be digging through trash for food?</p>
+<p>He was the young master of a wealthy family. Back when Ma Wu went to the Peddler to buy the activation medicine for his cultivation, he had more than a dozen attendants with him.</p>
+<p>Though they had only met once, Li Banfeng remembered him clearly. Ma Wu had been humble and honest in speech. Back when Li Banfeng knew nothing about Puluo, Ma Wu had given him an introduction of the cultivation system and even given him some suggestions for his cultivation path.</p>
+<p>At that time, Li Banfeng had been hit by Heavenly Light, and Ma Wu had repeatedly urged him to find a way to stay alive.</p>
+<p>When Ma Wu bolted from the trash heap, Li Banfeng immediately gave chase.</p>
+<p>Ma Wu was in a frail state, and even if he wasn&#39;t, he could never outrun a Wanderlust Cultivator. When he reached an alleyway, he suddenly turned and shouted, &#34;You&#39;ve got the wrong person! I&#39;m not Ma Wu!&#34;</p>
+<p>Li Banfeng shook his head. &#34;I didn&#39;t say Ma Wu. I said one fifty[1].&#34;</p>
+<p>Ma Wu froze. &#34;One fifty for what?&#34;</p>
+<p>&#34;I&#39;m looking to hire someone,&#34; Li Banfeng...</p>
+</article>
+<article id="c99" data-label="99">
+<h2 class="chapter">Chapter 99: Ma Wu and His Seventeenth Sister-in-law 🔒</h2>
+<p>That night, Ma Wu slept on the first floor.</p>
+<p>He assumed Li Qi was resting upstairs. So when morning came, he went up to look for him, thinking about taking him on a stroll around Blue Poplar Village. But to his surprise, Li Qi was nowhere to be found.</p>
+<p>Where could he have gone?</p>
+<p>It was dangerous for an outsider to wander around Blue Poplar Village, so Ma Wu searched the whole place several times. But no matter how hard he looked, he couldn&#39;t find Li Qi.</p>
+<p>It would be impossible for him to find Li Qi, as Li Qi was currently sleeping inside the Pocket Dwelling.</p>
+<p>The night before, Li Banfeng had walked through the village from one end to the other. He took in every path, every turn, every shadow under the moonlight. By the time dawn arrived, he had not only completed his basic daily practice of Wanderlust Cultivation, but he also knew the layout of Blue Poplar Village.</p>
+<p>At the southernmost end of the village, Li Banfeng found the entrance to the new land. He climbed a tree and looked out from the top. In the distance, a few faint glimmers of light flickered in the dark, soft and steady like stars that had fallen to earth. They were proof that someone had already activated the land.</p>
+<p>On his way back, Li Banfeng ran into two bandits. He took more than three thousand yuan from them, then brought them home and left them in his wife&#39;s care for some proper education and discipline.</p>
+<p>After giving them a good scolding, his wife let out a satisfied burp and promised that those two would never offend again.</p>
+<p>By dusk, after searching the...</p>
+</article>
+<article id="c100" data-label="100">
+<span id="last"></span>
+<h2 class="chapter">Chapter 100: The Dao of Growing Money 🔒</h2>
+<p>When Ma Wu suddenly mentioned Li Banfeng&#39;s name, it gave him quite a jolt. He slowly set his chopsticks down on the edge of his bowl and simply stared at Ma Wu, saying nothing at all.</p>
+<p>The silence between them was not tense. Li Banfeng understood that if Ma Wu truly meant him harm, he would never have shared a meal with him at the same table, much less spoken of the matter so openly.</p>
+<p>Ma Wu smiled and said, &#34;Brother Li, I&#39;m talking about Li Banfeng, not you. Li Banfeng is a friend of mine. We met in Medicine King Gully. Though I&#39;ve fallen on hard times, I can still hear bits of news here and there.</p>
+<p>&#34;I heard that Li Banfeng offended the Lu Family, and they&#39;re searching for him in Medicine King Gully. If you happen to know Li Banfeng, please pass him a message. Tell him that hiding in Greenwater Bay would be the right move. Greenwater Bay is where all the great families keep their roots. None of them would dare act recklessly there.</p>
+<p>&#34;Puluo Province is vast, and finding one person in it is no easy task. The Lu Family has considerable power, but if they fail to find Li Banfeng in Medicine King Gully, they won&#39;t waste their time searching elsewhere. After all, this whole affair began with Lu Xiaolan&#39;s words alone.</p>
+<p>&#34;Besides, there have been plenty of rumors lately saying that after Li Banfeng went to...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="101-150.html" rel="next">Next: Chs 101–150 &rarr;</a>
+    <p class="page-end-links"><a href="1-50.html" rel="prev">&larr; Chs 1–50</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">The Overlord of Puluo · Chs 51–100</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c51">Chapter 51: Madam, Let&#39;s Go Buy Groceries 🔒</a></li>
+        <li><a href="#c52">Chapter 52: Millionaire 🔒</a></li>
+        <li><a href="#c53">Chapter 53: The Order of Puluo 🔒</a></li>
+        <li><a href="#c54">Chapter 54: Yu&#39;s Cloth Shop 🔒</a></li>
+        <li><a href="#c55">Chapter 55: Oil Cultivator 🔒</a></li>
+        <li><a href="#c56">Chapter 56: Rules and Boundaries 🔒</a></li>
+        <li><a href="#c57">Chapter 57: The Blood-Drinking Pendulum 🔒</a></li>
+        <li><a href="#c58">Chapter 58: For my Husband, I added a Chamber 🔒</a></li>
+        <li><a href="#c59">Chapter 59: Write Me a Promissory Note 🔒</a></li>
+        <li><a href="#c60">Chapter 60: Old Mister Yao 🔒</a></li>
+        <li><a href="#c61">Chapter 61: Exquisite Senses and Golden Discerning Eyes 🔒</a></li>
+        <li><a href="#c62">Chapter 62: Shopkeeper Yu, What Do You Think? 🔒</a></li>
+        <li><a href="#c63">Chapter 63: Watermelon 🔒</a></li>
+        <li><a href="#c64">Chapter 64: Give and Take in the Jianghu 🔒</a></li>
+        <li><a href="#c65">Chapter 65: The Crimson Lotus Does Not Eat Raw and This Wifey Does Not Eat the Dead 🔒</a></li>
+        <li><a href="#c66">Chapter 66: Whose Medicine Is the Best? 🔒</a></li>
+        <li><a href="#c67">Chapter 67: My Dear Wife, Let’s Consummate Our Marriage 🔒</a></li>
+        <li><a href="#c68">Chapter 68: Spider Detective 🔒</a></li>
+        <li><a href="#c69">Chapter 69: New Land 🔒</a></li>
+        <li><a href="#c70">Chapter 70: The Rare Purple Pill 🔒</a></li>
+        <li><a href="#c71">Chapter 71: A Basket Hanging From the Tree 🔒</a></li>
+        <li><a href="#c72">Chapter 72: Madam Bagworm Moth 🔒</a></li>
+        <li><a href="#c73">Chapter 73: Land-Activating Covenant 🔒</a></li>
+        <li><a href="#c74">Chapter 74: Once a Deal Is Done, There&#39;s No Backing Out 🔒</a></li>
+        <li><a href="#c75">Chapter 75: The Branches of Jiangxiang Gang 🔒</a></li>
+        <li><a href="#c76">Chapter 76: Reading the Newspaper 🔒</a></li>
+        <li><a href="#c77">Chapter 77: Elysian Melody Dancehall 🔒</a></li>
+        <li><a href="#c78">Chapter 78: Nightfiend Cultivation 🔒</a></li>
+        <li><a href="#c79">Chapter 79: I Once Had a Love 🔒</a></li>
+        <li><a href="#c80">Chapter 80: If You All Still Don&#39;t Know What Pain Feels Like 🔒</a></li>
+        <li><a href="#c81">Chapter 81: Don&#39;t Do Anything 🔒</a></li>
+        <li><a href="#c82">Chapter 82: Adding Another Chamber for My Husband 🔒</a></li>
+        <li><a href="#c83">Chapter 83: Perceiving the Spirit&#39;s Melody 🔒</a></li>
+        <li><a href="#c84">Chapter 84: Blood and Qi, Break Through 🔒</a></li>
+        <li><a href="#c85">Chapter 85: Ascetic Cultivator 🔒</a></li>
+        <li><a href="#c86">Chapter 86: Let&#39;s Head to the Branch Hall 🔒</a></li>
+        <li><a href="#c87">Chapter 87: Let’s See Who Can Last Longer! 🔒</a></li>
+        <li><a href="#c88">Chapter 88: Tang Saber 🔒</a></li>
+        <li><a href="#c89">Chapter 89: It Turned Out to Be an Old Acquaintance 🔒</a></li>
+        <li><a href="#c90">Chapter 90: He Smiled 🔒</a></li>
+        <li><a href="#c91">Chapter 91: Unexpected Visitor 🔒</a></li>
+        <li><a href="#c92">Chapter 92: Fate    🔒</a></li>
+        <li><a href="#c93">Chapter 93: The Disease Cultivator 🔒</a></li>
+        <li><a href="#c94">Chapter 94: The Boundary Line   🔒</a></li>
+        <li><a href="#c95">Chapter 95: Someone of the Same Name, Peddler Road 🔒</a></li>
+        <li><a href="#c96">Chapter 96: The Border Package 🔒</a></li>
+        <li><a href="#c97">Chapter 97: The Honest Folk of Blue Poplar Village 🔒</a></li>
+        <li><a href="#c98">Chapter 98: The Fallen Young Master 🔒</a></li>
+        <li><a href="#c99">Chapter 99: Ma Wu and His Seventeenth Sister-in-law 🔒</a></li>
+        <li><a href="#c100">Chapter 100: The Dao of Growing Money 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1-50.html" rel="prev">&larr; Chs 1–50</a>    <a href="../../index.html">Library</a>
+<a href="101-150.html" rel="next">Chs 101–150 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

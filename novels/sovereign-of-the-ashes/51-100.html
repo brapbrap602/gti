@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 51–100</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1-50.html#last" data-next-page="101-150.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c51">Chapter 51: Preparation 🔒</a></li>
+        <li><a href="#c52">Chapter 52: Silver Badge 🔒</a></li>
+        <li><a href="#c53">Chapter 53: Panic 🔒</a></li>
+        <li><a href="#c54">Chapter 54: Dividing The Valuables 🔒</a></li>
+        <li><a href="#c55">Chapter 55: Dark Spider 🔒</a></li>
+        <li><a href="#c56">Chapter 56: Shadow Valley 🔒</a></li>
+        <li><a href="#c57">Chapter 57: Sacrifice 🔒</a></li>
+        <li><a href="#c58">Chapter 58: Casualties 🔒</a></li>
+        <li><a href="#c59">Chapter 59: Intimate 🔒</a></li>
+        <li><a href="#c60">Chapter 60: Agony and Courage 🔒</a></li>
+        <li><a href="#c61">Chapter 61: Concerns 🔒</a></li>
+        <li><a href="#c62">Chapter 62: The Sand World 🔒</a></li>
+        <li><a href="#c63">Chapter 63: Desiccated Corpse 🔒</a></li>
+        <li><a href="#c64">Chapter 64: True Love 🔒</a></li>
+        <li><a href="#c65">Chapter 65: The Beast 🔒</a></li>
+        <li><a href="#c66">Chapter 66: Marlon 🔒</a></li>
+        <li><a href="#c67">Chapter 67: Plea 🔒</a></li>
+        <li><a href="#c68">Chapter 68: Reunion 🔒</a></li>
+        <li><a href="#c69">Chapter 69: Straightforward 🔒</a></li>
+        <li><a href="#c70">Chapter 70: The Purpose of the Elemental Beads 🔒</a></li>
+        <li><a href="#c71">Chapter 71: Elemental Mushrooms    🔒</a></li>
+        <li><a href="#c72">Chapter 72: Final Deadline 🔒</a></li>
+        <li><a href="#c73">Chapter 73: An Unexpected Turn of Events 🔒</a></li>
+        <li><a href="#c74">Chapter 74: Divine Tower Mages 🔒</a></li>
+        <li><a href="#c75">Chapter 75: Hysterical 🔒</a></li>
+        <li><a href="#c76">Chapter 76: Survive 🔒</a></li>
+        <li><a href="#c77">Chapter 77: Digging 🔒</a></li>
+        <li><a href="#c78">Chapter 78: Sandworms 🔒</a></li>
+        <li><a href="#c79">Chapter 79: Recovery 🔒</a></li>
+        <li><a href="#c80">Chapter 80: Mushroom Soup 🔒</a></li>
+        <li><a href="#c81">Chapter 81: Telepathic Communication 🔒</a></li>
+        <li><a href="#c82">Chapter 82: Deal 🔒</a></li>
+        <li><a href="#c83">Chapter 83: The Sandworm King’s Plans 🔒</a></li>
+        <li><a href="#c84">Chapter 84: Senior Initiate 🔒</a></li>
+        <li><a href="#c85">Chapter 85: The Flames of War 🔒</a></li>
+        <li><a href="#c86">Chapter 86: Appeal 🔒</a></li>
+        <li><a href="#c87">Chapter 87: Being Human 🔒</a></li>
+        <li><a href="#c88">Chapter 88: Evacuation 🔒</a></li>
+        <li><a href="#c89">Chapter 89: Ruins 🔒</a></li>
+        <li><a href="#c90">Chapter 90: Discoveries 🔒</a></li>
+        <li><a href="#c91">Chapter 91: Sea of Magma 🔒</a></li>
+        <li><a href="#c92">Chapter 92: Out of Harm’s Way 🔒</a></li>
+        <li><a href="#c93">Chapter 93: Recovering and Searching 🔒</a></li>
+        <li><a href="#c94">Chapter 94: The Severely Injured Morsidor 🔒</a></li>
+        <li><a href="#c95">Chapter 95: Conflicted 🔒</a></li>
+        <li><a href="#c96">Chapter 96: Mentor’s Legacy 🔒</a></li>
+        <li><a href="#c97">Chapter 97: Entrust 🔒</a></li>
+        <li><a href="#c98">Chapter 98: To the Surface 🔒</a></li>
+        <li><a href="#c99">Chapter 99: Medich’s Character 🔒</a></li>
+        <li><a href="#c100">Chapter 100: A New Life 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c51" data-label="51">
+<h2 class="chapter">Chapter 51: Preparation 🔒</h2>
+<p>Master Morsidor had secured an additional six-month leave for Sein so that he could focus on meditating to improve his focus and mana levels.</p>
+<p>The urgency in his mentor’s tone left Sein with no inclination to pursue new knowledge during this period.</p>
+<p>After all, six months provided inadequate time for significant progress in any specific field of magic.</p>
+<p>Instead, he realized that his quickest path to increased strength lay in improving his focus and mana levels.</p>
+<p>During this time, Sein observed that the academy’s public classes had been suspended, leaving fresh and junior initiates with no choice but to rely on the limited resources available in the public library for their studies...</p>
+</article>
+<article id="c52" data-label="52">
+<h2 class="chapter">Chapter 52: Silver Badge 🔒</h2>
+<p>The Corrosive Wand marked the pinnacle of Sein’s craftsmanship in alchemy, a product of years of dedicated study.</p>
+<p>The name itself alluded to its roots as Sein’s reinterpretation of the Acid Wand, bestowed upon him by his mentor.</p>
+<p>Unfortunately, Sein lacked the extensive experience in alchemy, focus, and elemental sensitivity that Master Morsidor possessed.</p>
+<p>Coupled with the constraints of available materials, Sein’s efforts brought the wand to the verge of barely qualifying as an intermediate magic item.</p>
+<p>Even so, it was still an achievement that filled Sein with an overwhelming sense of accomplishment!</p>
+<p>Under normal circumstances, both Morsidor and Zorro would have marveled at this remarkable...</p>
+</article>
+<article id="c53" data-label="53">
+<h2 class="chapter">Chapter 53: Panic 🔒</h2>
+<p>In this era, most divine towers and orders of the knights adopted a distinct emblem that was uniquely their own.</p>
+<p>Over the years, some mage councils and knight houses also began adopting this custom, as means to intimidate their adversaries and foster unity among their ranks.</p>
+<p>However, the silver badge held by the severely injured black mage emitted a subtle yet significant energy fluctuation.</p>
+<p>What truly intrigued and even alarmed those present, was not the energy fluctuation itself, but rather the emblem’s profound meaning and the strength it represented.</p>
+<p>Indeed, it was the emblem of one of the divine towers, and many black mages in the room recognized it.</p>
+<p>Gloomhaven was situated at the crossroads of several absolute forces.</p>
+<p>These forces represented the zenith...</p>
+</article>
+<article id="c54" data-label="54">
+<h2 class="chapter">Chapter 54: Dividing The Valuables 🔒</h2>
+<p>Sein was not privy to the discussions among the full-fledged black mages of Mystralora City.</p>
+<p>He only saw his mentor again on the night before they were set to depart.</p>
+<p>Morsidor, at this point, appeared visibly exhausted with dark circles under his eyes. It was clear that he had not had much rest for an extended period.</p>
+<p>Zorro’s condition was slightly better, but unease was still apparent on his face. It was apparent that this upcoming mission carried significant risks for him as well.</p>
+<p>Morsidor sighed and said, “The tasks the academy assigned me lately have been overwhelming. I could only spare some time to craft some items for...</p>
+</article>
+<article id="c55" data-label="55">
+<h2 class="chapter">Chapter 55: Dark Spider 🔒</h2>
+<p>As the magic bell of the Black Magic Academy resonated through the air the next day, hundreds of magic initiates, including Sein, assembled before the central flower garden.</p>
+<p>More than twenty academy overseers were also present, strategically stationed at various vantage points in the surroundings.</p>
+<p>Sein saw only six full-fledged black mages standing before the academy building but the numbers destined for the journey to Shadow Valley were unmistakably greater than that.</p>
+<p>A cloak of mist and a gathering of gray crows weaved through the atmosphere in the academy, their sudden appearance likely the handiwork of those unseen black mages.</p>
+<p>No formal announcements or explanations were offered, leaving the atmosphere...</p>
+</article>
+<article id="c56" data-label="56">
+<h2 class="chapter">Chapter 56: Shadow Valley 🔒</h2>
+<p>A week passed swiftly.</p>
+<p>In the pervasive darkness of the Underworld, Sein, aboard the airship, found it challenging to discern the precise route to Shadow Valley, despite occasionally strolling on the deck.</p>
+<p>Upon their arrival at an underground valley after a week-long journey, Sein turned to Leena, who was beside him, and asked with a hint of uncertainty, “Is this Shadow Valley?”</p>
+<p>The valley was now brilliantly illuminated with numerous magical crystal lamps and magic items, scattering light throughout and rendering it as bright as day.</p>
+<p>Sein also noticed two imposing magic towers that stretched into the sky.</p>
+<p>A blue energy shield enveloped the entire Shadow Valley, powered by elemental energy that seemed to have come from the two magic towers at the...</p>
+</article>
+<article id="c57" data-label="57">
+<h2 class="chapter">Chapter 57: Sacrifice 🔒</h2>
+<p>Amidst the eager anticipation of onlookers, the first three Quasi Mages ventured into the depths of the magic altar under the pressure of the full-fledged black mages around them.</p>
+<p>The blinding white elemental light from the altar made it impossible to see what was actually happening there.</p>
+<p>Everyone, including the full-fledged mages and black magic initiates like Sein, remained fixated on the altar.</p>
+<p>A moment later, the closest full-fledged black mages began to furrow their brows, and mournful, agonizing cries reached Sein’s ears.</p>
+<p>The light of the altar engulfed the Quasi Mages like a silent magic beast’s maw, and then everything returned to normal.</p>
+<p>“Something’s amiss! There’s an anomaly in the space-time rift. Sending...</p>
+</article>
+<article id="c58" data-label="58">
+<h2 class="chapter">Chapter 58: Casualties 🔒</h2>
+<p>“Elemental fission device?” Sein was taken aback upon hearing Zorro’s words.</p>
+<p>Memories of the alchemy experiments he had assisted his mentor with over the past few years flooded his mind.</p>
+<p>“That’s right, the one we constructed in the lab. With the magic altar obscuring our view, we can’t see what’s exactly happening inside. But once we step in, you’ll notice that many of the devices at the entrance of the space-time rift are constructed in our lab,” Zorro whispered.</p>
+<p>In addition to this revelation, Zorro also mentioned that it would not take too long to establish a new, safe route around the space-time rift.</p>
+<p>Perhaps in a few days, they would be able to resume their exploration of the magic altar and space-time rift.</p>
+<p>“I just hope that those...</p>
+</article>
+<article id="c59" data-label="59">
+<h2 class="chapter">Chapter 59: Intimate 🔒</h2>
+<p>The trials and sacrifices in Shadow Valley lasted for four days, taking a toll on not only the fresh and junior initiates, but also intermediate initiates like Sein.</p>
+<p>Fortunately, after these four grueling days, a full-fledged black mage appeared and assured them that the upcoming exploration would be significantly less perilous.</p>
+<p>Without this glimmer of hope, one could only imagine the breaking point of enduring further torment.</p>
+<p>During these four days, a peculiar incident occurred.</p>
+<p>On the third night, a junior initiate named Cindy, who had somehow discovered the location of Sein’s tent, sought refuge there.</p>
+<p>As the fourth day came to a close, approximately thirty to forty out of a little over...</p>
+</article>
+<article id="c60" data-label="60">
+<h2 class="chapter">Chapter 60: Agony and Courage 🔒</h2>
+<p>Leena entered the magic altar on the seventh day, and Faye left on the eighth day.</p>
+<p>With the fresh initiates nearly extinct, the Quasi Mages and senior initiates began entering the magic altar one after another.</p>
+<p>By the tenth day, the number of initiates in Shadow Valley had dwindled to three hundred initiates, the majority of whom were intermediate and junior initiates.</p>
+<p>It was at this point that the academy unexpectedly halted the process of sending initiates into the magic altar.</p>
+<p>Sein was not privy to the exact circumstances.</p>
+<p>“How’s it going? Have any initiates successfully descended, or is there any other news coming in?” Vice Dean Dedaelon asked as he walked...</p>
+</article>
+<article id="c61" data-label="61">
+<h2 class="chapter">Chapter 61: Concerns 🔒</h2>
+<p>“Sein, you shouldn’t have come,” Master Morsidor’s weary voice echoed in Sein’s mind.</p>
+<p>All Sein could see with his naked eyes were the sea of dense and colorful elements around him.</p>
+<p>He could not locate Master Morsidor, and even the dozen or so initiates at the front of the line were gradually fading from his sight.</p>
+<p>Moreover, Sein had been feeling uncomfortable since entering the energy vortex.</p>
+<p>There was a pressure on his chest, making it difficult for him to breathe. It felt as though he had left a familiar environment and entered a strange, inhospitable dimension.</p>
+<p>“Master, where are you?” Sein could not help but call out softly.</p>
+<p>Sein was walking behind a group of initiates and slowed his...</p>
+</article>
+<article id="c62" data-label="62">
+<h2 class="chapter">Chapter 62: The Sand World 🔒</h2>
+<p>At this moment, an immense white chasm lay before Sein.</p>
+<p>It was as if a crack had ruptured the world before him. The white chasm was likely the very space-time rift that Master Morsidor and the others had been talking about.</p>
+<p>As expected, Sein recognized a multitude of alchemy equipment surrounding the space-time rift.</p>
+<p>Most of them were from the laboratory of their faction. Sein had even handled and participated in the construction of a few among them.</p>
+<p>There was no sight of Master Morsidor, or even any black mages he was acquainted with around the space-time rift, save for a bald man dressed in a white robe.</p>
+<p>In Mystralora City, black mages typically favored black robes or other dark-colored clothes,...</p>
+</article>
+<article id="c63" data-label="63">
+<h2 class="chapter">Chapter 63: Desiccated Corpse 🔒</h2>
+<p>It was only on the third day of his descent into the Sand World that Sein began to deeply realize that this was an entirely different world from the one he originated in.</p>
+<p>From the thinness of the air to the gravity, and from the surrounding environment to the elemental concentration, Sein could not find a hint of similarity between the two worlds.</p>
+<p>Furthermore, Sein had only been able to determine the exact passage of time over these three days by consulting his crystal ball.</p>
+<p>The surrounding environment remained perpetually illuminated, as if night did not exist in this world.</p>
+<p>Sein’s curiosity finally got the best of him, prompting him to gaze toward the sky while wearing his white...</p>
+</article>
+<article id="c64" data-label="64">
+<h2 class="chapter">Chapter 64: True Love 🔒</h2>
+<p>Being an intermediate initiate was a significant achievement in the Black Magic Academy of Mystralora City.</p>
+<p>In an environment where senior initiates and Quasi Mages rarely appeared before the junior and fresh initiates, intermediate initiates were regarded as superior among more than eighty percent of the initiates in the academy.</p>
+<p>The unidentified intermediate initiate, now reduced to a desiccated corpse, left behind some valuable items for Sein.</p>
+<p>Among them were two basic magic items with their elemental energy completely depleted, making them of little value.</p>
+<p>However, the true windfall came in the form of several magic beast cores, varying in quality from basic to intermediate,...</p>
+</article>
+<article id="c65" data-label="65">
+<h2 class="chapter">Chapter 65: The Beast 🔒</h2>
+<p>Sein’s movement created a faint sound of shifting yellow sand.</p>
+<p>In the distance, Stenson, caught in a whirlwind of emotions, suddenly exclaimed, “Who’s there?!”</p>
+<p>He was sad to see Marlon so weak, but he was also elated to see Marlon’s condition improving.</p>
+<p>Marlon’s rejection of his blood offering did not concern Stenson. His sole focus remained on saving Marlon.</p>
+<p>Sein’s presence, on the other hand, sparked excitement in Stenson’s slightly bloodshot eyes.</p>
+<p>To Stenson, the presence of another living being meant there was food.</p>
+<p>Marlon and Stenson had gone without food or drink for nearly three days, and while Stenson could endure a bit longer, Marlon’s condition...</p>
+</article>
+<article id="c66" data-label="66">
+<h2 class="chapter">Chapter 66: Marlon 🔒</h2>
+<p>“I’ll tell you, but you have to leave us alone, and also spare us some water and food.”</p>
+<p>A cough and a voice suddenly came from behind Sein.</p>
+<p>Turning around, Sein noticed that Marlon, the intermediate initiate who had been lying in a nearby dune depression, attempted to rise.</p>
+<p>Marlon appeared weak, with a pale complexion and dry lips. He was clearly in no condition to fight.</p>
+<p>Nevertheless, he had a wand in his clutch, which seemed to contain a relatively potent intermediate magic spell.</p>
+<p>“I know your mana is running low already, Sein. It hasn’t been that long since you were promoted to an intermediate initiate,” Marlon stated.</p>
+<p>“Leave us alone, and spare us some...</p>
+</article>
+<article id="c67" data-label="67">
+<h2 class="chapter">Chapter 67: Plea 🔒</h2>
+<p>After hearing Marlon’s response, Sein fell into a contemplative silence.</p>
+<p>In reality, he had initially intended to share a portion of his potion with Marlon and engage in a friendly information exchange.</p>
+<p>However, Stenson’s sudden aggression made it clear that a friendly exchange was no longer feasible.</p>
+<p>In Mystralora City, the weak were not considered equals.</p>
+<p>Sein’s initial willingness to engage in a friendly exchange was not solely because Stenson and Marlon were his neighbors.</p>
+<p>Rather, he was apprehensive about Stenson’s strength as a senior initiate, which deterred him from taking unnecessary risks.</p>
+<p>Now, Sein found himself able to extract the desired information without paying a price for...</p>
+</article>
+<article id="c68" data-label="68">
+<h2 class="chapter">Chapter 68: Reunion 🔒</h2>
+<p>As the intensity of the three suns in the sky lessened slightly, Sein rose to his feet and resumed his journey.</p>
+<p>Before departing, he let out a soft sigh and left half a vial of his remaining nutritional potion for Marlon and Stenson.</p>
+<p>He wondered if it was the last shred of his conscience resisting full integration into the world of black mages, or if he was truly moved by the unique bond between Marlon and Stenson, or perhaps he was merely adhering to the principle of equivalent exchange commonly upheld by mages.</p>
+<p>Nevertheless, his act of goodwill prompted Marlon to bow respectfully to Sein and declare in a solemn tone, “Stenson and I owe you our lives, and we will certainly repay...</p>
+</article>
+<article id="c69" data-label="69">
+<h2 class="chapter">Chapter 69: Straightforward 🔒</h2>
+<p>The magic initiates from Mystralora City who had arrived in this plane referred to this world as the “Sand World” or the “Desert World”.</p>
+<p>Its exact size remained a mystery, even to someone as knowledgeable as Zorro, who held the rank of a Quasi Mage.</p>
+<p>He could only confirm that the Sand World was considerably smaller than the Magus World.</p>
+<p>According to Master Morsidor, the Magus World was vast and belonged to the upper echelons among the countless planes in the Astral Realm.</p>
+<p>Sein, having no knowledge of the Magus World’s size, could not make a fair comparison to the Sand World before him.</p>
+<p>Even after extensive discussion and speculation among the...</p>
+</article>
+<article id="c70" data-label="70">
+<h2 class="chapter">Chapter 70: The Purpose of the Elemental Beads 🔒</h2>
+<p>Upon waking, Sein was startled to find himself sandwiched between two attractive women, one on each side.</p>
+<p>Although their attire suggested nothing untoward had occurred the previous night, Sein’s hands had somehow found their way to rest on each of their soft mounds.</p>
+<p>Marlena had gone off somewhere, so there were only the three of them in the tent.</p>
+<p>Sein carefully withdrew his hands and straightened his disheveled robe. He then cast a simple yet practical spell on himself—Cleanse.</p>
+<p>It had become one of his most frequently used spells since his arrival in the Sand World.</p>
+<p>With no knowledge of hydro magic, “Cleanse” was the only spell he could use to keep himself clea...</p>
+</article>
+<article id="c71" data-label="71">
+<h2 class="chapter">Chapter 71: Elemental Mushrooms    🔒</h2>
+<p>At a sand dune approximately two kilometers away from the camp…</p>
+<p>After receiving their assignments from Zorro, Sein and Leena made their way to this location to explore and gather essential data.</p>
+<p>Their tasks were notably easier due to their advantageous connection with a senior figure.</p>
+<p>Zorro, despite his low-profile nature, was a Quasi Mage pivotal to the set up of the coordinate generators. This allowed him to assign relatively straightforward and less risky tasks to Sein and Leena.</p>
+<p>Fifteen days had passed since Sein’s arrival at the camp.</p>
+<p>He was gradually adapting to life here.</p>
+<p>When it came down to it, a mage was still human, a social...</p>
+</article>
+<article id="c72" data-label="72">
+<h2 class="chapter">Chapter 72: Final Deadline 🔒</h2>
+<p>Three months had passed since Sein’s arrival at the camp.</p>
+<p>When Sein first came to the camp, Faye had mentioned that the set up for the coordinate generators would be completed within another two months.</p>
+<p>Not only had they missed this deadline, but Zorro’s consistently somber expression and the rising frequency of survey missions around the camp hinted at further delays.</p>
+<p>The camp now housed more initiates than it did several months ago.</p>
+<p>Sein estimated that there were around fifty people in his camp, with a similar number in the other camp.</p>
+<p>After finishing his survey mission for the day, Sein returned to the camp only to find several unfamiliar faces.</p>
+<p>The arrival of these junior initiates was a sign that the...</p>
+</article>
+<article id="c73" data-label="73">
+<h2 class="chapter">Chapter 73: An Unexpected Turn of Events 🔒</h2>
+<p>Sein and the other black magic initiates had spent a total of six months in the Sand World.</p>
+<p>However, the group of black mages in Gloomhaven or Shadow Valley in the Magus World had waited for a full year.</p>
+<p>As the day for constructing the passage between the two worlds approached, not only were the full-fledged black mages excited, but even Martin and Jeanne, the two vice deans, whose hearts had been calm for a long time, now brimmed with anticipation.</p>
+<p>“There shouldn’t be any more surprises this time, right?” Jeanne asked.</p>
+<p>“I’ve heard that the mages from the Divine Towers have discovered several passages in Gloomhaven that connect to the surface world. It seems like they are targeting us with intent,” she told Martin, who was standing next to h...</p>
+</article>
+<article id="c74" data-label="74">
+<h2 class="chapter">Chapter 74: Divine Tower Mages 🔒</h2>
+<p>Amidst the chaos, a stray ember grazed Sein’s cheek.</p>
+<p>Although it did not cause a serious injury, it seared his face with a fiery pain.</p>
+<p>Leena, who was near to Sein, fared far worse.</p>
+<p>Despite narrowly avoiding the initial onslaught of fire pillar and rain of flames, she was helplessly thrown several dozen meters by the ensuing hurricane.</p>
+<p>“LEENA!” Sein cried out.</p>
+<p>Quickly casting the Lightfoot spell on himself, Sein, who was glowing with yellow light, rushed to Leena and picked her up.</p>
+<p>The source of the yellow glow came from the magic ring which included a geo elemental shield. It was a gift from Master Morsidor before his departure to Shadow Valley.</p>
+<p>When Sein reached Leena’s side, her clothes around the abdomen...</p>
+</article>
+<article id="c75" data-label="75">
+<h2 class="chapter">Chapter 75: Hysterical 🔒</h2>
+<p>When Zorro’s voice rang out, the remaining magic initiates in the midst of the destroyed camp acted swiftly. Those with quick reflexes had already made a beeline for the spatial passage.</p>
+<p>Black magic initiates, especially those who had experienced the harsh rule of survival of the fittest, were all intelligent people.</p>
+<p>Each of them had traversed a path paved with the bodies of a dozen or even more fellow black magic initiates to reach this point.</p>
+<p>This was not to suggest that they had directly killed weaker initiates, although some among them may have resorted to such methods.</p>
+<p>Initiates like Sein had simply outperformed their peers in order to survive,...</p>
+</article>
+<article id="c76" data-label="76">
+<h2 class="chapter">Chapter 76: Survive 🔒</h2>
+<p>Sein narrowed his eyes, fixing his gaze on Hobrien and two other intermediate initiates.</p>
+<p>The pressing concern, however, was the growing number of intermediate initiates who now saw Sein and Leena as easy targets.</p>
+<p>If Hobrien and the others were not dealt with swiftly, he and Leena would find themselves in bigger trouble.</p>
+<p>Sein began to chant the incantation of an intermediate magic spell, conjuring a fiery hand that slowly took form.</p>
+<p>Before Sein could complete his incantation, Leena had conjured a dark blue fireball in her hand.</p>
+<p>Leena’s fireball had already proven its incredible might during the battle on Black Street, but Sein recognized that its true power lay in its explosive potential, breaking apart into over twenty smaller fireballs upon...</p>
+</article>
+<article id="c77" data-label="77">
+<h2 class="chapter">Chapter 77: Digging 🔒</h2>
+<p>When Sein finally regained consciousness, the intense pain coursing through his entire body forced him to emit a groan.</p>
+<p>His hoarse and feeble voice resonated within the massive, funnel-shaped sand valley, a terrain entirely unfamiliar to him.</p>
+<p>It appeared that the colossal sandstorm had deposited him here.</p>
+<p>At the heart of this sandy valley, an unsettling aura hung in the air, accompanied by an eerie, rustling sound.</p>
+<p>There was nothing visible to account for this sound, yet it sent shivers down Sein’s spine.</p>
+<p>Regaining his senses, Sein quickly assessed his condition.</p>
+<p>Numerous fine cuts inflicted by the sand in the sandstorm, marred his face and extended down to his legs.</p>
+<p>He bore...</p>
+</article>
+<article id="c78" data-label="78">
+<h2 class="chapter">Chapter 78: Sandworms 🔒</h2>
+<p><em>Ptooey!</em></p>
+<p>Sein spat a mouthful of bloodstained saliva onto Krover’s already partially dried-out head.</p>
+<p>After digging for a really long time, Sein’s effort yielded only a broken magic rod, now a mere half of what it once was.</p>
+<p>This rod appeared to be of a slightly higher quality than Sein’s Acid Wand, featuring significantly a more intricate magic inscription.</p>
+<p>Regrettably, it was in pieces, leaving Sein to wonder whether it might have once been a ranked magic artifact.</p>
+<p>Krover’s body, from the chest down, had mostly disintegrated, leaving only one arm intact. It was no surprise that Sein had little to show for his efforts.</p>
+<p>Apart from it, all that remained was a charred spine with some flesh...</p>
+</article>
+<article id="c79" data-label="79">
+<h2 class="chapter">Chapter 79: Recovery 🔒</h2>
+<p>With a scalpel in hand, Sein carefully dissected a two-centimeter sandworm.</p>
+<p>“It’s temperature,” he mumbled to himself while standing in front of a crude experiment table.</p>
+<p>On the table before him lay several other meticulously prepared tiny sandworm specimens.</p>
+<p>The experiment table itself was a makeshift structure constructed from a blend of soil and sand.</p>
+<p>Nearly twenty days had passed since Sein’s awakening and his discovery of the sandworms.</p>
+<p>The shabby condition of his laboratory only allowed his experiments and research on the sandworms to progress at a snail’s pace.</p>
+<p>To date, Sein’s understanding of the sandworms barely scratched the surface.</p>
+<p>He knew that they likely relied on temperature...</p>
+</article>
+<article id="c80" data-label="80">
+<h2 class="chapter">Chapter 80: Mushroom Soup 🔒</h2>
+<p>It was true that Morsidor had not deceived Sein.</p>
+<p>However, it was important to recognize the vast and profound nature of spatial knowledge.</p>
+<p>Among the many branches of knowledge that spellcasters in the Magus World had delved into, spatial theories had always been incredibly advanced and intricate.</p>
+<p>Crafting a space ring required relatively basic spatial knowledge, and a competent alchemist could essentially master it.</p>
+<p>However, when it came to communication between two different planes or exploring deeper spatial mysteries, it was evident that such tasks were beyond the capabilities of an ordinary mage or initiate.</p>
+<p>In the Magus World, those who truly understood the intricacies and power of spatial science were referred to as “Spatial Mages”.</p>
+<p>They were exceptional talents,...</p>
+</article>
+<article id="c81" data-label="81">
+<h2 class="chapter">Chapter 81: Telepathic Communication 🔒</h2>
+<p>Another six months had passed, and Sein once again found himself in the sand valley where sandworms congregated.</p>
+<p>This particular sand valley served as Sein’s sole landmark in the vast yellow expanse of the Sand World, marking the starting point of his ongoing quest to find his way back .</p>
+<p>Whenever Sein lost his bearings in the sea of sand, he would follow the markers he had left behind and retrace his steps to the sand valley, using it as a base to restart his explorations.</p>
+<p>Considering that the majority of the Sand World’s terrain was quicksand, it was highly likely that the location of the spatial passage could shift over time.</p>
+<p>With each passing day, Sein’s hope of rediscovering the precise spatial coordinates dwindled, causing his...</p>
+</article>
+<article id="c82" data-label="82">
+<h2 class="chapter">Chapter 82: Deal 🔒</h2>
+<p>It had been over a year since Sein began his solitary life in the Sand World.</p>
+<p>One could only imagine Sein’s excitement when he finally heard another voice he could communicate with, though it came at the cost of enduring excruciating pain in his head.</p>
+<p>As he glanced back at the pitch-black passageway he had come through, he realized that he was most likely lost in this underground space.</p>
+<p>With little choice, Sein decided to heed the guidance of the voice and continue deeper into the passage.</p>
+<p>In fact, the sheer power of the voice left no room for compromise or resistance.</p>
+<p>Just the sound alone had already inflicted enough pain on him. If it had intended to harm him, Sein would...</p>
+</article>
+<article id="c83" data-label="83">
+<h2 class="chapter">Chapter 83: The Sandworm King’s Plans 🔒</h2>
+<p>“Fine,” Sein agreed without any hesitation.</p>
+<p>Setting aside his challenge in helping the Sandworm King, Sein’s primary objective at the moment was to leave the Sand World.</p>
+<p>He was not certain about his chances of success, but the Sandworm King did not pressure him for a definitive answer.</p>
+<p>A total of thirty-one Grade Two energy crystals were the upfront reward that the Sandworm King had given Sein.</p>
+<p>It promised an even more promising reward as a token of appreciation should it successfully join the Magus Alliance.</p>
+<p>As an individual who had yet to reach even Rank One, Sein could not fathom what a Rank Four creature might offer him as a token of appreciation.</p>
+<p>Nevertheless, Sein did not allow himself...</p>
+</article>
+<article id="c84" data-label="84">
+<h2 class="chapter">Chapter 84: Senior Initiate 🔒</h2>
+<p>Being part of a powerful civilization indeed came with a tremendous advantage.</p>
+<p>Relying on the reputation of the Magus World, Sein, who was not even close to being a Rank One creature, had surprisingly established communication with a Rank Four creature.</p>
+<p>The only reason the Sandworm King extended respect to Sein was solely due to the Magus World’s influence.</p>
+<p>As Sein left the sand valley, he glanced back and recalled the task from the Sandworm King.</p>
+<p>“Establish contact with a tower master so that he could vouch for it, huh? It appears that colossal worm lacks a clear understanding of the internal dynamics within the Magus World and remains oblivious to the contentious relationship between black mages and regular mages from the...</p>
+</article>
+<article id="c85" data-label="85">
+<h2 class="chapter">Chapter 85: The Flames of War 🔒</h2>
+<p>At this moment, Sein found himself standing at the center of a weathered magic altar.</p>
+<p>It was the very one he had used to enter the Sand World back then.</p>
+<p>Fortunately, the altar retained some of its functionality, allowing Sein’s return.</p>
+<p>As Sein surveyed his surroundings, he recognized the place as Shadow Valley.</p>
+<p>What was once a bright location now matched its name. It was shrouded in darkness.</p>
+<p>After prolonged exposure to the harsh and blinding environment of the Sand World, Sein had yet to fully regain his night vision.</p>
+<p>The damage of the Pale Mask was undeniably a major loss for him.</p>
+<p>Despite the fact that it was only a...</p>
+</article>
+<article id="c86" data-label="86">
+<h2 class="chapter">Chapter 86: Appeal 🔒</h2>
+<p>The knight’s battlefield instincts and extraordinary perception were certainly impressive.</p>
+<p>Not only that, he was clearly stronger than an ordinary full-fledged mage!</p>
+<p>The metallic spear vibrated audibly as it lodged into the ground.</p>
+<p>Despite having the capability to strike Sein down in a single blow, the knight intentionally struck the spear into the ground less than half a meter away from Sein.</p>
+<p>Sensing that he was the target, Sein decided to step forward and reveal himself.</p>
+<p>The knights, responsible for maintaining order outside Mystralora City, clearly outclassed Sein in terms of strength. Sein was nothing more than an initiate who had recently reached the level of a senior initiate with a repertoire of almost entirely intermediate...</p>
+</article>
+<article id="c87" data-label="87">
+<h2 class="chapter">Chapter 87: Being Human 🔒</h2>
+<p>Sein did not recognize most of the residents who were fervently pleading for his cause.</p>
+<p>Only a few in the front row seemed vaguely familiar to Sein, reminding him of those underground humans he had briefly interacted with during his mission to exterminate Green Plumes.</p>
+<p>At that time, Sein could not carry all the Green Plumes’ remains, so he generously offered them to those humans.</p>
+<p>To Sein, it was merely a commodity he could hardly carry back, but for these people, those Green Plumes’ remains had prevented almost a thousand of them from succumbing to starvation.</p>
+<p>True to Sein’s suspicion, those underground humans could not bring themselves to enjoy the flesh of the valuable magic creatures.</p>
+<p>Instead, they sold most of the flesh. The...</p>
+</article>
+<article id="c88" data-label="88">
+<h2 class="chapter">Chapter 88: Evacuation 🔒</h2>
+<p>It was a three-story stone building. As Sein ascended to the third floor with the silver-armored knight, they were greeted by a scholarly-looking male mage. He had short platinum blond hair and was dressed in white robe.</p>
+<p>Through the windows of the third floor, Sein could catch a glimpse of the Black Magic Academy at the heart of the city.</p>
+<p>The fierce battles persisted, marked by elemental explosions and bursts of fire.</p>
+<p>The Black Magic Academy stood as the final bastion of resistance for black mages from Mystralora City.</p>
+<p>Under the control of black mages for an extended period, the academy had become a formidable stronghold, with its densely covered prohibition arrays and magic towers.</p>
+<p>As Sein’s gaze drifted toward the distant black...</p>
+</article>
+<article id="c89" data-label="89">
+<h2 class="chapter">Chapter 89: Ruins 🔒</h2>
+<p>A large number of sharp meteorites descended upon Mystralora City, threatening to bring destruction upon it.</p>
+<p>With all the residents of the city safely evacuated by the knights and mages from the surface, Martin was merely destroying the empty shell of Mystralora City.</p>
+<p>Amidst the city, there was still an unknown number of knights and mages hunting down the black mages.</p>
+<p>The destruction of Mystralora City marked the end of an era in the Underworld.</p>
+<p>With the black mages group now a thing of the past, who would rise as the new ruler of this region in the Underworld?</p>
+<p><em>BOOM!</em></p>
+<p>A thunderous impact echoed as a massive meteorite...</p>
+</article>
+<article id="c90" data-label="90">
+<h2 class="chapter">Chapter 90: Discoveries 🔒</h2>
+<p>Sein found his way into the academy from the western side.</p>
+<p>A sizable hole in the academy’s walls had spared Sein from using the main entrance.</p>
+<p>The full-fledged black mages had always resided in this part of the academy, but it was now strangely silent.</p>
+<p>The distant clashes in the city stood in stark contrast to the serene atmosphere within this part of the academy</p>
+<p>Sein was not familiar with this area as he seldom ventured beyond Master Morsidor’s residence in the past years.</p>
+<p>He was never bold enough to trespass the territory of other full-fledged mages.</p>
+<p>Despite the potential allure of valuable items left behind by the fleeing black mages,...</p>
+</article>
+<article id="c91" data-label="91">
+<h2 class="chapter">Chapter 91: Sea of Magma 🔒</h2>
+<p>The academy overseers were owls covered in pitch-black feathers on their backs, and white on their chests.</p>
+<p>What set Seven apart from the other academy overseers was a single red feather among the white ones on its chest.</p>
+<p>Half of Seven’s body was now stained with blood, making it seemingly indistinguishable from the other owls.</p>
+<p>Yet, Sein was able to recognize it immediately due to his familiarity with Seven and its aura over years of their interaction.</p>
+<p>Seven was currently in a precarious state.</p>
+<p>While displaying signs of life with a heaving chest and a slightly moving beak, it struggled to respond to Sein’s question.</p>
+<p>Only faint “hoots” came from Seven’s beak</p>
+<p>The light in...</p>
+</article>
+<article id="c92" data-label="92">
+<h2 class="chapter">Chapter 92: Out of Harm’s Way 🔒</h2>
+<p>Seven hooted and said, “If my injuries weren’t so severe, I could have carried you away from Mystralora City. Go now, run for your life.”</p>
+<p>The owl flapped its wing and urged, “Look for the mages from the Divine Tower, perhaps they can rescue you. I’ve seen junior and fresh initiates being taken in by them before.”</p>
+<p>Sein could tell that the quasi-ranked magic beast genuinely cared about him.</p>
+<p>Unfortunately, excessive blood loss and its weakened state rendered it incapable of providing any assistance to Sein.</p>
+<p>Observing the intensifying rain of fire, Sein could not help but glance toward the north.</p>
+<p>Although his current location was not too far from the northern part of the city, considering his pace and the impending destruction of Mystralora City...</p>
+<p>It seemed unlikely...</p>
+</article>
+<article id="c93" data-label="93">
+<h2 class="chapter">Chapter 93: Recovering and Searching 🔒</h2>
+<p>This underground passage was dark and deep.</p>
+<p>When Sein and Seven initially entered, the passage led downward. However, after a few turns, it started ascending with no discernible end in sight.</p>
+<p>Without Seven, a flying magic beast, navigating the passage would have proven exceptionally challenging for an initiate like Sein.</p>
+<p>Fortunately, the passage was about two meters wide, providing just enough space for Seven to fly through it.</p>
+<p>Its superior night vision allowed him to skillfully avoid any obstacles, including the uneven rocks.</p>
+<p>All Sein had to do was cling to the feathers on Seven’s neck area in the...</p>
+</article>
+<article id="c94" data-label="94">
+<h2 class="chapter">Chapter 94: The Severely Injured Morsidor 🔒</h2>
+<p>Sein and Seven found themselves in a complex and dark cave sloping downward and filled with jagged rocks.</p>
+<p>As they ventured deeper into the cave, the sounds of dripping water reached Sein’s ears.</p>
+<p>Sein conjured a small fireball in his hand to illuminate their path.</p>
+<p>Despite being capable of using the “Brilliance” spell, Sein chose to use his fireball spell so that he could also swiftly react to any unforeseen circumstances.</p>
+<p>Apart from his Pale Mask, the damaged geo elemental shield ring and invisibility cloak were also two of his major losses.</p>
+<p>Clutching his Acid Wand tightly against his chest, Sein was ready for any sudden threats.</p>
+<p>Not only that, he also wore the black crystal bracelet Leena...</p>
+</article>
+<article id="c95" data-label="95">
+<h2 class="chapter">Chapter 95: Conflicted 🔒</h2>
+<p>“Fortunately, I entrusted Zorro and Faye to Lady Jeanne’s care due to my injuries before I left. Otherwise, they might have fallen prey to that venomous woman!” Morsidor spat angrily.</p>
+<p>Despite Morsidor’s severe injuries and the poison coursing through his body, Sein discerned the darkness in his eyes.</p>
+<p>He could also hear the intense hatred he harbored toward Daelis, the Rank One black mage, as well as anger that stemmed from the betrayal.</p>
+<p>Ironically, Morsidor had even crafted a magic artifact for Daelis before she turned against him.</p>
+<p>The ungrateful black mage, instead of showing gratitude for Morsidor’s favor, betrayed him after the failed mission in the Sand World, driven by greed for the...</p>
+</article>
+<article id="c96" data-label="96">
+<h2 class="chapter">Chapter 96: Mentor’s Legacy 🔒</h2>
+<p>In the days that followed, nothing out of the ordinary occurred.</p>
+<p>Morsidor appeared to know the correct route to the surface.</p>
+<p>He guided Sein, who was supporting him, through the intricate underground passages, turning left and right.</p>
+<p>Despite the complexity of the route, Sein could tell they were moving upward consistently, even navigating through vertically ascending tunnels.</p>
+<p>During this time, Sein observed a remarkable shift in his mentor’s demeanor.</p>
+<p>While Morsidor had always cared for Sein, the intensified levels of concern and passion he showed in the recent days were beyond...</p>
+</article>
+<article id="c97" data-label="97">
+<h2 class="chapter">Chapter 97: Entrust 🔒</h2>
+<p>Sensing the imminence of his final days, Morsidor shared a wealth of information with Sein on his final night.</p>
+<p>Beyond instructing Sein to conceal his identity as a black magic initiate upon reaching the surface, Morsidor offered insights into the general situation of Gloomhaven and its surroundings.</p>
+<p>“In the space bangle, there’s a magic map I made over a hundred years ago upon my arrival in Gloomhaven. I have also investigated your background two years after taking you in.</p>
+<p>“As I expected, you’re not a commoner. Black mages in the Mystralora City usually steer clear of nobles when seeking fresh blood to avoid unnecessary...</p>
+</article>
+<article id="c98" data-label="98">
+<h2 class="chapter">Chapter 98: To the Surface 🔒</h2>
+<p>Sein meticulously collected the ashes of his mentor into a jar.</p>
+<p>Sein carried the jar on his back, keeping it close rather than stowing it away in his space ring.</p>
+<p>Meanwhile, Seven nestled inside the piccolo crafted by Morsidor. Unfortunately, this instrument was exclusively accessible to Seven, leaving Sein curious about its interior.</p>
+<p>Sein only had a rough idea of the space’s vastness within the piccolo through Seven. The owl often grew drowsy upon entering that space.</p>
+<p>In the period that followed, Sein took stock of the inheritance from Master Morsidor.</p>
+<p>Apart from the alchemy note and magic items Morsidor...</p>
+</article>
+<article id="c99" data-label="99">
+<h2 class="chapter">Chapter 99: Medich’s Character 🔒</h2>
+<p>Sein masked his nervousness and stress beneath a composed exterior.</p>
+<p>Unfortunately, his peculiar demeanor did not escape the sharp observation of Medich, a Rank Two mage from the Divine Tower.</p>
+<p>Medich chuckled and assured, “No need to be nervous. I have no intention of harming you.”</p>
+<p>“Moreover, you deserve credit for discovering a foreign Rank Four creature in the Sand World,” he added.</p>
+<p>The Divine Tower mage had recently made a round trip to the Divine Tower of Dawn.</p>
+<p>Situated on the coast of the Magus Continent, south of the Gloomhaven, the Divine Tower of Dawn was a considerable distance from their current location.</p>
+<p>Despite being a Rank Two mage, it also took...</p>
+</article>
+<article id="c100" data-label="100">
+<span id="last"></span>
+<h2 class="chapter">Chapter 100: A New Life 🔒</h2>
+<p>“I dare not ask for any rewards,” Sein humbly declined and continued, “Upon leaving the underground, my priorities are to honor my mentor’s wish by scattering his ashes in the Boundless South Sea and to reunite with my family.”</p>
+<p>Medich acknowledged Sein’s response with a nod but then shook his head thoughtfully.</p>
+<p>“Is your pursuit of truth as a mage coming to an end for these personal purposes?” he inquired.</p>
+<p>Sein took a moment to contemplate before replying, “Actually, my mentor left me a few magic tomes…”</p>
+<p>Once again, Medich shook his head, asserting, “The pursuit of truth is arduous. Relying on just a few magic tomes won’t lead you to its depths.”</p>
+<p>Sein bowed his head in silence,...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="101-150.html" rel="next">Next: Chs 101–150 &rarr;</a>
+    <p class="page-end-links"><a href="1-50.html" rel="prev">&larr; Chs 1–50</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 51–100</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c51">Chapter 51: Preparation 🔒</a></li>
+        <li><a href="#c52">Chapter 52: Silver Badge 🔒</a></li>
+        <li><a href="#c53">Chapter 53: Panic 🔒</a></li>
+        <li><a href="#c54">Chapter 54: Dividing The Valuables 🔒</a></li>
+        <li><a href="#c55">Chapter 55: Dark Spider 🔒</a></li>
+        <li><a href="#c56">Chapter 56: Shadow Valley 🔒</a></li>
+        <li><a href="#c57">Chapter 57: Sacrifice 🔒</a></li>
+        <li><a href="#c58">Chapter 58: Casualties 🔒</a></li>
+        <li><a href="#c59">Chapter 59: Intimate 🔒</a></li>
+        <li><a href="#c60">Chapter 60: Agony and Courage 🔒</a></li>
+        <li><a href="#c61">Chapter 61: Concerns 🔒</a></li>
+        <li><a href="#c62">Chapter 62: The Sand World 🔒</a></li>
+        <li><a href="#c63">Chapter 63: Desiccated Corpse 🔒</a></li>
+        <li><a href="#c64">Chapter 64: True Love 🔒</a></li>
+        <li><a href="#c65">Chapter 65: The Beast 🔒</a></li>
+        <li><a href="#c66">Chapter 66: Marlon 🔒</a></li>
+        <li><a href="#c67">Chapter 67: Plea 🔒</a></li>
+        <li><a href="#c68">Chapter 68: Reunion 🔒</a></li>
+        <li><a href="#c69">Chapter 69: Straightforward 🔒</a></li>
+        <li><a href="#c70">Chapter 70: The Purpose of the Elemental Beads 🔒</a></li>
+        <li><a href="#c71">Chapter 71: Elemental Mushrooms    🔒</a></li>
+        <li><a href="#c72">Chapter 72: Final Deadline 🔒</a></li>
+        <li><a href="#c73">Chapter 73: An Unexpected Turn of Events 🔒</a></li>
+        <li><a href="#c74">Chapter 74: Divine Tower Mages 🔒</a></li>
+        <li><a href="#c75">Chapter 75: Hysterical 🔒</a></li>
+        <li><a href="#c76">Chapter 76: Survive 🔒</a></li>
+        <li><a href="#c77">Chapter 77: Digging 🔒</a></li>
+        <li><a href="#c78">Chapter 78: Sandworms 🔒</a></li>
+        <li><a href="#c79">Chapter 79: Recovery 🔒</a></li>
+        <li><a href="#c80">Chapter 80: Mushroom Soup 🔒</a></li>
+        <li><a href="#c81">Chapter 81: Telepathic Communication 🔒</a></li>
+        <li><a href="#c82">Chapter 82: Deal 🔒</a></li>
+        <li><a href="#c83">Chapter 83: The Sandworm King’s Plans 🔒</a></li>
+        <li><a href="#c84">Chapter 84: Senior Initiate 🔒</a></li>
+        <li><a href="#c85">Chapter 85: The Flames of War 🔒</a></li>
+        <li><a href="#c86">Chapter 86: Appeal 🔒</a></li>
+        <li><a href="#c87">Chapter 87: Being Human 🔒</a></li>
+        <li><a href="#c88">Chapter 88: Evacuation 🔒</a></li>
+        <li><a href="#c89">Chapter 89: Ruins 🔒</a></li>
+        <li><a href="#c90">Chapter 90: Discoveries 🔒</a></li>
+        <li><a href="#c91">Chapter 91: Sea of Magma 🔒</a></li>
+        <li><a href="#c92">Chapter 92: Out of Harm’s Way 🔒</a></li>
+        <li><a href="#c93">Chapter 93: Recovering and Searching 🔒</a></li>
+        <li><a href="#c94">Chapter 94: The Severely Injured Morsidor 🔒</a></li>
+        <li><a href="#c95">Chapter 95: Conflicted 🔒</a></li>
+        <li><a href="#c96">Chapter 96: Mentor’s Legacy 🔒</a></li>
+        <li><a href="#c97">Chapter 97: Entrust 🔒</a></li>
+        <li><a href="#c98">Chapter 98: To the Surface 🔒</a></li>
+        <li><a href="#c99">Chapter 99: Medich’s Character 🔒</a></li>
+        <li><a href="#c100">Chapter 100: A New Life 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1-50.html" rel="prev">&larr; Chs 1–50</a>    <a href="../../index.html">Library</a>
+<a href="101-150.html" rel="next">Chs 101–150 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 251–300</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="201-250.html#last" data-next-page="301-350.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c251">Chapter 251: Defeat 🔒</a></li>
+        <li><a href="#c252">Chapter 252: Unstoppable! 🔒</a></li>
+        <li><a href="#c253">Chapter 253: First Wave 🔒</a></li>
+        <li><a href="#c254">Chapter 254: Grievously Weakened 🔒</a></li>
+        <li><a href="#c255">Chapter 255: Full-Scale Invasion 🔒</a></li>
+        <li><a href="#c256">Chapter 256: Pouring Forth 🔒</a></li>
+        <li><a href="#c257">Chapter 257: Pyro Elemental Creatures 🔒</a></li>
+        <li><a href="#c258">Chapter 258: The Battle Between Rank Ones 🔒</a></li>
+        <li><a href="#c259">Chapter 259: The Secrets of the Verdant Flame Magic 🔒</a></li>
+        <li><a href="#c260">Chapter 260: Mission Rewards 🔒</a></li>
+        <li><a href="#c261">Chapter 261: Red Molten River 🔒</a></li>
+        <li><a href="#c262">Chapter 262: Scout Mages 🔒</a></li>
+        <li><a href="#c263">Chapter 263: Kill-Steal 🔒</a></li>
+        <li><a href="#c264">Chapter 264: Divide 🔒</a></li>
+        <li><a href="#c265">Chapter 265: Verdant Glaze 🔒</a></li>
+        <li><a href="#c266">Chapter 266: Decisive War 🔒</a></li>
+        <li><a href="#c267">Chapter 267: Growth 🔒</a></li>
+        <li><a href="#c268">Chapter 268: Waste Disposal Land 🔒</a></li>
+        <li><a href="#c269">Chapter 269: Small Success in Body Tempering 🔒</a></li>
+        <li><a href="#c270">Chapter 270: Combat Zones 🔒</a></li>
+        <li><a href="#c271">Chapter 271: A Breach 🔒</a></li>
+        <li><a href="#c272">Chapter 272: Out for Battle 🔒</a></li>
+        <li><a href="#c273">Chapter 273: A Rank Four Mage’s Intervention 🔒</a></li>
+        <li><a href="#c274">Chapter 274: Engineers 🔒</a></li>
+        <li><a href="#c275">Chapter 275: Forbidden Spell 🔒</a></li>
+        <li><a href="#c276">Chapter 276: Ambushed 🔒</a></li>
+        <li><a href="#c277">Chapter 277: Sea of Vines 🔒</a></li>
+        <li><a href="#c278">Chapter 278: Individual and Group 🔒</a></li>
+        <li><a href="#c279">Chapter 279: Crisis Resolved 🔒</a></li>
+        <li><a href="#c280">Chapter 280: Injured 🔒</a></li>
+        <li><a href="#c281">Chapter 281: Rejection 🔒</a></li>
+        <li><a href="#c282">Chapter 282: Yuri 🔒</a></li>
+        <li><a href="#c283">Chapter 283: Divine Tower of Verdant Spring’s Losses 🔒</a></li>
+        <li><a href="#c284">Chapter 284: Eileen’s Vulnerability 🔒</a></li>
+        <li><a href="#c285">Chapter 285: Combat Mission 🔒</a></li>
+        <li><a href="#c286">Chapter 286: Sea of Molten Lava 🔒</a></li>
+        <li><a href="#c287">Chapter 287: Social Network 🔒</a></li>
+        <li><a href="#c288">Chapter 288: Offensive 🔒</a></li>
+        <li><a href="#c289">Chapter 289: Blue Fiery Trench 🔒</a></li>
+        <li><a href="#c290">Chapter 290: Silver Fort 🔒</a></li>
+        <li><a href="#c291">Chapter 291: Composite Magic of Three Elements 🔒</a></li>
+        <li><a href="#c292">Chapter 292: Long Ranged Support 🔒</a></li>
+        <li><a href="#c293">Chapter 293: Breach 🔒</a></li>
+        <li><a href="#c294">Chapter 294: Creatures from the Neisse Civilization 🔒</a></li>
+        <li><a href="#c295">Chapter 295: Shocking Haul 🔒</a></li>
+        <li><a href="#c296">Chapter 296: Visit 🔒</a></li>
+        <li><a href="#c297">Chapter 297: Favor 🔒</a></li>
+        <li><a href="#c298">Chapter 298: Sev the Ranked Magic Beast 🔒</a></li>
+        <li><a href="#c299">Chapter 299: Fallen Rank Four 🔒</a></li>
+        <li><a href="#c300">Chapter 300: Transfer of War Zone 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c251" data-label="251">
+<h2 class="chapter">Chapter 251: Defeat 🔒</h2>
+<p>In stark contrast to Sein’s astonishment, Anridar the Venom Flame Demon King directly faced Gregory, the formidable Rank Five mage, as it seethed with rage and resentment.</p>
+<p>“Has the Magus Civilization discovered something? Or do they simply refuse to let me live?” Anridar thought in silent fury.</p>
+<p>As a Rank Five creature known as a “Demon King”, Anridar was never a mere pawn to be manipulated.</p>
+<p>Even before the Magus Civilization’s conquest of the Neisse Star Domain, Anridar had earned a fearsome reputation in the lower planes surrounding the domain.</p>
+<p>Its existence was synonymous with ferocity and cruelty.</p>
+<p>Yet now, under the overwhelming force of the Magus Civilization, Anridar seemed as feeble as a cornered,...</p>
+</article>
+<article id="c252" data-label="252">
+<h2 class="chapter">Chapter 252: Unstoppable! 🔒</h2>
+<p>“Huh? I didn’t expect the planar barrier of the Viridian Venom Flame World to be so fragile. Or has Gregory’s Verdant Flame Body become so formidable that it can effortlessly tear through ordinary low-level planar barriers?” Bernice, the Rank Four mage, wondered aloud in the space fortress.</p>
+<p>While Bernice marveled at Gregory’s might, Feylis, more attuned to elemental energy and being the creator of the Verdant Flame magic, sensed that something was amiss. She knew Gregory’s elemental body should not be this overpoweringly strong.</p>
+<p>Shaking her head, Feylis explained, “The planar barrier of this low-level plane is probably fragile, allowing Gregory to breach it with a single blow.”</p>
+<p>“Well,...</p>
+</article>
+<article id="c253" data-label="253">
+<h2 class="chapter">Chapter 253: First Wave 🔒</h2>
+<p>As the main cannon of Feylis’ space fortress began charging, the native creatures of the Viridian Venom Flame World responded to the call of their guardian. They converged from all directions, flocking toward the breach in the sky.</p>
+<p>In this world, the reputation of Anridar was rather notorious.</p>
+<p>Known for its violent and vicious nature, it seldom showed concern for the lives of the inhabitants in this plane.</p>
+<p>In contrast, the guardian, known as the Red Flamed Tortoise, was cherished by the millions of creatures in the Viridian Venom Flame World.</p>
+<p>With billions of creatures inhabiting this pyro elemental plane, known for its harsh environmental laws, the lifeforms...</p>
+</article>
+<article id="c254" data-label="254">
+<h2 class="chapter">Chapter 254: Grievously Weakened 🔒</h2>
+<p>Charging a magic artifact to unleash a light beam with power comparable to a Rank Six entity was no small feat.</p>
+<p>In contrast to the space fortresses of the Magus World from times long past, the Magus Civilization had since experienced continual advancements in both technology and societal development.</p>
+<p>As the latest generation of standard space fortress, Feylis’ space fortress had basically maximized all of its capabilities to the extreme.</p>
+<p>It was not long before the formidable main cannon of her space fortress was finally charged.</p>
+<p>Hidden under the sea of molten lava, Anridar the Venom Flame Demon King was not the only one aware of the impending danger.</p>
+<p>The other pyro elemental creatures of the Viridian Venom Flame...</p>
+</article>
+<article id="c255" data-label="255">
+<h2 class="chapter">Chapter 255: Full-Scale Invasion 🔒</h2>
+<p>The light beam from the space fortress’ main cannon swiftly descended upon the Viridian Venom Flame World.</p>
+<p>Unlike the earlier trident elemental arrow that had almost instantaneously penetrated the world’s planar barrier, the already weakened planar barrier, now bearing two notable breaches, managed to withstand the assault for a few seconds after the beam impacted the surface of Viridian Venom Flame World.</p>
+<p>This was primarily due to the beam’s immense diameter and broad area of impact.</p>
+<p>As a sustained surge of energy, it did not match the instantaneous burst level of Feylis’ signature spell.</p>
+<p>Yet, as the pinnacle of the Magus World’s alchemical prowess, the main cannon’s kilometer-wide torrent of energy far surpassed the offensive and endurance capabilities...</p>
+</article>
+<article id="c256" data-label="256">
+<h2 class="chapter">Chapter 256: Pouring Forth 🔒</h2>
+<p>The clash between the high-level beings had temporarily concluded, shifting the focus to the ensuing battles among intermediate and low-level creatures.</p>
+<p>Since the objective of interplanar war was the occupation and suppression of an entire plane, a handful of creatures of Rank Four and above were not sufficient to fully subdue the entire Viridian Venom Flame World.</p>
+<p>The primary task of conquering and subduing this plane fell to the legions numbering in the millions.</p>
+<p>Despite the participation of fewer than two hundred thousand mages in this interplanar war, the investment in enslaved creatures was several million strong.</p>
+<p>For a low-level world like this one, such a force was overwhelming...</p>
+</article>
+<article id="c257" data-label="257">
+<h2 class="chapter">Chapter 257: Pyro Elemental Creatures 🔒</h2>
+<p>“Could this be the planar suppression effect that my mentor told me before?” Sein pondered, enveloped in a flame shield, as he descended like a meteorite toward the Viridian Venom Flame World’s continent.</p>
+<p>Upon entering this world, a unique, indescribable pressure enveloped him, unlike anything he had felt within the confines of the space fortress.</p>
+<p>Ever since Sein left the space fortress and experienced the foreign environment firsthand, he experienced a sensation distinctly different from that of the Magus World.</p>
+<p>For a magic initiate, such pressure would undoubtedly significantly impair their abilities and physical state.</p>
+<p>Fortunately, Sein was now a full-fledged...</p>
+</article>
+<article id="c258" data-label="258">
+<h2 class="chapter">Chapter 258: The Battle Between Rank Ones 🔒</h2>
+<p>When Sein reached the location shared through the crystal ball, the battle was already in full swing.</p>
+<p>Three Rank One mages, with two being male and one female, were battling at the location, supported by over ten various enslaved creatures.</p>
+<p>Their opponents were a formidable pair of Rank One Flame Salamanders, accompanied by a dozen lesser salamanders ranging from intermediate-level to quasi-ranked.</p>
+<p>Additionally, a group of weaker pyro elemental creatures, likely vassals of these salamanders, were present.</p>
+<p>The two male mages relied predominantly on pyro elemental spells, just like Sein, while the female mage utilized hydro elemental spells.</p>
+<p>Given the contrasting nature of pyro and hydro elements, she was inflicting the most damage on the pyro...</p>
+</article>
+<article id="c259" data-label="259">
+<h2 class="chapter">Chapter 259: The Secrets of the Verdant Flame Magic 🔒</h2>
+<p>Sein&#39;s response elicited a flicker of interest in the eyes of Luna.</p>
+<p>Her curiosity was piqued not due to any personal admiration for Sein, but because mages from the Divine Tower of Verdant Spring were relatively rare in this interplanar war.</p>
+<p>Out of nearly two hundred thousand full-fledged mages, only about five hundred were from the Divine Tower of Verdant Spring.</p>
+<p>Given this stark ratio, Luna’s intrigue upon encountering a mage from this tower was understandable.</p>
+<p>The other mages nearby could not help but glance at Sein after overhearing the conversation.</p>
+<p>Unperturbed by their gazes, Sein continued meticulously handling his spoils.</p>
+<p>Observing Sein’s careful handling and recalling...</p>
+</article>
+<article id="c260" data-label="260">
+<h2 class="chapter">Chapter 260: Mission Rewards 🔒</h2>
+<p>The pursuit of unraveling the truth of Verdant Flame magic was both enriching and fleeting for Sein.</p>
+<p>He had barely begun to uncover the depths of the Verdant Flame magic when a summoning order from the fortress interrupted his exploration.</p>
+<p>A week had elapsed since his arrival at the black volcano, but it seemed much shorter to Sein, who had been absorbed in his studies.</p>
+<p>During this time, the forces of the Magus Civilization had firmly established control over not only the black volcano but also its surrounding territories.</p>
+<p>The decisive injury that Master Feylis dealt to Anridar the Venom Flame Demon King had left the other native beings of the Viridian Venom Flame World incapable of putting up...</p>
+</article>
+<article id="c261" data-label="261">
+<h2 class="chapter">Chapter 261: Red Molten River 🔒</h2>
+<p>“You’ve already fought in a battle?” Eileen asked Sein in surprise as they met.</p>
+<p>“Yes, we were tasked by the fortress to secure that black volcano. While patrolling, I joined the mages from the Divine Tower of Verdant Flame who found two Rank One pyro elemental creatures,” Sein responded with a nod.</p>
+<p>Both Sein and Eileen hailed from the Divine Tower of Verdant Spring, but their experiences since arriving in the Viridian Venom Flame World were quite different.</p>
+<p>Eileen and her group had been stationed at the main base of the fortress, contributing to its initial defense and construction.</p>
+<p>The impressive base that Sein now saw had been rapidly erected over just a week, thanks in part to their...</p>
+</article>
+<article id="c262" data-label="262">
+<h2 class="chapter">Chapter 262: Scout Mages 🔒</h2>
+<p>Among the three war airships journeying together, only the one transporting Sein and his group landed near the Red Molten River.</p>
+<p>The other two, carrying mages from the Divine Tower of Verdant Flame, proceeded north and south, each with its own set of combat objectives.</p>
+<p>These locations were situated near the Red Molten River, enabling mutual support between the three groups in case of emergencies.</p>
+<p>Along with over two hundred mages from the Divine Tower of Verdant Spring, like Sein, nearly three thousand enslaved creatures joined the mission.</p>
+<p>The fortress’ main base had the capacity to mobilize an even larger number. However, quantity did not guarantee usefulness.</p>
+<p>Most of these enslaved creatures were pyro...</p>
+</article>
+<article id="c263" data-label="263">
+<h2 class="chapter">Chapter 263: Kill-Steal 🔒</h2>
+<p>The massive explosion and elemental disturbance did not just force the Rank Three Red Bladed Lizard King to emerge, but also caused tens of thousands of various pyro elemental creatures to surface.</p>
+<p>The number of pyro elemental creatures emerging on the surface of the lava river might appear daunting at first glance, but they were actually forced to surface due to their inability to withstand the recent elemental impact.</p>
+<p>The elemental blasts that occurred encompassed a broad spectrum of elemental magic, including pyro, geo, hydro, cryo, and others.</p>
+<p>Among these was a talented Rank Two mage from the Divine Tower of Verdant Spring, skilled in the “rock” magic, which was a derivative of geo magic.</p>
+<p>The mage played a crucial role in solidifying and hardening...</p>
+</article>
+<article id="c264" data-label="264">
+<h2 class="chapter">Chapter 264: Divide 🔒</h2>
+<p>The conflict near the Red Molten River spanned almost three days.</p>
+<p>Apart from the Flame Beetle, Sein managed to kill three Rank One pyro elemental creatures and numerous others of lower ranks.</p>
+<p>His achievements, however, were not a solo endeavor. This was not because Sein lacked the courage to fight solo, but rather the chaotic nature of the battlefield made such opportunities impossible.</p>
+<p>Furthermore, the overwhelming strength of the Divine Tower of Verdant Spring allowed them to dominate the battlefield.</p>
+<p>Besides, this was an interplanar war that involved four divine towers, including the Divine Tower of Verdant Spring, to conquer...</p>
+</article>
+<article id="c265" data-label="265">
+<h2 class="chapter">Chapter 265: Verdant Glaze 🔒</h2>
+<p>The blood of a Rank Three creature was quite valuable to Sein at this stage of his journey.</p>
+<p>Having already amassed a significant collection of extraplanar materials, Sein was eager to immerse himself in intensive research within his laboratory to quench his thirst for knowledge.</p>
+<p>Unfortunately, the ongoing interplanar war necessitated adherence to orders, leaving little room for personal pursuits.</p>
+<p>Following the conclusion of the battle near the Red Molten River, Sein, along with the other mages from the Divine Tower of Verdant Spring, quickly regrouped and moved eastward under the guidance of two Rank Three grand mages to support another battle.</p>
+<p>“The Magus Civilization isn’t inherently belligerent or evil. Many mages, given the choice...</p>
+</article>
+<article id="c266" data-label="266">
+<h2 class="chapter">Chapter 266: Decisive War 🔒</h2>
+<p>The main base of the fortress had undergone significant changes over the past six months.</p>
+<p>The most noticeable was the absence of one out of the three space fortresses that used to hover in the sky.</p>
+<p>It turned out that the space fortress from the Divine Tower of Whispering Flame had departed, heading toward the northeastern region of the Flame Continent to establish a subsidiary base.</p>
+<p>The largest and most imposing space fortress that belonged to the Divine Tower of Verdant Flame, continued to loom silently overhead.</p>
+<p>Unbeknownst to Sein, Grandmaster Feylis had recently left the Viridian...</p>
+</article>
+<article id="c267" data-label="267">
+<h2 class="chapter">Chapter 267: Growth 🔒</h2>
+<p>As the highest temporary authority in the fortress, Lorianne could easily ascertain Sein’s whereabouts and activities.</p>
+<p>A semi-transparent screen materialized before her, displaying an image of Sein intently working at his experiment table.</p>
+<p>His research had progressed from enhancing the properties of spell models to delving into the profound mysteries of verdant flame magic.</p>
+<p>Sein was not just exploring ways to augment his magic with verdant flame but also figuring out how to use it to temper his body.</p>
+<p>He had previously witnessed how Master Gregory forcefully breached a planar barrier with his elemental body.</p>
+<p>His unprecedented approach to combat and formidable elemental body had fundamentally shifted Sein’s perspective...</p>
+</article>
+<article id="c268" data-label="268">
+<h2 class="chapter">Chapter 268: Waste Disposal Land 🔒</h2>
+<p>The humanoid creatures with an average height of about 1.7 meters on the screen were from the Neisse Civilization, located not far from the Viridian Venom Flame World.</p>
+<p>This world had deep ties with the Neisse Civilization, far from being just a low-level plane at the edge of the Neisse Star Domain.</p>
+<p>Anridar the Venom Flame Demon King, hailed as the local deity and of the Viridian Venom Flame World, had forged ties with the Neisse Civilization tens of thousands of years ago when he was at Rank Four.</p>
+<p>The relationship between the Viridian Venom Flame World and the Neisse Civilization was rather unique. No one could have expected it to be “waste disposal”.</p>
+<p>The Neisse Star Domain, renowned for its advancements in constructs, produced large...</p>
+</article>
+<article id="c269" data-label="269">
+<h2 class="chapter">Chapter 269: Small Success in Body Tempering 🔒</h2>
+<p>While the Viridian Venom Flame World no longer received waste, the engineers of Neisse Civilization had never forgotten about this low-level plane with a native Rank Five creature.</p>
+<p>It was ten thousand years ago when the Neisse Civilization’s main army faced near annihilation at the hands of the Magus World that the forward-thinking engineers of the Neisse Civilization proposed establishing strategic resource points in the safer border star domains behind the Neisse Star Domain.</p>
+<p>This initiative aimed to safeguard the fire seed of the Neisse Star Domain’s civilization and to amass enough mechas for a potential counteroffensive, should the circumstances shift for the Neisse Star Domain.</p>
+<p>This strategic plan was swiftly put into action.</p>
+<p>Given its longstanding friendly relations with the Neisse...</p>
+</article>
+<article id="c270" data-label="270">
+<h2 class="chapter">Chapter 270: Combat Zones 🔒</h2>
+<p>Upon emerging from his laboratory, where he had spent over two years immersed in research, Sein’s attention was immediately drawn to Sev.</p>
+<p>Nestled in a corner by the laboratory door, Sev had curled up into a ball.</p>
+<p>Remarkably, its size had tripled since Sein left the Magus World.</p>
+<p>Sein tried calling out to Sev but received no response.</p>
+<p>Using his mental focus to assess Sev’s condition, Sein discovered that its vital signs were remarkably stable.</p>
+<p>Yet, at the core of Sev’s body, there was an energy source radiating heat outward in every direction.</p>
+<p>“Is it about to transform and rank up?” Sein mused while observing Sev.</p>
+<p>The energy source that he detected was likely Sev’s magic cor...</p>
+</article>
+<article id="c271" data-label="271">
+<h2 class="chapter">Chapter 271: A Breach 🔒</h2>
+<p>From his position on the combat platform, Sein could get a clearer view of the battle unfolding outside the space fortress through the translucent energy barrier.</p>
+<p>The platforms were spacious, allowing for comfortable distances between the more than a hundred mages on Platform Three, where Sein was assigned.</p>
+<p>Sein did not pay much attention to the other mages standing next to him. He took a deep breath, then pulled out his yellow magic rod, which gleamed with a metallic sheen.</p>
+<p>Although he had plans to craft a new magic rod for himself, it seemed like that project would have to be postponed for now.</p>
+<p>A flame tinted with a hint of green soon flickered at the tip of his magic rod.</p>
+<p>It was the verdant flame, one of Sein’s most significant achievements...</p>
+</article>
+<article id="c272" data-label="272">
+<h2 class="chapter">Chapter 272: Out for Battle 🔒</h2>
+<p>A Rank Two mage flew close to the combat platform where Sein was stationed and addressed the mages with voice amplification magic, “The base’s southern defense line has been breached, and the mages below are overwhelmed. We urgently need reinforcements from within the fortress! Mages who still have over seventy percent of their mana and focus reserves, follow me to Exit Two now!”</p>
+<p>Apart from Sein, more than half of the mages in this area had been fighting for the past few days, so they had depleted more than half of their mana and focus reserves.</p>
+<p>They were only able to keep fighting at the combat platform due to the protection provided by the fortress.</p>
+<p>However, leaving the fortress’...</p>
+</article>
+<article id="c273" data-label="273">
+<h2 class="chapter">Chapter 273: A Rank Four Mage’s Intervention 🔒</h2>
+<p>The battle outside the space fortress proved to be far more intense and chaotic than Sein had anticipated.</p>
+<p>The air was charged with a maelstrom of various elemental energies, resulting in a significant increase in the surrounding area’s temperature.</p>
+<p>The Viridian Venom Flame World had a naturally higher average temperature compared to the Magus World in the first place. Therefore, any changes in temperature here could easily be detected by foreign invaders like Sein.</p>
+<p>Sein’s observations from within the space fortress were confirmed—the majority of the main base below remained under the control of mages from the Magus World. Only a small area in the southern part was breached.</p>
+<p>In addition to Sein and the mages emerging from the fortress, reinforcements...</p>
+</article>
+<article id="c274" data-label="274">
+<h2 class="chapter">Chapter 274: Engineers 🔒</h2>
+<p>A colossal pillar of green light appeared.</p>
+<p>Following this phenomenon, the plant creatures scattered across the battlefield began to grow at an astonishing rate, visible to the naked eye.</p>
+<p>Those initially a few meters tall quickly surged to over ten meters, while the already massive ones that were tens of meters in height, transformed into colossal plant giants exceeding a hundred meters.</p>
+<p>The plant giants, though not highly mobile, exhibited remarkable strength, with their branches capable of launching latex balls at their enemies.</p>
+<p>While their offensive capabilities were limited, their defensive prowess became a critical asset in the turmoil of battle.</p>
+<p>At the southern front where Sein was currently...</p>
+</article>
+<article id="c275" data-label="275">
+<h2 class="chapter">Chapter 275: Forbidden Spell 🔒</h2>
+<p>Ander, the pilot of the azure Rank Four mecha, clearly paled in comparison to a formidable engineer Lorianne had encountered in her past.</p>
+<p>Given Ander’s mental focus and skills, it would be an achievement if he could manage to remotely control about one thousand mechas while piloting a Rank Four mecha himself.</p>
+<p>In fact, Lorianne could tell that Ander might not even be as skillful as the engineer who piloted the Hayworth-Type unit that she had previously destroyed.</p>
+<p>However, it was also important to know when Lorianne had taken down the Hayworth-type unit in an ambush, the mecha had already been severely damaged by a Rank Five knight from the Magus World beforehand.</p>
+<p>At this point, Lorianne was about to fight the Rank Four azure mecha alone as a Rank Four...</p>
+</article>
+<article id="c276" data-label="276">
+<h2 class="chapter">Chapter 276: Ambushed 🔒</h2>
+<p>The forbidden spell’s magical glow significantly boosted the morale of the mages on the battlefield.</p>
+<p>Many full-fledged mages, including Sein, were experiencing the formidable power of a forbidden spell for the very first time.</p>
+<p>Although Sein’s Solar Eye magic was a product of his extensive research, it was nothing compared to the transformative energy of the forbidden spell Lorianne unleashed.</p>
+<p>Amidst the verdant green elemental tempest, Sein found himself looking forward to his mentor’s guidance and his future journey through the realms of magic.</p>
+<p>He wondered whether he, too, could wield such a formidable elemental power one day.</p>
+<hr class="separator">
+<p>Since Lorianne had flown out of the...</p>
+</article>
+<article id="c277" data-label="277">
+<h2 class="chapter">Chapter 277: Sea of Vines 🔒</h2>
+<p>The pink mecha that ambushed Sein stood out starkly from the other constructs he had encountered.</p>
+<p>Apart from its formidable strength, it also exhibited a semblance of sentience, unlike the dull and rigid nature of its counterparts.</p>
+<p>Although it was just a metallic construct, Sein could still perceive its disdain and malice from the two beams of red light on its head.</p>
+<p>This pink mecha was definitely one of the most formidable opponents Sein had faced yet.</p>
+<p>Although these constructs were not living beings and did not possess life levels, the power of the energy beam it released could match a peak Rank One or even a Rank Two creature’s s...</p>
+</article>
+<article id="c278" data-label="278">
+<h2 class="chapter">Chapter 278: Individual and Group 🔒</h2>
+<p>“Forest Fury” was the name of the forbidden spell unleashed by Lorianne.</p>
+<p>Despite being considered a minor forbidden spell, its potency was formidable within its category.</p>
+<p>However, the inherent pyro attribute of the Viridian Venom Flame World, combined with a lack of fertile soil and adequate water supply, significantly weakened the spell’s effects and reduced its area of effect when unleashed in this world.</p>
+<p>Typically, even a minor forbidden spell possessed the staggering capability to envelop an entire continent.</p>
+<p>Although the energy released by Lorianne’s Forest Fury spell had been reduced to that of a micro forbidden spell due to environmental conditions and planar law limitations, the spell’s...</p>
+</article>
+<article id="c279" data-label="279">
+<h2 class="chapter">Chapter 279: Crisis Resolved 🔒</h2>
+<p>“Is this a creature from the Neisse Civilization?” Sein mused, studying the unconscious figure that fit the beauty standards of the Magus World, albeit with slight peculiarities.</p>
+<p>Unfortunately, the engineer from the Neisse Civilization that Sein captured was in no state to respond to his question.</p>
+<p>Though capable of piloting a mecha with a combat power that matched peak of Rank One, or even Rank Two creature, the unconscious engineer had a relatively low life level herself.</p>
+<p>Sein estimated that she had barely reached Rank One, yet physically, she seemed even more delicate than a typical mage from the Magus World.</p>
+<p>After taking a close look at the...</p>
+</article>
+<article id="c280" data-label="280">
+<h2 class="chapter">Chapter 280: Injured 🔒</h2>
+<p>As the war neared its conclusion, Sein found himself unexpectedly at the western part of the main base, even though he started at the southern front.</p>
+<p>Amidst the chaos of battle, he had somehow traversed from one region to another, only realizing the shift upon regaining his senses.</p>
+<p>Now, only about ten enslaved creatures remained in his company.</p>
+<p>The formidable giant plants that once dominated the battlefield had withered away about half a month earlier, leaving behind nothing but coiled roots.</p>
+<p>Sein sliced many of the roots open with his Pyro Blade spell and discovered that these roots were not entirely dead...</p>
+</article>
+<article id="c281" data-label="281">
+<h2 class="chapter">Chapter 281: Rejection 🔒</h2>
+<p>Half a month ago, the main base was in disarray, but it had since returned to a state of order and tranquility.</p>
+<p>The base’s restoration was swiftly achieved thanks to the labor of numerous enslaved creatures and the oversight of knowledgeable and wise mages managing every aspect. In the aftermath of the war, recovery was rapid.</p>
+<p>The group of enslaved creatures that accompanied Sein back to the main base seemed very excited.</p>
+<p>Their excitement was partly due to the surrounding heaps of pyro elemental creature corpses, which had not decayed thanks to the creatures’ unique nature and the magic prohibition arrays set up by the mages in the fortress.</p>
+<p>These undecayed corpses provided a valuable source of nourishment...</p>
+</article>
+<article id="c282" data-label="282">
+<h2 class="chapter">Chapter 282: Yuri 🔒</h2>
+<p>“How about two Grade Two pyro-attribute energy crystals then?” the Rank Two mage asked, arching an eyebrow, his tone slightly more forceful this time.</p>
+<p>Yet, he refrained from using his formidable mental focus to oppress Sein, aware that doing so would violate the rules.</p>
+<p>In response to the mage’s revised proposal, Sein remained firm, stating, “I have no intention of selling this engineer from the Neisse Civilization.”</p>
+<p>After his refusal, Sein shot a look toward the antelope creature, telling it that it was time for them to return to the space fortress above.</p>
+<p>As Sein was about to depart, the Rank Two mage suddenly asked, “You’re not from the Divine Tower of Verdant Flame, are you?”</p>
+<p>The question momentarily altered Sein’s expression, prompting him to scrutinize the Rank Two mage as if committing...</p>
+</article>
+<article id="c283" data-label="283">
+<h2 class="chapter">Chapter 283: Divine Tower of Verdant Spring’s Losses 🔒</h2>
+<p>Sein scrutinized the Neisse Civilization engineer before him as though she were a unique artifact, his eyes gleaming faintly as if dissecting Yuri with an invisible scalpel.</p>
+<p>His intense gaze appeared to penetrate through her clothes, delving into the secrets harbored within her body.</p>
+<p>This invasive scrutiny caused Yuri to flush with a mix of fear and embarrassment.</p>
+<p>Indeed, there were striking resemblances and shared characteristics between the beings of the Neisse Civilization and the humans of the Magus World, both humanoid with similar anatomical features.</p>
+<p>After a prolonged observation, Sein exhaled softly, choosing not to pursue further examination of this invaluable...</p>
+</article>
+<article id="c284" data-label="284">
+<h2 class="chapter">Chapter 284: Eileen’s Vulnerability 🔒</h2>
+<p>Eileen was recuperating in an area designated by the space fortress specifically for mages who had sustained injuries in battle.</p>
+<p>This facility was reserved for those with more severe injuries, offering comprehensive recuperative services at minimal cost.</p>
+<p>Despite qualifying for such treatment given the extent of his injuries, Sein did not perceive his injuries as warranting special medical attention and thus did not seek treatment at the facility.</p>
+<p>Eileen, on the other hand, was sent here following an ambush by a mecha army and native pyro elemental creatures in the western region of the continent.</p>
+<p>Despite the eventual reinforcement of allied mages, the clash...</p>
+</article>
+<article id="c285" data-label="285">
+<h2 class="chapter">Chapter 285: Combat Mission 🔒</h2>
+<p>“A shift has occurred in the Viridian Venom Flame World, accompanied by sightings of mecha armies across the sixteen planes around the Neisse Star Domain. Master Feylis, are you not worried at all about the safety of your own divine tower forces and your three apprentices?” a man clad in red magic robe asked the female mage before him, high above a tilted floating city that was billowing smoke in Silver Moire World.</p>
+<p>The magic robe that Feylis wore right now was far more vibrant than the one worn by the red-robed mage, adorned with intricate patterns of green, red, and purple.</p>
+<p>These patterns held more than aesthetic value. In fact, the value of Feylis’ robes...</p>
+</article>
+<article id="c286" data-label="286">
+<h2 class="chapter">Chapter 286: Sea of Molten Lava 🔒</h2>
+<p>Before his departure from the space fortress, Sein bid farewell to Eileen and Jovian, the two mages whom he was more well-acquainted with.</p>
+<p>Eileen’s injuries would probably require at least half a year of recuperation for any chances of recovery.</p>
+<p>The fortress accorded severely injured mages like her preferential treatment, exempting them from being assigned to any war missions and allowing them the right to recuperate within its confines.</p>
+<p>Eileen, now with fewer bandages around her upper body, appeared visibly hesitant to part with Sein.</p>
+<p>Over the past month, Sein had made several visits to Eileen.</p>
+<p>Although Eileen was the one who requested his visit most of the time, Sein still complied...</p>
+</article>
+<article id="c287" data-label="287">
+<h2 class="chapter">Chapter 287: Social Network 🔒</h2>
+<p>Selphy carried a faint, pleasant scent, which Sein surmised might come from a special type of perfume or magic herb.</p>
+<p>Compared to the other Rank One female mages Sein had encountered, Selphy seemed to put more effort into her appearance.</p>
+<p>The ruby earrings Selphy wore shimmered under the distant glow of the molten lava sea, lending her an added touch of elegance.</p>
+<p>The silver bracelet on her wrists, magic rings on her index and middle fingers, as well as the golden necklace she wore around her neck… All of them were indicators of her affluence.</p>
+<p>Of course, it was also entirely possible that most of the magic equipment she wore was crafted by herself since she was an...</p>
+</article>
+<article id="c288" data-label="288">
+<h2 class="chapter">Chapter 288: Offensive 🔒</h2>
+<p><em>Adult Molten Fire Beasts are below Rank One. Only those with a size exceeding ten or even fifteen meters possess a life level of Rank One.</em></p>
+<p><em>Their considerable size and mastery over pyro elemental energy allow them to wield power comparable to that of a Rank One creature dwelling in the sea of molten lava.</em></p>
+<p><em>Furthermore, the Molten Fire Beasts operate in groups, with a hundred adults capable of unleashing collective force far surpassing their individual capabilities.</em></p>
+<p><em>This collaborative strength is likely facilitated by their use of a specific ore within their skull that enhances the efficiency of their communication.</em></p>
+<p><em>Several war airships from the space fortress had crashed into the sea of molten lava, primarily due to ambushes...</em></p>
+</article>
+<article id="c289" data-label="289">
+<h2 class="chapter">Chapter 289: Blue Fiery Trench 🔒</h2>
+<p>The area surrounding the base had been thoroughly secured by the mages, resulting in minimal resistance encountered by Sein and the Magus Civilization Army during the initial stages of their mission.</p>
+<p>Yet, as they ventured closer to the depths of the lava sea, particularly toward the special region known as the “Blue Fiery Trench”, they began to encounter various creatures from the Viridian Venom Flame World.</p>
+<p>Among these encounters, the Magus Civilization Army noted several what seemed to be scout mechas.</p>
+<p>Nonetheless, neither the native creatures of the Viridian Venom Flame World nor the occasional appearance of mechas posed any significant challenge to the Magus Civilization Army’s advance.</p>
+<p>The sporadic forces that did emerge also proved ineffective...</p>
+</article>
+<article id="c290" data-label="290">
+<h2 class="chapter">Chapter 290: Silver Fort 🔒</h2>
+<p>The command to launch an attack swiftly propagated from the space fortress, reaching the surrounding four mage formations, each consisting of ten thousand individuals.</p>
+<p>The initial response came from the hundreds of thousands of enslaved creatures serving as cannon fodder, which, despite being diminished over the past two months, still presented an imposing force when viewed from above.</p>
+<p>Following the enslaved creatures’ lead, the two mage legions positioned in front of the space fortress initiated their assault at different altitudes.</p>
+<p>The group positioned at a higher altitude leveraged its advantageous position to unleash magical attacks on the mecha army below.</p>
+<p>The others who descended to lower altitude engaged the enemies in close-quarters combat to obliterate them and secure the area.</p>
+<p>The...</p>
+</article>
+<article id="c291" data-label="291">
+<h2 class="chapter">Chapter 291: Composite Magic of Three Elements 🔒</h2>
+<p>Every grand battlefield was essentially an amalgamation of hundreds, if not thousands, of smaller battlefields.</p>
+<p>The silver fort that Sein and a dozen other mages were currently laying siege to represented just one of these smaller battlefields across the Blue Fiery Trench.</p>
+<p>The Rank Two female mage leading them, whose name Sein had yet to learn, was a seasoned participant in interplanar wars.</p>
+<p>Putting aside her elemental prowess, her adeptness at seizing tactical opportunities and selecting targets amidst the chaos of battle surely surpassed that of an average mage.</p>
+<p>Their target, the silver fort, was perched on the sloping side of a towering ridge, distinct...</p>
+</article>
+<article id="c292" data-label="292">
+<h2 class="chapter">Chapter 292: Long Ranged Support 🔒</h2>
+<p><em>Pew! Pew! Pew!</em></p>
+<p>The barrage of intense energy beams shot down the enslaved creatures that were surging toward the mountain ridge, causing them to fall in waves.</p>
+<p>Even the mages positioned behind them were not spared the brunt of the assault.</p>
+<p>The limitations of relying solely on mage forces in the Viridian Venom Flame World became increasingly apparent as the war dragged on.</p>
+<p>Under normal circumstances, it was usually the knight legions that followed behind the enslaved creatures, not the mages.</p>
+<p>Had there been a contingent of over twenty knights charging at this fort alongside Sein and the few mages, the scenario might have...</p>
+</article>
+<article id="c293" data-label="293">
+<h2 class="chapter">Chapter 293: Breach 🔒</h2>
+<p>Sein’s message was very brief. In the throes of such an intense war, there was little time for elaboration or catch-ups.</p>
+<p>His message was primarily focused on conveying his request, supplemented by precise coordinate details.</p>
+<p>The Magus Civilization Army had thoroughly scouted the Blue Fiery Trench, ensuring that the current conditions and coordinates of key locations were continually updated in the crystal ball of every war mage involved.</p>
+<p>Through the provided coordinates, Selphy was able to swiftly locate the area near the silver fort where Sein and his comrades were.</p>
+<p>Upon receiving Sein’s request for assistance, Selphy briefly contemplated before gracefully directing the fifteen magic cannons under her command at the fortress’ western flank toward a new target.</p>
+<p>The fortress’ initial...</p>
+</article>
+<article id="c294" data-label="294">
+<h2 class="chapter">Chapter 294: Creatures from the Neisse Civilization 🔒</h2>
+<p>As Sein and the Rank Two female mage ventured further into the white passage beneath the ruins of the silver fort, the clamor of the ongoing battle reverberated around them.</p>
+<p>The ground shook with each impact of elemental magic, and the sounds of explosions filled the air as the space fortress and the numerous war airships in the sky unleashed their might.</p>
+<p>The remaining mage formation of ten thousand strong were deployed, their overwhelming elemental power steadily eroding the defenses of the Neisse Civilization.</p>
+<p>The breach of the silver fort by Sein, the Rank Two female mage, and their comrades was one of the many similar achievements made across the entire battlefield</p>
+<p>As the time progressed, victory...</p>
+</article>
+<article id="c295" data-label="295">
+<h2 class="chapter">Chapter 295: Shocking Haul 🔒</h2>
+<p>A grotesque banquet unfolded at the base of the Neisse Civilization.</p>
+<p>The enslaved creatures of the Magus World were blessed with stomachs of steel.</p>
+<p>Throughout the war with the Magus Civilization, they often faced the dire prospect of having a meal with no guarantee of the next.</p>
+<p>Surviving the war demanded not just bravery but also sustenance—a fact well understood among these beings that underwent passive evolution.</p>
+<p>The Rank One creature that had recently appealed to Sein showcased its significant experience in wars through its actions.</p>
+<p>It deftly seized the...</p>
+</article>
+<article id="c296" data-label="296">
+<h2 class="chapter">Chapter 296: Visit 🔒</h2>
+<p>The quest for verdant glaze deposits was one of the key factors driving the four Divine Towers of the Magus World to declare war on the Viridian Venom Flame World.</p>
+<p>Sein’s own mastery of verdant flame magic aligned perfectly with the properties of this unique mineral, prompting him to navigate toward the deeper recesses of the fort upon discovering the deposit.</p>
+<hr class="separator">
+<p>The conflict at the Blue Fiery Trench lasted nearly three months.</p>
+<p>Sein, among the first mages from the Magus Civilization to reach the depths of the lava sea, witnessed an increasing number of mages breaching the surface forts and delving into the expansive subterranean base.</p>
+<p>The pre-war assessment...</p>
+</article>
+<article id="c297" data-label="297">
+<h2 class="chapter">Chapter 297: Favor 🔒</h2>
+<p>Selphy&#39;s room radiated a distinctly feminine charm compared to Sein’s room.</p>
+<p>The room’s color scheme leaned towards softer hues, and Sein noticed the curtains were drawn.</p>
+<p>Had Sein not paid a visit, Selphy would have likely been resting.</p>
+<p>Selphy quickly served Sein a glass of orange colored juice.</p>
+<p>The fragrance of the juice reminded Sein of the concoctions his cousin, Selina, used to prepare for him when he was still a magic initiate.</p>
+<p>The fruity scent momentarily transported Sein back to the Magus World, igniting a wave of “homesickness” within him.</p>
+<p>For Sein, “home” was a broad term that encompassed many places—Earl Grantt’s castle, his quarters in the...</p>
+</article>
+<article id="c298" data-label="298">
+<h2 class="chapter">Chapter 298: Sev the Ranked Magic Beast 🔒</h2>
+<p>Within the confines of the Divine Tower of Floating Flame’s space fortress, Sein had scarcely enjoyed a respite of less than a month when he was thrust back into the fray due to an unexpected battle.</p>
+<p>Over time, Sein adjusted to the unpredicted nature of war.</p>
+<p>He had not ventured into the Viridian Venom Flame World for leisure. Warfare and plunder were the core objectives of his journey.</p>
+<p>Initially, Sein harbored a keen interest in everything the Viridian Venom Flame World had to offer.</p>
+<p>However, as time progressed, he found his curiosity waning.</p>
+<p>The piles of specimens and items he collected from the native creatures of the Viridian Venom Flame World promised Sein a rewarding research future upon his return to the Magus Wor...</p>
+</article>
+<article id="c299" data-label="299">
+<h2 class="chapter">Chapter 299: Fallen Rank Four 🔒</h2>
+<p>Sein’s casual conversation with Eileen was a brief respite amidst tension caused by relentless wars.</p>
+<p>Sein still remembered the “special gift” Eileen had promised to give him before his departure from the Divine Tower of Verdant Flame’s space fortress.</p>
+<p>Curiosity lingered in Sein’s mind about this “special gift”. However, neither Sein nor Eileen spoke of it ever since.</p>
+<p>On the third day after their conversation through the crystal ball ended, Sein found himself once again mobilized for a mission by the command center of the fortress.</p>
+<p>In the war zone where Sein operated, Master Bernice held command.</p>
+<p>Up to this point, Sein had yet to personally witness the prowess of the formidable Rank Four mage.</p>
+<p>Rumors within the fortress...</p>
+</article>
+<article id="c300" data-label="300">
+<span id="last"></span>
+<h2 class="chapter">Chapter 300: Transfer of War Zone 🔒</h2>
+<p>After Bernice triumphantly returned to the space fortress with the remains of the silver mecha with combat capabilities akin to a Rank Four being, Sein sensed a notable easing in the atmosphere for the remainder of the war.</p>
+<p>The native pyro elemental creatures of the Viridian Venom Flame World had long lost the capacity to mount any substantial resistance.</p>
+<p>Moreover, during his subsequent mission, Sein observed that the Neisse Civilization’s mecha armies appeared to crumble at the slightest challenge.</p>
+<p>Similarly, the defensive prowess of the Neisse Civilization’s constructed forts, situated either on the surface or in the depths of the lava sea, had significantly weakened....</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="301-350.html" rel="next">Next: Chs 301–350 &rarr;</a>
+    <p class="page-end-links"><a href="201-250.html" rel="prev">&larr; Chs 201–250</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 251–300</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c251">Chapter 251: Defeat 🔒</a></li>
+        <li><a href="#c252">Chapter 252: Unstoppable! 🔒</a></li>
+        <li><a href="#c253">Chapter 253: First Wave 🔒</a></li>
+        <li><a href="#c254">Chapter 254: Grievously Weakened 🔒</a></li>
+        <li><a href="#c255">Chapter 255: Full-Scale Invasion 🔒</a></li>
+        <li><a href="#c256">Chapter 256: Pouring Forth 🔒</a></li>
+        <li><a href="#c257">Chapter 257: Pyro Elemental Creatures 🔒</a></li>
+        <li><a href="#c258">Chapter 258: The Battle Between Rank Ones 🔒</a></li>
+        <li><a href="#c259">Chapter 259: The Secrets of the Verdant Flame Magic 🔒</a></li>
+        <li><a href="#c260">Chapter 260: Mission Rewards 🔒</a></li>
+        <li><a href="#c261">Chapter 261: Red Molten River 🔒</a></li>
+        <li><a href="#c262">Chapter 262: Scout Mages 🔒</a></li>
+        <li><a href="#c263">Chapter 263: Kill-Steal 🔒</a></li>
+        <li><a href="#c264">Chapter 264: Divide 🔒</a></li>
+        <li><a href="#c265">Chapter 265: Verdant Glaze 🔒</a></li>
+        <li><a href="#c266">Chapter 266: Decisive War 🔒</a></li>
+        <li><a href="#c267">Chapter 267: Growth 🔒</a></li>
+        <li><a href="#c268">Chapter 268: Waste Disposal Land 🔒</a></li>
+        <li><a href="#c269">Chapter 269: Small Success in Body Tempering 🔒</a></li>
+        <li><a href="#c270">Chapter 270: Combat Zones 🔒</a></li>
+        <li><a href="#c271">Chapter 271: A Breach 🔒</a></li>
+        <li><a href="#c272">Chapter 272: Out for Battle 🔒</a></li>
+        <li><a href="#c273">Chapter 273: A Rank Four Mage’s Intervention 🔒</a></li>
+        <li><a href="#c274">Chapter 274: Engineers 🔒</a></li>
+        <li><a href="#c275">Chapter 275: Forbidden Spell 🔒</a></li>
+        <li><a href="#c276">Chapter 276: Ambushed 🔒</a></li>
+        <li><a href="#c277">Chapter 277: Sea of Vines 🔒</a></li>
+        <li><a href="#c278">Chapter 278: Individual and Group 🔒</a></li>
+        <li><a href="#c279">Chapter 279: Crisis Resolved 🔒</a></li>
+        <li><a href="#c280">Chapter 280: Injured 🔒</a></li>
+        <li><a href="#c281">Chapter 281: Rejection 🔒</a></li>
+        <li><a href="#c282">Chapter 282: Yuri 🔒</a></li>
+        <li><a href="#c283">Chapter 283: Divine Tower of Verdant Spring’s Losses 🔒</a></li>
+        <li><a href="#c284">Chapter 284: Eileen’s Vulnerability 🔒</a></li>
+        <li><a href="#c285">Chapter 285: Combat Mission 🔒</a></li>
+        <li><a href="#c286">Chapter 286: Sea of Molten Lava 🔒</a></li>
+        <li><a href="#c287">Chapter 287: Social Network 🔒</a></li>
+        <li><a href="#c288">Chapter 288: Offensive 🔒</a></li>
+        <li><a href="#c289">Chapter 289: Blue Fiery Trench 🔒</a></li>
+        <li><a href="#c290">Chapter 290: Silver Fort 🔒</a></li>
+        <li><a href="#c291">Chapter 291: Composite Magic of Three Elements 🔒</a></li>
+        <li><a href="#c292">Chapter 292: Long Ranged Support 🔒</a></li>
+        <li><a href="#c293">Chapter 293: Breach 🔒</a></li>
+        <li><a href="#c294">Chapter 294: Creatures from the Neisse Civilization 🔒</a></li>
+        <li><a href="#c295">Chapter 295: Shocking Haul 🔒</a></li>
+        <li><a href="#c296">Chapter 296: Visit 🔒</a></li>
+        <li><a href="#c297">Chapter 297: Favor 🔒</a></li>
+        <li><a href="#c298">Chapter 298: Sev the Ranked Magic Beast 🔒</a></li>
+        <li><a href="#c299">Chapter 299: Fallen Rank Four 🔒</a></li>
+        <li><a href="#c300">Chapter 300: Transfer of War Zone 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="201-250.html" rel="prev">&larr; Chs 201–250</a>    <a href="../../index.html">Library</a>
+<a href="301-350.html" rel="next">Chs 301–350 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

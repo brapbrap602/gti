@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1301–1350</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1251-1300.html#last" data-next-page="1351-1400.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1301">Chapter 1301: Pyreling World 🔒</a></li>
+        <li><a href="#c1302">Chapter 1302: The Conference Begins 🔒</a></li>
+        <li><a href="#c1303">Chapter 1303: Alliance Overlord 🔒</a></li>
+        <li><a href="#c1304">Chapter 1304: Forty-One! 🔒</a></li>
+        <li><a href="#c1305">Chapter 1305: Clearing the Field 🔒</a></li>
+        <li><a href="#c1306">Chapter 1306: Declaration of War 🔒</a></li>
+        <li><a href="#c1307">Chapter 1307: The Conference’s Motions 🔒</a></li>
+        <li><a href="#c1308">Chapter 1308: Sein Speaks 🔒</a></li>
+        <li><a href="#c1309">Chapter 1309: Delusional 🔒</a></li>
+        <li><a href="#c1310">Chapter 1310: Remembered 🔒</a></li>
+        <li><a href="#c1311">Chapter 1311: End of the Alliance Conference 🔒</a></li>
+        <li><a href="#c1312">Chapter 1312: Pooled Together 🔒</a></li>
+        <li><a href="#c1313">Chapter 1313: Ashen Fortress 🔒</a></li>
+        <li><a href="#c1314">Chapter 1314: A String of Good News 🔒</a></li>
+        <li><a href="#c1315">Chapter 1315: Legions Gathering 🔒</a></li>
+        <li><a href="#c1316">Chapter 1316: Hela’s Interrogation 🔒</a></li>
+        <li><a href="#c1317">Chapter 1317: Pyremperors 🔒</a></li>
+        <li><a href="#c1318">Chapter 1318: Forced Entry 🔒</a></li>
+        <li><a href="#c1319">Chapter 1319: Breaking Through the Fortress 🔒</a></li>
+        <li><a href="#c1320">Chapter 1320: Pyreling World War (I) 🔒</a></li>
+        <li><a href="#c1321">Chapter 1321: Pyreling World War (II) 🔒</a></li>
+        <li><a href="#c1322">Chapter 1322: Pyreling World War (III) 🔒</a></li>
+        <li><a href="#c1323">Chapter 1323: Pyreling World War (IV) 🔒</a></li>
+        <li><a href="#c1324">Chapter 1324: Pyreling World War (V) 🔒</a></li>
+        <li><a href="#c1325">Chapter 1325: Pyreling World War (VI) 🔒</a></li>
+        <li><a href="#c1326">Chapter 1326: Pyreling World War (VII) 🔒</a></li>
+        <li><a href="#c1327">Chapter 1327: Pyreling World War (VIII) 🔒</a></li>
+        <li><a href="#c1328">Chapter 1328: Division of War Profits 🔒</a></li>
+        <li><a href="#c1329">Chapter 1329: Experiment 🔒</a></li>
+        <li><a href="#c1330">Chapter 1330: The End of the War 🔒</a></li>
+        <li><a href="#c1331">Chapter 1331: Secret Mission 🔒</a></li>
+        <li><a href="#c1332">Chapter 1332: Lorianne’s Frustration and Joy 🔒</a></li>
+        <li><a href="#c1333">Chapter 1333: Leena In Seclusion 🔒</a></li>
+        <li><a href="#c1334">Chapter 1334: Exchange Initiate Program 🔒</a></li>
+        <li><a href="#c1335">Chapter 1335: Infiltration Mission 🔒</a></li>
+        <li><a href="#c1336">Chapter 1336: Arrangements Before Departure 🔒</a></li>
+        <li><a href="#c1337">Chapter 1337: Departure 🔒</a></li>
+        <li><a href="#c1338">Chapter 1338: Noctus 🔒</a></li>
+        <li><a href="#c1339">Chapter 1339: Voskelians 🔒</a></li>
+        <li><a href="#c1340">Chapter 1340: Under Attack 🔒</a></li>
+        <li><a href="#c1341">Chapter 1341: Pink-skinned Girl 🔒</a></li>
+        <li><a href="#c1342">Chapter 1342: Travel Together 🔒</a></li>
+        <li><a href="#c1343">Chapter 1343: The Huusians 🔒</a></li>
+        <li><a href="#c1344">Chapter 1344: The Rise and Fall of a Civilization 🔒</a></li>
+        <li><a href="#c1345">Chapter 1345: Traitorous 🔒</a></li>
+        <li><a href="#c1346">Chapter 1346: Within the Federation’s Territory 🔒</a></li>
+        <li><a href="#c1347">Chapter 1347: Ecological Pressure 🔒</a></li>
+        <li><a href="#c1348">Chapter 1348: Parting Ways 🔒</a></li>
+        <li><a href="#c1349">Chapter 1349: New Insights 🔒</a></li>
+        <li><a href="#c1350">Chapter 1350: A Powerful Opponent 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1301" data-label="1301">
+<h2 class="chapter">Chapter 1301: Pyreling World 🔒</h2>
+<p>Angreas, relying on the power of his bloodline, was a formidable figure who had mastered sonido elemental laws.</p>
+<p>Although the three of them specialized in different professions, they had enough in common that conversation never ran dry whenever they met.</p>
+<p>As soon as Angreas noticed Sein and Grimm, he flew over right away.</p>
+<p>Having ascended to Rank Four, Angreas had also earned his spot here as a “highly promising demigod‑level entity” in Magus World.</p>
+<p>In fact, everyone in this section of the venue shared the same status.</p>
+<p>Roughly two hundred people had gathered here—mostly knights and mages like Sein, along with a handful of sea races and magic beasts.</p>
+<p>The rarest of them all were the demihumans....</p>
+</article>
+<article id="c1302" data-label="1302">
+<h2 class="chapter">Chapter 1302: The Conference Begins 🔒</h2>
+<p>Not only Sein but also Angreas, who had just been promoted to Rank Four and established his own divine tower, was also very interested in the foreign plane mentioned by Grimm.</p>
+<p>The three of them were all “freshies” who had just reached Rank Four in the Magus World, desperate for money and eager to build up their initial capital.</p>
+<p>While Angreas could rely on his family elders during the early stages of his divine tower’s construction and development, he was not the type to lean on others.</p>
+<p>Kermoine Serpent was a cold-blooded creature. Bloodline Warlock clans were not as united as outsiders might think. In fact, competition ran deep within the Kermoine Serpent Warlock Clan.</p>
+<p>Angreas’ ability to secure significant resources, allowing him to advance to...</p>
+</article>
+<article id="c1303" data-label="1303">
+<h2 class="chapter">Chapter 1303: Alliance Overlord 🔒</h2>
+<p>It was a graceful and elegant ice crystal phoenix.</p>
+<p>Sein had only ever read about phoenixes in theory and books, and this was his first time seeing a real one.</p>
+<p>The overwhelming power of ice and frost she carried caused the temperature of the entire conference venue to drop slightly the moment she descended.</p>
+<p>The phoenix overlord did not deliberately release her power; after landing at the front row of the conference, she simply folded her wings.</p>
+<p>Sein and the other “new powerhouses” from Magus World that were attending the Magus Alliance Conference for the first time quietly watched the graceful ice phoenix while she interacted with others.</p>
+<p>In fact,...</p>
+</article>
+<article id="c1304" data-label="1304">
+<h2 class="chapter">Chapter 1304: Forty-One! 🔒</h2>
+<p>Apart from those already mentioned, Sein continued observing the other overlords arriving at the venue. Perhaps the key figures would only show up near the end.</p>
+<p>Among the later arrivals were the God of Elves from Grand Elven World and the Giant Mountain God from Grand Amethyst World.</p>
+<p>Elven World’s influence within the Magus Alliance ranked second only to Titan World.</p>
+<p>No wonder the Spider Queen was always eager to poach talent from the Grand Elven World. This prosperous large-sized plane offered far too many opportunities.</p>
+<p>The total number of elven deities present had not yet reached a thousand, but it was already close to eight hundred, and Sein even spotted Senarius, the half-elven god, among them.</p>
+<p>When...</p>
+</article>
+<article id="c1305" data-label="1305">
+<h2 class="chapter">Chapter 1305: Clearing the Field 🔒</h2>
+<p>The powerhouses from Magus World and the Magus Alliance attending this conference likely did not represent the full strength of the Magus Civilization.</p>
+<p>There were undoubtedly many Rank Four or higher beings who, like Sein, had only recently ascended or simply could not attend for other reasons.</p>
+<p>For example, the Rank Four and above creatures from the Phantom Crow King’s star domain did not make it to this conference.</p>
+<p>Even so, as members of the Magus Alliance, they would still represent the Magus Civilization in the coming Clash of Civilizations against the Gallant Federation.</p>
+<p>Moreover, as a powerful and advanced civilization, Magus World would never withdraw all its forces.</p>
+<p>Countless war legions and Rank Four or higher beings remained...</p>
+</article>
+<article id="c1306" data-label="1306">
+<h2 class="chapter">Chapter 1306: Declaration of War 🔒</h2>
+<p>Commander Blood River’s action was a reflection of Netherworld creatures’ brutal, bloodthirsty, and cold-hearted nature.</p>
+<p>Those two Netherworld beings might not have been better off dead. The Magus Civilization could have pried open their minds and extracted useful information.</p>
+<p>But since they were merely Rank Four and Five creatures, their deaths went unmourned.</p>
+<p>As the host of the conference, Lady Bev did not blame Naeverynk.</p>
+<p>After watching Commander Blood River chew and swallow the two creatures, she smiled at the Norman Federation’s vice president across the arena.</p>
+<p>“Mr. Penck, you need not worry. The Magus Civilization doesn’t question your loyalty to the alliance at all. This incident only proves that a small number of individuals have gone astray. The Magus Civilization will...</p>
+</article>
+<article id="c1307" data-label="1307">
+<h2 class="chapter">Chapter 1307: The Conference’s Motions 🔒</h2>
+<p>The first seven agenda items and motions of the conference all revolved around the looming Clash of Civilizations set to erupt within the next millennium.</p>
+<p>Even the voting items reflected the same focus.</p>
+<p>For example, the third agenda item approved increased resource and troop deployments to several allied star domains, including the Netherworld Star Domain.</p>
+<p>The fifth announced that Magus World would lower the price of large-scale war platforms, such as space fortresses and prism forts, for members of the alliance.</p>
+<p>Everything was part of preparations for the coming Clash of Civilizations.</p>
+<p>The power of the Magus Civilization was on full display at this conference.</p>
+<p>Designated as one of the main warfronts, the Netherworld Star Domain received no less than seven hundred million magicoins in pre-war subsidies...</p>
+</article>
+<article id="c1308" data-label="1308">
+<h2 class="chapter">Chapter 1308: Sein Speaks 🔒</h2>
+<p>To regulate the value of magicoins, the Magus Alliance announced that it would release a batch of strategic reserve resources, intended to boost the currency’s value.</p>
+<p>On the surface, this was good news for many member planes of the Magus Alliance, as their money would gain value.</p>
+<p>At first glance, it seemed as if the Magus Civilization was scraping the bottom of its reserves and selflessly giving away its wealth.</p>
+<p>However, few knew the truth. Alongside releasing strategic reserves, the Magus Civilization would also be issuing another massive batch of magicoins to fund the upcoming Clash of Civilizations.</p>
+<p>The total value of this new issuance could reach billions or trillions of magicoins.</p>
+<p>Such a flood of currency would undoubtedly impact the alliance market yet again, but the upper echelons of the Magus Civilization did not care.</p>
+<p>The magicoins themselves...</p>
+</article>
+<article id="c1309" data-label="1309">
+<h2 class="chapter">Chapter 1309: Delusional 🔒</h2>
+<p>Most of Sein’s speech had already been predetermined, and he had even submitted a copy of it to the Magus Alliance in advance.</p>
+<p>Mayne had told him he was free to speak within a “limited” scope.</p>
+<p>Exactly how limited was something Sein would have to find out for himself.</p>
+<p>He chose to address the demihuman issue mainly because, for tens of thousands of years, the status of demihumans in Magus World had never been secure.</p>
+<p>Even the sea races had their own mermaid overlord to speak for them, yet the demihumans remained third-class citizens.</p>
+<p>But Sein went further, speaking on the divisions within the demihuman race itself.</p>
+<p>“Nowadays, there are more and more demihumans in our Magus Alliance, and some clearly carry the bloodlines of our Magus World. Yet, simply because they were...</p>
+</article>
+<article id="c1310" data-label="1310">
+<h2 class="chapter">Chapter 1310: Remembered 🔒</h2>
+<p>“How can the black mages be forgiven? Can they just turn a blind eye to the damage they have done to Magus World?” the Rank Five knight said, his voice sharp with agitation.</p>
+<p>Sein, however, remained composed. Facing the gazes of the many powerhouses in the venue, he spoke slowly and clearly.</p>
+<p>“Those who have committed great crimes are indeed hard to forgive. But some black mages have only strayed a little or were driven down that path by unfortunate circumstances. I believe they should be given a chance to choose differently and redeem themselves through service to atone for their past deeds.”</p>
+<p>Under...</p>
+</article>
+<article id="c1311" data-label="1311">
+<h2 class="chapter">Chapter 1311: End of the Alliance Conference 🔒</h2>
+<p>The Magus Alliance Conference lasted a long time, with countless motions discussed.</p>
+<p>While Sein’s proposal had stirred a wave of debate when first presented, it was quickly buried under the flood of motions and events that followed in the later sessions.</p>
+<p>Some powerhouses of the Magus Civilization and allied worlds put forward proposals more shocking than Sein’s.</p>
+<p>In the end, only a few of the particularly “odd” motions were approved.</p>
+<p>Most of the motions that passed were the more “conventional” ones.</p>
+<hr class="separator">
+<p>During the thirty-fifth agenda item, newer allied planes spoke.</p>
+<p>The Rank Six Phantom Crow King and the Rank Five Eternal Sand Lord, both of whom Sein had personally persuaded to join the Magus Alliance,...</p>
+</article>
+<article id="c1312" data-label="1312">
+<h2 class="chapter">Chapter 1312: Pooled Together 🔒</h2>
+<p>When Sein finally found Lorianne, his mentor and the others were chatting with a group of pyro elemental creatures.</p>
+<p>Every large-sized plane within the Magus Alliance had close ties to one or more of the top powers in Magus World.</p>
+<p>The one most affected by resource redistribution at this conference was Violet Ember World.</p>
+<p>At the moment, the ones speaking with Lorianne and the others were several Rank Four and above pyro elementals from that world.</p>
+<p>“Don’t worry. Regarding your wishes, I’ll communicate with the other Rank Six members of the Pyro Secret Society afterward,” Feylis said to the Rank Six pyro elemental creature in front of her.</p>
+<p>The humanoid face formed by the elemental’s flames showed a flicker of hesitation and bitterness.</p>
+<p>Truth be told,...</p>
+</article>
+<article id="c1313" data-label="1313">
+<h2 class="chapter">Chapter 1313: Ashen Fortress 🔒</h2>
+<p>Although Sein had facilitated the Golden Apple deal, he still volunteered to cover part of the cost.</p>
+<p>It was not much—just five million magicoins, which happened to be slightly less than what Lorianne had contributed.</p>
+<p>Together, Feylis’ apprentices and grand apprentices gathered thirty-seven million magicoins, but they were still thirty-three million short.</p>
+<p>In the end, Feylis personally covered the rest without hesitation.</p>
+<p>“A potion made with a Golden Apple as its core ingredient is easily one of the best recovery items in the entire Magus Alliance, but I’m not skilled enough to handle material of this caliber yet. It’ll be best to hand the Golden Apple over to a Rank Six apothecary to maximize its value…” Lorianne said ...</p>
+</article>
+<article id="c1314" data-label="1314">
+<h2 class="chapter">Chapter 1314: A String of Good News 🔒</h2>
+<p>The main problem the Divine Tower of Ashes faced was that new mages were taking too long to train.</p>
+<p>Full-fledged mages were never easy to nurture.</p>
+<p>Take the Divine Tower of Ashes’ large-scale recruitment of initiates every five years as an example. Out of three thousand initiates enrolled, fewer than fifty could eventually become full-fledged mages after many years of training.</p>
+<p>Most would be stuck at the intermediate initiate stage, unable to break through.</p>
+<p>Furthermore, this was an optimistic estimate.</p>
+<p>Given the current size of the Divine Tower of Ashes, there was no need to think about expansion for now.</p>
+<p>Even if Sein could afford to spend heavily on training initiates, there were simply not enough to ...</p>
+</article>
+<article id="c1315" data-label="1315">
+<h2 class="chapter">Chapter 1315: Legions Gathering 🔒</h2>
+<p>Six years later, Sein led the Divine Tower of Ashes combat legion to a remote demiplane outside Magus World to await deployment.</p>
+<p>His space fortress was there too.</p>
+<p>The Divine Tower of Ashes had brought half a million troops this time. Aside from nearly seven hundred full-fledged mages, most of the forces consisted of centaurs, minotaurlings, lesser sea races, a few demihumans, underground dark creatures, and some winged and insectoid slaves from White Sand World.</p>
+<p>The legion was still a mixed bag, reflecting Sein’s lack of a solid foundation.</p>
+<p>The lesser sea races came from Ashenreach’s waters, while the demihumans and dark creatures were natives...</p>
+</article>
+<article id="c1316" data-label="1316">
+<h2 class="chapter">Chapter 1316: Hela’s Interrogation 🔒</h2>
+<p>“There’s no need to think about it. Of course, it’s going to be me!” Murg said, patting his chest.</p>
+<p>He was an extremely well-built and dark-skinned knight, clad in heavy black armor.</p>
+<p>His weapon of choice was a bladeless axe—a weapon that only those absolutely confident in their own strength would wield.</p>
+<p>It was made for warriors who relied purely on brute force to smash their enemies.</p>
+<p>The only one tougher and more resilient than Murg was Marcus from the Order of Cercis Shield.</p>
+<p>However, Marcus was old, and it was wiser not to deploy a powerful Rank Five knight like him on the front lines right away.</p>
+<p>“Sir Murg can lead the initial charge....</p>
+</article>
+<article id="c1317" data-label="1317">
+<h2 class="chapter">Chapter 1317: Pyremperors 🔒</h2>
+<p>Pyreling World was a pyro-attribute plane with an extreme, blistering environment.</p>
+<p>It was a relatively resource-rich low-level world, home to five <em>Pyremperors</em>.</p>
+<p>The creatures living here thrive in lava flows and volcanic regions, building a surprisingly advanced civilization on their homeplane.</p>
+<p>Pyrelings were the dominant species of this world. They were so numerous that the entire plane was named after them.</p>
+<p>Four of the five Pyremperors were members of this very species.</p>
+<p>The Pyreling lineage was very diverse. They were technically insects, but most looked like massive lizards instead. They were anything but weak though.</p>
+<p>On average, a...</p>
+</article>
+<article id="c1318" data-label="1318">
+<h2 class="chapter">Chapter 1318: Forced Entry 🔒</h2>
+<p>Murg was ecstatic as he became the first to force his way into Pyreling World.</p>
+<p>The planar barrier of Pyreling World was incredibly thick, and its repulsive force was strong. It was a clear sign that this world’s laws were well-developed and thriving.</p>
+<p>From the blank demiplane outside Magus World, the lesser creatures watched in awe as Murg unleashed his true form in all its terrifying glory and strained with everything he had to push through the space gate.</p>
+<p>He had not fully entered Pyreling World yet.</p>
+<p>With the support of multiple space gates and elemental arrays, he had only managed to wedge a head and an arm through, catching the opposing plane off guard.</p>
+<p>Deep grooves...</p>
+</article>
+<article id="c1319" data-label="1319">
+<h2 class="chapter">Chapter 1319: Breaking Through the Fortress 🔒</h2>
+<p>A torrent of flames suddenly erupted from the space gates, engulfing the sky of the demiplane.</p>
+<p>Murg, who had already pushed halfway through, pulled back just in time.</p>
+<p>He was no fool. Faced with a Rank Five Pyremperor who was clearly far stronger, he did not try to fight it head-on.</p>
+<p>Pyreling World was simply too powerful, with an incredibly solid foundation.</p>
+<p>If Murg had tried to force his way in, he would be dealing with the plane’s repulsive force, a hostile environment that weakened him, and a Rank Five native all at once...</p>
+<p>Under those conditions, retreating was the smartest choice.</p>
+<p>Now the real question was whether the other side would...</p>
+</article>
+<article id="c1320" data-label="1320">
+<h2 class="chapter">Chapter 1320: Pyreling World War (I) 🔒</h2>
+<p>The once calm spatial vortex suddenly erupted in a terrifying downpour of energy.</p>
+<p>The magitech of the Magus Civilization delivered a harsh lesson to these extraplanar beings.</p>
+<p>Under the overwhelming advantage of civilizational superiority, only those at Rank Four or above could retreat in time with all their strength.</p>
+<p>For lesser creatures, even those at Rank Three, just a moment’s hesitation in the face of dense energy beams and elemental rain would leave them reduced to a bloody pulp!</p>
+<p>Maybe the Pyrelings’ proud lava carapaces could withstand a few, or even a dozen beams from different directions.</p>
+<p>But what about a hundred? A thousand? Ten thousand?!</p>
+<p>The elemental torrent unleashed by the Magus Civilization’s magitech was enough to obliterate...</p>
+</article>
+<article id="c1321" data-label="1321">
+<h2 class="chapter">Chapter 1321: Pyreling World War (II) 🔒</h2>
+<p>The battle against several Pyremperors in Pyreling World proved far more difficult than Sein’s earlier fight in White Sand World.</p>
+<p>To put it bluntly, that one had been little more than a group brawl, and his side had the numbers advantage.</p>
+<p>Now, with Grimm and the others yet to arrive in Pyreling World, it was up to Sein and Marcus to hold the line while being ganged up on.</p>
+<p>The Rank Five Void Eater charged directly at Sein.</p>
+<p>It was clearly a much tougher opponent than the Bouldrak King or the Eternal Sand Lord from before.</p>
+<p>The strange black flames it wielded carried the rare “devouring” attribute.</p>
+<p>Sein had encountered many unusual pyro elemental laws over the years, but this one still caught him off guard.</p>
+<p>Under normal circumstances, Sein would not have stood a chance against a Rank Five creature.</p>
+<p>The power hierarchy in the Astral Realm was strict,...</p>
+</article>
+<article id="c1322" data-label="1322">
+<h2 class="chapter">Chapter 1322: Pyreling World War (III) 🔒</h2>
+<p>The first phase of Magus World’s deployment to Pyreling World ultimately concluded with Sein and the others’ arrivals.</p>
+<p>With Grimm and Marcus’ descent, as well as the two space fortresses, Void Eater and the other Pyremperors had virtually no chance of driving them out of their homeplane.</p>
+<p>Marcus proved that experience is the best teacher.</p>
+<p>Sein had to admit that this seasoned Rank Five knight was unmatched in defense. He had pretty decent strength too.</p>
+<p>The core of Marcus’ Cercis Shield Law lay in absorbing the energy of an enemy’s attack and then unleashing it all at once at the perfect moment.</p>
+<p>By the time Marcus sprang into action, his shield’s lawful projection had already absorbed the immense energy from Violet Radiance, Blue Lotus, and Void Eater.</p>
+<p>When...</p>
+</article>
+<article id="c1323" data-label="1323">
+<h2 class="chapter">Chapter 1323: Pyreling World War (IV) 🔒</h2>
+<p>After entering Pyreling World, under the command of Rank Four and higher powerhouses, the Magus Civilization’s expeditionary force split into four directions to begin their conquest by systematically crushing the remaining resistance forces.</p>
+<p>The time left for Sein and the others was actually quite limited. This war had to be concluded within thirty years.</p>
+<p>But reports from the legions and intelligence gathered during the first engagements made it clear that Pyreling World would not be an easy foe.</p>
+<p>It was home to five major pyre nations, each ruled by a being of Rank Four or higher.</p>
+<p>Alongside the four Pyremperors they had already encountered, there was still one yet to appear: “Ivory Bone”.</p>
+<p>Sein and the others learned of this being’s existence from the souls...</p>
+</article>
+<article id="c1324" data-label="1324">
+<h2 class="chapter">Chapter 1324: Pyreling World War (V) 🔒</h2>
+<p>Deploying additional enslaved creature legions was hardly a problem for the Rank Four and above powerhouses in Pyreling World.</p>
+<p>Each of them had reserve legions of cannon fodder ready for battle, including Sein.</p>
+<p>The only one who might struggle a bit was Grimm.</p>
+<p>His Divine Tower of Obliteration had only been established recently, so it was unreasonable to expect too much from him.</p>
+<p>Besides, Grimm’s performance in this interplanar war had already proven his capabilities and value. There was no need to demand more from him.</p>
+<p>As for bringing in additional Rank Four or higher combatants, the Magus World powerhouses all understood there had to be a limit.</p>
+<p>They could...</p>
+</article>
+<article id="c1325" data-label="1325">
+<h2 class="chapter">Chapter 1325: Pyreling World War (VI) 🔒</h2>
+<p>When considering who to bring in as Rank Four reinforcements, Sein first thought of Tourmaline, followed by Lorianne and a few others.</p>
+<p>Unfortunately, when he tried calling Tourmaline, he could not get through to his old friend.</p>
+<p>After the Magus Alliance Conference, Tourmaline had left the venue with White Stella and a few others.</p>
+<p>She had not returned to the Divine Tower of Ashes since, and Sein had no idea what she had been up to in recent years.</p>
+<p>As for Lorianne and the others… Sein reluctantly dropped the idea after meeting with Marcus and several other Rank Four or higher powerhouses.</p>
+<p>To Marcus, Vlad, and the others, the war profits from Pyreling World were just as important as they were to Sein.</p>
+<p>This was an unusually prosperous low-level plane, with multiple vassal planes ready for the taking. Bringing...</p>
+</article>
+<article id="c1326" data-label="1326">
+<h2 class="chapter">Chapter 1326: Pyreling World War (VII) 🔒</h2>
+<p>A massive crater nearly ten kilometers across appeared in the middle of an ancient, barren plain.</p>
+<p>A powerful blast of energy had transformed the land into a giant basin, leaving a purple flame that slowly burned at its center.</p>
+<p>The fallen was Violet Radiance, second only to Void Eater among the Pyremperors, and the first native deity to fall to the Magus Civilization’s expeditionary force.</p>
+<p>Three powerhouses from the Magus Civilization had taken part in the siege: Vlad the Rank Four mage, Murg the Rank Four knight, and Ancient Moonfang, a Rank Five alliance creature.</p>
+<p>Ancient Moonfang was a wolf that stood nearly five hundred meters long in its...</p>
+</article>
+<article id="c1327" data-label="1327">
+<h2 class="chapter">Chapter 1327: Pyreling World War (VIII) 🔒</h2>
+<p>The second Rank Four creature of Pyreling World fell in the seventh year of the war. This time, it was Ghost Slayer.</p>
+<p>Ghost Slayer, a fellow insect-type creature like Void Eater, failed to withstand the combined assault of Grimm and the Khimaira King.</p>
+<p>Truth be told, it could have died much earlier, but like Sein, Grimm was trying to hone himself through this battle.</p>
+<p>He turned down help from Murg and the others, choosing to fight side by side with the only Khimaira King instead.</p>
+<p>Two years after Ghost Slayer’s fall came the biggest blunder of the entire war—a Rank Four Pyremperor got away!</p>
+<p>Ivory Bone had not been in Pyreling World at the start. Since...</p>
+</article>
+<article id="c1328" data-label="1328">
+<h2 class="chapter">Chapter 1328: Division of War Profits 🔒</h2>
+<p>The greater the contribution in war, the greater the reward in the end.</p>
+<p>Sein had contributed more to the Pyreling World War than even Marcus, the Rank Five knight.</p>
+<p>The Ashen Fortress was his, the Phantom Crow King had been invited by him, and his performance in every battle had been just as impressive as anyone else’s.</p>
+<p>The Divine Tower of Ashes Legion under his command, with its many demigod-level powerhouses and Yuri, the “pseudo-Rank Four” piloting her silver mecha, stood out among the lower-tier legions.</p>
+<p>All things considered, Sein’s demands were not unreasonable.</p>
+<p>He had not even mentioned the various resources and mineral deposits...</p>
+</article>
+<article id="c1329" data-label="1329">
+<h2 class="chapter">Chapter 1329: Experiment 🔒</h2>
+<p>The intense session between Sein and the two women lasted an entire month.</p>
+<p>Only these female knights with such formidable physiques and stamina could handle Sein’s roughness.</p>
+<p>By contrast, Selina and Eileen’s weaker constitutions as mages meant Sein could never truly let loose with them.</p>
+<p>When the haze in his head finally cleared, Sein felt relieved that he was a body-tempering mage.</p>
+<p>If he were a traditional Elementalist, a knight wife like Natalya might have drained him dry…</p>
+<p>No wonder male mages in Magus World had rarely chosen female knights as partners throughout history.</p>
+<p>Beyond their different cultural backgrounds, the gap in physical...</p>
+</article>
+<article id="c1330" data-label="1330">
+<h2 class="chapter">Chapter 1330: The End of the War 🔒</h2>
+<p>By the seventeenth year of the Pyreling World War, most of the resistance on this low-level plane had been crushed.</p>
+<p>The creatures here were pretty stubborn. Despite their revered Pyremperors falling one after another, the lesser Pyrelings continued to cause trouble for a while longer.</p>
+<p>Once the last resistance forces in Pyreling World were wiped out, the legions under Sein and the others marched toward several enslaved planes under Pyreling World’s control.</p>
+<p>These low-level microplanes were all close to Pyreling World, and their resistance was even weaker.</p>
+<p>To the inhabitants of those planes, it made little difference whether they were enslaved by the Pyrelings or by the...</p>
+</article>
+<article id="c1331" data-label="1331">
+<h2 class="chapter">Chapter 1331: Secret Mission 🔒</h2>
+<p>“What do you need me for this time?” Sein asked.</p>
+<p>Mayne was a busy man, and so was Sein.</p>
+<p>Under normal circumstances, neither of them would be idle enough to meet just to catch up. There had to be a reason for Mayne to come all this way.</p>
+<p>Sure enough, Mayne replied, “There’s indeed something I need you for, but we can get to that later.”</p>
+<p>“Did you just team up with others to conquer a foreign plane? Pyreling World, was it?” he continued asking.</p>
+<p>Sein nodded.</p>
+<p>Mayne smiled. “Thought so. Did you guys accidentally let a Rank Four creature slip away?”</p>
+<p>Sein’s expression froze like he had just seen a ghost. Looking at Mayne’s...</p>
+</article>
+<article id="c1332" data-label="1332">
+<h2 class="chapter">Chapter 1332: Lorianne’s Frustration and Joy 🔒</h2>
+<p>Even if Sein had been able to bring Lorianne along to the recently concluded Pyreling World War, she would not have had the time to go.</p>
+<p>Lately, Lorianne had been pouring most of her energy into researching the Golden Apple Potion.</p>
+<p>After all this time, she had finally made some progress.</p>
+<p>“Oh? What kind of gift?” she asked curiously.</p>
+<p>Over the years, Sein had brought her plenty of surprises and scares.</p>
+<p>By now, she had developed a strong immunity to such things. She did not even bother to look up when she spoke, and just continued working on the material in her hands.</p>
+<p>Sein chuckled and replied, “It’s a living Rank Four pyro elemental plant specimen....</p>
+</article>
+<article id="c1333" data-label="1333">
+<h2 class="chapter">Chapter 1333: Leena In Seclusion 🔒</h2>
+<p>This time, Sein could not get in touch with Leena.</p>
+<p>Since his promotion to Rank Four, communicating with her had actually become much easier.</p>
+<p>Sein furrowed his brow, but was not too worried about her safety. She had left him no warnings of danger, so the most likely reason was that she was either in the middle of a critical experiment or training in seclusion.</p>
+<p>Besides, the Spider Queen in Blackhaven had agreed to watch over her on his behalf.</p>
+<p>Because of this, Sein considered the Spider Queen more reliable than Leena’s own mentor, the Tower Master of Cinderbones.</p>
+<p>Leena’s talent was the highest among all the women Sein had slept wit...</p>
+</article>
+<article id="c1334" data-label="1334">
+<h2 class="chapter">Chapter 1334: Exchange Initiate Program 🔒</h2>
+<p>After ending his talk with Lorthisra, Sein tidied up the laboratory and went back to his research.</p>
+<p>Before long, at least to Sein, word came that the captured Rank Four Ivory Bone had been brought back.</p>
+<p>The Magus Alliance was fair in such matters. Even Noctus, the Rank Five being who caught Ivory Bone, was generous.</p>
+<p>Sein and the others ended up redeeming Ivory Bone for less than two million magicoins, a price far below the worth of a Rank Four creature, especially one still alive.</p>
+<p>Since Sein was too busy to deal with this matter right away, he asked Angreas to handle it.</p>
+<p>What fate awaited Ivory Bone back in that den of snakes was none of Sein’s concern.</p>
+<p>All he cared about was the origin flame, the other body parts,...</p>
+</article>
+<article id="c1335" data-label="1335">
+<h2 class="chapter">Chapter 1335: Infiltration Mission 🔒</h2>
+<p>“I’ll accept the secret mission you mentioned last time.”</p>
+<p>Within the agreed-upon timeframe, Sein contacted Mayne.</p>
+<p>Since this mission was highly anticipated by an overlord-level being, Sein naturally wanted to execute it flawlessly.</p>
+<p>Human progress knew no bounds, and Sein also wanted to reach greater heights.</p>
+<p>He could have chosen a more stable path, like that of Marcus, who, even at an older age, still had the chance to aim for Rank Six.</p>
+<p>Yet, Sein preferred a faster, more aggressive path.</p>
+<p>After all, he was not the kind of mage content with a quiet life.</p>
+<p>“Haha, I knew you wouldn’t let my grandfather and the others down!” Mayne cheered.</p>
+<p>“As for the mission details, I will...</p>
+</article>
+<article id="c1336" data-label="1336">
+<h2 class="chapter">Chapter 1336: Arrangements Before Departure 🔒</h2>
+<p>The mission to infiltrate Nexon was scheduled to take place twenty-seven years later.</p>
+<p>By then, the Magus Civilization would use a special covert channel to send Sein to the Gallant Federation’s flank.</p>
+<p>A frontal infiltration was far too dangerous, with an extremely low chance of success. Only approaching from the flank offered any real hope.</p>
+<p>Twenty-seven years might sound rushed, but with war between the Magus Civilization and the Gallant Federation looming, it was understandable to have him depart as soon as possible.</p>
+<p>Besides, Sein’s journey to Nexon in the Gallant Federation’s central region could not be made on a space fortress, and there were...</p>
+</article>
+<article id="c1337" data-label="1337">
+<h2 class="chapter">Chapter 1337: Departure 🔒</h2>
+<p>There was no need for Sein to be overly polite with his mentor.</p>
+<p>Lorianne was slightly puzzled by his sudden request. But still, she turned around, reached into a hidden storage space in the laboratory, and took out a row of golden potions.</p>
+<p>She picked out two from the eleven vials and handed them to Sein.</p>
+<p>Seeing the confusion on his face, Lorianne explained, “You were the one who obtained the Golden Apple, so you should get an extra one. Your grandmaster agrees as well.”</p>
+<p>Sein nodded, accepting the two golden vials without hesitation.</p>
+<p>“The Golden Apple potion I developed not only provides immediate healing for Rank Fours but also improves their constitution....</p>
+</article>
+<article id="c1338" data-label="1338">
+<h2 class="chapter">Chapter 1338: Noctus 🔒</h2>
+<p>Traveling through space was an extremely monotonous experience.</p>
+<p>The sights were breathtaking at first, but after a while, they lost their novelty.</p>
+<p>More importantly, Sein’s journey was not a leisurely trip—it was a race against time.</p>
+<p>To avoid wasting even a moment, he refrained from doing anything unnecessary.</p>
+<p>Fifty years later, he finally reached the border region of the Magus Civilization’s territory.</p>
+<p>Perhaps due to the civilization’s strict secrecy protocols, he was instructed not to use any of the remote teleportation arrays scattered across the Magus Civilization’s home star domain.</p>
+<p>Even the small spacecraft he traveled in was devoid of magitech. It was purely a technological product.</p>
+<p>After half a century of flight to reach the...</p>
+</article>
+<article id="c1339" data-label="1339">
+<h2 class="chapter">Chapter 1339: Voskelians 🔒</h2>
+<p>After leaving the Bexar Star Domain, Sein was no longer traveling alone. He joined the Bexar Civilization’s interstellar merchant fleet bound for the Voskel Civilization.</p>
+<p>Civilizations were not isolated from one another.</p>
+<p>The more advanced a civilization became, the more it actively sought contact with other civilizations in nearby worlds.</p>
+<p>Those that remained isolated would not thrive in the long run.</p>
+<p>Phantom Crow World had once been closed off, but since joining the Magus Alliance, Sein had noticed the Phantom Crow King becoming remarkably proactive.</p>
+<p>This had directly made the Phantom Crow Star Domain far more prosperous and lively than it had been...</p>
+</article>
+<article id="c1340" data-label="1340">
+<h2 class="chapter">Chapter 1340: Under Attack 🔒</h2>
+<p>The Voskelians had certainly reached impressive heights in technology; Sein had once observed one of their space stations from afar. It was a fascinating piece of work.</p>
+<p>Recognized by neighboring planes as a medium-sized world civilization, the Voskelians had undoubtedly developed and manufactured space battleships and technological weapons capable of rivaling Rank Six beings.</p>
+<p>Sein was here alone on a covert mission, so it was best for him to maintain a low profile for as long as possible.</p>
+<p>He had no intention of showing his true strength. Aside from the occasional curious glance at this world up close, he was just passing through.</p>
+<p><em>Beneath that hard, complex shell, it’s just a fragile body of flesh and blood, huh? So that’s...</em></p>
+</article>
+<article id="c1341" data-label="1341">
+<h2 class="chapter">Chapter 1341: Pink-skinned Girl 🔒</h2>
+<p>It was a swallowtail-winged spacecraft that had attacked Sein.</p>
+<p>He had seen this type before—it was the most common combat craft used by the Huusians.</p>
+<p>It had plenty of drawbacks: small size, limited ammo capacity, and a short flight range. But it also had its perks: high maneuverability, easy production, and dirt-cheap repair costs.</p>
+<p>This one was not after him, though.</p>
+<p>It was chasing a Rank Three creature that looked like a giant toad with two wings growing from its back, weaving through the asteroid belt.</p>
+<p>The hit to Sein’s wing earlier had just been a misfire.</p>
+<p>Before entering this star domain, Sein had already...</p>
+</article>
+<article id="c1342" data-label="1342">
+<h2 class="chapter">Chapter 1342: Travel Together 🔒</h2>
+<p>This pink-skinned girl was clearly no ordinary figure among the Huusians, given the fact that she wielded a divine artifact.</p>
+<p>If Sein killed her now, he knew he would be asking for trouble.</p>
+<p>Since he did not want to be hunted down by a squad of interstellar mercenaries, he could neither stand by and watch her get seriously injured, nor worse, killed.</p>
+<p>With a soft sigh, Sein darted forward.</p>
+<p>A beam of purple flame shot from his fingertips, striking the giant toad’s swelling belly. At the same time, he grabbed the girl who was still in a daze.</p>
+<p><em>BOOM!</em></p>
+<p>The violent blast shook the asteroid belt, hurling massive...</p>
+</article>
+<article id="c1343" data-label="1343">
+<h2 class="chapter">Chapter 1343: The Huusians 🔒</h2>
+<p>The elderly Rank Four Huusian did not spare Sein so much as a glance, dismissing him as just another Rank Three, and instead addressed Gwyneira with genuine concern.</p>
+<p>“Your Highness, you really shouldn’t have gone after that flying green toad alone! If something happened, how would I ever explain it to the king?”</p>
+<p>“What could possibly go wrong? Do you not trust my abilities, Grandpa Jeda?” The Huusian princess then gestured to Sein.</p>
+<p>“This is Bousse, the one who helped me earlier. Since I accidentally damaged his spacecraft, he’ll be traveling with us for a while.”</p>
+<p>The elderly Huusian turned his head and looked at Sein. He gave a curt nod but said...</p>
+</article>
+<article id="c1344" data-label="1344">
+<h2 class="chapter">Chapter 1344: The Rise and Fall of a Civilization 🔒</h2>
+<p>In the days that followed, Sein’s observations only confirmed his suspicions.</p>
+<p>More and more Huusian ships gathered around the planetary fortress. The Huusians seemed far stronger than Gwyneira had described.</p>
+<p>Sein also sensed the arrival of several new Rank Four beings.</p>
+<p>As a result, he could only suppress his presence even further.</p>
+<p>The good news was that the Huusians with weaker perception still had not noticed that, while Sein appeared to be a late-stage Rank Three on the surface, he was in fact a true Rank Four.</p>
+<p>The bad news was that not long after entering the fortress, Sein was told that Gwyneira’s father wanted...</p>
+</article>
+<article id="c1345" data-label="1345">
+<h2 class="chapter">Chapter 1345: Traitorous 🔒</h2>
+<p>“You actually dare to contact me? Are you not scared that I might hand you over to the Magus Alliance?”</p>
+<p>In the dimly lit, massive stone hall, Naeverynk looked down at the dozen or so insignificant ants beneath him.</p>
+<p>He was only a clone projection. After all, as an overlord-level being, every move he made attracted immense attention.</p>
+<p>And at this moment, the Netherworld Star Domain was not home to just one overlord.</p>
+<p>With the Magus Alliance’s forces pouring in, there were now two other overlord-level powerhouses besides Commander Blood River.</p>
+<p>One of them was even stronger than Naeverynk, who wielded the Trident of Heaven and Hell!</p>
+<p>At such a critical juncture, if word of Naeverynk’s private meeting with these Gallant Federation envoys were...</p>
+</article>
+<article id="c1346" data-label="1346">
+<h2 class="chapter">Chapter 1346: Within the Federation’s Territory 🔒</h2>
+<p>The federation envoy also brought up several war proposals put forward by Magus World’s high-ranking officials during the Magus Alliance Conference, and explained the countermeasures the Gallant Federation had prepared in response.</p>
+<p>Although the Magus Civilization had gone to great lengths to keep the conference secret, even purging a number of disloyal creatures on the spot, there was no such thing as an impenetrable fortress.</p>
+<p>Within two centuries after the conference’s conclusion, the Gallant Federation had acquired everything of value to them, though it came at a cost.</p>
+<p>Conferences like this, open to so many and filled with such a mix of attendees, were never fully secure.</p>
+<p>Absolute secrecy was nearly impossible to achieve.</p>
+<p>Not only the Magus...</p>
+</article>
+<article id="c1347" data-label="1347">
+<h2 class="chapter">Chapter 1347: Ecological Pressure 🔒</h2>
+<p><em>Planet Hydrallis </em>was the next stopover for Sein and the others.</p>
+<p>The arrival of massive fleets and alien forces had placed enormous pressure on this low-level plane.</p>
+<p>The Gallant Federation had named this plane Hydrallis, and the Zeak Empire had adopted the same name.</p>
+<p>But the native lifeforms preferred to call their homeplane <em>Hydraven World</em>.</p>
+<p>It was an oceanic world steeped in the power of hydro elements.</p>
+<p>As they approached, Sein quickly realized just how fragile the carrying capacity of this low-level plane was.</p>
+<p>It was unclear whether this was an isolated case or a reflection of every world under the Gallant Federation.</p>
+<p>According to...</p>
+</article>
+<article id="c1348" data-label="1348">
+<h2 class="chapter">Chapter 1348: Parting Ways 🔒</h2>
+<p>After leaving Hydrallis, Sein crossed several more star domains with the Huusian fleet, passing by over ten complete planes along the way.</p>
+<p>With the Zeak Empire’s force leading the way, his party traveled much faster than before.</p>
+<p>What might have taken him over a century on his own was now accomplished in just twenty-two years.</p>
+<p>But when they arrived at a special star domain known as the Crimson Sea, Sein knew it was time to part ways with the Huusian fleet.</p>
+<p>Before them stretched a breathtaking expanse of crimson cosmic space.</p>
+<p>In the Astral Realm, countless special regions were governed by unique laws, and this red-hued domain was one of them.</p>
+<p>As they passed through, not only did the Huusian fleet deliberately slow down, but even...</p>
+</article>
+<article id="c1349" data-label="1349">
+<h2 class="chapter">Chapter 1349: New Insights 🔒</h2>
+<p>The overall development of the Gallant Federation was pretty impressive.</p>
+<p>When the Gallant Federation was introduced within the Magus Alliance, the Magus Civilization always painted it in a negative light, describing it as “evil”, “dark”, “corrupted”, and “backwater”.</p>
+<p>This was a strategic move, nothing more.</p>
+<p>In reality, a closer look showed that the Gallant Federation’s growth and the state of its vassal civilizations were actually quite commendable.</p>
+<p>The federation placed enormous emphasis on economic development, and its overall economic strength was by no means inferior to that of the Magus Civilization.</p>
+<p>While the Magus Civilization had greater total resources, its level of development was not nearly as thorough as the federati...</p>
+</article>
+<article id="c1350" data-label="1350">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1350: A Powerful Opponent 🔒</h2>
+<p>Sein’s perception of the Gallant Federation had shifted even further.</p>
+<p>Beyond its remarkable planetary terraforming technology and unique economic philosophy, its achievements in genetic research were just as impressive.</p>
+<p>Within the federation, it was possible to reach a life level of Rank Four or higher simply by paying enough money.</p>
+<p>As Sein himself had ascended to Rank Four, he had come to realize that with sufficient resources, one could indeed create Rank Four or higher lifeforms.</p>
+<p>But the federation’s practice of openly listing such services with a price tag was still beyond his expectations.</p>
+<p>A Rank Four genetic modification project cost one trillion Federal dollars!</p>
+<p>Converted into Magus World’s currency, that was about ten million magicoins, roughly the cost of building a standard space fortress.</p>
+<p>However, the Rank Four beings created through the federation’s program only possessed some of the traits of true Rank Fours, the most important being lifespan.</p>
+<p>In every...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1351-1400.html" rel="next">Next: Chs 1351–1400 &rarr;</a>
+    <p class="page-end-links"><a href="1251-1300.html" rel="prev">&larr; Chs 1251–1300</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1301–1350</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1301">Chapter 1301: Pyreling World 🔒</a></li>
+        <li><a href="#c1302">Chapter 1302: The Conference Begins 🔒</a></li>
+        <li><a href="#c1303">Chapter 1303: Alliance Overlord 🔒</a></li>
+        <li><a href="#c1304">Chapter 1304: Forty-One! 🔒</a></li>
+        <li><a href="#c1305">Chapter 1305: Clearing the Field 🔒</a></li>
+        <li><a href="#c1306">Chapter 1306: Declaration of War 🔒</a></li>
+        <li><a href="#c1307">Chapter 1307: The Conference’s Motions 🔒</a></li>
+        <li><a href="#c1308">Chapter 1308: Sein Speaks 🔒</a></li>
+        <li><a href="#c1309">Chapter 1309: Delusional 🔒</a></li>
+        <li><a href="#c1310">Chapter 1310: Remembered 🔒</a></li>
+        <li><a href="#c1311">Chapter 1311: End of the Alliance Conference 🔒</a></li>
+        <li><a href="#c1312">Chapter 1312: Pooled Together 🔒</a></li>
+        <li><a href="#c1313">Chapter 1313: Ashen Fortress 🔒</a></li>
+        <li><a href="#c1314">Chapter 1314: A String of Good News 🔒</a></li>
+        <li><a href="#c1315">Chapter 1315: Legions Gathering 🔒</a></li>
+        <li><a href="#c1316">Chapter 1316: Hela’s Interrogation 🔒</a></li>
+        <li><a href="#c1317">Chapter 1317: Pyremperors 🔒</a></li>
+        <li><a href="#c1318">Chapter 1318: Forced Entry 🔒</a></li>
+        <li><a href="#c1319">Chapter 1319: Breaking Through the Fortress 🔒</a></li>
+        <li><a href="#c1320">Chapter 1320: Pyreling World War (I) 🔒</a></li>
+        <li><a href="#c1321">Chapter 1321: Pyreling World War (II) 🔒</a></li>
+        <li><a href="#c1322">Chapter 1322: Pyreling World War (III) 🔒</a></li>
+        <li><a href="#c1323">Chapter 1323: Pyreling World War (IV) 🔒</a></li>
+        <li><a href="#c1324">Chapter 1324: Pyreling World War (V) 🔒</a></li>
+        <li><a href="#c1325">Chapter 1325: Pyreling World War (VI) 🔒</a></li>
+        <li><a href="#c1326">Chapter 1326: Pyreling World War (VII) 🔒</a></li>
+        <li><a href="#c1327">Chapter 1327: Pyreling World War (VIII) 🔒</a></li>
+        <li><a href="#c1328">Chapter 1328: Division of War Profits 🔒</a></li>
+        <li><a href="#c1329">Chapter 1329: Experiment 🔒</a></li>
+        <li><a href="#c1330">Chapter 1330: The End of the War 🔒</a></li>
+        <li><a href="#c1331">Chapter 1331: Secret Mission 🔒</a></li>
+        <li><a href="#c1332">Chapter 1332: Lorianne’s Frustration and Joy 🔒</a></li>
+        <li><a href="#c1333">Chapter 1333: Leena In Seclusion 🔒</a></li>
+        <li><a href="#c1334">Chapter 1334: Exchange Initiate Program 🔒</a></li>
+        <li><a href="#c1335">Chapter 1335: Infiltration Mission 🔒</a></li>
+        <li><a href="#c1336">Chapter 1336: Arrangements Before Departure 🔒</a></li>
+        <li><a href="#c1337">Chapter 1337: Departure 🔒</a></li>
+        <li><a href="#c1338">Chapter 1338: Noctus 🔒</a></li>
+        <li><a href="#c1339">Chapter 1339: Voskelians 🔒</a></li>
+        <li><a href="#c1340">Chapter 1340: Under Attack 🔒</a></li>
+        <li><a href="#c1341">Chapter 1341: Pink-skinned Girl 🔒</a></li>
+        <li><a href="#c1342">Chapter 1342: Travel Together 🔒</a></li>
+        <li><a href="#c1343">Chapter 1343: The Huusians 🔒</a></li>
+        <li><a href="#c1344">Chapter 1344: The Rise and Fall of a Civilization 🔒</a></li>
+        <li><a href="#c1345">Chapter 1345: Traitorous 🔒</a></li>
+        <li><a href="#c1346">Chapter 1346: Within the Federation’s Territory 🔒</a></li>
+        <li><a href="#c1347">Chapter 1347: Ecological Pressure 🔒</a></li>
+        <li><a href="#c1348">Chapter 1348: Parting Ways 🔒</a></li>
+        <li><a href="#c1349">Chapter 1349: New Insights 🔒</a></li>
+        <li><a href="#c1350">Chapter 1350: A Powerful Opponent 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1251-1300.html" rel="prev">&larr; Chs 1251–1300</a>    <a href="../../index.html">Library</a>
+<a href="1351-1400.html" rel="next">Chs 1351–1400 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

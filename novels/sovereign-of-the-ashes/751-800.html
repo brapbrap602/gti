@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 751–800</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="701-750.html#last" data-next-page="801-850.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c751">Chapter 751: No Suspense 🔒</a></li>
+        <li><a href="#c752">Chapter 752: Rustle Mournfully 🔒</a></li>
+        <li><a href="#c753">Chapter 753: Representative In Negotiation 🔒</a></li>
+        <li><a href="#c754">Chapter 754: Good Heart 🔒</a></li>
+        <li><a href="#c755">Chapter 755: Fall Of A Rank Four 🔒</a></li>
+        <li><a href="#c756">Chapter 756: Northern Icefield 🔒</a></li>
+        <li><a href="#c757">Chapter 757: Complex Situation 🔒</a></li>
+        <li><a href="#c758">Chapter 758: The War Begins 🔒</a></li>
+        <li><a href="#c759">Chapter 759: The Strong Gathers Like Clouds 🔒</a></li>
+        <li><a href="#c760">Chapter 760: Hot Potato 🔒</a></li>
+        <li><a href="#c761">Chapter 761: Wild Gorilla World 🔒</a></li>
+        <li><a href="#c762">Chapter 762: Squeezing Through 🔒</a></li>
+        <li><a href="#c763">Chapter 763: The Arrival of the Powerful 🔒</a></li>
+        <li><a href="#c764">Chapter 764: Amethyst Emperor 🔒</a></li>
+        <li><a href="#c765">Chapter 765: Blood And Decay 🔒</a></li>
+        <li><a href="#c766">Chapter 766: Chaotic Battlefield 🔒</a></li>
+        <li><a href="#c767">Chapter 767: Operations Command 🔒</a></li>
+        <li><a href="#c768">Chapter 768: Deploying Reserve Force 🔒</a></li>
+        <li><a href="#c769">Chapter 769: Fighting On The Front Line 🔒</a></li>
+        <li><a href="#c770">Chapter 770: Force of Pure Destruction 🔒</a></li>
+        <li><a href="#c771">Chapter 771: Female Knight 🔒</a></li>
+        <li><a href="#c772">Chapter 772: Fighting At Full Strength 🔒</a></li>
+        <li><a href="#c773">Chapter 773: Support Arrives 🔒</a></li>
+        <li><a href="#c774">Chapter 774: Rest 🔒</a></li>
+        <li><a href="#c775">Chapter 775: Initial Phase Of The War 🔒</a></li>
+        <li><a href="#c776">Chapter 776: Heavy Hammer 🔒</a></li>
+        <li><a href="#c777">Chapter 777: Magic Beast Army 🔒</a></li>
+        <li><a href="#c778">Chapter 778: Continuous Surprises 🔒</a></li>
+        <li><a href="#c779">Chapter 779: Help 🔒</a></li>
+        <li><a href="#c780">Chapter 780: Inspirations For Qualitative Change In Energy 🔒</a></li>
+        <li><a href="#c781">Chapter 781: Flaming Sparrow Range 🔒</a></li>
+        <li><a href="#c782">Chapter 782: Settlement 🔒</a></li>
+        <li><a href="#c783">Chapter 783: Plummeting Giant Meteor 🔒</a></li>
+        <li><a href="#c784">Chapter 784: Covert Support 🔒</a></li>
+        <li><a href="#c785">Chapter 785: Uninvited Guest 🔒</a></li>
+        <li><a href="#c786">Chapter 786: Huge Profit and Cooperation 🔒</a></li>
+        <li><a href="#c787">Chapter 787: Failed Experiments 🔒</a></li>
+        <li><a href="#c788">Chapter 788: Combat Command 🔒</a></li>
+        <li><a href="#c789">Chapter 789: Close-Range Attack 🔒</a></li>
+        <li><a href="#c790">Chapter 790: Battlefield Details 🔒</a></li>
+        <li><a href="#c791">Chapter 791: Wild Gorilla Army’s Secret Weapons 🔒</a></li>
+        <li><a href="#c792">Chapter 792: The Magus World Army’s Powerful Counterattack! 🔒</a></li>
+        <li><a href="#c793">Chapter 793: Charge! 🔒</a></li>
+        <li><a href="#c794">Chapter 794: The Azure Flame’s Secret 🔒</a></li>
+        <li><a href="#c795">Chapter 795: War Profit 🔒</a></li>
+        <li><a href="#c796">Chapter 796: A Great Victory 🔒</a></li>
+        <li><a href="#c797">Chapter 797: Lilies Of The Same Stem 🔒</a></li>
+        <li><a href="#c798">Chapter 798: Visit 🔒</a></li>
+        <li><a href="#c799">Chapter 799: Participation Of The Sea Races 🔒</a></li>
+        <li><a href="#c800">Chapter 800: Miseryth 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c751" data-label="751">
+<h2 class="chapter">Chapter 751: No Suspense 🔒</h2>
+<p>This straightforward advancement ushered in the anticipated gains of the war.</p>
+<p>The Wild Gorilla Army was no top-tier force comparable to the elite Magus World Army, nor were they known for performing miracles.</p>
+<p>Already a weary division, they were hammered by relentless attacks and a forbidden spell.</p>
+<p>The fact that the Wild Gorilla Army did not collapse outright deserved praise for its resilience.</p>
+<p>As the army pushed deeper into the forest, the hundred and fifty thousand mages at the rear kept up a continuous barrage.</p>
+<p>Just imagine the number of hostile creatures that could be obliterated with a single spell from each mage!</p>
+<p>This calculation did not even account for the temporary magic towers erected or the firepower from the long-range magic weapons like the magic crystal cannons.</p>
+<p>Although the two continent-like...</p>
+</article>
+<article id="c752" data-label="752">
+<h2 class="chapter">Chapter 752: Rustle Mournfully 🔒</h2>
+<p>“So, this is the interplanar war you’ve participated in several times? Such an exaggerated scale and terrifying reality! Compared to the conflicts between Blackhaven’s major black towers, a war that sweeps through an entire world and determines the fate of an entire plane is far more thrilling!”</p>
+<p>Beside Sein stood Faye, clad in a pitch-black magic robe, her cheeks aglow with an excited red flush.</p>
+<p>Unlike Leena, who had a calm and wise demeanor, Sein’s senior from his former faction was looking more and more like a proper black mage.</p>
+<p>With the gruesome sight of millions of lives being extinguished before them, less hardened mages participating in their first interplanar war might have found it overwhelming.</p>
+<p>However, Faye’s reaction was not one of nausea or revulsion, but rather, exhilaration.</p>
+<p>She had recently joined...</p>
+</article>
+<article id="c753" data-label="753">
+<h2 class="chapter">Chapter 753: Representative In Negotiation 🔒</h2>
+<p>The war between the Magus World and the Verdant Wilderness World concluded sooner than anticipated.</p>
+<p>In fact, there was no direct significant conflict between Magus World and the native creatures of Verdant Wilderness World.</p>
+<p>After crafting the Hexagram Sealing Array, the six demigod-level mages from the Magus Civilization merely restrained the Rank Four Verdant Wilderness God without attempting to kill or destroy it.</p>
+<p>The divine towers of the Magus Civilization did not make things difficult for the large white guardian bird either.</p>
+<p>When Magus Civilization successfully conquered a plane, the guardian of that world would usually be decapitated.</p>
+<p>The guardian’s death could rapidly weaken the planar laws on a large scale,...</p>
+</article>
+<article id="c754" data-label="754">
+<h2 class="chapter">Chapter 754: Good Heart 🔒</h2>
+<p>The guardian of Verdant Wilderness World was a large white bird.</p>
+<p>Sein had heard about it from Green Spikefur King before, but after meeting it in person, he realized that it was a serene creature that could soothe one’s heart and soul.</p>
+<p>One of its wings was still bent, not from the suppression by the otherworldly Gorilla Gods, but because the guardian had used its own body as a shield. It had protected hundreds of thousands of ordinary beings at the heart of the forest from the devastating effects of a forbidden spell unleashed by Gregory.</p>
+<p>It was a truly selfless creature.</p>
+<p>Through such actions, it was clear that White Spirit would not hesitate to trade its life for the lives of the creatures of...</p>
+</article>
+<article id="c755" data-label="755">
+<h2 class="chapter">Chapter 755: Fall Of A Rank Four 🔒</h2>
+<p>The war in Lush Verdant Forest had long since come to an end following the negotiations between Sein and the guardian.</p>
+<p>This vast forest, which had endured the torment of war and the ravages of elemental energy, finally received the long-overdue respite it desperately needed.</p>
+<p>The Magus Civilization’s forces had slain over eight hundred thousand wild gorillas and nearly three million slaves during the conflict.</p>
+<p>Additionally, around two hundred thousand were captured by the Magus Civilization.</p>
+<p>The Magus World was not a bloodthirsty civilization; its mages preferred not to expend their time and energy on pointless killings when higher returns were possible.</p>
+<p>War was never their purpose; it was merely a process for the Magus Civilization to amass wealth.</p>
+<p>Albeit injured, the millions of otherworldly creatures represented...</p>
+</article>
+<article id="c756" data-label="756">
+<h2 class="chapter">Chapter 756: Northern Icefield 🔒</h2>
+<p>The battle in the northern part of the plane was beyond the scope of low-ranking mages such as Sein and the regular combat legions of the Magus World.</p>
+<p>If over a hundred thousand mages from the four divine towers each unleashed a single magic spell, their combined efforts would be enough to threaten a Rank Four or higher creature—much like how a swarm of ants could bring an elephant to its knees.</p>
+<p>However, the four Divine Towers, whether the affluent Divine Tower of Verdant Flame or the less affluent Divine Tower of Verdant Spring, were reluctant to expend their precious mages in such a high-stakes siege against superior creatures.</p>
+<p>For the involved divine towers, even the loss of a small number of mages was deemed...</p>
+</article>
+<article id="c757" data-label="757">
+<h2 class="chapter">Chapter 757: Complex Situation 🔒</h2>
+<p>Lorianne arrived at the northern icefield on the third day after Sein’s arrival.</p>
+<p>At that time, Sein was still getting used to his new magic tower.</p>
+<p>The summons from his mentor sent Sein flying straight to the center of the Divine Tower of Verdant Spring’s fortress base.</p>
+<p>At the same time, a large metal fortress appeared in the sky, casting a vast shadow over the ground.</p>
+<p>Lorianne was not in her space fortress; she received Sein in a lofty magic tower within the base.</p>
+<p>By now, with a legion of over a hundred thousand under his command, Sein was qualified to attend the Divine Tower of Verdant Spring’s high-level meetings.</p>
+<p>When Sein arrived at his mentor’s magic tower, he was accompanied by seven Rank Three grand mages, all holding important positions in the Divine Tower of Verdant Spring’s command center for this war.</p>
+<p>Lorianne sort of knew how her precious apprentice had earned the favor of the Verdant Wilderness World’s guardian.</p>
+<p>She could not help but look at her apprentice with pride, particularly impressed by his ability to summon tens of thousands of undead creatures, including a demigod-level skeletal dragon.</p>
+<p>Every capable mentor wished for their apprentice to surpass them, rather than just coasting on the legacies of their predecessors.</p>
+<p>So...</p>
+</article>
+<article id="c758" data-label="758">
+<h2 class="chapter">Chapter 758: The War Begins 🔒</h2>
+<p>Sein could never have imagined that he, along with millions from the Magus World, would be stationed in Verdant Wilderness World for over four years.</p>
+<p>The war in the northern icefield had ended two years ago.</p>
+<p>The two foreign Gorilla Gods were no match for Feylis and her three apprentices.</p>
+<p>Unlike the unfortunate one who had been captured alive earlier, those two Gorilla Gods, with their retreat blocked, faced their inevitable doom.</p>
+<p>Refusing to become living specimens for Feylis and other mages, they chose to fight to the death, displaying an unexpected degree of defiance.</p>
+<p>The Rank Five War Gorilla God even attempted to blow itself up above the northern icefield, aiming to take out millions from the Magus World on the outskirts along with it.</p>
+<p>In the end, Feylis intervened, banishing the War Gorilla God into a temporary dimension mere moments before it self-destructed.</p>
+<p>The terrifying force of the Rank Five creature’s...</p>
+</article>
+<article id="c759" data-label="759">
+<h2 class="chapter">Chapter 759: The Strong Gathers Like Clouds 🔒</h2>
+<p>After the Magus Civilization Army arrived, Sein was one of the first to appear at Lorianne’s magic tower.</p>
+<p>As the original instigator of this interplanar war, Lorianne was naturally among the first Rank Four mages to receive the news.</p>
+<p>Once Sein and the others arrived, Lorianne briefed them on the situation.</p>
+<p>The first wave of the Magus Civilization Army to enter the conflict against Wild Gorilla World included thirty-one mages and twenty-seven knights, all of Rank Four or higher.</p>
+<p>The fact that there were even more mages than knights was a clear indication of just how alluring this war was to the upper echelons of Magus Civilization.</p>
+<p>Hence, the powerhouses in Magus World who were less affluent or influential were unable to join the war for the time being, even if they wished to.</p>
+<p>The peak Rank Five knight, Thunder, who had previously reached an agreement with Lorianne, was one such individual.</p>
+<p>According to the plans made by the major forces of the...</p>
+</article>
+<article id="c760" data-label="760">
+<h2 class="chapter">Chapter 760: Hot Potato 🔒</h2>
+<p>Knights tended to be more impulsive, unlike the mages of Magus World, who preferred using their brains to solve problems.</p>
+<p>The space-time rift before them was moderately sized, neither too large nor too small.</p>
+<p>However, the inhabitants of Wild Gorilla World on the other side seemed aware of the threat and were attempting to close the rift.</p>
+<p>The strength of the Magus World forces assembled here was undeniable.</p>
+<p>With over fifty Rank Four or above powerhouses and legions of tens of millions strong already in Verdant Wilderness World, it seemed feasible to simply charge straight into Wild Gorilla World and confront the wild gorillas head-on.</p>
+<p>Unfortunately, such a direct assault was impossible.</p>
+<p>The Astral Realm was fair; even the weakest planes had their means of survival and protection.</p>
+<p>At its maximum capacity, the space-time rift allowed only a single Rank Six powerhouse to pass through at...</p>
+</article>
+<article id="c761" data-label="761">
+<h2 class="chapter">Chapter 761: Wild Gorilla World 🔒</h2>
+<p>Wild Gorilla Plane—a world that was at least thirty times the size of Verdant Wilderness World, dominated by muscle and violence.</p>
+<p>It was a resource-rich plane that could support the birth of numerous “Gorilla Gods”—symbols of power and authority.</p>
+<p>Four years ago, the guardian of Wild Gorilla World, a Rank Five White Ape, began to harbor a sense of foreboding.</p>
+<p>The White Ape was a not member of the Wild Gorilla Clan. The clan to which it belonged was considered a close relative of the Wild Gorilla Clan.</p>
+<p>Indeed, this type of ape and gorillas were genetically different, though they belonged to the same family.</p>
+<p>Perhaps this was the reason why the White Ape had remained the guardian of Wild Gorilla World for two hundred thousand years until the flame of its soul began flickering close to extinction and its lifespan neared its end.</p>
+<p>Despite making countless contributions and witnessing Wild Gorilla World’s transition from a low-level plane to a medium-sized...</p>
+</article>
+<article id="c762" data-label="762">
+<h2 class="chapter">Chapter 762: Squeezing Through 🔒</h2>
+<p>The sudden emergence of the flaming hands served as a stark demonstration to every creature in the wilderness of what it meant to face a top-tier pyro elemental expert.</p>
+<p>Even the Rank Four and above Gorilla Gods felt their hearts skip a beat at the sight of these fiery hands.</p>
+<p>And for those weaker creatures below Rank Four, the experience was even more terrifying!</p>
+<p>These enormous hands were akin to a pair of scorching pyro-elemental suns that had suddenly materialized in the Wild Gorilla World’s sky.</p>
+<p>The temperature of the surrounding space soared, and flames fell sporadically from the hands, creating a fiery rain.</p>
+<p><em>Creak! Creeeeak!</em></p>
+<p>Noises resembling metal gates being forcibly torn open were heard, caused by the flaming hands that had been relentlessly stretching the space-time rift wide.</p>
+<p>It was as if a savage beast was attempting to force...</p>
+</article>
+<article id="c763" data-label="763">
+<h2 class="chapter">Chapter 763: The Arrival of the Powerful 🔒</h2>
+<p>Verdant Wilderness World.</p>
+<p>Sein stepped out of the laboratory and stood by the window of the magic tower, surveying the silver skies and icy plains of this dendro elemental plane.</p>
+<p>Ever since the descent of dozens of Magus Civilization’s space fortresses and many Rank Four or above powerhouses, the climate of Verdant Wilderness World had drastically shifted.</p>
+<p>To the south and east, volcanic eruptions and forest fires had become frequent occurrences, while to the west, a massive chasm—one that could arguably be considered Verdant Wilderness World’s biggest rift valley—had formed.</p>
+<p>In the north, heavy snowfall had tripled the size of the ice sheet within a short period, and it was still expanding.</p>
+<p>When Sein and the others first arrived, they settled down at the edge of the icefield. Yet now, they found themselves at the heart of this vast icy expanse.</p>
+<p>The calamities afflicting Verdant Wilderness World showed no signs of abating; no one knew when peace would...</p>
+</article>
+<article id="c764" data-label="764">
+<h2 class="chapter">Chapter 764: Amethyst Emperor 🔒</h2>
+<p>Without a moment’s delay, Sein relayed to Lorianne that Tourmaline’s brother, Black Oblivion, intended to lead a contingent of magic beast kings and a legion of magic beasts into battle.</p>
+<p>Lorianne, however, had no authority over such decisions.</p>
+<p>Acting as a mouthpiece, she promptly communicated this to her mentor, Feylis, who was currently heavily preoccupied.</p>
+<p>Under normal circumstances, the impending arrival of a member from the oldest and most formidable dragon family in the Magus World, leading an army of magic beasts, would demand Feylis’ immediate attention.</p>
+<p>Although Tourmaline’s fourth brother, Black Oblivion, was not well-known in the Magus World, her third sister, White Stella, was known as the uncrowned king among the sea kings and closely allied with several guardians and aquatic races.</p>
+<p>Despite being only a Rank Five, White Stella’s influence could arguably rival, if not surpass, Feylis’.</p>
+<p>This explained why the Black Tower Master of Cinderbones, a notably unruly Rank Five mage, tolerated Leena and Sein’s relationship—she simply could not grasp the...</p>
+</article>
+<article id="c765" data-label="765">
+<h2 class="chapter">Chapter 765: Blood And Decay 🔒</h2>
+<p>The Amethyst Emperor had just descended upon Verdant Wilderness World when Sein and other Magus World mages received their mobilization orders.</p>
+<p>He barely had a moment to greet the Tourmaline before he was thrust to the front, leading legions of undead and plant creatures amidst the biting cold.</p>
+<p>Commanding over a hundred thousand troops as a Rank Two mage was an exceptional duty in this medium-sized interplanar war.</p>
+<p>Though caught up in preparations, Master Lorianne offered Sein swift guidance.</p>
+<p>“Your grandmaster and others have launched a full-scale attack on Wild Gorilla World. We won’t be in the initial breach. The first wave will be led by the Amethyst Emperor, accompanied by several Rank Four or above geo elemental emperors and seven knights of Rank Four or above, along with their legions,” Lorianne briefed.</p>
+<p>“Apart from that, we’ve also amassed nearly a legion of twenty million enslaved...</p>
+</article>
+<article id="c766" data-label="766">
+<h2 class="chapter">Chapter 766: Chaotic Battlefield 🔒</h2>
+<p>After Sein experienced a disorienting shift in time and space, he arrived in a world under a yellow sky.</p>
+<p>Almost immediately, the intense planar suppression weighed down on his shoulders like a mountain.</p>
+<p>The Magus World Army also experienced planar suppression in the Verdant Wilderness World.</p>
+<p>Since the Verdant Wilderness World suffered heavy losses and reached an agreement with White Spirit, the planar will’s impact on the Magus World Army diminished to almost negligible levels.</p>
+<p>However, things were different in the Wild Gorilla World.</p>
+<p>Despite being recently breached by Feylis and others to allow the passage of legions of millions strong, this medium-sized plane remained largely undamaged!</p>
+<p>Its planar barrier was still intact, and the full planar suppression effect was a substantial burden for Rank Two mages like Sein.</p>
+<p>This battle marked Sein’s first experience in a medium-sized plane’s war.</p>
+<p>A fierce storm, laden with the scent of blood, swept toward his legion.</p>
+<p>Just like the other...</p>
+</article>
+<article id="c767" data-label="767">
+<h2 class="chapter">Chapter 767: Operations Command 🔒</h2>
+<p>Magus World knights and mages had evolved into mutually complementary combat units over years of tactical refinement.</p>
+<p>Unlike the enslaved creatures destined to serve as mere cannon fodder, it was the synergy between knights and mages that forged the strongest legion across all the star domains governed by the Magus Civilization!</p>
+<p>The circular gully chosen by Sein as the battlefield, though rugged and uneven, had become a hotspot teeming with creatures embroiled in intense combat.</p>
+<p>Standing atop the Green Spikefur King, he could already see that the forces amassed by both sides numbered no less than three hundred thousand.</p>
+<p>Under Sein’s leadership, this legion became a robust pillar of support for the Order of the Fiery Molten Mountain.</p>
+<p>More importantly, Sein’s arrival signaled not just the addition of over a hundred thousand undead and plant creatures, but also the support of Divine Tower of Verdant Spring mages.</p>
+<p>Over a thousand full-fledged mages pointed their magic rods toward the area...</p>
+</article>
+<article id="c768" data-label="768">
+<h2 class="chapter">Chapter 768: Deploying Reserve Force 🔒</h2>
+<p>The so-called lesser aquatic races, inhabitants of the oceans, bore the glory of the Magus World’s status as a top-tier plane but were not as powerful as the knights and mages.</p>
+<p>Unlike the undead, where only the strongest could survive amidst the perpetual turmoil of their undead lands, or the inhabitants of the Centaur Wasteland who were accustomed to living in a highly competitive and dangerous environment, these aquatic creatures seemed less equipped for this brutal battlefield.</p>
+<p>Of course, it was hardly fair to judge these aquatic races like this.</p>
+<p>Just as land creatures would find their strength greatly diminished in the ocean, these sea creatures faced similar disadvantages on land.</p>
+<p>Besides, these lesser aquatic races were not the representatives of all aquatic races in the Magus World.</p>
+<p>Apart from the Sea Kings, known for their immense size, the middle and upper-class aquatic races were all masters in wielding hydro elemental energies—truly epitomizing the oceanic might of the Magus World.</p>
+<p>Only the Divine Tower of Verdant Spring, with its relatively limited resources,...</p>
+</article>
+<article id="c769" data-label="769">
+<h2 class="chapter">Chapter 769: Fighting On The Front Line 🔒</h2>
+<p>The trench was a viscous mix of black and red mud.</p>
+<p>The lesser aquatic tribe of the Divine Tower of Verdant Spring Army was overwhelmed and breached by the Wild Gorilla Army here.</p>
+<p>However, the weakness of the aquatic races could not be solely blamed for this breach, as two-thirds of the responsibility for the collapse of this defense line rested with the Order of the Fiery Molten Mountain.</p>
+<p>They were the primary force holding this line before reinforcements arrived from the Divine Tower of Verdant Spring.</p>
+<p>Once the commander of a legion over a hundred thousand strong, Sein now found himself as a frontline soldier fighting close-quarters combat.</p>
+<p>Different roles on the battlefield indeed brought different perspectives.</p>
+<p>With no more forces under his command, Sein could only request long-range magic support from the mage legion in the rear, instructing them...</p>
+</article>
+<article id="c770" data-label="770">
+<h2 class="chapter">Chapter 770: Force of Pure Destruction 🔒</h2>
+<p>Flying elemental lights were common sights across the battlefield.</p>
+<p>Fighting half a day on the frontline had exhausted nearly half of Sein’s protective magic items.</p>
+<p>The elemental flames on his Elemental Body’s right arm flickered erratically—a consequence of an encounter with a Rank Two Wild Gorilla.</p>
+<p>The barrage of dense hostile strikes managed to quickly breach Sein’s magic shield, allowing the Rank Two Wild Gorilla to injure him.</p>
+<p>The Wild Gorilla World had been the most formidable target Sein had faced in an interplanar war to date.</p>
+<p>They were even more elite and aggressive than the Garths he had encountered in Thunderfall World, not to mention that their strength was also quite formidable.</p>
+<p>Upon his arrival on this battlefield, Sein targeted the most formidable Wild Gorilla, instantly marking himself as a target...</p>
+</article>
+<article id="c771" data-label="771">
+<h2 class="chapter">Chapter 771: Female Knight 🔒</h2>
+<p>Sein’s strength surpassed the expectations of the Wild Gorillas surrounding him, and Reina’s performance was beyond their imaginations.</p>
+<p>While Natalya and Yuri were also formidable among Rank Two creatures, they were eclipsed by Reina’s exceptional prowess.</p>
+<p>Natalya, adorned with an array of luxurious magic equipment, had transformed into her Baator Demon form at the beginning of the battle.</p>
+<p>Her huge black wings allowed her to rampage across the battlefield.</p>
+<p>Despite her ferocity, Natalya remained protective of Sein, never straying too far from him.</p>
+<p>As Sein’s magic rod pierced the heart of the Wild Gorilla, turning it into a blazing torch, Natalya was already shielding him from another Rank Two Wild Gorilla and several Rank One enemies.</p>
+<p>It seemed like talented knights and mages of the Magus World were accustomed to taking on multiple enemies at once in interplanar wars.</p>
+<p>Although...</p>
+</article>
+<article id="c772" data-label="772">
+<h2 class="chapter">Chapter 772: Fighting At Full Strength 🔒</h2>
+<p>Leena was closer than Sein had anticipated.</p>
+<p>Just beyond the cliff, in a more open and flat area, tens of thousands from the Magus World Army clashed with the Wild Gorilla Army.</p>
+<p>Sanchez, with its immense size and white skeletal dragon wings, was undeniably the most conspicuous existence on this battlefield.</p>
+<p>Leena was not riding on its back but was close enough that Sein spotted her immediately.</p>
+<p>The Magus World Army engaged in the melee below included the undead creatures Leena had brought and a contingent from the Order of the Fiery Molten Mountain.</p>
+<p>Sein even spotted a demigod-level knight who had transformed into a flame giant, wielding a massive flaming club and battling a Wild Gorilla of comparable size on the horizon.</p>
+<p>Though no demigod-level hostile powerhouses were near Leena and Sanchez at the moment, they were surrounded by five Rank Three Wild Gorillas.</p>
+<p>Sanchez had been confined in the Knight Continent’s subspace for far too long.</p>
+<p>Although its return to the Undead World had swiftly elevated it to a respectable demigod, its forces were less extensive than those of veteran undead sovereigns.</p>
+<p>Forced by Sein to...</p>
+</article>
+<article id="c773" data-label="773">
+<h2 class="chapter">Chapter 773: Support Arrives 🔒</h2>
+<p>This was indeed the most critical and intense battle Sein had ever faced in his experience of interplanar war thus far.</p>
+<p>Even without the Rank Three Wild Gorillas’ targeting him, Sein had nearly depleted his elemental power after unleashing more than twenty powerful offensive spells and exhausting the magic stored in his magic equipment.</p>
+<p>Mages were not “invincible”.</p>
+<p>After all, this was a world of balance.</p>
+<p>The mana in his body had been exhausted multiple times, and the strain on his mental focus gave him a throbbing headache.</p>
+<p>It was becoming increasingly difficult for Sein to rely on potions to maintain the frequency of magic spells he had been casting.</p>
+<p>Had he opted for weaker or single-target spells, he might have lasted longer in this battle.</p>
+<p>However, Sein had not chosen that route; instead, he had unleashed his most powerful spells upon the Wild Gorillas relentlessly.</p>
+<p>A sensible mage would never leave themselves without a means...</p>
+</article>
+<article id="c774" data-label="774">
+<h2 class="chapter">Chapter 774: Rest 🔒</h2>
+<p>After the Terrabound Drakes of the Order of the Blackrock whistled past, hundreds of thousands of various enslaved creatures surged forward.</p>
+<p>Among these creatures were numerous armored knights from the Order of the Blackrock, wielding battle qi.</p>
+<p>It appeared that not all registered knights from the Order of the Blackrock were provided Terrabound Drakes as mounts, indicating that those who led the initial charge were likely the order’s elite.</p>
+<p>With the Order of the Blackrock advancing to take over the frontlines, Sein and the nearby knights from the Order of the Fiery Molten Mountain could finally heave a sigh of relief.</p>
+<p>Their camaraderie had been forged through intense combat, even though they had not fought side by side for long.</p>
+<p>“Buck, from Order of the Fiery Molten Mountain.”</p>
+<p>“Rais, from Order of the Fiery Molten Mountain.”</p>
+<p>“Othel, from Order of the Fiery Molten Mountain.”</p>
+<p>One by one, the knights approached and greeted Sein, who replied, “Sein, from Divine...</p>
+</article>
+<article id="c775" data-label="775">
+<h2 class="chapter">Chapter 775: Initial Phase Of The War 🔒</h2>
+<p>The Green Spikefur King was less intelligent than the skeletal dragon.</p>
+<p>By the time Sein and the others located it, the hedgehog was fighting at one of the battlefronts.</p>
+<p>The Order of the Blackrock’s elite Terrabound Drake Legion had already swept through, pushing deeper into the Wild Gorilla Army’s territory.</p>
+<p>The Green Spikefur King was accompanied by ordinary knights from the Order of the Blackrock and enslaved creatures.</p>
+<p>Its green spikes were now bloody, with chunks of flesh from its victims stuck on them.</p>
+<p>Dozens of gashes of varying depths marred Green Spikefur King’s body, with two particularly severe wounds—one in its lower abdomen and the other on the right side of its back.</p>
+<p>The extent of these injuries on a creature known for its formidable defense highlighted just how intense the confrontation had been.</p>
+<p>Nevertheless, this colossal green hedgehog, native to the Verdant Wilderness Forest, boasted inherent plant-based regenerative abilities.</p>
+<p>Despite its grievous condition, it let out a piercing shriek, indicating some remaining...</p>
+</article>
+<article id="c776" data-label="776">
+<h2 class="chapter">Chapter 776: Heavy Hammer 🔒</h2>
+<p>After a long discussion with several Rank Three grand mages from the Divine Tower of Verdant Spring, Sein returned to his temporary quarters arranged by the divine tower.</p>
+<p>Given the ongoing intensity of the war, the divine tower had not granted all participating mages a period of recuperation within the space fortress.</p>
+<p>Hence, everyone was resting in the temporary base.</p>
+<p>Those who had experienced several interplanar wars prepared portable alchemy tents and advanced resting props well beforehand.</p>
+<p>Since the Verdant Leaf World War had just ended recently, most of the divine tower mages were relatively well-off.</p>
+<p>As a “privileged member” within the Divine Tower of Verdant Spring, Sein naturally did not need to prepare his own accommodation like other mages.</p>
+<p>Although only dozens of magic towers had been constructed in this temporary...</p>
+</article>
+<article id="c777" data-label="777">
+<h2 class="chapter">Chapter 777: Magic Beast Army 🔒</h2>
+<p><em>Clang! Clang! Clang!</em></p>
+<p>The sound of metal striking metal echoed through Sein’s laboratory.</p>
+<p>While assisting with the alchemy experiments, Selina could not hide her amazement.</p>
+<p>“You made it seem so easy to wield such a heavy tool. Most alchemists need specialized lifting equipment for this kind of work,” she remarked.</p>
+<p>Sein was swinging his trapezoidal metal hammer in front of a mecha.</p>
+<p>This was Yuri&#39;s Burning Flame Unit, which had sustained severe damage to its right leg and back in a recent battle.</p>
+<p>The external armor’s deformations had severely affected the internal energy circuits.</p>
+<p>Although it was still operational on the battlefield, Sein instructed Yuri to hand over her mecha for repairs upon returning to the base.</p>
+<p>Having recently completed several crucial experiments, Sein now dedicated time to repairing her mecha.</p>
+<p>His primary focus now was to fix the outer armor with the help of his newly designed experimental tool.</p>
+<p>Sein did not use particularly premium materials for his new trapezoidal metal hammer;...</p>
+</article>
+<article id="c778" data-label="778">
+<h2 class="chapter">Chapter 778: Continuous Surprises 🔒</h2>
+<p>After receiving the exact coordinates of the Divine Tower of Verdant Spring in the Wild Gorilla World, the magic beast kings and their legions hastened toward Sein’s location.</p>
+<p>Forced to pause his experiments with Leena, Sein quickly prepared to receive the arriving magic beast legion outside the base.</p>
+<p>From earlier communications via the crystal ball, Sein understood that this legion of magic beasts would be collaborating with the Divine Tower of Verdant Spring this time.</p>
+<p>In other words, these magic beast kings were considered “external support” by their divine tower.</p>
+<p>This meant the Divine Tower of Verdant Spring was entitled to a portion of their war gains.</p>
+<p>This arrangement likely influenced Master Feylis’ decision to allow these creatures into Wild Gorilla World.</p>
+<p>As Sein approached the fortress base, he finally received a message from Lorianne, who had been out of touch...</p>
+</article>
+<article id="c779" data-label="779">
+<h2 class="chapter">Chapter 779: Help 🔒</h2>
+<p>Sein welcomed Lorianne home with numerous surprises.</p>
+<p>She was fighting two Gorilla Gods with another Rank Five knight when Feylis urgently requested her return.</p>
+<p>Since the Magus World Army entered the Wild Gorilla World in waves, it had yet to assert dominance over the high-level combat forces during the initial phase of the war, given the Wild Gorilla World’s advantage of fighting on their homeplane.</p>
+<p>The battlefield for Rank Four creatures, where Lorianne fought, initially appeared bleak.</p>
+<p>A summons from Feylis forced Lorianne to temporarily withdraw from the battle after months of fierce fighting.</p>
+<p>This was a rare occurrence during interplanar wars as her abrupt retreat was unfair to the Order of the Fiery Molten Mountain’s grand master fighting alongside her.</p>
+<p>Fortunately, reinforcements from the Magus World Army quickly arrived to assist the Rank Five knight.</p>
+<p>In the skies above the main battlefield, there were also numerous knights and mages of Rank...</p>
+</article>
+<article id="c780" data-label="780">
+<h2 class="chapter">Chapter 780: Inspirations For Qualitative Change In Energy 🔒</h2>
+<p>Sein had returned to the frontline with a different mount this time.</p>
+<p>Rather than a “mount”, it was more accurate to describe it as a “friend”.</p>
+<p>Sein stood atop Tourmaline’s head, just as he did when both of them traversed the South Sea and West Sea of the Magus World.</p>
+<p>Although the legion of lesser aquatic creatures had been disheartened by the heavy losses they suffered in their previous battle, they rallied with renewed vigor upon seeing Tourmaline join the fray.</p>
+<p>Tourmaline, the demigod-level dragon turtle, was capable of far more than just eating and sleeping.</p>
+<p>As she lifted her head and emitted a distinctive dragon cry, a circle of turquoise-blue elemental light radiated outward from her, enveloping the area...</p>
+</article>
+<article id="c781" data-label="781">
+<h2 class="chapter">Chapter 781: Flaming Sparrow Range 🔒</h2>
+<p>Three months later, within a volcano laboratory established in the heart of the Flaming Sparrow Range…</p>
+<p>Sein’s ability to set up a dedicated experimental laboratory for himself during an intense interplanar war highlighted both his significant authority and the control he had over his time.</p>
+<p>Just a month after the Divine Tower of Verdant Spring Army arrived at the Flaming Sparrow Range, the conflict in the area had largely been resolved.</p>
+<p>An overwhelming force of millions of magic beasts had swiftly quelled all resistance near the Flaming Sparrow Range.</p>
+<p>The armies brought by Black Oblivion and the other magic beast kings to the Wild Gorilla World were initially thought to number around three million.</p>
+<p>However, after a precise count by the Divine Tower of Verdant Spring’s mages, the...</p>
+</article>
+<article id="c782" data-label="782">
+<h2 class="chapter">Chapter 782: Settlement 🔒</h2>
+<p>The heat blanketed the Flaming Sparrow Range, showing only a few signs of the fierce battle that had recently concluded.</p>
+<p>Although the crimson ground was covered by blood that had dried long ago, the dismembered remains of war victims were sparse in Sein’s field of vision.</p>
+<p>As Sein moved north along the Flaming Sparrow Range, he later realized that the absence of remains on the battlefield was not due to efficient cleanup by the Divine Tower of Verdant Spring Army.</p>
+<p>Rather, it was because the area was still teeming with an army of over four million magic beasts.</p>
+<p>These legions, handpicked by Black Oblivion, each possessed a hearty appetite.</p>
+<p>Since this was Black Oblivion’s first participation in an interplanar war, the quality of these beasts was notably high, with scarcely any below the intermediate level.</p>
+<p>Their sturdy bodies allowed them to adapt...</p>
+</article>
+<article id="c783" data-label="783">
+<h2 class="chapter">Chapter 783: Plummeting Giant Meteor 🔒</h2>
+<p>After leaving the Wild Gorilla settlement, Sein continued his flight northward.</p>
+<p>Originally, Sein had only intended to stop briefly to observe this settlement, which was under the Order of the Fiery Molten Mountain’s control.</p>
+<p>However, from a distance, he spotted a familiar figure.</p>
+<p>Sein flew forward and greeted, “Lady Sydney, I didn’t expect you to be the one stationed here.”</p>
+<p>When Sein spotted her, she also noticed him and the group of plant creatures he led.</p>
+<p>Given their past acquaintance, it would have been impolite for Sein to leave without at least greeting her.</p>
+<p>The settlement Sydney guarded was just one mountain away from Eri’s, the Rank One mage Sein had just parted ways with.</p>
+<p>The vast Flaming Sparrow Range was populated by tens of millions of native creatures. To be able to meet Sydney twice was a stroke of fate.</p>
+<p>Sydney looked slightly surprised to see him.</p>
+<p>A hint of sorrow and loneliness lingered on her face but she quickly masked it when Sein approached her.</p>
+<p>It seemed like the loss of her husband in battle had been a huge blow to h...</p>
+</article>
+<article id="c784" data-label="784">
+<h2 class="chapter">Chapter 784: Covert Support 🔒</h2>
+<p>After half a year, the initial phase of the Wild Gorilla World War finally came to a close.</p>
+<p>In the distant Magus World, the overmages and overlords who stood at the pinnacle of civilization were highly satisfied with the war’s progress.</p>
+<p>In under a year, the defensive blockade established by over twenty Gorilla Gods had been shattered.</p>
+<p>This invasion was indeed one of the more challenging.</p>
+<p>Yet, without any direct intervention from the overmages and overlords, the combat legions of the Magus World had already proven themselves capable of remarkable victories against Wild Gorilla World’s forces</p>
+<p>Prior to the war, many overmages and overlords had speculated that this initial campaign would take at least two years before the Magus World...</p>
+</article>
+<article id="c785" data-label="785">
+<h2 class="chapter">Chapter 785: Uninvited Guest 🔒</h2>
+<p>In the Wild Star Domain…</p>
+<p>The Wild Gorilla God, who had swiftly returned from the Feral Beast Star to its home domain, was now receiving an “uninvited guest”.</p>
+<p>“In just less than a year, eleven Gorilla Gods had fallen and two among them were of Rank Five. Wild Gorilla God, I wonder how you plan to handle this crisis on your homeplane now that you’ve returned?”</p>
+<p>A sleek metal robot addressed the late-stage Rank Six powerhouse before it.</p>
+<p>The Wild Gorilla God’s expression was one of growing impatience.</p>
+<p>Short-tempered, irritable, hostile, and cold-blooded—these traits defined the reputation of this Rank Six creature.</p>
+<p>Ever since it first emerged as a dominant force in the...</p>
+</article>
+<article id="c786" data-label="786">
+<h2 class="chapter">Chapter 786: Huge Profit and Cooperation 🔒</h2>
+<p>It had been exactly one year since Sein and his companions entered Wild Gorilla World.</p>
+<p>Three months ago, the Divine Tower of Verdant Spring had resolved the conflict in the Flaming Sparrow Range, allowing Sein and the other mages a much-needed rest.</p>
+<p>Initially, this rest period was meant to last two months.</p>
+<p>However, a month ago, the entire Wild Gorilla World Army retreated, prompting an increased presence of Wild Gorillas and Gorilla Gods of Rank Four or above on the frontlines.</p>
+<p>Rather than continuing to engage with the Magus World army, these increasing numbers of Wild Gorillas began constructing numerous fortresses and defensive lines in the same...</p>
+</article>
+<article id="c787" data-label="787">
+<h2 class="chapter">Chapter 787: Failed Experiments 🔒</h2>
+<p>After bidding farewell to his mentor, Sein returned to his laboratory and quickly immersed himself in his research.</p>
+<p>Sein’s laboratory was situated on the top floor of the Verdant Spring Space Fortress.</p>
+<p>Lorianne had shown her only apprentice a certain level of privilege; the top floors of the space fortress were reserved exclusively for them.</p>
+<p>Lorianne’s living space was somewhat larger, with a few extra rooms that she had converted into meeting rooms, where the Divine Tower of Verdant Spring’s Rank Three grand mages could convene to discuss the state of the war.</p>
+<p>Over half a year ago, Sein had resolved to complete the crucial energy transformation needed to advance from a Rank Two to a Rank Three Grand Mage by combining various exotic...</p>
+</article>
+<article id="c788" data-label="788">
+<h2 class="chapter">Chapter 788: Combat Command 🔒</h2>
+<p>After stepping out of the laboratory, Sein quickly recomposed himself, equipping himself with various battle gear and magic items.</p>
+<p>At the same time, Natalya emerged from the training room across the hall, clad in a form-fitting red training suit.</p>
+<p>The residence Lorianne allocated to Sein was spacious and well-equipped, so Natalya and the other women often gathered there when they had free time.</p>
+<p>However, they had seen little of him lately, as Sein had spent the past month secluded in his laboratory.</p>
+<p>Unsurprisingly, Reina followed behind Natalya, also dressed in white training attire.</p>
+<p>Both women were drenched in sweat from their workout, their commitment rivaling...</p>
+</article>
+<article id="c789" data-label="789">
+<h2 class="chapter">Chapter 789: Close-Range Attack 🔒</h2>
+<p>Streams of energy rays streaked across the sky above their heads.</p>
+<p>By the time Sein left the space fortress and entered the frontline, the battle had begun, and it was clear that things had quickly reached a white-hot intensity.</p>
+<p>The colorful energy beams cast an unnatural hue on the sky.</p>
+<p>Half of these rays originated from Wild Gorilla World’s frontline defenses, while the other half came from the magic cannons on the Magus World’s space fortresses.</p>
+<p>What struck Sein as unusual was the sheer scale of it all.</p>
+<p>In previous battles with the Wild Gorilla Army, this medium-sized world civilization had shown some level of energy-based technology, but never to this extent.</p>
+<p>Now, it seemed they could hold their own against Magus World’s space fortresses, prism forts, war airships, and other war p...</p>
+</article>
+<article id="c790" data-label="790">
+<h2 class="chapter">Chapter 790: Battlefield Details 🔒</h2>
+<p>Despite standing on the back of the Green Spikefur King, Sein blended inconspicuously among the Divine Tower of Verdant Spring’s mages.</p>
+<p>The intense year-long battle had made the massive hedgehog from the Verdant Wilderness World more cunning and agile.</p>
+<p>The changes in Green Spikefur King’s personality could be attributed to the countless scars covering its body.</p>
+<p>Lorianne was quite kind to this demigod-level creature that revered her.</p>
+<p>If not for this “little hedgehog”, the Magus Civilization might never have initiated a war against the Wild Gorilla World.</p>
+<p>Thanks to Lorianne’s precious plant-based potions, the Green Spikefur King’s wounds healed rapidly, further strengthening its devotion to her.</p>
+<p>Despite the brutal clash unfolding ahead, the Green Spikefur King displayed no hint of regret or fear.</p>
+<p>For Sein, the hedgehog’s nimbleness allowed...</p>
+</article>
+<article id="c791" data-label="791">
+<h2 class="chapter">Chapter 791: Wild Gorilla Army’s Secret Weapons 🔒</h2>
+<p>“Is it ready or not? Hurry up!” Behind the metal barrier, a Rank Five Gorilla God impatiently urged the robot in front of it.</p>
+<p>“We only have enough Dwarf Bombs for one round of attack—are you sure you want to use it now? We won’t be able to bring in more weaponry for now as setting up space wormholes and transporting the supplies will take time,&#34; the robot replied.</p>
+<p>“Damn it! If we don’t use it now, we might not get another chance! Look at how many of those Magus Civilization troops we’re up against!” the Rank Five Gorilla God cursed.</p>
+<p>“Once I engage in battle with Water Gorilla God and the others, remember to bring out those secret weapons you’ve prepared,” it reminded.</p>
+<p>The robot’s lights flashed red and blue as it considered the Gorilla God’s demands.</p>
+<p>In the end, it decided against rejecting the anxious Rank Five creature’s request and simply said, “I’ll coordinate with the other nearby fronts and try our best to strike simultaneously.”</p>
+<p>“This is the only way to catch the Magus World Army off guard and maximize...</p>
+</article>
+<article id="c792" data-label="792">
+<h2 class="chapter">Chapter 792: The Magus World Army’s Powerful Counterattack! 🔒</h2>
+<p>From the appearance of the pitch-black dragon claw in the sky to Black Oblivion’s massive form crashing down in the distance, it all happened in a blink, so quickly that many did not have time to react.</p>
+<p>Sein had full confidence in Black Oblivion’s strength.</p>
+<p>In the recent battle at the Flaming Sparrow Range, this formidable flood dragon had even managed to prevent the self-destruction of a critically injured Rank Five creature.</p>
+<p>Yet now, this powerful being had been struck by that strange light blue energy beam and plummeted from the sky.</p>
+<p>Sein could not help but wonder about Black Oblivion’s current condition—was his life in danger?</p>
+<p>Despite his fall, Black Oblivion had managed to land a decisive blow.</p>
+<p>Before being knocked from the clouds, his lifelike, pitch-black dragon claw had smashed into the Wild Gorilla Army’s metal defenses, destroying two-thirds of the cannon barrels mounted along the wall.</p>
+<p>If not for his sudden incapacitation, Black Oblivion’s claw could have upended the entire metal wall.</p>
+<p>Although the Wild Gorilla Army had revealed two trump cards in succession and even managed to bring down the mighty flood dragon, Black Oblivion, they had incurred...</p>
+</article>
+<article id="c793" data-label="793">
+<h2 class="chapter">Chapter 793: Charge! 🔒</h2>
+<p>Leena was protected by Sanchez, the demigod-level skeletal dragon, so she should be safe.</p>
+<p>Upon receiving her message, Sein exhaled a long sigh of relief.</p>
+<p>Still, from what he could tell, Leena’s condition was far worse than his own.</p>
+<p>However, this was war, and excessive concern for his lover could be a dangerous distraction.</p>
+<p>The same went for Natalya and her group, who were not currently by his side.</p>
+<p>Then again, they were positioned further back and likely spared from the devastating impact of the Dwarf Bombs.</p>
+<p>The Wild Gorilla Army’s use of Dwarf Bombs was not limited to the battlefront of the Divine Tower of Verdant Spring.</p>
+<p>Being near the neighboring warzone, Sein could feel the massive turbulence and energy shockwaves from the region where the Divine Tower of Floating Flame and the Order of the Green...</p>
+</article>
+<article id="c794" data-label="794">
+<h2 class="chapter">Chapter 794: The Azure Flame’s Secret 🔒</h2>
+<p>When Sein reached the metal defense line, what lay before him was a ruin of metal, mostly vaporized and melted away.</p>
+<p>Out of the white vapor rising from the debris, a few Wild Gorillas charged forward, launching a counterattack.</p>
+<p>The smell of melting metal mixed with dead bodies was anything but pleasant.</p>
+<p>Although the magic shields around Sein had filtered out some of the foul odor, it was pervasive enough to make him frown.</p>
+<p>The moment he arrived, he jumped off the back of Green Spikefur King.</p>
+<p>It was unwise to draw too much attention, especially when he was among the first to breach the defense line.</p>
+<p>Though the Wild Gorilla Army had suffered heavy losses, there were still Rank Three and demigod-level powerhouses among them.</p>
+<p>Scanning the...</p>
+</article>
+<article id="c795" data-label="795">
+<h2 class="chapter">Chapter 795: War Profit 🔒</h2>
+<p><em>Clang!</em></p>
+<p>The heavy blow from above collided with Sein’s magic rod.</p>
+<p>Sein’s body sank under the impact, his legs instinctively channeling a surge of pyro elemental energy to stabilize himself.</p>
+<p>As for the spear aiming for his waist, Sein had no choice but to swiftly draw out the heavy Alchemy Hammer he had crafted some time ago.</p>
+<p>He recalled Natalya’s advice that weapons like hammers and axes were slightly effective against spear-type weapons.</p>
+<p>While mages like Sein did not need to learn extensive close combat skills like a knight, basic self-defense was essential.</p>
+<p>The force behind the spear attack was noticeably weaker than the strike from above.</p>
+<p>Sein swung the Alchemy Hammer with his left hand, successfully deflecting the spear.</p>
+<p>The Wild Gorilla attacking from the side was evidently weaker than the one in front of Sein...</p>
+</article>
+<article id="c796" data-label="796">
+<h2 class="chapter">Chapter 796: A Great Victory 🔒</h2>
+<p>Sein kept himself in check, suppressing his greed on the battlefield.</p>
+<p>He was not exactly short on resources, so there was no need to compete with his allies over scraps of loot.</p>
+<p>As for the energy crystals found inside the metal fort, Sein ultimately took only seven boxes for himself.</p>
+<p>Considering the contributions he had made, taking just this amount was more than fair.</p>
+<p>“These energy crystals seem to be the power source for these weapons that looked like metal boxes,” Sein mumbled as he examined a half-destroyed weapon dug out from the rubble.</p>
+<p>It was clear that it was a product of technological civilization; not something Wild Gorilla World could have produced on a large scale.</p>
+<p>This war, Sein reflected, was unlike any he had experienced before.</p>
+<p>Even Rank Two mages like himself could sense the changes that set this conflict apart from the...</p>
+</article>
+<article id="c797" data-label="797">
+<h2 class="chapter">Chapter 797: Lilies Of The Same Stem 🔒</h2>
+<p>Lorianne shared strong bonds with her seniors.</p>
+<p>Though Sein was a generation younger than them, he was close to Master Bernice due to being Lorianne’s apprentice.</p>
+<p>After establishing the Divine Tower of Floating Flame, Bernice had taken on apprentices and grand apprentices, though they were few in number.</p>
+<p>Since Sein was accompanying Lorianne to visit Bernice, he decided to take the opportunity to get acquainted with Bernice’s apprentices while his mentor attended to her.</p>
+<p>Sein remembered how much he had benefited from his last conversation with Selphy.</p>
+<p>Bernice’s apprentices were likely Verdant Flame users, and some might even possess their Rank Four mentor’s unique insights into the pyro elemental energy.</p>
+<p>For Sein, this was an excellent oppor...</p>
+</article>
+<article id="c798" data-label="798">
+<h2 class="chapter">Chapter 798: Visit 🔒</h2>
+<p>The meeting between Lorianne and Bernice took place at the Tower Master of Floating Flame’s private quarters within her space fortress.</p>
+<p>From what Sein knew, Bernice was not the first owner of this Floating Flame Space Fortress.</p>
+<p>When Lorianne purchased her space fortress, she was inclined to buy a cheaper and used one as a cost-effective option.</p>
+<p>Perhaps this mindset was influenced by Bernice’s example.</p>
+<p>That said, there was no denying that a new fortress was far superior to an old one.</p>
+<p>The Divine Tower of Floating Flame’s space fortress, which had been serving Bernice for about ten thousand years, showed significant wear and tear in every aspect.</p>
+<p>This fortress, including...</p>
+</article>
+<article id="c799" data-label="799">
+<h2 class="chapter">Chapter 799: Participation Of The Sea Races 🔒</h2>
+<p>After returning to the Divine Tower of Verdant Spring warzone, the mentor and her apprentice temporarily parted ways—both of them had their own responsibilities to attend to.</p>
+<p>The recent battle had yielded a large amount of loot that needed to be properly distributed and stored.</p>
+<p>Although Lorianne did not need to oversee every detail personally, she was responsible for guiding the overall management.</p>
+<p>The attrition faced by the Divine Tower of Verdant Spring was staggering, reaching four digits—an unprecedented loss since the divine tower’s establishment.</p>
+<p>What concerned Lorianne even more was that this substantial loss was due to the strategic “oversight” on her part.</p>
+<p>In reality, rather than an oversight, it should be classified as a serious accident.</p>
+<p>Who could have anticipated that the Wild...</p>
+</article>
+<article id="c800" data-label="800">
+<span id="last"></span>
+<h2 class="chapter">Chapter 800: Miseryth 🔒</h2>
+<p>Knights and mages of the Magus World had always subtly oppressed the aquatic races.</p>
+<p>This likely stemmed from the inherent distrust land creatures harbored for those of the sea.</p>
+<p>The sea races were members of the Magus World and had even joined the Magus Alliance, enjoying near-equal rights with humans under the alliance’s regulations.</p>
+<p>But was this equality genuine?</p>
+<p>Avril, the Mermaid Queen and a powerful force in the Magus World, had long strived to elevate the status and power of the mermaids and other sea races within the Magus Civilization.</p>
+<p>In certain respects, Avril succeeded.</p>
+<p>Through her efforts, the sea races were accepted into the Magus Alliance, securing a seat among the powerful vested...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="801-850.html" rel="next">Next: Chs 801–850 &rarr;</a>
+    <p class="page-end-links"><a href="701-750.html" rel="prev">&larr; Chs 701–750</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 751–800</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c751">Chapter 751: No Suspense 🔒</a></li>
+        <li><a href="#c752">Chapter 752: Rustle Mournfully 🔒</a></li>
+        <li><a href="#c753">Chapter 753: Representative In Negotiation 🔒</a></li>
+        <li><a href="#c754">Chapter 754: Good Heart 🔒</a></li>
+        <li><a href="#c755">Chapter 755: Fall Of A Rank Four 🔒</a></li>
+        <li><a href="#c756">Chapter 756: Northern Icefield 🔒</a></li>
+        <li><a href="#c757">Chapter 757: Complex Situation 🔒</a></li>
+        <li><a href="#c758">Chapter 758: The War Begins 🔒</a></li>
+        <li><a href="#c759">Chapter 759: The Strong Gathers Like Clouds 🔒</a></li>
+        <li><a href="#c760">Chapter 760: Hot Potato 🔒</a></li>
+        <li><a href="#c761">Chapter 761: Wild Gorilla World 🔒</a></li>
+        <li><a href="#c762">Chapter 762: Squeezing Through 🔒</a></li>
+        <li><a href="#c763">Chapter 763: The Arrival of the Powerful 🔒</a></li>
+        <li><a href="#c764">Chapter 764: Amethyst Emperor 🔒</a></li>
+        <li><a href="#c765">Chapter 765: Blood And Decay 🔒</a></li>
+        <li><a href="#c766">Chapter 766: Chaotic Battlefield 🔒</a></li>
+        <li><a href="#c767">Chapter 767: Operations Command 🔒</a></li>
+        <li><a href="#c768">Chapter 768: Deploying Reserve Force 🔒</a></li>
+        <li><a href="#c769">Chapter 769: Fighting On The Front Line 🔒</a></li>
+        <li><a href="#c770">Chapter 770: Force of Pure Destruction 🔒</a></li>
+        <li><a href="#c771">Chapter 771: Female Knight 🔒</a></li>
+        <li><a href="#c772">Chapter 772: Fighting At Full Strength 🔒</a></li>
+        <li><a href="#c773">Chapter 773: Support Arrives 🔒</a></li>
+        <li><a href="#c774">Chapter 774: Rest 🔒</a></li>
+        <li><a href="#c775">Chapter 775: Initial Phase Of The War 🔒</a></li>
+        <li><a href="#c776">Chapter 776: Heavy Hammer 🔒</a></li>
+        <li><a href="#c777">Chapter 777: Magic Beast Army 🔒</a></li>
+        <li><a href="#c778">Chapter 778: Continuous Surprises 🔒</a></li>
+        <li><a href="#c779">Chapter 779: Help 🔒</a></li>
+        <li><a href="#c780">Chapter 780: Inspirations For Qualitative Change In Energy 🔒</a></li>
+        <li><a href="#c781">Chapter 781: Flaming Sparrow Range 🔒</a></li>
+        <li><a href="#c782">Chapter 782: Settlement 🔒</a></li>
+        <li><a href="#c783">Chapter 783: Plummeting Giant Meteor 🔒</a></li>
+        <li><a href="#c784">Chapter 784: Covert Support 🔒</a></li>
+        <li><a href="#c785">Chapter 785: Uninvited Guest 🔒</a></li>
+        <li><a href="#c786">Chapter 786: Huge Profit and Cooperation 🔒</a></li>
+        <li><a href="#c787">Chapter 787: Failed Experiments 🔒</a></li>
+        <li><a href="#c788">Chapter 788: Combat Command 🔒</a></li>
+        <li><a href="#c789">Chapter 789: Close-Range Attack 🔒</a></li>
+        <li><a href="#c790">Chapter 790: Battlefield Details 🔒</a></li>
+        <li><a href="#c791">Chapter 791: Wild Gorilla Army’s Secret Weapons 🔒</a></li>
+        <li><a href="#c792">Chapter 792: The Magus World Army’s Powerful Counterattack! 🔒</a></li>
+        <li><a href="#c793">Chapter 793: Charge! 🔒</a></li>
+        <li><a href="#c794">Chapter 794: The Azure Flame’s Secret 🔒</a></li>
+        <li><a href="#c795">Chapter 795: War Profit 🔒</a></li>
+        <li><a href="#c796">Chapter 796: A Great Victory 🔒</a></li>
+        <li><a href="#c797">Chapter 797: Lilies Of The Same Stem 🔒</a></li>
+        <li><a href="#c798">Chapter 798: Visit 🔒</a></li>
+        <li><a href="#c799">Chapter 799: Participation Of The Sea Races 🔒</a></li>
+        <li><a href="#c800">Chapter 800: Miseryth 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="701-750.html" rel="prev">&larr; Chs 701–750</a>    <a href="../../index.html">Library</a>
+<a href="801-850.html" rel="next">Chs 801–850 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

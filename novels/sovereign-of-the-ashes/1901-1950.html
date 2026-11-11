@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1901–1950</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1851-1900.html#last" data-next-page="1951-2000.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1901">Chapter 1901: Setting Out to War 🔒</a></li>
+        <li><a href="#c1902">Chapter 1902: Qiuniu’s Dilemma 🔒</a></li>
+        <li><a href="#c1903">Chapter 1903: The State of the Immortal Realm 🔒</a></li>
+        <li><a href="#c1904">Chapter 1904: The Dragon Clan’s Army 🔒</a></li>
+        <li><a href="#c1905">Chapter 1905: Proper Justification 🔒</a></li>
+        <li><a href="#c1906">Chapter 1906: Achievements in Artifact Forging 🔒</a></li>
+        <li><a href="#c1907">Chapter 1907: Leaders of the Daoist Faction 🔒</a></li>
+        <li><a href="#c1908">Chapter 1908: Special Experiment 🔒</a></li>
+        <li><a href="#c1909">Chapter 1909: Sparring 🔒</a></li>
+        <li><a href="#c1910">Chapter 1910: Cavern of Pyro Elemental Laws 🔒</a></li>
+        <li><a href="#c1911">Chapter 1911: Late Stage of Rank Five 🔒</a></li>
+        <li><a href="#c1912">Chapter 1912: Setting Out 🔒</a></li>
+        <li><a href="#c1913">Chapter 1913: Colossal Fish 🔒</a></li>
+        <li><a href="#c1914">Chapter 1914: Allocation of Reinforcements 🔒</a></li>
+        <li><a href="#c1915">Chapter 1915: Approaching 🔒</a></li>
+        <li><a href="#c1916">Chapter 1916: Allies 🔒</a></li>
+        <li><a href="#c1917">Chapter 1917: Human-Machine Integration 🔒</a></li>
+        <li><a href="#c1918">Chapter 1918: Battle of Coordination 🔒</a></li>
+        <li><a href="#c1919">Chapter 1919: Routed 🔒</a></li>
+        <li><a href="#c1920">Chapter 1920: Marduk 🔒</a></li>
+        <li><a href="#c1921">Chapter 1921: Moving the Battle to Divine Descendants World 🔒</a></li>
+        <li><a href="#c1922">Chapter 1922: A Change of Heart 🔒</a></li>
+        <li><a href="#c1923">Chapter 1923: The Kales Star Domain 🔒</a></li>
+        <li><a href="#c1924">Chapter 1924: A Different Path 🔒</a></li>
+        <li><a href="#c1925">Chapter 1925: Insignificant People 🔒</a></li>
+        <li><a href="#c1926">Chapter 1926: Majestic Energy Pillar 🔒</a></li>
+        <li><a href="#c1927">Chapter 1927: Fight on Every Front 🔒</a></li>
+        <li><a href="#c1928">Chapter 1928: Absorbing Death Energy 🔒</a></li>
+        <li><a href="#c1929">Chapter 1929: Fused Monster 🔒</a></li>
+        <li><a href="#c1930">Chapter 1930: Escape 🔒</a></li>
+        <li><a href="#c1931">Chapter 1931: Jie Sect 🔒</a></li>
+        <li><a href="#c1932">Chapter 1932: Responses 🔒</a></li>
+        <li><a href="#c1933">Chapter 1933: Surrender 🔒</a></li>
+        <li><a href="#c1934">Chapter 1934: Resource Plundering Mode 🔒</a></li>
+        <li><a href="#c1935">Chapter 1935: The God of Scorching Wind 🔒</a></li>
+        <li><a href="#c1936">Chapter 1936: Practice Makes Perfect 🔒</a></li>
+        <li><a href="#c1937">Chapter 1937: Boundary Rocks 🔒</a></li>
+        <li><a href="#c1938">Chapter 1938: Blood Crystals 🔒</a></li>
+        <li><a href="#c1939">Chapter 1939: Experiments 🔒</a></li>
+        <li><a href="#c1940">Chapter 1940: Colossal Metal Fortress 🔒</a></li>
+        <li><a href="#c1941">Chapter 1941: An Experimental Accident 🔒</a></li>
+        <li><a href="#c1942">Chapter 1942: Code Name: Messenger 🔒</a></li>
+        <li><a href="#c1943">Chapter 1943: Curry Favor 🔒</a></li>
+        <li><a href="#c1944">Chapter 1944: The Beginning of the Divine Descendants Star Domain War 🔒</a></li>
+        <li><a href="#c1945">Chapter 1945: The Battle of Reebos World 🔒</a></li>
+        <li><a href="#c1946">Chapter 1946: The Federal Legions! 🔒</a></li>
+        <li><a href="#c1947">Chapter 1947: The Festival of Destruction 🔒</a></li>
+        <li><a href="#c1948">Chapter 1948: The Pressure of Civilizational War 🔒</a></li>
+        <li><a href="#c1949">Chapter 1949: Aid from All Sides 🔒</a></li>
+        <li><a href="#c1950">Chapter 1950: The Battle of the Grand Cosmic World 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1901" data-label="1901">
+<h2 class="chapter">Chapter 1901: Setting Out to War 🔒</h2>
+<p>“I have decided to lead the army myself and march against the Gallant Federation in support of the Magus Civilization!” Gongsun Wuji, the Dawn Emperor, declared in the imperial court.</p>
+<p>It was, without a doubt, the boldest decision the Dawn Empire had made in nearly a hundred thousand years.</p>
+<p>But with the Emperor himself issuing the decree, no one dared to object.</p>
+<p>Even Crown Prince Gongsun Qi lowered his head in silence.</p>
+<p>His standing in court was below even that of his paternal aunt, so speaking out against the decision was never an option.</p>
+<p>Once the order was given, the entire war machine of the Dawn Empire roared to life.</p>
+<p>This time, the Emperor would lead the campaign in person.</p>
+<p>It was no exaggeration to say the empire was committing the bulk of its strength to aid the Magus Civilization.</p>
+<p>During this period,...</p>
+</article>
+<article id="c1902" data-label="1902">
+<h2 class="chapter">Chapter 1902: Qiuniu’s Dilemma 🔒</h2>
+<p>Qiuniu went on to recount what he had encountered on the way here, including the warnings given by that meteor-like creature about an impending crisis.</p>
+<p>Destruction Spring listened, but remained unconvinced.</p>
+<p>“I am an overlord who personally took part in a Dimensional War and a top-tier Clash of Civilizations. The war between the Radiant Celestials and the Source Energy Civilization left a lasting impression on me,” he said.</p>
+<p>“Then came the war that led to the collapse of the Source Energy Star Domain. That alone brought unimaginable gains to both me and the Supreme Knight Overlord, Locke.”</p>
+<p>He paused briefly before continuing.</p>
+<p>“Without facing a top-tier civilization in war, you cannot truly understand how terrifying they are. In terms of scale, the current war between the Magus Civilization and the Gallant Federation has already surpassed the Dimensional War launched by the Radiant Celestials back then.</p>
+<p>“At the very least, both sides have seen a surge in overlords in recent years, especially after absorbing the Radiant Celestials’...</p>
+</article>
+<article id="c1903" data-label="1903">
+<h2 class="chapter">Chapter 1903: The State of the Immortal Realm 🔒</h2>
+<p>As a cultivation world with an exceptionally long history and deep foundation, Qingyang World was every bit as prosperous as other well-known large-sized cultivation worlds in the Immortal Realm Civilization.</p>
+<p>It had once served as the main hub for exchanges between the Immortal Realm Civilization and the Magus Civilization.</p>
+<p>The reason those interactions had gradually declined in recent years was largely due to the Immortal Realm’s own internal problems.</p>
+<p>Conflicts between the various factions and the Sage Court had grown increasingly intense, while the Buddhist sects were beginning to show subtle signs of distancing themselves from the Immortal Realm.</p>
+<p>In short, unless some external threat emerged or overwhelming pressure forced them to unite, the Immortal Realm Civilization—which had continued expanding in recent years—might very well descend into civil war first.</p>
+<p>After all, this was a civilization where the three major powers—Buddhism, Daoism, and the Yao Clan—were so powerful that any one of them alone was nearly comparable to a nascent top-tier civilization.</p>
+<p>Among these powers, Daoism was the strongest, followed by Buddhism, while the Yao Clan ranked last.</p>
+<p>And beyond these three, the Immortal Realm Civilization...</p>
+</article>
+<article id="c1904" data-label="1904">
+<h2 class="chapter">Chapter 1904: The Dragon Clan’s Army 🔒</h2>
+<p>Besides paying visits to those three Daoist Overlords, members of the delegation would also need to establish contact with the Yao Clan, the Dragon Clan, the Blood Sea Asura Clan, and several other factions within the Immortal Realm Civilization in the coming days.</p>
+<p>This did not mean the Magus Civilization urgently needed assistance from the Yao Clan and the others right away. Rather, they were laying the groundwork to make future negotiations smoother.</p>
+<p>At the same time, the Magus Civilization was not eager to pull the entire Immortal Realm Civilization into the war.</p>
+<p>After all, this was ultimately the Magus Civilization’s own Clash of Civilizations. If too many outside forces became involved, dividing the spoils afterward would become a problem.</p>
+<p>The Magus Civilization also worried that if too many Immortal Realm legions entered the battlefield, they could eventually become difficult to manage.</p>
+<p>Because...</p>
+</article>
+<article id="c1905" data-label="1905">
+<h2 class="chapter">Chapter 1905: Proper Justification 🔒</h2>
+<p>Among the Dragon Clan of the Immortal Realm, the Flood Dragon King—known as the Great Sage Who Overturns the Seas—was an exceptionally shrewd and capable dragonkin.</p>
+<p>Although his bloodline was mixed, the Flood Dragon King’s pride and ambition had never diminished.</p>
+<p>Step by step, he continued climbing upward until he eventually reached the overlord realm.</p>
+<p>Thanks to both his bloodline and the close relationships he had forged with several other Great Sages, the Flood Dragon King stood at the very peak of the Immortal Realm Civilization.</p>
+<p>He was now a supreme figure whose actions alone could shake entire regions of the realm.</p>
+<p>This time, he responded to the Dragon Clan’s call to join the war alongside the Magus Civilization.</p>
+<p>The forces he brought were not limited to the flood dragons under his command.</p>
+<p>He also mobilized enormous legions of serpentine, insectoid, and tortoise-type yao...</p>
+</article>
+<article id="c1906" data-label="1906">
+<h2 class="chapter">Chapter 1906: Achievements in Artifact Forging 🔒</h2>
+<p>In response to Dong Fangbai’s remark, Suanni—the most senior member of the Dragon Clan present—nodded.</p>
+<p>He was Baxia’s older brother and the fifth oldest in the family.</p>
+<p>Baxia was the sixth-born.</p>
+<p>In terms of raw strength, Suanni was probably slightly weaker than Baxia by now.</p>
+<p>Still, he was a true pyro-attribute dragonkin.</p>
+<p>Within the family, aside from Yazi, the second-born, Suanni was the most battle-inclined of them all.</p>
+<p>Over the years, he had caused no shortage of trouble throughout the Immortal Realm.</p>
+<p>That said, it was usually others who provoked him first. Suanni rarely went looking for conflict on his own.</p>
+<p>He was a level-headed overlord-level dragonkin.</p>
+<p>The Dragon Clan of the Immortal Realm was a colossal and powerful faction. The cost of using a teleportation array was well within their means.</p>
+<p>Furthermore, the artifact-forging of the Immortal Realm Civilization even surpassed the Magus Civilization’s alchemy in certain aspects.</p>
+<p>After all, the Immortal Realm had possessed an extremely mature system for crafting spiritual...</p>
+</article>
+<article id="c1907" data-label="1907">
+<h2 class="chapter">Chapter 1907: Leaders of the Daoist Faction 🔒</h2>
+<p>Lady Bev, the leader of the Magus Civilization, had her own reasons for seeking help from the Daoist faction first instead of turning directly to the ever-helpful Dragon Clan.</p>
+<p>That was because the Daoist faction remained the true ruling force within the Immortal Realm Civilization.</p>
+<p>Just as Lady Bev currently held supreme authority over matters concerning the Magus Civilization, the Daoist faction was essentially the face of the Immortal Realm itself.</p>
+<p>Although Buddhism had risen rapidly in recent years and was beginning to rival Daoism in influence, and although the Yao Clan had regained much of its former glory through its massive population and the bloodlines of certain extraordinary great yaos, the Magus Civilization still regarded the Daoist faction as the Immortal Realm’s central authority.</p>
+<p>There was a saying within the Immortal Realm—<em>Buddhism was originally Daoism.</em></p>
+<p>In other words, the Buddhist faction had originally branched off from the Daoist fac...</p>
+</article>
+<article id="c1908" data-label="1908">
+<h2 class="chapter">Chapter 1908: Special Experiment 🔒</h2>
+<p>Lately, Sein had been living quite comfortably within the Martial Civilization.</p>
+<p>The Emperor of the Dawn Empire had already decided to personally lead the army into battle, but mobilizing the entire empire for war was not something that could be done overnight.</p>
+<p>As a result, Sein would need to remain in the Dawn Empire for a while longer.</p>
+<p>Once preparations were complete, he would return to the Magus Civilization’s battlefield together with the Dawn Empire’s legions.</p>
+<p>When Mel, the Rank Four Dragon Warlock, came to the Dawn Empire to request reinforcements, she naturally brought communication equipment capable of connecting directly with the Magus Civilization.</p>
+<p>Even across vast stretches of space-time, the device could still maintain stable contact.</p>
+<p>The device in Mel’s possession had most likely been crafted by an overlord-level...</p>
+</article>
+<article id="c1909" data-label="1909">
+<h2 class="chapter">Chapter 1909: Sparring 🔒</h2>
+<p>There was nothing more frustrating than failing to land even a single hit on your opponent.</p>
+<p>That was exactly how Sein felt right now.</p>
+<p>To him, it almost seemed like Gongsun Wudi was playing with him.</p>
+<p>In truth, however, Gongsun Wudi had remained completely serious from start to finish.</p>
+<p>As the battle continued, she often appeared lost in thought.</p>
+<p>“Ashen Demon True Form, activate!”</p>
+<p>Unable to gain any advantage against Gongsun Wudi, Sein finally unleashed his full combat form.</p>
+<p>The enormous and overwhelmingly powerful Ashen Demon Lawful Body caused a faint gleam of admiration to flash through Gongsun Wudi’s eyes.</p>
+<p>Sein’s original mage form was already quite handsome, but Wudi found his Ashen Demon form even more pleasing to look at.</p>
+<p>Perhaps it was because Sein...</p>
+</article>
+<article id="c1910" data-label="1910">
+<h2 class="chapter">Chapter 1910: Cavern of Pyro Elemental Laws 🔒</h2>
+<p>Gongsun Wudi’s words only made Sein feel more embarrassed.</p>
+<p>After all, during their earlier fight, he had already used both the Faceless Mask and the Magic Cube—two world-class secret treasures.</p>
+<p>And yet, he had still been thoroughly suppressed by Gongsun Wudi.</p>
+<p>Once the gap in strength reached a certain level, equipment alone could no longer make up the difference.</p>
+<p>Even so, Sein had still held back to some extent. He had not summoned Fermera to assist him.</p>
+<p>That said, the sparring session with Gongsun Wudi had benefited him greatly, especially when it came to combat techniques.</p>
+<p>In the past, Sein had never intentionally trained his close-combat abilities.</p>
+<p>The body tempering technique he practiced was passed down from the Verdant Flame Faction, mainly intended to strengthen vitality and physical resilience.</p>
+<p>It seemed that even when Gregory...</p>
+</article>
+<article id="c1911" data-label="1911">
+<h2 class="chapter">Chapter 1911: Late Stage of Rank Five 🔒</h2>
+<p>Time always passed quickly during research.</p>
+<p>After discovering a region rich in flame laws that held immense research value, Sein and Gongsun Wudi decided to remain on this massive pyro-attribute plane temporarily.</p>
+<p>That temporary stay ended up lasting nearly ten years.</p>
+<p>Gongsun Wudi was a surprisingly low-key and approachable princess.</p>
+<p>Given her status, her arrival on a large-sized plane under the Dawn Empire’s rule should have attracted endless flattery and attention from the local officials.</p>
+<p>But Gongsun Wudi had likely anticipated this long ago and deliberately concealed both her identity and whereabouts.</p>
+<p>When it came to suppressing her aura and concealing her true strength, Sein thought she might even be better at it than Celloza.</p>
+<p>Back then, Celloza had relied on specially crafted equipment provided by the Magus Civilization...</p>
+</article>
+<article id="c1912" data-label="1912">
+<h2 class="chapter">Chapter 1912: Setting Out 🔒</h2>
+<p>Before finalizing the details of the expedition, Sein spent some time shut away in his laboratory.</p>
+<p>His main task was processing the flame ore Gongsun Wudi had given him.</p>
+<p>The immense flame law power contained within the ore far surpassed the pyro-elemental enhancement properties of the scepter tip Sein had previously crafted using a low-level planar heart.</p>
+<p>Fortunately, the modification itself was not too complicated. He only needed to embed the ore into the scepter rather than dismantle and rebuild the entire weapon from scratch.</p>
+<p>As for the two planar hearts originally set into the tip, Sein did not remove them either.</p>
+<p>Instead, he retained them as auxiliary components while replacing the scepter’s primary enhancer with the massive ore.</p>
+<p>Extraction, refinement, embedding, stabilization…</p>
+<p>When these processes were finally complete,...</p>
+</article>
+<article id="c1913" data-label="1913">
+<h2 class="chapter">Chapter 1913: Colossal Fish 🔒</h2>
+<p>When Sein met Gongsun Wudi, she was handling military affairs inside her imperial chariot.</p>
+<p>Whenever she worked, the Princess wore a stern, icy expression that gave her a uniquely imposing aura.</p>
+<p>After Sein entered, she did not even bother looking up. She simply pointed toward a corner of the chariot, signaling for him to sit wherever he liked.</p>
+<p>The architecture and craftsmanship of the Martial Civilization were vastly different from those of the Magus Civilization.</p>
+<p>Still, this enormous imperial chariot alone was essentially equivalent to a Magus Civilization space fortress.</p>
+<p>For the foreseeable future, Gongsun Wudi would be living and handling official matters within this chariot throughout the journey.</p>
+<p>The trip from the Martial Civilization to the Magus Star Domain was far from short, and Sein had no intention of wasting...</p>
+</article>
+<article id="c1914" data-label="1914">
+<h2 class="chapter">Chapter 1914: Allocation of Reinforcements 🔒</h2>
+<p>The number of legions under Illusion Spring’s command was indeed fairly small—probably only around ten million troops.</p>
+<p>Destruction Spring had already noticed those forces earlier, fully assembled beside the teleportation springs and ready to depart.</p>
+<p>But where exactly were Kun’s forces?</p>
+<p>The spring overlord searched for quite a while without spotting a single Immortal Realm combat legion.</p>
+<p>Eventually, his gaze slowly drifted toward Kun’s enormous abdomen...</p>
+<p>Under Destruction Spring’s command, and with the various Spring Lords leading the way, the Myriad Springs Worlds’ vassal legions entered the teleportation springs in orderly waves.</p>
+<p>For this expedition into the Magus Star Domain, the Myriad Springs Worlds had mobilized at least one-third of its total military strength.</p>
+<p>And the forces sent out this time were all the most battle-hungry and aggressive entities within the entire star domain.</p>
+<p>Although only a third of their overall legions had been deployed,...</p>
+</article>
+<article id="c1915" data-label="1915">
+<h2 class="chapter">Chapter 1915: Approaching 🔒</h2>
+<p>Sending the Immortal Realm’s Daoist sects to the Grand Cosmic World battlefield was naturally not just about saving resources.</p>
+<p>Besides maximizing the use of available forces and setting two top-tier civilizations—the Amenkha Empire and the Immortal Realm—against each other, Bev and the others had another reason for making this decision.</p>
+<p>The Dawn Empire, which was preparing to reinforce the Magus Civilization, held a deep-rooted grudge against the Immortal Realm.</p>
+<p>This conflict dated back hundreds of thousands of years and belonged to the previous era.</p>
+<p>Most people today likely knew little about it.</p>
+<p>The Dawn Empire, which was known as the Martial Civilization, had once been conquered and annexed by the Immortal Realm.</p>
+<p>Even now, the plane where the Dawn Empire’s capital stood was not the original homeplane of those martial cultivators. They...</p>
+</article>
+<article id="c1916" data-label="1916">
+<h2 class="chapter">Chapter 1916: Allies 🔒</h2>
+<p>The Divine Revelation Star Domain was a subordinate star domain of the Divine Descendants World, one of the large-sized world civilizations under the Gallant Federation’s rule.</p>
+<p>The Gallant Federation had four major allied world civilizations—the Zeak Empire, the Tris Civilization, the Grand Apocalypse World, and the Divine Descendants World.</p>
+<p>Sein had already encountered the first three to varying degrees during previous battles against the Gallant Federation.</p>
+<p>Only the Divine Descendants World remained unfamiliar to him, largely because of its remote location and the constantly shifting situation across the civilizational battlefield.</p>
+<p>The Divine Descendants World was a rather unique civilization that followed a divine faith system.</p>
+<p>Neither the Magus Civilization nor the Gallant Federation truly believed in gods, yet both powers strangely had subordinate civilizations that walked the path of faith.</p>
+<p>This was especially true within the Magus Alliance, where civilizations worshiping foreign deities...</p>
+</article>
+<article id="c1917" data-label="1917">
+<h2 class="chapter">Chapter 1917: Human-Machine Integration 🔒</h2>
+<p>The Dawn Empire knew very little about these demons.</p>
+<p>That was mainly because there was barely any activity from their kind near its star domains. Instead, the surrounding regions were populated by many savage species unfamiliar even to Sein.</p>
+<p>Their lack of understanding of demons, combined with the gruesome scenes spread across the battlefield, kept the Dawn Empire’s vanguard legions on high alert.</p>
+<p>Sein himself, however, did not feel particularly disturbed. The demonic bloodline within him gave him a natural affinity toward demonkind.</p>
+<p>Moreover, after so many dealings with the Spider Queen and even extensive interactions with Faeloria’s purgatory demons, Sein had long suspected that the Magus Civilization maintained some deep, hidden connection with demons and devils alike.</p>
+<p>No one had ever told him this directly. Everything had been pieced together through his own observations and deductions.</p>
+<p>Even Lorthisra herself had never openly admitted anything.</p>
+<p>Eventually, near the wreckage of a shattered warship still coated in foul-smelling green slime, Sein and the others discovered a severed...</p>
+</article>
+<article id="c1918" data-label="1918">
+<h2 class="chapter">Chapter 1918: Battle of Coordination 🔒</h2>
+<p>Gongsun Wudi marveled at the unique way Sein wielded his power.</p>
+<p>What she did not know was that Sein himself felt rather awkward at that moment.</p>
+<p>Part of the reason was that the technology was still immature, so Sein’s combat movements felt somewhat clumsy.</p>
+<p>No perfect skill was mastered overnight. Every ability required countless rounds of adjustment and refinement before it could truly be perfected.</p>
+<p>Right now, Sein was still in that stage of adaptation.</p>
+<p>His decision to test his abilities in real combat was not born from arrogance, but from the simple fact that the enemy before him posed no real threat.</p>
+<p>More importantly, the actual battle exposed far more flaws than the dull and repetitive tests conducted in a laboratory.</p>
+<p>Driven by the speed of the eight wings behind him, the lightsaber in Sein’s hand unleashed terrifying cutting power.</p>
+<p>After charging forward and severing one of Hurricane God’s arms, Sein spun around, revealing a cannon barrel...</p>
+</article>
+<article id="c1919" data-label="1919">
+<h2 class="chapter">Chapter 1919: Routed 🔒</h2>
+<p>In addition to the angel legion of over a hundred thousand troops, Sein’s forces also included the Ashen Star Pirates.</p>
+<p>At the end of the day, they were just a small-time pirate crew.</p>
+<p>From their leader, Aribbean, down to the lowest-ranking crew members, they were the kind who would eagerly pounce on some defenseless interstellar merchant fleet and howl with excitement while looting it clean.</p>
+<p>But the moment they faced an elite legion from a civilized world, their weaknesses were immediately exposed—let alone against a legion from a large world civilization!</p>
+<p>In the face of the fearless charges from Divine Descendants World’s legions, the Ashen Star Pirates looked utterly hopeless.</p>
+<p>It even made Sein regret putting the word “Ashen” in their name.</p>
+<p>He felt the word itself had been tarnished by them.</p>
+<p>At that very moment, Aribbean was being chased all across the battlefield by a heavily wounded, demigod-level Divine Descendants World creature wielding a divine greatswo...</p>
+</article>
+<article id="c1920" data-label="1920">
+<h2 class="chapter">Chapter 1920: Marduk 🔒</h2>
+<p>After the first clash with the Divine Descendants World ended, Gongsun Wudi immediately dispatched messengers to report the battle results to the Emperor.</p>
+<p>Not long afterward, the Dawn Emperor issued new orders for the army to continue advancing.</p>
+<p>The Divine Descendants World was already dealing with the Quatar Star Pirates within its own territory while also having to face the advance of the Dawn Empire’s massive army.</p>
+<p>For the Divine Descendants, the situation could only be described as disastrous.</p>
+<p>Fortunately for them, the Dawn Empire still showed no intention of pushing directly toward their core territories.</p>
+<p>Otherwise, the pressure on their civilization would have become even more overwhelming.</p>
+<p>As the Dawn Empire continued its advance, the Divine Descendants World forces—having suffered heavily in the earlier battle—did establish several defensive lines along the way.</p>
+<p>Still, their tactics had clearly become much more cautious.</p>
+<p>Whenever possible, they avoided prolonged close-range...</p>
+</article>
+<article id="c1921" data-label="1921">
+<h2 class="chapter">Chapter 1921: Moving the Battle to Divine Descendants World 🔒</h2>
+<p>There was no denying that Marduk was a psychopath, but at the same time, one also had to admit that he was a true genius.</p>
+<p>Throughout years of purges and the endless elimination of potential threats, Marduk had never grown complacent with the authority he wielded as an overgod.</p>
+<p>Instead, he continued learning and strengthening himself.</p>
+<p>He was living proof that diligence could truly compensate for a lack of natural talent!</p>
+<p>Not only did he wield such a vast and complex array of laws and divine abilities, but his personal power had already reached the terrifying peak of Rank Seven!</p>
+<p>Marduk may not have possessed the monstrous talent of certain extraordinary beings, but that did not make him any less of a genius.</p>
+<p>In fact, judging by Divine Descendants World’s history and the amount of time it took for the civilization to rise into the ranks of large-sized worlds, it was likely even older than both the Magus Civilization and the Gallant Federation.</p>
+<p>That deep and ancient foundation...</p>
+</article>
+<article id="c1922" data-label="1922">
+<h2 class="chapter">Chapter 1922: A Change of Heart 🔒</h2>
+<p>The “hidden forces” Belphane mentioned were most likely referring to the demons of the Quatar Star Pirates.</p>
+<p>Sein had not known much about such matters in the past. Still, after witnessing more over the years, especially after becoming more closely connected with the Spider Queen, he had gradually come to suspect the truth.</p>
+<p>Still, Sein never brought it up openly, nor did he try to confirm it with anyone else.</p>
+<p>Sometimes, things were better left undiscussed.</p>
+<p>The Dawn Empire Army likewise avoided mentioning those demons.</p>
+<p>As for Belphane’s proposal that the Byrne Empire send troops to join the war in Divine Descendants World, the Dawn Empire responded with great enthusiasm, expressing their willingness to fight alongside their Magus World allies.</p>
+<p>In the end, it was the Dawn Empire’s Grand Chancellor, Situ Kong, who raised the key issue by asking how the Magus Civilization intended to handle the logistics and supply lines...</p>
+</article>
+<article id="c1923" data-label="1923">
+<h2 class="chapter">Chapter 1923: The Kales Star Domain 🔒</h2>
+<p>Sein did not stay for the entire discussion between Steward Popporon and Grand Chancellor Situ Kong.</p>
+<p>After exchanging a few words with Gongsun Wudi, he returned to his laboratory.</p>
+<p>During his earlier conversation with Belphane, Sein had also learned quite a bit about the recent developments on the civilizational battlefield.</p>
+<p>Most of it concerned events that had taken place after he and Tourmaline were swept into the shattered space-time corridor—things he had been completely unaware of until now.</p>
+<p>“Three hundred years ago, a soul overmage from the Magus Civilization appeared on the frontlines within the Gallant Federation’s star domains and unleashed four massive forbidden spells in succession. Hundreds of millions of Gallant Federation troops were annihilated in an instant, and the federation’s planned large-scale counteroffensive was completely crushed,” Belphane said.</p>
+<p>“Who was that soul overmage?” Sein could not help asking.</p>
+<p>Belphane shook her head, indicating that even she did not know.</p>
+<p>The Magus Civilization’s...</p>
+</article>
+<article id="c1924" data-label="1924">
+<h2 class="chapter">Chapter 1924: A Different Path 🔒</h2>
+<p>The <em>God of Black Mist </em>was the mightiest being in the Kales Star Domain.</p>
+<p>The divine power he first cultivated was water-based, supplemented by a measure of qi-based divine power.</p>
+<p>Within the Kales Pantheon, he was the undisputed leader.</p>
+<p>In recent times, especially, the Kales Star Domain had gradually undergone a kind of “transformation” under his guidance.</p>
+<p>Starting tens of thousands of years ago, the God of Black Mist began expanding the scope of his divine portfolios.[1]</p>
+<p>From natural elements such as “water currents” and “mist,” his power gradually extended into domains like “black smoke”, “thermal energy”, and “impurity”.</p>
+<p>This expansion of his divine abilities was, of course, meant to adapt to the various changes taking place in the Kales Star Domain at the time.</p>
+<p>It was the God of Black Mist himself who had arranged for the Gallant Federation’s “relatively advanced” heavy industry to be introduced into the Kales Star Domain.</p>
+<p>Back then, he had even personally traveled to one of the Gallant Federation’s border star domains to sign various contracts with a deputy commander...</p>
+</article>
+<article id="c1925" data-label="1925">
+<h2 class="chapter">Chapter 1925: Insignificant People 🔒</h2>
+<p>The Black Fortress City…</p>
+<p>Thick columns of pitch-black smoke billowed from every corner of the city, rising to merge with the dark clouds above.</p>
+<p>This was a city plagued by severe pollution.</p>
+<p>However, for the lowly beings at the bottom of society, life was still manageable.</p>
+<p>Thanks to the divine shield granted by the great God of Black Mist, these weak yet devout subjects were protected from the pollution drifting through the skies.</p>
+<p>Many city dwellers had once visited the countryside. It was certainly greener than the city, but the pollution there was no less severe. Even the water was no longer safe to drink.</p>
+<p>There were far fewer temples and clerics there as well. Without the divine grace of the God of Black Mist, life naturally became much harder.</p>
+<p>As a result, more and more people chose to move into the cities.</p>
+<p>They did so both to be closer to divine grace and to enjoy a better quality of life.</p>
+<p>The Black Fortress City was located on Twilight Plane, which lay at the outermost edge of the Kales Star Domain.</p>
+<p>More than two-thirds of the plane worshipped the God of Black Mist, while the rest followed the God of Twilight.</p>
+<p>Since...</p>
+</article>
+<article id="c1926" data-label="1926">
+<h2 class="chapter">Chapter 1926: Majestic Energy Pillar 🔒</h2>
+<p>“It’s quite a unique world. The federation’s technological industry and the native pantheon seem to have merged rather harmoniously,” Sein commented as he gazed down from the starry sky.</p>
+<p>“Although this world’s planar will and barrier feel rather fragile to me, its natives’ faith doesn’t seem to have collapsed,” Mel said as she studied the scene below with keen interest.</p>
+<p>Despite her young age and small stature, Mel was a true seeker of truth.</p>
+<p>Sometimes, Sein could even find common ground with her—unlike Belphane, whom he had only just met.</p>
+<p>The Rank Six female knight had already pulled two heavy maces out of nowhere and was scanning the area for enemies, clearly ready to charge into battle at any moment.</p>
+<p>For this conquest of the Kales Star Domain, there were only three law-wielding knights and mages on their side: Sein, Mel, and Belphane.</p>
+<p>Of course, Sein also had Fermera, the God of Dusk Desire, and the Ashen Star Pirates serving as additional combat forces.</p>
+<p>As for the half-million-strong army dispatched by the Dawn Empire, it did not have a single law-wielding general among its ranks.</p>
+<p>Gongsun Wudi seemed to have complete confidence...</p>
+</article>
+<article id="c1927" data-label="1927">
+<h2 class="chapter">Chapter 1927: Fight on Every Front 🔒</h2>
+<p>As the colossal pillar of energy tore through the barrier, all living beings fell silent.</p>
+<p>An immense black vortex appeared above Black Mist World.</p>
+<p>A massive hole had been <em>blasted </em>straight through the planar barrier!</p>
+<p>Under the impact of the law power and the raging torrent of energy, the densest black mist in the world swirled and converged endlessly.</p>
+<p>The vortex grew larger and larger, showing no sign of fading.</p>
+<p>Through that massive hole, Sein, who stood outside the plane, seemed to glimpse the despair on the Rank Five God of Black Mist’s face.</p>
+<p>He also saw the countless beings of this low-level plane looking up in worship at that terrifying power and the phenomenon they could not comprehend.</p>
+<p>Sein let out a soft sigh. As he lowered his magic scepter, Fermera immediately returned to her original form.</p>
+<p>“This worked even better than our previous tests. The energy transmission was more stable, and the elemental power burst exceeded our...</p>
+</article>
+<article id="c1928" data-label="1928">
+<h2 class="chapter">Chapter 1928: Absorbing Death Energy 🔒</h2>
+<p>This was an unfair battle—three against seven.</p>
+<p>Before the fighting began, the Tenth Pharaoh had protested the arrangement.</p>
+<p>She stood on one side, accompanied by her two overlord-class monster kings.</p>
+<p>On the other side was the Dragon Clan’s massive army, led by Chaofeng, Baxia, Suanni, Bi’an, Fuxi, Torch Dragon, and the Flood Dragon King.</p>
+<p>It had taken the Dragon Clan quite a bit of effort to corner the cunning Tenth Pharaoh.</p>
+<p>They were actually quite far from the Mordora Star Domain.</p>
+<p>In fact, it was already close to the edge of the Magus Civilization’s sphere of influence, reaching the frontier star domains beyond the civilizational battlefield.</p>
+<p>The main forces of the Dragon Clan’s army, especially the countless ordinary legions, remained stationed around the Mordora Star Domain on standby.</p>
+<p>The ones who had actually caught up to the Tenth Pharaoh were mainly these few overlord-level dragonkin.</p>
+<p>Within this sealed space, Chaofeng stood majestically at its highest point.</p>
+<p>In terms of strength, Chaofeng,...</p>
+</article>
+<article id="c1929" data-label="1929">
+<h2 class="chapter">Chapter 1929: Fused Monster 🔒</h2>
+<p>Just as the Tenth Pharaoh activated her law domain, the two overlord-level monster kings behind her also sprang into action.</p>
+<p>As monster kings personally selected by the Tenth Pharaoh to accompany her on missions, these two creatures did not look particularly remarkable at first glance.</p>
+<p>Even among overlord-level combatants, neither of them stood out in any obvious way.</p>
+<p>In reality, though, both of them had their own trump cards.</p>
+<p>The two monster kings gradually moved closer to each other.</p>
+<p>One was the Spider Monster King, and the other was the Rhinoceros Beetle Monster King.</p>
+<p>The most famous monster powerhouse within the Amenkha Empire’s Monster Legion was Grumz, the Monster Emperor born from the fusion of five overlord-level monster kings.</p>
+<p>Due to Grumz’s unique nature, as well as the monster horde’s instinctive obedience toward beings of absolute power, the Amenkha Empire’s Monster Legion had rarely produced any other fusion monsters since its birth.</p>
+<p>It was not that the Amenkha Empire lacked the knowledge. Rather, Grumz had deliberately...</p>
+</article>
+<article id="c1930" data-label="1930">
+<h2 class="chapter">Chapter 1930: Escape 🔒</h2>
+<p>Just as Suanni charged in to attack, Torch Dragon entered the battle as well.</p>
+<p>The power Torch Dragon wielded had a specific term in the Immortal Realm civilization. It was known as “Yin Qi”.</p>
+<p>This was a special power Torch Dragon had cultivated and slowly mastered while growing up in the Nine Netherworlds.</p>
+<p>According to the Magus Civilization’s understanding and classification of power systems, this so-called “nether power” was somewhat similar to a fusion of death and dark powers.</p>
+<p>Coincidentally, the Amenkha Empire also happened to be highly skilled at manipulating this kind of negative energy.</p>
+<p>When Torch Dragon unleashed his Nine Hells Netherflame, even the Tenth Pharaoh on another battlefield could not help but glance in his direction.</p>
+<p>From the perspective of judging the quality of a “plaything”, Torch Dragon was actually the most suitable prey for the Tenth Pharaoh.</p>
+<p>If Torch Dragon had traveled to the Amenkha Empire in his younger years, he might have had the “great fortune” of being thoroughly beaten by some Amenkha powerhouse, only to be taken as that opponent’s mount afterward.</p>
+<p>But that was clearly impossible...</p>
+</article>
+<article id="c1931" data-label="1931">
+<h2 class="chapter">Chapter 1931: Jie Sect 🔒</h2>
+<p>While the Tenth Pharaoh of the Amenkha Empire was being cornered by a group of Immortal Realm overlord-level dragonkin, elsewhere, in the distant Immortal Realm Civilization, negotiations for a military alliance between the Magus Civilization and the Immortal Realm’s Daoist faction had only just begun.</p>
+<p>Tomov, a Rank Six mage and representative of the Magus Civilization’s diplomatic delegation, was currently on his way to Celestial Venerable Duobao’s temple.</p>
+<p>Celestial Venerable Duobao was a disciple of the Grandmaster of Heaven, Tongtian. He was also Jie Sect’s best disciple and the one currently holding authority within the sect.</p>
+<p>Among the Daoist factions of the Immortal Realm, setting aside the smaller sects and rogue cultivators, Jie Sect currently ranked second among the three major Daoist sects—Chan Sect, Jie Sect, and Human Sect—surpassed only by Chan Sect.</p>
+<p>Chan Sect was still led by its founding patriarch, Celestial Venerable of the Primordial Beginning, Yuanshi. With him personally overseeing the sect, no immortal dared to defy it.</p>
+<p>Jie Sect, on the other hand, was in a slightly different position.</p>
+<p>Since the passing of Sect Master Tongtian, the sect’s legacy had remained intact, and its number of disciples had continued to grow. Some, like Celestial...</p>
+</article>
+<article id="c1932" data-label="1932">
+<h2 class="chapter">Chapter 1932: Responses 🔒</h2>
+<p>The first to reply was the Golden Spirit Mother.</p>
+<p>She smoothed her long golden hair and said gracefully, “I believe we should offer our assistance to the Magus Civilization.</p>
+<p>“Although our Master is no longer with us, our friendly relations with the Magus Civilization have continued uninterrupted over the years. Judging from the law contract presented by the Magus Civilization, they are also showing considerable sincerity.”</p>
+<p>She then turned to the others and added, “In recent years, although Jie Sect has not produced as many new sage-level powerhouses as Chan Sect or the Buddhist faction, the number of Heavenly Immortal and Profound Immortal-level cultivators within our sect has increased dramatically compared to the past hundred thousand years.”[1]</p>
+<p>“Until we discover new civilizations beyond our borders to expand into, joining the Magus Civilization’s war, just as we have done in the past, is not out of the question,” she concluded.</p>
+<p>“It seems the Dragon Clan has already mobilized. If we intervene this time, I can call upon the Phoenix Clan as well,” the Golden Spirit...</p>
+</article>
+<article id="c1933" data-label="1933">
+<h2 class="chapter">Chapter 1933: Surrender 🔒</h2>
+<p>The fact that the Magus Civilization had sent envoys to the Daoist faction of the Immortal Realm was impossible to hide from the other powers.</p>
+<p>Among them, the Buddhist faction was the most eager.</p>
+<p>While Chan Sect was still playing its cards close to its chest, hoping to squeeze more benefits out of the Magus Civilization’s war alliance, the Buddhist faction was practically <em>throwing </em>itself at them, just like the Dragon Clan!</p>
+<p>Those baldies in the Buddhist faction were certainly cunning.</p>
+<p>They had clearly seen the immense benefits hidden within the Magus Civilization’s war.</p>
+<p>Although the Amenkha Empire was powerful, one must not forget what the Buddhist faction specialized in.</p>
+<p>Aside from light-based attacks, the Buddhist faction was also among the best at countering creatures of darkness, death, and other negative attributes.</p>
+<p>In other words, the Buddhist faction was practically the natural enemy of the Amenkha Empire.</p>
+<p>Unfortunately, the Magus Civilization had not sent an envoy directly to the Buddhist faction.</p>
+<p>Within the...</p>
+</article>
+<article id="c1934" data-label="1934">
+<h2 class="chapter">Chapter 1934: Resource Plundering Mode 🔒</h2>
+<p>Unable to escape in time, the God of Black Mist and his followers chose to surrender without hesitation.</p>
+<p>In truth, law-wielding beings from this faith-based system were generally unwilling to abandon the worlds under their control unless they had absolutely no other choice.</p>
+<p>After all, the living beings within those worlds were high-quality faith pastures that these native deities had cultivated over tens of thousands of years, or even longer.</p>
+<p>Once they left their faith pastures, not only would it become difficult for these deities to advance any further, but even maintaining their current level of divine power would become extremely challenging.</p>
+<p>Establishing a foothold in a new plane was by no means easy either.</p>
+<p>“You are the God of Black Mist, correct?” Sein asked after the battle ended, rubbing the ornament at the tip of his magic scepter without even looking up.</p>
+<p>“Yes, that is correct,” the God of Black Mist replied respectfully.</p>
+<p>He had already realized that, of the two Rank Six beings present, one was absolutely loyal to Sein.</p>
+<p>As for the other Rank Six knight, she clearly was not the type to take charge.</p>
+<p>Hence, the fate of Black Mist World and its surrounding vassal planes would ultimately be decided by the Rank Five mage standing...</p>
+</article>
+<article id="c1935" data-label="1935">
+<h2 class="chapter">Chapter 1935: The God of Scorching Wind 🔒</h2>
+<p>“Why did they surrender so quickly?!” Three-star General Davis growled outside the Kales Star Domain.</p>
+<p>He was one of the federal generals dispatched under Marshal Schmain’s direct orders to reinforce Divine Descendants World.</p>
+<p>Although the fierce fighting on the frontlines had forced Marshal Schmain to lead his overlord-class fleet there in support of the battle against the Magus Civilization, the Gallant Federation had still dispatched a large number of mid and lower-tier combat legions as scheduled to support the rear front at Divine Descendants World.</p>
+<p>Originally, Davis had been heading straight for the Divine Descendants Star Domain to join the battle. He had heard that the Magus Civilization’s vassal legions had already clashed with the native species of Divine Descendants World.</p>
+<p>However, while en route, General Davis received an urgent order from rear headquarters and immediately changed course. He led his fleet, along with several other...</p>
+</article>
+<article id="c1936" data-label="1936">
+<h2 class="chapter">Chapter 1936: Practice Makes Perfect 🔒</h2>
+<p>The fleet under Davis’ command did not cause any serious injury to the God of Scorching Wind.</p>
+<p>It only frightened him.</p>
+<p>Be they energy beams or various Law-powered weapons, the attacks shifted course slightly the moment they neared the God of Scorching Wind, narrowly missing him.</p>
+<p>This also showed just how outstanding the Gallant Federation’s combat capabilities were.</p>
+<p>Over the past hundred thousand years, it was not only the Magus Civilization and the Immortal Realm that had experienced rapid, explosive growth. The Gallant Federation had also developed at a breakneck pace.</p>
+<p>One technological barrier after another had been broken.</p>
+<p>The civilization’s overall strength had been steadily rising.</p>
+<p>Without sufficient power, the Gallant Federation would never have dared to strike first under the looming...</p>
+</article>
+<article id="c1937" data-label="1937">
+<h2 class="chapter">Chapter 1937: Boundary Rocks 🔒</h2>
+<p>By the time Gongsun Wudi heard about Sein and the others’ situation, nearly half a year had already passed.</p>
+<p>As expected, the princess and her group had also encountered reinforcements from the Gallant Federation.</p>
+<p>In fact, the number of federation legions the Dawn Empire encountered was even greater!</p>
+<p>The Gallant Federation’s reinforcements to the Divine Descendants Star Domain included over seven hundred combat-ready task forces alone, each possessing combat power at Rank Four or above.</p>
+<p>What Sein and his group had encountered was merely a tiny fraction of this massive army.</p>
+<p>However, after these federal fleets arrived at the border of the Divine Descendants Star Domain, most of them did not engage the Dawn Empire’s legions right away.</p>
+<p>Instead, they used various methods to bypass the Dawn Empire’s blockade...</p>
+</article>
+<article id="c1938" data-label="1938">
+<h2 class="chapter">Chapter 1938: Blood Crystals 🔒</h2>
+<p>Kigard’s greatest strength lay in spatial laws.</p>
+<p>Ever since he began working for the Magus Civilization, Kigard had done just about everything over the years.</p>
+<p>He had helped the Magus Civilization steal advanced technological secrets from the Gallant Federation and had taken part in attacks on the federation’s haulers.</p>
+<p>This time, he had even taken on the role of messenger.</p>
+<p>Delivering a message to an ordinary overlord would have been one thing, but Kigard truly did not want anything to do with the infamous devils and demons.</p>
+<p>He was deeply worried that a single misstep would end with him being crushed and devoured by these ferocious creatures, who were known for their brutal nature and terrible reputations.</p>
+<p>But did he have a choice…?</p>
+<p>Carter Gustavo...</p>
+</article>
+<article id="c1939" data-label="1939">
+<h2 class="chapter">Chapter 1939: Experiments 🔒</h2>
+<p>On the battlefield of the Kales Star Domain…</p>
+<p>After receiving reinforcements from the Dawn Empire, sent by Gongsun Wudi, Sein and his forces fought a bitter battle against the Gallant Federation legions in this star domain for another two years before the federation forces finally began retreating on their own.</p>
+<p>War was simply like that. Unless one side possessed an overwhelming advantage, evenly matched forces often ended up locked in a long stalemate—clashing again and again, only to eventually part ways with neither side truly gaining the upper hand!</p>
+<p>Three-star General Davis of the Gallant Federation had received orders to head to the Divine Descendants Star Domain and regroup with the other federal fleets.</p>
+<p>Since the vast majority of the Gallant Federation’s fleets had already reached their target star domain, Davis would likely lose any chance of escape if he insisted on fighting Sein and his forces to the bitter end her...</p>
+</article>
+<article id="c1940" data-label="1940">
+<h2 class="chapter">Chapter 1940: Colossal Metal Fortress 🔒</h2>
+<p>After returning to the laboratory, Sein did not immediately begin his work on fusing the planetary fortress and his Magic Cube. Instead, he first turned his attention back to his daily research on Ashen magic.</p>
+<p>Sein still needed to focus on more sophisticated spell models, the rare elemental flames he had collected, and several lingering questions from the past.</p>
+<p>Several months passed.</p>
+<p>When Fermera quietly slipped back into Sein’s laboratory, she found Sein holding a brilliant, unusual law flame that burned silently in his palm.</p>
+<p>Sein glanced at Fermera and immediately understood that her pursuit had ended. The repairs to the planetary fortress beneath their feet were also largely complete.</p>
+<p>He did not ask her about the details of the battle.</p>
+<p>After carefully...</p>
+</article>
+<article id="c1941" data-label="1941">
+<h2 class="chapter">Chapter 1941: An Experimental Accident 🔒</h2>
+<p>As expected, any mature and successful technology had to go through countless failures or even a few painful lessons before it could truly take shape.</p>
+<p>Before beginning the activation and analysis experiment on the planetary-class fortress, Sein had already used the Magic Cube to simulate countless possible scenarios.</p>
+<p>Even during the experiment itself, he remained fully focused, using the power of both the Magic Cube and the Faceless Mask to observe and record every piece of data. Whenever an unstable phenomenon appeared, he tried to resolve it as early as possible.</p>
+<p>But accidents always happened when one least expected them.</p>
+<p>The sudden appearance of a strange spatial fluctuation disrupted Sein’s intense concentration.</p>
+<p>The Faceless Mask...</p>
+</article>
+<article id="c1942" data-label="1942">
+<h2 class="chapter">Chapter 1942: Code Name: Messenger 🔒</h2>
+<p>As Sein led Kigard toward Gongsun Wudi’s imperial chariot, Kigard kept stealing glances at him.</p>
+<p>By now, he had recognized who Sein was.</p>
+<p>Sein’s performance during the previous experiment, the fact that he commanded a Rank Six angel, and the existence of an elder with peak Rank Six strength behind him—all of these made it impossible for Kigard to treat him as an ordinary mage, even if Sein’s life level was technically lower than his own.</p>
+<p>There was still some distance to cover before they reached the imperial chariot, and Kigard kept wondering how he should start a conversation.</p>
+<p>In truth, Kigard was not the type to strike up conversations easily. He was used to working alone.</p>
+<p>The only reason he was now going out of his way to build a relationship with a Magus Civilization powerhouse was that reality had left him no other option.</p>
+<p>Sein was unaware of what the Rank Six otherworldly...</p>
+</article>
+<article id="c1943" data-label="1943">
+<h2 class="chapter">Chapter 1943: Curry Favor 🔒</h2>
+<p>Aside from military progress, Gongsun Wudi was also quite interested in the experiments Sein had been conducting in the Kales Star Domain over the past few years.</p>
+<p>At first, Sein assumed she would ask about his experiment to activate the colossal war fortress and transform it into a robot.</p>
+<p>To his surprise, however, Gongsun Wudi brought up another experiment instead—the one where he had ordered the followers of the God of Black Mist to resume industrial operations.</p>
+<p>Whether she fully understood the details or not, Sein briefly explained some of his research and the future vision behind it.</p>
+<p>He had not expected a martial cultivator like Gongsun Wudi to take such an interest in his various research projects.</p>
+<p>When Sein spoke about stimulating productivity and creating value among the lower classes, Gongsun Wudi seemed to resonate...</p>
+</article>
+<article id="c1944" data-label="1944">
+<h2 class="chapter">Chapter 1944: The Beginning of the Divine Descendants Star Domain War 🔒</h2>
+<p>After returning to the Kales Star Domain, Sein soon issued the order to march.</p>
+<p>Aside from Sein himself, Belphane, Ximen Feixiao, and the three native deities who had recently defected—including the God of Black Mist—would also join the expedition.</p>
+<p>Sein also ordered them to gather a legion of one million followers.</p>
+<p>Reaching that number would not be difficult. Whether those followers were actually useful in battle, however, was another matter entirely.</p>
+<p>Black Mist World had first been attacked by Sein and his forces, only to be ravaged afterward by the federal fleet.</p>
+<p>The God of Black Mist’s core followers had been nearly wiped out. The newly promoted followers were loyal enough, but their combat ability was questionable.</p>
+<p>Fortunately, Sein did not have many expectations in that...</p>
+</article>
+<article id="c1945" data-label="1945">
+<h2 class="chapter">Chapter 1945: The Battle of Reebos World 🔒</h2>
+<p>When it came to defending the Divine Descendants Star Domain, the Gallant Federation adopted a strategy that differed somewhat from the one it had used during the Grand Eye Demon World War.</p>
+<p>This time, the Gallant Federation did not station its forces in the main world of the Divine Descendants Star Domain. Instead, it dispersed its fleets and technological legions along the frontlines of this vast star domain, close to the battlefield.</p>
+<p>It was likely that even the Gallant Federation itself understood that the forces it had dispatched were not enough to defend the entire Divine Descendants Star Domain.</p>
+<p>Because of that, it could only provide limited support to the planes that needed it most.</p>
+<p>Reebos World and Green God Plane—the two worlds Sein and his group were about to conquer—were precisely such worlds. Both were garrisoned by the Gallant Federation’s legion...</p>
+</article>
+<article id="c1946" data-label="1946">
+<h2 class="chapter">Chapter 1946: The Federal Legions! 🔒</h2>
+<p>The highest-ranking federal general stationed outside Reebos World was a four-star lieutenant general.</p>
+<p>The fleets under his command possessed overall combat strength ranging roughly from the late stage of Rank Five to the peak of Rank Five.</p>
+<p>Unlike in the federation’s home star domains and life planets, this general did not choose to hold his ground. After realizing that the enemy was too powerful and that his legions could not effectively threaten Rank Six beings, he decisively withdrew from the frontlines outside Reebos World.</p>
+<p>Compared to the rather unremarkable Reebos World, the nearby Green God Plane offered far better defensive advantages.</p>
+<p>The plant lifeforms of that world were deeply rooted in their native soil and possessed far greater resistance.</p>
+<p>If the Gallant Federation fleets wanted to maximize their effectiveness, the best course of action was to send part of their forces to reinforce Green God Plane’s defenses.</p>
+<p>“Move out!” Seeing the...</p>
+</article>
+<article id="c1947" data-label="1947">
+<h2 class="chapter">Chapter 1947: The Festival of Destruction 🔒</h2>
+<p>If Reebos had acted sooner, and ideally coordinated with the federal legions stationed outside his plane in advance, the Gallant Federation fleets would not have retreated so quickly.</p>
+<p>It was not that they would have had a chance of victory.</p>
+<p>At the very least, their defeat would not have come so swiftly.</p>
+<p>The fact that Reebos and the federal fleets fought independently of each other also revealed the “small-minded mentality” shared by the vast majority of deities in Divine Descendants World.</p>
+<p>Furthermore, due to the immense pressure on the frontlines and their repeated retreats, the federal fleets were no longer able to effectively make use of their vassal deities.</p>
+<p>For instance, among the federal combat legions deployed to the Divine Descendants Star Domain, the highest-ranking officers were only two five-star generals.</p>
+<p>While they could represent the Gallant Federation and ask Overgod Marduk to coordinate with them in battle, actually ordering him around was simply unrealistic.</p>
+<p>At the...</p>
+</article>
+<article id="c1948" data-label="1948">
+<h2 class="chapter">Chapter 1948: The Pressure of Civilizational War 🔒</h2>
+<p>Upon arriving on this interstellar battlefield, Destruction Spring seemed finally able to unleash the true nature he had been suppressing all along.</p>
+<p>He quickly ordered his vassal legions and the other Spring Lords to launch an offensive against the Gallant Federation.</p>
+<p>The direction of their assault was almost a direct strike toward the heart of the federation’s home star domain.</p>
+<p>At present, battles taking place outside the Gallant Federation’s home star domain were few and far between.</p>
+<p>Aside from a few large vassal planes and a small number of star domain battlefields where the federation still held the upper hand, it had already withdrawn most of its defensive lines back into its home star domain.</p>
+<p>At the start, the Gallant Federation had been the side that proactively launched an offensive against the Magus Civilization.</p>
+<p>Now, however, they had been forced to retreat and adopt a defensive posture.</p>
+<p>This shift from offense to defense clearly reflected the relative strength of both sides, as well as the current state of the Clash of Civilizations.</p>
+<p>Destruction Spring’s sudden entry into the battlefield...</p>
+</article>
+<article id="c1949" data-label="1949">
+<h2 class="chapter">Chapter 1949: Aid from All Sides 🔒</h2>
+<p>The battlefield in the Magus Civilization’s border star domain.</p>
+<p>Although Baxia and the other overlord-level dragonkin from the Immortal Realm were unable to hold back the Amenkha Empire’s Tenth Pharaoh and the two fused monster kings, they still succeeded in rescuing their young.</p>
+<p>At the same time, they dealt a crushing blow to the Amenkha Empire legions that had entered this civilizational battlefield.</p>
+<p>When overlord-level combatants were allowed to interfere freely on the frontlines, the tide of war was bound to tilt sharply to one side.</p>
+<p>If there had only been one or two dragon beastkin, that would have been one thing. But there were seven of them here!</p>
+<p>The Amenkha Empire’s creatures had been wealthy.</p>
+<p>Upon arriving in this civilizational war zone, they had received a hefty payment from the Gallant Federation.</p>
+<p>On top of that, under the Tenth Pharaoh’s leadership, they had swept through previous battlefields and ambushed numerous defensive star domains along the...</p>
+</article>
+<article id="c1950" data-label="1950">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1950: The Battle of the Grand Cosmic World 🔒</h2>
+<p>Violet Thistlestar’s decision was largely influenced by the Magus Civilization.</p>
+<p>Previously, the Magus Civilization had been helping the Grand Cosmic World defend its homeplane.</p>
+<p>Ever since their clash with the Third Pharaoh of the Amenkha Empire, the Magus Civilization had begun systematically scaling back the combat strength of its legions.</p>
+<p>An overlord-level powerhouse from the Magus Civilization was still present on the Grand Cosmic World’s homeplane—Aeberton, the Rank Eight knight who wielded the Dark Blade.</p>
+<p>However, he did not seem to have any real intention of defending the Grand Cosmic World.</p>
+<p>His reason for remaining here appeared to have more to do with a long-held desire to face a certain Amenkha Empire overlord in battle.</p>
+<p>Meanwhile, the vast majority of the Magus Civilization’s legions had already withdrawn...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1951-2000.html" rel="next">Next: Chs 1951–2000 &rarr;</a>
+    <p class="page-end-links"><a href="1851-1900.html" rel="prev">&larr; Chs 1851–1900</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1901–1950</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1901">Chapter 1901: Setting Out to War 🔒</a></li>
+        <li><a href="#c1902">Chapter 1902: Qiuniu’s Dilemma 🔒</a></li>
+        <li><a href="#c1903">Chapter 1903: The State of the Immortal Realm 🔒</a></li>
+        <li><a href="#c1904">Chapter 1904: The Dragon Clan’s Army 🔒</a></li>
+        <li><a href="#c1905">Chapter 1905: Proper Justification 🔒</a></li>
+        <li><a href="#c1906">Chapter 1906: Achievements in Artifact Forging 🔒</a></li>
+        <li><a href="#c1907">Chapter 1907: Leaders of the Daoist Faction 🔒</a></li>
+        <li><a href="#c1908">Chapter 1908: Special Experiment 🔒</a></li>
+        <li><a href="#c1909">Chapter 1909: Sparring 🔒</a></li>
+        <li><a href="#c1910">Chapter 1910: Cavern of Pyro Elemental Laws 🔒</a></li>
+        <li><a href="#c1911">Chapter 1911: Late Stage of Rank Five 🔒</a></li>
+        <li><a href="#c1912">Chapter 1912: Setting Out 🔒</a></li>
+        <li><a href="#c1913">Chapter 1913: Colossal Fish 🔒</a></li>
+        <li><a href="#c1914">Chapter 1914: Allocation of Reinforcements 🔒</a></li>
+        <li><a href="#c1915">Chapter 1915: Approaching 🔒</a></li>
+        <li><a href="#c1916">Chapter 1916: Allies 🔒</a></li>
+        <li><a href="#c1917">Chapter 1917: Human-Machine Integration 🔒</a></li>
+        <li><a href="#c1918">Chapter 1918: Battle of Coordination 🔒</a></li>
+        <li><a href="#c1919">Chapter 1919: Routed 🔒</a></li>
+        <li><a href="#c1920">Chapter 1920: Marduk 🔒</a></li>
+        <li><a href="#c1921">Chapter 1921: Moving the Battle to Divine Descendants World 🔒</a></li>
+        <li><a href="#c1922">Chapter 1922: A Change of Heart 🔒</a></li>
+        <li><a href="#c1923">Chapter 1923: The Kales Star Domain 🔒</a></li>
+        <li><a href="#c1924">Chapter 1924: A Different Path 🔒</a></li>
+        <li><a href="#c1925">Chapter 1925: Insignificant People 🔒</a></li>
+        <li><a href="#c1926">Chapter 1926: Majestic Energy Pillar 🔒</a></li>
+        <li><a href="#c1927">Chapter 1927: Fight on Every Front 🔒</a></li>
+        <li><a href="#c1928">Chapter 1928: Absorbing Death Energy 🔒</a></li>
+        <li><a href="#c1929">Chapter 1929: Fused Monster 🔒</a></li>
+        <li><a href="#c1930">Chapter 1930: Escape 🔒</a></li>
+        <li><a href="#c1931">Chapter 1931: Jie Sect 🔒</a></li>
+        <li><a href="#c1932">Chapter 1932: Responses 🔒</a></li>
+        <li><a href="#c1933">Chapter 1933: Surrender 🔒</a></li>
+        <li><a href="#c1934">Chapter 1934: Resource Plundering Mode 🔒</a></li>
+        <li><a href="#c1935">Chapter 1935: The God of Scorching Wind 🔒</a></li>
+        <li><a href="#c1936">Chapter 1936: Practice Makes Perfect 🔒</a></li>
+        <li><a href="#c1937">Chapter 1937: Boundary Rocks 🔒</a></li>
+        <li><a href="#c1938">Chapter 1938: Blood Crystals 🔒</a></li>
+        <li><a href="#c1939">Chapter 1939: Experiments 🔒</a></li>
+        <li><a href="#c1940">Chapter 1940: Colossal Metal Fortress 🔒</a></li>
+        <li><a href="#c1941">Chapter 1941: An Experimental Accident 🔒</a></li>
+        <li><a href="#c1942">Chapter 1942: Code Name: Messenger 🔒</a></li>
+        <li><a href="#c1943">Chapter 1943: Curry Favor 🔒</a></li>
+        <li><a href="#c1944">Chapter 1944: The Beginning of the Divine Descendants Star Domain War 🔒</a></li>
+        <li><a href="#c1945">Chapter 1945: The Battle of Reebos World 🔒</a></li>
+        <li><a href="#c1946">Chapter 1946: The Federal Legions! 🔒</a></li>
+        <li><a href="#c1947">Chapter 1947: The Festival of Destruction 🔒</a></li>
+        <li><a href="#c1948">Chapter 1948: The Pressure of Civilizational War 🔒</a></li>
+        <li><a href="#c1949">Chapter 1949: Aid from All Sides 🔒</a></li>
+        <li><a href="#c1950">Chapter 1950: The Battle of the Grand Cosmic World 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1851-1900.html" rel="prev">&larr; Chs 1851–1900</a>    <a href="../../index.html">Library</a>
+<a href="1951-2000.html" rel="next">Chs 1951–2000 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

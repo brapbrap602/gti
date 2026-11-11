@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1801–1850</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1751-1800.html#last" data-next-page="1851-1900.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1801">Chapter 1801: Celloza 🔒</a></li>
+        <li><a href="#c1802">Chapter 1802: Four-Sided Encirclement 🔒</a></li>
+        <li><a href="#c1803">Chapter 1803: The So-Called Genius 🔒</a></li>
+        <li><a href="#c1804">Chapter 1804: Heavy Industrial Plane 🔒</a></li>
+        <li><a href="#c1805">Chapter 1805: Foolishly Stubborn 🔒</a></li>
+        <li><a href="#c1806">Chapter 1806: Nobody 🔒</a></li>
+        <li><a href="#c1807">Chapter 1807: Molten Steel T-Rex King 🔒</a></li>
+        <li><a href="#c1808">Chapter 1808: Undisguised Curiosity 🔒</a></li>
+        <li><a href="#c1809">Chapter 1809: Shifting to the Arid Expanse Worlds 🔒</a></li>
+        <li><a href="#c1810">Chapter 1810: Body-Tempering Mages 🔒</a></li>
+        <li><a href="#c1811">Chapter 1811: Warming Up and Removing Restraints 🔒</a></li>
+        <li><a href="#c1812">Chapter 1812: Pinnacle of Combat Power Below the Overlord Realm 🔒</a></li>
+        <li><a href="#c1813">Chapter 1813: The End of the Arid Expanse Worlds War 🔒</a></li>
+        <li><a href="#c1814">Chapter 1814: Jessica’s Advancement 🔒</a></li>
+        <li><a href="#c1815">Chapter 1815: Preserving Image at a Real Cost 🔒</a></li>
+        <li><a href="#c1816">Chapter 1816: A Warning 🔒</a></li>
+        <li><a href="#c1817">Chapter 1817: Lorthisra’s Strength 🔒</a></li>
+        <li><a href="#c1818">Chapter 1818: Violet-Golden Dragon Scale 🔒</a></li>
+        <li><a href="#c1819">Chapter 1819: Danger Approaches 🔒</a></li>
+        <li><a href="#c1820">Chapter 1820: Inviting Wolves Into Home 🔒</a></li>
+        <li><a href="#c1821">Chapter 1821: Operation Retaliation 🔒</a></li>
+        <li><a href="#c1822">Chapter 1822: Long-Range Assault 🔒</a></li>
+        <li><a href="#c1823">Chapter 1823: Formidable Lineup 🔒</a></li>
+        <li><a href="#c1824">Chapter 1824: The Light of Wisdom’s Blessing 🔒</a></li>
+        <li><a href="#c1825">Chapter 1825: Battlefields Across the Realm 🔒</a></li>
+        <li><a href="#c1826">Chapter 1826: Rogge 🔒</a></li>
+        <li><a href="#c1827">Chapter 1827: Overlord-level Combat Unit 🔒</a></li>
+        <li><a href="#c1828">Chapter 1828: The Tide Turns 🔒</a></li>
+        <li><a href="#c1829">Chapter 1829: Valter 🔒</a></li>
+        <li><a href="#c1830">Chapter 1830: Taking Pleasure in Killing 🔒</a></li>
+        <li><a href="#c1831">Chapter 1831: Reversed Encirclement 🔒</a></li>
+        <li><a href="#c1832">Chapter 1832: Summoning Overlords 🔒</a></li>
+        <li><a href="#c1833">Chapter 1833: Chaotic Melee 🔒</a></li>
+        <li><a href="#c1834">Chapter 1834: Shifts 🔒</a></li>
+        <li><a href="#c1835">Chapter 1835: Luminara’s Probing Offensive 🔒</a></li>
+        <li><a href="#c1836">Chapter 1836: Grumz 🔒</a></li>
+        <li><a href="#c1837">Chapter 1837: Withdraw 🔒</a></li>
+        <li><a href="#c1838">Chapter 1838: The Fall of a Soul Overmage 🔒</a></li>
+        <li><a href="#c1839">Chapter 1839: Melancholy 🔒</a></li>
+        <li><a href="#c1840">Chapter 1840: Speaking in Terms of Tangible Gains 🔒</a></li>
+        <li><a href="#c1841">Chapter 1841: Learn to Be Content 🔒</a></li>
+        <li><a href="#c1842">Chapter 1842: Rewards and Costs 🔒</a></li>
+        <li><a href="#c1843">Chapter 1843: A Perilous Situation 🔒</a></li>
+        <li><a href="#c1844">Chapter 1844: The Grand Cosmic World Battlefield 🔒</a></li>
+        <li><a href="#c1845">Chapter 1845: Unpredictable 🔒</a></li>
+        <li><a href="#c1846">Chapter 1846: A Tough Struggle 🔒</a></li>
+        <li><a href="#c1847">Chapter 1847: Rescue 🔒</a></li>
+        <li><a href="#c1848">Chapter 1848: Sea Melody World 🔒</a></li>
+        <li><a href="#c1849">Chapter 1849: Combined Attack 🔒</a></li>
+        <li><a href="#c1850">Chapter 1850: Viper 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1801" data-label="1801">
+<h2 class="chapter">Chapter 1801: Celloza 🔒</h2>
+<p>The Cadillac War lasted a total of two years and four months.</p>
+<p>It ended a full six months ahead of the three-year deadline Sein’s grandmaster had set for him.</p>
+<p>Between the devastation of forbidden spells and the relentless bombardment from the merged fortress’ main cannon, Cadillac paid a heavy price.</p>
+<p>After the war ended, abnormalities began to appear in the demiplane’s core. Measurements showed that Cadillac’s overall constitution had declined by 11.7%.</p>
+<p>As a result, a new asteroid belt formed around the demiplane, filled with countless drifting fragments of federation metal.</p>
+<p>Nearly seventy percent of the Gallant Federation’s garrison forces on this demiplane were wiped out by Sein.</p>
+<p>And even after Cadillac had been fully occupied, the pursuit did not stop.</p>
+<p>In the end, no more than fifteen percent of the federation forces managed to escape Sein’s...</p>
+</article>
+<article id="c1802" data-label="1802">
+<h2 class="chapter">Chapter 1802: Four-Sided Encirclement 🔒</h2>
+<p>Celloza had indeed come to support Feylis, White Stella, and the others in their campaign to capture the Golden Rock Worlds.</p>
+<p>Among the combat legions from Planet Norvex, Sein also noticed a large number of devils serving under Celloza’s command.</p>
+<p>In the star domains surrounding the Magus Civilization, devils had long been associated with cunning and evil.</p>
+<p>Sein had no idea where this peak Rank Six powerhouse had managed to recruit so many devils.</p>
+<p>He even spotted two particularly unusual ones—one at Rank Five and another at Rank Four. Judging by their features, they seemed to belong to the Frenzied Eye Devil and Energy Vampire lineages.</p>
+<p>“Master Sein, haven’t you heard that within our Magus Alliance, Celloza bears the title of <em>Devil K...</em></p>
+</article>
+<article id="c1803" data-label="1803">
+<h2 class="chapter">Chapter 1803: The So-Called Genius 🔒</h2>
+<p>When Sein arrived at his grandmaster’s space fortress to report in, Feylis was in the middle of a long-distance call with Fathis.</p>
+<p>In recent years, Master Fathis seemed to have developed quite a bit of resentment toward Feylis.</p>
+<p>By the time Sein stepped into his grandmaster’s chamber, Fathis was still on the other end of the screen, grumbling about Feylis coming to get a share of the spoils in this war.</p>
+<p>Feylis, however, only smiled, completely unbothered by the tirade. Instead, she beckoned Sein over.</p>
+<p>The moment Sein appeared on screen, Feylis pointed proudly at her grand apprentice and said, “Look. This is the Sein you’ve been grumbling about all this time.”</p>
+<p>Her smug smile, paired with the awkward look on Sein’s face, only...</p>
+</article>
+<article id="c1804" data-label="1804">
+<h2 class="chapter">Chapter 1804: Heavy Industrial Plane 🔒</h2>
+<p>Sein still remembered the Molten Steel T-Rex.</p>
+<p>This formidable Magus Alliance creature specialized in devouring metal.</p>
+<p>Back when Sein had first returned to the Magus Civilization, the Molten Steel T-Rex had already left a deep impression on him during battle.</p>
+<p>Among the special creatures of the Magus Alliance, it was also one of the ones that benefited most directly from the war against the Gallant Federation.</p>
+<p>After all, what path to growth could be more direct than simple consumption?</p>
+<p>Whether it was the Gallant Federation’s giant mobile suits or its warships, their distinct alloy armor plating was the Molten Steel T-Rex’s favorite food.</p>
+<p>By continuously devouring metal and accumulating it into a new layer of metallic scales over its body, the Molten Steel T-Rex had become...</p>
+</article>
+<article id="c1805" data-label="1805">
+<h2 class="chapter">Chapter 1805: Foolishly Stubborn 🔒</h2>
+<p>The four planes under Sein’s responsibility were not difficult to assault.</p>
+<p>That included <em>Firesheen Port Plane</em>, which was heavily garrisoned by the federation’s forces.</p>
+<p>Aside from Gin, the most outstanding fighter in Sein’s legion was undoubtedly Karl, the Rank Five Klytheran warrior.</p>
+<p>Thinking back on Karl’s past, he had once stood against his own people to protect the Blue Star natives.</p>
+<p>He was a Rank Five warrior driven by both ambition and conviction.</p>
+<p>And yet, ever since joining the Magus Alliance, Karl’s mentality seemed to have changed quite a bit.</p>
+<p>At the very least, when he struck at the Gallant Federation legions once again, there was no trace of hesitation or inner conflict.</p>
+<p>Scorching rays shot from Karl’s eyes one after another.</p>
+<p>The combat strength of the Klytherans truly was remarkable.</p>
+<p>As...</p>
+</article>
+<article id="c1806" data-label="1806">
+<h2 class="chapter">Chapter 1806: Nobody 🔒</h2>
+<p>Bianchi was a B-class engineer employed by the Thomas Industries.</p>
+<p>He had arrived in the Golden Rock Worlds forty-eight years ago.</p>
+<p>Originally, his assignment in this medium-sized star domain was supposed to last only twelve years.</p>
+<p>Unfortunately, halfway through his cross-star-domain posting, the Magus Civilization’s forces sealed off the entire star domain and cut off his way home.</p>
+<p>In truth, even before the Magus Civilization arrived, the federation had kept a small number of evacuation routes open.</p>
+<p>But at the time, priority was given first to military scientists, high-tech specialists, top-level engineers, and similar personnel.</p>
+<p>Only after that did they consider ordinary engineers like Bianchi, along with mobile suit and warship maintenance...</p>
+</article>
+<article id="c1807" data-label="1807">
+<h2 class="chapter">Chapter 1807: Molten Steel T-Rex King 🔒</h2>
+<p>Flame Star-5 was considered one of the more important battlefields in the Golden Rock Worlds.</p>
+<p>It was a pyro-attribute plane, and in terms of territorial scale and carrying capacity, it was not much different from an ordinary medium-sized plane—except that it lacked a planar barrier.</p>
+<p>Around this battlefield alone, the Magus Civilization and the Gallant Federation had committed nearly thirty law-wielding combatants, along with several Rank Six forces.</p>
+<p>By the time Sein arrived with his legions, the newly advanced Rank Six mechanic, Welks, had already thrown himself into the frontlines.</p>
+<p>This was not Sein’s first time seeing Master Welks.</p>
+<p>On the battlefield, Welks did not wield a magic staff. Instead, countless floating mechanical eyes orbited around him. These specialized magic artifacts served...</p>
+</article>
+<article id="c1808" data-label="1808">
+<h2 class="chapter">Chapter 1808: Undisguised Curiosity 🔒</h2>
+<p>The “<em>domain”</em> mentioned here was not the same as the divine domains wielded by law-level beings.</p>
+<p>Rather, it referred to a deeper transformation of one’s laws.</p>
+<p>Most Rank Six Magus World knights and mages possessed this ability.</p>
+<p>Even some exceptionally powerful peak Rank Five powerhouses could begin to touch upon that threshold.</p>
+<p>Different law-wielding knights and mages followed different paths. No true high-ranking powerhouse ever reached such a height through simple imitation.</p>
+<p>Each person’s path was unique, and so the form their domain took naturally differed as well.</p>
+<p>“You’re Sein, right? Impressive. Is that your magic puppet?” Welks asked midway through the battle as he flew closer, lending his strength while speaking.</p>
+<p>Naturally,...</p>
+</article>
+<article id="c1809" data-label="1809">
+<h2 class="chapter">Chapter 1809: Shifting to the Arid Expanse Worlds 🔒</h2>
+<p>His conversations with Mikaeli were nothing more than a brief diversion amidst Sein’s busy life on the battlefield.</p>
+<p>By now, Sein had already extracted most of the useful knowledge Mikaeli had about the Cinderbone Flame.</p>
+<p>As fellow researchers of pyro elemental laws, Sein did not need to rebuild his own foundation from the ground up. All he needed was Mikaeli’s decades of experimental records and research results.</p>
+<p>Those insights were invaluable, and they would save him many unnecessary detours in his future pursuit of the truth.</p>
+<hr class="separator">
+<p>The war in the Golden Rock Worlds lasted nearly two centuries in total.</p>
+<p>During that time, Sein carried out many missions, ranging from direct assaults to specialized support and logistical operations.</p>
+<p>The most rewarding experience he gained in this medium-sized...</p>
+</article>
+<article id="c1810" data-label="1810">
+<h2 class="chapter">Chapter 1810: Body-Tempering Mages 🔒</h2>
+<p>On the experimental table, the Celestial Dragonian’s struggles gradually grew weaker.</p>
+<p>She was not dead. Sein had simply injected her with a large dose of anesthetic.</p>
+<p>This was an important living Rank Four specimen to him.</p>
+<p>Although he had a Rank Six specimen from Apocalypse World, it was just a corpse.</p>
+<p>Besides, dragon-type creatures naturally possessed stronger bloodline traits compared to most others.</p>
+<p>Having already carried out extensive research on Apocalypse Potions, Sein hoped to uncover even more secrets related to body tempering through this Celestial Dragonian.</p>
+<p>The experiment went pretty smoothly.</p>
+<p>After conducting a preliminary vivisection of the Celestial Dragonian’s body, Sein extracted a special glandular fluid.</p>
+<p>This fluid could physically enhance...</p>
+</article>
+<article id="c1811" data-label="1811">
+<h2 class="chapter">Chapter 1811: Warming Up and Removing Restraints 🔒</h2>
+<p>The native creatures of the Arid Expanse Worlds showed very little will to fight.</p>
+<p>Sein could not understand why the creatures of the Grand Apocalypse World had the confidence to send such troops to the frontlines.</p>
+<p>The enemy forces collapsed almost as soon as contact was made, allowing the Magus Civilization legions under Sein’s command to capture the two low-level planes almost effortlessly.</p>
+<p>Aside from the rather meager spoils, this interplanar war went even more smoothly than expected.</p>
+<p>After the battles ended, the Rosen Dynasty’s legions were left behind to clean up the battlefield, while Sein led the Divine Tower of Ashes Army onward toward the frontlines.</p>
+<p>Sein’s forces had always been stationed on battlefields not far from the main legions led by Feylis.</p>
+<p>The Norvexian forces led by Celloza were also advancing toward the main battlefield where Sein and his forces were located.</p>
+<p>From his grandmaster, Sein learned that the...</p>
+</article>
+<article id="c1812" data-label="1812">
+<h2 class="chapter">Chapter 1812: Pinnacle of Combat Power Below the Overlord Realm 🔒</h2>
+<p>What Celloza had mastered was not a self-sealing technique, but a passive method of sealing and tempering himself.</p>
+<p>As early as twenty thousand years ago, after realizing that his strength could no longer break through its current limits, Celloza paid an enormous price to commission a Rank Six Magus World mage skilled in alchemy to forge a set of equipment specifically designed to restrain him in his daily life.</p>
+<p>The clothes he wore and the ornaments he kept on his body were not only unimaginably heavy but also severely hindered the flow of law and elemental energies within him.</p>
+<p>It was precisely under the suppression and tempering of this equipment that Celloza, who had felt no progress for many years, was able to once again experience that fleeting sensation...</p>
+</article>
+<article id="c1813" data-label="1813">
+<h2 class="chapter">Chapter 1813: The End of the Arid Expanse Worlds War 🔒</h2>
+<p>After greeting the God of Decay, Sein turned his attention back to the battle between Celloza and Kazaskey.</p>
+<p>Even with no other combat missions for the moment, Sein had to set aside his research.</p>
+<p>Although he had no way of joining the overlord-level battlefield and could not make out the powers or techniques those overlords were using, the clash between Kazaskey and Celloza still held immense value for him as a source of reference and observation.</p>
+<p>In most cases, Kazaskey fought with nothing but his fists.</p>
+<p>However, this peak Rank Six being also possessed a world-class secret treasure of his own.</p>
+<p>It was a pair of gauntlets that radiated intense pyro elemental law power.</p>
+<p>Before this, the only paired world-class secret treasures Sein had seen belonged...</p>
+</article>
+<article id="c1814" data-label="1814">
+<h2 class="chapter">Chapter 1814: Jessica’s Advancement 🔒</h2>
+<p>As the war in the Arid Expanse World was drawing to a close, Sein received another piece of good news.</p>
+<p>At least, it was good news to him.</p>
+<p>Jessica, the demigod-level dendromancer who had often assisted him in his research experiments on the power of emotions, had successfully advanced to Rank Four!</p>
+<p>This made her the third mage from Lorianne’s Divine Tower of Verdant Spring to reach Rank Four since Grimm!</p>
+<p>For a single divine tower to produce three law-wielding mages within just a few thousand years was already remarkable!</p>
+<p>What was more, the strongest among them had already advanced to Rank Five.</p>
+<p>Lorianne had never been famous for her combat strength. Her reputation had mainly come from her apothecary skills, and even that was limited to certain circles.</p>
+<p>This time, however, she had made a name for herself...</p>
+</article>
+<article id="c1815" data-label="1815">
+<h2 class="chapter">Chapter 1815: Preserving Image at a Real Cost 🔒</h2>
+<p>Jessica was in no hurry to establish her divine tower.</p>
+<p>The war in the Arid Expanse Worlds had largely come to an end, and for the time being, Feylis had issued no new combat orders.</p>
+<p>Only after properly handing over everything under her charge did Jessica finally approach Lorianne and ask to be relieved of her duties as dean of the Divine Tower of Verdant Spring.</p>
+<p>Lorianne had always thought highly of Jessica.</p>
+<p>After all, she had been the first demigod-level mage to join the Divine Tower of Verdant Spring, and she had always been one of the most diligent among the deans.</p>
+<p>Jessica’s resignation and departure had quite an impact on Lorianne. Even so, Lorianne was not the kind of mage who would stand in the way of someone else’s future.</p>
+<p>After congratulating Jessica, she gave her a vial of <em>Verdant Spring Potion</em>, which she had personally brewed, as a parting gift.</p>
+<p>“This potion...</p>
+</article>
+<article id="c1816" data-label="1816">
+<h2 class="chapter">Chapter 1816: A Warning 🔒</h2>
+<p>After receiving the latest news from the frontlines, Feylis let out a soft sigh.</p>
+<p>“The fall of the War Emperor of Challenger World is indeed regrettable. I heard that, in its early years, that large-sized star domain once produced three overlords. Now that all three overlords have fallen, Challenger World’s decline may be inevitable.”</p>
+<p>By this point, they were no longer operating near the Arid Expanse Worlds.</p>
+<p>Centuries had passed. Feylis and her main legions were still stationed along the outer edge of the battlefield between the Magus Civilization and the Gallant Federation.</p>
+<p>Feylis had a keen sense of the shifting tides of the civilizational battlefield.</p>
+<p>After the war in the Arid Expanse Worlds ended, she did not continue pressing the offensive against the Grand Apocalypse World.</p>
+<p>Instead,...</p>
+</article>
+<article id="c1817" data-label="1817">
+<h2 class="chapter">Chapter 1817: Lorthisra’s Strength 🔒</h2>
+<p>Sein had, of course, heard of the Amenkha Empire.</p>
+<p>One of the gifts he had given Leena was a rare umbra elemental bloodline specimen known as the Dorrondo Beast Horn. It was said to have originated from the Amenkha Empire and to have been taken from some powerful monster there.</p>
+<p>Over the years, Sein had also picked up bits and pieces of information about that civilization.</p>
+<p>He knew the Amenkha Empire was a distant and potentially hostile power, one that posed a serious threat to the Magus Civilization.</p>
+<p>As for how strong the Amenkha Empire truly was, what exactly the conflict between it and the Magus Civilization involved, or where its star domain was located, those were things far beyond Sein’s current reach.</p>
+<p>Sometimes, knowing too much was not necessarily a good thing.</p>
+<p>The threat of the Amenkha...</p>
+</article>
+<article id="c1818" data-label="1818">
+<h2 class="chapter">Chapter 1818: Violet-Golden Dragon Scale 🔒</h2>
+<p>When Sein left Lorthisra, he did not return empty-handed.</p>
+<p>Then again, he had not arrived empty-handed either.</p>
+<p>Nearly two million “blood slaves” from the Lumette Star Domain were sent back with Sein by Lorthisra as gifts for the Verdant Flame Faction.</p>
+<p>Of course, that was only the portion Lorthisra had personally given him as a gift.</p>
+<p>As for the total number of slaves to be handed over to the Magus Alliance, it likely numbered in the tens of millions.</p>
+<p>As a medium-sized star domain, the Lumette Star Domain was pretty vast.</p>
+<p>The Magus Civilization was certainly lucky that the Gallant Federation had done a fairly decent job protecting this star domain in recent years.</p>
+<p>As the main force attacking the Lumette Star Domain, the Spider Queen’s legions had no interest in anything like sustainable development.</p>
+<p>Lorthisra clearly preferred to make...</p>
+</article>
+<article id="c1819" data-label="1819">
+<h2 class="chapter">Chapter 1819: Danger Approaches 🔒</h2>
+<p>If not for his connection to Feylis, there was no way Sein would have received that dragon scale from Mel.</p>
+<p>He found himself quite curious about the violet-haired Rank Four Dragon Warlock.</p>
+<p>Perhaps it was because he carried the dragon blood blessing bestowed on him by Tourmaline, but he had always felt a natural fondness for dragonkin.</p>
+<p>As for how Mel felt about him, Sein was not entirely sure.</p>
+<p>Judging by how calmly she had plucked a scale from her own shoulder and handed it to him, she probably did not dislike him, right?</p>
+<hr class="separator">
+<p>The Warrendall Star Domain was only one of the many star domains where Sein had carried out missions in recent years. He had traveled to quite a few places by now.</p>
+<p>Even so, Warrendall was still the farthest battlefield he had ever reached.</p>
+<p>It was also near that battlefield that Sein received news about Nexon’s intelligent robots.</p>
+<p>Several thousand years...</p>
+</article>
+<article id="c1820" data-label="1820">
+<h2 class="chapter">Chapter 1820: Inviting Wolves Into Home 🔒</h2>
+<p>At this moment, roughly two million federal haulers remained stationed around the Morpheus Asteroid Belt.</p>
+<p>The fleet’s commander was a five-star general—a genetically enhanced super soldier with peak Rank Five individual combat strength.</p>
+<p>The energy blocks, delivered by the massive convoy of haulers, lit up the once silent, pitch-black Morpheus Asteroid Belt like broad daylight.</p>
+<p>From the center of the asteroid belt, a vast and oppressive energy fluctuation pulsed outward. Yet it remained tightly contained beneath a layer of specialized sealing runes.</p>
+<p>Without the Magus Civilization’s knowledge, the Gallant Federation and the Amenkha Empire had already reached a covert agreement.</p>
+<p>Only through such cooperation could an enormous stockpile of energy blocks be transported into the...</p>
+</article>
+<article id="c1821" data-label="1821">
+<h2 class="chapter">Chapter 1821: Operation Retaliation 🔒</h2>
+<p>The power of the Amenkha Empire far exceeded the expectations of both the Magus Civilization and the Gallant Federation.</p>
+<p>No wonder the Magus Civilization felt it had to subdue the Gallant Federation before it could even consider facing the ever-growing might of the Amenkha Empire.</p>
+<p>As for the cooperation between the Amenkha Empire and the Gallant Federation, both sides kept it tightly under wraps, leaving the Magus Civilization in the dark.</p>
+<p>In reality, however, these two top-tier civilizations had agreed on very few specifics.</p>
+<p>The Amenkha Empire’s arrival this time was nothing more than retaliation against the Magus Civilization.</p>
+<p>The idea of using a twenty-five-million-strong legion to conquer the Magus Civilization outright was simply preposterous.</p>
+<p>Their goal was to only slow the Magus Civilization’s offensive...</p>
+</article>
+<article id="c1822" data-label="1822">
+<h2 class="chapter">Chapter 1822: Long-Range Assault 🔒</h2>
+<p>As one of the oldest spellcasters in the Magus World, Nergal had witnessed nearly the entire rise of the Magus Civilization from a medium-sized world to a top-tier power.</p>
+<p>He was the kind of old monster who only grew more dangerous with age.</p>
+<p>When he felt a faint but powerful presence lock onto him, Nergal did not panic. Instead, he let out a hoarse chuckle.</p>
+<p>“Hehehehe… someone’s got their eyes on me. I wonder who it is?”</p>
+<p>“This doesn’t feel like one of the Gallant Federation’s giant mobile suits… and it’s definitely not one of those useless overlords under their command,” he murmured.</p>
+<p>“Hmm… Darkness and death, huh? The Amenkha Empire?” He let out another chuckle. “That works just fine for me. Under normal circumstances, I would’ve taken...</p>
+</article>
+<article id="c1823" data-label="1823">
+<h2 class="chapter">Chapter 1823: Formidable Lineup 🔒</h2>
+<p>This was the heart of the Magus Civilization’s fortress base on the border of the Netherworld Star Domain, a location that had once been a key battlefield during the early stages of the Clash of Civilizations.</p>
+<p>As the main theater of war between the two top-tier civilizations gradually shifted into the Gallant Federation’s territory, this fortress base had quietly become the central hub from which the Magus Civilization now directed the conflict.</p>
+<p>Alongside Bev were Clair, a soul-level mage from the Alveroth Empire; Hudson, a knight overlord of the Byrne Empire; and the Ice Phoenix, an alliance overlord.</p>
+<p>These overlord-level beings had appeared in response to the alien, powerful law energy that now enveloped the area.</p>
+<p>Bev, Clair,...</p>
+</article>
+<article id="c1824" data-label="1824">
+<h2 class="chapter">Chapter 1824: The Light of Wisdom’s Blessing 🔒</h2>
+<p>Just as Hudson finished reporting to Bev, the Fifth Pharaoh issued a ruthless command to attack.</p>
+<p>For lower-ranking beings, an overlord-level melee was the deadliest place they could be.</p>
+<p>At the heart of the main base where Bev and her group were positioned, large numbers of mid and lower-tier Magus Civilization combat legions, along with command personnel, had gathered.</p>
+<p>Although these lesser beings could not fully perceive the true form of this immensely powerful Amenkha Empire overlord, they still fired without any hesitation.</p>
+<p>The same went for the space fortresses and the Rank Four to Rank Six beings stationed in and around the base.</p>
+<p>When the nest was destroyed, not a single egg could survive.</p>
+<p>The Magus Civilization would never kneel or beg for mercy.</p>
+<p>So what if the enemy was an overlord?</p>
+<p>Surely, a horde of law-wielding creatures...</p>
+</article>
+<article id="c1825" data-label="1825">
+<h2 class="chapter">Chapter 1825: Battlefields Across the Realm 🔒</h2>
+<p>As the command center where Bev was stationed and the battlefield where Nergal fought came under attack at the same time, other overlord-level Magus Civilization powerhouses across multiple vast star domains were also being targeted by the Amenkha Empire.</p>
+<p>However, their situations were not as dire as those faced by Nergal and Bev, who were directly confronted by Rank Eight overlords.</p>
+<p>Most of the other Magus Civilization Overlords were being attacked by opponents of the same rank, though often outnumbered, or facing enemies with superior cultivation.</p>
+<p>Deep within the Gallant Federation’s territory, a Rank Seven overlord known as the Shadow King—who usually operated within the Zeak Empire’s star domain—was...</p>
+</article>
+<article id="c1826" data-label="1826">
+<h2 class="chapter">Chapter 1826: Rogge 🔒</h2>
+<p>In the brief moment between the plump mage’s appearance and his exchange with Roland, the Amenkha Empire overlords on the surrounding battlefield were left utterly shocked and speechless.</p>
+<p>The first question that crossed the peak Rank Seven Pharaoh’s mind was: <em>Where did he come from?</em></p>
+<p>The second question that followed almost immediately was: <em>How did he get in?</em></p>
+<p>A piercing shriek rang out as sinister necromantic energy condensed into a massive finger, pressing down toward the plump mage.</p>
+<p>The plump mage’s conversation with Roland was interrupted. Facing the “Finger of Death” from a peak Rank Seven Pharaoh, he extended a single finger of his own.</p>
+<p>Equally dense necromantic energy gathered at his fingertip,...</p>
+</article>
+<article id="c1827" data-label="1827">
+<h2 class="chapter">Chapter 1827: Overlord-level Combat Unit 🔒</h2>
+<p>These formidable undead and dark creatures possessed remarkable intelligence and judgment, thanks to their exceptionally high life levels.</p>
+<p>In their own homeplanes or star domains, each of them was a renowned, top-tier powerhouse.</p>
+<p>The malevolent aura and power they radiated commanded the respect of their subjects.</p>
+<p>But now, summoned to this overlord-level battlefield by Rogge, a few of the undead creatures could not help but curse inwardly as they assessed the situation.</p>
+<p>These creatures were not Rogge’s servants.</p>
+<p>One of the core principles a summoner upheld when signing a contract with a summoned being was equality.</p>
+<p>These flexible summoning rules allowed Rogge...</p>
+</article>
+<article id="c1828" data-label="1828">
+<h2 class="chapter">Chapter 1828: The Tide Turns 🔒</h2>
+<p>Rogge’s distress was genuine—he was not faking it.</p>
+<p>Then again, maybe he was just incredibly stingy.</p>
+<p>When Roland saw the overlord-level undead chimera beast, his expression eased for a moment before he snapped, “You want high-grade materials? There are four right in front of you!”</p>
+<p>He was, of course, referring to the four Amenkha Empire overlords.</p>
+<p>After all, what could be <em>fresher </em>than the materials standing right before them?</p>
+<p>Rogge no longer winced at the thought of damage to his undead chimera beast. Instead, his small eyes gleamed with greed and desire.</p>
+<p>His gaze settled on the peak Rank Seven Pharaoh and the scorpion-like monster king.</p>
+<p>Perhaps because the Pharaoh, in the midst of breaking his seal, radiated such overwhelming power, Rogge ultimately fixed his attention on the scorpion instead.</p>
+<p>Under that greedy stare,...</p>
+</article>
+<article id="c1829" data-label="1829">
+<h2 class="chapter">Chapter 1829: Valter 🔒</h2>
+<p>Andarco was a vast star domain within the Gallant Federation.</p>
+<p>It was neither a densely populated region nor a major economic or cultural hub.</p>
+<p>Yet the Andarco Star Domain was well-known across the Gallant Federation. Long before the war, the Magus Civilization had already marked it as a primary target for attack and destruction.</p>
+<p>This was because Andarco was the federation’s largest energy-exporting star domain!</p>
+<p>It was a resource-rich region, with planets accounting for 87.96% of its total composition. The majority were high-quality worlds that produced vast amounts of energy crystals annually.</p>
+<p>Statistics showed that roughly one-sixth of the Gallant Federation’s...</p>
+</article>
+<article id="c1830" data-label="1830">
+<h2 class="chapter">Chapter 1830: Taking Pleasure in Killing 🔒</h2>
+<p>Valter and the Fanged Evil Dragon’s audacity caught the Seventh Pharaoh of the Amenkha Empire slightly off guard.</p>
+<p>Since arriving on the Magus Civilization’s battlefield, he had encountered all sorts of bizarre phenomena.</p>
+<p>First, he could not catch a glimpse of Nergal’s true form. Then he was forced to deal with several overlord-level undead chimera beasts, each radiating an aura of decay and death.</p>
+<p>And now, this black knight and his mount actually dared to challenge him—even though they were mere Rank Sevens.</p>
+<p>Undead chimera beasts were truly unique to the Magus Civilization.</p>
+<p>Though familiar with harnessing the power of death, the Amenkha Empire had never created anything like this. Their...</p>
+</article>
+<article id="c1831" data-label="1831">
+<h2 class="chapter">Chapter 1831: Reversed Encirclement 🔒</h2>
+<p>The battle between Valter and the Seventh Pharaoh had dragged on for five years.</p>
+<p>As time passed and the Pharaoh still failed to eliminate this Rank Seven pair, a growing sense of unease crept in.</p>
+<p>After all, he was the Seventh Pharaoh of the Amenkha Empire—a being even more powerful than the Eighth Pharaoh!</p>
+<p>Under normal circumstances, his strength stood at the mid stage of Rank Eight. Once he released his self-imposed seal, he could even contend with a late-stage Rank Eight opponent.</p>
+<p>With such overwhelming power, how had he not crushed a mere Rank Seven overlord within five years?!</p>
+<p>Standing atop the Fanged Evil Dragon, Valter launched himself forward once more, charging straight at the Seventh Pharaoh.</p>
+<p>In that instant, the dragon lance in...</p>
+</article>
+<article id="c1832" data-label="1832">
+<h2 class="chapter">Chapter 1832: Summoning Overlords 🔒</h2>
+<p>Both Rogge and Nergal were necromancers.</p>
+<p>But when Rogge tried to summon powerful overlords from distant star domains, all of them hesitated to get involved in the Magus Civilization’s mess.</p>
+<p>But when Nergal himself performed the summoning, none of those foreign overlords dared to openly refuse, even if they wanted to.</p>
+<p>Unusual spatial fluctuations began to appear across the overlord-level battlefield.</p>
+<p>Guided by the summoning arrays Nergal had long prepared, a total of seven overlords answered the call.</p>
+<p>None of them appeared immediately, but the spatial distortions gave away each of their distinct auras.</p>
+<p>These overlords, hailing from other star domains, wanted to know exactly who Nergal...</p>
+</article>
+<article id="c1833" data-label="1833">
+<h2 class="chapter">Chapter 1833: Chaotic Melee 🔒</h2>
+<p>Raging storm energy and roiling thunderclouds swirled around the elemental overlord’s lawful projection, radiating his overwhelming power.</p>
+<p>In truth, the overlords Nergal had summoned were each slightly weaker than him.</p>
+<p>He was not willing, nor did he see any reason, to summon those stronger than himself.</p>
+<p>Doing so would only introduce more uncertainty, with little to gain!</p>
+<p>The overlords of the Astral Realm were never easygoing entities.</p>
+<p>“A crisis is drawing near, and yet all of you still—” The elemental overlord had barely begun speaking when Nergal already knew what it was about to say.</p>
+<p>“I have no interest in your <em>crisis story</em>. I only want to know one thing… are you willing to help me?” Nergal cut...</p>
+</article>
+<article id="c1834" data-label="1834">
+<h2 class="chapter">Chapter 1834: Shifts 🔒</h2>
+<p>The melee between overlords raged fiercely along the edges of the Andarco Star Domain.</p>
+<p>The frontlines between the Gallant Federation and the Magus Civilization were far from quiet either.</p>
+<p>Once it became clear that multiple Magus Civilization overlords had been drawn into the fight, several fleets of Erebus-class titan ships and overlord-class giant mobile suits from the federation were deployed in rapid succession.</p>
+<p>At the very forefront of the conflict, a fleet of Conqueror-class titan ships—boasting combat power comparable to a Rank Eight unit—made its presence known.</p>
+<p>The federation’s major fleet maneuvers focused primarily on frontline sectors that had recently been under heavy pressure.</p>
+<p>With the Magus Civilization’s high command distracted, the federation regained the initiative in...</p>
+</article>
+<article id="c1835" data-label="1835">
+<h2 class="chapter">Chapter 1835: Luminara’s Probing Offensive 🔒</h2>
+<p>Sethlevin’s petition for war had caught the attention of the Luminarian King.</p>
+<p>Although the Luminara Civilization had never formalized a written alliance with the Magus Civilization, the two had developed a tacit understanding through their shared need to confront the Amenkha Empire, a common enemy.</p>
+<p>The Luminara Civilization needed the Magus Civilization, which had risen to prominence nearly two hundred thousand years ago, to help shoulder some of the pressure imposed by the Amenkha Empire.</p>
+<p>In truth, the Luminara Civilization faced far greater strain from the Amenkha Empire than Magus World ever did.</p>
+<p>Its overall strength had remained stagnant for nearly three hundred thousand years due to the Amenkha Empire’s relentless suppression.</p>
+<p>By contrast, the Amenkha Empire had never stopped expanding and...</p>
+</article>
+<article id="c1836" data-label="1836">
+<h2 class="chapter">Chapter 1836: Grumz 🔒</h2>
+<p>After their initial attacks produced the desired results, the overlords of the Luminara Civilization convened and quickly decided to ramp up their efforts!</p>
+<p>Over ten of them, including Aebrax, Remgiel, Etride, and Mebrius, led their respective legions into battle against the Amenkha Empire one after the other.</p>
+<p>Among them, Remgiel stood out as a Rank Eight overlord with extensive combat experience.</p>
+<p>Mebrius, on the other hand, was one of the most well-known peak Rank Seven overlords in the Luminara Civilization over the last nearly one hundred thousand years, with the impressive achievement of having slain a monster king and severely injured a Pharaoh.</p>
+<p>With so many overlords...</p>
+</article>
+<article id="c1837" data-label="1837">
+<h2 class="chapter">Chapter 1837: Withdraw 🔒</h2>
+<p>“Grumz is out there already?! Damn it!”</p>
+<p>In the vast imperial palace of the Amenkha Empire, the current emperor could not help but curse in anger upon hearing the news that the Monster Emperor had acted without authorization.</p>
+<p>Perhaps due to the increasingly obvious internal conflict among the five overlord-level monster kings within him, Grumz had been disobeying orders more and more frequently in recent years.</p>
+<p>There were indeed very few beings in the entire Amenkha Empire who dared to challenge the emperor’s authority.</p>
+<p>After all, even the high-ranking Pharaohs of the Pharaohs’ Temple maintained outward obedience to the current Amenkha Emperor in the vast majority of cases.</p>
+<p>Many of them even possessed royal bloodlines themselves, such as the First Pharaoh.</p>
+<p>“Deploy the imperial legions immediately...</p>
+</article>
+<article id="c1838" data-label="1838">
+<h2 class="chapter">Chapter 1838: The Fall of a Soul Overmage 🔒</h2>
+<p>Although Rogge and his group dealt a crushing blow to the Amenkha Empire overlords, they also paid a heavy price for it.</p>
+<p>The Amenkha Empire’s overlords were difficult opponents, especially when they came fully prepared!</p>
+<p>The Rank Six and peak Rank Six extraplanar powerhouses Rogge had summoned suffered severe casualties.</p>
+<p>Fighting overlords was simply too much for them.</p>
+<p>Fortunately, Rogge’s side was strong enough to hold the line, and their overlord-level forces were roughly on par with the enemy’s.</p>
+<p>Even so, nearly half of them had already fallen.</p>
+<p>Among the survivors, two stood out in particular: the Black Samurai Emperor and the Skeleton of Despair. Both were peak Rank Six beings, with combat power approaching that of an overlor...</p>
+</article>
+<article id="c1839" data-label="1839">
+<h2 class="chapter">Chapter 1839: Melancholy 🔒</h2>
+<p>When she felt the guiding pull of the Sacred Scriptures of Amenkha, the Fifth Pharaoh swept her gaze across the battlefield.</p>
+<p>By now, the Magus Civilization’s command center had been reduced to utter ruin.</p>
+<p>Aside from the massive crater left by the fallen overlord not far away, this surprise attack had badly injured Bev, Hudson, the Ice Phoenix, and the others.</p>
+<p>The elite legions guarding the command center had also suffered a crushing defeat.</p>
+<p>On a battlefield where multiple Rank Eight overlords were rampaging, even peak Rank Six beings were as fragile as a sheet of glass.</p>
+<p>Forget Rank Eight—if this many Rank Seven overlords were locked in a chaotic melee, anything below Rank Seven that stepped...</p>
+</article>
+<article id="c1840" data-label="1840">
+<h2 class="chapter">Chapter 1840: Speaking in Terms of Tangible Gains 🔒</h2>
+<p>The Magus Civilization and the Immortal Realm had always maintained friendly relations.</p>
+<p>In particular, a number of sages from both sides kept in regular contact throughout the year.</p>
+<p>But in the end, this was still a relationship between two civilizations.</p>
+<p>It was not something that could be swayed lightly by the personal preferences of a few powerful individuals, especially when it came to intervening in a Clash of Civilizations led by the other side.</p>
+<p>They were allies, yes—but even allies had to talk in terms of interests.</p>
+<p>On top of that, the turmoil and internal strife within the Immortal Realm in recent years had further reduced contact between the two sides.</p>
+<p>The Magus Civilization’s...</p>
+</article>
+<article id="c1841" data-label="1841">
+<h2 class="chapter">Chapter 1841: Learn to Be Content 🔒</h2>
+<p>“Hehehe… This Black Nightmare Potion will help heal your wounds,” Nergal explained.</p>
+<p>“Relax, I’ve no intention of harming you. You did well. I’d like to borrow your strength again next time,” the black mage added with a chuckle.</p>
+<p>His laughter was as grating and unsettling as ever.</p>
+<p>The Iron Armor Overlord glanced at the potion in his hand and replied, “I doubt many overlords in the surrounding star domains would dare drink a potion gifted by Master Nergal without hesitation…”</p>
+<p>He paused, then continued, “However, I trust that Master Nergal would not harm me.”</p>
+<p>With that, he removed his faceplate and downed the potion in one gulp.</p>
+<p>Though it appeared to be a bubbling...</p>
+</article>
+<article id="c1842" data-label="1842">
+<h2 class="chapter">Chapter 1842: Rewards and Costs 🔒</h2>
+<p>After Platty, the Meatball Overlord, departed, the heavy, oppressive aura surrounding Nergal quickly faded.</p>
+<p><em>Cough… cough.</em></p>
+<p>Two mouthfuls of pitch-black blood spilled from the corner of his lips.</p>
+<p>To have endured a blast from the Gallant Federation’s Infinity Light and still maintained such an intense level of combat against the Seventh Pharaoh for so long was nothing short of a miracle.</p>
+<p>If it had been any other soul overmage, they likely would not have lasted as long as Nergal had.</p>
+<p>“I’m really getting old… My body can barely handle a battle of such intensity,” Nergal muttered wearily before turning his attention to the spoils of war.</p>
+<p>The cost of this battle had been enormous....</p>
+</article>
+<article id="c1843" data-label="1843">
+<h2 class="chapter">Chapter 1843: A Perilous Situation 🔒</h2>
+<p>As for how the Death Worm had managed to survive this long…</p>
+<p>Not only did Rogge have no answer, but even the Death Worm itself was also completely baffled.</p>
+<p>So many late-stage and peak Rank Six creatures had already fallen.</p>
+<p>The fact that the Death Worm had made it to the end at all felt like a miracle!</p>
+<p>Its survival in that overlord-level melee had nothing to do with strength or defense. It was simply because it refused to die.</p>
+<p>Even when its body was chopped into countless pieces, it still clung stubbornly to life.</p>
+<p>On top of that, it was a necromantic creature.</p>
+<p>No matter how low its cellular activity dropped, it could still draw on hidden reserves of vitality through sheer will.</p>
+<p>Right...</p>
+</article>
+<article id="c1844" data-label="1844">
+<h2 class="chapter">Chapter 1844: The Grand Cosmic World Battlefield 🔒</h2>
+<p>There were two main reasons behind the Grand Cosmic World’s ongoing collapse on the battlefield.</p>
+<p>First, the Grand Cosmic World itself was simply beyond help.</p>
+<p>Despite being a major world with immense economic prosperity, it had no overlord capable of holding the line.</p>
+<p>Second, the Third Pharaoh of the Amenkha Empire was overwhelmingly powerful.</p>
+<p>The Magus Civilization had also deployed numerous overlord-level forces to this battlefield, yet none could match the Third Pharaoh, Evon Makhast.</p>
+<p>Wielding the civilizational treasure known as the Sealing Chains, Makhast appeared nearly invincible in this war zone.</p>
+<p>In truth, he had not even needed to unleash the full power of the Sealing Chains. Relying on his own strength alone, he had already crushed the...</p>
+</article>
+<article id="c1845" data-label="1845">
+<h2 class="chapter">Chapter 1845: Unpredictable 🔒</h2>
+<p>There were no absolute victors in war.</p>
+<p>Until the final outcome was decided, everyone was a loser.</p>
+<p>Looking at the recent moves of the Magus Civilization, the Gallant Federation, and the Amenkha Empire, had any side truly come out ahead?</p>
+<p>No!</p>
+<p>All three were top-tier civilizations. While there were differences in strength, every clash still came at a cost.</p>
+<p>After the Amenkha Empire’s four assassination squads withdrew, the Tenth Pharaoh set out with her army of over thirty million troops.</p>
+<p>She was not aligned with either the Fifth or the Seventh Pharaoh.</p>
+<p>Her mission was not assassination, nor was it to take part in any ambush against a specific overlord.</p>
+<p>Instead, she acted like a hammer, driving her legions into the border zone...</p>
+</article>
+<article id="c1846" data-label="1846">
+<h2 class="chapter">Chapter 1846: A Tough Struggle 🔒</h2>
+<p>Sein had been exhausted lately.</p>
+<p>For some reason, the war across the surrounding star domains had taken a sharp turn for the worse several decades ago.</p>
+<p>He had heard that on the frontlines, the Gallant Federation had launched a full-scale counteroffensive against the Magus Civilization’s main legions.</p>
+<p>The situation on the central battlefield was far from promising.</p>
+<p>As the pressure on the frontlines mounted, its negative effects gradually spread outward, reaching even the peripheral war zones where Sein and the others were.</p>
+<p>Having just returned from a mission in the Trimmis Star Domain, Sein was now heading toward the Wich Star Domain, where Feylis, Lorianne, and the others were stationed.</p>
+<p>After decades, perhaps even a century, of shifting fronts, Sein and his...</p>
+</article>
+<article id="c1847" data-label="1847">
+<h2 class="chapter">Chapter 1847: Rescue 🔒</h2>
+<p>Sending Tourmaline away had not been Sein’s decision, but one made by his grandmaster.</p>
+<p>Recent shifts in the war had made Feylis increasingly uneasy about the risks they faced on the battlefield.</p>
+<p>No one understood Tourmaline’s background better than she did.</p>
+<p>Compared to staying here with her own legions, Feylis believed Tourmaline would be far safer with her older sister, White Stella.</p>
+<p>To put it bluntly, Feylis did not want the responsibility of protecting her.</p>
+<p>In a war of this scale, she could not keep a constant eye on Tourmaline. If anything happened to the girl, she would be in trouble.</p>
+<p>Under those circumstances, sending Tourmaline back to her sister was the simplest solution. It spared Feylis the burden, and...</p>
+</article>
+<article id="c1848" data-label="1848">
+<h2 class="chapter">Chapter 1848: Sea Melody World 🔒</h2>
+<p>Feylis was not the only one sending reinforcements to the Mordora Star Domain.</p>
+<p>As news spread that the star domain was under attack, Magus Civilization forces from nearby battlefields began converging on it one after another.</p>
+<p>“Grandmaster, how much do you know about the Amenkha Empire?” Sein asked after the main forces had set out. He had come to Feylis’ space fortress specifically for this question.</p>
+<p>He had heard fragments about the Amenkha Empire through various sources, but in truth, he knew very little about this top-tier civilization.</p>
+<p>All he really knew was that it was extremely powerful and located far beyond Magus World.</p>
+<p>After all, he had paid a staggering price through the Arriba Interstellar Chamber of Commerce just to acquire a single treasure from that empire,...</p>
+</article>
+<article id="c1849" data-label="1849">
+<h2 class="chapter">Chapter 1849: Combined Attack 🔒</h2>
+<p>The Rank Five vizier of the Amenkha Empire gave Sein a feeling unlike any opponent he had faced before.</p>
+<p>Any Rank Five being Sein had encountered in the past would have run away the moment they saw a Rank Six robot and a Rank Five mage in his Ashen Demon form charging straight at them.</p>
+<p>But the vizier did the opposite. He abandoned his original opponent without hesitation and flew directly toward Sein and Fermera.</p>
+<p>Was he arrogant, or simply ignorant?</p>
+<p>Either way, his presence was undeniably imposing.</p>
+<p>As he closed the distance, the “bandages” wrapped around his body began to unravel in all directions.</p>
+<p>At the same time, his aura surged, his power rising shar...</p>
+</article>
+<article id="c1850" data-label="1850">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1850: Viper 🔒</h2>
+<p>It seemed the viziers and Pharaohs of the Amenkha Empire held absolute authority over the Monster Legion.</p>
+<p>That authority even disregarded the limits of life ranks.</p>
+<p>Beside the single-horned Rank Six monster, Sein spotted the Rank Five vizier he and Fermera had just repelled with a single strike.</p>
+<p>The guy was now standing on the monster’s neck.</p>
+<p>As the Rank Six monster let out a thunderous roar, more and more members of the Monster Legion and necromantic creatures began diving straight down from the sky.</p>
+<p>The way these monsters descended reminded Sein of the titans of the Magus Alliance.</p>
+<p>Many of the massive, wingless beasts curled their bodies into oval shapes before dropping straight down.</p>
+<p>Given their size—tens, hundreds, even thousands of meters long—the sight was like a...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1851-1900.html" rel="next">Next: Chs 1851–1900 &rarr;</a>
+    <p class="page-end-links"><a href="1751-1800.html" rel="prev">&larr; Chs 1751–1800</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1801–1850</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1801">Chapter 1801: Celloza 🔒</a></li>
+        <li><a href="#c1802">Chapter 1802: Four-Sided Encirclement 🔒</a></li>
+        <li><a href="#c1803">Chapter 1803: The So-Called Genius 🔒</a></li>
+        <li><a href="#c1804">Chapter 1804: Heavy Industrial Plane 🔒</a></li>
+        <li><a href="#c1805">Chapter 1805: Foolishly Stubborn 🔒</a></li>
+        <li><a href="#c1806">Chapter 1806: Nobody 🔒</a></li>
+        <li><a href="#c1807">Chapter 1807: Molten Steel T-Rex King 🔒</a></li>
+        <li><a href="#c1808">Chapter 1808: Undisguised Curiosity 🔒</a></li>
+        <li><a href="#c1809">Chapter 1809: Shifting to the Arid Expanse Worlds 🔒</a></li>
+        <li><a href="#c1810">Chapter 1810: Body-Tempering Mages 🔒</a></li>
+        <li><a href="#c1811">Chapter 1811: Warming Up and Removing Restraints 🔒</a></li>
+        <li><a href="#c1812">Chapter 1812: Pinnacle of Combat Power Below the Overlord Realm 🔒</a></li>
+        <li><a href="#c1813">Chapter 1813: The End of the Arid Expanse Worlds War 🔒</a></li>
+        <li><a href="#c1814">Chapter 1814: Jessica’s Advancement 🔒</a></li>
+        <li><a href="#c1815">Chapter 1815: Preserving Image at a Real Cost 🔒</a></li>
+        <li><a href="#c1816">Chapter 1816: A Warning 🔒</a></li>
+        <li><a href="#c1817">Chapter 1817: Lorthisra’s Strength 🔒</a></li>
+        <li><a href="#c1818">Chapter 1818: Violet-Golden Dragon Scale 🔒</a></li>
+        <li><a href="#c1819">Chapter 1819: Danger Approaches 🔒</a></li>
+        <li><a href="#c1820">Chapter 1820: Inviting Wolves Into Home 🔒</a></li>
+        <li><a href="#c1821">Chapter 1821: Operation Retaliation 🔒</a></li>
+        <li><a href="#c1822">Chapter 1822: Long-Range Assault 🔒</a></li>
+        <li><a href="#c1823">Chapter 1823: Formidable Lineup 🔒</a></li>
+        <li><a href="#c1824">Chapter 1824: The Light of Wisdom’s Blessing 🔒</a></li>
+        <li><a href="#c1825">Chapter 1825: Battlefields Across the Realm 🔒</a></li>
+        <li><a href="#c1826">Chapter 1826: Rogge 🔒</a></li>
+        <li><a href="#c1827">Chapter 1827: Overlord-level Combat Unit 🔒</a></li>
+        <li><a href="#c1828">Chapter 1828: The Tide Turns 🔒</a></li>
+        <li><a href="#c1829">Chapter 1829: Valter 🔒</a></li>
+        <li><a href="#c1830">Chapter 1830: Taking Pleasure in Killing 🔒</a></li>
+        <li><a href="#c1831">Chapter 1831: Reversed Encirclement 🔒</a></li>
+        <li><a href="#c1832">Chapter 1832: Summoning Overlords 🔒</a></li>
+        <li><a href="#c1833">Chapter 1833: Chaotic Melee 🔒</a></li>
+        <li><a href="#c1834">Chapter 1834: Shifts 🔒</a></li>
+        <li><a href="#c1835">Chapter 1835: Luminara’s Probing Offensive 🔒</a></li>
+        <li><a href="#c1836">Chapter 1836: Grumz 🔒</a></li>
+        <li><a href="#c1837">Chapter 1837: Withdraw 🔒</a></li>
+        <li><a href="#c1838">Chapter 1838: The Fall of a Soul Overmage 🔒</a></li>
+        <li><a href="#c1839">Chapter 1839: Melancholy 🔒</a></li>
+        <li><a href="#c1840">Chapter 1840: Speaking in Terms of Tangible Gains 🔒</a></li>
+        <li><a href="#c1841">Chapter 1841: Learn to Be Content 🔒</a></li>
+        <li><a href="#c1842">Chapter 1842: Rewards and Costs 🔒</a></li>
+        <li><a href="#c1843">Chapter 1843: A Perilous Situation 🔒</a></li>
+        <li><a href="#c1844">Chapter 1844: The Grand Cosmic World Battlefield 🔒</a></li>
+        <li><a href="#c1845">Chapter 1845: Unpredictable 🔒</a></li>
+        <li><a href="#c1846">Chapter 1846: A Tough Struggle 🔒</a></li>
+        <li><a href="#c1847">Chapter 1847: Rescue 🔒</a></li>
+        <li><a href="#c1848">Chapter 1848: Sea Melody World 🔒</a></li>
+        <li><a href="#c1849">Chapter 1849: Combined Attack 🔒</a></li>
+        <li><a href="#c1850">Chapter 1850: Viper 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1751-1800.html" rel="prev">&larr; Chs 1751–1800</a>    <a href="../../index.html">Library</a>
+<a href="1851-1900.html" rel="next">Chs 1851–1900 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

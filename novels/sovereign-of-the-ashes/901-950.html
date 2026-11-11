@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 901–950</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="851-900.html#last" data-next-page="951-1000.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c901">Chapter 901: Facing The Laws Directly 🔒</a></li>
+        <li><a href="#c902">Chapter 902: Escape 🔒</a></li>
+        <li><a href="#c903">Chapter 903: Thinner and Prettier 🔒</a></li>
+        <li><a href="#c904">Chapter 904: Similar Experiences 🔒</a></li>
+        <li><a href="#c905">Chapter 905: Hiring A Dean 🔒</a></li>
+        <li><a href="#c906">Chapter 906: A Wisp Of Origin Dark Flame 🔒</a></li>
+        <li><a href="#c907">Chapter 907: Playing The Bad Guy 🔒</a></li>
+        <li><a href="#c908">Chapter 908: Initiate Recruitment 🔒</a></li>
+        <li><a href="#c909">Chapter 909: Poaching 🔒</a></li>
+        <li><a href="#c910">Chapter 910: Bousse 🔒</a></li>
+        <li><a href="#c911">Chapter 911: A Deal 🔒</a></li>
+        <li><a href="#c912">Chapter 912: Fearlessness and Hope 🔒</a></li>
+        <li><a href="#c913">Chapter 913: Temptation 🔒</a></li>
+        <li><a href="#c914">Chapter 914: Gradually Getting Back On Track 🔒</a></li>
+        <li><a href="#c915">Chapter 915: Fiery Temper 🔒</a></li>
+        <li><a href="#c916">Chapter 916: Asking For Money 🔒</a></li>
+        <li><a href="#c917">Chapter 917: Compromise 🔒</a></li>
+        <li><a href="#c918">Chapter 918: The Power of Ashes 🔒</a></li>
+        <li><a href="#c919">Chapter 919: Advancement and Mess 🔒</a></li>
+        <li><a href="#c920">Chapter 920: Jenny 🔒</a></li>
+        <li><a href="#c921">Chapter 921: A Crushing Blow 🔒</a></li>
+        <li><a href="#c922">Chapter 922: Rank Three Mages From The Divine Tower Of Astral Sun 🔒</a></li>
+        <li><a href="#c923">Chapter 923: Terror 🔒</a></li>
+        <li><a href="#c924">Chapter 924: Confrontation 🔒</a></li>
+        <li><a href="#c925">Chapter 925: Group Confrontation 🔒</a></li>
+        <li><a href="#c926">Chapter 926: All A Misunderstanding 🔒</a></li>
+        <li><a href="#c927">Chapter 927: Bousse The New Joiner 🔒</a></li>
+        <li><a href="#c928">Chapter 928: Lowering The Initiate Recruitment Criteria 🔒</a></li>
+        <li><a href="#c929">Chapter 929: Radical Reforms 🔒</a></li>
+        <li><a href="#c930">Chapter 930: Thriving 🔒</a></li>
+        <li><a href="#c931">Chapter 931: Sharing Findings 🔒</a></li>
+        <li><a href="#c932">Chapter 932: Regional Inter-Divine Tower Academy War 🔒</a></li>
+        <li><a href="#c933">Chapter 933: War Speeches 🔒</a></li>
+        <li><a href="#c934">Chapter 934: Applause 🔒</a></li>
+        <li><a href="#c935">Chapter 935: Despair Bearer 🔒</a></li>
+        <li><a href="#c936">Chapter 936: Second Place 🔒</a></li>
+        <li><a href="#c937">Chapter 937: Life and Devotion 🔒</a></li>
+        <li><a href="#c938">Chapter 938: Experiments and Friends 🔒</a></li>
+        <li><a href="#c939">Chapter 939: Investigation Mission 🔒</a></li>
+        <li><a href="#c940">Chapter 940: Camaraderie 🔒</a></li>
+        <li><a href="#c941">Chapter 941: Underground City 🔒</a></li>
+        <li><a href="#c942">Chapter 942: God Statue 🔒</a></li>
+        <li><a href="#c943">Chapter 943: Over-Prepared and Spells 🔒</a></li>
+        <li><a href="#c944">Chapter 944: Stalemate 🔒</a></li>
+        <li><a href="#c945">Chapter 945: Spider Goddess 🔒</a></li>
+        <li><a href="#c946">Chapter 946: The Price Of Arrogance 🔒</a></li>
+        <li><a href="#c947">Chapter 947: Sexy Goddess 🔒</a></li>
+        <li><a href="#c948">Chapter 948: Spared 🔒</a></li>
+        <li><a href="#c949">Chapter 949: Cooperation 🔒</a></li>
+        <li><a href="#c950">Chapter 950: Stone Slab? 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c901" data-label="901">
+<h2 class="chapter">Chapter 901: Facing The Laws Directly 🔒</h2>
+<p>The rumbling tremors and elemental shockwaves tearing through the surface of Gumo Plane gradually faded for Sein and Reina as they plunged deeper into the molten magma.</p>
+<p>Of course, that did not mean they were completely safe.</p>
+<p>The primary target of the colossal space fortress was now the silver array buried twenty thousand meters deep within the ground.</p>
+<p>No matter how fast Sein and Reina descended, the powerful beams from the fortress still closed in on them, barely missing their mark.</p>
+<p>This relentless barrage demonstrated the destructive might of the Magus World’s war platform.</p>
+<p>During their descent, the demigod-level Ground Dragon trailing behind played a critical role. Its massive body shielded Sein...</p>
+</article>
+<article id="c902" data-label="902">
+<h2 class="chapter">Chapter 902: Escape 🔒</h2>
+<p>Trapped in flowing magma and seismic forces, Sein and Reina found themselves in a strange state—they were unaware of the passage of time and the development of the war.</p>
+<p>The conflict in the surface world did not halt in their absence.</p>
+<p>The fall of two native gods had ignited a fierce surge of resistance among Gumo Plane’s legions of native creatures.</p>
+<p>For a time, their relentless fighting spirit burned brightly. Yet, such bold defiance was fleeting.</p>
+<p>After all, only a few in the Astral Realm were truly fearless in the face of death.</p>
+<p>The majority remained ordinary, unremarkable beings.</p>
+<p>Once the core strength of the native creature army was decimated, the absence of middle and upper command caused a catastrophic...</p>
+</article>
+<article id="c903" data-label="903">
+<h2 class="chapter">Chapter 903: Thinner and Prettier 🔒</h2>
+<p>After receiving a new temporary badge from the divine tower, Sein wasted no time contacting Natalya and Yuri.</p>
+<p>Natalya was also at the main fortress base, though her circumstances were far less fortunate—she was currently resting in a ward in the recuperation center.</p>
+<p>Three months ago, when the space fortress unleashed its indiscriminate assault in Akre Plains, Natalya had been dangerously close to the center of the bombardment.</p>
+<p>As a result, she sustained severe injuries from the energy beams that rained down from the sky.</p>
+<p>On the other hand, Yuri had been inside her mecha during the attack. While the mecha was heavily damaged, the engineer escaped with only minor injuries.</p>
+<p>Like Natalya, many knights and mages were recovering in the fortress’ recuperation center.</p>
+<p>Fortunately, Gumo Plane&#39;s native...</p>
+</article>
+<article id="c904" data-label="904">
+<h2 class="chapter">Chapter 904: Similar Experiences 🔒</h2>
+<p>Natalya remained in the recuperation center, focusing on healing her body.</p>
+<p>Meanwhile, Sein and Reina, who had only recently emerged from a perilous zone, were granted a reprieve by the fortress command.</p>
+<p>The months spent enduring the harsh conditions of the underground magma river had taken a heavy toll on their bodies. However, they had since recovered significantly, and the ordeal had strengthened them, building upon their original foundations.</p>
+<p>Sein, never one to remain idle for long, was eager to return to his experiments.</p>
+<p>The experiences in the underground world, Reina’s near-perfect evolutionary form, and his own state—teetering on the brink of Rank Three—all provided invaluable opportunities for further study and research.</p>
+<p>Sein had a feeling that even without unlocking the full mysteries of Dark Flame’s embers, his current spells, techniques, and knowledge were sufficient to trigger the elemental transformation necessary to reach Rank Three.</p>
+<p>In...</p>
+</article>
+<article id="c905" data-label="905">
+<h2 class="chapter">Chapter 905: Hiring A Dean 🔒</h2>
+<p>The shared experiences during their initiate years seemed to dissolve many of the barriers between Sein and the powerful Rank Five mage.</p>
+<p>While most of the Divine Tower of Dark Flame’s registered mages were unable to accept that their tower master had opened fire on his own legions, Sein harbored no such reservations.</p>
+<p>On the contrary, he found himself aligned with the tower master’s pragmatic approach.</p>
+<p>This mutual understanding allowed their conversation to flow with surprising ease.</p>
+<p>As they spoke, Sein’s gaze subtly wandered, taking in the details of the main control room.</p>
+<p>The main control room of a space fortress was far more than a mere operational hub.</p>
+<p>For instance, the one in Lorianne’s space fortress boasted multiple lounges and fully equipped laboratories.</p>
+<p>The Tower Master of Dark Flame’s fortress was just as multifunctional too.</p>
+<p>In addition to...</p>
+</article>
+<article id="c906" data-label="906">
+<h2 class="chapter">Chapter 906: A Wisp Of Origin Dark Flame 🔒</h2>
+<p>In addition to building valuable connections, another significant benefit of serving as the dean of a divine tower academy was the opportunity to acquire knowledge and enhance one’s own abilities.</p>
+<p>Rank Three and demigod-level mages of the Magus World would not work for Rank Four and higher tower masters without compensation.</p>
+<p>To ensure these powerful Rank Three mages dedicated their full efforts to maintaining their divine towers, tower masters often had to provide equivalent benefits.</p>
+<p>The most common form of payment was through artifacts imbued with the power of laws.</p>
+<p>The power of laws was a vital resource for Rank Three creatures in the Magus World striving to ascend to Rank Four.</p>
+<p>Its unique properties make it an incredibly sought-after treasure in the Magus Civilization.</p>
+<p>Although the Magus Alliance’s...</p>
+</article>
+<article id="c907" data-label="907">
+<h2 class="chapter">Chapter 907: Playing The Bad Guy 🔒</h2>
+<p>The Gumo War, which had raged for four years and seven months after Sein’s participation, finally came to an end.</p>
+<p>Sein returned to the Divine Tower of Dark Flame with the third batch of mages from the divine tower.</p>
+<p>Natalya and Reina had no objection to Sein joining the Divine Tower of Dark Flame.</p>
+<p>After all, the tower was located within the territory of the Ylli Knight Alliance.</p>
+<p>Although it was situated on the outskirts, it was still convenient enough for the two women to travel south to visit when needed.</p>
+<p>Over the past hundred years, Sein had taken the two women to explore various regions of the Ylli Knight Alliance. Yet, they had barely scratched the surface of what the alliance had to offer.</p>
+<p>There were still countless other places within its vast expanse for the two to explore and sharpen their skills.</p>
+<p>The contract that Sein signed with the Divine Tower of Dark Flame was set for...</p>
+</article>
+<article id="c908" data-label="908">
+<h2 class="chapter">Chapter 908: Initiate Recruitment 🔒</h2>
+<p>In the six months since arriving at the Divine Tower of Dark Flame, Sein’s main task had been managing the contracts and retention of departing mages.</p>
+<p>As dean, the position afforded him a clearer understanding of the divine tower’s current state.</p>
+<p>Before the Divine Tower of Dark Flame waged war against Gumo Plane, it had 19,876 registered mages.</p>
+<p>While nearly twenty thousand mages was not an overwhelming number compared to other divine towers, it was still a considerable force.</p>
+<p>In the aftermath of the Gumo Plane War, the number of registered mages had plummeted to 3,207 in less than a year.</p>
+<p>The majority of the reduction was not due to battlefield casualties. While some mages had indeed fallen during the war, most chose to leave the divine tower after the conflict concluded.</p>
+<p>Thanks to the combined efforts of Sein...</p>
+</article>
+<article id="c909" data-label="909">
+<h2 class="chapter">Chapter 909: Poaching 🔒</h2>
+<p>In the vast, blue sky, Sein soared through the air, his pitch-black magic robe billowing around him.</p>
+<p>The Divine Tower of Dark Flame was located in a special area on the northern border of the Ylli Knight Alliance, perpetually shrouded in black clouds. The overall environment was pretty gloomy.</p>
+<p>However, the region Sein was traversing now was far from the Ylli Knight Alliance. He had ventured into the borderlands of the Alveroth Empire.</p>
+<p>Since Sein could not recruit initiates near the Divine Tower of Dark Flame, he naturally turned his attention elsewhere.</p>
+<p>The Alveroth Empire, often referred to as the “Magic Empire” in the Magus World, was renowned for its high standards in magic education and training.</p>
+<p>More importantly, Sein knew there was a massive base of magic...</p>
+</article>
+<article id="c910" data-label="910">
+<h2 class="chapter">Chapter 910: Bousse 🔒</h2>
+<p>Bousse was a Rank One mage registered with the Alveroth Empire, hailing from the city of Francina.</p>
+<p>It was one of the sub-provincial cities in the southern part of the empire, boasting a population in the millions.</p>
+<p>To put that into perspective, this single city’s population was almost equivalent to the combined populace of several remote human kingdoms in the Magus World.</p>
+<p>Yet, Francina was just one among countless major cities within the Alveroth Empire.</p>
+<p>On the empire’s long list of metropolises, Francina could not even squeeze itself into the top one hundred—or perhaps even the top one thousand.</p>
+<p>Bousse was a very ordinary mage. Although he had been promoted to Rank One and was considered a full-fledged mage in the eyes of countless lower-class civilians and magic initiates, he was still extremely “ordinary”.</p>
+<p>Having graduated from the second-best public magic academy in the southern part of the empire, Bousse, now 120 years old, worked for an imperial academy.</p>
+<p>“I really envy those mages from divine tower academies. Ordinary people...</p>
+</article>
+<article id="c911" data-label="911">
+<h2 class="chapter">Chapter 911: A Deal 🔒</h2>
+<p>Sein descended onto the airship, partially transformed into his Flame Demon form, and regarded the chubby man before him with a composed expression.[1]</p>
+<p>The situation was progressing more smoothly than he had anticipated. The mages aboard the airship could not even mount a proper resistance.</p>
+<p>Pure academy mages and seasoned war mages hardened by interplanar conflicts were truly two extremes.</p>
+<p>Of course, the airship’s swift compliance was largely due to the personality of Bousse, the Rank One mage who was in charge of everything on the airship.</p>
+<p>“Your name is Bousse?” Sein asked again curiously.</p>
+<p>Sein’s demeanor and mannerisms were far from what one might expect of a black mage. Once he realized that...</p>
+</article>
+<article id="c912" data-label="912">
+<h2 class="chapter">Chapter 912: Fearlessness and Hope 🔒</h2>
+<p>Vern was a boy from an obscure village known as Hoffle, in the southern region of the Alveroth Empire.</p>
+<p>At the age of six, he traveled to a nearby town with his father, a humble woodcutter, to have his initial focus tested.</p>
+<p>The result turned out to be 13 points, which was considered decent not only in the Alveroth Empire but across the entire Magus World.</p>
+<p>In fact, 10 points was the minimum threshold for acceptance into magic academies and divine towers.</p>
+<p>Vern’s initial focus level set him apart as a promising candidate.</p>
+<p>Despite his potential, Vern spent the next two years helping his father in his woodcutting business.</p>
+<p>It was not until he turned eight that an airship from a distant major city arrived to take him to the wonderful world of ...</p>
+</article>
+<article id="c913" data-label="913">
+<h2 class="chapter">Chapter 913: Temptation 🔒</h2>
+<p>“Do you think that child will be able to achieve his dream in the future?” Sein suddenly asked Bousse, who was standing beside him, as they watched the magic carpet depart.</p>
+<p>Bousse had overheard the boy and Sein’s exchange earlier but this question caught him off guard. He hesitated, unsure how to respond.</p>
+<p>As Bousse watched the flying carpet disappear into the distance, his thoughts drifted back over a hundred years.</p>
+<p>He had once been the same age as the boy when he got tested for his magic aptitude and sent away from his parents to a big city to pursue education as a mage.</p>
+<p>The vast distances that required airships to traverse had been an unthinkable journey for a child.</p>
+<p>The relentless, grueling academy tasks and the weight of...</p>
+</article>
+<article id="c914" data-label="914">
+<h2 class="chapter">Chapter 914: Gradually Getting Back On Track 🔒</h2>
+<p>After parting ways with Bousse, Sein led his newly recruited initiates to the southern border of the Alveroth Empire, where he was set to rendezvous with the Divine Tower of Dark Flame’s airship.</p>
+<p>The haul of nearly seven hundred qualified initiates, each with an initial focus score above 10 points, made Sein’s effort well worth it.</p>
+<p>As for the magicoins paid to Bousse, Sein did not give them much thought.</p>
+<p>In truth, the funds were not even coming out of his own pocket.</p>
+<p>The expenses would be reimbursed upon his return to the Divine Tower of Dark Flame.</p>
+<p>Before leaving, the tower master had entrusted an impressive amount of public funds to Sein and Keith, the two deans, as a system of mutual accountability.</p>
+<p>The...</p>
+</article>
+<article id="c915" data-label="915">
+<h2 class="chapter">Chapter 915: Fiery Temper 🔒</h2>
+<p>With the development of the Divine Tower of Dark Flame back on track, Sein, who had been occupied for several years, finally found a moment to rest.</p>
+<p>The pyro elemental qualitative transformation experiment he had planned to focus on had been delayed far longer than anticipated.</p>
+<p>After the conclusion of the Gumo Plane War, Sein had obtained a wisp of the Origin Dark Flame, but he had yet to find the time to study this invaluable flame in detail.</p>
+<p>During his tenure as dean, Sein had been too preoccupied to stay in touch with Natalya and Reina, who had long since ventured into the Ylli Knight Alliance’s territory.</p>
+<p>Since Reina had recently been promoted to Rank Three, she needed to test her newfound power.</p>
+<p>Meanwhile, Natalya also wanted to hone her skills through battles.</p>
+<p>With the two traveling together in the Ylli Knight Alliance, Sein was somewhat reassured about...</p>
+</article>
+<article id="c916" data-label="916">
+<h2 class="chapter">Chapter 916: Asking For Money 🔒</h2>
+<p>Good news was often followed by bad news.</p>
+<p>Before Dark Flame even sat long enough to warm his seat, both Sein and Keith extended their palms toward him together.</p>
+<p>“The public funds have been completely depleted over the past three years. To ensure the divine tower’s continued operation, we’ll need you to replenish the coffers, Tower Master,” Keith said without beating the bush.</p>
+<p>As a senior member of the divine tower, Keith was nominally responsible for managing its public funds alongside Sein.</p>
+<p>In reality, however, the older dean held the primary responsibility for the financial matters of the tower.</p>
+<p>Sein’s recruitment initiatives over the years, including rewards for the efforts of Bousse and the others from the Alveroth Empire, had often ended up on Keith’s desk as reimbursement...</p>
+</article>
+<article id="c917" data-label="917">
+<h2 class="chapter">Chapter 917: Compromise 🔒</h2>
+<p>Asking for money from a Rank Five mage with an unruly personality was no easy feat.</p>
+<p>Fortunately, the divine tower was ultimately Dark Flame’s property. No matter how much money was spent, it would inevitably go back to him.</p>
+<p>Otherwise, convincing such a mage to part with his wealth would have been nearly impossible.</p>
+<p>After a prolonged silence, Dark Flame finally broke it.</p>
+<p>“Exactly how much more is needed?” he asked.</p>
+<p>Sein and Keith exchanged glances before handing over the divine tower’s construction plan they had meticulously drafted.</p>
+<p>“Another one million magicoins should suffice for now. Ideally, however, it would be best to directly inject two million magicoins into the tower’s public funds. That way, Keith and I wouldn’t have to trouble you over funding matters...</p>
+</article>
+<article id="c918" data-label="918">
+<h2 class="chapter">Chapter 918: The Power of Ashes 🔒</h2>
+<p>Having a tower master who barely cared about the affairs of the divine tower academy was both a curse and a blessing.</p>
+<p>Tower Master of Dark Flame’s delegation of power left much of the responsibility to the deans.</p>
+<p>As a result, Sein and Keith could implement their ideas and ambitions freely, without interference.</p>
+<p>The working relationship between Sein and Keith was remarkably smooth and cooperative.</p>
+<p>Being older and more experienced, Keith was naturally the more diplomatic of the two.</p>
+<p>In the rare instances where disagreements arose, it was often Keith who would concede in the end.</p>
+<p>For example, he had tacitly approved Sein’s bold decision to lead a team and poach initiates from the Alveroth Empire.</p>
+<p>While Keith could not help but sigh at Sein’s youthful audacity and fearlessness, Sein was thankful for Keith’s easygoing personality and lack of ar...</p>
+</article>
+<article id="c919" data-label="919">
+<h2 class="chapter">Chapter 919: Advancement and Mess 🔒</h2>
+<p>Sein’s retreat lasted a total of four years—a relatively short time for a Rank Two mage advancing to Rank Three grand mage.</p>
+<p>This efficiency was largely due to Sein’s solid foundation and meticulous preparations in every aspect.</p>
+<p>When Sein finally stepped out of the meditation room, a special gray flame radiated from every part of his body, while a rich swirl of pyro elemental particles filled the surrounding space.</p>
+<p>The sight unmistakably marked his successful promotion to Rank Three!</p>
+<p>The advancement brought an immediate change to Sein’s perception of the world.</p>
+<p>His vision now appeared more dimensional, allowing him to observe and analyze his surroundings with remarkable clarity.</p>
+<p>He found that he could easily construct a comprehensive analytical map of any subject of study...</p>
+</article>
+<article id="c920" data-label="920">
+<h2 class="chapter">Chapter 920: Jenny 🔒</h2>
+<p>The main rival to the Divine Tower of Dark Flame was the Divine Tower of Astral Sun.</p>
+<p>While several other divine towers participated in the ostracism of Dark Flame, none were as aggressive as Astral Sun.</p>
+<p>Three years ago, Tower Master Dark Flame had gone into seclusion.</p>
+<p>Even Sein and Keith, as deans, struggled to get in touch with him.</p>
+<p>Whatever critical experiments the tower master was conducting remained a mystery.</p>
+<p>As Sein reviewed the most recent reports, he noticed that the last conflict between the two divine towers had occurred just two days ago.</p>
+<p>A Rank One mage from the Divine Tower of Dark Flame, named Pinno, had been injured by a Rank Two mage from the Divine Tower of Astral Sun while collecting magic ingredients in a nearby magic beast forest.</p>
+<p>As Sein contemplated when to...</p>
+</article>
+<article id="c921" data-label="921">
+<h2 class="chapter">Chapter 921: A Crushing Blow 🔒</h2>
+<p>Sein recognized not only Jenny but also Harris and Jackson, who were standing on the airship’s deck.</p>
+<p>During his first two years as the academy’s dean, Sein’s primary responsibility had been reaching out to these Divine Tower mages and having heart-to-heart conversations with them.</p>
+<p>After understanding their needs and challenges, he did his best to address their requests, leveraging the authority of his position as dean.</p>
+<p>In doing so, he also secured their loyalty and successfully extended their contracts with the Divine Tower of Dark Flame for up to a hundred years.</p>
+<p>Sein had become familiar with nearly all the mages serving the Divine Tower of Dark Flame—except for those who had joined or advanced to full-fledged mages during his four years of seclusion.</p>
+<p>For those...</p>
+</article>
+<article id="c922" data-label="922">
+<h2 class="chapter">Chapter 922: Rank Three Mages From The Divine Tower Of Astral Sun 🔒</h2>
+<p>Sein watched as Jenny and the others maneuvered the airship eastward, heading toward the Divine Tower of Dark Flame.</p>
+<p>Only when the airship faded into a distant black dot on the horizon did Sein depart, leaving behind the seven badly injured mages from the Divine Tower of Astral Sun lying on the ground.</p>
+<p>His flight took him to the southern part of the Petrified Forest.</p>
+<p>With his formidable focus level and keen judgment, Sein deduced that the group approaching from the west of the forest posed a greater threat than those advancing from the south.</p>
+<p>Meals should be savored, not rushed.</p>
+<p>The mages sent by the Divine Tower of Astral Sun were akin to a tough loaf of bread—one Sein intended to break into smaller pieces and savor slowly.</p>
+<hr class="separator">
+<p>Adrian, a Rank Three grand mage from the Divine Tower of Astral Sun, was engaged in a discussion about...</p>
+</article>
+<article id="c923" data-label="923">
+<h2 class="chapter">Chapter 923: Terror 🔒</h2>
+<p>This time, Sein had truly met his match.</p>
+<p>Those sent by the Divine Tower of Astral Sun to disrupt their operation were far from ordinary.</p>
+<p>Both Adrian and Janice possessed unique and formidable strengths.</p>
+<p>When Adrian and the others arrived at the scene, they were greeted by the sight of a massive crater in the hilly area on the southern side of the forest.</p>
+<p>Strange gray flames clung to every corner of the battlefield.</p>
+<p>At the center of one of the largest craters lay a massive greenish-blue python, over three hundred meters long, weakly coiled in on itself.</p>
+<p>The python’s expression showed an almost human-like terror.</p>
+<p>Anyone familiar with this creature would recognize it as the Baneful Green Python, one of Master Janice’s Rank Three summons.</p>
+<p>This extraordinary creature was not...</p>
+</article>
+<article id="c924" data-label="924">
+<h2 class="chapter">Chapter 924: Confrontation 🔒</h2>
+<p>If Sein’s path to Rank Three revolved around the fusion of multiple rare and unique pyro elemental energies, Adrian’s path was rooted in the meticulous and specialized study of pyro elemental fusion.</p>
+<p>At this stage, it was difficult to determine which was superior—the mystery of truth Sein unraveled or Adrian’s research outcome.</p>
+<p>Each had its own distinct characteristics, and both were formidable in terms of raw lethality!</p>
+<p>The twin nuclear bombs unleashed by Adrian caused two small mushroom clouds to rise from the hilly area in the southern part of the Petrified Forest.</p>
+<p>Despite his immense power, Adrian was still a traditional mage.</p>
+<p>Close combat was not his forte, unlike Sein, whose unconventional fighting style often turned the tide in...</p>
+</article>
+<article id="c925" data-label="925">
+<h2 class="chapter">Chapter 925: Group Confrontation 🔒</h2>
+<p>The battlefield in the southern part of the Petrified Forest was even more intense and horrifying than one could imagine.</p>
+<p>It was no wonder that the Magus World had prohibited Rank Four or higher powerhouses from fighting each other in their homeplane.</p>
+<p>When a being’s life level reached a certain extent, the destructive power they could unleash upon the surrounding environment and the weaker creatures within it was simply unimaginable.</p>
+<p>Fights involving not just Rank Four creatures, but also Rank Three and demigod-level entities within the Magus World, were exceedingly rare.</p>
+<p>Only Rank One and Rank Two mages, who ventured into the depths of the magic beast forests to gather materials for their experiments, occasionally clashed with native magic beasts.</p>
+<p>At Rank Three and above, however, nearly all common resources could be purchased using magicoins.</p>
+<p>Even...</p>
+</article>
+<article id="c926" data-label="926">
+<h2 class="chapter">Chapter 926: All A Misunderstanding 🔒</h2>
+<p>Sein spared a shred of dignity for the Divine Tower of Astral Sun mages.</p>
+<p>If he had smashed the Golden Steelback Pangolin’s head with his Alchemy Hammer, it would have been in a far worse state than just having a few lumps on its head.</p>
+<p>The short melee had drained Sein’s mana reserves. He calmly pulled a recovery potion out of his magic robe and tilted his head back to drink it.</p>
+<p>Although he said nothing, his action made it clear that he was ready to continue fighting if needed!</p>
+<p>Sein’s gaze, unusually cold and unyielding for a typical Rank Three Grand Mage, caused Janice, who had been glaring at him moments earlier, to back off slightly.</p>
+<p>Adrian, however, showed no such timidness. His expression remained...</p>
+</article>
+<article id="c927" data-label="927">
+<h2 class="chapter">Chapter 927: Bousse The New Joiner 🔒</h2>
+<p>Upon his return to the Divine Tower of Dark Flame, Sein quickly became a celebrated figure—perhaps even a hero—within the entire tower.</p>
+<p>Rescuing Harris, Jenny and other mages, defeating dozens of Rank One and Rank Two Divine Tower of Astral Sun mages, and holding his ground against Rank Three grand mages…</p>
+<p>Though these feats were not intentionally publicized, word of them spread rapidly throughout the divine tower.</p>
+<p>Even the most uninformed initiates began to look up to their dean with admiration and awe.</p>
+<p>While Sein’s decisive actions did not yield any immediate, tangible benefits for the Divine Tower of Dark Flame, the surge in morale was undeniable.</p>
+<p>Sometimes, a boost in spirit could be far more invigorating than any material rewards.</p>
+<hr class="separator">
+<p>“I didn’t expect you to reach Rank Three so quickly. Considering that you have yet to stabilize your newfound power, this outing didn’t...</p>
+</article>
+<article id="c928" data-label="928">
+<h2 class="chapter">Chapter 928: Lowering The Initiate Recruitment Criteria 🔒</h2>
+<p>After finalizing Bousse’s induction into the Divine Tower of Dark Flame, Sein introduced him to Keith and the other vice deans of the divine tower academy.</p>
+<p>To maintain discretion, the Divine Tower of Dark Flame mages steered clear of direct involvement in the recruitment of initiates from the Alveroth Empire.</p>
+<p>Only when the initiates reached the border of the Ylli Knight Alliance would representatives from the Divine Tower of Dark Flame step in to receive them.</p>
+<p>With Bousse now officially part of the Divine Tower, Sein no longer had any reason to travel to the Alveroth Empire.</p>
+<p>What Sein valued most about Bousse was his extensive network of contacts within the empire and the “downline” he had built over the past decade.</p>
+<p>As long as there were enough magicoins to serve as motivation, Sein believed that those...</p>
+</article>
+<article id="c929" data-label="929">
+<h2 class="chapter">Chapter 929: Radical Reforms 🔒</h2>
+<p>There were indeed pleasant surprises, but some were also quite shocking.</p>
+<p>After securing Keith’s full support, Sein delivered a speech during the Divine Tower of Dark Flame Academy’s second orientation of the year.</p>
+<p>During the speech, he introduced a set of new academy rules he had been formulating for some time.</p>
+<p>Sein had not discussed these reforms in detail with Keith or the other vice deans beforehand.</p>
+<p>Many of the proposed changes were too unexpected—radical enough to cause an uproar.</p>
+<p>Keith and the other vice deans were traditional mages, molded by the structured systems of the divine towers in the Magus World.</p>
+<p>In certain areas, they simply could not keep up with Sein’s unconventional train of thought.</p>
+<p>For instance, one of Sein’s most controversial reforms was the introduction of an “Initiate Elimination System”, or simply, the “Elimination System.”</p>
+<p>Back...</p>
+</article>
+<article id="c930" data-label="930">
+<h2 class="chapter">Chapter 930: Thriving 🔒</h2>
+<p>After the new rules for the divine tower academy were implemented, the entire Divine Tower of Dark Flame seemed to radiate renewed vigor—or perhaps, a heightened sense of urgency.</p>
+<p>Every day, initiates could be seen hurrying to every corner of the academy.</p>
+<p>Dance saloons grew deserted, and masquerade balls became increasingly rare. Instead, the academy’s public library was packed almost every evening.</p>
+<p>It was not just the initiates who had been enrolled for over ten years who felt the pressure of these changes. Even newly admitted initiates grew tense, influenced by the academy’s charged atmosphere.</p>
+<p>After the lowering of the initiate enrollment criteria was approved by Dean Keith, the first cohort of magic initiates with an initial focus score of 8 points or higher...</p>
+</article>
+<article id="c931" data-label="931">
+<h2 class="chapter">Chapter 931: Sharing Findings 🔒</h2>
+<p>With Reina and Natalya’s return, Sein’s body-tempering experiments were officially back on schedule.</p>
+<p>Yet, that was not the only good news.</p>
+<p>The news of Sein’s advancement to Rank Three had reached the Divine Tower of Verdant Spring, and filled his mentor, Lorianne, with pride.</p>
+<p>She now walked with her head held high and even traveled to the Divine Tower of Verdant Flame to visit her mentor, as well as her seniors in the Divine Tower of Whispering Flame and the Divine Tower of Floating Flame.</p>
+<p>Sein would soon receive the knowledge of advanced pyro elemental magic as a gift from the Verdant Flame Faction.</p>
+<p>However, with the sheer amount of magic knowledge Sein had to study and explore, he was not sure if he would have the energy to delve into the mystery of pyro elemental magic bestowed upon him by his...</p>
+</article>
+<article id="c932" data-label="932">
+<h2 class="chapter">Chapter 932: Regional Inter-Divine Tower Academy War 🔒</h2>
+<p>In Sein’s thirty-first year in the Divine Tower of Dark Flame, he organized an academy assembly.</p>
+<p>One of the main reasons for this assembly was the Regional Inter-Divine Tower Academy War, set to begin in just two years.</p>
+<p>The academy war, held every fifty years in each region of the Magus World, was a major event for all participating divine towers.</p>
+<p>This event not only provided an important opportunity for the Magus Civilization to replenish its reserve forces, but also served as a performance evaluation for the full-fledged mages and deans who had dedicated themselves to training the next generation for decades.</p>
+<p>After each Regional Inter-Divine Tower Academy War, the major divine towers received substantial rewards from the Magus Alliance based on their performance.</p>
+<p>These rewards, allocated as development funds, were part of the Magus Civilization’s efforts...</p>
+</article>
+<article id="c933" data-label="933">
+<h2 class="chapter">Chapter 933: War Speeches 🔒</h2>
+<p>A massive magic barrier, spanning an area comparable to a small human kingdom, stood before the six tower masters and the divine tower mages.</p>
+<p>This vast expanse served as the battleground for the Regional Inter-Divine Tower Academy War.</p>
+<p>As the Divine Tower of Dark Flame’s dean, Sein had played a role in constructing the secret realm where the war would take place.</p>
+<p>The barrier of this secret realm was designed to endure the full force of Rank Two mages.</p>
+<p>This level of protection was more than sufficient to grant magic initiates the freedom to unleash their full potential in this space.</p>
+<p>When Sein was an initiate, the most powerful spell he had mastered was only on par with the strength of a Rank One mage.</p>
+<p>This special barrier, capable of withstanding a Rank Two mage’s all-out attack, pretty much already accounted for the upper limits of what these young spellcasters...</p>
+</article>
+<article id="c934" data-label="934">
+<h2 class="chapter">Chapter 934: Applause 🔒</h2>
+<p>The tower master truly lived up to his status.</p>
+<p>Sein’s speech had been aggressive enough, but he had not anticipated the tower master would take things even further.</p>
+<p>Still, it was perfectly in line with Dark Flame’s character.</p>
+<p>Upon hearing the tower master’s brazen words, Dean Keith chuckled wryly.</p>
+<p><em>“Has Tower Master always motivated the initiates like this during Regional Inter-Divine Tower Academy Wars?” </em>Sein could not help but ask Keith via mental focus.</p>
+<p><em>“Pretty much. Sometimes he doesn’t even bother to show up for these wars, but that incentive has always been part of the tradition,” </em>Keith replied with a nod.</p>
+<p><em>“I see now why the Divine Tower of Dark Flame always performs so well,”</em> Sein remarked.</p>
+<p>Fortunately, the Divine Tower of Dark Flame’s pre-war mobilization speech was confined to its own territory, far from the other academies participating in...</p>
+</article>
+<article id="c935" data-label="935">
+<h2 class="chapter">Chapter 935: Despair Bearer 🔒</h2>
+<p>Sein was not merely impressed by the hundred-strong initiate team.</p>
+<p>Nearly all the initiates from the Divine Tower of Dark Flame Academy who entered the trial space had delivered remarkable performances.</p>
+<p>Their strategy was anything but passive—they consistently sought out battles, taking the initiative at every opportunity.</p>
+<p>While the Divine Tower of Astral Sun initiates in the neighboring zone bore the brunt of this aggression, they were not the only unlucky ones.</p>
+<p>The Divine Tower of Ripple Wheel, whose territory also bordered the Divine Tower of Dark Flame, was similarly overwhelmed.</p>
+<p>The Divine Tower of Dark Flame initiates were particularly ruthless in their approach.</p>
+<p>Those bold enough to provoke battles in neighboring zones turned out to be the same ruthless...</p>
+</article>
+<article id="c936" data-label="936">
+<h2 class="chapter">Chapter 936: Second Place 🔒</h2>
+<p>As predicted by Sein and the other deans, this academy war turned out to be the shortest in recent centuries.</p>
+<p>The disruption caused by the Divine Tower of Dark Flame Academy’s unexpected strategies, coupled with the emergence of a Despair Bearer, accelerated the war to its most intense and decisive stage.</p>
+<p>When total casualties approached a predetermined threshold, the deans of the major divine tower academies would confer and agree to end the war early.</p>
+<p>After all, the Magus Civilization’s purpose was to cultivate the next generation of exceptional initiates—not to push them to annihilation.</p>
+<p>However, with multiple tower masters present in this iteration of the war, the final decision fell to them.</p>
+<p>“How about it? Shall we end it here? I think these little ones have endured enough,”...</p>
+</article>
+<article id="c937" data-label="937">
+<h2 class="chapter">Chapter 937: Life and Devotion 🔒</h2>
+<p>In the second year after the conclusion of the academy war, Sein personally met Finn—the initiate who had stood out most during the trials.[1]</p>
+<p>Finn had not caught Sein’s attention for his sheer strength.</p>
+<p>In the final, grueling six months of the war, Finn had rallied the remaining Divine Tower of Dark Flame initiates and successfully defended their resource points against relentless attacks from other divine tower academies.</p>
+<p>Without Finn’s efforts and his role as the initiates’ pillar of support, the Divine Tower of Dark Flame would not have been able to secure second place in the overall standings of this regional academy war.</p>
+<p>They would likely have been overtaken by the Divine Tower of Ripple...</p>
+</article>
+<article id="c938" data-label="938">
+<h2 class="chapter">Chapter 938: Experiments and Friends 🔒</h2>
+<p>With the alchemy materials acquired from the Divine Tower of Dark Flame and the Magus Alliance, Sein spent half a year crafting a new long, gray magic robe for himself.</p>
+<p>Perhaps it was his age, but Sein seemed to be gravitating toward a more “old-fashioned” style these days.</p>
+<p>The long gray magic robe gave him a mature and refined appearance, perfectly fitting his role as a dean.</p>
+<p>The robe was not the only thing he worked on during this period.</p>
+<p>Sein also took the opportunity to craft several magic artifacts, all high-grade equipment suited to his current needs.</p>
+<p>The crisis he faced during the Gumo Plane War had taught him the value of preparedness. Having a few extra trump cards up his sleeve was never a bad idea.</p>
+<p>Although Lorianne had given him a pack of Viridescent Seeds before...</p>
+</article>
+<article id="c939" data-label="939">
+<h2 class="chapter">Chapter 939: Investigation Mission 🔒</h2>
+<p>In Sein’s 83rd year at the Divine Tower of Dark Flame, he presided over his second Regional Inter-Divine Tower Academy War.</p>
+<p>This time, the Divine Tower of Dark Flame fielded over twenty-three thousand participants—a significant increase from the previous iteration.</p>
+<p>Unlike the last war, no tower masters were present to observe this one.</p>
+<p>Instead, the responsibility for overseeing the initiates fell to the deans of the divine tower academies and several Rank Three grand mages.</p>
+<p>For Sein, while the quality of this cohort of initiates surpassed that of the previous war, his enthusiasm for the event had waned compared to his first experience.</p>
+<p>His perspective had shifted over the years.</p>
+<p>Though he remained confident that the initiates from his academy would achieve satisfactory...</p>
+</article>
+<article id="c940" data-label="940">
+<h2 class="chapter">Chapter 940: Camaraderie 🔒</h2>
+<p>The divine towers and knightly orders each had their designated areas to investigate.</p>
+<p>Due to its proximity to five neighboring divine towers, the Divine Tower of Dark Flame frequently crossed paths with other teams during investigations.</p>
+<p>For this mission, the Divine Tower of Astral Sun deployed Adrian and Janice—Sein’s “old friends”.</p>
+<p>In addition to Adrian and Janice, many Rank Three grand mages from other divine towers were familiar faces to Sein.</p>
+<p>Over the years, Sein’s frequent visits to neighboring divine towers to gather magic ingredients, along with the reciprocal visits from their Rank Three grand mages to the Divine Tower of Dark Flame, had built a level of mutual familiarity.</p>
+<p>In the past decade, much of the hostility and ostracism...</p>
+</article>
+<article id="c941" data-label="941">
+<h2 class="chapter">Chapter 941: Underground City 🔒</h2>
+<p>There were likely no demihuman kings residing near or in the area assigned to the Divine Tower of Dark Flame.</p>
+<p>The emergence of such a king would have inevitably given rise to a demihuman kingdom in the region.</p>
+<p>It would have also prompted his subjects to formally report their existence to the divine towers and knightly orders investigating the area.</p>
+<p>Nevertheless, the Ylli Knight Alliance’s vast territory made it almost certain that Rank Four or higher demihumans existed within the underground space under its jurisdiction.</p>
+<p>Much like the sea races, demihuman kingdoms occasionally agreed to participate in interplanar wars when invited by nearby divine towers and knightly orders.</p>
+<p>That said, such collaborations were extremely rare.</p>
+<p>As humans—especially those raised on the...</p>
+</article>
+<article id="c942" data-label="942">
+<h2 class="chapter">Chapter 942: God Statue 🔒</h2>
+<p>Baras Underground City was a considerable distance from where Sein first descended into the underground region.</p>
+<p>Although the straight-line distance seemed short, the dark underground labyrinth made travel significantly more challenging than on the surface.</p>
+<p>Complex stalactite caves, narrow rocky passages, and other natural obstructions greatly slowed Sein’s progress.</p>
+<p>It took him an entire month to finally reach Baras City.</p>
+<p>During his journey, Sein filled his space rings with specimens of unique flora and fauna that thrived in the underground world.</p>
+<p>Rather than the poor terrain, it was Sein’s relentless instinct to collect and gather specimens that greatly affected the speed of his journey.</p>
+<p>Unsurprisingly, no abnormal spatial fluctuations were detected along the way.</p>
+<p>When Sein finally arrived at Baras City, he could not help but compare it to Mystralora City from...</p>
+</article>
+<article id="c943" data-label="943">
+<h2 class="chapter">Chapter 943: Over-Prepared and Spells 🔒</h2>
+<p>The group of Black-bellied Spiders had seemingly plotted against Sein from the very beginning.</p>
+<p>Although they had not yet reached their designated ambush point, they sprang into action the moment Sein voiced his doubt.</p>
+<p>Sharp, cold threads wove into a deadly net, slicing through the air toward him.</p>
+<p>With the sheer cutting power of these webs, even a body of steel would have been shredded into pieces.</p>
+<p>Unfortunately for them, Sein was no steel man—he was a Rank Three grand mage, far more formidable and resilient than any metal!</p>
+<p>Sein could tell these spiders and demihumans were definitely native to the Magus World.</p>
+<p>In a world where human mages and knights reigned supreme, it was inconceivable that they were ignorant of the consequences of attacking a mage.</p>
+<p>For these dark creatures to dare strike at a Rank Three mage,...</p>
+</article>
+<article id="c944" data-label="944">
+<h2 class="chapter">Chapter 944: Stalemate 🔒</h2>
+<p>As the Black-bellied Spider leader bore the brunt of 80% of Sein’s assault, the shock and despair gripping its heart were beyond anything an ordinary creature could fathom.</p>
+<p>Its powerful constitution and the exoskeleton fortified by its Goddess’ blessing were woefully insufficient to withstand Sein’s unrelenting barrage of spells.</p>
+<p>The mages of the Magus World were renowned and feared for the sheer destructive power of the elemental spells they wielded.</p>
+<p>At first, the Black-bellied Spider leader had assumed that its swift, close-combat tactics would allow it and its forces to seize control of the battle’s flow.</p>
+<p>Yet, in reality, it was Sein who dictated the tempo of the fight.</p>
+<p>As overwhelming as Sein’s magic was, there were inevitable pauses between spells.</p>
+<p>Even with his arsenal of magic artifacts, cooldowns and timing gaps offered fleeting opportunities...</p>
+</article>
+<article id="c945" data-label="945">
+<h2 class="chapter">Chapter 945: Spider Goddess 🔒</h2>
+<p>The Baras Underground City welcomed light for the first time in what felt like an eternity.</p>
+<p>To the creatures that had long adapted to the darkness and shadows, the blinding light and searing heat emanating from Sein were impossible to ignore.</p>
+<p>Almost every inhabitant of Baras City instinctively turned their gaze toward the deepest part of the city.</p>
+<p>The dazzling “sun” was now moving toward their goddess’ temple.</p>
+<hr class="separator">
+<p>As Sein pursued the Black-bellied Spider leader, he drew closer to the heart of the city.</p>
+<p>The massive stone statue, previously veiled in shadow and mist, gradually emerged into view.</p>
+<p>It was a striking depiction of a half-human, half-spider being.</p>
+<p>The upper half was that of a stunningly beautiful woman, while the lower half was a grotesque, chilling spider abdomen.</p>
+<p>The woman’s face and upper body radiated an innocent, youthful allure, yet her overall...</p>
+</article>
+<article id="c946" data-label="946">
+<h2 class="chapter">Chapter 946: The Price Of Arrogance 🔒</h2>
+<p>Faced with Sein’s abrupt retreat—a move that lacked any semblance of honor—the Black-bellied Spider leader grew increasingly agitated in the temple.</p>
+<p>It had already established contact with the Spider Goddess and was currently receiving a wisp of divine power to amplify its strength.</p>
+<p>The Spider Goddess was generous, never withholding power from her followers. It was this generosity that enabled her to cultivate a loyal following within the Magus World.</p>
+<p>However, influenced by the mages’ relentless pursuit of truth, many inhabitants of the Magus World—knights, magic beasts, demihumans, and sea races alike—dismissed the notion of gods.</p>
+<p>To them, the so-called “gods” were merely lifeforms that had ascended to a higher level of existence.</p>
+<p>The Black-bellied Spider...</p>
+</article>
+<article id="c947" data-label="947">
+<h2 class="chapter">Chapter 947: Sexy Goddess 🔒</h2>
+<p>Sein hung suspended in the air, tightly bound by the Black-bellied Spider leader’s silk, and dragged back to the goddess’ temple in Baras City.</p>
+<p>He remained frozen in his absurd flying pose, unable to move even a single muscle.</p>
+<p>The hall he was brought to resembled a sacrificial altar, likely used by the goddess’ followers to offer tributes.</p>
+<p>From the corner of his eye, he caught sight of several withered husks of magic beasts, their vitality drained to the last drop.</p>
+<p>Could this be his fate as well?</p>
+<p>The overwhelming force restraining Sein had rendered him utterly powerless, akin to a carp on a chopping board.</p>
+<p>This was the might of Rank Four and above beings—a power so absolute that Sein could not muster even an ounce of resistance.</p>
+<p>He was now certain that the Spider Goddess’s main body must be present in the Magus World.</p>
+<p>It was unrealistic for her to be able to suppress a powerful Rank Three grand mage like him from another plane in such a manner.</p>
+<p>Sein had...</p>
+</article>
+<article id="c948" data-label="948">
+<h2 class="chapter">Chapter 948: Spared 🔒</h2>
+<p>The Spider Goddess was no ordinary being to be able to uncover so much about Sein with just a glance.</p>
+<p>The “Baxia Family” she mentioned—was she referring to Tourmaline’s family?</p>
+<p>Could Baxia be Tourmaline’s father?[1]</p>
+<p>Though Sein’s body was weak and his senses dulled, his mind remained sharp, piecing the puzzle together through logical deduction.</p>
+<p>The alluring goddess rested her delicate hand on Sein’s head. He could feel the warm trickle of blood from his wound, the crimson liquid blurring his vision.</p>
+<p>The fact that he was still breathing meant that she had not crushed his skull yet.</p>
+<p>For someone of her power, killing him would have required just a flick of her finger.</p>
+<p>Yet the two protections on Sein made it impossible for her to kill him without facing any consequences.</p>
+<p>If this Spider Goddess had been an evil foreign...</p>
+</article>
+<article id="c949" data-label="949">
+<h2 class="chapter">Chapter 949: Cooperation 🔒</h2>
+<p>When it came to knowledge of the Underworld, the divine towers and knightly orders on the surface were no match for the native creatures who had lived there for generations.</p>
+<p>The two Rank Three creatures respectfully standing near the edge of the hall had overheard Sein’s earlier explanation.</p>
+<p>Upon hearing the goddess’ question, the Black-bellied Spider leader and the old demihuman exchanged glances before shaking their heads in unison.</p>
+<p>“Your Grace, my clan has not detected any anomalies in the vicinity,” the Black-bellied Spider leader replied.</p>
+<p>“Nor have any of the demihuman tribes near Baras City. We have not received such reports,” the elderly demihuman added.</p>
+<p>Given the status of the Black-bellied Spider leader and...</p>
+</article>
+<article id="c950" data-label="950">
+<span id="last"></span>
+<h2 class="chapter">Chapter 950: Stone Slab? 🔒</h2>
+<p>After being forced into serving the Spider Queen, Sein had no choice but to accept his new role as a private investigator.</p>
+<p>The silver spider ring clinging to his finger was a constant reminder that every move he made was being monitored.</p>
+<p>He wondered if Grandmaster Feylis had the power to remove the tiny silver spider.</p>
+<p>Then again, even if she could, Sein had a feeling that the spider would finish him off long before it sensed any threat from Feylis.</p>
+<p>Upon receiving the Spider Queen’s divine decree, Baras City mobilized all its underground creatures.</p>
+<p>Though most of these creatures were weak, their familiarity with the underground terrain and their keen senses far outmatched those of full-fledged mages and ranked knights.</p>
+<p>The only greatest obstacle, however,...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="951-1000.html" rel="next">Next: Chs 951–1000 &rarr;</a>
+    <p class="page-end-links"><a href="851-900.html" rel="prev">&larr; Chs 851–900</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 901–950</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c901">Chapter 901: Facing The Laws Directly 🔒</a></li>
+        <li><a href="#c902">Chapter 902: Escape 🔒</a></li>
+        <li><a href="#c903">Chapter 903: Thinner and Prettier 🔒</a></li>
+        <li><a href="#c904">Chapter 904: Similar Experiences 🔒</a></li>
+        <li><a href="#c905">Chapter 905: Hiring A Dean 🔒</a></li>
+        <li><a href="#c906">Chapter 906: A Wisp Of Origin Dark Flame 🔒</a></li>
+        <li><a href="#c907">Chapter 907: Playing The Bad Guy 🔒</a></li>
+        <li><a href="#c908">Chapter 908: Initiate Recruitment 🔒</a></li>
+        <li><a href="#c909">Chapter 909: Poaching 🔒</a></li>
+        <li><a href="#c910">Chapter 910: Bousse 🔒</a></li>
+        <li><a href="#c911">Chapter 911: A Deal 🔒</a></li>
+        <li><a href="#c912">Chapter 912: Fearlessness and Hope 🔒</a></li>
+        <li><a href="#c913">Chapter 913: Temptation 🔒</a></li>
+        <li><a href="#c914">Chapter 914: Gradually Getting Back On Track 🔒</a></li>
+        <li><a href="#c915">Chapter 915: Fiery Temper 🔒</a></li>
+        <li><a href="#c916">Chapter 916: Asking For Money 🔒</a></li>
+        <li><a href="#c917">Chapter 917: Compromise 🔒</a></li>
+        <li><a href="#c918">Chapter 918: The Power of Ashes 🔒</a></li>
+        <li><a href="#c919">Chapter 919: Advancement and Mess 🔒</a></li>
+        <li><a href="#c920">Chapter 920: Jenny 🔒</a></li>
+        <li><a href="#c921">Chapter 921: A Crushing Blow 🔒</a></li>
+        <li><a href="#c922">Chapter 922: Rank Three Mages From The Divine Tower Of Astral Sun 🔒</a></li>
+        <li><a href="#c923">Chapter 923: Terror 🔒</a></li>
+        <li><a href="#c924">Chapter 924: Confrontation 🔒</a></li>
+        <li><a href="#c925">Chapter 925: Group Confrontation 🔒</a></li>
+        <li><a href="#c926">Chapter 926: All A Misunderstanding 🔒</a></li>
+        <li><a href="#c927">Chapter 927: Bousse The New Joiner 🔒</a></li>
+        <li><a href="#c928">Chapter 928: Lowering The Initiate Recruitment Criteria 🔒</a></li>
+        <li><a href="#c929">Chapter 929: Radical Reforms 🔒</a></li>
+        <li><a href="#c930">Chapter 930: Thriving 🔒</a></li>
+        <li><a href="#c931">Chapter 931: Sharing Findings 🔒</a></li>
+        <li><a href="#c932">Chapter 932: Regional Inter-Divine Tower Academy War 🔒</a></li>
+        <li><a href="#c933">Chapter 933: War Speeches 🔒</a></li>
+        <li><a href="#c934">Chapter 934: Applause 🔒</a></li>
+        <li><a href="#c935">Chapter 935: Despair Bearer 🔒</a></li>
+        <li><a href="#c936">Chapter 936: Second Place 🔒</a></li>
+        <li><a href="#c937">Chapter 937: Life and Devotion 🔒</a></li>
+        <li><a href="#c938">Chapter 938: Experiments and Friends 🔒</a></li>
+        <li><a href="#c939">Chapter 939: Investigation Mission 🔒</a></li>
+        <li><a href="#c940">Chapter 940: Camaraderie 🔒</a></li>
+        <li><a href="#c941">Chapter 941: Underground City 🔒</a></li>
+        <li><a href="#c942">Chapter 942: God Statue 🔒</a></li>
+        <li><a href="#c943">Chapter 943: Over-Prepared and Spells 🔒</a></li>
+        <li><a href="#c944">Chapter 944: Stalemate 🔒</a></li>
+        <li><a href="#c945">Chapter 945: Spider Goddess 🔒</a></li>
+        <li><a href="#c946">Chapter 946: The Price Of Arrogance 🔒</a></li>
+        <li><a href="#c947">Chapter 947: Sexy Goddess 🔒</a></li>
+        <li><a href="#c948">Chapter 948: Spared 🔒</a></li>
+        <li><a href="#c949">Chapter 949: Cooperation 🔒</a></li>
+        <li><a href="#c950">Chapter 950: Stone Slab? 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="851-900.html" rel="prev">&larr; Chs 851–900</a>    <a href="../../index.html">Library</a>
+<a href="951-1000.html" rel="next">Chs 951–1000 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

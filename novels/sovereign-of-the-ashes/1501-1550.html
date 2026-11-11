@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1501–1550</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1451-1500.html#last" data-next-page="1551-1600.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1501">Chapter 1501: Divided by Ideals 🔒</a></li>
+        <li><a href="#c1502">Chapter 1502: Observing Battle 🔒</a></li>
+        <li><a href="#c1503">Chapter 1503: Gray Quartz 🔒</a></li>
+        <li><a href="#c1504">Chapter 1504: Building Alliances 🔒</a></li>
+        <li><a href="#c1505">Chapter 1505: Four Friendly Civilizations 🔒</a></li>
+        <li><a href="#c1506">Chapter 1506: Protecting Blue Star 🔒</a></li>
+        <li><a href="#c1507">Chapter 1507: War Looms Near 🔒</a></li>
+        <li><a href="#c1508">Chapter 1508: Allies 🔒</a></li>
+        <li><a href="#c1509">Chapter 1509: Call of the Crusade 🔒</a></li>
+        <li><a href="#c1510">Chapter 1510: Costly Sacrifices 🔒</a></li>
+        <li><a href="#c1511">Chapter 1511: Guard Netherworld 🔒</a></li>
+        <li><a href="#c1512">Chapter 1512: The Beastmen Legion 🔒</a></li>
+        <li><a href="#c1513">Chapter 1513: Encirclement 🔒</a></li>
+        <li><a href="#c1514">Chapter 1514: Battlefields 🔒</a></li>
+        <li><a href="#c1515">Chapter 1515: Worry 🔒</a></li>
+        <li><a href="#c1516">Chapter 1516: Renewing Peace Treaty 🔒</a></li>
+        <li><a href="#c1517">Chapter 1517: Challenges 🔒</a></li>
+        <li><a href="#c1518">Chapter 1518: Sparring and Courting 🔒</a></li>
+        <li><a href="#c1519">Chapter 1519: The Survivors of Planet Klythera 🔒</a></li>
+        <li><a href="#c1520">Chapter 1520: Ailment 🔒</a></li>
+        <li><a href="#c1521">Chapter 1521: Prizing Peace 🔒</a></li>
+        <li><a href="#c1522">Chapter 1522: Chaos Sea 🔒</a></li>
+        <li><a href="#c1523">Chapter 1523: Freedom Star City 🔒</a></li>
+        <li><a href="#c1524">Chapter 1524: The Collector 🔒</a></li>
+        <li><a href="#c1525">Chapter 1525: Important Intelligence 🔒</a></li>
+        <li><a href="#c1526">Chapter 1526: Dump 🔒</a></li>
+        <li><a href="#c1527">Chapter 1527: Experimental Sacrifice 🔒</a></li>
+        <li><a href="#c1528">Chapter 1528: Kram’s Transformation 🔒</a></li>
+        <li><a href="#c1529">Chapter 1529: Reinforce 🔒</a></li>
+        <li><a href="#c1530">Chapter 1530: Klytherans’ Charge 🔒</a></li>
+        <li><a href="#c1531">Chapter 1531: Planet Zax 🔒</a></li>
+        <li><a href="#c1532">Chapter 1532: Subdue 🔒</a></li>
+        <li><a href="#c1533">Chapter 1533: Taking the Initiative 🔒</a></li>
+        <li><a href="#c1534">Chapter 1534: Laying the Groundwork 🔒</a></li>
+        <li><a href="#c1535">Chapter 1535: New Weapons 🔒</a></li>
+        <li><a href="#c1536">Chapter 1536: Assistance and Countermeasure 🔒</a></li>
+        <li><a href="#c1537">Chapter 1537: Attacked from Front and Rear 🔒</a></li>
+        <li><a href="#c1538">Chapter 1538: Audience 🔒</a></li>
+        <li><a href="#c1539">Chapter 1539: Felt at Home 🔒</a></li>
+        <li><a href="#c1540">Chapter 1540: Regard 🔒</a></li>
+        <li><a href="#c1541">Chapter 1541: Shift in Attitude 🔒</a></li>
+        <li><a href="#c1542">Chapter 1542: Ashen Fortress 🔒</a></li>
+        <li><a href="#c1543">Chapter 1543: Death Plague Magic and Rewards 🔒</a></li>
+        <li><a href="#c1544">Chapter 1544: Duality 🔒</a></li>
+        <li><a href="#c1545">Chapter 1545: Mission Decision 🔒</a></li>
+        <li><a href="#c1546">Chapter 1546: Fetish and Daze 🔒</a></li>
+        <li><a href="#c1547">Chapter 1547: Challenge of Fusing Dendro and Pyro 🔒</a></li>
+        <li><a href="#c1548">Chapter 1548: Two-Pronged Strategy 🔒</a></li>
+        <li><a href="#c1549">Chapter 1549: War Product 🔒</a></li>
+        <li><a href="#c1550">Chapter 1550: Code 4700-1 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1501" data-label="1501">
+<h2 class="chapter">Chapter 1501: Divided by Ideals 🔒</h2>
+<p>Most Rank Five magic spells could never hope to clear the outer defenses of the Blue Star Civilization.</p>
+<p>But Sein’s magic, infused with the Azure Flame’s potent decomposition power, could melt even the Gallant Federation’s metal fleets. Clearing Blue Star’s outer defenses was a trivial task for him.</p>
+<p>As Sein stepped out of the vessel to begin his spellcasting, with Yuri guarding him in her Burning Flame Unit, two Rank Four Klytheran powerhouses moved in to provide cover at Karazo’s signal.</p>
+<p>The strength of the surviving Klytherans far surpassed that of the Huusians.</p>
+<p>Both races had originated from once medium-sized world civilizations, which only highlighted how much greater...</p>
+</article>
+<article id="c1502" data-label="1502">
+<h2 class="chapter">Chapter 1502: Observing Battle 🔒</h2>
+<p>Since leaving their homeworld, the survival and reproduction of the Klytheran race had become incredibly difficult.</p>
+<p>Both Karazo and Karl were, in fact, new-generation powerhouses born from the gene bank.</p>
+<p>At present, natural Klytheran births made up less than five percent of the entire population. The remaining ninety-five percent existed only because of specially preserved embryos.</p>
+<p>This was truly the tragedy of a species.</p>
+<p>The Klytherans were far too dependent on their unique growth environment!</p>
+<p>The Klytherite embedded in their chests granted them strength far beyond that of most species in the Astral Realm.</p>
+<p>Yet that same Klytherite was also...</p>
+</article>
+<article id="c1503" data-label="1503">
+<h2 class="chapter">Chapter 1503: Gray Quartz 🔒</h2>
+<p>On any battlefield, charging recklessly just to show off personal valor rarely made a difference in the grand scheme of things.</p>
+<p>Even the Magus World knights knew it was wiser to stay behind the massive legions of enslaved creatures on the battlefield…</p>
+<p>Of course, one major weakness of the Klytherans was their lack of such enslaved legions.</p>
+<p>As a result, they had no choice but to rely on their own bodies and risk their lives to withstand the enemy’s assault.</p>
+<p>“Let me give you a hand,” Sein called out, swiftly flying to the side of the demigod-level Klytheran fighter.</p>
+<p>With quick, practiced movements, he secured the fighter onto a makeshift experimental stretcher, handling him almost as if he were...</p>
+</article>
+<article id="c1504" data-label="1504">
+<h2 class="chapter">Chapter 1504: Building Alliances 🔒</h2>
+<p>The battle beyond the Blue Star frontline lasted for roughly half a month.</p>
+<p>It ended with the Blue Star Legion suffering a crushing defeat.</p>
+<p>As a technological civilization still in its infancy, Sein estimated that Blue Star’s overall higher-ranking combat strength could, at best, match only two or three Rank Four beings.</p>
+<p>Even their weapons, which were supposedly designed to threaten Rank Five entities, appeared extremely crude in his eyes!</p>
+<p>Throughout the fight between Karazo and Karl, the Blue Star forces only managed to fire their Rank Five energy cannons a few times.</p>
+<p>Yet, every blast failed to cause Karazo any real trouble.</p>
+<p>In other words, the only true obstacle standing in the way of the Klytherans’ conquest of Blue...</p>
+</article>
+<article id="c1505" data-label="1505">
+<h2 class="chapter">Chapter 1505: Four Friendly Civilizations 🔒</h2>
+<p>When the commander asked the question, Karl was still lost in thought.</p>
+<p>A Rank Five being in a daze was a rare sight, and it was one of the reasons Sein said Karl had it rough.</p>
+<p>Handing over two life planets to the Klytherans?</p>
+<p>Karl, of course, was all for it.</p>
+<p>But he also knew his kind too well, especially Karazo’s way of doing things.</p>
+<p>Once the Klytherans got two planets handed to them so easily, they would never be satisfied. They would want more.</p>
+<p>So when faced with the Blue Star commander’s question, he fell into an unusual silence.</p>
+<p>In truth, that silence alone was already an answer.</p>
+<p>The commander belonged to the small minority of Blue Star beings who favored an aggressive response.</p>
+<p>It was not that he craved war, but he was one of the few who truly saw the situation...</p>
+</article>
+<article id="c1506" data-label="1506">
+<h2 class="chapter">Chapter 1506: Protecting Blue Star 🔒</h2>
+<p>The Blue Star delegates met little resistance on their way to see the Klytheran leader, Karazo.</p>
+<p>At the moment, the Rank Five Klytheran was busy mobilizing his legions.</p>
+<p>Seven hundred thousand Klytheran fighters would serve as the main force, launching a full-scale assault on Blue Star.</p>
+<p>Smaller groups were already moving to seize the other three life planets and several resource worlds.</p>
+<p>It was a campaign promising immense rewards, but Karazo still had to be responsible for his men’s lives.</p>
+<p>Any opportunity to reduce casualties was worth considering.</p>
+<p>The Blue Star natives’ plea for peace caught Sein completely off guard.</p>
+<p>When they offered to surrender one of their planets for the Klytherans to settle and rebuild, Sein found himself struggling to understand their logic.</p>
+<p>He had never encountered a species this… “meek”.</p>
+<p>To a powerhouse born...</p>
+</article>
+<article id="c1507" data-label="1507">
+<h2 class="chapter">Chapter 1507: War Looms Near 🔒</h2>
+<p>“War is not the only answer, especially for you Klytherans. Heavy losses among your fighters would deal a devastating blow to your civilization. In that sense, maybe Karl has the right idea,” Sein remarked.</p>
+<p>One’s view was often shaped by one’s circumstances. Sein’s words had little to do with Klytheran interests; he was speaking purely from his own and the Magus Civilization’s standpoint.</p>
+<p>When he finished speaking, Kram gave him a conflicted look. She did not actually fully agree with Karl’s ideals, nor did she have any fondness for the Blue Star natives.</p>
+<p>Even so, Sein’s sudden shift in stance puzzled her, though she could sense something deeper behind it.</p>
+<p>Kram was far...</p>
+</article>
+<article id="c1508" data-label="1508">
+<h2 class="chapter">Chapter 1508: Allies 🔒</h2>
+<p>“War is near.”</p>
+<p>At the top of a skyscraper on Blue Star, Karl gazed out over the endless azure sea stretching toward the horizon and let out a quiet sigh.</p>
+<p>Behind him, a female Blue Star native, barely half his height, wrapped her arms around his waist.</p>
+<p>Her name, pronounced in the Blue Star tongue, was Amy. She was Karl’s girlfriend, a living proof that love could truly transcend race and even aesthetics.</p>
+<p>By Klytheran standards, seeking a mate in Blue Star was unthinkable.</p>
+<p>Yet by some twist of fate and through Amy’s steadfast devotion, Karl had chosen her as his life partner.</p>
+<p>Amy, a Blue Star native whose life energy barely reached Rank Two, was the main reason Karl felt such deep sympathy for her people—enough to stand...</p>
+</article>
+<article id="c1509" data-label="1509">
+<h2 class="chapter">Chapter 1509: Call of the Crusade 🔒</h2>
+<p>When departing Aquaria, the arrogant crown prince did not even bring a single Rank Four creature from his homeworld.</p>
+<p>He brought only around two hundred thousand royal guards!</p>
+<p>Orric chose to bring such a small force because he had learned from Blue Star’s distress call that the invading Klytheran army numbered only around seven hundred thousand troops in total.</p>
+<p>He was a Rank Five being with golden hair and a bold, commanding presence. The so-called “Curse of the Sea” did not bother him in the slightest.</p>
+<p>Deep down, a quiet sense of destiny had always lingered in his heart. He believed he was the one destined to lead Aquaria into a new age of change—just like the first Ocean King of old, the ancestor who had once elevated...</p>
+</article>
+<article id="c1510" data-label="1510">
+<h2 class="chapter">Chapter 1510: Costly Sacrifices 🔒</h2>
+<p>“Crusade?”</p>
+<p>The mightiest being of the Arid Expanse World, seated high upon his black throne, slammed his massive foot against the black crystal floor.</p>
+<p>Seiron was infamous across the nearby star domains.</p>
+<p>Ever since ascending to Rank Six, he had led Arid Expanse in conquering hundreds of planes, bringing ruin to countless sentient races.</p>
+<p>It was a brutal and formidable world, one with enough potential to rise into a large-sized plane someday!</p>
+<p>While Arid Expanse was ruthlessly domineering in its dealings with outsiders, the Rank Four powerhouses under Seiron’s rule were known for being sly and treacherous.</p>
+<p>In the early days of their civilization, they never dared provoke stronger civilizations or even those on equal footing.</p>
+<p>Instead, they preyed...</p>
+</article>
+<article id="c1511" data-label="1511">
+<h2 class="chapter">Chapter 1511: Guard Netherworld 🔒</h2>
+<p>The war within the Netherworld Star Domain had descended into chaos.</p>
+<p>At the start, Kampas had been stationed on the frontlines, fighting alongside Magus World’s forces in a fierce assault against the Gallant Federation legions.</p>
+<p>But as the battle dragged on, the beastmen legions somehow ended up deep within the Netherworld Star Domain, where they eventually linked up with Commander Blood River Naeverynk…</p>
+<p>Originally, Kampas had no intention of advancing this far.</p>
+<p>Yet now that it was here, retreating was almost impossible, as the Gallant Federation’s mixed fleets surrounded them on every side.</p>
+<p>In truth, by this stage of the war, the Gallant Federation’s forces were in even greater disarray!</p>
+<p>It was only thanks to the immense computational power...</p>
+</article>
+<article id="c1512" data-label="1512">
+<h2 class="chapter">Chapter 1512: The Beastmen Legion 🔒</h2>
+<p>Suvyth, the world-class longsword, erupted in a blinding flash before flying straight toward the heart of the Gallant Federation’s fleets.</p>
+<p>Moments later, a chain of explosions lit up the formation from within, and a blazing inferno swept across the starry expanse.</p>
+<p>The destructive power of a world-class secret treasure was laid bare for all to see.</p>
+<p>In the hands of an overlord-level being, such an artifact became something entirely different than when wielded by a Rank Four or Five creature.</p>
+<p>Following Suvyth’s rampage through the federal fleet, another world-class secret treasure materialized once more in Naeverynk’s grasp.</p>
+<p>It was the Twisted Holy Sword, a relic lost since ancient times.</p>
+<p>The sword blazed with radiant...</p>
+</article>
+<article id="c1513" data-label="1513">
+<h2 class="chapter">Chapter 1513: Encirclement 🔒</h2>
+<p>The half-beastman legion led by Eugene was easily the most distinctive group among all Beastmen World’s forces on the Netherworld battlefield.</p>
+<p>Half-beastmen had long been the targets of discrimination within Beastmen World.</p>
+<p>Because of their mixed bloodlines, most half-beastmen were weaker than the mainstream races and had a much lower success rate in awakening as shaman priests.</p>
+<p>Many were also born with congenital conditions, leading to a high infant mortality rate.</p>
+<p>Yet here, on the Netherworld battlefield, the half-beastmen legion displayed a spirit and strength hardly inferior to any other beastmen legions!</p>
+<p>Eugene led the charge, and right behind him were mostly his biological sons or adopted sons,...</p>
+</article>
+<article id="c1514" data-label="1514">
+<h2 class="chapter">Chapter 1514: Battlefields 🔒</h2>
+<p>The skeletal dragons formed a breathtaking and terrifying sight across the starry battlefield.</p>
+<p>Amid this vast tide, a single Rank Four skeletal dragon with pale gray bones blended in seamlessly.</p>
+<p>After all, within this legion of millions, more than fifty skeletal dragons were Rank Four or higher!</p>
+<p>The strongest among them had reached the peak of Rank Six. It was a monstrous, pitch-black skeletal dragon whose very presence inspired awe and dread.</p>
+<p>That Rank Four skeletal dragon was named Sanchez. Roughly a hundred thousand skeletal dragons gathered around it.</p>
+<p>Every one of them was its direct subordinate.</p>
+<p>The Clash of Civilizations had shaken Sanchez to its core.</p>
+<p>Not...</p>
+</article>
+<article id="c1515" data-label="1515">
+<h2 class="chapter">Chapter 1515: Worry 🔒</h2>
+<p>On the southern battlefield of the Netherworld Star Domain, bordering the Sanoras Star Domain…</p>
+<p>Centuries ago, this had been one of the fiercest battlegrounds of the entire Clash of Civilizations.</p>
+<p>But now, centuries later, fighting here had mostly died down.</p>
+<p>The steady northward shift of the frontlines marked a reversal in the offense-defense balance between the Magus Civilization and the Gallant Federation, signaling a major change in the war’s momentum.</p>
+<p>At this stage, this vast region had become a crucial logistics hub and transit point for the Magus Civilization’s frontline operations against the Gallant Federation.</p>
+<p>Countless elite legions of the Magus Civilization were either arriving nonstop to reinforce the front or rotating...</p>
+</article>
+<article id="c1516" data-label="1516">
+<h2 class="chapter">Chapter 1516: Renewing Peace Treaty 🔒</h2>
+<p>The sudden arrival of the Shadowbat Civilization legion brought the Klytheran’s attempted offensive against Blue Star to an abrupt halt.</p>
+<p>The Shadowbat Civilization had come to stop this war.</p>
+<p>A force made up of one Rank Five creature and two Rank Four creatures, combined with Blue Star’s own forces, was more than enough to match Klythera’s high-level combat power.</p>
+<p>Not to mention, another Rank Four Voltaran had appeared nearby, openly displaying friendliness toward Blue Star’s people.</p>
+<p>If the arrival of the Shadowbat Civilization legion and the Voltaran forced Karazo to cool down, then the subsequent arrival of Aquaria’s legions and the female warriors of Marvelous Plane gradually tipped the balance...</p>
+</article>
+<article id="c1517" data-label="1517">
+<h2 class="chapter">Chapter 1517: Challenges 🔒</h2>
+<p>The Blue Star lifeforms had probably never even heard of the Magus Alliance before this, so their sudden proposal to join it clearly came from someone’s advice.</p>
+<p>Sein immediately thought of Misori, the Rank Four female warrior from Klythera.</p>
+<p>Among all of Klythera’s powerhouses, Misori had always been the most eager to make peace with Blue Star’s people, right after Karl.</p>
+<p>During past negotiations, she was also the one who kept the most private contact with the Blue Star side.</p>
+<p>After spending years at Karazo’s side, and with Kram often visiting Sein’s laboratory, Misori had likely developed a good sense of the Magus Civilization’s strength...</p>
+</article>
+<article id="c1518" data-label="1518">
+<h2 class="chapter">Chapter 1518: Sparring and Courting 🔒</h2>
+<p>What had looked like the start of an all-out war somehow fizzled into private duels between two groups of Rank Five beings.</p>
+<p>This was a twist no one had seen coming.</p>
+<p>Still, for most law-wielding powerhouses watching, these two battles were more than enough to hold their attention.</p>
+<p>Karl and Orric were both formidable Rank Five combatants, and Sein and Darian were nothing to scoff at either.</p>
+<p>But the most outrageous reaction came from the Blue Star people.</p>
+<p>They were planning to record both Rank Five duels, edit them into movies, and broadcast them across their planet for entertainment.</p>
+<p>What a strange world…</p>
+<p>The values and behavior of these Blue Star beings were vastly different from those...</p>
+</article>
+<article id="c1519" data-label="1519">
+<h2 class="chapter">Chapter 1519: The Survivors of Planet Klythera 🔒</h2>
+<p>Amidst the endless expanse of the Astral Realm, a large fleet of warships drifted through the void.</p>
+<p>They were finally on their way back to the Magus Star Domain.</p>
+<p>Before that, however, Sein still needed to go with Karazo and the others to retrieve the remaining Klytheran survivors.</p>
+<p>“We Klytherans have lived in a star domain called Chaos Sea for tens of thousands of years. Just from the name alone, you can probably guess how harsh that place is. There were strange anomalies, star pirates, and nomadic tribes fighting us for territory… Chaos rules everything there,” Karazo said.</p>
+<p>“But it’s exactly because so many nomadic races and interstellar caravans pass through that region that we managed to gather scraps of information about the wider...</p>
+</article>
+<article id="c1520" data-label="1520">
+<h2 class="chapter">Chapter 1520: Ailment 🔒</h2>
+<p>Drew was the only one of his kind who had ever battled with the Gallant Federation’s fleets.</p>
+<p>It was said this happened when he was only a Rank Two, back when the federation’s legions were still hunting down the last survivors of Planet Klythera.</p>
+<p>Countless lives were lost during that time.</p>
+<p>Fortunately, several Rank Four and above Klytheran combatants fought with everything they had, buying Drew and the others a chance to escape.</p>
+<p>What set the Klytheran survivors apart from other wandering races of the Astral Realm was that they had always maintained at least five Rank Four fighters.</p>
+<p>That level of strength was significantly above that of most low-level...</p>
+</article>
+<article id="c1521" data-label="1521">
+<h2 class="chapter">Chapter 1521: Prizing Peace 🔒</h2>
+<p>Beatrice, however, held no fondness for Sein.</p>
+<p>Beings from Marvelous Plane resonated more deeply with nature and life itself.</p>
+<p>Meanwhile, Sein exuded a demonic, sulfuric stench from head to toe and carried the menacing auras of Verdant Flame and Ashen Flame!</p>
+<p>Had Lorianne been here, or any other dendromancers or hydromancers from Magus World, Beatrice probably would have gotten along with them just fine.</p>
+<p>Even the gentler planes of the Magus Alliance, like the Grand Elven World or Activator Fairy World, would have had a much easier time building ties with someone from Marvelous Plane.</p>
+<p>Beatrice did not respond to Sein.</p>
+<p>She was not good with research; she simply felt sorry for the Klytheran boy. He was...</p>
+</article>
+<article id="c1522" data-label="1522">
+<h2 class="chapter">Chapter 1522: Chaos Sea 🔒</h2>
+<p>After leaving the crimson planet, roughly three hundred thousand Klytheran fighters piloted their metal fleet toward the Magus Civilization’s star domain. The rest escorted the low-ranking Klytheran populace to Blue Star.</p>
+<p>“With the war between the Magus Civilization and the Gallant Federation still raging, bringing an entire legion to defect will command far more attention from the Magus Civilization than a lone Rank Four or above defector ever could,” Karazo said to those around him.</p>
+<p>“The journey into the Magus Civilization’s territory is likely to be rough; the fighters should acclimate themselves ahead of time,” he added.</p>
+<p>This alien contingent...</p>
+</article>
+<article id="c1523" data-label="1523">
+<h2 class="chapter">Chapter 1523: Freedom Star City 🔒</h2>
+<p>The enemies were largely crushed within just half a day.</p>
+<p>Galagudor was the name of the nomadic tribe that had the misfortune of attacking the Klytheran Legion.</p>
+<p>The ignorant were truly fearless.</p>
+<p>Standing barely a meter tall on average, the Galagudors were only a little bulkier than the Blue Star natives.</p>
+<p>How they ever dared to charge the Klytheran Legion remained a mystery.</p>
+<p>A single kick from a Rank One Klytheran fighter could send more than a dozen Galagudors flying.</p>
+<p>As the huge-mouthed Galagudors charged toward the Klytheran Legion with iron spears in hand, Sein suddenly recalled the Drool Monsters he had seen in a Magus World compendium. The resemblance...</p>
+</article>
+<article id="c1524" data-label="1524">
+<h2 class="chapter">Chapter 1524: The Collector 🔒</h2>
+<p>While Beatrice agreed with Darian, other powerhouses—including Sein and Karazo—remained doubtful.</p>
+<p>Although Aquaria lay within the surrounding star domain as well, Orric paid little attention to the threat posed by Arid Expanse World.</p>
+<p>Planet Aquaria, the Shadowbat Civilization, and Arid Expanse World were all medium-sized planes.</p>
+<p>Orric genuinely did not see how Arid Expanse World was superior to his own homeplane.</p>
+<p>Once he claimed the Ocean King’s throne and received the crown’s blessing, along with the plane’s origin energy to ascend to Rank Six, Orric firmly believed he could lead his civilization into a new age.</p>
+<p>By then, Arid Expanse World would become even more ins...</p>
+</article>
+<article id="c1525" data-label="1525">
+<h2 class="chapter">Chapter 1525: Important Intelligence 🔒</h2>
+<p>The figure before them was a male humanoid.</p>
+<p>At a glance, he looked remarkably similar to the humans of Magus World.</p>
+<p>A closer look revealed six fingers on each hand, and four of those fingers were weighed down by massive gemstone rings.</p>
+<p>Each ring pulsed with a faint yet unmistakable energy fluctuation.</p>
+<p>Given this Rank Five creature’s reputation as a “collector”, those divine-artifact-grade rings likely packed frightening, destructive power on their own.</p>
+<p>The Collector stood atop a white platform, and Sein vaguely sensed that one of his legs seemed to be lame.</p>
+<p>“Now then… who might this be?” the Collector mused as soon as he appeared, his gaze predictably locking onto Sein.</p>
+<p>Sein kept his aura...</p>
+</article>
+<article id="c1526" data-label="1526">
+<h2 class="chapter">Chapter 1526: Dump 🔒</h2>
+<p>Sein had obtained the information about the Gallant Federation colluding with Arid Expanse World from the Collector, at the cost of a single Star Core.</p>
+<p>In the Astral Realm, Star Cores were even more precious than the divine relics of Rank Four beings.</p>
+<p>Even though Sein’s Star Core came from a mere microplane, the Collector was overjoyed to receive it.</p>
+<p>“I’m surprised you already know the Gallant Federation has started colluding with the Arid Expanse World. Do you know anything about the current state of the war in the Netherworld Star Domain?” Sein asked. “And if you have any intel on the Grand Eye Demon World, feel free to share that too.”</p>
+<p>The Collector let out an awkward chuckle.</p>
+<p>“What I know about the Netherworld Star Domain is common knowledge among the Rank Six beings of nearby star domain civilizations. Hardly a secret...</p>
+</article>
+<article id="c1527" data-label="1527">
+<h2 class="chapter">Chapter 1527: Experimental Sacrifice 🔒</h2>
+<p>There were three possible routes from the Chaos Sea to the star domain controlled by the Magus Civilization.</p>
+<p>Karazo and Sein eventually chose the path that promised smoother travel and shorter overall time.</p>
+<p>Following the star map, the Klytheran metal fleet pushed forward at full speed, with an estimated arrival in the Sanok Star Domain in roughly 152 years.</p>
+<p>Along the way, Sein and the others would pass through two more star domains and a vast stretch of desolate, barren dark void.</p>
+<p>“Who would have thought that slipping into that rift to escape and drifting in the space-time corridor for such a short time would lead us out at coordinates this far from Magus Civilization territory?...</p>
+</article>
+<article id="c1528" data-label="1528">
+<h2 class="chapter">Chapter 1528: Kram’s Transformation 🔒</h2>
+<p>“You nearly killed me this time,” Kram murmured weakly to Sein as she regained consciousness on the experimental table.</p>
+<p>Sein, meanwhile, had slumped in a heap beside the table.</p>
+<p>He had not expected things to go awry.</p>
+<p>The experiment he had just performed involved extracting the Klytherite from Kram’s body.</p>
+<p>For Klytherans, Klytherite was their source of power and functioned inside them almost like a heart.</p>
+<p>According to Sein’s research, removing the Klytherite and reinforcing it outside the body might directly boost a Klytheran fighter’s combat strength.</p>
+<p>But because Klytherite was so deeply tied to a Klytheran’s very existence, even Sein could not help but wonder what would happen to them if it were actually...</p>
+</article>
+<article id="c1529" data-label="1529">
+<h2 class="chapter">Chapter 1529: Reinforce 🔒</h2>
+<p>After leaving the Houllier Star Domain, Sein and his companions were once again greeted by an endless stretch of pitch-black starry void.</p>
+<p>According to the star map, they needed to maintain full speed for another seventy-one years before reaching the next medium-sized star domain known as the Hundred Flowers Worlds.</p>
+<p>It was neither particularly powerful nor large in scale, since its inhabitants were peace-loving plant creatures.</p>
+<p>Because of that, many planes across the Astral Realm preferred dealing with the beings of this star domain.</p>
+<p>“Hundred Flowers Worlds… we’re getting closer to home,” Sein murmured as he stood at the bow of the ship.</p>
+<hr class="separator">
+<p>Seventy-one years later, when they finally reached the border of the Hundred Flowers Worlds, Sein and the others were welcomed warmly by its inhabitants.</p>
+<p>Sein could clearly...</p>
+</article>
+<article id="c1530" data-label="1530">
+<h2 class="chapter">Chapter 1530: Klytherans’ Charge 🔒</h2>
+<p>A brutal battle was on the verge of erupting.</p>
+<p>When it came to reinforcing the planet ahead, the Klytheran Legion stood firmly at Sein’s side without hesitation.</p>
+<p>Darian, Orric, Beatrice, and Auron stayed out of this for now, since they were representatives of their own civilizations.</p>
+<p>They would only stand openly with the Magus Civilization’s forces after meeting Magus World’s leadership and finalizing the terms of their alliance.</p>
+<p>The Blue Star natives, who had already pledged loyalty to the Magus Alliance, chose to stand with the Klytheran Legion at this moment.</p>
+<p>Among the Klytheran Legion, several ships and a handful of combatants actually came from Blue Star. Weak as...</p>
+</article>
+<article id="c1531" data-label="1531">
+<h2 class="chapter">Chapter 1531: Planet Zax 🔒</h2>
+<p>Three hundred thousand Viridescent Seeds! Sein launched into the battle by scattering them without hesitation!</p>
+<p>Not all of the plant giants that sprouted from the seeds reached Rank One, but their resilient bodies and sheer vitality made them perfect cannon fodder for the battlefield.</p>
+<p>This was Lorianne’s unique ability.</p>
+<p>While Sein had to scour his enslaved planes to gather cannon fodder, Lorianne could simply grow them herself in a laboratory.</p>
+<p>Furthermore, the plant giants she cultivated could have their growth patterns selectively adjusted to suit the needs of any battlefield, allowing them to perform far more effectively during actual combat.</p>
+<p>From a spellcaster’s perspective,...</p>
+</article>
+<article id="c1532" data-label="1532">
+<h2 class="chapter">Chapter 1532: Subdue 🔒</h2>
+<p>The Magus Civilization’s garrison on Planet Zax coordinated a timely attack.</p>
+<p>As Sein and the Klytheran Legion tore into the enemy forces on the planet, the Magus Civilization’s knights and mages stationed at the two main bases also launched a counterattack almost instantly.</p>
+<p>Caught between the two, the Gallant Federation troops and the Sanok forces on Zax were thrown into complete chaos.</p>
+<p>They had no idea how many reinforcements the Magus Civilization had sent, but the sudden appearance of those intimidating Rank Four and Five beings was frightening enough!</p>
+<p>“We’re holding the advantage on several nearby planetary battlefields. Hold your positions! I’m requesting reinforcements from neighboring sectors...</p>
+</article>
+<article id="c1533" data-label="1533">
+<h2 class="chapter">Chapter 1533: Taking the Initiative 🔒</h2>
+<p>“Please wait a little longer, I’ll be done soon,” Sein said, not pausing his work even after noticing the arrival of the two Magus Civilization powerhouses.</p>
+<p>Seeing familiar beings from Magus World again genuinely lifted his spirits.</p>
+<p>No matter how obedient alien creatures might be toward him, only fellow natives of his homeplane could give him that quiet comfort that came from being around his own kind.</p>
+<p>“No rush, Master. Need help? I can chop off that disobedient arm for you,” Azaria offered, lifting his massive steel sword.</p>
+<p>Right now, the aura Sein released was stronger than the Rank Five knight’s.</p>
+<p>Knights respected strength above all, and when...</p>
+</article>
+<article id="c1534" data-label="1534">
+<h2 class="chapter">Chapter 1534: Laying the Groundwork 🔒</h2>
+<p>A powerful and advanced civilization must inevitably remain in a state of constant development and progress.</p>
+<p>This also applied to both the Magus Civilization and the Gallant Federation!</p>
+<p>Compared to tens of thousands, or even hundreds of thousands, of years ago, what changes had occurred on Klythera?</p>
+<p>They had grown poorer! The number of high-ranking beings had dwindled, and even their population base had shrunk to an all-time low.</p>
+<p>The Klytheran fighters had also weakened significantly due to the lack of an environment suitable for growth…</p>
+<p>It was truly a tragic reality.</p>
+<p>In stark contrast, the Gallant Federation had become stronger and stronger.</p>
+<p>After several revolutionary leaps forward, their technology had reached a level even the Magus Civilization found unsett...</p>
+</article>
+<article id="c1535" data-label="1535">
+<h2 class="chapter">Chapter 1535: New Weapons 🔒</h2>
+<p>That green energy beam had indeed been flying toward the metal warship where Darian and the others were.</p>
+<p>Yet it was not a deliberate strike from the Gallant Federation.</p>
+<p>After Orric and Beatrice indirectly joined the fray, almost no one noticed Yuri piloting the Burning Flame Unit as she streaked across the starry sky along the same trajectory as the metal warship.</p>
+<p>Because of Yuri’s outstanding performance on the battlefield, she had drawn the focused fire of several main destroyers from the Gallant Federation.</p>
+<p>That green beam had been fired at Yuri, but it hit a nearby metal warship at the edge of the interstellar battlefield instead.</p>
+<p>The battlefield beyond Zax had fallen into complete chaos after the arrival of the Gallant Federation reinforcement...</p>
+</article>
+<article id="c1536" data-label="1536">
+<h2 class="chapter">Chapter 1536: Assistance and Countermeasure 🔒</h2>
+<p>The divine tower mages under Gargawell and the knight legions under Azaria had fought relentlessly on Zax for over a decade, leaving their logistical reserves severely depleted.</p>
+<p>Given those circumstances, the Magus Civilization’s willingness to allocate half its remaining supplies to aid the Klytheran Legion showed real sincerity.</p>
+<p>After securing the necessary provisions and urging the Magus Civilization forces on Zax to evacuate the plane as quickly as possible, Sein approached Karazo and the other Rank Five Klythera powerhouses.</p>
+<p>“Gargawell and his team are working on distributing the relief supplies. They’ll be sent directly to your legion. Let me take a look at your injuries first,” Sein said.</p>
+<p>His first...</p>
+</article>
+<article id="c1537" data-label="1537">
+<h2 class="chapter">Chapter 1537: Attacked from Front and Rear 🔒</h2>
+<p>Jupymars was a low-level plane close to Planet Zax, dominated by pyro elemental forces.</p>
+<p>Here, the Gallant Federation held a clear advantage as well.</p>
+<p>Before leading his forces to Jupymars, Sein met with Orric and the others to thank them for their help in the previous battle.</p>
+<p>The Klytheran Legion was still recuperating, supported by a steady stream of supplies from the Magus Civilization’s forces stationed on Zax.</p>
+<p>No matter how eloquent the words, actions spoke louder.</p>
+<p>Empty promises simply would not cut it.</p>
+<p>When Darian and Beatrice saw the Klytheran fighters receiving potions and energy crystals from Magus World, both of them visibly relaxed.</p>
+<p>Orric might have looked carefree, but he was no fool—he took note of everything.</p>
+<p>“The Gallant Federation routinely resorts to planetary annihilation. Both Klythera...</p>
+</article>
+<article id="c1538" data-label="1538">
+<h2 class="chapter">Chapter 1538: Audience 🔒</h2>
+<p>When Sein’s legions arrived at Kylador Plane, he received word that Master Fathis wished to meet him.</p>
+<p>Sein had visited the Kylador Plane three years ago.</p>
+<p>At that time, two legions of the Magus Civilization had been holding the line here.</p>
+<p>Unfortunately, by the time Sein and his forces broke through the Gallant Federation’s blockade, one of the Rank Four knights stationed here had already fallen, along with most of his knight legion.</p>
+<p>The entire Kylador Plane had been soaked in blood back then, buried beneath countless heaps of metallic wreckage.</p>
+<p>Kylador had always been one of the most distant battlefields from the Magus Civilization’s main frontline.</p>
+<p>The fall of that Rank Four knight, just on the cusp of victory, was truly upsetting.</p>
+<p>Now, after three years of restoration,...</p>
+</article>
+<article id="c1539" data-label="1539">
+<h2 class="chapter">Chapter 1539: Felt at Home 🔒</h2>
+<p>Deep within a vast silver palace complex, Sein finally met Fathis, the Rank Six Lumimancer.</p>
+<p>The native creatures of the Sanok Star Domain generally had dark, almost ebony skin, yet they seemed extremely fond of silver.</p>
+<p>In fact, silver artifacts were the most extravagant luxury goods in this region.</p>
+<p>However, only the former Sanokian King possessed the power and wealth to build an entire palace complex out of silver metal.</p>
+<p>Upon entering the palace grounds, Sein stared at the nine-colored light radiating from the buildings and could not help blurting out, “Is the entire surface of this place plated with Mithril?”</p>
+<p>Mithril and adamantine were among the most precious...</p>
+</article>
+<article id="c1540" data-label="1540">
+<h2 class="chapter">Chapter 1540: Regard 🔒</h2>
+<p>A man&#39;s worth is no greater than the worth of his ambitions.</p>
+<p>The emotion Sein felt just moments earlier was nothing more than a fleeting pang—a brief stir of warmth at his mentor’s deep concern.</p>
+<p>If given the chance again with a clear mind, he would still choose to break away from the Divine Tower of Verdant Spring and establish his own Divine Tower of Ashes.</p>
+<p>Only by doing so could he grow faster, gain greater strength, and one day repay Lorianne, Feylis, and everyone who had supported him.</p>
+<p>“The Alveroth Empire was utterly despicable! I can’t believe they actually used you as bait. Even though they eventually wiped out that Shadow Fleet, they nearly sent you to your death!” Lorianne said angrily.</p>
+<p>“Your grandmaster has already demanded...</p>
+</article>
+<article id="c1541" data-label="1541">
+<h2 class="chapter">Chapter 1541: Shift in Attitude 🔒</h2>
+<p>After a long conversation with Lorianne, Sein returned to the main hall.</p>
+<p>By then, the discussions between Master Fathis, the Klytheran powerhouses, and the Blue Star natives had mostly wrapped up.</p>
+<p>Karazo and the other Klytherans looked calm and collected, while the Blue Star natives seemed visibly relieved. Clearly, things had gone pretty well for them.</p>
+<p>Only Darian still wore a faint frown, while Orric of Aquaria had also lost his usual carefree expression.</p>
+<p>It seemed like their negotiations had not gone smoothly—at the very least, they had not gained much from Fathis, the Magus Civilization’s representative.</p>
+<p>“The legal contracts for your admission into the Magus Alliance will be delivered shortly. Once signed, you will...</p>
+</article>
+<article id="c1542" data-label="1542">
+<h2 class="chapter">Chapter 1542: Ashen Fortress 🔒</h2>
+<p>After exiting the silver palace complex on Sanok World, Sein did not immediately hurry to speak to his grandmaster on behalf of the Shadowbat Civilization’s people.</p>
+<p>Instead, he stepped beyond the bounds of this medium-sized plane.</p>
+<p>He could feel the Ashen Fortress arriving.</p>
+<p>As the Tower Master of Ashes, Sein naturally maintained a constant mental connection with the space fortress under his command.</p>
+<p>When the colossal structure slowly emerged from the depths of the cosmos, a wave of familiarity and warmth washed over Sein.</p>
+<p>For the extraplanar beings beside him, though, it brought only crushing pressure and wordless awe.</p>
+<p>“Master Sein’s space fortress is truly remarkable,” Karazo breathed.</p>
+<p>In sheer scale and presence alone, the Ashen Fortress easily ranked among the top ten in this region.</p>
+<p>At Sein’s invitation, Karazo and the others would spend some time touring the fortress.</p>
+<p>Sein also agreed to let them...</p>
+</article>
+<article id="c1543" data-label="1543">
+<h2 class="chapter">Chapter 1543: Death Plague Magic and Rewards 🔒</h2>
+<p>For the past few centuries, black mages like Leena had been sent behind enemy lines, infiltrating the Gallant Federation’s frontier regions to carry out sabotage missions.</p>
+<p>At first, these missions remained fairly covert, and the Magus Civilization did not publicly acknowledge them.</p>
+<p>But as their operations became increasingly disruptive, inflicting heavier damage on the Gallant Federation’s core territories, the federation began treating them as a major threat.</p>
+<p>Once concealment no longer mattered, the Magus Civilization openly publicized the black mages’ achievements.</p>
+<p>It was not only law-wielding black mages who operated in the Gallant Federation’s rear.</p>
+<p>Nearly all Rank Three and demigod-level black mages were deployed as well.</p>
+<p>This was why the Spider Queen had said that Blackhaven was practically...</p>
+</article>
+<article id="c1544" data-label="1544">
+<h2 class="chapter">Chapter 1544: Duality 🔒</h2>
+<p>In the tower master’s private lounge…</p>
+<p>After a few breaths of soft gasps and low moans, Eileen finally went limp in Sein’s arms.</p>
+<p>The joy of reuniting after so long was a balm for the soul.</p>
+<p>Though Sein had occasionally done it with Yuri over the years, being with Eileen and Selina was an entirely different experience.</p>
+<p>Each of his partners was unique, each independent in her own way, and Sein cherished them all deeply.</p>
+<p>“Are we no longer useful?” Eileen asked weakly, resting against Sein’s chest.</p>
+<p>This truly had been one of Sein’s shortest sessions in recent memory.</p>
+<p>When it came to things like this, it was never about how long it lasted—it was about the connection between their emotions and souls.</p>
+<p>In any case, Sein was pretty happy.</p>
+<p>If he had wanted a longer session,...</p>
+</article>
+<article id="c1545" data-label="1545">
+<h2 class="chapter">Chapter 1545: Mission Decision 🔒</h2>
+<p>Both Lorianne and Feylis cared deeply for Sein, yet they shared an interesting trait: neither ever bragged about how much they had done for him.</p>
+<p>Instead, they always spoke to him about how much others had done for him.</p>
+<p>For example, Lorianne often told him how hard his grandmaster had worked to rescue him, and how many favors she had owed others just to track him down.</p>
+<p>And now, when meeting with him, Feylis did not rush to hear his report. She instead encouraged him to spend more time with his mentor, reminding him of how much Lorianne had invested in nurturing him.</p>
+<p>This warmth within his faction moved Sein deeply.</p>
+<p>Truthfully, every elder in the Verdant Flame Faction had treated him well.</p>
+<p>Gregory had once gifted him a Verdant Flame Crystal for the tip of his magic rod, while Bernice had even brought her close friend Berecca to join Sein’s first interplanar war.</p>
+<p>With a faction this strong and close-knit, how could Sein not think of these people the moment there were benefits...</p>
+</article>
+<article id="c1546" data-label="1546">
+<h2 class="chapter">Chapter 1546: Fetish and Daze 🔒</h2>
+<p>Ever since parting ways with Feylis, Sein had yet to receive a direct reply from his grandmaster.</p>
+<p>But he had already done everything he could. What happened next depended entirely on her deliberations.</p>
+<p>“Wild Gorilla World… I remember that star domain being rather complicated. It’s flanked by two medium-sized civilizations—one leaning toward our Magus World and the other toward the Gallant Federation. Who would have thought that after the Clash of Civilizations erupted, that region would become one of the most chaotic hotspots?” Sein mused.</p>
+<p>After leaving the Verdant Flame Fortress, Sein did not rush back to the Ashen Fortress. Instead, he took a detour to visit his mentor at the Verdant Spring Fortres...</p>
+</article>
+<article id="c1547" data-label="1547">
+<h2 class="chapter">Chapter 1547: Challenge of Fusing Dendro and Pyro 🔒</h2>
+<p>“Come by my lab sometime. I’ll see what I can do to help. This potion should suppress the unusual pyro elemental energy inside you,” Sein said as he rose to his feet.</p>
+<p>“In my opinion, that strange power you carry and the path that suits you best going forward is the power of <em>Lustfire</em>,” he added.</p>
+<p>Jessica had just squirted quite a bit moments earlier, yet not a single drop had landed on Sein.</p>
+<p>“The power of <em>Lustfire</em>?” Jessica lifted her head to look at him.</p>
+<p>She had explored pyro-elemental studies in depth, but for a demigod-level dendromancer, changing her primary research path so suddenly was no simple task.</p>
+<p>She would need time to think it over.</p>
+<p>Sein nodded. “Have you heard of the power...</p>
+</article>
+<article id="c1548" data-label="1548">
+<h2 class="chapter">Chapter 1548: Two-Pronged Strategy 🔒</h2>
+<p>After parting ways with Master Lorianne, Sein felt genuinely refreshed.</p>
+<p>Her mastery of dendro elemental magic far surpassed his own.</p>
+<p>Some of the insights she shared struck him like a bolt of lightning.</p>
+<p>For mages, reaching a higher life level did not automatically translate into greater knowledge.</p>
+<p>Specialization was everything. Sein excelled in his own fields, but in areas he had barely explored, even a demigod-level mage could still teach him a thing or two.</p>
+<p>Aside from exchanging theories with his mentor, Sein also handed Lorianne the remaining Snowball Flower Essence he had obtained from the Hundred Flowers Worlds, along with several high-grade materials the Alveroth Empire had...</p>
+</article>
+<article id="c1549" data-label="1549">
+<h2 class="chapter">Chapter 1549: War Product 🔒</h2>
+<p>Seven years later…</p>
+<p>Inside the space fortress, Sein was in the middle of running a series of physical assessments on Reina.</p>
+<p>Now that she had advanced to Rank Four, her old training routines no longer suited her new physical capabilities.</p>
+<p>Everything needed to be pushed to the next level!</p>
+<p>Not long ago, he had just finished testing and designing an entirely new regimen for his mother-in-law, Sia.</p>
+<p>Since Sia and Reina used different battle qi attributes and wielded different law powers, their training regimens naturally had to differ.</p>
+<p>That day, before he finished Reina’s tests, Sein received a message from his mentor, Lorianne.</p>
+<p>It turned out Gregory...</p>
+</article>
+<article id="c1550" data-label="1550">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1550: Code 4700-1 🔒</h2>
+<p>Inside the desolate hauler, the only active living being was the lone federal soldier standing there.</p>
+<p>Maybe others were still alive somewhere on the ship, but he had no way of reaching them.</p>
+<p>He could only wander a small section of the vessel like a lost soul. Beyond that, the collapsed decks blocked every path.</p>
+<p>Most of his days were spent simply staring into the pitch-black starry void outside.</p>
+<p>Because of the fierce clashes between two top-tier civilizations and the Gallant Federation’s early attempts to harvest the rare resource known as “Star Cores”, the Netherworld Star Domain had become a place almost without stars, with very few complete planes...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1551-1600.html" rel="next">Next: Chs 1551–1600 &rarr;</a>
+    <p class="page-end-links"><a href="1451-1500.html" rel="prev">&larr; Chs 1451–1500</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1501–1550</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1501">Chapter 1501: Divided by Ideals 🔒</a></li>
+        <li><a href="#c1502">Chapter 1502: Observing Battle 🔒</a></li>
+        <li><a href="#c1503">Chapter 1503: Gray Quartz 🔒</a></li>
+        <li><a href="#c1504">Chapter 1504: Building Alliances 🔒</a></li>
+        <li><a href="#c1505">Chapter 1505: Four Friendly Civilizations 🔒</a></li>
+        <li><a href="#c1506">Chapter 1506: Protecting Blue Star 🔒</a></li>
+        <li><a href="#c1507">Chapter 1507: War Looms Near 🔒</a></li>
+        <li><a href="#c1508">Chapter 1508: Allies 🔒</a></li>
+        <li><a href="#c1509">Chapter 1509: Call of the Crusade 🔒</a></li>
+        <li><a href="#c1510">Chapter 1510: Costly Sacrifices 🔒</a></li>
+        <li><a href="#c1511">Chapter 1511: Guard Netherworld 🔒</a></li>
+        <li><a href="#c1512">Chapter 1512: The Beastmen Legion 🔒</a></li>
+        <li><a href="#c1513">Chapter 1513: Encirclement 🔒</a></li>
+        <li><a href="#c1514">Chapter 1514: Battlefields 🔒</a></li>
+        <li><a href="#c1515">Chapter 1515: Worry 🔒</a></li>
+        <li><a href="#c1516">Chapter 1516: Renewing Peace Treaty 🔒</a></li>
+        <li><a href="#c1517">Chapter 1517: Challenges 🔒</a></li>
+        <li><a href="#c1518">Chapter 1518: Sparring and Courting 🔒</a></li>
+        <li><a href="#c1519">Chapter 1519: The Survivors of Planet Klythera 🔒</a></li>
+        <li><a href="#c1520">Chapter 1520: Ailment 🔒</a></li>
+        <li><a href="#c1521">Chapter 1521: Prizing Peace 🔒</a></li>
+        <li><a href="#c1522">Chapter 1522: Chaos Sea 🔒</a></li>
+        <li><a href="#c1523">Chapter 1523: Freedom Star City 🔒</a></li>
+        <li><a href="#c1524">Chapter 1524: The Collector 🔒</a></li>
+        <li><a href="#c1525">Chapter 1525: Important Intelligence 🔒</a></li>
+        <li><a href="#c1526">Chapter 1526: Dump 🔒</a></li>
+        <li><a href="#c1527">Chapter 1527: Experimental Sacrifice 🔒</a></li>
+        <li><a href="#c1528">Chapter 1528: Kram’s Transformation 🔒</a></li>
+        <li><a href="#c1529">Chapter 1529: Reinforce 🔒</a></li>
+        <li><a href="#c1530">Chapter 1530: Klytherans’ Charge 🔒</a></li>
+        <li><a href="#c1531">Chapter 1531: Planet Zax 🔒</a></li>
+        <li><a href="#c1532">Chapter 1532: Subdue 🔒</a></li>
+        <li><a href="#c1533">Chapter 1533: Taking the Initiative 🔒</a></li>
+        <li><a href="#c1534">Chapter 1534: Laying the Groundwork 🔒</a></li>
+        <li><a href="#c1535">Chapter 1535: New Weapons 🔒</a></li>
+        <li><a href="#c1536">Chapter 1536: Assistance and Countermeasure 🔒</a></li>
+        <li><a href="#c1537">Chapter 1537: Attacked from Front and Rear 🔒</a></li>
+        <li><a href="#c1538">Chapter 1538: Audience 🔒</a></li>
+        <li><a href="#c1539">Chapter 1539: Felt at Home 🔒</a></li>
+        <li><a href="#c1540">Chapter 1540: Regard 🔒</a></li>
+        <li><a href="#c1541">Chapter 1541: Shift in Attitude 🔒</a></li>
+        <li><a href="#c1542">Chapter 1542: Ashen Fortress 🔒</a></li>
+        <li><a href="#c1543">Chapter 1543: Death Plague Magic and Rewards 🔒</a></li>
+        <li><a href="#c1544">Chapter 1544: Duality 🔒</a></li>
+        <li><a href="#c1545">Chapter 1545: Mission Decision 🔒</a></li>
+        <li><a href="#c1546">Chapter 1546: Fetish and Daze 🔒</a></li>
+        <li><a href="#c1547">Chapter 1547: Challenge of Fusing Dendro and Pyro 🔒</a></li>
+        <li><a href="#c1548">Chapter 1548: Two-Pronged Strategy 🔒</a></li>
+        <li><a href="#c1549">Chapter 1549: War Product 🔒</a></li>
+        <li><a href="#c1550">Chapter 1550: Code 4700-1 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1451-1500.html" rel="prev">&larr; Chs 1451–1500</a>    <a href="../../index.html">Library</a>
+<a href="1551-1600.html" rel="next">Chs 1551–1600 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

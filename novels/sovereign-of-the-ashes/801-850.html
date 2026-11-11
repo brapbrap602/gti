@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 801–850</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="751-800.html#last" data-next-page="851-900.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c801">Chapter 801: Textbook Example Of Warfare 🔒</a></li>
+        <li><a href="#c802">Chapter 802: The Northern Snowy Region 🔒</a></li>
+        <li><a href="#c803">Chapter 803: Confidence 🔒</a></li>
+        <li><a href="#c804">Chapter 804: Divine Messengers 🔒</a></li>
+        <li><a href="#c805">Chapter 805: Talents Of The Past 🔒</a></li>
+        <li><a href="#c806">Chapter 806: Sharing Spoils Equally 🔒</a></li>
+        <li><a href="#c807">Chapter 807: Lavender Harmony Plane 🔒</a></li>
+        <li><a href="#c808">Chapter 808: The Slave Trade 🔒</a></li>
+        <li><a href="#c809">Chapter 809: Bloodline Magic Research 🔒</a></li>
+        <li><a href="#c810">Chapter 810: Mutual Understanding At The Dining Table 🔒</a></li>
+        <li><a href="#c811">Chapter 811: Violet Chrome Demiplane 🔒</a></li>
+        <li><a href="#c812">Chapter 812: Kermoine Serpent Warlock Clan 🔒</a></li>
+        <li><a href="#c813">Chapter 813: Wild Gorilla Clan’s Deadly Resistance 🔒</a></li>
+        <li><a href="#c814">Chapter 814: Troublemaker 🔒</a></li>
+        <li><a href="#c815">Chapter 815: Stronger or Weaker 🔒</a></li>
+        <li><a href="#c816">Chapter 816: Retaliatory Strike 🔒</a></li>
+        <li><a href="#c817">Chapter 817: Moment of Chaos 🔒</a></li>
+        <li><a href="#c818">Chapter 818: Intensifying 🔒</a></li>
+        <li><a href="#c819">Chapter 819: Battle Of Rank Three 🔒</a></li>
+        <li><a href="#c820">Chapter 820: The Elite One-Eyed Opponent 🔒</a></li>
+        <li><a href="#c821">Chapter 821: Danger Continues 🔒</a></li>
+        <li><a href="#c822">Chapter 822: Assault and Regroup 🔒</a></li>
+        <li><a href="#c823">Chapter 823: Eccentrics 🔒</a></li>
+        <li><a href="#c824">Chapter 824: Collision Of Flesh and Blood 🔒</a></li>
+        <li><a href="#c825">Chapter 825: Predicament 🔒</a></li>
+        <li><a href="#c826">Chapter 826: Whining 🔒</a></li>
+        <li><a href="#c827">Chapter 827: Displeasure and Reinforcements 🔒</a></li>
+        <li><a href="#c828">Chapter 828: Fight To Bitter End 🔒</a></li>
+        <li><a href="#c829">Chapter 829: Half A Year 🔒</a></li>
+        <li><a href="#c830">Chapter 830: Heavy Casualties 🔒</a></li>
+        <li><a href="#c831">Chapter 831: Nicholson 🔒</a></li>
+        <li><a href="#c832">Chapter 832: Giant Serpent Bloodline 🔒</a></li>
+        <li><a href="#c833">Chapter 833: Tourmaline Is Evolving 🔒</a></li>
+        <li><a href="#c834">Chapter 834: Arriba Interstellar Chamber of Commerce 🔒</a></li>
+        <li><a href="#c835">Chapter 835: The Power Of An Overlord 🔒</a></li>
+        <li><a href="#c836">Chapter 836: Startled 🔒</a></li>
+        <li><a href="#c837">Chapter 837: Demons and Devils 🔒</a></li>
+        <li><a href="#c838">Chapter 838: The Conclusion Of The War 🔒</a></li>
+        <li><a href="#c839">Chapter 839: Hiring 🔒</a></li>
+        <li><a href="#c840">Chapter 840: Heavy Losses 🔒</a></li>
+        <li><a href="#c841">Chapter 841: Ribbons 🔒</a></li>
+        <li><a href="#c842">Chapter 842: Mentor And Apprentice’s Meeting 🔒</a></li>
+        <li><a href="#c843">Chapter 843: Restraint and Scapegoating 🔒</a></li>
+        <li><a href="#c844">Chapter 844: Boost In Research 🔒</a></li>
+        <li><a href="#c845">Chapter 845: Return Journey 🔒</a></li>
+        <li><a href="#c846">Chapter 846: Gratitude 🔒</a></li>
+        <li><a href="#c847">Chapter 847: Gift and Investment 🔒</a></li>
+        <li><a href="#c848">Chapter 848: Bountiful Spoils 🔒</a></li>
+        <li><a href="#c849">Chapter 849: Returning To Magus World 🔒</a></li>
+        <li><a href="#c850">Chapter 850: Changes at the Divine Tower of Verdant Spring 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c801" data-label="801">
+<h2 class="chapter">Chapter 801: Textbook Example Of Warfare 🔒</h2>
+<p>It was not the space fortress of the Divine Tower of Verdant Spring or the Order of the Fiery Molten Mountain that fired the main cannon; it was one of the three space fortresses that White Stella had brought with her.</p>
+<p>As one of the top war weapons of the Magus Civilization, space fortresses had been available for purchase by the Magus Alliance’s member planes for many years.</p>
+<p>However, most of them could only acquire older and obsolete models.</p>
+<p>The sea races of the Magus World, being key stakeholders within the Magus Alliance, enjoyed purchasing privileges that were several tiers higher.</p>
+<p>The three space fortresses White Stella brought were among the latest models developed in the past...</p>
+</article>
+<article id="c802" data-label="802">
+<h2 class="chapter">Chapter 802: The Northern Snowy Region 🔒</h2>
+<p>Oneille’s concerns reflected the worries of most Rank Four and above powerhouses from Magus World who had already taken part in the invasion of the Wild Gorilla World.</p>
+<p>Yet, there was a contrasting group with different views—those who had not yet joined or were just preparing to seize their share of the plunder.</p>
+<p>This latter group was less concerned about how many people were sharing the spoils of this medium-sized plane.</p>
+<p>Their main concern was simply whether they were included in the feast at all.</p>
+<p>In this war, some had managed to secure a hearty share, others had merely a taste, and still others could only savor the distant aroma of victory.</p>
+<p>Even so, they should rejoice; the star domain surrounding...</p>
+</article>
+<article id="c803" data-label="803">
+<h2 class="chapter">Chapter 803: Confidence 🔒</h2>
+<p>The endless expanse of white snow-capped mountains stretched as far as Sein’s eyes could see.</p>
+<p>As a medium-sized plane, Wild Gorilla World’s size and environmental diversity far exceeded the small and micro-sized planes Sein had previously visited.</p>
+<p>After holing himself up in his laboratory for half a year, going outside for some fresh air was a welcome change.</p>
+<p>Like a swift swallow, Sein ascended to the peak of a snow-capped peak and carefully placed a blinking green elemental eye.</p>
+<p>This was the military “Eye of Surveillance,” an advanced magic tool.</p>
+<p>With this device, the Magus Civilization Army could effortlessly gather a comprehensive holographic view of the snowy battlefiel...</p>
+</article>
+<article id="c804" data-label="804">
+<h2 class="chapter">Chapter 804: Divine Messengers 🔒</h2>
+<p>For now, Sein and the others had no idea where the battle in Wild Gorilla City would ultimately lead.</p>
+<p>However, the battle on the northern icefield concluded swiftly.</p>
+<p>More than seventy percent of the Wild Gorilla Army stationed there were local creatures.</p>
+<p>These beings thrived in the cold and chose not to retreat with the main Wild Gorilla Army, opting instead to defend their homeland.</p>
+<p>In terms of high-ranking combatants, only three Gorilla Gods were present to support this legion that refused to back down.</p>
+<p>One of them was already familiar with the Divine Tower of Verdant Spring Army, having been chased by four giant Sea Kings in a prior battle.</p>
+<p>The other two Gorilla...</p>
+</article>
+<article id="c805" data-label="805">
+<h2 class="chapter">Chapter 805: Talents Of The Past 🔒</h2>
+<p>Hephaes, the centaur god, arrived at a great time.</p>
+<p>When he crossed the massive space-time gate located in the southern region of Wild Gorilla World, a violent surge of planar law disturbance and a powerful shockwave swept across the entire plane from its center.</p>
+<p>That was the battlefield of Wild Gorilla City, where seven Rank Six powerhouses clashed.</p>
+<p>Five of these were from the Magus Civilization.</p>
+<p>The two being besieged were, unsurprisingly, Wild Gorilla God and White Banisher Gorilla God.</p>
+<p>As one of Centaurworld’s eighteen centaur gods, Hephaes was no stranger to Rank Six beings.</p>
+<p>It had even attended a Magus Alliance Conference before and witnessed a few of the allied overlords.</p>
+<p>However, Hephaes’ broad perspective...</p>
+</article>
+<article id="c806" data-label="806">
+<h2 class="chapter">Chapter 806: Sharing Spoils Equally 🔒</h2>
+<p>Since Sein and the Rank One and Rank Two mages from the other divine towers were already acquainted from their time during the Regional Inter-Divine Tower Academy War, they had a pleasant time reconnecting with each other.</p>
+<p>The competitiveness and ambition that had once marked their relationships now felt like distant memories, faded with time.</p>
+<p>Many mages had since dedicated themselves to the pursuit of truth and knowledge, gradually learning to view fame and recognition with increasing detachment.</p>
+<p>Sein’s discussions with Gade, Poppuri, and the others largely revolved around their experiences since becoming full-fledged mages over the past few decades.</p>
+<p>As a Rank Two mage, Gade stood out as the one with the most experience.</p>
+<p>He had already...</p>
+</article>
+<article id="c807" data-label="807">
+<h2 class="chapter">Chapter 807: Lavender Harmony Plane 🔒</h2>
+<p>Before the war in the Wild Gorilla World had fully concluded, Sein was already on his way to other battlefields in neighboring star domains.</p>
+<p>Scattered resistance still occurred throughout various regions of the Wild Gorilla World.</p>
+<p>Despite the Magus World’s repeated victories that broke the spirit of the once-mighty Gorilla Gods, completely subjugating a medium-sized civilization with a history spanning over a hundred thousand years would take more than just a few years.</p>
+<p>Some Gorilla Gods still managed to escape but the Magus World leaders, represented by Feylis, were organizing elite forces of Rank Four and above to hunt them down.</p>
+<p>Following the decisive battle at Wild Gorilla City,...</p>
+</article>
+<article id="c808" data-label="808">
+<h2 class="chapter">Chapter 808: The Slave Trade 🔒</h2>
+<p>Although the sea legion led by White Stella had temporarily separated from the Divine Tower of Verdant Spring Army, Tourmaline stayed with Sein and the others.</p>
+<p>Lavender Harmony Plane was a scenic world with rare purple soil and an abundance of water vapor resources.</p>
+<p>Tourmaline took an immediate liking to this world upon her arrival.</p>
+<p>Unlike the uncomfortably small microplanes, Lavender Harmony Plane, a low-level world with a weakened planar will, was perfect for powerful and massive beings like Tourmaline to roam freely.</p>
+<p>After reaching Lavender Harmony Plane, Tourmaline managed to convince Sein to play with her for a while.</p>
+<p>Despite her fierce and majestic appearance as a draconic...</p>
+</article>
+<article id="c809" data-label="809">
+<h2 class="chapter">Chapter 809: Bloodline Magic Research 🔒</h2>
+<p>After a year and a half in Lavender Harmony Plane, the large-scale capture of enslaved creatures was still underway.</p>
+<p>However, with the subgorilla army effectively dismantled, the resistance faced by the Magus World Army diminished with each passing day.</p>
+<p>To meet Master Feylis’ directive to conclude the war across the two low-level planes within three years, Lorianne delegated the task of managing the continued capture efforts in Lavender Harmony Plane to Fenrir, the two-headed giant wolf, and the white-feathered pelican.</p>
+<p>Lorianne herself, alongside Black Oblivion and Milena, led the main forces to another assigned low-level plane—the Sandstorm World.</p>
+<p>Sandstorm World’s native population and its resistance were considerably weaker than those of the Lavender Harmony...</p>
+</article>
+<article id="c810" data-label="810">
+<h2 class="chapter">Chapter 810: Mutual Understanding At The Dining Table 🔒</h2>
+<p>“Flame Demon’s bloodline…”</p>
+<p>In the laboratory, Sein scrutinized a tube of reagent as crimson as molten lava, shaking his head to clear his mind of distractions.</p>
+<p>He had conducted numerous derivations of the Flame Demon bloodline fusion before.</p>
+<p>In the Magus World, bloodline fusion experiments were not considered particularly sophisticated or difficult.</p>
+<p>During the primordial era, the Magus World’s spellcasters had already pioneered various methods of bloodline fusion.</p>
+<p>The Bloodline Warlock profession emerged as a more systematic and scientific approach within the Magus World.</p>
+<p>Harnessing the bloodlines of powerful creatures to enhance one’s constitution was a practice long refined by the old generations of spellcasters.</p>
+<p>In Sein’s case, absorbing the Flame Demon’s bloodline was not out of admiration for its powerful pyro elemental energy.</p>
+<p>For mages who had just reached Rank Two, the Flame Demon’s power...</p>
+</article>
+<article id="c811" data-label="811">
+<h2 class="chapter">Chapter 811: Violet Chrome Demiplane 🔒</h2>
+<p>Sein’s respite in Sandstorm World was brief as he was soon assigned to a demiplane orbiting Sandstorm World—Violet Chrome.</p>
+<p>As its name implied, the Violet Chrome was a resource-rich demiplane known for its abundance of the special metal known as violet chrome.</p>
+<p>Approximately half a million subgorilla laborers from Sandstorm World had been dispatched by the Divine Tower of Verdant Spring to conduct resource mining there.</p>
+<p>Alongside these subgorilla miners, hundreds of full-fledged mages and roughly twenty thousand high-ranking magic beasts were stationed in the Violet Chrome Demiplane.</p>
+<p>While the magic beasts served as overseers, the mages, including Sein, were tasked with identifying violet chrome ore deposits and devising the general mining strategy.</p>
+<p>Violet chrome was regarded as a...</p>
+</article>
+<article id="c812" data-label="812">
+<h2 class="chapter">Chapter 812: Kermoine Serpent Warlock Clan 🔒</h2>
+<p>The Dragon Warlock Clan was the Magus World’s force that had gained the second most benefits in the star domain where Wild Gorilla World was located, surpassed only by the Pyro Secret Society.</p>
+<p>According to Lorianne and the others, the remaining twenty or so complete planes still under the Wild Gorilla World’s control appeared to be reserved for the Dragon Warlock Clan.</p>
+<p>Given this context, Sein had initially assumed they were the Bloodline Warlock Clan that had taken control of Arbitor World.</p>
+<p>To his surprise, it was not the Dragon Warlock Clan that had occupied the low-level plane and its two surrounding microplanes, but rather their vassal family—the Kermoine Serpent Warlock Clan.</p>
+<p>As one of the leading forces in the Magus World, the Dragon Warlock Clan did not achieve...</p>
+</article>
+<article id="c813" data-label="813">
+<h2 class="chapter">Chapter 813: Wild Gorilla Clan’s Deadly Resistance 🔒</h2>
+<p>Sein had sought advice from the right person on a question concerning bloodline magic.</p>
+<p>Angreas, a Bloodline Warlock, was undoubtedly an expert in this area.</p>
+<p>However, knowledge among mages was too valuable to be exchanged for free.</p>
+<p>To acquire knowledge about bloodline purification magic from Angreas, Sein traded a Rank Three Wild Gorilla’s heart.</p>
+<p>Given the substantial gains Sein had accumulated during the recent Wild Gorilla World War, and with two demigod-level fighters under his command, this expense was insignificant to him.</p>
+<p>The heart of a Wild Gorilla was an excellent raw material for undead chimera synthesis experiments, and the potent blood qi it contained was highly beneficial for cultivation, especially for Bloodline Warlocks like Angreas.</p>
+<p>Initially, Angreas had planned to negotiate for a better deal.</p>
+<p>He would have been satisfied...</p>
+</article>
+<article id="c814" data-label="814">
+<h2 class="chapter">Chapter 814: Troublemaker 🔒</h2>
+<p>Wild Gorilla God was far from brainless or foolish.</p>
+<p>There was an underlying reason why it chose to battle the Magus Civilization to the bitter end.</p>
+<p>The other Gorilla Gods did not know that after being rebuffed by the Feral Beast Star, Rank Six Wild Gorilla God had privately reached an agreement with the Gallant Federation.</p>
+<p>The Gallant Federation demanded that the Wild Gorilla Clan hold out for another three to five years to prove their resilience and valor.</p>
+<p>Only by demonstrating their worthiness would the federation deploy its legions for aid.</p>
+<p>In their eyes, the weak were not fit to be allies!</p>
+<p>The Gallant Federation would not expend hundreds of trillions of Federal dollars in military expenses to wage a war in an alien star domain with little...</p>
+</article>
+<article id="c815" data-label="815">
+<h2 class="chapter">Chapter 815: Stronger or Weaker 🔒</h2>
+<p>Everyone knew that without lips, the teeth would be exposed to the cold.</p>
+<p>As a Rank Six being who had established its reputation for over a hundred thousand years, Tyrant Tiger King could see the immense pressure that the Magus Civilization’s invasion and their conquest of the Wild Gorilla World had brought to the Feral Beast Star Domain and its surrounding regions.</p>
+<p>Their neighbor, the Blue Violet Star, had it pretty easy.</p>
+<p>In the face of impending threats, it quickly surrendered and joined the Magus Alliance, dragging its vassal planes along with it.</p>
+<p>While Blue Violet Star had the option of joining the Magus Alliance due to its long-standing alliance with the Magus Civilization’s Dragon Warlock Clan, the Feral Beast Star did not share the same fortune.</p>
+<p>The Feral Beast Star had chosen a different backer—the Gallant Federation.</p>
+<p>Being caught between two powerful civilizations was, in many ways, a precarious situation.</p>
+<p>Medium-sized planes like the Blue Violet Star and the Feral Beast Star could only choose to align themselves with...</p>
+</article>
+<article id="c816" data-label="816">
+<h2 class="chapter">Chapter 816: Retaliatory Strike 🔒</h2>
+<p>Sandstorm World.</p>
+<p>Sein had begun conducting his bloodline purification experiment almost immediately upon returning to this low-level plane.</p>
+<p>The complexity of the experiment, involving many mysteries and knowledge outside Sein’s expertise, demanded his full attention.</p>
+<p>For this reason, he even had to decline Tourmaline’s invitation to play with her.</p>
+<p>Tourmaline seemed to be the only one in the Wild Gorilla World who could still think about how to have fun every day.</p>
+<p>While Sein was engrossed in his bloodline experiments, the business cooperation between the Kermoine Serpent Warlock Clan, the Divine Tower of Verdant Spring, and Black Oblivion progressed smoothly.</p>
+<p>More than half a year ago, the Verdant Spring Space Fortress, filled with millions of enslaved subgorillas, returned on schedule last month.</p>
+<p>This returning space fortress brought not only substantial magicoin proceeds for...</p>
+</article>
+<article id="c817" data-label="817">
+<h2 class="chapter">Chapter 817: Moment of Chaos 🔒</h2>
+<p>Although the enemy attack came suddenly, the Divine Tower of Verdant Spring’s mages quickly organized themselves and demonstrated their elite training.</p>
+<p>Despite its relatively recent establishment, the Divine Tower of Verdant Spring had already participated in several interplanar wars over the past century—the Viridian Venom Flame World War, the Thunderfall World War, the Verdant Leaf World War, the Verdant Wilderness World War, and now the current star domain conflict involving the Wild Gorilla World…</p>
+<p>These frequent wars had honed fresh Rank One mages into seasoned battlefield veterans.</p>
+<p>However, these continuous conflicts had also led to significant attrition among the mages...</p>
+</article>
+<article id="c818" data-label="818">
+<h2 class="chapter">Chapter 818: Intensifying 🔒</h2>
+<p>If the knights were considered the kings of solo combat in the Magus World, then the mages were the Magus Civilization’s specialists in mass destruction.</p>
+<p>Sein’s mastery of magic, refined through years of relentless research, far exceeded the expectations of ordinary Rank One mages.</p>
+<p>During his Rank One days, he had relied heavily on the Verdant Flame Eye spell as his trump card.</p>
+<p>Since advancing to Rank Two and deepening his research into pyro elemental energy, even the spells Sein had relied on during his Rank One stage could now deliver significantly higher damage.</p>
+<p>With the aid of his Radiant Heart Magic Rod, Sein’s casting time was dramatically reduced, particularly for spells that harnessed the two special flames he had mastered—the Verdant Flame and the...</p>
+</article>
+<article id="c819" data-label="819">
+<h2 class="chapter">Chapter 819: Battle Of Rank Three 🔒</h2>
+<p>The fact that even Tourmaline had readied herself for battle showed just how aggressive the incoming assault by the Wild Gorilla Army was.</p>
+<p>Sein was not worried because he knew that the demigod-level dragon turtle could take care of herself, so for now, his focus was on the two foes in front of him.</p>
+<p>The demigod-level Kingfisher, who had just been standing by Sein’s side, spread its wings and soared into the sky to confront a demigod-level Wild Gorilla that was relentlessly hammering the magic shield of the fortress base.</p>
+<p>The Kingfisher had to intercept and engage the enemy to prevent further damage.</p>
+<p>Meanwhile, Sia, Sein’s mother-in-law and a Rank Three knight, faced off against a Wild Gorilla soldier who was surprisingly a female.</p>
+<p>This red-furred Wild Gorilla, likely a rare...</p>
+</article>
+<article id="c820" data-label="820">
+<h2 class="chapter">Chapter 820: The Elite One-Eyed Opponent 🔒</h2>
+<p>Sein and the one-eyed Rank Three Wild Gorilla clashed fiercely.</p>
+<p>Sein launched the first strike with a cleverly angled spell aimed directly at his formidable opponent.</p>
+<p>The raw power of magic was not something most creatures could withstand with merely their bodies.</p>
+<p>However, the Wild Gorilla Clan, belonging to a medium-sized civilization, far surpassed the capabilities of creatures from low-level and microplanes in terms of body tempering and energy manipulation.</p>
+<p>A translucent, light red energy aura radiated from the one-eyed Wild Gorilla’s body.</p>
+<p>This aura resembled the battle qi shields used by the knights of the Magus World, but it was not battle qi. Instead, it was a form of blood qi manipulation.</p>
+<p>When Sein’s single-target...</p>
+</article>
+<article id="c821" data-label="821">
+<h2 class="chapter">Chapter 821: Danger Continues 🔒</h2>
+<p>Sein’s battle with the Rank Three one-eyed Wild Gorilla ended with his victory.</p>
+<p>With Sein’s extensive arsenal, including his magic equipment, his strength was roughly on par with that of the Rank Three Wild Gorilla without employing the Viridescent Seeds.</p>
+<p>However, in a chaotic battlefield where armies clashed, battles were rarely straightforward duels between equals.</p>
+<p>As the defenders, Sein and his allies held the advantage of the terrain, reinforced by the surrounding magic towers providing continuous fire support.</p>
+<p>The magic shield above, while flickering under constant strain, still held firm, preventing the Wild Gorillas outside the fortress from overwhelming them.</p>
+<p>Only those who managed to breach the barrier during its momentary lapses could join the fray within the fortress.</p>
+<p>Natalya and Yuri inevitably intervened...</p>
+</article>
+<article id="c822" data-label="822">
+<h2 class="chapter">Chapter 822: Assault and Regroup 🔒</h2>
+<p>After enduring a relentless week of high-intensity battle, the fortress command center granted Sein a break.</p>
+<p>However, it was only for one day—a luxury considering the relentless onslaught of the Wild Gorilla Army against the Divine Tower of Verdant Spring’s main base.</p>
+<p>The combat command center could only manage staggered breaks for all participating mages, so a full day for Sein was already a stretch.</p>
+<p>Rank Three grand mages, with their deeper mana reserves, had not taken a break all this while.</p>
+<p>Wherever reinforcements were needed, they were dispatched without question.</p>
+<p>Their refined elemental energy enabled them to fight for durations many times longer than Rank Two mages. Moreover, their combat power was significantly superior.</p>
+<p>Despite the fighting for the past week, Sein still retained considerable...</p>
+</article>
+<article id="c823" data-label="823">
+<h2 class="chapter">Chapter 823: Eccentrics 🔒</h2>
+<p>After a day of rest, Sein arrived punctually at the designated rendezvous point for the Divine Tower of Verdant Spring’s assault corps.</p>
+<p>As expected, Natalya, Reina, Leena, and his loyal assistant Yuri accompanied him.</p>
+<p>Sanchez, the skeletal dragon, also rejoined them at Leena’s call, bringing with it thousands of undead creatures.</p>
+<p>This time, the demigod-level Kingfisher did not accompany Sein; its strength was still crucial for the defense of the western side of the fortress, along with the plant legions.</p>
+<p>Before departing, Sein entrusted half of his stock of Viridescent Seeds to Selina, Faye, and the others.</p>
+<p>The unforgiving natural environment of Sandstorm World made plant life scarce, with the only exception being the large oasis...</p>
+</article>
+<article id="c824" data-label="824">
+<h2 class="chapter">Chapter 824: Collision Of Flesh and Blood 🔒</h2>
+<p>In addition to wielding formidable elemental power to strike down enemies, the mages of Magus World commonly mastered shield magic with strong defensive capabilities.</p>
+<p>With a balance of offensive and defensive skills, they distinguished themselves as one of the rare versatile forces in the Astral Realm.</p>
+<p>These truth-seeking mages were true jack-of-all-trades.</p>
+<p>Despite focusing on personal evolution, they had also pioneered advanced magitech.</p>
+<p>Though physically frail, they compensated for this inherent weakness by wielding an arsenal of protective magic shields and by developing a specialized profession—knights, who excelled in close-quarters combat to defend their homeplane.</p>
+<p>Of course, there were also mages like Sein, who tempered...</p>
+</article>
+<article id="c825" data-label="825">
+<h2 class="chapter">Chapter 825: Predicament 🔒</h2>
+<p>What should have been a half-day journey to reach the space fortress turned into a grueling day and a half for Sein and the assault corps.</p>
+<p>By the time they finally arrived at the outskirts of the fortress, half of it had been buried beneath yellow sand.</p>
+<p>The most challenging part of the journey had been the final stretch to the outskirts of the space fortress.</p>
+<p>Although the fortress appeared to be only a small distance away, the journey actually took nearly a day for these full-fledged mages to complete.</p>
+<p>It was here that over eight thousand magic beasts were lost, permanently buried in the sands.</p>
+<p>By the end of the journey, only fewer than ten thousand magic beasts remained capable of fighting.</p>
+<p>Positioned at the center of the formation and protected by the surrounding magic beasts, the mages experienced...</p>
+</article>
+<article id="c826" data-label="826">
+<h2 class="chapter">Chapter 826: Whining 🔒</h2>
+<p>After enduring a fierce battle, Sein and his group barely managed a two-hour respite upon reaching the space fortress before diving back into action.</p>
+<p>The Kermoine Serpent Warlock Clan’s visibly worn-out space fortress lacked both robust defenses and significant combat capabilities.</p>
+<p>An overwhelming onslaught from the Wild Gorilla Army, including a Gorilla God of Rank Four or higher had caused its prior crash landing.</p>
+<p>If not for the timely intervention of Black Oblivion to protect the fortress, it was uncertain whether it could have landed safely.</p>
+<p>At the top of the fortress, a gash more than two thousand meters long and over fifty meters deep marred its structure.</p>
+<p>The outer alloy armor of...</p>
+</article>
+<article id="c827" data-label="827">
+<h2 class="chapter">Chapter 827: Displeasure and Reinforcements 🔒</h2>
+<p>The two massive pillars of elemental light, each exceeding a hundred meters in diameter, erupted from the center of the space fortress, serving as a signal for Sein and his group’s breakout toward the main fortress base.</p>
+<p>With much of the space fortress buried in the desert, the intense heat from the blasts vaporized the surrounding yellow sands.</p>
+<p>The main cannon of the space fortress, with destructive power rivaling the full strength of a Rank Four or higher entity, had essentially depleted all the energy crystals that could not be taken away.</p>
+<p>Yet, the attack helped Sein and the others tremendously by obliterating nearly half of the Wild Gorilla forces encircling the fortress.</p>
+<p>Seizing the opportunity created by the main cannon and the Wild Gorilla Army’s delayed response of reinforcements...</p>
+</article>
+<article id="c828" data-label="828">
+<h2 class="chapter">Chapter 828: Fight To Bitter End 🔒</h2>
+<p>When Sein and his group finally charged their way back to the Divine Tower of Verdant Spring’s main fortress, nearly a week had passed.</p>
+<p>Of the original four million Yaja slaves, only about two million remained.</p>
+<p>Nearly half of the other cannon fodder had also fallen within the narrow stretch of yellow sand surrounding the main base.</p>
+<p>Although most of these losses occurred during clashes with the Wild Gorilla legion, the true culprit was a Rank Four Gorilla God presiding over this low-level dimensional battlefield.</p>
+<p>Had it not been for the Gorilla God’s direct intervention, Sein and his companions would not have been forced to leave behind over two million fallen Yaja slaves.</p>
+<p>Fortunately, shortly after the Rank Four Gorilla God unleashed its destructive power, Black Oblivion’s thunderous dragon roar echoed.</p>
+<p>Once again, the mighty flood dragon drew the Gorilla God back...</p>
+</article>
+<article id="c829" data-label="829">
+<h2 class="chapter">Chapter 829: Half A Year 🔒</h2>
+<p>Half a year later….</p>
+<p>It had been an extremely difficult period—dark, grueling, and seemingly endless.</p>
+<p>For Sein and the other Magus World mages on the battlefield, death had never felt so close.</p>
+<p>Four months ago, a violent upheaval shook the eastern skies of Sandstorm World.</p>
+<p>The turbulence and shockwaves from an explosion there had spread far and wide.</p>
+<p>Sein, a seasoned war mage, had only felt something similar twice before—once on the Viridian Venom Flame World battlefield and once in the Thunderfall World War.</p>
+<p>Such devastating celestial phenomena had only occurred during the destruction of a Rank Four mecha or the fall of the King of Garths.</p>
+<p>While the Divine Tower of Verdant Spring’s lower-ranking mages and enslaved creatures remained oblivious to the cause, Sein learned the truth through...</p>
+</article>
+<article id="c830" data-label="830">
+<h2 class="chapter">Chapter 830: Heavy Casualties 🔒</h2>
+<p>After twenty sandglasses of shallow meditation in the long corridor of the main fortress base, Sein opened his slightly bloodshot eyes.</p>
+<p>While it was true that mages no longer needed to sleep every day after reaching Rank One, even Rank Two mages like Sein could not endure endless battles without rest.</p>
+<p>Half a month of intense combat without sleep had left him physically drained with a horrible headache.</p>
+<p>Unfortunately, the unrelenting battles outside the fortress left no room for proper rest.</p>
+<p>Sein’s mind drifted back to the early days of the conflict, more than six months ago.</p>
+<p>Back then, the command center had been able to grant Sein and the other mages a full day to recover and regroup.</p>
+<p>But that was a luxury of the past.</p>
+<p>For the last three months, no war mage had been afforded...</p>
+</article>
+<article id="c831" data-label="831">
+<h2 class="chapter">Chapter 831: Nicholson 🔒</h2>
+<p>As one of the lesser-known low-level planes of the Wild Star Domain, Arbitor World was even less prominent than Sandstorm World.</p>
+<p>At least Sandstorm World had energy crystal veins with decent reserves, making it a somewhat valuable asset. Otherwise, Feylis would not have gone through the trouble of pulling a few strings to get it assigned to her favorite apprentice.</p>
+<p>Arbitor World, by contrast, offered only plant resources of low value and subpar subgorilla species.</p>
+<p>Across the hundreds of complete planes within the Wild Star Domain, Arbitor World was among the most unremarkable.</p>
+<p>But today, it had become the stage for a historical event—a battle between two Rank Six beings.</p>
+<p>For nearly half a year, Wild Gorilla God and the Black Viperfish Serpent Warlock named Nicholson had clashed here.</p>
+<p>Both combatants were powerful in their own right.</p>
+<p>Wild Gorilla God, a dominating figure in this star domain and its neighbors, wielded a world-class secret treasure...</p>
+</article>
+<article id="c832" data-label="832">
+<h2 class="chapter">Chapter 832: Giant Serpent Bloodline 🔒</h2>
+<p>Nicholson did not bring his legion stationed in Arbitor World when he set off in pursuit of Wild Gorilla God.</p>
+<p>With a massive number of Wild Gorillas in this world, the departure of their Rank Six powerhouse did not signify the end of the conflict on this plane.</p>
+<p>While battles between Rank Four and above creatures were awe-inspiring and breathtaking to lesser lifeforms, the true bloodshed and cruelty of interplanar war were most vividly displayed in the clashes between the vast armies of low-ranking creatures.</p>
+<p>“I’ll leave this family legion of mine here. Just hold on for a while longer, reinforcements from the Magus World should be arriving soon,” Nicholson informed a Rank Four Kermoine Serpent Warlock named Harry before leaving.</p>
+<p>For Nicholson, supporting Arbitor World had been purely ...</p>
+</article>
+<article id="c833" data-label="833">
+<h2 class="chapter">Chapter 833: Tourmaline Is Evolving 🔒</h2>
+<p>On Sandstorm World’s battlefield…</p>
+<p>Sein, in his Flame Demon form, gazed at the colossal dragon turtle roaring skyward, his expression a mix of awe and astonishment.</p>
+<p>After nearly half a year of relentless conflict, the intensity of the war in Sandstorm World had proven that no creature, no matter how strong, could avoid being drawn into its chaos.</p>
+<p>Tourmaline, a being with peak demigod-level strength, had joined the fray early on.</p>
+<p>Her exceptional bloodline and overwhelming dragon might had made her an indispensable force in the war.</p>
+<p>In fact, she was far more powerful than most demigods.</p>
+<p>Even Sanchez, a skeletal dragon not known for humility, admitted that fighting alongside Tourmaline often left it fearing that it might be dismantled.</p>
+<p>Despite both being dragon creatures, the gap between a skeletal dragon and a dragon turtle...</p>
+</article>
+<article id="c834" data-label="834">
+<h2 class="chapter">Chapter 834: Arriba Interstellar Chamber of Commerce 🔒</h2>
+<p>While other creatures stuck at their peak demigod status desperately strove to reach Rank Four and ascend to “godhood”, a “young hatchling” like Tourmaline never had such ambition.</p>
+<p>This demigod-level dragon turtle, blessed with immense physical strength, had always seemed indifferent to the allure of power.</p>
+<p>Rather than seeking breakthroughs in her life level or relishing the thrill of dominance over lesser creatures, Tourmaline preferred simpler pleasures—like sleeping or playing.</p>
+<p>Creatures who tirelessly chased power, dedicating years or even centuries of their lives to breaking through, often found themselves unable to make meaningful progress.</p>
+<p>Yet, a dragon turtle with no particular desire for strength had inadvertently overcome the bottleneck that held most creatures back.</p>
+<p>In the Astral Realm, it was widely acknowledged that the leap from Rank Three to Rank Four—often referred to as the “demigod realm”—was one of the hardest barriers to overcome for most.</p>
+<p>Although each advancement in life level was extremely challenging, the transition from Rank Three to Rank Four was especially challenging because it involved a...</p>
+</article>
+<article id="c835" data-label="835">
+<h2 class="chapter">Chapter 835: The Power Of An Overlord 🔒</h2>
+<p>When extravagant Arriba Chamber of Commerce reinforcements appeared outside Arbitor World, tears welled up in Harry’s eyes.</p>
+<p>The Rank Four Kermoine Serpent Warlock had been pushed to the brink of despair, his battered and exhausted body barely holding up against the relentless aggression of the two Rank Four Gorilla Gods opposing him.</p>
+<p>Unfortunately, Harry’s moment of hope and excitement was fleeting.</p>
+<p>Without so much as a pause, the Arriba Chamber of Commerce’s troops and fleets zoomed past Arbitor World entirely, heading directly toward Sandstorm World.</p>
+<p>Neither the unruly devils and demons nor the impeccably organized cosmic battleships spared even a moment to intervene.</p>
+<p>Harry’s hopeful expression froze as his excitement quickly turned to bitter disappointment. The two Rank Four Gorilla Gods of Wild Gorilla World, though, were similarly unsettled and shaken.</p>
+<p>The overlord clad in a splendid violet outfit had...</p>
+</article>
+<article id="c836" data-label="836">
+<h2 class="chapter">Chapter 836: Startled 🔒</h2>
+<p>“I didn’t expect you to visit this medium-sized star domain personally, sir. Thank you for aiding our Magus Civilization Army.”</p>
+<p>An old man with a white beard appeared before the Magus Civilization’s reinforcements, respectfully addressing the violet-clad middle-aged man who had already trapped the Wild Gorilla God in space.</p>
+<p>This white-bearded old man was one of the participating Rank Six mages in the Wild Star Domain campaign.</p>
+<p>His seniority exceeded even that of Feylis.</p>
+<p>Yet, despite his venerable status, even he had to refer to the man in violet as “sir”.</p>
+<p>It was not merely because the middle-aged man’s strength far exceeded that of him and his peers, but also because his true age vastly surpassed that of the entire group of Magus World...</p>
+</article>
+<article id="c837" data-label="837">
+<h2 class="chapter">Chapter 837: Demons and Devils 🔒</h2>
+<p>The Arriba Chamber of Commerce and the sea race’s legions threw themselves into the conflict on Sandstorm World with full force.</p>
+<p>However, the reinforcements brought by Feylis and the other Magus Civilization powerhouses remained stationary, not because the reinforcements believed the forces in the Sandstorm World could easily defeat the Wild Gorilla Army on their own.</p>
+<p>Rather, the issue lay in Sandstorm World’s planar depth and capacity—the plane simply could not accommodate the presence of so many Rank Four and above powerhouses.</p>
+<p>Every complete plane had a certain capacity for the number of high-level lifeforms and battles it could endure. Even medium or large planes faced the risk of collapse and disintegration if this limit was exceeded.</p>
+<p>With the remnants of the Divine Tower of Verdant Spring, the Wild Gorilla Army, and now an ultra-luxurious legion and a dozen Rank Four or above Sea Kings battling in Sandstorm...</p>
+</article>
+<article id="c838" data-label="838">
+<h2 class="chapter">Chapter 838: The Conclusion Of The War 🔒</h2>
+<p>With reinforcements from the demons, devils, and sea races, the battlefield of Sandstorm World swiftly tipped in favor of the Magus Civilization.</p>
+<p>While low-level creatures remained oblivious to the larger shift, every Rank Four and higher Gorilla God could sense the oppressive aura emanating from beyond the plane and the arrival of numerous formidable beings.</p>
+<p>Even the strongest Wild Gorilla God had been subdued with minimal resistance. How could the weaker Gorilla Gods like them hope to continue fighting?</p>
+<p>Several bloodthirsty Gorilla Gods, unwilling to accept defeat, sought to sacrifice themselves in a final, desperate attempt to deal lethal blows to the Magus Civilization’s exhausted powerhouses in Sandstorm World.</p>
+<p>However, their intentions had already been anticipated.</p>
+<p>As Lorianne and the others focused on avoiding these crazed Wild...</p>
+</article>
+<article id="c839" data-label="839">
+<h2 class="chapter">Chapter 839: Hiring 🔒</h2>
+<p>In the recuperation center of the main base…</p>
+<p>Sein was here today to visit Sia, who had only recently regained consciousness.</p>
+<p>Outside the fortress, the scene was still bustling with activities—piles of corpses and mountains of loot ensured that the Divine Tower of Verdant Spring mages would remain occupied for quite some time.</p>
+<p>Sia looked better today. Dressed in a red nightgown, her face faintly flushed, though it was more a symptom of her weakened state rather than actual health.</p>
+<p>Despite her formidable constitution, her injuries were severe enough to require a minimum of six months of recovery.</p>
+<p>By contrast, her daughter Natalya had left the recuperation center days earlier. Though her wounds had yet to fully heal, they were no longer severe enough...</p>
+</article>
+<article id="c840" data-label="840">
+<h2 class="chapter">Chapter 840: Heavy Losses 🔒</h2>
+<p>Sein, of course, had no idea of how to ask for his mentor’s help because he had not seen Lorianne for more than half a year.</p>
+<p>Even as the war in Sandstorm World drew to a close, Lorianne had not appeared before the ordinary mages of the Divine Tower of Verdant Spring.</p>
+<p>This absence worried Sein, leading him to wonder about the possibility that she might have suffered a grave injury.</p>
+<p>On the other hand, he reasoned that even in the worst-case scenario, her life likely was not in danger.</p>
+<p>If the Rank Four tower master had fallen, the news would have reached every mage in the Divine Tower of Verdant Spring immediately after the war’s conclusion.</p>
+<p>The Magus Alliance would have promptly stepped in to handle matters such as the tower’s dissolution and resource allocatio...</p>
+</article>
+<article id="c841" data-label="841">
+<h2 class="chapter">Chapter 841: Ribbons 🔒</h2>
+<p>Sein had never seen this little girl before, yet her friendly tone and the familiarity she exuded made him frown slightly.</p>
+<p>“Tourmaline?” he ventured.</p>
+<p>“Yup, that’s me! This is my new form! What do you think?” Tourmaline chirped, spinning around playfully before Sein with a smile.</p>
+<p>Standing at just 1.4 meters tall, Tourmaline’s human form was even shorter than Leena’s teenage form, which had been at least 1.5 meters.</p>
+<p>On top of that, she looked like a child which made sense, since she was still a young hatchling.</p>
+<p>Despite the increase in her strength and life level, it was important to remember that advancing in power did not equate to aging.</p>
+<p>If anything, the more noble the bloodline, the longer it took for a high-level creature to mature fully.</p>
+<p>In magic beast forests within the Magus World, many creatures...</p>
+</article>
+<article id="c842" data-label="842">
+<h2 class="chapter">Chapter 842: Mentor And Apprentice’s Meeting 🔒</h2>
+<p>Tourmaline’s ribbons had merely been a brief distraction for Sein; his primary focus remained on analyzing demon bloodlines.</p>
+<p>The more he delved into the subject, the more he realized how ignorant he truly was.</p>
+<p>Each day, he discovered something new.</p>
+<p>With the demon and devil legions bound to leave Sandstorm World soon, Sein cherished every second of this fleeting opportunity to learn more about them.</p>
+<p>Not only was he conducting research on the Inferno War Devil with whom he had signed a short-term agreement, but he had also enlisted the help of his mother-in-law, who was still recovering, to hire several other devils and even demons of varying species.</p>
+<p>The life levels of these new test subjects were comparatively lower, ranging from Rank One to Rank ...</p>
+</article>
+<article id="c843" data-label="843">
+<h2 class="chapter">Chapter 843: Restraint and Scapegoating 🔒</h2>
+<p>The war in Sandstorm World might have ended for Sein and the Divine Tower of Verdant Spring mages, but that did not mean the broader conflict in the Wild Gorilla Star Domain was over.</p>
+<p>While Sein and the others were still recuperating in Sandstorm World, several elite Magus Civilization Armies had already mobilized toward the borders of the Wild Gorilla Star Domain and the neighboring Feral Beast Star Domain.</p>
+<p>Despite declaring neutrality and expressing a desire to stay out of the war between the Magus Civilization and Wild Gorilla World, the Feral Beast Star Domain found itself in an unenviable position.</p>
+<p>After all, neutrality alone was not enough to pacify the Magus Civilization.</p>
+<p>Several elite armies breached the Feral Beast Star Domain’s first line of defense and began their advance deeper into its terri...</p>
+</article>
+<article id="c844" data-label="844">
+<h2 class="chapter">Chapter 844: Boost In Research 🔒</h2>
+<p>The confrontation between the Gallant Federation and the Magus Civilization in the Feral Beast Star Domain and the Wild Star Domain ended with both sides choosing to take a step back.</p>
+<p>Though the Gallant Federation&#39;s financial support created a few “obstacles” for the Magus Civilization during its conquest of the Wild Star Domain, the Magus Civilization’s aggressive stance also forced the federation to surrender the Roman Planet.</p>
+<p>The Magus Civilization’s decision to deploy a space fortress and obliterate the three life planets was nothing short of a blatant slap in the face for the Gallant Federation.</p>
+<p>Historically, despite their underlying tensions and frequent covert dealings, both civilizations had exercised restraint and tact.</p>
+<p>Yet, the events in the Feral Beast Star Domain and Wild Star Domain escalated their rivalry to an unprecedented...</p>
+</article>
+<article id="c845" data-label="845">
+<h2 class="chapter">Chapter 845: Return Journey 🔒</h2>
+<p>When the Arriba Chamber of Commerce’s legions of demons and devils departed from Sandstorm World, Sein went out of his way to see them off.</p>
+<p>For the few demons and devils he had worked with and used as experimental subjects, Sein made sure to exchange contact information with them.</p>
+<p>In the vast expanse of the Astral Realm, it was unlikely he would cross paths with these specific individuals again.</p>
+<p>However, demons and devils were prominent groups, often seen and heard within the Magus Civilization’s territories. This made it likely that Sein would meet others of their kind in the future.</p>
+<p>Having cooperated with them to some extent, Sein believed he was now better equipped to handle any dealings with demons and devils he might encounter later.</p>
+<p>During this period of research, Sein had focused primarily on demons, only...</p>
+</article>
+<article id="c846" data-label="846">
+<h2 class="chapter">Chapter 846: Gratitude 🔒</h2>
+<p>Verdant Wilderness World had changed significantly from what Sein remembered.</p>
+<p>Sein had infiltrated this low-level plane on his own years ago, accompanied only by a strand of Lorianne’s consciousness in his earring.</p>
+<p>Having studied and experienced life in this world extensively, Sein had developed a certain fondness for it.</p>
+<p>Years had passed, and now the overall atmosphere of Verdant Wilderness World felt much more desolate.</p>
+<p>“The population in this plane has declined by 78.96% in the past decade. It seems the influx of high-ranking creatures has disrupted the environment and the laws of this world,” Leena remarked as she joined Sein’s side.</p>
+<p>Leena’s wealth of knowledge rivaled Sein’s, though their areas of focus had diverged over the years.</p>
+<p>Sein...</p>
+</article>
+<article id="c847" data-label="847">
+<h2 class="chapter">Chapter 847: Gift and Investment 🔒</h2>
+<p>Before leaving Verdant Wilderness World, White Spirit presented Sein with a special crystal of vibrant green.</p>
+<p>It took just a glance for Sein to recognize its extraordinary nature.</p>
+<p>A rich aura of life and a profound energy fluctuation seemed to radiate from both within and around the crystal.</p>
+<p>Not only was its mystery imperceptible to the naked eye, but even advanced tools like the high-magnification elemental microscope in Sein’s laboratory might fail to unravel its secrets.</p>
+<p>According to White Spirit, this crystal was a fragment of the Rank Four Verdant Wilderness God’s tree heart, recently peeled off.</p>
+<p>For plant creatures like the Verdant Wilderness God, the tree heart was of paramount importance.</p>
+<p>The fragment in Sein’s hands was as precious as a divine relic fragment—a...</p>
+</article>
+<article id="c848" data-label="848">
+<h2 class="chapter">Chapter 848: Bountiful Spoils 🔒</h2>
+<p>As expected, there were scarcely any creatures left alive in Green Spikefur King’s Emerald Forest.</p>
+<p>When Sein and the others arrived, the once lush and vibrant landscape had been reduced to a graveyard of dry, rotting, ash-white tree trunks—silent remnants of the forest’s former glory.</p>
+<p>Fortunately, Lorianne showed care for her “pets” that had pledged their loyalty to her long before the war erupted.</p>
+<p>In addition to granting Green Spikefur King the opportunity to relocate to her world laboratory, she also allowed the hedgehog to bring along some of its clan members.</p>
+<p>Despite this, Green Spikefur King chose not to follow the Divine Tower of Verdant Spring Army back to Magus World right away.</p>
+<p>Instead, it stayed behind in Emerald Forest with the few surviving members of its clan.</p>
+<p>Even a broken and desolate home was still a home.</p>
+<p>Green Spikefur...</p>
+</article>
+<article id="c849" data-label="849">
+<h2 class="chapter">Chapter 849: Returning To Magus World 🔒</h2>
+<p>With their feet planted firmly on the solid metal floor inside the space fortress, Sein and the others were finally returning to their home, the Magus World.</p>
+<p>The Divine Tower of Verdant Spring’s space fortress had been remarkably fortunate this time.</p>
+<p>Not only had it managed to avoid the intense fighting in the Sandstorm World War, but it had also escaped the devastating raid by the Wild Gorilla God Army on Luther Planet—a critical operational hub.</p>
+<p>In contrast, several space fortresses belonging to other divine towers or knightly orders were destroyed.</p>
+<p>The Divine Tower of Verdant Spring was lucky to have completed its resupply and departed the area just before the Wild Gorilla Army’s arrival.</p>
+<p>Of course, even their space fortress had not emerged entirely unscathed from the multiple interplanar wars.</p>
+<p>The damage, however, was within...</p>
+</article>
+<article id="c850" data-label="850">
+<span id="last"></span>
+<h2 class="chapter">Chapter 850: Changes at the Divine Tower of Verdant Spring 🔒</h2>
+<p>After Leena and Faye left, Sein’s life became quieter and emptier.</p>
+<p>A sense of “loneliness” gradually settled over him.</p>
+<p>However, mages were no strangers to solitude; they embraced it, grew accustomed to it, and immersed themselves fully in its depths.</p>
+<p>With a small sigh, Sein threw himself back into his experimental research.</p>
+<hr class="separator">
+<p>Two years later, at the Divine Tower of Verdant Spring Academy…</p>
+<p>Sein had just finished giving a lecture when he spotted Eileen emerging from another classroom nearby.</p>
+<p>The brutal and intense interplanar wars had taken a heavy toll on Divine Tower of Verdant Spring’s elite mages.</p>
+<p>To rebuild its strength and cultivate the next generation of exceptional mages as quickly as possible, the divine tower had implemented a mandatory teaching requirement—even for Rank Two mages like Sein.</p>
+<p>Compared to when Sein first arrived at the Divine...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="851-900.html" rel="next">Next: Chs 851–900 &rarr;</a>
+    <p class="page-end-links"><a href="751-800.html" rel="prev">&larr; Chs 751–800</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 801–850</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c801">Chapter 801: Textbook Example Of Warfare 🔒</a></li>
+        <li><a href="#c802">Chapter 802: The Northern Snowy Region 🔒</a></li>
+        <li><a href="#c803">Chapter 803: Confidence 🔒</a></li>
+        <li><a href="#c804">Chapter 804: Divine Messengers 🔒</a></li>
+        <li><a href="#c805">Chapter 805: Talents Of The Past 🔒</a></li>
+        <li><a href="#c806">Chapter 806: Sharing Spoils Equally 🔒</a></li>
+        <li><a href="#c807">Chapter 807: Lavender Harmony Plane 🔒</a></li>
+        <li><a href="#c808">Chapter 808: The Slave Trade 🔒</a></li>
+        <li><a href="#c809">Chapter 809: Bloodline Magic Research 🔒</a></li>
+        <li><a href="#c810">Chapter 810: Mutual Understanding At The Dining Table 🔒</a></li>
+        <li><a href="#c811">Chapter 811: Violet Chrome Demiplane 🔒</a></li>
+        <li><a href="#c812">Chapter 812: Kermoine Serpent Warlock Clan 🔒</a></li>
+        <li><a href="#c813">Chapter 813: Wild Gorilla Clan’s Deadly Resistance 🔒</a></li>
+        <li><a href="#c814">Chapter 814: Troublemaker 🔒</a></li>
+        <li><a href="#c815">Chapter 815: Stronger or Weaker 🔒</a></li>
+        <li><a href="#c816">Chapter 816: Retaliatory Strike 🔒</a></li>
+        <li><a href="#c817">Chapter 817: Moment of Chaos 🔒</a></li>
+        <li><a href="#c818">Chapter 818: Intensifying 🔒</a></li>
+        <li><a href="#c819">Chapter 819: Battle Of Rank Three 🔒</a></li>
+        <li><a href="#c820">Chapter 820: The Elite One-Eyed Opponent 🔒</a></li>
+        <li><a href="#c821">Chapter 821: Danger Continues 🔒</a></li>
+        <li><a href="#c822">Chapter 822: Assault and Regroup 🔒</a></li>
+        <li><a href="#c823">Chapter 823: Eccentrics 🔒</a></li>
+        <li><a href="#c824">Chapter 824: Collision Of Flesh and Blood 🔒</a></li>
+        <li><a href="#c825">Chapter 825: Predicament 🔒</a></li>
+        <li><a href="#c826">Chapter 826: Whining 🔒</a></li>
+        <li><a href="#c827">Chapter 827: Displeasure and Reinforcements 🔒</a></li>
+        <li><a href="#c828">Chapter 828: Fight To Bitter End 🔒</a></li>
+        <li><a href="#c829">Chapter 829: Half A Year 🔒</a></li>
+        <li><a href="#c830">Chapter 830: Heavy Casualties 🔒</a></li>
+        <li><a href="#c831">Chapter 831: Nicholson 🔒</a></li>
+        <li><a href="#c832">Chapter 832: Giant Serpent Bloodline 🔒</a></li>
+        <li><a href="#c833">Chapter 833: Tourmaline Is Evolving 🔒</a></li>
+        <li><a href="#c834">Chapter 834: Arriba Interstellar Chamber of Commerce 🔒</a></li>
+        <li><a href="#c835">Chapter 835: The Power Of An Overlord 🔒</a></li>
+        <li><a href="#c836">Chapter 836: Startled 🔒</a></li>
+        <li><a href="#c837">Chapter 837: Demons and Devils 🔒</a></li>
+        <li><a href="#c838">Chapter 838: The Conclusion Of The War 🔒</a></li>
+        <li><a href="#c839">Chapter 839: Hiring 🔒</a></li>
+        <li><a href="#c840">Chapter 840: Heavy Losses 🔒</a></li>
+        <li><a href="#c841">Chapter 841: Ribbons 🔒</a></li>
+        <li><a href="#c842">Chapter 842: Mentor And Apprentice’s Meeting 🔒</a></li>
+        <li><a href="#c843">Chapter 843: Restraint and Scapegoating 🔒</a></li>
+        <li><a href="#c844">Chapter 844: Boost In Research 🔒</a></li>
+        <li><a href="#c845">Chapter 845: Return Journey 🔒</a></li>
+        <li><a href="#c846">Chapter 846: Gratitude 🔒</a></li>
+        <li><a href="#c847">Chapter 847: Gift and Investment 🔒</a></li>
+        <li><a href="#c848">Chapter 848: Bountiful Spoils 🔒</a></li>
+        <li><a href="#c849">Chapter 849: Returning To Magus World 🔒</a></li>
+        <li><a href="#c850">Chapter 850: Changes at the Divine Tower of Verdant Spring 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="751-800.html" rel="prev">&larr; Chs 751–800</a>    <a href="../../index.html">Library</a>
+<a href="851-900.html" rel="next">Chs 851–900 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

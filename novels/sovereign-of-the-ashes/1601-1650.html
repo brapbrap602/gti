@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1601–1650</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1551-1600.html#last" data-next-page="1651-1700.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1601">Chapter 1601: Technological Advancement 🔒</a></li>
+        <li><a href="#c1602">Chapter 1602: Overlord-Class Humanoid Angel Manufacturing Technology 🔒</a></li>
+        <li><a href="#c1603">Chapter 1603: Shadow War Behind Enemy Lines 🔒</a></li>
+        <li><a href="#c1604">Chapter 1604: Dead Planets 🔒</a></li>
+        <li><a href="#c1605">Chapter 1605: The Mindset of Black Mages 🔒</a></li>
+        <li><a href="#c1606">Chapter 1606: The Black Merlot Civilization 🔒</a></li>
+        <li><a href="#c1607">Chapter 1607: The Square Battleship 🔒</a></li>
+        <li><a href="#c1608">Chapter 1608: Gathering Focus 🔒</a></li>
+        <li><a href="#c1609">Chapter 1609: Troublemaker 🔒</a></li>
+        <li><a href="#c1610">Chapter 1610: The Dragonkin Family 🔒</a></li>
+        <li><a href="#c1611">Chapter 1611: Elemental Amplification 🔒</a></li>
+        <li><a href="#c1612">Chapter 1612: The Neutral Chamber of Commerce 🔒</a></li>
+        <li><a href="#c1613">Chapter 1613: Treasures of Top-Tier Civilizations 🔒</a></li>
+        <li><a href="#c1614">Chapter 1614: Luminarians 🔒</a></li>
+        <li><a href="#c1615">Chapter 1615: The Core Ruins 🔒</a></li>
+        <li><a href="#c1616">Chapter 1616: HALL-E 🔒</a></li>
+        <li><a href="#c1617">Chapter 1617: The Magic Cube’s Unusual Reaction 🔒</a></li>
+        <li><a href="#c1618">Chapter 1618: The Federation Arrives 🔒</a></li>
+        <li><a href="#c1619">Chapter 1619: The Arrival of a Marshal 🔒</a></li>
+        <li><a href="#c1620">Chapter 1620: Genetic Mucus 🔒</a></li>
+        <li><a href="#c1621">Chapter 1621: Burning Flame’s Misperception 🔒</a></li>
+        <li><a href="#c1622">Chapter 1622: The Eye of the Storm 🔒</a></li>
+        <li><a href="#c1623">Chapter 1623: Providing Support 🔒</a></li>
+        <li><a href="#c1624">Chapter 1624: Spatial Displacement 🔒</a></li>
+        <li><a href="#c1625">Chapter 1625: The Ark 🔒</a></li>
+        <li><a href="#c1626">Chapter 1626: Soul-level Witch 🔒</a></li>
+        <li><a href="#c1627">Chapter 1627: Force 🔒</a></li>
+        <li><a href="#c1628">Chapter 1628: Rosen Remnants 🔒</a></li>
+        <li><a href="#c1629">Chapter 1629: Love 🔒</a></li>
+        <li><a href="#c1630">Chapter 1630: Deadly Wanderer 🔒</a></li>
+        <li><a href="#c1631">Chapter 1631: Explosion 🔒</a></li>
+        <li><a href="#c1632">Chapter 1632: Underground Passage 🔒</a></li>
+        <li><a href="#c1633">Chapter 1633: Bold Defense 🔒</a></li>
+        <li><a href="#c1634">Chapter 1634: Fermera’s Transformation 🔒</a></li>
+        <li><a href="#c1635">Chapter 1635: Immortal Pill 🔒</a></li>
+        <li><a href="#c1636">Chapter 1636: Another Grid 🔒</a></li>
+        <li><a href="#c1637">Chapter 1637: Building Goodwill 🔒</a></li>
+        <li><a href="#c1638">Chapter 1638: Familiar Faces 🔒</a></li>
+        <li><a href="#c1639">Chapter 1639: Aid from Multiple Parties 🔒</a></li>
+        <li><a href="#c1640">Chapter 1640: Magitech Armament 🔒</a></li>
+        <li><a href="#c1641">Chapter 1641: Diversity 🔒</a></li>
+        <li><a href="#c1642">Chapter 1642: Push into the Deepest Parts 🔒</a></li>
+        <li><a href="#c1643">Chapter 1643: Robot with Secrets 🔒</a></li>
+        <li><a href="#c1644">Chapter 1644: Relics of the Ruins 🔒</a></li>
+        <li><a href="#c1645">Chapter 1645: Fragment of a World-Class Secret Treasure 🔒</a></li>
+        <li><a href="#c1646">Chapter 1646: Consecutive Gains 🔒</a></li>
+        <li><a href="#c1647">Chapter 1647: The Mystery of the Magic Cube 🔒</a></li>
+        <li><a href="#c1648">Chapter 1648: Clash Between Legions 🔒</a></li>
+        <li><a href="#c1649">Chapter 1649: Reinforcements Arrive 🔒</a></li>
+        <li><a href="#c1650">Chapter 1650: Clash Again 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1601" data-label="1601">
+<h2 class="chapter">Chapter 1601: Technological Advancement 🔒</h2>
+<p>The war between two top-tier civilizations continuously drew out the latent potential of the Magus Civilization. More and more members of the younger generation rose to prominence, and the cohesion of the Magus Alliance grew stronger than ever.</p>
+<p>It was a process of separating the wheat from the chaff.</p>
+<p>The same was true for the Gallant Federation. Under the immense pressure of the Clash of Civilizations, it was forced to dig deeper into its civilizational foundations.</p>
+<p>The Gallant Federation no doubt felt more pressure than the Magus Civilization.</p>
+<p>While Magus World spread that pressure across the Magus Alliance and its ranked knights and full-fledged mages, the Gallant Federation drove it all the way down to the base of society,...</p>
+</article>
+<article id="c1602" data-label="1602">
+<h2 class="chapter">Chapter 1602: Overlord-Class Humanoid Angel Manufacturing Technology 🔒</h2>
+<p>Syphen did not know whether the Infinity Light could undergo a fundamental transformation, as he was not its primary researcher.</p>
+<p>What he could confirm, however, was that his own humanoid combat weapon technology was on the verge of a breakthrough.</p>
+<p>To Syphen, the Norman Federation’s android technology was still just a form of “robotics”.</p>
+<p>The key difference was that their androids were not built purely on robotics theory. Instead, they incorporated elements of biotechnology developed within the Norman Federation itself.</p>
+<p>It was said that in earlier years, the Norman Federation had even preceded the Gallant Federation in researching genetic modification technologies aimed at elevating the life level of their native species.</p>
+<p>To the Gallant Federation, this was a tough pill to swallow.</p>
+<p>It also proved that even among...</p>
+</article>
+<article id="c1603" data-label="1603">
+<h2 class="chapter">Chapter 1603: Shadow War Behind Enemy Lines 🔒</h2>
+<p>Sabia II was a small star domain located near the Gallant Federation’s frontlines.</p>
+<p>It was named in honor of a renowned president in the federation’s history.</p>
+<p>During that president’s term, the Gallant Federation did not engage in a single war.</p>
+<p>The public happiness index consistently exceeded that of other eras by more than twenty percent, and the federation’s overall economy experienced tremendous growth.</p>
+<p>As a result, in comprehensive evaluations of past presidents, this leader ranked firmly among the top ten.</p>
+<p>In sharp contrast to President Sabia’s legacy, the current president had been reviled as a pig-headed fool for nearly a millennium.</p>
+<p>When the war between the Gallant Federation and the Magus Civilization first began, ordinary federal citizens felt little immediate impact and went on with their lives as usual.</p>
+<p>At most, it was those...</p>
+</article>
+<article id="c1604" data-label="1604">
+<h2 class="chapter">Chapter 1604: Dead Planets 🔒</h2>
+<p>The Gallant Federation had long developed countermeasures against the Magus Civilization’s sabotage operations and the widespread use of plague magic.</p>
+<p>Sealing off infected planets, evaluating the danger levels of each star domain, aggressively developing vaccines, and conducting regular health screenings of every citizen…</p>
+<p>Even in this “battle of wits” against the Magus Civilization’s black mages, the Gallant Federation had grown increasingly adept.</p>
+<p>When Leena and the other black mages first entered the Gallant Federation’s territory, they had truly unleashed a storm upon this top-tier civilization.</p>
+<p>Many life planets were transformed into death domains, greatly helping the Netherworld Star Domain’s war efforts.</p>
+<p>Yet over time, the...</p>
+</article>
+<article id="c1605" data-label="1605">
+<h2 class="chapter">Chapter 1605: The Mindset of Black Mages 🔒</h2>
+<p>Dozens of people, destroying an entire planet within two months…</p>
+<p>It sounded wildly exaggerated, yet it was possible.</p>
+<p>Unless the Gallant Federation could swiftly extinguish the Death Plague magic spreading like a rampant virus across the planet of Steelwave, the entire world would inevitably become a paradise for the undead.</p>
+<p>Of course, such devastation was only possible because Leena had spent well over two months planning and preparing in advance.</p>
+<p>Moreover, life planets within the Gallant Federation fundamentally differed from ordinary worlds of the Astral Realm that had planar barriers and were governed by a highly complete set of laws.</p>
+<p>Under such conditions, the achievements of these black mages were hardly surprising.</p>
+<p>At this critical moment, turmoil erupted across...</p>
+</article>
+<article id="c1606" data-label="1606">
+<h2 class="chapter">Chapter 1606: The Black Merlot Civilization 🔒</h2>
+<p>While Leena and the other black mages wreaked havoc deep within the Gallant Federation’s territory, this top-tier technological civilization continued to operate like a finely tuned machine, methodically handling every aspect of the war.</p>
+<p>Troop deployments, chaos suppression, support coordination, territorial defense, supply transport, logistics, and conscription…</p>
+<p>In many operational areas, the Gallant Federation’s efficiency, bolstered by its ultimate quantum computer, even surpassed that of the Magus Alliance.</p>
+<p>At this moment, a special correspondent from the federation was dispatched to the Grand Apocalypse World Star Domain to carry out a secret mission.</p>
+<p>Jared Bond did not go alone. Accompanying him were dozens of federal generals, more than ten war fleets, and an angel-type robot legion numbering over one million units.</p>
+<p>Their objective was to investigate...</p>
+</article>
+<article id="c1607" data-label="1607">
+<h2 class="chapter">Chapter 1607: The Square Battleship 🔒</h2>
+<p>The ruins of the Black Merlot Civilization lay within the Grand Apocalypse World Star Domain, close to the Arid Expanse Worlds.</p>
+<p>Originally, this sector had fallen within an area of relatively weak control for the Gallant Federation.</p>
+<p>This stood in stark contrast to the star domains the federation had focused on most heavily in previous years.</p>
+<p>However, recent clashes with the Magus Civilization in the Arid Expanse Worlds, the Shadowbat Civilization, and the regions surrounding Aquaria prompted the federation to shift some of its attention toward this sector.</p>
+<p>Jared Bond managed to uncover some information about the Black Merlot Civilization ruins because he had first detected the Grand Apocalypse World’s unusual activity near this star domain.</p>
+<p>It was only by chance that the...</p>
+</article>
+<article id="c1608" data-label="1608">
+<h2 class="chapter">Chapter 1608: Gathering Focus 🔒</h2>
+<p>Compared to the Magus Civilization and the Grand Apocalypse World, the Gallant Federation’s insights and achievements in technology truly surpassed those of most other civilizations.</p>
+<p>After acquiring the wreckage of a square warship left behind by the Eiyurant Papillon Civilization, the Gallant Federation employed some sort of method to pinpoint yet another ancient civilization’s ruins.</p>
+<p>This one, however, was extremely small in scale. It was likely nothing more than a logistical supply station used by the Eiyurant Papillon Civilization’s legions in the distant past.</p>
+<p>Yet it was precisely through this supply station that the Gallant Federation was able to discover and confirm another thing—the region surrounding the Shadowbat Civilization, currently embroiled in war, was highly likely...</p>
+</article>
+<article id="c1609" data-label="1609">
+<h2 class="chapter">Chapter 1609: Troublemaker 🔒</h2>
+<p>Across all frontline star-domain battlefields, the Magus Civilization’s combat strength ratio among law-wielding mages, knights, and allied deities was roughly 1:3:6.</p>
+<p>This distribution accurately reflected how the Magus Civilization allocates its high-ranking combat power.</p>
+<p>That was precisely why the forces led by Sein, Grandmaster Feylis, and others to the Shadowbat Civilization and Blue Star sectors were regarded as <em>elite legions</em>.</p>
+<p>Within this structure, the overall number of knights and mages far exceeded that of ordinary allied combat creatures.</p>
+<p>Moreover, the forces assigned to this battlefield were among the strongest the entire Magus Alliance could field at their respective ranks.</p>
+<p>In recent years, the Magus Civilization had continued to reinforce this star domain. Most of the reinforcements...</p>
+</article>
+<article id="c1610" data-label="1610">
+<h2 class="chapter">Chapter 1610: The Dragonkin Family 🔒</h2>
+<p>“Sein, what have you been up to lately? Thanks again for the potion you gave me last time!” Black Oblivion laughed cheerfully as he pulled Sein into a <em>dragon </em>hug.</p>
+<p>While White Stella found her younger brother a big headache, Sein thought he was fine—just a warm, easygoing guy.</p>
+<p>“Well, I’m working on a few projects right now…” Sein replied, rubbing his chin thoughtfully.</p>
+<p>Black Oblivion immediately waved his hands. “Stop, stop! Don’t tell me about your experiments. Just hearing about them gives me a massive headache.”</p>
+<p>“Geez, how do you mages manage to stay cooped up in labs every day?” he asked, genuinely puzzled.</p>
+<p>Given his nature, Black Oblivion found it hard to understand the appeal of locking oneself away in a laboratory to pursue truths.</p>
+<p>Still, that difference never stopped them from becoming friends.</p>
+<p>Sein...</p>
+</article>
+<article id="c1611" data-label="1611">
+<h2 class="chapter">Chapter 1611: Elemental Amplification 🔒</h2>
+<p>Inside the command center, the main discussion surrounding the upcoming war involved a group of Magus World powerhouses, including Sein.</p>
+<p>Although members of the Magus Alliance were also present, most of them acted merely as observers.</p>
+<p>Those seated closest to Sein, such as Karazo and the Huusian King, remained almost entirely silent throughout the meeting.</p>
+<p>Both the Magus Civilization and the Gallant Federation were paying increasing attention to the war situation in the surrounding star systems.</p>
+<p>However, the overall scale and intensity of the battlefield where Sein and his group were fighting still paled in comparison to the Shadowbat Civilization frontlines, where Grandmaster Feylis was currently at.</p>
+<p>Reports indicated that the conflict there was nearly twice the scale of the battles around Marvelous...</p>
+</article>
+<article id="c1612" data-label="1612">
+<h2 class="chapter">Chapter 1612: The Neutral Chamber of Commerce 🔒</h2>
+<p>Master Chakra’s ability to gain such a dramatic boost on the battlefield through elemental amplification ultimately depended on the sheer scale of his Divine Tower of Dark Wind, which had over twenty thousand full-fledged mages.</p>
+<p>This kind of amplification was directly tied to both the number and overall quality of a divine tower’s mages.</p>
+<p>Although Sein’s Divine Tower of Ashes had expanded rapidly in recent years, the constant attrition and heavy losses from frequent wars meant it still could not compare to the ancient divine towers that had been established for tens of thousands of years.</p>
+<p>With only a few thousand full-fledged mages, the elemental amplification they could provide offered Sein little more than a marginal boost.</p>
+<p>As a Rank Five mage, the mana he could wield on his own likely...</p>
+</article>
+<article id="c1613" data-label="1613">
+<h2 class="chapter">Chapter 1613: Treasures of Top-Tier Civilizations 🔒</h2>
+<p>Would the Arriba Chamber of Commerce remain neutral?</p>
+<p>On this point, even Sein dared not draw hasty conclusions.</p>
+<p>He knew that Arriba was overseen by an overlord-level being, one that appeared to share close kinship ties with Tourmaline and the others.</p>
+<p>The last time, it had been through the Arriba Chamber of Commerce that Sein obtained several crucial devil and demon materials.</p>
+<p>He had to admit that the goods offered by Arriba were astonishingly vast and diverse.</p>
+<p>Even Sein, a Rank Five mage, found himself impressed by the sheer selection.</p>
+<p>Many of the items and artifacts on display were things he had never encountered before—so much so that when the Arriba Chamber of Commerce arrived near Marvelous Plane, Sein ended up spending a small fortune.</p>
+<p>The Arriba Interstellar Chamber of Commerce refused to conduct transactions in magicoins.</p>
+<p>Their recognized...</p>
+</article>
+<article id="c1614" data-label="1614">
+<h2 class="chapter">Chapter 1614: Luminarians 🔒</h2>
+<p>The core ruins of the Eiyurant Papillon Civilization were the very ones the Magus Civilization had stumbled across several years earlier.</p>
+<p>Based on research and predictions by the Magus Civilization’s professional archaeology mages and astrologers, these core ruins were identified as the most valuable site in the region surrounding Blue Star and the Shadowbat Civilization.</p>
+<p>They were also believed to contain the largest concentration of relics connected to the Eiyurant Papillon Civilization.</p>
+<p>After more than a decade of exploration, the Magus Civilization finally locked down the ruins’ exact coordinates.</p>
+<p>They were located deep within the void between Blue Star and the Shadowbat Civilization.</p>
+<p>It had gone unnoticed by nearby civilizations for so long because...</p>
+</article>
+<article id="c1615" data-label="1615">
+<h2 class="chapter">Chapter 1615: The Core Ruins 🔒</h2>
+<p>When departing from the space fortress, Sein brought along the super-magic bomb he had been researching for years.</p>
+<p>The original form of this magic bomb was the purest inert crystal he had received from the ruins of the Eiyurant Papillon Civilization.</p>
+<p>Unfortunately, either Sein’s research was still incomplete, or unlocking the crystal’s internal energy was simply too complex. Even now, he had only managed to activate ninety-seven percent of its full potential.</p>
+<p>Even so, according to laboratory simulations and theoretical data, this super-magic bomb was powerful enough to injure a Rank Six creature severely.</p>
+<p>If not for the extreme rarity of inert crystals of this grade, and the Magus Civilization’s apparent intention to reserve them for other purposes,...</p>
+</article>
+<article id="c1616" data-label="1616">
+<h2 class="chapter">Chapter 1616: HALL-E 🔒</h2>
+<p>Although Karazo and Milena were not allowed inside, Black Oblivion and his two relatives were permitted to enter.</p>
+<p>The entrance to the core ruins took the form of an elliptical vortex, radiating elemental light.</p>
+<p>Sein swept his gaze across it and quickly noticed numerous traces of Magus Civilization alchemy arrays.</p>
+<p>It seemed the Magus Civilization had unlocked these core ruins of the Eiyurant Papillon Civilization not through technological means, but through elemental magic.</p>
+<p>The moment they entered the ruins, they were met with a violent sensation of spatial tearing.</p>
+<p>Only beings at Rank Four or Rank Five, like Sein and his companions, could withstand it without issue.</p>
+<p>Any weaker, lower-tier creature would likely have been ripped into...</p>
+</article>
+<article id="c1617" data-label="1617">
+<h2 class="chapter">Chapter 1617: The Magic Cube’s Unusual Reaction 🔒</h2>
+<p>Deep within the core ruins of the Eiyurant Papillon Civilization, Sein took out the Magic Cube and cast a thoughtful glance toward the west.</p>
+<p>Just moments earlier, Sein—whose consciousness was linked to the cube—had suddenly sensed a faint stir from within it.</p>
+<p>Although it was a world-class secret treasure, the cube was far less useful to Sein than the Faceless Mask, which offered direct combat enhancement.</p>
+<p>The Magic Cube’s primary functions lay in granting intelligence to robots and assisting Nexon robots in repairing damage.</p>
+<p>If they were ranked based on their functions, the Faceless Mask would qualify as a mid-tier world-class secret treasure, while the Magic Cube was, at best, a low-tier one.</p>
+<p>That said, its ability to bestow intelligence upon robots was...</p>
+</article>
+<article id="c1618" data-label="1618">
+<h2 class="chapter">Chapter 1618: The Federation Arrives 🔒</h2>
+<p>In the pit, Master Gilbert and his colleagues were pointing and gesturing at the outline of a square metal framework.</p>
+<p>Rows of magic crystal lamps hung around them, casting a faint blue glow. Directly ahead, several humanoid constructs, each standing dozens of meters tall, were engaged in heavy excavation work.</p>
+<p>These alchemy puppets belonged to Master Gilbert and his team.</p>
+<p>To Sein’s surprise, the gaunt old Master Gilbert was not only a Rank Four geomancer and mineral crystal researcher, but also an outstanding alchemy puppet craftsman.</p>
+<p>At their peak, the alchemy puppets he created could reach demigod-level strength.</p>
+<p>Had Master Gilbert chosen to fully pursue this path, and had his puppets not been primarily designed as mining laborers, then with his vast knowledge,...</p>
+</article>
+<article id="c1619" data-label="1619">
+<h2 class="chapter">Chapter 1619: The Arrival of a Marshal 🔒</h2>
+<p>“Agent Bond, your mission is to infiltrate the core ruins of the Eiyurant Papillon Civilization we have identified,” said the five-star general, commander-in-chief of more than a dozen surrounding fleets.</p>
+<p>“According to intelligence gathered from the Black Merlot Civilization ruins, this site served as the final staging ground for the Eiyurant Papillon Civilization’s lifeforms before they departed the Astral Realm. Their technologies may still remain there—and they are of critical importance to us.”</p>
+<p>“Understood!” Bond snapped to attention.</p>
+<p>Bond had already proven his capabilities during the Black Merlot Civilization ruins expedition.</p>
+<p>“Our main fleet will coordinate with your operation by launching a full-scale assault against the Magus Civilization forces on the Shadowbat...</p>
+</article>
+<article id="c1620" data-label="1620">
+<h2 class="chapter">Chapter 1620: Genetic Mucus 🔒</h2>
+<p>Inside the wreckage of a uniquely shaped black warship, Sein studied with keen interest the fossilized remains of an ancient creature that had recently been retrieved from the heart of the vessel.</p>
+<p><em>“This warship did not belong to the Eiyurant Papillon Civilization!”</em> Master Howard had declared with absolute certainty the moment it was discovered.</p>
+<p>His primary mission was to investigate relics tied to the Eiyurant Papillon Civilization.</p>
+<p>As a result, once the origin of this black warship had been confirmed, he quickly moved on.</p>
+<p>At present, the task of collecting data and specimens inside the warship was being handled mainly by a group of Rank Four mages.</p>
+<p>Sein was one of only two Rank Five mages on site.</p>
+<p>The other was Poblu, an elderly man whose hair and eyebrows were...</p>
+</article>
+<article id="c1621" data-label="1621">
+<h2 class="chapter">Chapter 1621: Burning Flame’s Misperception 🔒</h2>
+<p>Black Oblivion’s task was not urgent, and Sein still needed time for preliminary research and preparation.</p>
+<p>Since Sein entered the core ruins of the Eiyurant Papillon Civilization, a year and a half had passed in the outside world, while nearly four years had elapsed within the ruins themselves.</p>
+<p>Current research suggested that the time dilation ratio remained roughly 1:2.7.</p>
+<p>Over these four years, the Magus Civilization had breached multiple grid barriers and uncovered several minor ruins.</p>
+<p>Even remnants of the Black Merlot Civilization had now been discovered here, confirming that a war between the Eiyurant Papillon Civilization and the Black Merlot Civilization had once taken place within this subspace.</p>
+<p>For most of these four...</p>
+</article>
+<article id="c1622" data-label="1622">
+<h2 class="chapter">Chapter 1622: The Eye of the Storm 🔒</h2>
+<p>“Anything to report?” Sein asked as Yuri flew to his side.</p>
+<p>Inside the cockpit, Yuri shook her head. Nothing seemed out of the ordinary in the immediate area.</p>
+<p>That earlier tremor… it likely originated somewhere else.</p>
+<p>Sein could contact Master Howard and the others shortly to check whether anything unusual had happened on their end.</p>
+<p>He cast another glance at the relentless sandstorm sweeping in from the distance and could not help but marvel at just how hostile the environment inside this subspace ruin truly was.</p>
+<p>It was nothing like the Knight Continent within Magus World!</p>
+<p>“Does Burning Flame still feel like she’s being watched by someone else?” Sein asked.</p>
+<p>Yuri did not answer. She herself had sensed nothing abnormal.</p>
+<p>After a brief pause, however, Burning Flame replied, “Yes. From time to time.”</p>
+<p>“I think it’s coming from that direction,” she added, pointing toward the ...</p>
+</article>
+<article id="c1623" data-label="1623">
+<h2 class="chapter">Chapter 1623: Providing Support 🔒</h2>
+<p>The battle arrived far sooner than Sein had expected.</p>
+<p>At first, he had spotted only two scouting mobile suits.</p>
+<p>But as a vast fleet of Gallant Federation warships and swarms of drones filled his vision, Sein immediately sensed that trouble had arrived.</p>
+<p>He wasted no time rousing the drowsy Black Oblivion from the experimental base. Then, accompanied by several nearby mages and knights, Sein quickly flew toward the location where Master Howard and the others were stationed.</p>
+<p>Within this core secret realm, there were far more Rank Four and Five mages than low-ranking knights and mages.</p>
+<p>After all, when it came to top-tier civilization ruins, low-ranking mages were mostly useless.</p>
+<p>Most of them served only as assistants, while knights were treated more like “laborers”, tasked with constructing...</p>
+</article>
+<article id="c1624" data-label="1624">
+<h2 class="chapter">Chapter 1624: Spatial Displacement 🔒</h2>
+<p>Sein’s first opponent was a massive mobile suit wielding a double-bladed whip sword, positioned right beside Howard.</p>
+<p>He had to admit that the Gallant Federation lifeforms were truly ingenious.</p>
+<p>Although they had chosen the path of technological advancement, after absorbing the Rosen Dynasty’s mobile suit systems, they adapted them to suit their own needs. In the process, they developed many innovations that bore a striking resemblance to the combat styles of cultivation-based civilizations.</p>
+<p>Take the Rank Five mobile suit in front of Sein, for example. While it did deploy various mounted technological weapons during battle, it relied far more heavily on that double-bladed whip sword.</p>
+<p>When the mobile suit swung the weapon with full force, it looked remarkably like a Rank Five knight who had activated his...</p>
+</article>
+<article id="c1625" data-label="1625">
+<h2 class="chapter">Chapter 1625: The Ark 🔒</h2>
+<p>Relocating from this experimental base was no simple matter that could be resolved with a few words.</p>
+<p>The Gallant Federation legions facing Sein and the others were no pushovers. They certainly would not stand idly by and allow them to leave.</p>
+<p>Meanwhile, after a brief lull, the angel robot legion and other federal fleets began launching full-scale assaults against the energy barriers in front of them.</p>
+<p>After enduring millions of years of erosion, the strength of these energy barriers was undoubtedly far weaker than it had been in their prime.</p>
+<p>Sein and the other Magus World powerhouses had hesitated to forcibly destroy the barriers mainly because large-scale damage might trigger a catastrophic collapse of the secret realm its...</p>
+</article>
+<article id="c1626" data-label="1626">
+<h2 class="chapter">Chapter 1626: Soul-level Witch 🔒</h2>
+<p>When Hela arrived, Bev was in a discussion with others.</p>
+<p>Hela’s unique status, along with the three-quarters Magus World bloodline she carried, set her apart from most alliance overlords.</p>
+<p>Bev usually did not deliberately exclude her niece from important conversations.</p>
+<p>She had clearly sensed Hela’s presence in the great hall, yet she showed no reaction and continued speaking with the others.</p>
+<p>Hela did not interrupt her aunt either. She waited quietly, listening as Bev discussed various matters and taking the opportunity to learn about recent high-level decisions within the Magus Civilization.</p>
+<p>This was the advantage of having connections at the very top.</p>
+<p>Most allied deities and even overlords within the alliance could not truly grasp the intentions of the Magus Civilization’s leadership.</p>
+<p>They could only...</p>
+</article>
+<article id="c1627" data-label="1627">
+<h2 class="chapter">Chapter 1627: Force 🔒</h2>
+<p>Interactions between civilizations were always like this—driven by interests and calculations.</p>
+<p>No matter how noble the relationship between the remnants of the Rosen Dynasty and the Magus Civilization might sound, their cooperation was ultimately rooted in mutual exploitation.</p>
+<p>In earlier times, the Rosen Dynasty Civilization had maintained friendly ties with the previous generation of Magus World powerhouses.</p>
+<p>That Rank Seven psychic named Moraia was even rumored to have known Bev’s father—the Supreme Knight Overlord—personally.</p>
+<p>But what did that amount to now?</p>
+<p>Unless they were blood relatives like Hela and Odin, sentiment alone would never earn anyone special consideration from Bev.</p>
+<p>Mere connections to an older generation were not enough for Bev to sacrifice the interests of...</p>
+</article>
+<article id="c1628" data-label="1628">
+<h2 class="chapter">Chapter 1628: Rosen Remnants 🔒</h2>
+<p>Hela naturally did not defy her aunt’s order.</p>
+<p>Moreover, from the perspective of the titan deities, there was no harm at all in moving to the battlefield of the Grand Eye Demon World!</p>
+<p>The Magus Civilization’s campaign against the Grand Eye Demon World had already pushed deep into the heart of their homeland.</p>
+<p>Billions of Eye Demons had been killed.</p>
+<p>The Magus Civilization never showed mercy to traitors.</p>
+<p>Not only Eye Demons, but also the weaker medium-sized and low-level planes that had been swept up in the Grand Eye Demon World’s betrayal had not escaped the Magus Civilization’s purge.</p>
+<p>Such was the tragedy of the weak.</p>
+<p>By optimistic estimates, the remaining battles in the Grand Eye Demon World would conclude within two hundred years.</p>
+<p>By then, every living being within the Grand Eye Demon World would have been slaughtered.</p>
+<p>Even the Rank Seven Evileye Tyrant Monarch had already shown signs of...</p>
+</article>
+<article id="c1629" data-label="1629">
+<h2 class="chapter">Chapter 1629: Love 🔒</h2>
+<p>The deployment speed of the Rosen Dynasty Civilization’s remnant legions was considered swift. Even so, no matter how fast they moved, they could not resolve the immediate crisis within the Eiyurant Papillon Civilization ruins in such a short time.</p>
+<p>Fortunately, the Gallant Federation legions were not capable of wiping out the garrison forces led by Sein and the others in a single sweep.</p>
+<p>Meanwhile, the main legions under Feylis, White Stella, and the others were steadily advancing toward the battlefield surrounding the ruins.</p>
+<p>Just as Bev had predicted, the core ruins of the Eiyurant Papillon Civilization were gradually turning into an overlord-level battlefield…</p>
+<hr class="separator">
+<p>HALL-E realized that it had fallen in love.</p>
+<p>The...</p>
+</article>
+<article id="c1630" data-label="1630">
+<h2 class="chapter">Chapter 1630: Deadly Wanderer 🔒</h2>
+<p>Howard and his group retreated swiftly.</p>
+<p>Such was the nature of battles between Rank Four beings on the battlefield.</p>
+<p>Once one side was determined to withdraw, the other could scarcely pursue unless it held a decisive numerical advantage or overwhelming individual power.</p>
+<p>Otherwise, it was nearly impossible to pursue a “<em>god</em>” focused solely on fleeing at full speed.</p>
+<p>What caught Sein’s attention during the retreat was Howard’s action as they departed—he produced another flask.</p>
+<p>All the low-ranking research mages from the experimental base, along with the severely injured knights and mages rescued earlier, were gathered together and sealed inside the flask by Howard.</p>
+<p>Sein had crafted spatial living devices before; the necklace Yuri lived in most of the time was one such example.</p>
+<p>However,...</p>
+</article>
+<article id="c1631" data-label="1631">
+<h2 class="chapter">Chapter 1631: Explosion 🔒</h2>
+<p>Sein had truly never imagined that one day he would one day take the “self-destruction” route.</p>
+<p>Such measures were typically taken only when one had been driven into utter desperation.</p>
+<p>Moreover, self-destruction was not something done on impulse.</p>
+<p>When deities who embraced the faith system chose to self-destruct, they typically did so by triggering the divine relic within their bodies.</p>
+<p>Even detonating a divine relic required following a specific procedure.</p>
+<p>When surrounded by powerful enemies, many Rank Four beings found themselves unable to self-destruct and bring their foes down with them.</p>
+<p>Sein could not make sense of it. The Federation legions were not cornered, and they clearly held the upper hand.</p>
+<p>Sein and his group were the ones being forced to withdraw. Why, then, would that Rank Five mobile suit choose to self-destruct?</p>
+<p>Because of its unique energy source, the Deadly Wanderer detonated faster than expected.</p>
+<p>The sudden, violent explosion behind them caught the Magus Civilization’s powerhouses completely off guard, subjecting them to another...</p>
+</article>
+<article id="c1632" data-label="1632">
+<h2 class="chapter">Chapter 1632: Underground Passage 🔒</h2>
+<p>HALL-E, who had been silently observing the battle from the shadows, saw the black mushroom cloud rise into the sky at the center of the battlefield. It also watched as Sein and his companions fled, with the Gallant Federation legions pressing in behind them.</p>
+<p>In terms of fundamental composition, the Burning Flame Unit was essentially a metallic construct—a “robot”.</p>
+<p>The eight-winged angel pursuing Sein and his group likewise belonged to the same category.</p>
+<p>HALL-E had indeed sensed a similar robotic resonance emanating from Fermera, the eight-winged angel.</p>
+<p>Yet when it came to identifying its own “kind”, HALL-E leaned more toward Burning Flame.</p>
+<p>It was not merely because Burning Flame triggered a faint tingling sensation within HALL-E’s body. Rather, it was that...</p>
+</article>
+<article id="c1633" data-label="1633">
+<h2 class="chapter">Chapter 1633: Bold Defense 🔒</h2>
+<p>The battle in the underground passage erupted sooner than anyone had expected.</p>
+<p>Yuri and Burning Flame were still planting the bombs and arranging them according to a special magic array.</p>
+<p>Meanwhile, Sein had already clashed once more with Fermera.</p>
+<p>After suffering heavy damage from the super magic bomb, the eight-winged angel’s strength had indeed declined noticeably.</p>
+<p>However, Sein himself was also quite badly injured. In the narrow, dimly lit underground passage, their first exchange ended in a deadlock.</p>
+<p>Qixiu, the eldest of the dragonkins, lived up to his reputation as the geo elemental beast with the strongest physical defenses.</p>
+<p>While Black Oblivion tended to Hanliu, Qixiu repeatedly blocked Fermera’s...</p>
+</article>
+<article id="c1634" data-label="1634">
+<h2 class="chapter">Chapter 1634: Fermera’s Transformation 🔒</h2>
+<p>What had once been an orderly Magus Civilization experimental base now lay in utter ruin.</p>
+<p>Agent Bond arrived relatively late to the scene.</p>
+<p>When he entered this subspace, his landing point had deviated from the intended coordinates.</p>
+<p>To make matters worse, the Gallant Federation’s assault fleet had launched coordinated strikes against multiple Magus Civilization experimental bases scattered throughout the ruins.</p>
+<p>Only after spending a considerable amount of time here in this secret realm did Agent Bond realize that the base they attacked had been their enemy’s primary base.</p>
+<p>Logically, this location should have held the largest collection of the Magus Civilization’s research data.</p>
+<p>Yet the results were deeply disappointing.</p>
+<p>The Gallant Federation gained very little, and after Bond arrived, he even received reports that Fermera had suffered severe damage.</p>
+<p>Had the Magus Civilization really deployed forces within this top-tier civilization’s secret realm that were capable of threatening Rank Six beings?</p>
+<p>The moment Bond learned this, his mood grew noticeably heavier.</p>
+<p>Before meeting the eight-winged angel, Bond first went to a major general who had been rescued from the desert ruins—Charlie Robert.</p>
+<p>Charlie...</p>
+</article>
+<article id="c1635" data-label="1635">
+<h2 class="chapter">Chapter 1635: Immortal Pill 🔒</h2>
+<p>After temporarily escaping danger, Sein and the others continued flying toward their predetermined destination.</p>
+<p>At Sein’s side were dozens of knights and mages ranging from Rank Two to Rank Three. However, his attention was focused mainly on the two Rank Four research mages, Black Oblivion, and his two cousins.</p>
+<p>The male Rank Four mage was Roth, and the female was Grethel.</p>
+<p>Based on their performance after activating their elemental bodies earlier, Sein could tell that these two researchers had scarcely experienced real combat!</p>
+<p>It was hardly a surprise as Magus World mages did not advance through battle, nor did they rely on it to acquire resources.</p>
+<p>After a brief conversation, Sein learned that both Roth and Grethel had chosen the research path as early as Rank One and Rank T...</p>
+</article>
+<article id="c1636" data-label="1636">
+<h2 class="chapter">Chapter 1636: Another Grid 🔒</h2>
+<p>The reaction of the three Rank Four and Five Magus World mages made Black Oblivion’s lips twitch almost imperceptibly.</p>
+<p><em>Shit. I was too careless. How could I forget there are three mages with insatiable curiosity standing right beside me?!</em></p>
+<p>Born and raised in the Magus World, Black Oblivion naturally understood these mages far better than his two relatives from the Immortal Realm.</p>
+<p>Sein and the others were not coveting Black Oblivion’s wealth. Their interest stemmed purely from scholarly curiosity.</p>
+<p>In terms of grade, Black Oblivion’s Four-Refinement Golden Pill clearly surpassed the immortal pills Qixiu had taken out earlier.</p>
+<p>Tourmaline likely had never possessed this type of Four-Refinement Golden Pill before. Otherwise, Sein would have talked her into handing...</p>
+</article>
+<article id="c1637" data-label="1637">
+<h2 class="chapter">Chapter 1637: Building Goodwill 🔒</h2>
+<p>“Take us around the surrounding area and help us search for any other surviving knights and mages. We’ll give you whatever you want. Magus World has always adhered to the principle of equivalent exchange,” Sein said sincerely to HALL-E.</p>
+<p>A Rank Five mage conversing with a robot was an unusual sight. Grethel and Roth watched Sein and HALL-E with curiosity.</p>
+<p>However, the two Rank Four mages had likely already noticed that HALL-E possessed a degree of self-awareness, rather than being a mere metal puppet controlled entirely by others.</p>
+<p>Mages had seen all manner of strange things. While HALL-E’s intelligence surprised them, Grethel and Roth accepted it fairly quickly.</p>
+<p>Faced with Sein’s earnest request,...</p>
+</article>
+<article id="c1638" data-label="1638">
+<h2 class="chapter">Chapter 1638: Familiar Faces 🔒</h2>
+<p>From the very first moment he interacted with HALL-E, Sein showed no arrogance and never adopted a domineering attitude toward the robot.</p>
+<p>Instead, he consistently maintained a gentle demeanor, speaking to HALL-E as an equal and treating every exchange as a discussion between peers.</p>
+<p>Sein had a feeling that if his group hoped to uncover anything meaningful within the ruins of the Eiyurant Papillon Civilization, the seemingly ordinary, rusty robot before them was the key.</p>
+<p>After all, HALL-E was likely the only true “native inhabitant” of this subspace ruin.</p>
+<p>With its assistance, Sein and his group could not only bypass energy barriers with ease, but might even locate the true central core of this top-tier civilization’s ruins.</p>
+<p>HALL-E displayed remarkable adaptability to the unfamiliar...</p>
+</article>
+<article id="c1639" data-label="1639">
+<h2 class="chapter">Chapter 1639: Aid from Multiple Parties 🔒</h2>
+<p>Yellow Sand Base II was located farther south within this region.</p>
+<p>Fortunately, the sheer vastness of this subspace secret realm had allowed Sein and the other Magus Civilization mages to establish numerous experimental bases after entering.</p>
+<p>Even so, compared to the overall scale of the subspace secret realm, everything Sein and his group had explored so far amounted to little more than the tip of the iceberg.</p>
+<p>The arrival of the Gallant Federation legions would undoubtedly accelerate the pace at which both civilizations explored this hidden realm.</p>
+<p>“Many federal warships escaped earlier. We need to leave this place quickly,” Sein said.</p>
+<p>“Have you decided where we are going next, Master Sein? Yellow Sand Base II?” Grethel asked.</p>
+<p>Sein nodded. “We’ll check it out first, but we...</p>
+</article>
+<article id="c1640" data-label="1640">
+<h2 class="chapter">Chapter 1640: Magitech Armament 🔒</h2>
+<p>Seiron, the strongest being of Arid Expanse World, was never truly a peak Rank Six creature.</p>
+<p>At best, he was a <em>pseudo</em>-peak Rank Six!</p>
+<p>Creatures who followed self-evolutionary cultivation paths faced extremely strict advancement requirements.</p>
+<p>By all rights, Seiron should not have been able to reach such a level. Yet after undergoing a series of modifications by the Gallant Federation, Seiron forcibly attained peak Rank Six combat strength.</p>
+<p>No matter how one looked at it, such a development felt deeply unnatural.</p>
+<p>Moreover, during their clash, Feylis sensed that Seiron’s body was no longer entirely under his own control.</p>
+<p>The Gallant Federation had clearly imposed some form of restriction on him.</p>
+<p>Even so, supported by two world-class secret treasures and the enhanced power granted by the federation’s modifications, Seiron remained the most formidable opponent on this battlefield!</p>
+<p>The fact that Feylis could confront such an existence head-on and hold him to a near stalemate for...</p>
+</article>
+<article id="c1641" data-label="1641">
+<h2 class="chapter">Chapter 1641: Diversity 🔒</h2>
+<p>When Feylis advanced her legions toward the core ruins of the Eiyurant Papillon Civilization, she had explicitly stated that the Shadowbat Civilization legions could remain in their original positions.</p>
+<p>Yet in the end, one Shadowbat Civilization legion still chose to join the Magus Alliance forces under Feylis’ command.</p>
+<p>The commander of this Shadowbat legion was Darian Wraith, their civilization’s Rank Five powerhouse.</p>
+<p>War was the ultimate test of one’s will. In the conflict against Arid Expanse World, Darian emerged as a rising star among the younger generation of Shadowbat powerhouses.</p>
+<p>The older generation of Rank Six Shadowbat powerhouses had suffered grievous injuries during the war. Even if they eventually recovered, few would ever regain their...</p>
+</article>
+<article id="c1642" data-label="1642">
+<h2 class="chapter">Chapter 1642: Push into the Deepest Parts 🔒</h2>
+<p>Sein’s decision earned Grethel’s approval, while the others remained silent for the moment.</p>
+<p>They understood their own limits well. In terms of combat strength, Sein ranked among the elite even among Rank Five beings. Black Oblivion and his cousins were no weaklings either.</p>
+<p>As for Grethel, Roth, Gilbert, and Valerie, they were unquestionably research-oriented mages.</p>
+<p>They had also suffered considerable injuries in the earlier battles.</p>
+<p>If they chose to charge straight into the Gallant Federation forces and rendezvous with Master Howard and the others inside the Yellow Sand Base II, casualties would be inevitable.</p>
+<p>Sein and his group had already clashed multiple times with the Gallant Federation legions...</p>
+</article>
+<article id="c1643" data-label="1643">
+<h2 class="chapter">Chapter 1643: Robot with Secrets 🔒</h2>
+<p>Sein and his team did not discover HALL-E.</p>
+<p>It chose to reveal itself for two reasons: the Magic Cube in Sein’s hand and the Burning Flame Unit.</p>
+<p>But there was no need to explain these details to Howard.</p>
+<p>The Magi Cube was Sein’s personal belonging, and he had long been curious whether this secret realm left behind by a top-tier civilization might conceal some deeper mystery.</p>
+<p>Why did such a peculiar resonance exist between HALL-E and the Magic Cube?</p>
+<p>Was it simply because HALL-E was also a robot that had awakened its own intelligence?</p>
+<p>These were questions Sein would have to investigate one by one.</p>
+<p>As for Master Howard’s suggestion, Sein had already consulted Grethel, Gilbert, and the others. No one raised...</p>
+</article>
+<article id="c1644" data-label="1644">
+<h2 class="chapter">Chapter 1644: Relics of the Ruins 🔒</h2>
+<p>The identity of HALL-E’s owner was a question that Sein and the others would need to investigate in the future.</p>
+<p>For now, however, their attention was on the ancient ruins they had just uncovered.</p>
+<p>Under HALL-E’s guidance, Sein and the others moved through the subspace secret realm at remarkable speed.</p>
+<p>Beyond the narrow gaps between energy barriers, numerous underground metal passages provided convenient routes of travel.</p>
+<p>These passages were clearly better preserved than most other relic structures.</p>
+<p>During the exploration, Master Gilbert, relying on his exceptional expertise in mineralogy, excavated and examined several inert crystal veins that branched horizontally from the underground metal passages marked by HALL-E.</p>
+<p>“These veins are considerable...</p>
+</article>
+<article id="c1645" data-label="1645">
+<h2 class="chapter">Chapter 1645: Fragment of a World-Class Secret Treasure 🔒</h2>
+<p>Far removed from the flames of war, the time spent exploring the subspace ruins was both fascinating and deeply fulfilling.</p>
+<p>Since Sein was a curious learner, he had scarcely had a moment to rest during this period.</p>
+<p>The happiest of all, however, were Black Oblivion and his cousins.</p>
+<p>They had been drinking their fill of potions refined by Sein from genetic mucus.</p>
+<p>Hanliu’s injuries had also been healing at a remarkable pace.</p>
+<p>Perhaps it was the potent potions Sein had obtained from Lorianne. Perhaps it was the overwhelming effects of the Black Merlot Civilization’s gene mucus. Or perhaps it was simply the powerful dragon bloodlines flowing within Hanliu and the others.</p>
+<p>Whatever the reason, Hanliu had nearly made a full recovery in just a few short months.</p>
+<p>Black Oblivion and Qixiu were almost back to their peak condition...</p>
+</article>
+<article id="c1646" data-label="1646">
+<h2 class="chapter">Chapter 1646: Consecutive Gains 🔒</h2>
+<p>The <em>innate spiritual treasures</em> Hanliu spoke of, as Sein understood them, referred to raw materials that had naturally reached the level of world-class secret treasures without undergoing any form of refinement.</p>
+<p>To him, such treasures were… practically unheard of.</p>
+<p>What puzzled him even more was that if these supreme materials, nurtured by the world’s essence and cosmic spiritual qi, possessed such extraordinary quality, why were they not refined into even higher-grade treasures?</p>
+<p>The fundamental conceptual differences between Magus Civilization and Immortal Realm made it difficult for Sein to fully grasp this idea for the time being.</p>
+<p>Hanliu and the others were not professional artificers in the Immortal Realm, so they were unable to offer clear answers to his questions.</p>
+<p>These doubts would likely remain unresolved until the day Sein...</p>
+</article>
+<article id="c1647" data-label="1647">
+<h2 class="chapter">Chapter 1647: The Mystery of the Magic Cube 🔒</h2>
+<p>Could the Magic Cube be sentient?</p>
+<p>The thought caught Sein somewhat off guard, though he had indeed considered the possibility many years ago.</p>
+<p>Ever since learning that the Magic Cube could awaken Nexon’s intelligent robots, Sein had wondered whether the cube itself might possess some form of consciousness.</p>
+<p>Such consciousness could perhaps be described as an <em>artifact spirit</em>.</p>
+<p>In Magus World, some divine towers or magic towers incorporated <em>tower spirits </em>to assist with management and control.</p>
+<p>As far as Sein knew, some weapons and equipment were also said to house artifact spirits of their own.</p>
+<p>When Sein first brought the cube back to Magus World, it had not yet been a complete world-class secret treasure. At the time, it was...</p>
+</article>
+<article id="c1648" data-label="1648">
+<h2 class="chapter">Chapter 1648: Clash Between Legions 🔒</h2>
+<p>In the star-filled expanse beyond the secret realm, the first major clash finally erupted.</p>
+<p>It was between the legions led by White Stella from the Marvelous Plane battlefield and the Arid Expanse World legions redeployed from the Shadowbat Civilization front.</p>
+<p>The Arid Expanse World legions arrived slightly earlier.</p>
+<p>The moment they emerged from the subspace secret realm, tens of millions of Arid Expanse World troops immediately linked up with the Gallant Federation’s special operations forces.</p>
+<p>In a single, overwhelming push, they drove the Magus Civilization legions—already struggling to hold the space outside the secret realm—straight back into the secret realm itself.</p>
+<p>However, before Arid Expanse World could continue pushing forward, White Stella’s forces arrived!</p>
+<p>Concerned for the safety of her...</p>
+</article>
+<article id="c1649" data-label="1649">
+<h2 class="chapter">Chapter 1649: Reinforcements Arrive 🔒</h2>
+<p>White Stella’s ability to withstand Seiron’s strike did not come from her own strength, but from the Royal Trident she wielded.</p>
+<p>It carried a trace of the Magus World mermaid overlord’s power.</p>
+<p>In this world, foundations and connections mattered.</p>
+<p>Faeloria’s God of Justice had attempted to uncover the Spider Queen’s true nature, only to be gravely wounded by a sliver of an overlord’s power that her adoptive father had secretly planted within her.</p>
+<p>The incident had also cost the Goddess of Luck nearly half her lifespan, leading her to reconsider her alignment and altering Faeloria’s future in unpredictable ways.</p>
+<p>It remained unclear whether White Stella herself carried any hidden power planted by an overlord, but the Royal Trident she wielded undeniably carried a trace of an overlord’s power.</p>
+<p>Bearing half the bloodline of the Magus World mermaids and having been personally...</p>
+</article>
+<article id="c1650" data-label="1650">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1650: Clash Again 🔒</h2>
+<p>At this moment, Feylis stood proudly atop the highest point of her space fortress.</p>
+<p>The Verdant Flame Fortress represented the peak of Magus Civilization’s military deployments on this star domain battlefield.</p>
+<p>The cost of this single fortress alone rivaled that of a world-class secret treasure.</p>
+<p>By the time she reached the edge of the battlefield, Feylis had already activated her elemental body.</p>
+<p>A surging storm of verdant flame swirled ceaselessly around her.</p>
+<p>Compared to centuries past, her lawful aura had grown markedly more formidable.</p>
+<p>Both Feylis and White Stella possessed immense potential, each on the verge of breaking their current limits.</p>
+<p>White Stella sought to break through to Rank Six.</p>
+<p>Feylis, on the other hand, was preparing to ascend...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1651-1700.html" rel="next">Next: Chs 1651–1700 &rarr;</a>
+    <p class="page-end-links"><a href="1551-1600.html" rel="prev">&larr; Chs 1551–1600</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1601–1650</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1601">Chapter 1601: Technological Advancement 🔒</a></li>
+        <li><a href="#c1602">Chapter 1602: Overlord-Class Humanoid Angel Manufacturing Technology 🔒</a></li>
+        <li><a href="#c1603">Chapter 1603: Shadow War Behind Enemy Lines 🔒</a></li>
+        <li><a href="#c1604">Chapter 1604: Dead Planets 🔒</a></li>
+        <li><a href="#c1605">Chapter 1605: The Mindset of Black Mages 🔒</a></li>
+        <li><a href="#c1606">Chapter 1606: The Black Merlot Civilization 🔒</a></li>
+        <li><a href="#c1607">Chapter 1607: The Square Battleship 🔒</a></li>
+        <li><a href="#c1608">Chapter 1608: Gathering Focus 🔒</a></li>
+        <li><a href="#c1609">Chapter 1609: Troublemaker 🔒</a></li>
+        <li><a href="#c1610">Chapter 1610: The Dragonkin Family 🔒</a></li>
+        <li><a href="#c1611">Chapter 1611: Elemental Amplification 🔒</a></li>
+        <li><a href="#c1612">Chapter 1612: The Neutral Chamber of Commerce 🔒</a></li>
+        <li><a href="#c1613">Chapter 1613: Treasures of Top-Tier Civilizations 🔒</a></li>
+        <li><a href="#c1614">Chapter 1614: Luminarians 🔒</a></li>
+        <li><a href="#c1615">Chapter 1615: The Core Ruins 🔒</a></li>
+        <li><a href="#c1616">Chapter 1616: HALL-E 🔒</a></li>
+        <li><a href="#c1617">Chapter 1617: The Magic Cube’s Unusual Reaction 🔒</a></li>
+        <li><a href="#c1618">Chapter 1618: The Federation Arrives 🔒</a></li>
+        <li><a href="#c1619">Chapter 1619: The Arrival of a Marshal 🔒</a></li>
+        <li><a href="#c1620">Chapter 1620: Genetic Mucus 🔒</a></li>
+        <li><a href="#c1621">Chapter 1621: Burning Flame’s Misperception 🔒</a></li>
+        <li><a href="#c1622">Chapter 1622: The Eye of the Storm 🔒</a></li>
+        <li><a href="#c1623">Chapter 1623: Providing Support 🔒</a></li>
+        <li><a href="#c1624">Chapter 1624: Spatial Displacement 🔒</a></li>
+        <li><a href="#c1625">Chapter 1625: The Ark 🔒</a></li>
+        <li><a href="#c1626">Chapter 1626: Soul-level Witch 🔒</a></li>
+        <li><a href="#c1627">Chapter 1627: Force 🔒</a></li>
+        <li><a href="#c1628">Chapter 1628: Rosen Remnants 🔒</a></li>
+        <li><a href="#c1629">Chapter 1629: Love 🔒</a></li>
+        <li><a href="#c1630">Chapter 1630: Deadly Wanderer 🔒</a></li>
+        <li><a href="#c1631">Chapter 1631: Explosion 🔒</a></li>
+        <li><a href="#c1632">Chapter 1632: Underground Passage 🔒</a></li>
+        <li><a href="#c1633">Chapter 1633: Bold Defense 🔒</a></li>
+        <li><a href="#c1634">Chapter 1634: Fermera’s Transformation 🔒</a></li>
+        <li><a href="#c1635">Chapter 1635: Immortal Pill 🔒</a></li>
+        <li><a href="#c1636">Chapter 1636: Another Grid 🔒</a></li>
+        <li><a href="#c1637">Chapter 1637: Building Goodwill 🔒</a></li>
+        <li><a href="#c1638">Chapter 1638: Familiar Faces 🔒</a></li>
+        <li><a href="#c1639">Chapter 1639: Aid from Multiple Parties 🔒</a></li>
+        <li><a href="#c1640">Chapter 1640: Magitech Armament 🔒</a></li>
+        <li><a href="#c1641">Chapter 1641: Diversity 🔒</a></li>
+        <li><a href="#c1642">Chapter 1642: Push into the Deepest Parts 🔒</a></li>
+        <li><a href="#c1643">Chapter 1643: Robot with Secrets 🔒</a></li>
+        <li><a href="#c1644">Chapter 1644: Relics of the Ruins 🔒</a></li>
+        <li><a href="#c1645">Chapter 1645: Fragment of a World-Class Secret Treasure 🔒</a></li>
+        <li><a href="#c1646">Chapter 1646: Consecutive Gains 🔒</a></li>
+        <li><a href="#c1647">Chapter 1647: The Mystery of the Magic Cube 🔒</a></li>
+        <li><a href="#c1648">Chapter 1648: Clash Between Legions 🔒</a></li>
+        <li><a href="#c1649">Chapter 1649: Reinforcements Arrive 🔒</a></li>
+        <li><a href="#c1650">Chapter 1650: Clash Again 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1551-1600.html" rel="prev">&larr; Chs 1551–1600</a>    <a href="../../index.html">Library</a>
+<a href="1651-1700.html" rel="next">Chs 1651–1700 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

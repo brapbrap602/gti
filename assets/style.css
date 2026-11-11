@@ -1,0 +1,899 @@
+/* Reader colours. The dark values are the defaults, because the nov serve app also loads
+   this file and must stay dark; the head script in base.html sets data-theme on the
+   reader site only. */
+:root {
+  --r-bg: #0a0a0a;
+  --r-text: #e0e0e0;
+  --r-heading: #ffffff;
+  --r-rule: #2a2a2a;
+  --r-quote: #cccccc;
+  --r-quote-rule: #333;
+  --r-link: #80cbc4;
+  --r-link-hover: #a7ffeb;
+  --r-selection: #444;
+  --r-selection-text: #ffffff;
+  --r-card: #161616;
+  --r-card-border: #333;
+  --r-pill: #1f1f1f;
+  --r-pill-border: #3a3a3a;
+  --r-pill-text: #9e9e9e;
+  --r-pill-hover: #263238;
+  --r-muted: #9e9e9e;
+  --r-status: #888;
+  --r-error: #ff6b6b;
+  --r-system: #a7ffeb;
+  --r-shadow: rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --r-bg: #faf8f3;
+  --r-text: #1f1f1f;
+  --r-heading: #111111;
+  --r-rule: #ddd8cc;
+  --r-quote: #444444;
+  --r-quote-rule: #cccccc;
+  --r-link: #00695c;
+  --r-link-hover: #004d40;
+  --r-selection: #b2dfdb;
+  --r-selection-text: #000000;
+  --r-card: #ffffff;
+  --r-card-border: #ddd8cc;
+  --r-pill: #f3f0e8;
+  --r-pill-border: #d6d0c2;
+  --r-pill-text: #4a4a4a;
+  --r-pill-hover: #e0f2f1;
+  --r-muted: #5f5f5f;
+  --r-status: #666666;
+  --r-error: #c62828;
+  --r-system: #00695c;
+  --r-shadow: rgba(0, 0, 0, 0.15);
+}
+
+/* Sepia: a warm light theme; set by the reader's Text settings. */
+:root[data-theme="sepia"] {
+  color-scheme: light;
+  --r-bg: #f4ecd8;
+  --r-text: #3b3024;
+  --r-heading: #2b2118;
+  --r-rule: #dccfb2;
+  --r-quote: #5b4a37;
+  --r-quote-rule: #cdbd9a;
+  --r-link: #8a4b14;
+  --r-link-hover: #6b3a0f;
+  --r-selection: #e2c89a;
+  --r-selection-text: #000000;
+  --r-card: #faf4e6;
+  --r-card-border: #dccfb2;
+  --r-pill: #ede2c8;
+  --r-pill-border: #d4c4a0;
+  --r-pill-text: #5b4a37;
+  --r-pill-hover: #eadbb8;
+  --r-muted: #6e5d48;
+  --r-status: #7a6a55;
+  --r-error: #b3261e;
+  --r-system: #7a4a10;
+  --r-shadow: rgba(60, 40, 10, 0.18);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--r-bg);
+  color: var(--r-text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: calc(1.175rem * var(--r-scale, 1));
+  line-height: 1.8;
+  margin: 0 auto;
+  padding: 3rem 1.25rem;
+  overflow-x: hidden;
+  max-width: 1200px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Main content wrapper */
+.calibre {
+  width: 100%;
+}
+
+/* Paragraph styling */
+p,
+.calibre2 {
+  margin: 0 0 1.5em;
+  color: var(--r-text);
+  font-size: calc(1.175rem * var(--r-scale, 1));
+}
+
+/* Spacer/divider blocks */
+.calibre1 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Chapter headings */
+.chapter {
+  font-size: clamp(2rem, 4.5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--r-heading);
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--r-rule);
+  padding-bottom: 0.5rem;
+  letter-spacing: 0.4px;
+}
+
+/* Blockquote for emphasis or thoughts */
+blockquote {
+  font-style: italic;
+  color: var(--r-quote);
+  border-left: 3px solid var(--r-quote-rule);
+  margin: 1.5em 0;
+  padding-left: 1rem;
+}
+
+/* Links */
+a {
+  color: var(--r-link);
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+a:hover,
+a:focus {
+  text-decoration: underline;
+  color: var(--r-link-hover);
+}
+
+/* Text selection highlight */
+::selection {
+  background-color: var(--r-selection);
+  color: var(--r-selection-text);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 2rem 1rem;
+    font-size: calc(1.125rem * var(--r-scale, 1));
+  }
+
+  .calibre {
+    padding-inline: 0.5rem;
+  }
+
+  .chapter {
+    font-size: clamp(1.6rem, 6vw, 2.1rem);
+  }
+
+  p,
+  .calibre2 {
+    font-size: calc(1.125rem * var(--r-scale, 1));
+  }
+
+  .calibre1 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* =====================
+   Library page: the Continue row, then every novel as a compact row
+   ===================== */
+
+.library-header {
+  text-align: center;
+  border-bottom: 2px solid var(--r-rule);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+.library-header h1 {
+  margin: 0;
+  color: var(--r-heading);
+  font-weight: 700;
+}
+
+.library {
+  max-width: 48rem;
+  margin-inline: auto;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.library-h {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--r-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.library-h:focus {
+  outline: none;
+}
+
+.continue-row {
+  margin-bottom: 2rem;
+}
+
+.continue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.continue-list li {
+  display: flex;
+  background-color: var(--r-card);
+  border: 1px solid var(--r-card-border);
+  border-radius: 8px;
+}
+
+.continue-link {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px 0 0 8px;
+  color: var(--r-text);
+}
+
+.continue-link:hover,
+.continue-link:focus-visible {
+  background-color: var(--r-pill-hover);
+  color: var(--r-text);
+  text-decoration: none;
+}
+
+.continue-title {
+  font-weight: 600;
+  color: var(--r-heading);
+  overflow-wrap: anywhere;
+}
+
+.continue-meta {
+  color: var(--r-muted);
+  font-size: 0.9rem;
+}
+
+.forget {
+  min-width: 2.75rem;
+  padding: 0 0.75rem;
+  background: none;
+  border: 0;
+  border-left: 1px solid var(--r-card-border);
+  border-radius: 0 8px 8px 0;
+  color: var(--r-muted);
+  font: inherit;
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+
+.forget:hover,
+.forget:focus-visible {
+  color: var(--r-error);
+  background-color: var(--r-pill-hover);
+}
+
+.continue-undo {
+  margin: -1.25rem 0 2rem;
+  color: var(--r-muted);
+  font-size: 1rem;
+}
+
+.continue-undo:empty {
+  display: none;
+}
+
+.continue-undo button {
+  min-height: 2.75rem;
+  padding: 0 0.75rem;
+  background-color: var(--r-pill);
+  color: var(--r-link);
+  border: 1px solid var(--r-pill-border);
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.novel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--r-rule);
+}
+
+.novel-row {
+  border-bottom: 1px solid var(--r-rule);
+}
+
+/* A grid row: chevron | title (author under it on phones, beside it on wide screens) | count.
+   A long title wraps inside its own column. display:grid drops the native marker, so the
+   chevron says the row opens. */
+.novel-row summary {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.1rem 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.25rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.novel-row summary::before {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.row-title {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.row-count {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.row-author {
+  grid-column: 2 / 4;
+  grid-row: 2;
+}
+
+@media (min-width: 769px) {
+  .novel-row summary {
+    grid-template-columns: 1rem auto minmax(0, 1fr) auto;
+    column-gap: 0.75rem;
+  }
+
+  .row-author {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .row-count {
+    grid-column: 4;
+  }
+}
+
+.novel-row summary::-webkit-details-marker {
+  display: none;
+}
+
+.novel-row summary::before {
+  content: "\203A";
+  display: inline-block;
+  width: 0.75rem;
+  color: var(--r-muted);
+  transition: transform 0.15s ease;
+}
+
+.novel-row details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .novel-row summary::before {
+    transition: none;
+  }
+}
+
+.novel-row summary:hover .row-title {
+  color: var(--r-link);
+}
+
+.row-title {
+  font-weight: 600;
+  color: var(--r-heading);
+  overflow-wrap: anywhere;
+}
+
+.row-author,
+.row-count {
+  color: var(--r-muted);
+  font-size: 0.9rem;
+}
+
+.row-count {
+  white-space: nowrap;
+}
+
+.novel-row details[open] {
+  padding-bottom: 1rem;
+}
+
+.novel-row .goto {
+  margin: 0.25rem 0 0.75rem;
+}
+
+.book-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.book-part-link {
+  display: inline-block;
+  padding: 0.3rem 0.65rem;
+  background-color: var(--r-pill);
+  border: 1px solid var(--r-pill-border);
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--r-pill-text);
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.book-part-link:hover,
+.book-part-link:focus-visible {
+  background-color: var(--r-pill-hover);
+  border-color: var(--r-link);
+  color: var(--r-link);
+  text-decoration: none;
+  outline: none;
+}
+
+.status-msg {
+  text-align: center;
+  color: var(--r-status);
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* =====================
+   Reading page navigation and blocks
+   ===================== */
+
+/* A readable line, centred: about 68 characters unless the reader's Line width says otherwise
+   (ch follows the text size). Line spacing and font apply to the reading text only, not the library. */
+main[data-slug] {
+  max-width: var(--r-measure, 68ch);
+  margin-inline: auto;
+  line-height: var(--r-leading, 1.8);
+}
+
+:root[data-font="serif"] main[data-slug] {
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+}
+
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+  font-size: 0.95rem;
+}
+
+/* The end of a page: a full-width Next button (or "caught up"), then the way back. */
+main[data-slug] ~ .page-end {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: var(--r-measure, 68ch);
+  margin: 2.5rem auto 2rem;
+}
+
+.next-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--r-link);
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.next-page:hover,
+.next-page:focus-visible {
+  background-color: var(--r-pill-hover);
+  text-decoration: none;
+}
+
+.caught-up,
+.page-end-links {
+  margin: 0;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--r-muted);
+}
+
+.caught-up {
+  font-size: 1.05rem;
+  color: var(--r-text);
+}
+
+.page-end-links a {
+  display: inline-block;
+  padding: 0.6rem 0.4rem;
+}
+
+.toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem;
+  columns: 2 320px;
+  font-size: 0.95rem;
+}
+
+.toc li {
+  break-inside: avoid;
+  margin-bottom: 0.25rem;
+}
+
+.separator {
+  border: 0;
+  border-top: 1px solid var(--r-rule);
+  margin: 2rem 0;
+}
+
+.system {
+  font-family: Consolas, 'Courier New', monospace;
+  color: var(--r-system);
+  font-size: calc(1.05rem * var(--r-scale, 1));
+}
+
+.note {
+  color: var(--r-muted);
+  font-style: italic;
+  border-left: 3px solid var(--r-quote-rule);
+  padding-left: 1rem;
+  margin: 0 0 1.5em;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* =====================
+   Sheets: the chapters and text-settings dialogs
+   ===================== */
+
+.sheet {
+  width: min(32rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  padding: 1.25rem;
+  background-color: var(--r-card);
+  color: var(--r-text);
+  border: 1px solid var(--r-card-border);
+  border-radius: 10px;
+  box-shadow: 0 10px 40px var(--r-shadow);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.sheet::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.sheet-title {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  color: var(--r-heading);
+}
+
+.sheet button,
+.sheet input {
+  font: inherit;
+  color: inherit;
+}
+
+.sheet button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--r-pill);
+  border: 1px solid var(--r-pill-border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sheet button:hover:not(:disabled) {
+  border-color: var(--r-link);
+}
+
+.sheet button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.sheet-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+
+.sheet-row > :first-child {
+  flex: 1;
+}
+
+.sheet output {
+  min-width: 3.5rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.sheet fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 0;
+}
+
+.sheet legend {
+  padding: 0;
+  margin-bottom: 0.5rem;
+}
+
+.sheet label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  cursor: pointer;
+}
+
+.sheet-done {
+  display: block;
+  margin-left: auto;
+}
+
+.sheet :focus-visible {
+  outline: 2px solid var(--r-link);
+  outline-offset: 2px;
+}
+
+/* =====================
+   Reading page bar: slides in on scroll up, overlays the text
+   ===================== */
+
+:root {
+  --r-bar-height: 2.75rem;
+}
+
+:root:has(.reader-bar) {
+  scroll-padding-top: var(--r-bar-height);
+}
+
+.reader-bar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  height: var(--r-bar-height);
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0 max(0.25rem, calc((100vw - 1200px) / 2));
+  background: var(--r-bg);
+  border-bottom: 1px solid var(--r-rule);
+  font-size: 0.95rem;
+  line-height: 1.2;
+  transform: translateY(-100%);
+  transition: transform 0.2s ease;
+}
+
+.reader-bar--shown {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reader-bar {
+    transition: none;
+  }
+}
+
+.reader-bar a,
+.reader-bar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0 0.5rem;
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  color: var(--r-link);
+  font: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.reader-bar .bar-prev,
+.reader-bar .bar-next {
+  min-width: 2.5rem;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.reader-bar [aria-disabled="true"] {
+  color: var(--r-muted);
+  opacity: 0.4;
+  cursor: default;
+}
+
+.bar-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--r-text);
+  text-align: center;
+}
+
+.reader-bar :focus-visible {
+  outline: 2px solid var(--r-link);
+  outline-offset: -2px;
+}
+
+@media (max-width: 480px) {
+  .reader-bar {
+    font-size: 0.85rem;
+  }
+
+  .reader-bar a,
+  .reader-bar button {
+    padding: 0 0.35rem;
+  }
+}
+
+/* The chapters sheet and "Go to chapter" */
+
+/* Tall, so most of a page's chapters show at once: a bottom sheet on phones, a centred panel
+   wider up. The list is the one scroller, so scrolling the current chapter into view never
+   moves the go-to box. Only when open: a closed dialog must stay display:none. */
+#chapters[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.sheet-toc {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  margin: 0 0 1rem;
+}
+
+.sheet-toc ol {
+  list-style: none;
+  height: 100%;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+}
+
+#chapters {
+  height: min(85dvh, 52rem);
+  width: min(36rem, calc(100vw - 2rem));
+}
+
+@media (max-width: 768px) {
+  #chapters {
+    margin: auto 0 0;
+    width: 100%;
+    max-width: none;
+    height: 90dvh;
+    max-height: none;
+    border-radius: 12px 12px 0 0;
+    border-bottom: 0;
+  }
+}
+
+/* Line width only matters where a line can be wider than the screen. */
+@media (max-width: 768px) {
+  .width-setting {
+    display: none !important;
+  }
+}
+
+.sheet-toc li {
+  margin: 0;
+}
+
+.sheet-toc a {
+  display: block;
+  padding: 0.4rem 0.25rem;
+  border-radius: 4px;
+}
+
+.sheet-toc a[aria-current] {
+  background-color: var(--r-pill-hover);
+  font-weight: 700;
+}
+
+.sheet .page-nav {
+  margin: 0 0 1rem;
+}
+
+.goto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
+
+.goto input,
+.goto button {
+  min-height: 2.5rem;
+  font: inherit;
+  font-size: 0.95rem;
+  border-radius: 6px;
+}
+
+.goto button {
+  min-width: 3rem;
+  padding: 0.25rem 0.75rem;
+  background-color: var(--r-pill);
+  color: var(--r-text);
+  border: 1px solid var(--r-pill-border);
+  cursor: pointer;
+}
+
+.goto button:hover {
+  border-color: var(--r-link);
+}
+
+.goto input {
+  width: 10.5rem;
+  padding: 0.25rem 0.6rem;
+  background-color: var(--r-bg);
+  color: var(--r-text);
+  border: 1px solid var(--r-pill-border);
+}
+
+.goto input::placeholder {
+  color: var(--r-muted);
+}
+
+.goto-status:empty {
+  display: none;
+}
+
+.goto-status {
+  flex-basis: 100%;
+  margin: 0;
+  min-height: 1.5em;
+  color: var(--r-muted);
+  font-size: 0.9rem;
+}

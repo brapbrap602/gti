@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 201–250</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="151-200.html#last" data-next-page="251-300.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c201">Chapter 201: Retaliate 🔒</a></li>
+        <li><a href="#c202">Chapter 202: Curse-Type Magic 🔒</a></li>
+        <li><a href="#c203">Chapter 203: Confusion 🔒</a></li>
+        <li><a href="#c204">Chapter 204: Fame 🔒</a></li>
+        <li><a href="#c205">Chapter 205: Initiate Conflict 🔒</a></li>
+        <li><a href="#c206">Chapter 206: Hero 🔒</a></li>
+        <li><a href="#c207">Chapter 207: Game-Changer 🔒</a></li>
+        <li><a href="#c208">Chapter 208: Great Victory 🔒</a></li>
+        <li><a href="#c209">Chapter 209: Cold Treatment 🔒</a></li>
+        <li><a href="#c210">Chapter 210: Plan to Attack 🔒</a></li>
+        <li><a href="#c211">Chapter 211: Disparity in Strength 🔒</a></li>
+        <li><a href="#c212">Chapter 212: Halted 🔒</a></li>
+        <li><a href="#c213">Chapter 213: An Early Confrontation 🔒</a></li>
+        <li><a href="#c214">Chapter 214: Average Strength 🔒</a></li>
+        <li><a href="#c215">Chapter 215: Venturing Out Alone 🔒</a></li>
+        <li><a href="#c216">Chapter 216: Different Choice 🔒</a></li>
+        <li><a href="#c217">Chapter 217: Enemy’s Trap 🔒</a></li>
+        <li><a href="#c218">Chapter 218: Bait 🔒</a></li>
+        <li><a href="#c219">Chapter 219: Sweeping Through the Five Territories 🔒</a></li>
+        <li><a href="#c220">Chapter 220: The Final Stage 🔒</a></li>
+        <li><a href="#c221">Chapter 221: Top Ten Initiates 🔒</a></li>
+        <li><a href="#c222">Chapter 222: Reward and Apprenticeship 🔒</a></li>
+        <li><a href="#c223">Chapter 223: Rewards from the Regional Academy War 🔒</a></li>
+        <li><a href="#c224">Chapter 224: Exchange Hall 🔒</a></li>
+        <li><a href="#c225">Chapter 225: Generous Spending Habits 🔒</a></li>
+        <li><a href="#c226">Chapter 226: Interplanar Communication 🔒</a></li>
+        <li><a href="#c227">Chapter 227: Belbacor 🔒</a></li>
+        <li><a href="#c228">Chapter 228: Mentor’s Warning 🔒</a></li>
+        <li><a href="#c229">Chapter 229: Rank One Mage 🔒</a></li>
+        <li><a href="#c230">Chapter 230: Returning 🔒</a></li>
+        <li><a href="#c231">Chapter 231: Joyous Time for the Commoners 🔒</a></li>
+        <li><a href="#c232">Chapter 232: House Grantt 🔒</a></li>
+        <li><a href="#c233">Chapter 233: Recognition 🔒</a></li>
+        <li><a href="#c234">Chapter 234: Leaving 🔒</a></li>
+        <li><a href="#c235">Chapter 235: Mentor’s Gift 🔒</a></li>
+        <li><a href="#c236">Chapter 236: Divine Tower of Verdant Flame 🔒</a></li>
+        <li><a href="#c237">Chapter 237: Mentor’s Faction 🔒</a></li>
+        <li><a href="#c238">Chapter 238: Grandmaster 🔒</a></li>
+        <li><a href="#c239">Chapter 239: Viridian Venom Flame World 🔒</a></li>
+        <li><a href="#c240">Chapter 240: First Participation 🔒</a></li>
+        <li><a href="#c241">Chapter 241: The Verdant Flame Legacy 🔒</a></li>
+        <li><a href="#c242">Chapter 242: Preparation Before War 🔒</a></li>
+        <li><a href="#c243">Chapter 243: Expectations 🔒</a></li>
+        <li><a href="#c244">Chapter 244: Bedside Talk 🔒</a></li>
+        <li><a href="#c245">Chapter 245: Leaving for the War 🔒</a></li>
+        <li><a href="#c246">Chapter 246: Space Fortress 🔒</a></li>
+        <li><a href="#c247">Chapter 247: Eileen’s Invitation 🔒</a></li>
+        <li><a href="#c248">Chapter 248: Space-time Portal 🔒</a></li>
+        <li><a href="#c249">Chapter 249: Suffocating Pressure 🔒</a></li>
+        <li><a href="#c250">Chapter 250: Onslaught of the Flames 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c201" data-label="201">
+<h2 class="chapter">Chapter 201: Retaliate 🔒</h2>
+<p>A radiant pillar of golden light, enveloped in a captivating aura, streaked from the eastern side to the western side of the Divine Tower of Land Academy’s territory.</p>
+<p>It was heading west because that was the way to the Divine Tower of Verdant Spring’s territory.</p>
+<p>To reach the Divine Tower of Verdant Spring, one had to not only traverse the Divine Tower of Land Academy’s territory but also navigate through the Divine Tower of Cipher’s territory</p>
+<p>With the help of the metal disk magic artifact, Sein was flying at a remarkable speed. His endurance in flight surpassed that of most senior initiates, thanks to restorative potions he consumed one after a...</p>
+</article>
+<article id="c202" data-label="202">
+<h2 class="chapter">Chapter 202: Curse-Type Magic 🔒</h2>
+<p>After decisively overcoming the four relentless Quasi Mages from the Divine Tower of Land Academy in the valley, Sein found his subsequent escape and evasion considerably smoother and significantly less stressful.</p>
+<p>True to his nature, Sein was not one to shy away from retaliation.</p>
+<p>Finding himself traversing the Divine Tower of Land Academy’s territory without the immediate threat of powerful senior initiates or Quasi Mages, he seized the opportunity to accumulate points.</p>
+<p>Half a year had elapsed since the Regional Inter-Divine Tower Academy War began.</p>
+<p>Even junior initiates, through diligent occupation of resource points, could have amassed a modest score by this stage.</p>
+<p>Sein made regular passes by several large...</p>
+</article>
+<article id="c203" data-label="203">
+<h2 class="chapter">Chapter 203: Confusion 🔒</h2>
+<p>As a senior initiate, Mark was evidently more knowledgeable than Tom.</p>
+<p>He noticed several intermediate and junior initiates patrolling alongside them, casting inquisitive glances his way.</p>
+<p>Basking in their attention, Mark relished the feeling of being a central figure, his prowess having earned the respect and admiration of these initiates.</p>
+<p>In the past six months, Mark had impressively defeated three extraplanar creatures, a feat some Quasi Mages had not achieved.</p>
+<p>Clearing his throat, Mark began to explain, “In this ongoing Regional Inter-Divine Tower Academy War, the neighbors of the Divine Tower of Verdant Spring are the Divine Tower of Cipher and the Divine Tower of Shadow. The Divine Tower of Cipher is located near...</p>
+</article>
+<article id="c204" data-label="204">
+<h2 class="chapter">Chapter 204: Fame 🔒</h2>
+<p>Sein had not anticipated to be greeted this way upon his return to the Divine Tower of Verdant Spring’s territory.</p>
+<p>Fortunately, the Divine Tower of Verdant Spring badge on his chest, along with initiates like Mark who recognized him, helped validate his identity.</p>
+<p>After neutralizing Daniel’s assault with two Solar Eye beams and clarifying his own identity, Sein finally managed to safely enter the Scorched Lumenstone Resource Point.</p>
+<p>“What’s with that...?” Daniel pointed at the glaring golden pillar of light emanating from Sein.</p>
+<p>Mark, a senior initiate, stared at Sein as if he were a ghost.</p>
+<p>Sein held a negative impression of Daniel, who had nearly incited a mass attack against him at the resource...</p>
+</article>
+<article id="c205" data-label="205">
+<h2 class="chapter">Chapter 205: Initiate Conflict 🔒</h2>
+<p>Sein spent an entire month in the underground mines of Scorched Lumenstone Mountain Ridge, undisturbed.</p>
+<p>During this period, no senior initiates or Quasi Mages from other academies ventured into the Divine Tower of Verdant Spring’s territory to challenge him.</p>
+<p>Typically, in the regional academy wars, a senior initiate or Quasi Mage from another academy would need to amass a sizable group of intermediate and junior initiates to confront someone like Sein.</p>
+<p>After all, his solo sweep through several territories was an anomaly in the history of these regional academy wars.</p>
+<p>While previous figures like Martinez were both arrogant and powerful, none had dominated all five territories in...</p>
+</article>
+<article id="c206" data-label="206">
+<h2 class="chapter">Chapter 206: Hero 🔒</h2>
+<p>The use of undead creatures at the forefront of the battle was a tactic Sein had observed before in the Divine Tower of Shadow’s territory.</p>
+<p>However, during those encounters, he had seen only a few hundred initiates from the Divine Tower of Shadow attacking resource points at most.</p>
+<p>The scale of the current confrontation, with thousands of initiates amassed, was reminiscent of the battle he had witnessed between the Divine Tower of Land Academy and Divine Tower of Radiant Thunder in the eastern hills.</p>
+<p>Although the current number at Windhowl Cliff was about half that of the tens of thousands at the eastern hills, the initiates from the Divine...</p>
+</article>
+<article id="c207" data-label="207">
+<h2 class="chapter">Chapter 207: Game-Changer 🔒</h2>
+<p>“CHARGE!”</p>
+<p>“Sein Grantt, our very own pride from the Divine Tower of Verdant Spring who is currently leading in this regional academy war, has arrived!”</p>
+<p>“Kill those vile undead and dark summoned creatures!”</p>
+<p>“Don’t let any of the initiates from the Divine Tower of Shadow escape!”</p>
+<p>These rallying calls and crystal ball transmissions ignited the spirit of the initiates from the Divine Tower of Verdant Spring on the battlefield.</p>
+<p>The golden pillar of light, which was Sein, spearheaded the charge toward the Divine Tower of Shadow’s camp.</p>
+<p>Quick to join Sein’s onslaught were the initiates from the Divine Tower of Verdant Spring, converging from multiple directions.</p>
+<p>Spread thinly...</p>
+</article>
+<article id="c208" data-label="208">
+<h2 class="chapter">Chapter 208: Great Victory 🔒</h2>
+<p>The battle concluded more swiftly and effortlessly than expected.</p>
+<p>Following Sein’s arrival, the Divine Tower of Shadow failed to mount substantial resistance, primarily due to a dip in morale and a lack of leadership.</p>
+<p>Sein, while refraining from using his mask in this battle, unleashed the Solar Eye spell twice in a row.</p>
+<p>The ensuing seventy-two golden beams of light positioned him as the focal point on the battlefield.</p>
+<p>This display also suggested that Sein’s current focus and mana levels limited him to casting the powerful Solar Eye spell only twice.</p>
+<p>His decision not to use his mask stemmed from a habitual prudence in daily life.</p>
+<p>Besides the seventy-two Solar...</p>
+</article>
+<article id="c209" data-label="209">
+<h2 class="chapter">Chapter 209: Cold Treatment 🔒</h2>
+<p>Upon entering the camp at Windhowl Cliff Resource Point, Sein was not greeted by his cousin. Instead, he was greeted by a different female initiate with curly honey blonde hair cascading over her shoulders.</p>
+<p>She possessed a striking beauty and a noble air that was impossible to overlook.</p>
+<p>As Sein strode into the Windhowl Cliff resource point, he was met with looks of reverence, awe, or curiosity from most of the Divine Tower of Verdant Spring’s initiates.</p>
+<p>However, this particular female initiate approached him with a generous smile and extended her right hand.</p>
+<p>In noble circles, a lady extending her right hand to a man often signified a gesture...</p>
+</article>
+<article id="c210" data-label="210">
+<h2 class="chapter">Chapter 210: Plan to Attack 🔒</h2>
+<p>“Cousin…” Selina skipped her way down the platform, her cheeks tinged with a hint of scarlet.</p>
+<p>At that moment, thousands of initiates from the Divine Tower of Verdant Spring gathered within the Windhowl Cliff Resource Point had their gaze fixed on Sein.</p>
+<p>Selina, a female intermediate initiate of average standing, calling out to Sein as her cousin, inadvertently made her the center of attention.</p>
+<p>Clearly, Selina was not accustomed to such attention.</p>
+<p>Despite her noble descent, she had lost her mother at a young age, and her family branch was among the less prominent.</p>
+<p>Although she had attended numerous noble gatherings, she seldom found herself in the limelight.</p>
+<p>Apart from her doting grandfather, even Sein, her cousin,...</p>
+</article>
+<article id="c211" data-label="211">
+<h2 class="chapter">Chapter 211: Disparity in Strength 🔒</h2>
+<p>Anna’s confidence reflected the prevailing mood among the majority of the initiates from the Divine Tower of Verdant Spring right now.</p>
+<p>Regarding the caliber of their initiates, the Divine Tower of Verdant Spring fell short when compared to both the Divine Tower of Radiant Thunder and the Divine Tower of Land Academy, and it also lagged behind the Divine Tower of Shadow.</p>
+<p>However, it was this burgeoning self-assurance and aura that allowed the initiates of the Divine Tower of Verdant Spring to significantly close the gap in combat prowess with the Divine Tower of Shadow.</p>
+<p>This was particularly true after Sein massacred the senior initiates and Quasi Mages from the Divine Tower of Shadow, thus crushing the fighting will of their leader...</p>
+</article>
+<article id="c212" data-label="212">
+<h2 class="chapter">Chapter 212: Halted 🔒</h2>
+<p>The Creek Orchid Grass Resource Point, under relentless attack from Sein and his group, fell within a day.</p>
+<p>In this conflict, the Divine Tower of Shadow did not suffer many casualties.</p>
+<p>However, all five hundred of their initiates chose to activate their badges and exit the trial space, resulting in a significant point gain for Sein’s group.</p>
+<p>Sein, aiming strategically, managed to drive away the two Quasi Mages at the resource point, thereby securing their point values for himself.</p>
+<p>Initially, Sein had hoped to kill those two Quasi Mages.</p>
+<p>Unexpectedly, the Quasi Mages quickly activated their badges to withdraw once the magic prohibition array, which had withstood a relentless half-day assault, was finally breached.</p>
+<p>It was well-known among the initiates...</p>
+</article>
+<article id="c213" data-label="213">
+<h2 class="chapter">Chapter 213: An Early Confrontation 🔒</h2>
+<p>The Quasi Mage standing before Poppuri wore an extremely gloomy expression, contrasting sharply with the relief on Poppuri’s chubby face as she let out a long sigh.</p>
+<p>Poppuri had not lost as many points as the Quasi Mage. Most of the resource points she occupied were in the eastern part of Divine Tower of Shadow’s territory.</p>
+<p>This probably explained her ability to withdraw without much concern when faced with the onslaught of the Divine Tower of Verdant Spring’s forces.</p>
+<p>Furthermore, a subtle golden glow emanated from Poppuri’s body, indicating that her score had not only surpassed 10,000 points, but she had also ascended into the top ten of the individual score rankings.</p>
+<p>Poppuri speculated, “If the initiates from Divine Tower of Verdant Spring have any sense, they won’t...</p>
+</article>
+<article id="c214" data-label="214">
+<h2 class="chapter">Chapter 214: Average Strength 🔒</h2>
+<p>The first confrontation faced by Sein and his fellow initiates from the Divine Tower of Verdant Spring was not against the group led by Gade from the Divine Tower of Land Academy.</p>
+<p>Instead, they clashed with the dispersed remnants of the Divine Tower of Radiant Thunder’s forces, which had already been routed twice by the Divine Tower of Land Academy.</p>
+<p>These remnants, small in number and varied in prowess, were not under the leadership of a top initiate.</p>
+<p>The top initiates referred to Quasi Mages who were recognized within the academy and highly regarded by their instructors.</p>
+<p>Besides Sein, the Divine Tower of Verdant Spring had only two such figures—Daniel and Anna.</p>
+<p>The Divine Tower of Shadow fared worse. Sein had previously eliminated two of its top initiates, leaving Poppuri as the sole top initiate...</p>
+</article>
+<article id="c215" data-label="215">
+<h2 class="chapter">Chapter 215: Venturing Out Alone 🔒</h2>
+<p>Sein could decisively influence the outcome of a conflict involving dozens, or even hundreds, of initiates.</p>
+<p>Yet, in a large-scale war involving thousands of initiates on each side, his individual prowess was relatively limited.</p>
+<p>After all, Sein was only a humble magic initiate.</p>
+<p>Even against a hundred initiates, a head-on charge was unfeasible. He could only opt for flanking maneuvers or stealth attacks to gradually whittle them down.</p>
+<p>Three days into the battle at the Blackgrave Forest Resource Point, Sein, Daniel, and most senior initiates from the Divine Tower of Verdant Spring realized a hard truth—they could not sustain their defense.</p>
+<p>The disparity in both the number and skill level of the initiates was too vast to be compensated for by even a top initiate...</p>
+</article>
+<article id="c216" data-label="216">
+<h2 class="chapter">Chapter 216: Different Choice 🔒</h2>
+<p>Outside the Blackgrave Forest Resource Point...</p>
+<p>Hovering above the confluence of the two rivers, Sein cast a final glance at the resource point below. He then diverted his gaze toward the initiates from the Divine Tower of Land Academy, before setting off to leave the area.</p>
+<p>With the aid of his metal disk, Sein began his journey northeast.</p>
+<p>His immediate concern was to circumvent the initiates from the Divine Tower of Land Academy, and then decide whether to head toward the Divine Tower of Radiant Thunder or the Divine Tower of Land Academy’s territory.</p>
+<p>Given the vastness of the trial space that could support a war between five divine tower...</p>
+</article>
+<article id="c217" data-label="217">
+<h2 class="chapter">Chapter 217: Enemy’s Trap 🔒</h2>
+<p>The initiates from the Divine Tower of Land Academy continued their assault on the Blackgrave Forest Resource Point for an additional two days.</p>
+<p>Upon realizing the presence of a large number of elite initiates at the Blackgrave Forest Resource Point and recognizing the low likelihood of achieving a swift victory, Gade made a decisive call.</p>
+<p>He instructed the initiates to move westward, advancing further into the Divine Tower of Verdant Spring’s territory.</p>
+<p>After all, the primary objective in this divine tower academy war was not to “kill”.</p>
+<p>Securing resource points and accumulating points were the main goals set by the divine towers to train their initiates.</p>
+<p>Gade was naturally well aware of this. Pointless sacrifices from either...</p>
+</article>
+<article id="c218" data-label="218">
+<h2 class="chapter">Chapter 218: Bait 🔒</h2>
+<p>In the unpredictable dynamics of real warfare, even allies might not always be reliable.</p>
+<p>While an ally might not openly sabotage another, actions such as mistiming actions or intentionally acting slowly could lead to fatal consequences.</p>
+<p>Poppuri was currently fiddling with a unique crystal ball shaped like a skull.</p>
+<p>Slightly smaller than the usual crystal ball, it fitted comfortably in Poppuri’s hand, displaying the ongoing conflict in the swamp near the Bone Flower Resource Point.</p>
+<p>Through the crystal skull, Poppuri observed Sein, the catalyst of this conflict, as he skillfully ambushed others with his Solar Eye spell from the edge of the battlefield.</p>
+<p>At the same time, she noticed Bernard running out of mana and stamina while being surrounded.</p>
+<p>Age was indeed catching up with Bernard, who...</p>
+</article>
+<article id="c219" data-label="219">
+<h2 class="chapter">Chapter 219: Sweeping Through the Five Territories 🔒</h2>
+<p>Sein had not realized that after he departed from the swamp, where the Bone Flower Resource Point was located, another conflict had erupted there.</p>
+<p>However, he did sense that the initiates from the Divine Tower of Land Academy were less fervent in their pursuit.</p>
+<p>Several days later, as Sein reached the border between the Divine Tower of Shadow and the Divine Tower of Radiant Thunder’s territories, he noticed a significant drop in his divine tower badge.</p>
+<p>His score, previously nearing 140,000 points, had decreased by over 3,000 points.</p>
+<p>“Could it be that someone has taken over Blackgrave Forest? Or maybe it’s the Creek Orchid Grass Basin?” Sein wondered, examining his divine tower badge.</p>
+<p>“The Creek Orchid Grass Basin seems...</p>
+</article>
+<article id="c220" data-label="220">
+<h2 class="chapter">Chapter 220: The Final Stage 🔒</h2>
+<p>This year’s Regional Inter-Divine Tower Academy War was not just a stage for two phenomenal initiates, but three!</p>
+<p>The third, surprisingly, also hailed from the Divine Tower of Verdant Spring Academy!</p>
+<p>This initiate was Grimm, a Quasi Mage who defended the Frozen Soul Lake, a large resource point in the Divine Tower of Verdant Spring.</p>
+<p>Grimm had maintained a low profile since joining the Divine Tower of Verdant Spring.</p>
+<p>Even though he had been part of the academy for a longer time than Sein, his presence was much less noticeable compared to Sein, who had briefly made his mark in the arena.</p>
+<p>Grimm never fought at the arena, never drew any attention in classes, and remained virtually unknown to the instructors.</p>
+<p>His discretion surpassed...</p>
+</article>
+<article id="c221" data-label="221">
+<h2 class="chapter">Chapter 221: Top Ten Initiates 🔒</h2>
+<p>“The regional academy war has come to an end. The top ten initiates, determined by their score, will proceed to the final trial,” a commanding voice echoed throughout the trial space.</p>
+<p>Upon hearing this voice, all initiates, including Sein, instinctively looked upward.</p>
+<p>Suddenly, an intense, blinding light burst from the golden pillar enveloping Sein.</p>
+<p><em>Swoosh!</em></p>
+<p>With a swift motion, he transformed into a beam of golden light and vanished.</p>
+<p>Following Sein’s disappearance, the other top nine initiates, based on their score, also vanished from the trial space.</p>
+<hr class="separator">
+<p>Sein found himself in a special space shrouded in darkness.</p>
+<p>The golden light radiating from him illuminated his surroundings.</p>
+<p>As the first...</p>
+</article>
+<article id="c222" data-label="222">
+<h2 class="chapter">Chapter 222: Reward and Apprenticeship 🔒</h2>
+<p>“Shadow creatures? I recall reading in the library that they are subspecies of shadowy creatures, yet they differ fundamentally from shadowy creatures,” Gade commented.</p>
+<p>“These creatures are native to a few rare planes in special star domains under the control of Magus Civilization, known for feeding on light sources. Have they all attained Rank One?” he wondered.</p>
+<p>“So far, we haven’t truly tested each other’s strengths. Would you like to demonstrate your capability here?” Gade proposed as he moved to the center, his gaze fixed on Sein.</p>
+<p>Gade’s insights into the shadow creature piqued Sein’s curiosity about this unique and elusive species.</p>
+<p>As for Gade’s challenge, Sein remained indifferent.</p>
+<p>He was not one for ostentatious displays...</p>
+</article>
+<article id="c223" data-label="223">
+<h2 class="chapter">Chapter 223: Rewards from the Regional Academy War 🔒</h2>
+<p>Sein was surprised that an esteemed divine tower master would consider his opinion before taking him on as her apprentice.</p>
+<p>He remained uncertain whether the Tower Master of Verdant Spring was simply easygoing or genuinely valued Sein’s opinion, wishing him to make a conscious choice.</p>
+<p>For any initiates, or even full-fledged mages, the prospect of being mentored by a Rank Four tower master was an extraordinary opportunity.</p>
+<p>Offers like these were seldom refused, and Sein was no exception to this.</p>
+<p>Before accepting the offer from the Tower Master of Verdant Spring, Sein hesitated briefly and revealed, “I’ve had a mentor...</p>
+</article>
+<article id="c224" data-label="224">
+<h2 class="chapter">Chapter 224: Exchange Hall 🔒</h2>
+<p><em>Knock, knock, knock!</em></p>
+<p>The gentle knocks at the door jolted Sein from his thoughts.</p>
+<p>It was Selina, reminding him that dinner was ready.</p>
+<p>Since the academy war had only recently concluded, Sein had yet to resume his intensive study of complex magical theories.</p>
+<p>Knowing this, Selina did not have to worry about distracting Sein either.</p>
+<p>Sein, being human, needed to relax and unwind, particularly after the extended stress of the nearly two-year regional academy war.</p>
+<p>During this time, his main diversion had been dissecting and analyzing the properties of shadow creatures, turning them into research specimens.</p>
+<p>This activity was investigative and stimulating, yet...</p>
+</article>
+<article id="c225" data-label="225">
+<h2 class="chapter">Chapter 225: Generous Spending Habits 🔒</h2>
+<p>Eileen was the one who attended to Sein on this occasion.</p>
+<p>In fact, just three days earlier, she was the person who had informed Sein about the arrival of exceptionally rare items today.</p>
+<p>The recent Regional Inter-Divine Tower Academy War had significantly altered how Eileen and Master Jovian viewed Sein.</p>
+<p>At that time, upon seeing Sein emerge from the trial space, Master Jovian was rendered speechless, pointing at him in astonishment.</p>
+<p>Meanwhile, Eileen had not only exchanged crystal ball contacts with Sein but also, through numerous conversations, began to regard him as a peer rather than merely an initiate.</p>
+<p>“It’s been just a few days since...</p>
+</article>
+<article id="c226" data-label="226">
+<h2 class="chapter">Chapter 226: Interplanar Communication 🔒</h2>
+<p>Sein spent several hours in the academy library, only leaving when night had deeply set in.</p>
+<p>The divine tower academy was quiet at night, as many magic initiates followed a routine of studying during the day and resting at night.</p>
+<p>Lately, Sein had observed subtle shifts in his mental focus and physical body, down to the cellular level, leaving him feeling extraordinarily energized.</p>
+<p>Even during the late hours, he experienced no fatigue whatsoever, a condition he had maintained for an extended period.</p>
+<p>This phenomenon might represent a distinction between ordinary humans and those in the Magus World who were approaching a promotion to...</p>
+</article>
+<article id="c227" data-label="227">
+<h2 class="chapter">Chapter 227: Belbacor 🔒</h2>
+<p>The Astral Stone’s interplanar communication feature could conceal the life levels of communicators from both sides.</p>
+<p>When the communication channel formed, neither Sein from the Magus World nor Belbacor, who called itself the lord of Mount Lava, could accurately gauge the other’s strength.</p>
+<p>Nevertheless, subtle clues allowed each to infer something about the other.</p>
+<p>Sein, noting Belbacor’s aura and resolute tone, deduced that Belbacor’s life level significantly surpassed its own.</p>
+<p>Yet, he doubted Belbacor matched the formidable presence of the Rank Four tower masters, as his intimidating presence fell...</p>
+</article>
+<article id="c228" data-label="228">
+<h2 class="chapter">Chapter 228: Mentor’s Warning 🔒</h2>
+<p>“Oh? You’ve heard of the Magus World?” Sein asked.</p>
+<p>“Of course, the Magus World’s attack on the Neisse Star Domain thirty thousand years ago is well-known across neighboring star domains,” Belbacor replied.</p>
+<p>“I’ve also heard about your battles in other star domains. Your Magus Civilization’s fearsome reputation is known not just to me, but also to other powerhouses I’ve communicated with in the past,” it added.</p>
+<p>Belbacor spoke candidly without concealing anything.</p>
+<p>Sein, a native of the Magus World, surprisingly found himself less aware of his own civilization’s prestige than this extraplanar being.</p>
+<p>“The Neisse Star Domain? Is that near your Eternal Sand World?” Sein questioned.</p>
+<p>“Hehe, don’t bother trying to pry. The Eternal Sand World is far from the Neisse...</p>
+</article>
+<article id="c229" data-label="229">
+<h2 class="chapter">Chapter 229: Rank One Mage 🔒</h2>
+<p>Sein had only discovered today that his mentor, Lorianne, had her own mentor.</p>
+<p>Known by the title “Verdant Flame”, Lorianne’s mentor was a revered Rank Six grand mage and the founder of the Divine Tower of Verdant Flame.</p>
+<p>Apart from his Rank Six grandmaster, Sein also learned of the other apprentices of his grandmaster through Master Lorianne. Both of them were mages of over Rank Four and had established their own divine towers.</p>
+<p>Lorianne was the youngest apprentice of the Verdant Flame.</p>
+<p>In any case, Sein found himself in an extremely powerful prestigious faction.</p>
+<p>From his current perspective, the full extent and power of this faction remained beyond his grasp.</p>
+<p>In the Magus World, the inheritance...</p>
+</article>
+<article id="c230" data-label="230">
+<h2 class="chapter">Chapter 230: Returning 🔒</h2>
+<p>Upon exiting the secret chamber, Sein found no sign of his mentor, Lorianne.</p>
+<p>Sein’s heart was filled with elation and excitement following his recent promotion to Rank one. However, his mentor likely did not share similar enthusiasm, having witnessed countless Rank One mages.</p>
+<p>Sein’s promotion was somewhat expected, especially since he was bestowed the Planar Light, leaving little for Lorianne to be concerned about.</p>
+<p>Furthermore, as a Rank Four mage, it would reflect poorly on her if her apprentice failed to achieve even Rank One.</p>
+<p>The divine tower’s 700th floor and above were exclusively reserved for Lorianne.</p>
+<p>There were nearly a hundred floors, Sein was not even sure which laboratory she was working in at the moment.</p>
+<p>When Lorianne previously suggested that Sein relocate to the top...</p>
+</article>
+<article id="c231" data-label="231">
+<h2 class="chapter">Chapter 231: Joyous Time for the Commoners 🔒</h2>
+<p>Sein planned to fly directly back to the Lysian Alliance.</p>
+<p>A key distinction between a full-fledged mage and an initiate was the ability to manipulate gravity due to their strong mental focus and the mana within their body.</p>
+<p>Even without learning magic spells like Levitate, they possessed the innate ability to fly.</p>
+<p>Of course, flight spells like Levitate could further enhance a mage’s aerial capabilities in terms of speed, altitude, and endurance.</p>
+<p>There were also plenty of other advanced flight spells like Flight and Soar, but Sein had not learned them yet since he had just attained Rank One.</p>
+<p>Nevertheless, with the focus and mana levels of a full-fledged mage, Levitate spell was sufficient to bring Selina and him back to Lysian Alliance.</p>
+<p>Besides, Sein could...</p>
+</article>
+<article id="c232" data-label="232">
+<h2 class="chapter">Chapter 232: House Grantt 🔒</h2>
+<p>Over two years had passed since the end of the Lysian Alliance’s border war with neighboring nations.</p>
+<p>During this period of peace, there seemed to be no imminent signs of renewed conflict, and several nearby human nations were in a celebratory and recovery phase.</p>
+<p>Sein surmised that the return of all Rank One and above knights to the homeplane might have also contributed to this joyous atmosphere.</p>
+<p>As Sein approached Grantt Castle, his formidable focus level as a full-fledged mage immediately detected the presence of three powerful beings within the castle, each with a strength of Rank One or above.</p>
+<p>At the same time, Sein made no effort to conceal...</p>
+</article>
+<article id="c233" data-label="233">
+<h2 class="chapter">Chapter 233: Recognition 🔒</h2>
+<p>Sein had grown accustomed to the lively and lavish atmosphere of the dinner banquets, but the same could not be said for his cousin, Selina.</p>
+<p>Her very name had marked her as an outsider in these gatherings.</p>
+<p>Adding to her discomfort, Sein’s great grandfather, Jeremy, had mistakenly assumed she was Sein’s wife.</p>
+<p>During the dinner, Jeremy even prodded Earl Grantt to inquire about Sein’s intentions regarding starting a family.</p>
+<p>For ancient knight houses like House Grantt, the continuation of the family bloodline was of utmost importance.</p>
+<p>While House Grantt had quite a number of indirect descendants, there were only few direct descendants.</p>
+<p>This was primarily due to Earl Grantt having only...</p>
+</article>
+<article id="c234" data-label="234">
+<h2 class="chapter">Chapter 234: Leaving 🔒</h2>
+<p>Sein’s experience at House Farion left him feeling somewhat uneasy.</p>
+<p>As a once-prestigious magic family that had not seen a full-fledged mage in centuries, their almost obsequious treatment toward Sein felt quite overwhelming.</p>
+<p>Sein had refrained from revealing his apprenticeship under the Divine Tower of Verdant Spring’s master.</p>
+<p>Had they been aware of this fact, the attention he received would have been even more intense.</p>
+<p>Aware that this information could not remain concealed indefinitely, Sein anticipated that House Farion would eventually learn of his true status.</p>
+<p>After a three-day stay with House Farion, during which he paid his respects...</p>
+</article>
+<article id="c235" data-label="235">
+<h2 class="chapter">Chapter 235: Mentor’s Gift 🔒</h2>
+<p>Sein’s arrival back at the Divine Tower of Verdant Spring coincided precisely with the time his mentor, Lorianne, had previously mentioned.</p>
+<p>Mages, known for their strict adherence to time, had influenced Sein to always be punctual. He was never late and rarely early.</p>
+<p>When he saw Lorianne, she seemed to have just taken a shower.</p>
+<p>Wearing an emerald green slip dress, she carried a fresh scent around her.</p>
+<p>Lorianne tossed a packet of green seeds to Sein, saying, “I’ve been thinking of what to give you as a welcome gift. You don’t seem like you need any new magic rods or magic artifacts, so I thought these Viridescent Seeds would be useful to you. Be sure to use them wisely and sparingly!” Lorianne...</p>
+</article>
+<article id="c236" data-label="236">
+<h2 class="chapter">Chapter 236: Divine Tower of Verdant Flame 🔒</h2>
+<p>Lorianne, as a Rank Four mage, was capable of incredibly fast flight.</p>
+<p>Yet, even at her swift pace, it would take nearly a month to reach the Divine Tower of Verdant Flame from the Divine Tower of Verdant Spring.</p>
+<p>This considerable duration showed just how immense the main continent of the Magus World was.</p>
+<p>During their flight, Sein, under Lorianne’s guidance, witnessed many of the Magus World’s unique marvels, including numerous divine towers and orders of the knights scattered across the landscape.</p>
+<p>He encountered dozens of divine towers on their journey, each a towering building with distinct color and structural variations compared to the Divine Tower of Verdant Spring.</p>
+<p>Sein observed...</p>
+</article>
+<article id="c237" data-label="237">
+<h2 class="chapter">Chapter 237: Mentor’s Faction 🔒</h2>
+<p>An old gray-robed mage with white hair on the top floor of the Divine Tower of Verdant Flame greeted Lorianne with a warm smile.</p>
+<p>“Lorianne, you’re finally here. Master Feylis has missed you a great deal.”</p>
+<p>“Andres!” Lorianne returned the greeting respectfully.</p>
+<p>The gray-robed mage was only a Rank Three grand mage who was nearing the end of his life.</p>
+<p>As a Rank Four mage who had earned the title of Divine Tower Master, Lorianne was superior in strength.</p>
+<p>Nevertheless, Lorianne’s reverence for him was evident in every aspect of her demeanor.</p>
+<p>Her respect was rooted not only in the support he had offered during her formative, less powerful years but also in the fact that he was her senior...</p>
+</article>
+<article id="c238" data-label="238">
+<h2 class="chapter">Chapter 238: Grandmaster 🔒</h2>
+<p>“And you are…?” Sein asked, looking perplexed.</p>
+<p>“I’m Selphy, Master Andres’ newest apprentice,” the woman in the white dress replied, smiling warmly.</p>
+<p>The gathering’s informal nature lent a relaxed atmosphere to the event. In the Verdant Flame Faction, it appeared that relationships were generally more casual and free-spirited.</p>
+<p>Consequently, not everyone was dressed in a traditional, formal magic robe.</p>
+<p>Several female mages, like Selphy, wore dresses, while some male mages wore casual tuxedos.</p>
+<p>Sein, unfamiliar with such attire, had only overheard bits of conversations about these being the latest fashion trend from the Alveroth...</p>
+</article>
+<article id="c239" data-label="239">
+<h2 class="chapter">Chapter 239: Viridian Venom Flame World 🔒</h2>
+<p>In the evening, the setting sun cast its rays upon the top floor of the Divine Tower of Verdant Flame, painting the entire hall a mesmerizing scarlet hue.</p>
+<p>It was then that Gregory and Bernice finally made their appearances, one after the other.</p>
+<p>Gregory, Grandmaster Verdant Flame’s second apprentice, was a formidable Rank Five mage who founded the Divine Tower of Whispering Flame.</p>
+<p>Gregory’s appearance was a stark contrast to the mages Sein was accustomed to encountering. His bare chest and arms showcased an impressive muscular build, and he wielded a thick, heavy black magic rod.</p>
+<p>Despite being a mage, Gregory appeared even more physically powerful than a typical knight.</p>
+<p>Bernice, Grandmaster...</p>
+</article>
+<article id="c240" data-label="240">
+<h2 class="chapter">Chapter 240: First Participation 🔒</h2>
+<p>Sein was not knowledgeable about the Verdant Flame magic, unlike many of the apprentices and grand apprentices present at the gathering.</p>
+<p>Among them, several, including Master Gregory, a Rank Five mage, were visibly excited.</p>
+<p>“Oh? This low-level plane aligns with our Verdant Flame magic? How intriguing. I can’t wait to see what this world is like,” Gregory said with a laugh.</p>
+<p>Bernice also showed considerable interest, but her concern was on another aspect of the content revealed by her mentor’s recent remarks.</p>
+<p>“If the Viridian Venom Flame World has already turned to our Magus Civilization and expressed their wish to join the Magus Alliance, then won’t the Magus Alliance…”...</p>
+</article>
+<article id="c241" data-label="241">
+<h2 class="chapter">Chapter 241: The Verdant Flame Legacy 🔒</h2>
+<p>After Lorianne expressed her willingness to participate in the interplanar war, a smile graced the face of Grandmaster Feylis who was seated in the hall’s high seat.</p>
+<p>The limitations of Lorianne’s Divine Tower of Verdant Spring were indeed a concern that needed to be addressed.</p>
+<p>Grandmaster Feylis then spoke in a soothing tone, “Due to my commitments with the Pyro Secret Society on the battlefield of the Neisse Star Domain, I won’t be able to actively participate in this war. Nevertheless, the Divine Tower of Verdant Flame can contribute over a hundred thousand full-fledged mages and has amassed more than five million enslaved creatures for use as cannon fodder.”</p>
+<p>She added, “These full-fledged...</p>
+</article>
+<article id="c242" data-label="242">
+<h2 class="chapter">Chapter 242: Preparation Before War 🔒</h2>
+<p>Upon their return to the Divine Tower of Verdant Spring, Master Lorianne and the other full-fledged mages in the tower exhibited a noticeable air of nervousness.</p>
+<p>Sein found that he seldom saw his mentor around.</p>
+<p>He was not sure what she was preoccupied with but had heard her occasionally muttering about something related to the world laboratory.</p>
+<p>It appeared that the other full-fledged mages in the tower had also been briefed about the upcoming expedition to the Viridian Venom Flame World, set to occur in two years.</p>
+<p>This news brought a noticeable change to the divine tower&#39;s atmosphere, yet the full implications eluded most of the lower-ranking init...</p>
+</article>
+<article id="c243" data-label="243">
+<h2 class="chapter">Chapter 243: Expectations 🔒</h2>
+<p>“How’s your study going? Is there anything you would like to discuss?” Sein asked Selina, who was seated beside him during dinner.</p>
+<p>As a full-fledged mage, Sein had undergone a transformation that made regular meals unnecessary.</p>
+<p>Many full-fledged mages could go days, or even a month, without food.</p>
+<p>However, having recently been promoted to Rank One, Sein still clung to some of his old habits.</p>
+<p>To him, eating was a way to enjoy life.</p>
+<p>Although he was passionate about exploring the truth and elemental mysteries, Sein believed in balancing intense study with moments of relaxation and enjoyment, especially in his youth.</p>
+<p>After all, if one were to...</p>
+</article>
+<article id="c244" data-label="244">
+<h2 class="chapter">Chapter 244: Bedside Talk 🔒</h2>
+<p>Sein’s room was usually kept closed, but not locked because Selina would occasionally come inside to clean his room.</p>
+<p>The person who entered his room was none other than Selina.</p>
+<p>She was not in her usual modest attire. Her long hair cascaded over her shoulders, and she wore a white and green low-cut dress.</p>
+<p>It was Sein’s first time seeing her in this look.</p>
+<p>It seemed that today held special significance for her, and she wanted to present her best self to Sein.</p>
+<p>As Selina approached Sein’s bed, her cheeks visibly flushed a deeper shade of scarlet. This was likely the first time she had acted so assertively.</p>
+<p>Selina had to be bold....</p>
+</article>
+<article id="c245" data-label="245">
+<h2 class="chapter">Chapter 245: Leaving for the War 🔒</h2>
+<p>Although nothing else happened between Sein and Selina that night, the two dormmates finally opened their hearts to each other after living together for so long and understood each other’s feelings.</p>
+<p>The following morning, Selina left the room brimming with joy and hurriedly prepared breakfast for Sein.</p>
+<p>Since Sein had always been cold and aloof, she was worried that Sein would reject her in disgust. Thankfully, that did not happen.</p>
+<p>While their relationship did not drastically alter in form, it had undeniably changed since the day before.</p>
+<p>Selina, who typically conversed little with Sein and kept her distance, found herself leaning against him and talking with...</p>
+</article>
+<article id="c246" data-label="246">
+<h2 class="chapter">Chapter 246: Space Fortress 🔒</h2>
+<p>Beyond the Magus World lay a bright and boundless starry sky, known as the “Astral Realm”.</p>
+<p>At the distant reaches of this celestial expanse, bright white lights sparkled, accentuating the diversity and beauty of the Astral Realm.</p>
+<p>Initially, Sein was captivated by the distant cosmic scenery.</p>
+<p>However, his attention soon shifted to the immediate vicinity.</p>
+<p>The starry sky near the Magus World was teeming with activity.</p>
+<p>Countless giant meteorite chunks floated in void, distinct from ordinary celestial meteorites.</p>
+<p>These vast blocks were studded with numerous specialized magic artifacts and devices, the likes of which Sein could not identify.</p>
+<p>It appeared to be...</p>
+</article>
+<article id="c247" data-label="247">
+<h2 class="chapter">Chapter 247: Eileen’s Invitation 🔒</h2>
+<p>Sein’s room was situated in a luxurious, exclusive area on the top floor of the space fortress.</p>
+<p>The full-fledged mages residing in this area were predominantly Rank Three grand mages.</p>
+<p>In the Divine Tower of Verdant Flame, the number of these esteemed mages far surpassed those in the Divine Tower of Verdant Spring, which had a less profound legacy.</p>
+<p>The number of Rank Three mages from the Divine Tower of Verdant Spring participating in the war was fewer than ten, including the two deans.</p>
+<p>In contrast, the Divine Tower of Verdant Flame boasted hundreds.</p>
+<p>Among these were Lorianne’s two seniors and several fellow apprentices whom he had met during a recent faction gathering.</p>
+<p>Privilege was a universal concept, even among the truth-seeking mages...</p>
+</article>
+<article id="c248" data-label="248">
+<h2 class="chapter">Chapter 248: Space-time Portal 🔒</h2>
+<p>Most of Eileen’s friends were Rank One mages from the Divine Tower of Verdant Spring.</p>
+<p>Sein, well aware of the benefits of forming alliances, noted that these full-fledged mages also understood this principle.</p>
+<p>As the apprentice of the tower master, Sein held significant influence.</p>
+<p>These full-fledged mages, despite having attained the Rank One years ago, were eager to be acquainted with Sein and establish a rapport with him.</p>
+<p>Eileen’s popularity within the Divine Tower of Verdant Spring was evidently high.</p>
+<p>Though Sein had been told they would meet just “a few friends”, he found over ten people at the venue, including a Rank Two mage.</p>
+<p>Master Jovian was absent, possibly preoccupied with other matters.</p>
+<p>Interestingly, most of Eileen’s friends were female mages, with male mages in the minority.</p>
+<p>Sein had previously attended public courses conducted by a few of these...</p>
+</article>
+<article id="c249" data-label="249">
+<h2 class="chapter">Chapter 249: Suffocating Pressure 🔒</h2>
+<p><em>Buzz!</em></p>
+<p>A soul-stirring vibration abruptly filled the air.</p>
+<p>The azure space-time portal before Sein’s eyes morphed into an endless passage.</p>
+<p>This experience reminded Sein of his journey to the Sand World, particularly the moment when he passed through the portal to reach that world.</p>
+<p>The discomfort and soul-tearing pain he had previously experienced were now significantly less intense, though still noticeable.</p>
+<p>Had Sein not been through a similar ordeal before, he might have overlooked this anomaly.</p>
+<p>He could not help but marvel, “Has the space fortress, a masterpiece of the Magus World’s alchemy, been perfected to such an extent in every aspect? Even the disorientating...</p>
+</article>
+<article id="c250" data-label="250">
+<span id="last"></span>
+<h2 class="chapter">Chapter 250: Onslaught of the Flames 🔒</h2>
+<p>“Oh, that Rank Five creature hasn’t even escaped. Is he overconfident in his own strength, or is he holding out hope for joining the Magus Alliance?” Feylis remarked with a chuckle in the space fortress.</p>
+<p>At that moment, the only person beside Feylis was Sein’s mentor, Lorianne.</p>
+<p>Around them, two holograms materialized. It was Gregory the Whispering Flame and Bernice the Floating Flame.</p>
+<p>These four individuals were the key forces spearheading the assault on the Viridian Venom Flame World.</p>
+<p>Responding to Feylis’ amused remark, Bernice speculated, “Perhaps the latter. A number of medium and lower-level civilizations around the Neisse Star Domain have already surrendered to the Magus World. Even the worlds beyond the Neisse Star Domain are now initiating contact,...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="251-300.html" rel="next">Next: Chs 251–300 &rarr;</a>
+    <p class="page-end-links"><a href="151-200.html" rel="prev">&larr; Chs 151–200</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 201–250</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c201">Chapter 201: Retaliate 🔒</a></li>
+        <li><a href="#c202">Chapter 202: Curse-Type Magic 🔒</a></li>
+        <li><a href="#c203">Chapter 203: Confusion 🔒</a></li>
+        <li><a href="#c204">Chapter 204: Fame 🔒</a></li>
+        <li><a href="#c205">Chapter 205: Initiate Conflict 🔒</a></li>
+        <li><a href="#c206">Chapter 206: Hero 🔒</a></li>
+        <li><a href="#c207">Chapter 207: Game-Changer 🔒</a></li>
+        <li><a href="#c208">Chapter 208: Great Victory 🔒</a></li>
+        <li><a href="#c209">Chapter 209: Cold Treatment 🔒</a></li>
+        <li><a href="#c210">Chapter 210: Plan to Attack 🔒</a></li>
+        <li><a href="#c211">Chapter 211: Disparity in Strength 🔒</a></li>
+        <li><a href="#c212">Chapter 212: Halted 🔒</a></li>
+        <li><a href="#c213">Chapter 213: An Early Confrontation 🔒</a></li>
+        <li><a href="#c214">Chapter 214: Average Strength 🔒</a></li>
+        <li><a href="#c215">Chapter 215: Venturing Out Alone 🔒</a></li>
+        <li><a href="#c216">Chapter 216: Different Choice 🔒</a></li>
+        <li><a href="#c217">Chapter 217: Enemy’s Trap 🔒</a></li>
+        <li><a href="#c218">Chapter 218: Bait 🔒</a></li>
+        <li><a href="#c219">Chapter 219: Sweeping Through the Five Territories 🔒</a></li>
+        <li><a href="#c220">Chapter 220: The Final Stage 🔒</a></li>
+        <li><a href="#c221">Chapter 221: Top Ten Initiates 🔒</a></li>
+        <li><a href="#c222">Chapter 222: Reward and Apprenticeship 🔒</a></li>
+        <li><a href="#c223">Chapter 223: Rewards from the Regional Academy War 🔒</a></li>
+        <li><a href="#c224">Chapter 224: Exchange Hall 🔒</a></li>
+        <li><a href="#c225">Chapter 225: Generous Spending Habits 🔒</a></li>
+        <li><a href="#c226">Chapter 226: Interplanar Communication 🔒</a></li>
+        <li><a href="#c227">Chapter 227: Belbacor 🔒</a></li>
+        <li><a href="#c228">Chapter 228: Mentor’s Warning 🔒</a></li>
+        <li><a href="#c229">Chapter 229: Rank One Mage 🔒</a></li>
+        <li><a href="#c230">Chapter 230: Returning 🔒</a></li>
+        <li><a href="#c231">Chapter 231: Joyous Time for the Commoners 🔒</a></li>
+        <li><a href="#c232">Chapter 232: House Grantt 🔒</a></li>
+        <li><a href="#c233">Chapter 233: Recognition 🔒</a></li>
+        <li><a href="#c234">Chapter 234: Leaving 🔒</a></li>
+        <li><a href="#c235">Chapter 235: Mentor’s Gift 🔒</a></li>
+        <li><a href="#c236">Chapter 236: Divine Tower of Verdant Flame 🔒</a></li>
+        <li><a href="#c237">Chapter 237: Mentor’s Faction 🔒</a></li>
+        <li><a href="#c238">Chapter 238: Grandmaster 🔒</a></li>
+        <li><a href="#c239">Chapter 239: Viridian Venom Flame World 🔒</a></li>
+        <li><a href="#c240">Chapter 240: First Participation 🔒</a></li>
+        <li><a href="#c241">Chapter 241: The Verdant Flame Legacy 🔒</a></li>
+        <li><a href="#c242">Chapter 242: Preparation Before War 🔒</a></li>
+        <li><a href="#c243">Chapter 243: Expectations 🔒</a></li>
+        <li><a href="#c244">Chapter 244: Bedside Talk 🔒</a></li>
+        <li><a href="#c245">Chapter 245: Leaving for the War 🔒</a></li>
+        <li><a href="#c246">Chapter 246: Space Fortress 🔒</a></li>
+        <li><a href="#c247">Chapter 247: Eileen’s Invitation 🔒</a></li>
+        <li><a href="#c248">Chapter 248: Space-time Portal 🔒</a></li>
+        <li><a href="#c249">Chapter 249: Suffocating Pressure 🔒</a></li>
+        <li><a href="#c250">Chapter 250: Onslaught of the Flames 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="151-200.html" rel="prev">&larr; Chs 151–200</a>    <a href="../../index.html">Library</a>
+<a href="251-300.html" rel="next">Chs 251–300 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

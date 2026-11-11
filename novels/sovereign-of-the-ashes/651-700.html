@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 651–700</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="601-650.html#last" data-next-page="701-750.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c651">Chapter 651: Green Sun 🔒</a></li>
+        <li><a href="#c652">Chapter 652: Fracturing Sky 🔒</a></li>
+        <li><a href="#c653">Chapter 653: The Charge 🔒</a></li>
+        <li><a href="#c654">Chapter 654: Bloody Passage 🔒</a></li>
+        <li><a href="#c655">Chapter 655: Invasion 🔒</a></li>
+        <li><a href="#c656">Chapter 656: Centaurs 🔒</a></li>
+        <li><a href="#c657">Chapter 657: Establishing A Foothold 🔒</a></li>
+        <li><a href="#c658">Chapter 658: Deep Infiltration 🔒</a></li>
+        <li><a href="#c659">Chapter 659: Unequal Collaboration 🔒</a></li>
+        <li><a href="#c660">Chapter 660: Strange Plant 🔒</a></li>
+        <li><a href="#c661">Chapter 661: Special Purple Energy 🔒</a></li>
+        <li><a href="#c662">Chapter 662: Spoils 🔒</a></li>
+        <li><a href="#c663">Chapter 663: Assistance from the Mother-in-Law 🔒</a></li>
+        <li><a href="#c664">Chapter 664: The Power of Violet Flame 🔒</a></li>
+        <li><a href="#c665">Chapter 665: Inextinguishable Property 🔒</a></li>
+        <li><a href="#c666">Chapter 666: Participating In The Siege 🔒</a></li>
+        <li><a href="#c667">Chapter 667: Impact Of Demigod-level Energy Surge 🔒</a></li>
+        <li><a href="#c668">Chapter 668: Nearing His Limit 🔒</a></li>
+        <li><a href="#c669">Chapter 669: Screwed Over 🔒</a></li>
+        <li><a href="#c670">Chapter 670: Awakening 🔒</a></li>
+        <li><a href="#c671">Chapter 671: What Do You Want?! 🔒</a></li>
+        <li><a href="#c672">Chapter 672: Second Wife 🔒</a></li>
+        <li><a href="#c673">Chapter 673: Resolved Deepest Concerns 🔒</a></li>
+        <li><a href="#c674">Chapter 674: Angry Tourmaline 🔒</a></li>
+        <li><a href="#c675">Chapter 675: A Slight Pain In The Rear 🔒</a></li>
+        <li><a href="#c676">Chapter 676: Strength Law 🔒</a></li>
+        <li><a href="#c677">Chapter 677: Pushed Over 🔒</a></li>
+        <li><a href="#c678">Chapter 678: Improved Situation 🔒</a></li>
+        <li><a href="#c679">Chapter 679: Busy and Rest 🔒</a></li>
+        <li><a href="#c680">Chapter 680: Female Servants’ Progresses 🔒</a></li>
+        <li><a href="#c681">Chapter 681: Disturbance In The North 🔒</a></li>
+        <li><a href="#c682">Chapter 682: Blazing Sunflower’s Submission 🔒</a></li>
+        <li><a href="#c683">Chapter 683: Added Value 🔒</a></li>
+        <li><a href="#c684">Chapter 684: Verdant Leaf World’s Fate 🔒</a></li>
+        <li><a href="#c685">Chapter 685: Truth Of The World 🔒</a></li>
+        <li><a href="#c686">Chapter 686: Battle Of The Royal City 🔒</a></li>
+        <li><a href="#c687">Chapter 687: Battling Beyond Rank 🔒</a></li>
+        <li><a href="#c688">Chapter 688: You Get What You Pay For 🔒</a></li>
+        <li><a href="#c689">Chapter 689: Good News 🔒</a></li>
+        <li><a href="#c690">Chapter 690: Demigod-Level Materials 🔒</a></li>
+        <li><a href="#c691">Chapter 691: Black Towers War 🔒</a></li>
+        <li><a href="#c692">Chapter 692: Differences In Alchemy 🔒</a></li>
+        <li><a href="#c693">Chapter 693: New Magic Robe 🔒</a></li>
+        <li><a href="#c694">Chapter 694: Conclusion of Verdant Leaf World War 🔒</a></li>
+        <li><a href="#c695">Chapter 695: Reina’s Shoulder Armor 🔒</a></li>
+        <li><a href="#c696">Chapter 696: Enticing 🔒</a></li>
+        <li><a href="#c697">Chapter 697: An Apprentice’s Duty 🔒</a></li>
+        <li><a href="#c698">Chapter 698: Conducting A Lesson 🔒</a></li>
+        <li><a href="#c699">Chapter 699: Taking On An Apprentice? 🔒</a></li>
+        <li><a href="#c700">Chapter 700: Frequent Experiments 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c651" data-label="651">
+<h2 class="chapter">Chapter 651: Green Sun 🔒</h2>
+<p>After emerging from Lorianne’s magic tower, Sein stepped onto the dry, gray land.</p>
+<p>Gazing at the greenish planet hanging in the starry sky nearby, he sighed. “A microplane inaccessible to creatures of Rank Four and above, huh?”</p>
+<hr class="separator">
+<p>The Divine Tower of Verdant Spring launched its attack with swift precision.</p>
+<p>Three days later, Lorianne appeared outside the Verdant Leaf World, fully prepared with a verdant green magic rod in her clutch.</p>
+<p>Sein recalled seeing it during the Viridian Venom Flame World War, where his mentor had wielded it against a Neisse Civilization’s Rank Four construct and had used it to cast a forbidden spell.</p>
+<p>At this moment, Lorianne in the starry sky obviously had no intention of unleashing a forbidden spell.</p>
+<p>Plundering...</p>
+</article>
+<article id="c652" data-label="652">
+<h2 class="chapter">Chapter 652: Fracturing Sky 🔒</h2>
+<p>The Bamboo Leaf Dragonfly King hastened to the sacred grounds, bypassing the guards who dared not obstruct its path.</p>
+<p>Upon reaching the deepest part of the mountains, it entered a naturally-formed cave dwelling, through which a sweet spring flowed.</p>
+<p>It was a lavishly decorated cave palace, nestled deep within the mountain’s heart.</p>
+<p>The hall was adorned with endless energy crystals and vibrant, colorful flowers exuding a potent life force in many corners.</p>
+<p>Any mage from Magus World would immediately recognize the substantial veins of energy crystals beneath, along with the flourishing diversity of plant life.</p>
+<p>This sacred place, revered by the Bamboo Leaf...</p>
+</article>
+<article id="c653" data-label="653">
+<h2 class="chapter">Chapter 653: The Charge 🔒</h2>
+<p>Just as the sky over the Verdant Leaf World began showing clear signs of fracturing, three vibrant pillars of light, each brimming with life force, emerged from the east, west, and north.</p>
+<p>These pillars of energy seemed to mend the fractured planar barrier of Verdant Leaf World slightly.</p>
+<p>The sources of these lights were the Ancient Verdant Banyan, a guardian located in the southeast, and two other demigod-level plants.</p>
+<p>Only demigods attuned to the power of laws could repair the planar barrier, and in this endeavor, the Ancient Verdant Banyan played a pivotal role, contributing over seventy percent of the restorative force by harnessing a sliver of planar power.</p>
+<p>Together, the three energy pillars supported the Verdant Leaf World’s planar barrier in...</p>
+</article>
+<article id="c654" data-label="654">
+<h2 class="chapter">Chapter 654: Bloody Passage 🔒</h2>
+<p>Maya led the charge with one hundred and fifty thousand troops, forming the vanguard as they stormed toward Verdant Leaf World.</p>
+<p>Trailing slightly in the rhythm of their charge were the four Rank Three Knights from the Magus World, who nonetheless served as the backbone of the assault.</p>
+<p>These four Sky Knights from House Ernst far surpassed the Rank Three Centaurs of Centaurworld in terms of individual strength.</p>
+<p>Almost midway through the charge, the other three knights activated their bloodline transformations, much like Sein’s mother-in-law, significantly amplifying their strength and aura to their fullest capacity.</p>
+<p>As these knights and their legions of enslaved creatures pressed forward, the mage...</p>
+</article>
+<article id="c655" data-label="655">
+<h2 class="chapter">Chapter 655: Invasion 🔒</h2>
+<p>Even the formidable planar barrier could not withstand the Magus Civilization Army.</p>
+<p>It was impossible to hold them back with merely the native legions of the Verdant Leaf World, numbering in the hundreds of thousands.</p>
+<p>However, the creatures of the Verdant Leaf World leveraged their native terrain and the support of plant beings from every corner of their plane.</p>
+<p>At the initial clash, they indeed posed significant challenges for the centaur legions.</p>
+<p>A barrage of green, razor-sharp winds and sharp needles swept across the battlefield, including unusual attacks with durians, pine needles and plant spores.</p>
+<p>These green sharp winds came from the Bamboo Leaf Dragonfly Clan, the dominant species in the Verdant Leaf World that followed the path of passive evolution.</p>
+<p>They could emit this special energy from the arthropod arms on both sides of their bodies, which was somewhat akin to the battle qi of the Magus World. Though much weaker, it was a rudimentary way of utilizing dendro elemental energy.</p>
+<p>The sharp needles came from the tails of numerous insect creatures of the Verdant Leaf World.</p>
+<p>Despite being a microplane, it was clear that its...</p>
+</article>
+<article id="c656" data-label="656">
+<h2 class="chapter">Chapter 656: Centaurs 🔒</h2>
+<p>In terms of individual strength, Maya was on par with the Bamboo Leaf Dragonfly.</p>
+<p>Maya was not an exceptionally powerful centaur.</p>
+<p>Her constitution as a female creature meant that she did not possess the brute strength of her male demigod counterparts.</p>
+<p>However, Maya excelled in flexibility and agility.</p>
+<p>With her hooves treading lightly in the sky, her ethereal fighting style shone through every time she raised her longbow.</p>
+<p>The Bamboo Leaf Dragonfly opposing her was the most vital and youthful of the demigods in the current generation of the Bamboo Leaf Dragonfly Clan because this generation had produced only one such individual, highlighting its exceptional talent and...</p>
+</article>
+<article id="c657" data-label="657">
+<h2 class="chapter">Chapter 657: Establishing A Foothold 🔒</h2>
+<p>Sein was right.</p>
+<p>Almost immediately after he finished speaking, a colorful wave of elemental chaos surged into Verdant Leaf World through the stable green passage, penetrating the gaping breach in the planar barrier.</p>
+<p>This was a concerted attack, a long-range deadly spell executed by over two thousand full-fledged mages.</p>
+<p>Unlike Sein and the other mages who had entered Verdant Leaf World and were forced to confront immediate threats from every direction, these two thousand mages of the Divine Tower of Verdant Spring outside the plane could chant and execute their most potent spells in a relatively calm environment.</p>
+<p>The coverage of a single Rank One spell could easily span tens, if not hundreds, of meters.</p>
+<p>Now, imagine...</p>
+</article>
+<article id="c658" data-label="658">
+<h2 class="chapter">Chapter 658: Deep Infiltration 🔒</h2>
+<p>Maya did not cause severe injuries to the bamboo leaf dragonfly that retreated.</p>
+<p>In their brief encounter, Maya matched the Bamboo Leaf Dragonfly in combat but found it challenging to inflict any damage.</p>
+<p>As a prominent obstacle for the Divine Tower of Verdant Spring Army, the demigod-class Bamboo Leaf Dragonfly faced not only frontal assaults from Maya, an equally formidable opponent but also endured elemental strikes from all directions.</p>
+<p>Most of the elemental chaos in the sky earlier was aimed at the demigod-level Bamboo Leaf Dragonfly known as Lantz.</p>
+<p>For many mages involved in the conflict, facing a demigod was an unlikely scenario under normal circumstanc...</p>
+</article>
+<article id="c659" data-label="659">
+<h2 class="chapter">Chapter 659: Unequal Collaboration 🔒</h2>
+<p>Verdant Leaf World was modest in size, its dimensions a mere third of Thunderfall World.</p>
+<p>This dendro elemental microplane was predominantly ocean.</p>
+<p>The territory that Sein and the Divine Tower of Verdant Spring Army must conquer was even smaller.</p>
+<p>Given the size of this microplane, the army had opted for a strategic advance from west to north, and eventually to the east and south.</p>
+<p>This route was chosen due to the distribution of the dominant inhabitants—the Bamboo Leaf Dragonfly Clan resided primarily in the eastern and southern regions of Verdant Leaf World’s main continent.</p>
+<p>This area was also home to the plane’s guardian and three demigod-level...</p>
+</article>
+<article id="c660" data-label="660">
+<h2 class="chapter">Chapter 660: Strange Plant 🔒</h2>
+<p>In the dense forest of Verdant Leaf World, Sein, dressed in a light-colored magic robe, glided low among the towering trees.</p>
+<p>Despite the forest’s vastness, the area was deceptively serene, dominated by ordinary trees that appeared sparse and unusual.</p>
+<p>The world was home to numerous poisonous insects and carnivorous plants. While they posed threats to creatures of Rank One or lower, they presented little risk to a Rank Two being like Sein.</p>
+<p>Even the most venomous insect would likely find itself incinerated by the verdant flame emanating from Sein’s skin before it could even bite him.</p>
+<p>Pyro spells, one of the highly effective magic...</p>
+</article>
+<article id="c661" data-label="661">
+<h2 class="chapter">Chapter 661: Special Purple Energy 🔒</h2>
+<p>The most crucial factor to consider when battling mages from the Magus World was their tendency to rely on their wits.</p>
+<p>Sein’s strength was comparable to that of the bizarre Rank Two plant creature. Yet, his strategic acumen often tipped the scales in his favor.</p>
+<p>Blindly acting recklessly was just not his style.</p>
+<p>With over two months of war experience, Sein had honed his tactics against the Verdant Leaf World’s plant creatures.</p>
+<p>Daniel and the others operated with practiced efficiency; this was not their first time doing this kind of task.</p>
+<p>Previously, they had successfully uprooted an intact ancient durian...</p>
+</article>
+<article id="c662" data-label="662">
+<h2 class="chapter">Chapter 662: Spoils 🔒</h2>
+<p>“Who told you to come?!”</p>
+<p>Sein glared at Natalya after the battle concluded.</p>
+<p>His annoyance was not directed at Natalya’s intervention itself. Rather, it was how the rough female knight had slain the strange Rank Two plant—a specimen Sein had held in high esteem—with a single strike of her sword.</p>
+<p>During the prior engagement, this strange plant had been at a severe disadvantage against Sein.</p>
+<p>With Natalya’s arrival, the combined internal and external assaults of elemental flames effectively extinguished the last trace of the plant’s resistance.</p>
+<p>Yet, the true death blow came from the massive crimson sword Natalya had thrust into the heart of the plant’s root system.</p>
+<p>This was not the first time Sein had seen the...</p>
+</article>
+<article id="c663" data-label="663">
+<h2 class="chapter">Chapter 663: Assistance from the Mother-in-Law 🔒</h2>
+<p>After the battle in the deep pit concluded, Sein led his troops westward.</p>
+<p>The chief of the Green Mitten Sea Crabs proposed sending scouts to explore the underground dark river and Sein agreed to the suggestion.</p>
+<hr class="separator">
+<p>A month later, inside the temporary camp….</p>
+<p>Natalya found her mother, Sia, in this temporary settlement nestled within the dense forests west of Verdant Leaf World.</p>
+<p>The camp had been established after the Divine Tower of Verdant Spring Army cleared a swath through the forest.</p>
+<p>Wars involved more than just blindly advancing; the Divine Tower of Verdant Spring also needed rest.</p>
+<p>This camp was the second established by the Divine Tower of Verdant Spring Army since their entry into Verdant Leaf World.</p>
+<p>The northern camp near Verdant Leaf World was also nearing completion, set to serve as the fortress camp...</p>
+</article>
+<article id="c664" data-label="664">
+<h2 class="chapter">Chapter 664: The Power of Violet Flame 🔒</h2>
+<p>In the laboratory, Sein was hunched over an experimental table, closely examining the purple particles he had scraped off the rock.</p>
+<p>Sein hypothesized that it was not native to the Verdant Leaf World but likely originated from the Astral Realm.</p>
+<p>The subtle substances coating the rock and their slight radioactive properties were traits typical of materials in the Astral Realm.</p>
+<p>Consequently, Sein theorized that the purple rock might have fallen into the Verdant Leaf World as a meteorite, which explained the presence of a large deep crater where the strange Rank Two plant had taken root.</p>
+<p>While the exact number of similar purple meteorites in Verdant Leaf World remained unknown, Sein’s...</p>
+</article>
+<article id="c665" data-label="665">
+<h2 class="chapter">Chapter 665: Inextinguishable Property 🔒</h2>
+<p>Seven thousand magicoins was certainly not a trivial sum.</p>
+<p>Rank Three grand mages often posted more significant private quests with rewards in this range.</p>
+<p>In contrast, the missions posted by ordinary Rank Two mages generally ranged from a few hundred to two or three thousand magicoins. These were the amounts most of them could afford.</p>
+<p>For someone like Sein, however, spending seven thousand magicoins in one go was not merely a show of his considerable wealth; it showed the importance he placed on obtaining this particular purple ore.</p>
+<p>Although Sein only participated in a few interplanar wars, Dean Archimedes knew that he had amassed a considerable fortune in magicoins as a phenomenal initiate...</p>
+</article>
+<article id="c666" data-label="666">
+<h2 class="chapter">Chapter 666: Participating In The Siege 🔒</h2>
+<p>After a brief stay in the western temporary fortress, a new advancement mission was issued.</p>
+<p>The central fortress’ command center ordered a siege mission against the Green Cypress Pine, a demigod-level plant creature located west of the Verdant Leaf World’s main continent.</p>
+<p>The Green Cypress Pine was one of Verdant Leaf World’s three demigod-level plant creatures, and it was not much older than the Ancient Verdant Banyan.</p>
+<p>Standing three hundred meters tall with a canopy spanning five hundred meters in diameter, this ancient tree appeared slightly shorter than the Ancient Verdant Banyan, but its root system was believed to be even more extensive.</p>
+<p>In addition to this demigod-level giant tree the...</p>
+</article>
+<article id="c667" data-label="667">
+<h2 class="chapter">Chapter 667: Impact Of Demigod-level Energy Surge 🔒</h2>
+<p>In the previous battle, Rank One knights and mages had assisted Sein in besieging the Rank Two plant creature.</p>
+<p>Now, it was Sein’s turn to assist the Rank Three experts in besieging a higher-ranked Rank Three plant.</p>
+<p>This change demonstrated the teamwork of the Magus World Army in the interplanar war.</p>
+<p>Sein did not object to his mother-in-law’s suggestion.</p>
+<p>He had participated in the siege of Rank Three creatures back when he was still a Rank One, but at that time, he had been positioned on the periphery, making only minor contributions.</p>
+<p>Now, as a Rank Two, he wielded considerable power and influence among his peers.</p>
+<p>Sein’s role in this upcoming siege, and the difficulty of the mission, was significantly greater...</p>
+</article>
+<article id="c668" data-label="668">
+<h2 class="chapter">Chapter 668: Nearing His Limit 🔒</h2>
+<p>Despite being a plant creature, Green Cypress Pine should not be underestimated as harmless.</p>
+<p>The memory of the Thunder Beast King, towering hundreds of meters tall and breaching the fortress base during the Thunderfall World War, remained vivid in Sein’s mind. The beast’s onslaught had inflicted significant losses on the Order of the Steel Fist.</p>
+<p>The deeply rooted Green Cypress Pine was comparable to the Thunder Beast King in terms of individual strength and the challenge it presented.</p>
+<p>The primary difference was mobility—the Thunder Beast King could move freely, whereas Green Cypress Pine was stationary.</p>
+<p>However, its limitation in mobility was offset...</p>
+</article>
+<article id="c669" data-label="669">
+<h2 class="chapter">Chapter 669: Screwed Over 🔒</h2>
+<p>West of the main continent in Verdant Leaf World…</p>
+<p>At the heart of a vast primeval forest, a colossal green tree stretched skyward, its trunk over five hundred meters in diameter and reaching a height of three hundred meters.</p>
+<p>It stood alone, surrounded by only low bushes, reigning like a king over the forest and bearing witness to tens of thousands of years of growth and the cycle of life.</p>
+<p>Among the native demigods, the Green Cypress Pine was considered a “relatively small” plant creature.</p>
+<p>Verdant Leaf World boasted several ordinary Rank Three trees that towered over the Green Cypress Pine in stature.</p>
+<p>However, what set the Green Cypress Pine apart was its extensive root system, which granted it formidable...</p>
+</article>
+<article id="c670" data-label="670">
+<h2 class="chapter">Chapter 670: Awakening 🔒</h2>
+<p>Dark green waves of energy swept through the sky, altering the verdant forests below in unexpected ways.</p>
+<p>Sein watched as a ten-meter-diameter giant tree extended its “claws” toward him. Though it moved slowly, its hostility was unmistakable.</p>
+<p>Yet, even this threat paled in comparison to the powerful surge of energy emanating from the west.</p>
+<p>Before the Viridescent Seed he had hastily planted could fully activate, Sein found himself unable to control his own body, pulled skyward by the relentless waves.</p>
+<p>“Is this the full force of a demigod-level powerhouse?” he wondered.</p>
+<p>Drained of mana and focus, Sein was starkly aware of his powerlessness against the overwhelming force.</p>
+<p>He resigned himself to fate...</p>
+</article>
+<article id="c671" data-label="671">
+<h2 class="chapter">Chapter 671: What Do You Want?! 🔒</h2>
+<p>After chatting with Sein and urging him to rest more, Archimedes left the recuperation room.</p>
+<p>Sein was currently in the central fortress, the Divine Tower of Verdant Spring’s stronghold in the Verdant Leaf World.</p>
+<p>He had no idea how Sia had managed to bring him all the way here at that time.</p>
+<p>Not just Sein, but Natalya as well, was gravely injured by the demigod’s energy surge.</p>
+<p>It must have been tough for Sia to rush to the central fortress, seeking aid for two critically injured members in her team.</p>
+<p>Sein’s mentor, Lorianne, was an exceptionally gifted and powerful Rank Four dendro mage.</p>
+<p>The spellcasters who primarily wielded dendro, lumen and hydro elemental magic in the Magus World were typically capable healers.</p>
+<p>In addition to the Healing Water Crystal Coffin and the Life Green Algae, Lorianne also provided Sein with numerous valuable recovery items to preserve...</p>
+</article>
+<article id="c672" data-label="672">
+<h2 class="chapter">Chapter 672: Second Wife 🔒</h2>
+<p>The “battle” between the two grievously injured was brutally intense.</p>
+<p>The pristine white sheets were soon stained with blood.</p>
+<p>Despite her injuries, Natalya matched Sein’s intensity effortlessly.</p>
+<p>She was less wounded, thanks to her slightly superior constitution, and she dominated the entire session which lasted several hours.</p>
+<p>This entire scheme, orchestrated by Sein’s mother-in-law, had been a bad idea that nearly cost these young fighters their lives.</p>
+<p>Despite the complications and risks, the scheme ultimately served its intended purpose.</p>
+<p>For Natalya, this was the perfect opportunity to make her move.</p>
+<p>Although engaged to him, Sein had never fully accepted...</p>
+</article>
+<article id="c673" data-label="673">
+<h2 class="chapter">Chapter 673: Resolved Deepest Concerns 🔒</h2>
+<p>Sein had braced himself for a dramatic reaction from Natalya.</p>
+<p>He anticipated that she might beat him up, perhaps leave, or even demand that he sever ties with Leena.</p>
+<p>Yet, he had not expected Natalya—a seemingly impulsive and rough female knight—to be so “tolerant” toward him.</p>
+<p>Natalya neither resorted to violence nor hurled harsh words at him.</p>
+<p>She remained calm and composed as she listened to Sein.</p>
+<p>Sein, closely monitoring her expression, detected a sense of relief in her for some reason.</p>
+<p>To Natalya, Leena, being a female black mage, posed no threat to her position as Sein’s legal wife.</p>
+<p>Sia might have questionable ways of handling matters, but she had...</p>
+</article>
+<article id="c674" data-label="674">
+<h2 class="chapter">Chapter 674: Angry Tourmaline 🔒</h2>
+<p>As Sein lay on the stretcher, being escorted to the spatial gate, he saw Natalya, who was still recovering from her injuries, and Sia, his mother-in-law.</p>
+<p>The intensity of the war in Verdant Leaf World left Gould and the others unable to see Sein off.</p>
+<p>Only Anna, who recently returned to the central fortress for rest, and Luna, the Rank Two centaur preparing to return to Centaurworld to muster more troops, had made time to see Sein off.</p>
+<p>Sein’s injuries were not as severe as they appeared. Yet Anna, whom Sein had not considered particularly close, unexpectedly shed a few tears.</p>
+<p>This was Anna&#39;s first involvement...</p>
+</article>
+<article id="c675" data-label="675">
+<h2 class="chapter">Chapter 675: A Slight Pain In The Rear 🔒</h2>
+<p>The effort to draw Tourmaline into the Verdant Leaf World War went smoother than expected.</p>
+<p>This demigod-level young turtle, having never left the Magus World, initially showed some hesitation and nervousness before stepping through the spatial gate.</p>
+<p>However, after glancing at Sein, who lay on a stretcher with serious injuries, Tourmaline entered with a determined expression.</p>
+<p>The spatial passage consumed far more energy to accommodate a superior creature like Tourmaline than a Rank Two being like Sein.</p>
+<p>According to Lorianne’s data, facilitating Tourmaline’s journey to Verdant Leaf World required five times the energy compared to a typical demigod-level creature.</p>
+<p>Tourmaline’s...</p>
+</article>
+<article id="c676" data-label="676">
+<h2 class="chapter">Chapter 676: Strength Law 🔒</h2>
+<p>Tourmaline, a demigod-level dragon turtle from a distinguished family, significantly impacted the momentum of both sides in the conflict.</p>
+<p>Most participants from the Divine Tower of Verdant Spring Army, apart from Rank Two and Three Knights and mages experienced in interplanar wars, had never seen a behemoth spanning over a thousand meters in diameter.</p>
+<p>For the divine tower, Tourmaline’s arrival was a motivational surge.</p>
+<p>However, for the natives of Verdant Leaf World, its appearance served as an unpleasant reality that chilled them like a bucket of cold water.</p>
+<p>While Sein was returning to Verdant Leaf World with Tourmaline, the native inhabitants, led by the Bamboo Leaf Dragonfly Clan, had already initiated a robust counterattack against the central fortress of the Divine Tower of Verdant ...</p>
+</article>
+<article id="c677" data-label="677">
+<h2 class="chapter">Chapter 677: Pushed Over 🔒</h2>
+<p>Since Tourmaline had been instructed not to use the power of Laws for fear of destroying the veins and cores of Verdant Leaf World, she would have to change her strategy.</p>
+<p>This demigod, summoned by Sein from the Magus World, remained focused on her mission to avenge him.</p>
+<p>With Lorianne’s counsel in mind, Tourmaline advanced heavily toward Green Cypress Pine.</p>
+<p>The landscape before them, once a thriving primeval forest, had been transformed into a churned expanse of mud, burying countless plant creatures.</p>
+<p>Green Cypress Pine, the primary target of Tourmaline’s assault, did not succumb immediately.</p>
+<p>Its remarkable vitality as a demigod afforded it some resilience, even as half of its...</p>
+</article>
+<article id="c678" data-label="678">
+<h2 class="chapter">Chapter 678: Improved Situation 🔒</h2>
+<p>The battle of the demigods in the western part of Verdant Leaf World marked the first significant clash of this microplane war.</p>
+<p>Unexpectedly, just as this battle concluded, another pivotal moment unfolded at the heart of the plane before either the attackers or defenders could fully regroup.</p>
+<p>Leading the charge were the three demigod-level Sea Kings, supported by a mixed army of three hundred thousand centaurs who had recently arrived in Verdant Leaf World to join the war and a hundred thousand plant creatures decisively mobilized by Rank Three grand mage Archimedes.</p>
+<p>This unplanned army swiftly overran the Bamboo Leaf Dragonfly Clan’s million-strong force, which had been marshaling for an extended period.</p>
+<p>After...</p>
+</article>
+<article id="c679" data-label="679">
+<h2 class="chapter">Chapter 679: Busy and Rest 🔒</h2>
+<p>In the laboratory, Sein peered through the elemental microscope, observing the intermingling of purple inextinguishable pyro elemental particles with verdant flame particles.</p>
+<p>To outsiders, magic experiments might seem mundane, but for mages like Sein, they were a source of deep fascination.</p>
+<p>Sein had secluded himself in the laboratory for three months.</p>
+<p>The recent major victory on the western front, the arrival of several Magus World demigod-level beings, and the crippling of the Bamboo Leaf Dragonfly Clan’s resistance had afforded Sein a period of relative calm to pursue his experimental interests.</p>
+<p>The command center had granted Sein over six months of recuperative rest—a benefit of residing within his own divine tower, where he received...</p>
+</article>
+<article id="c680" data-label="680">
+<h2 class="chapter">Chapter 680: Female Servants’ Progresses 🔒</h2>
+<p>“How has your training been going?” Sein asked after taking a sip of the green juice, turning his attention to the fox maiden.</p>
+<p>Although the fox maiden was the most recent addition to Sein’s group, her stature—similar to Leena in her teenage form—quickly endeared her to him, elevating her status above that of the mermaid, who primarily served as a chef and a pretty trophy.</p>
+<p>In the Beastmen World, the lifespan of an average beastman was sixty, with many living even shorter lives.</p>
+<p>There were exceptions, however—the turtlefolk could live for several centuries due to their unique constitution, which even Rank One creatures fail to achieve. Some could...</p>
+</article>
+<article id="c681" data-label="681">
+<h2 class="chapter">Chapter 681: Disturbance In The North 🔒</h2>
+<p>When Sein finally remerged after secluding himself in the laboratory for six months, the Verdant Leaf World War had taken a new turn.</p>
+<p>As expected, the tide of the conflict had steadily turned in favor of the Divine Tower of Verdant Spring, whose legion boasted a growing advantage.</p>
+<p>Gone were the days of devastating losses.</p>
+<p>Now, under the overwhelming force of the Magus World Army, the elite troops of the Verdant Leaf World had been decimated several times. The native creatures in the western part of the main continent had largely been subdued and posed little threat to the advancing forces of the Divine Tower of Verdant Spring.</p>
+<p>In a bold move, the centaurs deployed an additional one hundred...</p>
+</article>
+<article id="c682" data-label="682">
+<h2 class="chapter">Chapter 682: Blazing Sunflower’s Submission 🔒</h2>
+<p>Every creature had the right to pursue freedom and life.</p>
+<p>No creature was inherently bound by morality, even if it betrayed its beloved homeplane.</p>
+<p>To the north of the main continent in Verdant Leaf World, the landscape contrasted sharply with the dense primeval forests found to the east, south, and west.</p>
+<p>This region featured expansive grasslands and shrubs, making it ideally suited for the centaur army to exert its dominance.</p>
+<p>Over sixty percent of the centaurs and minotaurlings in the Verdant Leaf World had gathered here, led by several Rank Three centaurs and their demigod-level leader, Maya.</p>
+<p>The Verdant Leaf World’s forces in the northern territories had begun showing signs...</p>
+</article>
+<article id="c683" data-label="683">
+<h2 class="chapter">Chapter 683: Added Value 🔒</h2>
+<p>When the demigod-level Blazing Sunflower surrendered, Sein was battling in Green Tree City, located in the eastern part of the Verdant Leaf World.</p>
+<p>The native insect creatures of Verdant Leaf World had begun to develop a rudimentary civilization and society.</p>
+<p>The guardian, being a plant creature itself, must have had compelling reasons for choosing the Bamboo Leaf Dragonfly Clan as the dominant race of this plane.</p>
+<p>The Green Tree City, constructed by the Bamboo Leaf Dragonfly Clan, was impressive not only for its height but also for its extensive and complex underground space.</p>
+<p>This major city was home to no fewer than two million insect creatures.</p>
+<p>Of course, almost all of them were ordinary insects with constitutions weaker...</p>
+</article>
+<article id="c684" data-label="684">
+<h2 class="chapter">Chapter 684: Verdant Leaf World’s Fate 🔒</h2>
+<p>The war in Verdant Leaf World had entered its fourth year when the Divine Tower of Verdant Spring Army reached the Bamboo Leaf Dragonfly Royal City.</p>
+<p>Blazing Sunflower, the demigod-level plant from the north, made a strong initial impact.</p>
+<p>As resistance from the native creatures of Verdant Leaf World dwindled, more and more fell to the invaders.</p>
+<p>Among these, most were the insect species—the most populous in Verdant Leaf World.</p>
+<p>The true rulers of Verdant Leaf World were the Bamboo Leaf Dragonflies, who had little in common with the other insect species that had already lost their fight for the sovereignty of this plane.</p>
+<p>The other insect creatures did not really care who ruled this plane; they simply wished to live.</p>
+<p>The Divine...</p>
+</article>
+<article id="c685" data-label="685">
+<h2 class="chapter">Chapter 685: Truth Of The World 🔒</h2>
+<p>The stone cave was no larger than a hundred square meters, with several stone tables, chairs, and a notably larger stone bed in it.</p>
+<p>These were the only furnishings behind the stone door.</p>
+<p>The space inside the cave, while small, felt even more vacant due to its sparse furnishings, making it seem desolate.</p>
+<p>This was the chosen habitat of the most gifted individual the Bamboo Leaf Dragonfly Clan had ever known.</p>
+<p>Emerald, the slender Bamboo Leaf Dragonfly, was also Lantz’s grandmother.</p>
+<p>Emerald had chosen this secluded life, believing that she could only delve deeper into the Verdant Law in this quiet space.</p>
+<p>While most demigods in the Verdant Leaf World referred to the power of law as “Verdant Truth”,...</p>
+</article>
+<article id="c686" data-label="686">
+<h2 class="chapter">Chapter 686: Battle Of The Royal City 🔒</h2>
+<p>The battle of the Bamboo Leaf Dragonfly Royal City was undoubtedly the most intense conflict Sein had seen since joining the Verdant Leaf World War.</p>
+<p>Although Sein had encountered grave danger during a personal combat mission in the western battlefield, it paled in comparison to this siege where the forces on each side numbered in the millions.</p>
+<p>Bamboo Leaf Dragonfly Royal City was undoubtedly the largest city in the Verdant Leaf World, far surpassing the plant cities Sein had encountered before.</p>
+<p>Additionally, the resistance mounted by Bamboo Leaf Dragonfly Royal City was the strongest among the insect creatures’ settlements.</p>
+<p>The city was predominantly inhabited by the Bamboo Leaf Dragonflies, conservatively estimated at over five million strong.</p>
+<p>The other insect creatures gathered in the city were staunch allies...</p>
+</article>
+<article id="c687" data-label="687">
+<h2 class="chapter">Chapter 687: Battling Beyond Rank 🔒</h2>
+<p>As the demigod-level entity fled its homeplane, only a few of the powerhouses on the battlefield continued to track its movements.</p>
+<p>This general disinterest stemmed from the knowledge that the Rank Four Tower Master of the Divine Tower of Verdant Spring was just beyond the plane.</p>
+<p>The recent burst of verdant light was likely the work of Lorianne.</p>
+<p>Facing a Rank Four entity, the demigod-level Bamboo Leaf Dragonfly was inevitably ensnared in the trap set for it.</p>
+<p>As for the fate of the other Bamboo Leaf Dragonfly, one could only wish it luck.</p>
+<p><em>BOOM!</em></p>
+<p>When Sein looked up, the demigod-level Deep Sea Giant Eel had already reached the Bamboo Leaf Dragonfly Royal City, smashing a huge hole in the northwest...</p>
+</article>
+<article id="c688" data-label="688">
+<h2 class="chapter">Chapter 688: You Get What You Pay For 🔒</h2>
+<p>After observing Reina’s battle with the Rank Three Bamboo Leaf Dragonfly for a while, Sein decided to leave after informing Natalya.</p>
+<p>The fight held little suspense, and Sein found himself more intrigued by the prospects in Bamboo Leaf Dragonfly Royal City.</p>
+<p>Accompanied by Yuri, Sein swiftly made his way into the Royal City where the demigod-level Deep Sea Giant Eel was leading the battle.</p>
+<p>The conflict between the Divine Tower of Verdant Spring Army and the Bamboo Leaf Dragonfly Clan had also engulfed the Royal City.</p>
+<p>Insect corpses littered the ground as far as the eye could see.</p>
+<p>Some impatient minotaurlings had already begun feasting on them.</p>
+<p>Despite the relentless lashing from...</p>
+</article>
+<article id="c689" data-label="689">
+<h2 class="chapter">Chapter 689: Good News 🔒</h2>
+<p>The battle of the Bamboo Leaf Dragonfly Royal City concluded in less than a month.</p>
+<p>The once lofty and majestic structures were reduced to blackened ruins.</p>
+<p>Millions of Bamboo Leaf Dragonflies and other insect creatures were buried beneath the debris, along with the history of their clan.</p>
+<p>Sein’s gains from this battle were serendipitous. He had not specifically targeted the higher-ranked Bamboo Leaf Dragonflies.</p>
+<p>However, while scavenging through the residences that clearly belonged to the elite Bamboo Leaf Dragonflies, he discovered several items unique to the Verdant Leaf World, reminiscent of amber and natural resin.</p>
+<p>Unfortunately, these were...</p>
+</article>
+<article id="c690" data-label="690">
+<h2 class="chapter">Chapter 690: Demigod-Level Materials 🔒</h2>
+<p>After meeting with his mentor, Sein headed directly to the recuperation area within the fortress.</p>
+<p>More than four years had passed since the Verdant Leaf World War began. Although the war yielded significant gains, it left many knights and mages of the Divine Tower of Verdant Spring Army with varying degrees of injuries.</p>
+<p>Sein had spent several months in this recuperation area the previous year, and now he returned in perfect health to visit others.</p>
+<p>He went straight to the ward reserved for those most seriously injured and found Sia among others who had been given a separate room.</p>
+<p>The Divine Tower of Verdant Spring took great care of its wounded knights and mages, subsidizing...</p>
+</article>
+<article id="c691" data-label="691">
+<h2 class="chapter">Chapter 691: Black Towers War 🔒</h2>
+<p>A common practice for expanding influence and development potential was to initiate interplanar wars like the Divine Tower of Verdant Spring.</p>
+<p>The Magus Civilization was a top-tier entity, constantly driving efficiency and development.</p>
+<p>Due to the Magus Civilization’s overly aggressive expansion, more and more otherworldly planes and civilizations around the Magus Civilization either became hostile or chose to join the Magus Alliance.</p>
+<p>Over the past one hundred thousand years, the number of world civilizations capable of interacting with the Magus World as equals had been dwindling.</p>
+<p>Only those civilizations with formidable strength, situated in distant star domains and without direct conflicts of interest, had maintained friendly relations...</p>
+</article>
+<article id="c692" data-label="692">
+<h2 class="chapter">Chapter 692: Differences In Alchemy 🔒</h2>
+<p>As Sein expressed how much he missed her, Leena lowered her head and smiled shyly.</p>
+<p>She stood tall on the other side of the magic array, with long, silky black hair draped over her shoulders.</p>
+<p>In recent years, Leena rarely stayed in her teenage form.</p>
+<p>In the harsh environment of Blackhaven, appearing in that form could lead to being underestimated and targeted.</p>
+<p>Despite the shy smile she showed to Sein, Leena was known as a cold beauty and a deadly Black Widow in the Black Tower of Cinderbones.</p>
+<p>Not only did the black mages of the opposing Black Tower of Bone regard her with fear, but even some Rank Two black mages in the Black Tower of Cinderbones were afraid of her.</p>
+<p>“The war between the...</p>
+</article>
+<article id="c693" data-label="693">
+<h2 class="chapter">Chapter 693: New Magic Robe 🔒</h2>
+<p>After utilizing a significant amount of demigod-level material, Sein devoted six months to crafting equipment that greatly satisfied him.</p>
+<p>Indeed, mastering any skill involved repeated effort.</p>
+<p>Armed with prior experience from creating the Verdant Flame Heart Rod and Dark Crystal Rod, Sein’s proficiency in creating top-notch magic equipment had significantly improved.</p>
+<p>The amount of inevitable wastage during the experiments was normal, so it would be unfair to criticize Sein’s skill in alchemy based on this.</p>
+<p>Moreover, these failures and losses gradually enhanced Sein’s capability in alchemy.</p>
+<p>Over the months, Sein crafted five pieces of equipment—two...</p>
+</article>
+<article id="c694" data-label="694">
+<h2 class="chapter">Chapter 694: Conclusion of Verdant Leaf World War 🔒</h2>
+<p>After departing from the command center, Sein located Natalya and the others through his divine tower badge.</p>
+<p>While Sein had managed to remain in the seclusion of his magic tower’s laboratory for half a year, Natalya and the other knights could not sit still like him during a war.</p>
+<p>Even Sein’s mother-in-law, having recovered from her injuries nearly two months ago, hastened to the south to join the final confrontation in the Verdant Leaf Forest.</p>
+<p>Upon contacting Natalya and Reina, Sein was relieved to hear they were unharmed. He also learned that Gould and others were on the battlefield.</p>
+<p>Tasked by the command center to join the fray, Sein set out southward, flying at top speed toward the Verdant Leaf Forest.</p>
+<p>Although the Verdant Leaf World War had...</p>
+</article>
+<article id="c695" data-label="695">
+<h2 class="chapter">Chapter 695: Reina’s Shoulder Armor 🔒</h2>
+<p>Deep in the Verdant Leaf Forest, Sein encountered Natalya and the others amidst evidence of a brutal battle that surpassed even the devastation Sein had seen elsewhere in the Verdant Leaf World.</p>
+<p>The landscape was littered with countless corpses of plant and insect creatures.</p>
+<p>Despite the fall of the Ancient Verdant Banyan, the remaining native forces of the Verdant Leaf Forest continued their resistance.</p>
+<p>The task of subduing these stubborn holdouts had been assigned to the centaurs.</p>
+<p>Meanwhile, the mages and knights of the Divine Tower of Verdant Spring were preoccupied with plundering the rich resources of the forest.</p>
+<p>As the birthplace of the guardian and the last...</p>
+</article>
+<article id="c696" data-label="696">
+<h2 class="chapter">Chapter 696: Enticing 🔒</h2>
+<p>After Sein sealed his “friendly” deal with Reina, Natalya came over.</p>
+<p>The female knight gave him an eager look as if silently asking, “Where’s my gift?”</p>
+<p>Of course, Sein had prepared one for Natalya. He promptly took out a pair of combat boots.</p>
+<p>Her full body armor and heavy sword—both high-quality equipment—required no immediate replacement.</p>
+<p>Wilson and Sia had certainly invested heavily in their only daughter.</p>
+<p>The boots crafted by Sein had many engravings of aero and pyro elemental magic arrays. These could enhance flight speed and provide short-term bursts of power, perfect for a knight like Natalya.</p>
+<p>Having explored every inch of Natalya’s body, Sein naturally knew the exact shape of her feet.</p>
+<p>Since the boots...</p>
+</article>
+<article id="c697" data-label="697">
+<h2 class="chapter">Chapter 697: An Apprentice’s Duty 🔒</h2>
+<p>The agreement of the three Sea Kings to settle in Jewel Sea was certainly not influenced by the life juice Lorianne used to entice them.</p>
+<p>Though these Sea Kings possessed low intelligence, they were not foolish.</p>
+<p>Moreover, the Jewel Sea within the Magus World could practically be considered a “lake” rather than an inland sea.</p>
+<p>It had expanded significantly since the construction of the Verdant Wave Canal, finally looking like a sea rather than a lake now.</p>
+<p>However, the depth and temperature of the Jewel Sea remained less than ideal for these colossal beings.</p>
+<p>The primary reason the Sea Kings agreed to stay was to guard Tourmaline—a directive from White Stella and their fathers.</p>
+<p>As long...</p>
+</article>
+<article id="c698" data-label="698">
+<h2 class="chapter">Chapter 698: Conducting A Lesson 🔒</h2>
+<p>After spending a few more moments with Lorianne, Sein excused himself and departed.</p>
+<p>Although he could return directly to the Divine Tower of Verdant Spring via the fortress, Lorianne had to remain behind for the time being.</p>
+<p>Accompanying Sein back to the Magus World was only Tourmaline.</p>
+<p>Meanwhile, Natalya and the other knights wished to continue honing their skills in the impending battle to purge the remaining forces.</p>
+<p>Selina, along with others, were experiencing their first interplanar war.</p>
+<p>Verdant Leaf World, with its laws vastly different from those of Magus World, held great allure for these young Rank One mages fresh from Magus World.</p>
+<p>In fact, aside from Sein, very few chose to return to the Divine Tower of Verdant Spring at...</p>
+</article>
+<article id="c699" data-label="699">
+<h2 class="chapter">Chapter 699: Taking On An Apprentice? 🔒</h2>
+<p>On his first day teaching, Sein entered the classroom precisely on time and departed immediately after the class was dismissed.</p>
+<p>He never lingered to ensure that the initiates had grasped his lessons.</p>
+<p>Sein was not a typical academy mage; he only taught at divine tower academy at the request of his mentor.</p>
+<p>To Sein, the status and backgrounds of his students were irrelevant; none of them could possibly compare to him.</p>
+<p>Most likely, the figures these initiates revered as elders were merely ordinary Rank One or Rank Two mages from the Divine Tower of Verdant Spring.</p>
+<p>When the Divine Tower of Verdant Spring rapidly absorbed two thousand hedge mages from Viridescent Land, some of their undesirable practices were inadvertently introduced to the academy.</p>
+<p>When Sein was an initiate, such an atmosphere was less pervasive...</p>
+</article>
+<article id="c700" data-label="700">
+<span id="last"></span>
+<h2 class="chapter">Chapter 700: Frequent Experiments 🔒</h2>
+<p>During the fifth year since Sein’s return to the Divine Tower of Verdant Spring, the knights and mages who had originally participated in the Verdant Leaf World War began to return one after another.</p>
+<p>The knights naturally returned to their respective homes.</p>
+<p>During the interplanar war, many knights had forged notable friendships with the mages of the Divine Tower of Verdant Spring.</p>
+<p>Upon their return, many hedge mages from the Viridiscent Land also began to sign contracts with the Divine Tower of Verdant Spring.</p>
+<p>Having established mutual interests with the divine tower during the war, these hedge mages across Viridescent Land were more keen to join the Divine Tower of Verdant Spring now.</p>
+<p>The influx of registered mages and the return of war mages...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="701-750.html" rel="next">Next: Chs 701–750 &rarr;</a>
+    <p class="page-end-links"><a href="601-650.html" rel="prev">&larr; Chs 601–650</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 651–700</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c651">Chapter 651: Green Sun 🔒</a></li>
+        <li><a href="#c652">Chapter 652: Fracturing Sky 🔒</a></li>
+        <li><a href="#c653">Chapter 653: The Charge 🔒</a></li>
+        <li><a href="#c654">Chapter 654: Bloody Passage 🔒</a></li>
+        <li><a href="#c655">Chapter 655: Invasion 🔒</a></li>
+        <li><a href="#c656">Chapter 656: Centaurs 🔒</a></li>
+        <li><a href="#c657">Chapter 657: Establishing A Foothold 🔒</a></li>
+        <li><a href="#c658">Chapter 658: Deep Infiltration 🔒</a></li>
+        <li><a href="#c659">Chapter 659: Unequal Collaboration 🔒</a></li>
+        <li><a href="#c660">Chapter 660: Strange Plant 🔒</a></li>
+        <li><a href="#c661">Chapter 661: Special Purple Energy 🔒</a></li>
+        <li><a href="#c662">Chapter 662: Spoils 🔒</a></li>
+        <li><a href="#c663">Chapter 663: Assistance from the Mother-in-Law 🔒</a></li>
+        <li><a href="#c664">Chapter 664: The Power of Violet Flame 🔒</a></li>
+        <li><a href="#c665">Chapter 665: Inextinguishable Property 🔒</a></li>
+        <li><a href="#c666">Chapter 666: Participating In The Siege 🔒</a></li>
+        <li><a href="#c667">Chapter 667: Impact Of Demigod-level Energy Surge 🔒</a></li>
+        <li><a href="#c668">Chapter 668: Nearing His Limit 🔒</a></li>
+        <li><a href="#c669">Chapter 669: Screwed Over 🔒</a></li>
+        <li><a href="#c670">Chapter 670: Awakening 🔒</a></li>
+        <li><a href="#c671">Chapter 671: What Do You Want?! 🔒</a></li>
+        <li><a href="#c672">Chapter 672: Second Wife 🔒</a></li>
+        <li><a href="#c673">Chapter 673: Resolved Deepest Concerns 🔒</a></li>
+        <li><a href="#c674">Chapter 674: Angry Tourmaline 🔒</a></li>
+        <li><a href="#c675">Chapter 675: A Slight Pain In The Rear 🔒</a></li>
+        <li><a href="#c676">Chapter 676: Strength Law 🔒</a></li>
+        <li><a href="#c677">Chapter 677: Pushed Over 🔒</a></li>
+        <li><a href="#c678">Chapter 678: Improved Situation 🔒</a></li>
+        <li><a href="#c679">Chapter 679: Busy and Rest 🔒</a></li>
+        <li><a href="#c680">Chapter 680: Female Servants’ Progresses 🔒</a></li>
+        <li><a href="#c681">Chapter 681: Disturbance In The North 🔒</a></li>
+        <li><a href="#c682">Chapter 682: Blazing Sunflower’s Submission 🔒</a></li>
+        <li><a href="#c683">Chapter 683: Added Value 🔒</a></li>
+        <li><a href="#c684">Chapter 684: Verdant Leaf World’s Fate 🔒</a></li>
+        <li><a href="#c685">Chapter 685: Truth Of The World 🔒</a></li>
+        <li><a href="#c686">Chapter 686: Battle Of The Royal City 🔒</a></li>
+        <li><a href="#c687">Chapter 687: Battling Beyond Rank 🔒</a></li>
+        <li><a href="#c688">Chapter 688: You Get What You Pay For 🔒</a></li>
+        <li><a href="#c689">Chapter 689: Good News 🔒</a></li>
+        <li><a href="#c690">Chapter 690: Demigod-Level Materials 🔒</a></li>
+        <li><a href="#c691">Chapter 691: Black Towers War 🔒</a></li>
+        <li><a href="#c692">Chapter 692: Differences In Alchemy 🔒</a></li>
+        <li><a href="#c693">Chapter 693: New Magic Robe 🔒</a></li>
+        <li><a href="#c694">Chapter 694: Conclusion of Verdant Leaf World War 🔒</a></li>
+        <li><a href="#c695">Chapter 695: Reina’s Shoulder Armor 🔒</a></li>
+        <li><a href="#c696">Chapter 696: Enticing 🔒</a></li>
+        <li><a href="#c697">Chapter 697: An Apprentice’s Duty 🔒</a></li>
+        <li><a href="#c698">Chapter 698: Conducting A Lesson 🔒</a></li>
+        <li><a href="#c699">Chapter 699: Taking On An Apprentice? 🔒</a></li>
+        <li><a href="#c700">Chapter 700: Frequent Experiments 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="601-650.html" rel="prev">&larr; Chs 601–650</a>    <a href="../../index.html">Library</a>
+<a href="701-750.html" rel="next">Chs 701–750 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

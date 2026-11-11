@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Overlord of Puluo Chs 451–485 pt 1</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="401-450.html#last">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c451">Chapter 451: Jiaqing, Heed My Advice 🔒</a></li>
+        <li><a href="#c452">Chapter 452: Just What Sort of Man Do You Think He Is? 🔒</a></li>
+        <li><a href="#c453">Chapter 453: So Who Is the Brush? 🔒</a></li>
+        <li><a href="#c454">Chapter 454: Where Is Blightland 🔒</a></li>
+        <li><a href="#c455">Chapter 455: Withering 🔒</a></li>
+        <li><a href="#c456">Chapter 456: Level-Eight Ability of Wanderlust Cultivation 🔒</a></li>
+        <li><a href="#c457">Chapter 457: The Stranger In the Pocket Dwelling 🔒</a></li>
+        <li><a href="#c458">Chapter 458: How Many Residents Are There in the Pocket Dwelling? 🔒</a></li>
+        <li><a href="#c459">Chapter 459: Causing Trouble 🔒</a></li>
+        <li><a href="#c460">Chapter 460: Daoist Path 🔒</a></li>
+        <li><a href="#c461-1">Chapter 461 pt 1: 1: Hong Ying&#39;s Eyes (1) 🔒</a></li>
+        <li><a href="#c461-2">Chapter 461 pt 2: 2: Hong Ying&#39;s Eyes (2) 🔒</a></li>
+        <li><a href="#c462-1">Chapter 462 pt 1: 1: Calculating Every Move (1) 🔒</a></li>
+        <li><a href="#c462-2">Chapter 462 pt 2: 2: Calculating Every Move (2) 🔒</a></li>
+        <li><a href="#c463-1">Chapter 463 pt 1: 1: The Creation of a Daoist Path (1) 🔒</a></li>
+        <li><a href="#c463-2">Chapter 463 pt 2: 2: The Creation of a Daoist Path (2) 🔒</a></li>
+        <li><a href="#c464-1">Chapter 464 pt 1: 1: Now This Is Lu Dongliang (1) 🔒</a></li>
+        <li><a href="#c464-2">Chapter 464 pt 2: 2: Now This Is Lu Dongliang (2) 🔒</a></li>
+        <li><a href="#c465-1">Chapter 465 pt 1: 1: Dance! (1) 🔒</a></li>
+        <li><a href="#c465-2">Chapter 465 pt 2: 2: Dance! (2) 🔒</a></li>
+        <li><a href="#c466-1">Chapter 466 pt 1: 1: Why Aren&#39;t You Crying? (1) 🔒</a></li>
+        <li><a href="#c466-2">Chapter 466 pt 2: 2: Why Aren&#39;t You Crying? (2) 🔒</a></li>
+        <li><a href="#c467-1">Chapter 467 pt 1: 1: Flying General Battalion (1) 🔒</a></li>
+        <li><a href="#c467-2">Chapter 467 pt 2: 2: Flying General Battalion (2) 🔒</a></li>
+        <li><a href="#c468-1">Chapter 468 pt 1: 1: Gallant Heroine Zhao Xiaowan 🔒</a></li>
+        <li><a href="#c468-2">Chapter 468 pt 2: 2: Gallant Heroine Zhao Xiaowan 🔒</a></li>
+        <li><a href="#c469">Chapter 469: Who Wants to Wipe Out the Jiangxiang Gang? 🔒</a></li>
+        <li><a href="#c470">Chapter 470: Fake It for Real 🔒</a></li>
+        <li><a href="#c471-1">Chapter 471 pt 1: 1: The Cry in the Basement (1) 🔒</a></li>
+        <li><a href="#c471-2">Chapter 471 pt 2: 2: The Cry in the Basement (2) 🔒</a></li>
+        <li><a href="#c472-1">Chapter 472 pt 1: 1: Obsession (1) 🔒</a></li>
+        <li><a href="#c472-2">Chapter 472 pt 2: 2: Obsession (2) 🔒</a></li>
+        <li><a href="#c473-1">Chapter 473 pt 1: 1: The Yin-Yang Gloves (1) 🔒</a></li>
+        <li><a href="#c473-2">Chapter 473 pt 2: 2: The Yin-Yang Gloves (2) 🔒</a></li>
+        <li><a href="#c474-1">Chapter 474 pt 1: 1: Such a Great Mountain (1) 🔒</a></li>
+        <li><a href="#c474-2">Chapter 474 pt 2: 2: Such a Great Mountain (2) 🔒</a></li>
+        <li><a href="#c475-1">Chapter 475 pt 1: 1: Where Great Danger Lies (1) 🔒</a></li>
+        <li><a href="#c475-2">Chapter 475 pt 2: 2: Where Great Danger Lies (2) 🔒</a></li>
+        <li><a href="#c476-1">Chapter 476 pt 1: 1: Who Created the Daoist Path? (1) 🔒</a></li>
+        <li><a href="#c476-2">Chapter 476 pt 2: 2: Who Created the Daoist Path? (2) 🔒</a></li>
+        <li><a href="#c477-1">Chapter 477 pt 1: 1: The Sage&#39;s Grand Ambition (1) 🔒</a></li>
+        <li><a href="#c477-2">Chapter 477 pt 2: 2: The Sage&#39;s Grand Ambition (2) 🔒</a></li>
+        <li><a href="#c478-1">Chapter 478 pt 1: 1: The Sage Musters His Troops (1) 🔒</a></li>
+        <li><a href="#c478-2">Chapter 478 pt 2: 2: The Sage Musters His Troops (2) 🔒</a></li>
+        <li><a href="#c479-1">Chapter 479 pt 1: 1: New Grudges and Old Scores (1) 🔒</a></li>
+        <li><a href="#c479-2">Chapter 479 pt 2: 2: New Grudges and Old Scores (2) 🔒</a></li>
+        <li><a href="#c480-1">Chapter 480 pt 1: 1: Bloodbath (1) 🔒</a></li>
+        <li><a href="#c480-2">Chapter 480 pt 2: 2: Bloodbath (2) 🔒</a></li>
+        <li><a href="#c481-1">Chapter 481 pt 1: 1: Can&#39;t Tell What&#39;s Left or Right (1) 🔒</a></li>
+        <li><a href="#c481-2">Chapter 481 pt 2: 2: Can&#39;t Tell What&#39;s Left or Right (2) 🔒</a></li>
+        <li><a href="#c482-1">Chapter 482 pt 1: 1: The Road Ahead and the Way Home (1) 🔒</a></li>
+        <li><a href="#c482-2">Chapter 482 pt 2: 2: The Road Ahead and the Way Home (2) 🔒</a></li>
+        <li><a href="#c483-1">Chapter 483 pt 1: 1: Where Did He Come From? (1) 🔒</a></li>
+        <li><a href="#c483-2">Chapter 483 pt 2: 2: Where Did He Come From? (2) 🔒</a></li>
+        <li><a href="#c484-1">Chapter 484 pt 1: 1: The Entrance to the Inner Provinces (1) 🔒</a></li>
+        <li><a href="#c484-2">Chapter 484 pt 2: 2: The Entrance to the Inner Provinces (2) 🔒</a></li>
+        <li><a href="#c485-1">Chapter 485 pt 1: 1 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="the-overlord-of-puluo">
+<article id="c451" data-label="451">
+<h2 class="chapter">Chapter 451: Jiaqing, Heed My Advice 🔒</h2>
+<p>Chu Shaoqiang had brought five helpers with him, but in the blink of an eye, the Spycraft Cultivator and the Mud Cultivator were both dead, while the Poison Cultivator had vanished without a trace.</p>
+<p>Chu Shaoqiang was still locked in fight with He Jiaqing. Fighting a Thievery Cultivator meant he had to be extremely cautious whenever he used an enchanted artifact, yet despite everything that had happened, he remained very calm.</p>
+<p>Greenwater Beggar found that strange. Why was Chu Shaoqiang still so calm? Perhaps it was because the Fire Cultivator and the Devotion Cultivator were still alive. With those two backing him up, Chu Shaoqiang still had reason to feel confident.</p>
+<p>A Devotion Cultivator&#39;s abilities were difficult to predict, and with the Fire Cultivator covering him, he could easily catch an opponent off guard with an unexpected move.</p>
+<p>The Fire Cultivator, meanwhile, could use his flames to suppress the pathogens in Greenwater Beggar&#39;s body. Otherwise, as long as the pathogens remained active, the others would have virtually no chance of getting close to him.</p>
+<p>However, anyone who thought Greenwater Beggar could only kill with his pathogens was seriously underestimating the founding cultivator of Disease Cultivation.</p>
+<p>Greenwater Beggar had not earned such a fearsome reputation in Puluo Province, nor taken control of its largest city, by relying on just one trick. He was capable of so much more.</p>
+<p>As the flames...</p>
+</article>
+<article id="c452" data-label="452">
+<h2 class="chapter">Chapter 452: Just What Sort of Man Do You Think He Is? 🔒</h2>
+<p>He Jiaqing&#39;s grandpa He Caiyuan suddenly appeared and ordered He Jiaqing and the Greenwater Beggar to leave the area as soon as possible.</p>
+<p>He then demonstrated the power of One Word Worth a Thousand Gold. Honestly, He Jiaqing had never seen this ability display such terrifying power before and he was a little scared. However, he didn&#39;t leave. Greenwater Beggar had even less intention of going anywhere. At this point, he couldn&#39;t possibly be persuaded to leave with just a few words.</p>
+<p>He Caiyuan sighed. &#34;There&#39;s no shame in having no real ability, but… Never Overestimate Your Strength.&#34;</p>
+<p>As soon as the words left his mouth, four enormous words appeared in the night sky: Never Overestimate Your Strength</p>
+<p>&#34;Never&#34; and &#34;Overestimate&#34; flew toward the Greenwater Beggar, while &#34;Your&#34; shot toward He Jiaqing.</p>
+<p>Cedric quickly adjusted his position and put as much distance as he could between himself and the Greenwater Beggar. Li Banfeng had told him before that the Greenwater Beggar had a habit of using other people as weapons.</p>
+<p>Sure enough, the Greenwater Beggar spun around and reached for Cedric, only to grab empty air. He had no other weapon on hand either. He had even burned off his own clothes. Snapping a branch from a tree, he smashed one of the incoming words apart. The next word had more letters, however, and even after two attempts, he still could not break it.</p>
+<p>The word attacking He Jiaqing was even harder to deal with. &#34;Your&#34; could change the shape of its letters as it attacked. The stem of the &#34;Y&#34; stretched into a long weapon, while part of the &#34;r&#34; broke off and flew at him like a concealed projectile.</p>
+<p>As for the last word, He Caiyuan toyed with it in his hand for a moment before casually flicking it toward the depths of the forest. &#34;There is another one who does not know his own limits!&#34;</p>
+<p>Li Banfeng saw the word flying toward him and quickly raised the Tang Saber to block it.</p>
+<p><em>Bang!</em></p>
+<p>The word &#34;Strength&#34;...</p>
+</article>
+<article id="c453" data-label="453">
+<h2 class="chapter">Chapter 453: So Who Is the Brush? 🔒</h2>
+<p>When He Caiyuan saw Ge Junma&#39;s body, he trembled slightly.</p>
+<p>The Peddler smiled. &#34;Hurts, doesn&#39;t it? Your master is dead. Don&#39;t you feel like kowtowing to him? Go ahead. Give him a kowtow, and I will let you pass.&#34;</p>
+<p>Tears ran from the corners of He Caiyuan&#39;s eyes. He was genuinely grieving.</p>
+<p>After hesitating for a moment, he did not kowtow. Instead, he let out a long sigh. &#34;Lord Ge showed this old man kindness as great as a mountain. Now that he has left us so suddenly, the pain cuts me to the heart!&#34;</p>
+<p>The Peddler sighed. &#34;Such loyalty is rare. If I had known, I would have let you see him one last time. However, it&#39;s not too late. That toad can&#39;t travel very fast. Set off now, and you should still be able to catch up with him on the road to the yellow springs in the underworld.&#34;</p>
+<p>He Caiyuan wiped away his tears and shook his head. &#34;The man is gone, and this old man has nothing left to hold onto. From this day forward, I am willing to follow you and serve at your command.&#34;</p>
+<p>The Peddler burst out laughing. He slowly emerged from the darkness of the night and pushed his cart over to He Caiyuan.</p>
+<p>Given his status, strength, and profession, which had taken him all across the land, the Peddler had met so many types of people. Yet people like He Caiyuan could still manage to surprise him.</p>
+<p>&#34;Tell me this first... How did this toad get into Puluo Province? Who sent him here? I want to see exactly who broke the rules.&#34;</p>
+<p>He Caiyuan replied, &#34;This old man does not yet know the details.&#34;</p>
+<p>The Peddler looked at him. &#34;If you don&#39;t know...</p>
+</article>
+<article id="c454" data-label="454">
+<h2 class="chapter">Chapter 454: Where Is Blightland 🔒</h2>
+<p>Despite the bitter cold, the Peddler was still wearing nothing more than a blue cloth vest. He hacked a hole through the ice and plunged straight into the water.</p>
+<p>A little over two minutes later, the Peddler climbed back out through the hole and wiped his face with a towel. He told the land deity, &#34;The entrance at the bottom of the lake has been sealed off. So have all the others. The only one left is the entrance that opens when you write &#34;wisdom&#34; beneath the willow tree.&#34;</p>
+<p>It was a roundabout reference to Liu Xiahui, except the final character of his name had been replaced with 慧, &#34;Wisdom.&#34;[1]</p>
+<p>Li Banfeng was astonished. &#34;Who came up with such a creative entrance?&#34;</p>
+<p>&#34;Murong Gui did,&#34; the Peddler said. &#34;He left it behind after becoming the land deity. He said the way to open the door couldn&#39;t be too complicated, or he might forget it himself, but it couldn&#39;t be too simple either, or someone else might figure it out. So he used Liu Xiahui as the reference to the password, with wisdom beneath the willow&#39; as the answer.[2]. Easy for him to remember, but hard for anyone else to figure out.&#34;</p>
+<p>Li Banfeng looked at the Judge&#39;s Brush admiringly. &#34;Gui, you are quite the genius!&#34;</p>
+<p>The Judge&#39;s Brush was asleep and did not respond at all.</p>
+<p>The Peddler sneered. &#34;Genius, my ass. He was just too lazy to put any thought into it. I even asked him why he was telling me how to open the door to his house. He said it was in case some crook broke in. If anything happened to him, I would still be around to help. And I actually believed him and memorized...</p>
+</article>
+<article id="c455" data-label="455">
+<h2 class="chapter">Chapter 455: Withering 🔒</h2>
+<p><em>The Blightland is Puluo Province? Am I misunderstanding something, or is there something wrong with what the Peddler said?</em></p>
+<p>Li Banfeng could not make sense of that conclusion. He could think it over later. For now, he had more immediate problems to deal with.</p>
+<p>He Caiyuan was still alive. His body had been twisted like a pretzel, but some of his joints were already twitching. That was easy enough to handle. Li Banfeng picked him up and tossed him straight into the Pocket Dwelling.</p>
+<p>The giant toad was still alive too. There was no visible sign of life left in him, but he was undeniably still alive. However, The toad was enormous. Forget getting him through the Pocket Dwelling&#39;s door, he would not even fit inside one of its rooms. How was Li Banfeng supposed to get him in?</p>
+<p>Leaving him outside was not an option either. He was a pure-blooded native of the Inner Provinces. Even if Li Banfeng had no intention of eating him, he could not just leave him lying around and attracting unwanted attention.</p>
+<p><em>I will try forcing him in.</em></p>
+<p>Li Banfeng opened the door to the Pocket Dwelling, grabbed the toad by the head, and tried to drag him inside.</p>
+<p>The toad&#39;s head alone completely filled the doorway, but Li Banfeng was still trying to force him through when the Pocket Dwelling suddenly called out, &#34;Wait!&#34;</p>
+<p>Li Banfeng stopped. &#34;What is it? Did I damage the doorframe?&#34;</p>
+<p>The Pocket Dwelling gave a disdainful laugh. &#34;You cannot ruin such fine ingredients like this. Move aside.&#34;</p>
+<p><em>Ingredients? Since when did the old man care...</em></p>
+</article>
+<article id="c456" data-label="456">
+<h2 class="chapter">Chapter 456: Level-Eight Ability of Wanderlust Cultivation 🔒</h2>
+<p>Li Banfeng sat in the Wildgoose Sand Studio and spent his entire morning reading books.</p>
+<p>Wildgoose Sand Studio did have plenty of good books, but most of them were collections of poetry, literary anthologies, novels, and miscellaneous writings. These were not what Li Banfeng wanted. Li Banfeng wanted to figure out why the Blightland was Puluo Province. If he hoped to find any clues, he needed to read the historical records.</p>
+<p>Li Banfeng spent a great deal of money searching through every treasured collection he could find, but the only works related to history were biographies of famous figures and travelogues.</p>
+<p>The biographies focused mostly on strange tales and anecdotes. They gave him neither a clear timeline nor any real sense of the historical period in which those people had lived.</p>
+<p>The travelogues were quite useful. At the very least, they gave Li Banfeng a glimpse of the famous mountains, great rivers, local customs, and ways of life found across the province.</p>
+<p>Puluo Province had never had a proper historical record, so it was understandable that Wildgoose Sand Studio had no history books.</p>
+<p>What made even less sense was Li Banfeng&#39;s physical condition.</p>
+<p>Judging by how he felt, he was certain he had advanced. Both his strength and speed had improved dramatically compared to before. Yet he felt no urge to travel at all.</p>
+<p>Ever since he first became a Wanderlust Cultivator, every advancement had left Li Banfeng with an overwhelming urge to run for over a hundred kilometers. The Homebound cultivation path kept that impulse somewhat in check, but during the early stages after an advancement, he would spend nearly every moment outside the Pocket Dwelling racing from place to place. Only once his cultivation stabilized would he finally settle down as well.</p>
+<p>This time, however, he had stabilized almost immediately. During the day, he returned...</p>
+</article>
+<article id="c457" data-label="457">
+<h2 class="chapter">Chapter 457: The Stranger In the Pocket Dwelling 🔒</h2>
+<p>Intent Travels a Thousand Mountains was, as the name suggested, an ability that allowed the cultivator to cross countless mountains and rivers through intent alone, gaining cultivation in the process.</p>
+<p>Li Banfeng had practically mastered this level-eight ability even without anyone showing him the ways to do it. Its nature was highly compatible with the Pocket Dwelling, which made Intent Travels a Thousand Mountains especially well suited to him.</p>
+<p>While inside the Pocket Dwelling, Li Banfeng only had to think of a destination, and it could carry him there. As he traveled with it, his cultivation would also increase to a certain extent. The underlying principle was different from Intent Travels a Thousand Mountains, but the process and result were quite similar.</p>
+<p>This also explained why, back at Ink Fragrance Shop, Li Banfeng had been able to feel his cultivation increasing even though he had not gone anywhere himself.</p>
+<p>He had spent all that time reading travelogues, traveling across countless mountains and rivers through the pages of those books. In doing so, he had completed his usual cultivation in a different way.</p>
+<p>It seemed that Intent Travels a Thousand Mountains was simply an ability for increasing one&#39;s cultivation.</p>
+<p>&#34;Ying, with this ability, does that mean we Wand… I mean, you Wanderlust Cultivators won&#39;t have to keep running all over the place anymore?&#34;</p>
+<p>Hong Ying shook her head. &#34;It&#39;s not that simple. Our cultivation path is a little unusual. Wanderlust Cultivators need to travel across countless mountains and rivers, but there are times when a cultivator simply can&#39;t go anywhere.</p>
+<p>&#34;Back when I was in the army, for example, if I took even one step outside the camp without permission, that wicked woman would have me beaten. If that went on for too long and delayed my cultivation, I would eventually suffer cultivation backlash.</p>
+<p>&#34;Intent Travels a Thousand Mountains can make up for some of the cultivation you miss and...</p>
+</article>
+<article id="c458" data-label="458">
+<h2 class="chapter">Chapter 458: How Many Residents Are There in the Pocket Dwelling? 🔒</h2>
+<p>Li Banfeng gently pushed open the door to the fifth room. He did not want to embarrass the Film Projector too much, but he made sure the Film Projector knew he had come in.</p>
+<p>The Film Projector remained composed and greeted him. &#34;Director Qi, still awake?&#34;</p>
+<p>Li Banfeng smiled and dropped onto the sofa beside the Film Projector. The two of them sat there quietly, watching the little show flickering across the screen.</p>
+<p>The words appeared on the left, while on the right the story came to life in moving pictures.</p>
+<p>Li Banfeng knew the story. He had read it in the newspaper before, though it was nothing like the usual tales from Blackstone Slope. This one crept around its meaning instead, telling everything in a quiet, delicate sort of way.</p>
+<p>Every now and then, the picture gave a little jump and skipped a frame. Whatever he was watching, it had not actually been filmed.</p>
+<p>Li Banfeng asked, &#34;Who is this young lady? Aren&#39;t you going to introduce me?&#34;</p>
+<p>&#34;You mean her?&#34;</p>
+<p>The image froze on the heroine. The Film Projector answered calmly, &#34;I imagined her.&#34;</p>
+<p>Li Banfeng said nothing. He watched the entire story before finally giving his verdict. &#34;It was filmed very well. You just need to put a little more thought into the editing.&#34;</p>
+<p>With that, Li Banfeng headed back to his room to sleep. Just as he reached the door, the Film Projector called out from behind him. &#34;Director Qi, I have always been utterly loyal to you, and that has never changed. When we go into battle, I will always fight for you until the very last moment.&#34;</p>
+<p>Li Banfeng nodded. &#34;I have never once doubted that.&#34;</p>
+<p>As an expert in this sort of thing, Li Banfeng could say with certainty that the woman had not come from the Film Projector&#39;s...</p>
+</article>
+<article id="c459" data-label="459">
+<h2 class="chapter">Chapter 459: Causing Trouble 🔒</h2>
+<p>Late at night, Li Banfeng was sitting in the fifth room, enjoying a movie with the Film Projector.</p>
+<p>After the Film Projector edited the movie, the plot was more coherent, the characters looked more vivid, and the frequency of the frame drops had reduced considerably. Additionally, the female lead in the feature film had become increasingly lifelike.</p>
+<p>Li Banfeng praised him, &#34;You managed to turn a story on paper into such a complete movie. Your skills have improved tremendously. Looks like you found yourself a good teacher.&#34;</p>
+<p>The light in the Film Projector&#39;s lens flickered, and he replied, &#34;It&#39;s all thanks to your excellent guidance, Director Qi.&#34;</p>
+<p>Li Banfeng shook his head. &#34;Don&#39;t flatter me. I&#39;m not worthy. When it comes to making movies, I&#39;m not even one-tenth as skilled as you. You really unwilling to introduce that teacher to me?&#34;</p>
+<p>The Film Projector answered resolutely, &#34;You mean that young lady, right? She really is from my imagination.&#34;</p>
+<p>Li Banfeng looked at the Film Projector for a long moment.</p>
+<p>The Film Projector said calmly, &#34;Director Qi, I am utterly loyal to you. That has never changed.&#34;</p>
+<p>The Film Projector might still harbor some resentment over what had happened in the past, but he would not deceive Li Banfeng because of it. From his perspective, the woman in question had truly emerged from his imagination.</p>
+<p><em>What exactly is that woman trying to do? </em>Li Banfeng wondered.</p>
+<p>Whatever her intention was, Li Banfeng had already warned the Gramophone that she absolutely could not let the woman hurt the Film Projector.</p>
+<p>As the movie reached its end, Li Banfeng noticed a vase on the female lead&#39;s table that looked...</p>
+</article>
+<article id="c460" data-label="460">
+<h2 class="chapter">Chapter 460: Daoist Path 🔒</h2>
+<p>The Tang Saber trembled at Li Banfeng&#39;s waist.</p>
+<p>Li Banfeng went somewhere secluded and asked, &#34;What happened?&#34;</p>
+<p>&#34;My lord, this humble general just felt a sudden ominous chill.&#34;</p>
+<p><em>Why the ominous chill? Has the Greenwater Beggar come? But it can&#39;t be the Greenwater Beggar. If he wanted to cause trouble, he could simply spread a plague, and none of the workers would escape. Besides, given his status and strength, there is no need for him to target a mine, much less cause trouble in such a crude manner.</em></p>
+<p>The opponent&#39;s methods were indeed crude. They had risked a confrontation with the local land deity just to play these despicable little tricks.</p>
+<p>Ma Wu asked, &#34;Where did that rickshaw puller go?&#34;</p>
+<p>Normally, Ma Wu was very respectful toward local land deities, but after having dealt with one mess after another that day, he sounded quite irritated.</p>
+<p>When he finally met up with the rickshaw puller, Ma Wu&#39;s attitude was not particularly cordial. &#34;Elder Brother, we&#39;re doing business here to bring some human presence to your territory. Can&#39;t you put a little more attention into taking care of us?&#34;</p>
+<p>The rickshaw puller replied, &#34;I am! I really am! I pulled my rickshaw around the mine several times. But the moment I put it down, someone stole it, so I hurried off to look for it. I searched for over an hour and finally managed to get it back. I never expected something to happen at the mine in that short amount of time.&#34;</p>
+<p>Ma Wu said nothing and went down the mountain alone. He truly could not understand why a local land deity needed to pull a rickshaw, or why that rickshaw had to remain by his side at all times. Nevertheless, Ma Wu fortunately...</p>
+</article>
+<article id="c461-1" data-label="461 pt 1">
+<h2 class="chapter">Chapter 461 pt 1: 1: Hong Ying&#39;s Eyes (1) 🔒</h2>
+<p>Inside the Pocket Dwelling, Li Banfeng was discussing countermeasures with the Tang Saber.</p>
+<p>&#34;Second Donkey, do you still remember what happened during your battle with the Green Beggar?&#34;</p>
+<p>&#34;I&#39;ve forgotten most things. I only have some vague memories. I remember that many people died in Beggar Bay… one wave after another, without ever stopping. At the time, I didn&#39;t know how to deal with it. Beggar Bay was a place where poor people lived. When it was struck by a natural disaster, it seemed like nothing could be more ordinary, and it seemed like no one could fight it. In the end, the Green Beggar and I fought to the death. My lord, you may not believe me, but to tell the truth, I really didn&#39;t back down in that fight.&#34;</p>
+<p>&#34;I believe you. When faced with a hard fight, it&#39;s true you&#39;ve never backed down.&#34;</p>
+<p>The Tang Saber continued, &#34;I remember being very weak that day. I was already very weak before we fought, but after the battle began, I grew even weaker. I stole some things from him. After taking them, I used Making Insatiable Demands. I took out his internal organs. I thought I could win, but I truly can&#39;t remember what happened after that. I only remember that my saber was still there. My saber kept talking to me, but I don&#39;t remember what he said. That&#39;s all I remember. The rest of my memories are from when I had already become a saber.&#34;</p>
+<p>The Tang Saber&#39;s memories were very vague, but he revealed quite a few key details. Li Banfeng wanted to string these details together into a coherent chain of clues, but his mind was a mess, and his thoughts were all jumbled up. Their opponent&#39;s ability was quite powerful, and it was still...</p>
+</article>
+<article id="c461-2" data-label="461 pt 2">
+<h2 class="chapter">Chapter 461 pt 2: 2: Hong Ying&#39;s Eyes (2) 🔒</h2>
+<p>Li Banfeng arrived at Northern Bridge and bought a <em>jianbing guozi</em>[1] from a roadside stall.</p>
+<p>Everyone said that the local merchants of Yellowclay Bridge were unscrupulous, so Li Banfeng was prepared for the man to demand an exorbitant price. But this <em>jianbing</em> vendor used good flour and fresh eggs, with generous portions throughout. There were no fake ingredients, no cutting corners. The first bite filled Li Banfeng&#39;s mouth with a lingering fragrance. Yet, the vendor charged only two yuan for a <em>jianbing guozi</em>.</p>
+<p>Seeing that the vendor was a decent businessman with integrity, Li Banfeng gave him one hundred yuan and asked him for some information. The vendor told Li Banfeng that in the Northern Bridge, the biggest coal-mine owner was surnamed Hu Manchun. His home was the three-story building standing three hundred meters east of the bridgehead. Song Shilong, Tang Dongsheng, and Yue Sicheng were among the other coal-mine owners in the Northern Bridge.</p>
+<p>Li Banfeng went to find Hu Manchun first. When he arrived at the three-story building, he knocked on the front gates, and a middle-aged man opened them. The middle-aged man was dressed in a white shirt, had a mustache shaped like 八, and wore his hair combed in a swept-back hairstyle.</p>
+<p>&#34;Whom are you looking for?&#34;</p>
+<p>&#34;I&#39;m looking for Shopkeeper Hu.&#34;</p>
+<p>The man looked Li Banfeng up and down before replying, &#34;I am Hu Manchun. What can I do for you?&#34;</p>
+<p>&#34;I&#39;ve come to buy coal.&#34;</p>
+<p>The man quickly stepped aside from the gates and gestured inside. &#34;Please, come in.&#34;</p>
+<p><em>Something&#39;s not right.</em></p>
+<p>In Li Banfeng&#39;s...</p>
+</article>
+<article id="c462-1" data-label="462 pt 1">
+<h2 class="chapter">Chapter 462 pt 1: 1: Calculating Every Move (1) 🔒</h2>
+<p>Ma Wu bought more than twenty train cars&#39; worth of coal from the various coal-mine owners in Yellowclay Bridge and quickly freighted them out.</p>
+<p>Coal from Yellowclay Bridge was cheap, but after adding the freight costs, there was hardly any profit left. However, Li Qi and Ma Wu had an agreement with the Border Control Office that cut their freight costs in half, so they still made a fair amount of money in the end.</p>
+<p>Ma Wu did the calculations and made a suggestion. &#34;Old Qi, why don&#39;t we just be middlemen? It&#39;s a lot less trouble than digging the coal ourselves.&#34;</p>
+<p>Li Banfeng replied, &#34;We still have to dig the coal ourselves. We didn&#39;t come here for this little bit of business.&#34;</p>
+<p>Ma Wu was only making a suggestion. The real priority was still to increase the human presence in Yellowclay Bridge.</p>
+<p>The train had been repaired, the buyers had been arranged, and enough coal had been mined. Ma Wu swiftly made arrangements for the coal to be loaded onto the train and delivered.</p>
+<p>By evening, twenty train cars had been filled. Ma Wu sat in the driver&#39;s cab while the rickshaw driver pulled his rickshaw alongside the train.</p>
+<p>Li Qi was not there, so the rickshaw driver asked, &#34;Brother Ma Wu, did something happen to Old Qi?&#34;</p>
+<p>&#34;Old Qi originally said he was coming, but he had a couple extra drinks tonight and fell asleep. I could see he really was tired, so I didn&#39;t wake him.&#34;</p>
+<p>The rickshaw driver nodded. &#34;Let him get some rest. It&#39;s only one coal delivery. The two of us can handle it.&#34;</p>
+<p>Ma Wu looked at the rickshaw driver. &#34;Elder Brother, why do you insist on pulling your rickshaw alongside us? Wouldn&#39;t it be better to ride the train?&#34;</p>
+<p>The rickshaw driver laughed. &#34;I feel more at ease pulling this. Don&#39;t worry, I travel faster than you!&#34;</p>
+<p>The small...</p>
+</article>
+<article id="c462-2" data-label="462 pt 2">
+<h2 class="chapter">Chapter 462 pt 2: 2: Calculating Every Move (2) 🔒</h2>
+<p>The next morning, Ma Wu changed into a white suit with a black shirt and a white tie, looking immaculate as he prepared to set out.</p>
+<p>Li Banfeng took just one look at the way Ma Wu was dressed, and it was obvious to him what Ma Wu was going to do.</p>
+<p>&#34;You&#39;re going to see Miss Qin.&#34;</p>
+<p>Ma Wu nodded. &#34;That woman stole my things. She has to give them back.&#34;</p>
+<p>&#34;You definitely can&#39;t go alone.&#34;</p>
+<p>Ma Wu was getting worked up. &#34;I know her cultivation isn&#39;t low, but I have my own ways. I have to do this. I can&#39;t just swallow this anger.&#34;</p>
+<p>&#34;Even if she isn&#39;t willing to kill you, there&#39;s no way she&#39;ll let you have your way. You might not even get the chance to vent your anger. You could even end up paying with your life. She has many subordinates, including some ruthless ones. If we&#39;re going to make a move, we need to take them all out in one sweep.&#34;</p>
+<p>Ma Wu really was not thinking calmly at the moment, but no matter how impulsive he became, he still listened to Li Qi.</p>
+<p>&#34;Fine. The two of us will go together. And I&#39;ll bring all of our brothers with us.&#34;</p>
+<p>Li Banfeng shook his head. &#34;Our brothers don&#39;t need to come yet. Have them guard the mine. We don&#39;t want our enemies burning down our backyard when the fighting starts. I&#39;ll go get the rickshaw driver and have him come with us.&#34;</p>
+<p>Ma Wu sighed. &#34;I really don&#39;t trust him.&#34;</p>
+<p>&#34;His cultivation is at the Cloudborne Layer. With him around, we won&#39;t be at a disadvantage in terms of combat power.&#34;</p>
+<hr class="separator">
+<p>After settling on their battle strategy, the rickshaw driver set off with Li Banfeng and Ma Wu in his rickshaw.</p>
+<p>Sitting in the rickshaw, Ma Wu wore a helpless expression. &#34;Elder Brother, we&#39;ve got important business to take care of today. Can&#39;t you leave the rickshaw behind?&#34;</p>
+<p>The rickshaw driver laughed. &#34;The more critical the situation, the more important it...</p>
+</article>
+<article id="c463-1" data-label="463 pt 1">
+<h2 class="chapter">Chapter 463 pt 1: 1: The Creation of a Daoist Path (1) 🔒</h2>
+<p>Li Banfeng stared at the Calculation Cultivator before him in silence for a long while.</p>
+<p>He remembered something the rickshaw driver had once told him in Medicine King Gully. &#34;You people look down on what I do because you think pulling a rickshaw is shameful. Well, I look down on people like you who are always gambling with your lives. As far as I am concerned, your lives are cheap.&#34;</p>
+<p>The rickshaw driver certainly was not the sort of person who liked risking his life, but he was a Cloudborne Layer cultivator. The Calculation Cultivator standing before Li Banfeng was only at the Terranean Layer.</p>
+<p>No matter how cautious the rickshaw driver was, Li Banfeng could not understand why he would flee from someone at the Terranean Layer without even putting up a fight!</p>
+<p>Convinced that the Calculation Cultivator was lying, Li Banfeng pressed him for the truth. &#34;I want to know exactly what happened. Why did the rickshaw driver run?&#34;</p>
+<p>The Calculation Cultivator answered, &#34;Because I told him that if he didn&#39;t leave Yellowclay Bridge, I would turn this entire territory into Old Land.&#34;</p>
+<p>Li Banfeng lifted the brim of his hat with his right hand, revealing his eyes from beneath the shadow. He stared at the Calculation Cultivator. &#34;Go ahead and try. Let&#39;s see if I can take your life before you make your move.&#34;</p>
+<p>The Calculation Cultivator said, &#34;Even if you take my life, it wouldn&#39;t stop anything. The people from the Northern Bridge are waiting at the station with an enchanted artifact. The moment I die, they will know something has happened to me and board the train. As soon as they leave Yellowclay Bridge&#39;s domain, Yellowclay Bridge will become Old Land.&#34;</p>
+<p>Li Banfeng said, &#34;So what if it becomes Old Land?...</p>
+</article>
+<article id="c463-2" data-label="463 pt 2">
+<h2 class="chapter">Chapter 463 pt 2: 2: The Creation of a Daoist Path (2) 🔒</h2>
+<p>Qin Bulou froze. Beside him, Miss Qin bit down on her lip. She had never expected Li Banfeng to figure out that her father was creating an entirely new Daoist path.</p>
+<p>Li Banfeng knew he was making things really difficult for them, but if they were going to work together, this was something that had to be settled clearly. &#34;You created this Daoist path yourself, and it is tied to your cultivation, so normally I would not ask about it. But your path is too unusual. If we ever fall out in the future, I could be at a serious disadvantage. I need to understand it well enough to protect myself.&#34;</p>
+<p>Qin Bulou was silent for a long moment before finally telling the truth. &#34;I really am creating a new Daoist path. The key to this path lies in the one thing I have done more than anything else since I began cultivating.&#34;</p>
+<p>Li Banfeng thought for a moment. &#34;You are a Calculation Cultivator. The thing you have done most must be calculating.&#34;</p>
+<p>Qin Bulou asked, &#34;And when you calculate, are you trying to get the right or wrong answer?&#34;</p>
+<p><em>What kind of question is this? </em>Li Banfeng thought and answered, &#34;You obviously calculate to get the right answer.&#34;</p>
+<p>Qin Bulou gave a bitter smile. &#34;But the thing I have done most in my life is get the answer wrong. I can make ten mistakes on a single problem and still not get it right once.&#34;</p>
+<p>Li Banfeng was taken aback for a moment, but when he thought about it, that was perfectly normal.</p>
+<p>Back when he was studying, he had struggled with difficult problems too. Getting one right was never easy, and making mistakes along the way and starting over was nothing unusual....</p>
+</article>
+<article id="c464-1" data-label="464 pt 1">
+<h2 class="chapter">Chapter 464 pt 1: 1: Now This Is Lu Dongliang (1) 🔒</h2>
+<p>Chu Shaoqiang had just announced that Lu Dongliang was on his way.</p>
+<p>Li Banfeng very nearly laughed out loud. He pressed his lips together and did his best to hold it in, but the laugh had already climbed all the way up his throat and was terribly difficult to stuff back down.</p>
+<p>In Puluo Province, being dead did not always mean staying dead. Chu Shaoqiang was living proof of that.</p>
+<p>Some said Chu Shaoqiang had died while activating the five-kilometer plot. Others swore the Border Control Office had killed him, while still others claimed the Greenwater Beggar had finished him off.</p>
+<p>There had been countless versions of how Chu Shaoqiang had died, but in the end, every last one of them turned out to be wrong. Chu Shaoqiang had never died at all.</p>
+<p>So could the same thing have happened to Lu Dongliang? To anyone else, it would have seemed perfectly possible.</p>
+<p>Chu Shaoqiang said, &#34;Li Qi, you must have heard something about Lu Dongliang. Because he had been missing for so long, you assumed he was already dead.</p>
+<p>&#34;But Lu Dongliang is a level-nine Wanderlust Cultivator. Didn&#39;t it ever occur to you that he might have reached the threshold of level ten and gone to the Inner Provinces to complete his cultivation?&#34;</p>
+<p>As Chu Shaoqiang spoke, he placed heavy emphasis on several words, yet not a single soap bubble came out of his mouth. Could it be because he was telling the truth?</p>
+<p>Did Chu Shaoqiang really believe that man was Lu Dongliang? Could the Peddler&#39;s soap actually have the power to make people tell...</p>
+</article>
+<article id="c464-2" data-label="464 pt 2">
+<h2 class="chapter">Chapter 464 pt 2: 2: Now This Is Lu Dongliang (2) 🔒</h2>
+<p>Qiu Zhiheng went back inside, reached over to stroke his wife&#39;s cheek, and smiled. &#34;Were you really planning to fight Lu Dongliang just now?&#34;</p>
+<p>Bamboo snorted. &#34;You couldn&#39;t tell? That was not Lu Dongliang at all!&#34;</p>
+<p>Qiu Zhiheng froze for a bit. He really couldn&#39;t tell.</p>
+<p>Bamboo said, &#34;When he saw me slim down just now, he actually looked startled. How could Lu Dongliang possibly be surprised by that? He knows exactly what path I cultivate and what level I am at.&#34;</p>
+<p>Qiu Zhiheng thought Lu Dongliang&#39;s reaction had seemed reasonable enough. &#34;Maybe he just didn&#39;t expect you to really make a move against him.&#34;</p>
+<p>Bamboo snorted. &#34;You still don&#39;t believe me? That really wasn&#39;t Lu Dongliang! Haven&#39;t you read the newspapers these past two days? The news is already everywhere!&#34;</p>
+<p>Qiu Zhiheng really had not read the papers lately as he had been out buying medicinal herbs.</p>
+<p>Bamboo handed Qiu Zhiheng a newspaper. &#34;Take a good look. It says right here that someone has been pretending to be Lu Dongliang and going around swindling people. I didn&#39;t believe it at first, but after meeting him myself, I certainly do now.&#34;</p>
+<p>&#34;He&#39;s really an impostor?&#34; Qiu Zhiheng still found it hard to believe. He had served Lu Dongliang for so many years, yet the man just now had not shown a single obvious flaw.</p>
+<p>Bamboo picked up another newspaper. &#34;Every paper is reporting it. The man pretending to be Lu Dongliang has high cultivation, and there&#39;s no evil he won&#39;t do. He even violated a child&#39;s father right in front of the man&#39;s wife. What sort of person does something like that?&#34;</p>
+<p>&#34;He had his way with the kid&#39;s father?&#34; Qiu Zhiheng was now certain this man could not be Lu Dongliang. Lu Dongliang had always loved fooling around, but never to that extent.</p>
+<p>&#34;That man just now was no ordinary impostor,&#34; Qiu Zhiheng said and set the newspaper...</p>
+</article>
+<article id="c465-1" data-label="465 pt 1">
+<h2 class="chapter">Chapter 465 pt 1: 1: Dance! (1) 🔒</h2>
+<p>At Qianyue Restaurant in Greenwater City, Lu Dongliang held a banquet and announced that he was taking control of the Lu Family again. Invitations had been sent to both the main family and the outer family. Anyone who came that night was showing that they still accepted Lu Dongliang as the family head.</p>
+<p>The first to arrive were members of Lu Maoxian&#39;s branch, the same people Lu Chunying had driven out of the family. For them, this was a chance to return to the Lu Family.</p>
+<p>Some of Lu Dongliang&#39;s loyal supporters also came back. They had never accepted Lu Chunying, but while Lu Dongliang was gone, they had nowhere else to go and did not want to join another family. They could only serve Lu Chunying for the time being. However, now that Lu Dongliang was back, these people naturally came back to support him.</p>
+<p>Lu Dongliang still had plenty of influence. Ten tables had been prepared for the banquet, and seven were already filled. Besides members of the Lu Family, he had invited quite a few other guests. One of them was especially important: Ma Chunting, the head of the Ma Family.</p>
+<p>Everyone at the banquet was a little puzzled when they saw Ma Chunting arrive.</p>
+<p>Previously, Ma Junyang had a conflict with the Outer Provinces, and Ma Chunting later sent his other son to attend the song gala at Freewind Wharf. Because of that, everyone thought that Ma Chunting and Ma Junyang had put their past differences behind them and finally reconciled.</p>
+<p>But now, Ma Junyang was obviously on Lu Chunying&#39;s side, while Ma Chunting was on Lu Dongliang&#39;s side. It seemed like this father and son were once again against each other.</p>
+<p>A few people quietly discussed it among themselves. They felt that Ma Chunting really was getting old. At his age, he could no longer see things clearly, and worse, he did not even seem to realize it himself.</p>
+<p>At seven o&#39;clock, the banquet began right...</p>
+</article>
+<article id="c465-2" data-label="465 pt 2">
+<h2 class="chapter">Chapter 465 pt 2: 2: Dance! (2) 🔒</h2>
+<p>As the banquet drew to a close, Qiu Zhiheng found Li Banfeng. &#34;Brother, I am heading back to Medicine King Gully.&#34;</p>
+<p>Li Banfeng warned him, &#34;Big Bro Qiu, that fake Lu Dongliang knows where you live. You need to be extra careful.&#34;</p>
+<p>Qiu Zhiheng was not particularly worried about himself. Old Master Xu was in Medicine King Gully, and could keep Qiu Zhiheng and his family safe. Therefore, Qiu Zhiheng was more worried about Li Banfeng.</p>
+<p>Li Banfeng had already offended the fake Lu Dongliang, which meant that he was in serious danger in Greenwater City.</p>
+<p>Li Banfeng knew this as well. He ordered Old Luo and the Omnidirectional Peeper to stay on high alert, keeping a close watch on the fake Lu Dongliang&#39;s movements. They were ready to fight at any moment.</p>
+<p>Suddenly, Li Banfeng received news that the fake Lu Dongliang had disappeared. It was not just him, even Lu Dongchun and the men he had recruited at the last minute, disappeared without a trace.</p>
+<p>Had he given up on Greenwater City and decided to attack Yellowclay Bridge instead?</p>
+<p>Yellowclay Bridge was prepared as well. Li Banfeng was considering whether to strengthen its defenses when, three days later, Luo Zhengnan suddenly tracked down the fake Lu Dongliang&#39;s whereabouts.</p>
+<p>&#34;Master Qi, Lu Dongliang might have gone to Properfolk Village!&#34;</p>
+<p><em>What would he be doing in Properfolk Village? </em>Li Banfeng wondered. &#34;Is the information reliable?&#34;</p>
+<p>&#34;I wouldn&#39;t call it reliable. No one has actually seen Lu Dongliang, but someone did see Lu Dongchun in Properfolk Village. There are a few experienced hunters there who activated land for the Lu Family back in the day. They know Lu Dongchun, and they even greeted her and exchanged a few words with her.&#34;</p>
+<p><em>If Lu Dongchun was in Properfolk Village, Lu Dongliang might very well be there. But why would they go to Properfolk Village? Do they...</em></p>
+</article>
+<article id="c466-1" data-label="466 pt 1">
+<h2 class="chapter">Chapter 466 pt 1: 1: Why Aren&#39;t You Crying? (1) 🔒</h2>
+<p>The Cedric standing before Li Banfeng was actually a high-level Performing Arts Cultivator in disguise.</p>
+<p>Facing a high-level Performing Arts Cultivator alone made Li Banfeng genuinely nervous, but he kept both his expression and tone perfectly under control. What puzzled him most, however, was why this Performing Arts Cultivator had deliberately lured him to Yuren City.</p>
+<p>How did he even know where Yuren City was? Could he be...?</p>
+<p>The Performing Arts Cultivator&#39;s eyes sharpened as he prepared to attack Li Banfeng.</p>
+<p>&#34;Not so fast,&#34; Li Banfeng said. &#34;A good show should have a proper curtain call, don&#39;t you think? We have come this far already, so we might as well clear up a few things first. That woman who came into my room earlier. Was she one of your accomplices?&#34;</p>
+<p>&#34;Are you talking about this woman?&#34; the Performing Arts Cultivator said as he brushed a hand across his face, and in the blink of an eye, he had become the very woman who had walked into the wooden cabin earlier.</p>
+<p>So the woman had been him in disguise, and Cedric had been him too.</p>
+<p>Li Banfeng praised, &#34;Very impressive. But when I heard Cedric&#39;s voice, you were standing right in front of me, while his voice was coming from outside the house.&#34;</p>
+<p>&#34;Just a few little tricks of the theater. You would know them if you watched more plays.&#34;</p>
+<p>As the Performing Arts Cultivator spoke, his lips never moved, yet his voice seemed to drift in from somewhere far away.</p>
+<p>Li Banfeng asked, &#34;What exactly did you come to Puluo Province for? Yellowclay Bridge? Qi Qiu City? Or will any patch of land do?&#34;</p>
+<p>When it came to knowledge of the performing arts, the Performing Arts Cultivator...</p>
+</article>
+<article id="c466-2" data-label="466 pt 2">
+<h2 class="chapter">Chapter 466 pt 2: 2: Why Aren&#39;t You Crying? (2) 🔒</h2>
+<p>While Gu Rusong was torn over what to do, he became distracted and was wounded by Passing Flowers on Horseback. His chest was blasted open, and blood seeped through his clothes.</p>
+<p>Performing Arts Cultivators did not have particularly strong defenses. Gu Rusong had taken Passing Flowers on Horseback head-on. Although the attack was not fatal, he was still badly injured.</p>
+<p><em>Weird. Why are these three women helping Li Qi? Why has Tang Changfa been protecting him this whole time?</em></p>
+<p>At first, Gu Rusong thought they only wanted Li Qi&#39;s flesh and blood. Now, he realized that there seemed to be some other connection between them.</p>
+<p><em>I can&#39;t fight inside this Literary House! I am at too much of a disadvantage here!</em></p>
+<p>Gu Rusong took a step toward the entrance of the Literary House, but the three women behind him kept talking.</p>
+<p>Yanhong shouted, &#34;You can&#39;t go outside, Eldest Young Master! He&#39;s a Wanderlust Cultivator. If you go out there, you are as good as dead!&#34;</p>
+<p>She had a point. A Wanderlust Cultivator did seem to have the advantage outside.</p>
+<p>Yancui shouted, &#34;You have to get out of here, Eldest Young Master! Once a Performing Arts Cultivator&#39;s identity is exposed, you have to run. If you stay here, you&#39;re just waiting to die!&#34;</p>
+<p>Several more girls came out from behind the folding screen and joined in. &#34;Eldest Young Master, just talk things out with him! This is our turf. There&#39;s nothing we can&#39;t talk through!</p>
+<p>&#34;Eldest Young Master, you have to be careful! He&#39;s coming again!&#34;</p>
+<p>Folly Cultivation path was the hardest Daoist path in the world to deal with.</p>
+<p>Even a Performing Arts Cultivator at the Cloudborne Layer had to be extremely careful when dealing with a Folly Cultivator at...</p>
+</article>
+<article id="c467-1" data-label="467 pt 1">
+<h2 class="chapter">Chapter 467 pt 1: 1: Flying General Battalion (1) 🔒</h2>
+<p>Somehow, Sun Tiecheng had used an ability to spread news of Gu Rusong&#39;s death throughout the city, and before long, cries of grief could be heard everywhere in Yuren City.</p>
+<p>Sun Tiecheng turned to Tang Changfa. &#34;Changfa, go outside and have a look. See if there&#39;s anyone who isn&#39;t crying!&#34;</p>
+<p>Tang Changfa immediately headed toward the back hall, only for Yanqing to grab him and pull him back. &#34;Big Bro Changfa, the door&#39;s that way.&#34;</p>
+<p>Tang Changfa turned around and started walking toward the front entrance, but Li Qi stopped him this time. &#34;You don&#39;t even have eyes anymore. What are you planning to look at? I will go.&#34;</p>
+<p>Li Qi walked around Yuren City and found people crying everywhere he went. The breakfast vendors were crying, the cloth sellers were crying, the teahouse owners were crying, and even the street performers were weeping as they went about their routines.</p>
+<p>High above the city, a cloud of dust stirred amid the sound of their cries. It repeatedly tried to gather back together, only to scatter again each time. After several attempts, it finally dispersed completely and turned into dust.</p>
+<p>When Li Banfeng returned to Changsan Literary House, he told Sun Tiecheng, &#34;The whole city is crying.&#34;</p>
+<p>Sun Tiecheng nodded. &#34;Good. If everyone&#39;s crying, that means he&#39;s properly dead. We still have to watch out in case the Inner Provinces have a trump card left.&#34;</p>
+<p><em>A trump card? But what does this have to do with crying?</em></p>
+<p>&#34;If the whole city is crying, that means he&#39;s completely...</p>
+</article>
+<article id="c467-2" data-label="467 pt 2">
+<h2 class="chapter">Chapter 467 pt 2: 2: Flying General Battalion (2) 🔒</h2>
+<p>The Gramophone collected the blood from Li Banfeng&#39;s clothes and dripped it onto the cabbage seeds.</p>
+<p>Before long, the cabbages sprouted. Li Banfeng took one look at what had grown and smiled. <em>This bait won&#39;t work…</em></p>
+<p>What grew out of the cabbage was Gu Rusong himself. Li Banfeng wanted him to pose as Lu Dongliang, but this cabbage person did not have the ability to take on someone else&#39;s appearance by itself. This meant that his wifey would need to turn this cabbage person into Lu Dongliang.</p>
+<p>While Wifey worked on changing the cabbage person&#39;s appearance, the Film Projector went to the fifth room and imagined up a new scene.</p>
+<p>At dusk, a sweet, innocent-looking young woman in a simple blue changshan ran across the grassland. A young man in a black Zhongshan suit chased closely behind her.</p>
+<p>He soon caught up and placed a beaded hair ornament in her hair. The result looked a little strange. She wore a student cut, also known as a mushroom cut, which did not exactly go well with delicate ornaments like that.</p>
+<p>Still, there was no point fussing over the details. It was the thought that counted.</p>
+<p>The young man in the Zhongshan suit took the girl&#39;s hand. &#34;I want to stay with you for the rest of my life.&#34;</p>
+<p>The girl shook her head. &#34;That&#39;s not enough. I want you with me for lifetime after lifetime.&#34;</p>
+<p>&#34;Alright!&#34; the young man agreed. He wrapped his arms around her, and the two of them stood together on the grassland, quietly watching the sun set. &#34;We will stay here and slowly remember...</p>
+</article>
+<article id="c468-1" data-label="468 pt 1">
+<h2 class="chapter">Chapter 468 pt 1: 1: Gallant Heroine Zhao Xiaowan 🔒</h2>
+<p>What kind of organization was the Flying General&#39;s Battalion? Who was their leader, and why were they impersonating Wifey?</p>
+<p>The whole thing sounded absurd, but it warranted attention. Li Banfeng rewarded the Omnidirectional Peeper and passed the news on to Luo Zhengnan, asking him to keep an ear out for anything about the Flying General&#39;s Battalion.</p>
+<p>Luo Zhengnan worried that Daboinsky still had something up his sleeve. &#34;Master Qi, once you have settled the matter with Lu Dongliang, you better head back to Greenwater City. That fake foreign devil isn&#39;t easy to deal with. He&#39;s got all sorts of tricks he can use in the New Land.&#34;</p>
+<p>Li Banfeng wasn&#39;t too worried. He had plenty of experience in the New Land himself. &#34;A new dance hall just opened on Shaping Road. Go look after the business.&#34;</p>
+<p>Luo Zhengnan froze. &#34;You are asking me to take care of the dance hall business?&#34;</p>
+<p>Li Banfeng smiled and said, &#34;It&#39;s your business, so of course you have to take care of it.&#34;</p>
+<p>&#34;My own business…&#34;</p>
+<p>Li Banfeng had given Luo Zhengnan a dance hall, and it was a gift he had earned.</p>
+<p>Luo Zhengnan could hardly believe it. &#34;Master Qi, someone like me has to stay out of sight...&#34;</p>
+<p>&#34;Who says?&#34; Li Banfeng replied in all seriousness. &#34;Stand tall, Old Luo. If the Jiangxiang Gang so much as lays a finger on you, we will wipe out every last one of them!&#34;</p>
+<p>Luo Zhengnan thanked him over and over. After hanging up, he pulled the antenna out of the top of his head and put it away in its box.</p>
+<p>He stood tall and straight on the balcony, his hands clasped behind his back.</p>
+<hr class="separator">
+<p>Li Banfeng went back to Yuren City. However, because the...</p>
+</article>
+<article id="c468-2" data-label="468 pt 2">
+<h2 class="chapter">Chapter 468 pt 2: 2: Gallant Heroine Zhao Xiaowan 🔒</h2>
+<p>After returning to Greenwater City, Li Banfeng arranged a banquet at the Peace Hotel, and Ma Wu went to the newspaper office to invite Shan Zhumei.</p>
+<p>She declined the first invitation, saying she had been busy lately and had no time to go out. The second time, Shen Rongqing spoke to her personally. Shan Zhumei reluctantly agreed to come, but only if Shen Rongqing went with her.</p>
+<p>Worried that Ma Wu would feel awkward, Shen Rongqing tried to persuade her. &#34;You are the one they invited. There&#39;s no need for me to go.&#34;</p>
+<p>Shan Zhumei answered with Ma Wu standing right there. &#34;A woman going to a banquet on her own? Think what that would do to my reputation.&#34;</p>
+<p>Ma Wu frowned. &#34;What&#39;s a meal with us going to do to your reputation?&#34;</p>
+<p>Shen Rongqing stepped in. &#34;There&#39;s no need to make a fuss over this. I will go with you, and that settles it.&#34;</p>
+<p>On the appointed day, all five took their seats. Shan Zhumei did not greet anyone and barely spared Li Banfeng or Ma Wu a glance. They were treating her to dinner, but the way she acted made it seem like they owed her money.</p>
+<p>Shen Rongqing might have thought rather highly of herself, but she knew how to behave in company. Her words and manners were perfectly courteous.</p>
+<p>She knew Li Banfeng, and she knew Ma Wu very well indeed. After greeting them and exchanging a few pleasantries, she waited to be introduced to the other woman at the table.</p>
+<p>The woman...</p>
+</article>
+<article id="c469" data-label="469">
+<h2 class="chapter">Chapter 469: Who Wants to Wipe Out the Jiangxiang Gang? 🔒</h2>
+<p>Xiao Zhenggong asked Shen Jingye bluntly, &#34;Give me a straight answer. Are you planning to appoint a new Balancer?&#34;</p>
+<p>Shen Jingye kept his gentle smile and spoke with the patient concern of a man explaining something to a rather slow child. &#34;Zhenggong, you are worrying too much. We have had a few difficulties with our work, but every difficulty has a solution. Our superiors have, of course, had a few things to say about certain matters. They weren&#39;t very pleased with your performance during the last investigation in Kinless Township.&#34;</p>
+<p>Xiao Zhenggong frowned. &#34;What did I do wrong in Kinless Township? Border Controller Liu Guocai treated us to some food and drink. Surely you are not going to hold that little bit of nonsense against me now?&#34;</p>
+<p>Shen Jingye shook his head. &#34;Whatever dealings you had with Liu Guocai, I know nothing about them. The point is that the investigation got us nowhere.&#34;</p>
+<p>&#34;What results did you want?&#34;</p>
+<p>&#34;The whole point of appointing a Balancer was to reach an understanding with the Inner Provinces over our shared interests. Yet you went to Kinless Township and never even made contact with them.&#34;</p>
+<p>&#34;You can hardly blame me for that,&#34; Xiao Zhenggong said. &#34;I have already told you what happened. There was a plague on Sage Peak, and the Greenwater Beggar had spread it. Perhaps you don&#39;t quite understand what sort of man he is. If I had stayed, you would have had a dead Balancer...</p>
+</article>
+<article id="c470" data-label="470">
+<h2 class="chapter">Chapter 470: Fake It for Real 🔒</h2>
+<p>Daboinsky closed the hidden door and said to Xiao Zhenggong, &#34;Gang Leader, the Inner Provinces sent me to bring you a message.&#34;</p>
+<p>&#34;What message?&#34;</p>
+<p>&#34;After it&#39;s done, if you are willing to go to the Inner Provinces to cultivate for a while, we can offer you more.&#34;</p>
+<p>Xiao Zhenggong smiled. &#34;How much more?&#34;</p>
+<p>Daboinsky said, &#34;Within a year, we will raise your cultivation by one level.&#34;</p>
+<p>&#34;One year?&#34; Xiao Zhenggong shook his head. &#34;Not fast enough.&#34;</p>
+<p>Daboinsky reminded him, &#34;This is cultivation at the Cloudborne Layer, you know.&#34;</p>
+<p>Xiao Zhenggong thought for a moment and said, &#34;The price can still be negotiated. We will discuss it once this matter is settled. For now, get some rest and think through everything that needs to happen the day after tomorrow. Don&#39;t make any mistakes.&#34;</p>
+<p>Daboinsky said no more, made a deep bow, and returned to the secret room.</p>
+<p>After leaving the basement, Xiao Zhenggong called over Yao Zhiyi, who was guarding the entrance, and asked, &#34;Is that corpse ready?&#34;</p>
+<p>Yao Zhiyi nodded. &#34;It&#39;s ready. We have checked it from the top of its head to the tips of its toes, and there&#39;s not a thing wrong with it. No matter who examines it, they won&#39;t find anything wrong. Even the blood is exactly the same as yours. No matter how they look, that corpse is you.&#34;</p>
+<p>&#34;Bah!&#34; Xiao Zhenggong spat at him.</p>
+<p>Yao Zhiyi didn&#39;t know a better way to put it. &#34;What I mean is, sir... the corpse looks very much like you. Extremely like you...&#34;</p>
+<p>They went back to the main building and found a quiet room. Yao Zhiyi brewed a pot of tea, and Xiao Zhenggong took a small sip. &#34;Have all the invitations gone out?&#34;</p>
+<p>Yao Zhiyi nodded. &#34;Every last one. The Great Families didn&#39;t show us the slightest bit of respect. They sent the invitations straight back. Great Golden Seal Shen Jinzhong of the Three Heroes Sect was the worst of the lot. He tore his up right in front of our man. And He Yuxiu? She tossed hers straight into a spittoon.&#34;</p>
+<p>Xiao Zhenggong smiled. &#34;Just as expected. Not a single person showing up is exactly what we want. That way, when the Jiangxiang Gang disappears, everything will look perfectly reasonable.</p>
+<p>&#34;Have someone tell Xie Mengjiao to get in touch with Shan Zhumei....</p>
+</article>
+<article id="c471-1" data-label="471 pt 1">
+<h2 class="chapter">Chapter 471 pt 1: 1: The Cry in the Basement (1) 🔒</h2>
+<p>Xiao Zhenggong was still thinking about why they needed to eliminate every potential threat. He had even been putting together a tidy little speech to make Li Qi see how serious the situation was.</p>
+<p>He wanted to tell Li Qi that the friend from the Outer Province was in a terrible situation. He wanted to tell Li Qi what price he needed to pay to save that friend.</p>
+<p>He wanted to use this whole speech to show a relatively friendly attitude toward Li Qi, so as to get through tonight&#39;s banquet.</p>
+<p>His thoughts continued all the way down the slippery slope that Li Qi had laid for him, carrying him smoothly along until five bullets tore through his head. Only then did his train of thought come to an abrupt stop.</p>
+<p>The handgun belonged to Ling Miaoying, and it was extraordinarily powerful. After taking five shots, Xiao Zhenggong&#39;s thoughts had just about stopped altogether. He shot to his feet and ran.</p>
+<p>Xiao Zhenggong, being a Martial Cultivator, had an incredibly tough physique. However, how could he possibly outrun Li QI?</p>
+<p>Li Qi caught up to Xiao Zhenggong from behind in just two steps. His figure blurred, and he vanished from Xiao Zhenggong&#39;s sight.</p>
+<p>He had used Passing Flowers on Horseback, but Xiao Zhenggong didn&#39;t explode.</p>
+<p>The reason was simple. The five bullets had severely damaged Xiao Zhenggong&#39;s brain, leaving him unable to even sense Li Qi&#39;s...</p>
+</article>
+<article id="c471-2" data-label="471 pt 2">
+<h2 class="chapter">Chapter 471 pt 2: 2: The Cry in the Basement (2) 🔒</h2>
+<p>In the main hall, He Yuxiu had captured Hall Master Yao Zhiyi alive. She twisted his arms and legs until they broke, chained him up, and tossed him aside.</p>
+<p>Several Jiangxiang Gang followers rushed over to save their hall master. Lu Yuanxin released a swarm of flying insects from his body, and within moments, the men had been gnawed down to white bones.</p>
+<p>Miss Chu grabbed another Jiangxiang Gang follower and shoved his head into the boiling hotpot. While his face was still hot, she peeled the skin right off.</p>
+<p>Another Jiangxiang Gang member had barely gotten close when Miss Chu pried off the top of his skull with a pair of chopsticks and brain matter spilled all over the table.</p>
+<p>Cedric picked up a roast chicken, shook the brain matter off it, and kept eating.</p>
+<p>One of the Jiangxiang Gang members was a decent cultivator and tried to sneak up on Miss Chu from behind, but Lu Chunying kicked him hard enough to send him stumbling.</p>
+<p>Tan Fucheng quickly caught the man, kept him steady, and helped him into a chair. He said to the guy, &#34;Sit still and don&#39;t move.&#34;</p>
+<p>And the member of the Jiangxiang Gang really didn&#39;t move. He could only sit there and watch as Tan Fucheng slit his throat.</p>
+<p>The Jiangxiang Gang&#39;s main hall had plenty of fighting strength, but only when there was someone around to organize them.</p>
+<p>As of now, their gang leader had died and the hall...</p>
+</article>
+<article id="c472-1" data-label="472 pt 1">
+<h2 class="chapter">Chapter 472 pt 1: 1: Obsession (1) 🔒</h2>
+<p>The Jiangxiang Gang&#39;s main hall had been completely wiped out. He Yuxiu suggested, &#34;Why don&#39;t we burn this wretched place down and leave nothing but ashes behind?&#34;</p>
+<p>Li Banfeng shook his head. &#34;It would be a shame to burn down such a nice estate. Big Sis Yuxiu, haven&#39;t you been working on a secondary residence lately? Why don&#39;t I just give you this place?&#34;</p>
+<p>&#34;No!&#34; He Yuxiu waved him off. &#34;I don&#39;t like this place. It&#39;s unlucky, and that&#39;s not the only problem.&#34;</p>
+<p>She left the rest unsaid. Saying it out loud would have made her sound a little less imposing.</p>
+<p>Miss Chu said it for her. &#34;Big Bro Qi, the Jiangxiang Gang might only be a second-rate organization, but they have a lot of followers spread across a wide area. A centipede can keep wriggling even after it&#39;s dead. Their branch halls and sub-branches in other places could still rise again. If the Jiangxiang Gang ever tries to take revenge, their old main hall will definitely be one of their main targets.&#34;</p>
+<p>This was a serious matter, and Li Qi had already made plans for it. &#34;Old Luo, you know the Jiangxiang Gang better than anyone. Starting today, I want you to get to work and wipe them out completely from Puluo Provin...</p>
+</article>
+<article id="c472-2" data-label="472 pt 2">
+<h2 class="chapter">Chapter 472 pt 2: 2: Obsession (2) 🔒</h2>
+<p>Once the door was shut, the Film Projector suddenly began trembling. &#34;Director Qi, I am scared. This might not be art anymore. I think I may have touched something evil.&#34;</p>
+<p>&#34;Take your time, Brother. Tell me what happened.&#34; Li Banfeng lit a cigarette and tucked it into the Film Projector&#39;s film compartment.</p>
+<p>A curl of smoke rose, and the Film Projector gradually calmed down.</p>
+<p>&#34;Director Qi, during the last battle, I took a beaded hair ornament from the enemy. I can&#39;t really take the credit for it. Most of that belongs to Tang Saber. I kept the hair ornament. It was a fairly powerful enchanted artifact with a strong will of its own, so I gave it to the lady in the fifth room as a gift. I know I shouldn&#39;t have done that. It was valuable loot and should have been handed over to you to decide what to do with. But I really only did it because...&#34;</p>
+<p>The Film Projector started getting worked up again, so Li Banfeng reassured him. &#34;It&#39;s fine. We have plenty of enchanted artifacts at home. Don&#39;t worry about it.&#34;</p>
+<p>The Film Projector continued, &#34;The lady in the fifth room really liked the gift. She told me a lot about herself, including her name and where she came from. She said her name was Su Lijun. She used to be quite wealthy, but a heartless man killed her. Her resentful soul was left wandering through an old house in the wilderness.&#34;</p>
+<p>Li Banfeng frowned slightly. The story sounded strangely familiar. <em>If she says her name is Luo Yuni next, we are going to have a problem.</em></p>
+<p>The Film Projector continued, &#34;Later, after all kinds of twists and turns, she ended up in this house and became trapped here. She was never able to leave again. Before she met me, she said...</p>
+</article>
+<article id="c473-1" data-label="473 pt 1">
+<h2 class="chapter">Chapter 473 pt 1: 1: The Yin-Yang Gloves (1) 🔒</h2>
+<p><em>When did this Black Glove appear in my home?</em></p>
+<p>Li Banfeng did not bother asking a single question. He just grabbed his sickle, charged straight at the Black Glove, and swung the sickle at him.</p>
+<p>The Black Glove ran around him until he reached the White Glove. Hiding behind the White Glove, the Black Glove yelled, &#34;Don&#39;t be rash! I have some good stuff here, stuff that belonged to Xiao Zhenggong. Let me leave, and I&#39;ll give them to you!&#34;</p>
+<p>Li Banfeng moved around the White Glove, raised his sickle, and swung it down again. However, the Black Glove suddenly vanished.</p>
+<p>The White Glove shouted, &#34;Boss, watch out!&#34;</p>
+<p>Li Banfeng sensed a malicious attack coming toward him and ducked to dodge it. The Black Glove had thrown a dagger at him, but it failed to make contact. The finely crafted dagger struck the table instead. It cut the table cleanly in half, sending the sleeping Judge&#39;s Brush rolling onto the floor.</p>
+<p>There should not have been a dagger that fine in the Pocket Dwelling. That meant the White Glove&#39;s earlier deduction had been correct. This dagger had likely come from Xiao Zhenggong, whose belongings had all been taken by the Black Glove.</p>
+<p>Li Banfeng turned and swung his sickle at the Black Glove, but the Black Glove vanished again. The White Glove quickly detected the Black Glove&#39;s location in the room and charged over to fight him.</p>
+<p>The Black Glove shouted, &#34;Even if you kill me, you still won&#39;t get his things.&#34;</p>
+<p>Li Banfeng swung his sickle at the Black Glove once more, but the Black Glove vanished yet again. The sickle nearly cut the White Glove instead; Li Banfeng had to quickly pull back to avoid him. The Black Glove took advantage of that moment and appeared...</p>
+</article>
+<article id="c473-2" data-label="473 pt 2">
+<h2 class="chapter">Chapter 473 pt 2: 2: The Yin-Yang Gloves (2) 🔒</h2>
+<p>Back at the Border Control Office, Liao Zihui looked grim. Ling Sujun, his secretary, was holding a document, unsure whether she should present it to him.</p>
+<p>Xia Shumin, the newly appointed deputy commissioner, said, &#34;Commissioner, Li Qi is ultimately a businessman, after all. We have his lifeline in our hands. As long as we make a few adjustments to the tolls, he&#39;ll inevitably rein himself in.&#34;</p>
+<p>The other deputy commissioners said nothing. They had tried this method before, and it had left them with naught but a painful lesson.</p>
+<p>Liao Zihui raised a hand, and everyone left his office. Only Xia Shumin remained, waiting to hear his response.</p>
+<p>Liao Zihui smiled and asked, &#34;Shumin, after you retire, do you want to return to the Outer Provinces or stay in Puluo?&#34;</p>
+<p><em>The Outer Provinces?</em></p>
+<p>Xia Shumin found it difficult to get used to that name. <em>Why&#39;s my home being called the Outer Provinces? It&#39;s Puluo that&#39;s truly foreign.</em></p>
+<p>Of course, he could not nitpick at something like that in front of his superior.</p>
+<p>Xia Shumin replied tactfully, &#34;I haven&#39;t thought about retirement yet.&#34;</p>
+<p>He was forty-five this year, right in the prime of his career. He really had no reason to be thinking about retirement yet.</p>
+<p>Liao Zihui sighed. &#34;After staying in Puluo for so long, I&#39;m afraid I won&#39;t be able to adapt if I went back to the Outer Provinces. I can&#39;t even figure out how to use a cellphone. Once I retire, I just want...</p>
+</article>
+<article id="c474-1" data-label="474 pt 1">
+<h2 class="chapter">Chapter 474 pt 1: 1: Such a Great Mountain (1) 🔒</h2>
+<p>Five days later, Liao Zihui gazed at the setting sun outside the window, picked up his teacup, and silently took a sip.</p>
+<p>His secretary, Ling Sujun, walked in. The deep hollows around her eyes were completely dark.</p>
+<p>&#34;Commissioner, do we have to keep everyone on full alert today?&#34;</p>
+<p>Liao Zihui thought for a moment, then he asked, &#34;Has the tea all been distributed?&#34;</p>
+<p>&#34;It was distributed the day before yesterday.&#34;</p>
+<p>&#34;Did you mix the pills into it?&#34;</p>
+<p>&#34;We did, but the effect hasn&#39;t been obvious. Should we increase the dosage?&#34;</p>
+<p>Liao Zihui took another sip of tea. &#34;Just go home.&#34;</p>
+<p>Ling Sujun bowed deeply to Liao Zihui and did not dare ask another question. She turned and left.</p>
+<p>Liao Zihui put on his overcoat. Before leaving his office, he glanced at the drawer and wondered whether he should put on the headphones and have a listen one more time. He opened the drawer, hesitated for a moment, then closed it again.</p>
+<p>If he put the headphones on, he would definitely hear Li Qi&#39;s voice, and Li Qi would certainly use some ambiguous wording to express his intention to attack the Border Control Office. Then, because of a single sentence from him, no one would get any sleep tonight.</p>
+<p>No one knew what Li Qi was really thinking. And since Liao Zihui did not know either, why make things difficult for himself? He would just pretend none of this had ever happened.</p>
+<p>Deputy Commissioner Xia Shumin was waiting outside the office with two tickets to Freewind Wharf. When Liao Zihui stepped out, Xia Shumin hurried over to greet him.</p>
+<p>&#34;Commissioner,...</p>
+</article>
+<article id="c474-2" data-label="474 pt 2">
+<h2 class="chapter">Chapter 474 pt 2: 2: Such a Great Mountain (2) 🔒</h2>
+<p>The next morning, Li Banfeng returned to his territory. Miss Chu had already set out the offerings early, waiting for the local land deity to respond.</p>
+<p>Li Banfeng transformed into a cloud of black smoke and carefully checked the contract. It indeed stated that Cedric and the other Healers would not participate in activating the land, so Li Banfeng lit up the plot.</p>
+<p>The land activation matter was settled. Next came the trial of worthiness. Li Banfeng returned to the Mountain-Uprooting Lord&#39;s residence, took the land deity seal, and went looking for aberrant creatures.</p>
+<p>The land deity seal contained cultivation power from his territory. It served as the funds he used to hire aberrant creatures.</p>
+<p><em>Who should I hire that will be a good fit for this job? Should I fly around the territory once and advertise? No! Going around like a peddler hawking his wares seems kind of crude for a land deity.</em></p>
+<p><em>Should I put up a notice? But how many aberrant creatures would even know what it said? Come to think of it, I think one of them can actually read, or at least he recognizes the character for &#34;leaf&#34;.</em></p>
+<p>Li Banfeng thought of the bull-headed man, Old Bull. Expecting him to read a notice would be asking a bit too much, but he should be capable of serving as a messenger.</p>
+<p>After making a round of his territory, Li Banfeng found Old Bull in a forest, playing chess[1] with the Jujube Tree. The pieces were made of stone, and Old Bull and the Jujube Tree Monster each had a chessboard.</p>
+<p>Old Bull threw a stone at the Jujube Tree Monster. &#34;I use the cannon!&#34;</p>
+<p>The Jujube Tree blocked it with the...</p>
+</article>
+<article id="c475-1" data-label="475 pt 1">
+<h2 class="chapter">Chapter 475 pt 1: 1: Where Great Danger Lies (1) 🔒</h2>
+<p>Fu Taiyue, the best portrait painter in Puluo, had appeared on a mountain—a mountain that should not have existed in this territory.</p>
+<p><em>Could he have painted this mountain?</em> <em>What level of cultivation does this old gentleman possess to be able to paint such a huge mountain? What&#39;s his intention for painting a mountain in my territory? Did he notice that this territory is special, so he came here to seize it?</em></p>
+<p>Li Banfeng looked at Fu Taiyue&#39;s hands. Fu Taiyue&#39;s sleeves were very long, and his hands were hidden inside them. Li Banfeng suspected that he was carrying some kind of weapon or enchanted artifact.</p>
+<p><em>If we&#39;re going to fight, I absolutely cannot let Fu Taiyue take the initiative.</em></p>
+<p>Fu Taiyue looked at the painting on the desk and asked, &#34;Would you like to learn how to paint?&#34;</p>
+<p><em>Learn how to paint? </em>Li Banfeng thought. He had once sought Fu Taiyue out to learn how to paint. <em>Could it be that he still remembers that?</em></p>
+<p>Fu Taiyue&#39;s style consisted of freehand painting, an impressionistic style that was characterized by bold strokes instead of focusing on the details. However, Li Banfeng&#39;s ability Golden House of Hidden Beauty required realism. Moreover, learning from him without any foundational skills had been too difficult and produced results too slowly, so Li Banfeng had ultimately decided not to learn how to paint from him. Fu Taiyue had been quite angry about it at the time.</p>
+<p>Now, however, the old painter seemed to have...</p>
+</article>
+<article id="c475-2" data-label="475 pt 2">
+<h2 class="chapter">Chapter 475 pt 2: 2: Where Great Danger Lies (2) 🔒</h2>
+<p>It was almost dawn when Li Banfeng finally returned.</p>
+<p>The Gramophone complained, &#34;Husband Dear, why were you gone for so long? You only spent a few hours at home yesterday. How could a level-eight Homebound Cultivator be like you? Fortunately, the Old Man is busy building the train station, or he would definitely have fought you.&#34;</p>
+<p>Li Banfeng wiped the sweat from his body and said, &#34;I couldn&#39;t put my mind at ease, so I made a round of the territory. I&#39;ll stay home during the day today.&#34;</p>
+<p>He slept until noon, but Li Banfeng could not stay home any longer. He wanted to go out for a walk, so he found an excuse and left again.</p>
+<p>The Old Man was busy with the train station and indeed had no interest in dealing with Li Banfeng.</p>
+<p>Li Banfeng first went to take a look at the plot of New Land. Miss Chu and Old Bull were resting with their respective groups of people on the plot. The two parties had agreed to fight for only one afternoon each day. They would rest during the remaining time. Neither side would launch surprise attacks, and they were absolutely forbidden from attacking each other&#39;s wounded.</p>
+<p>Miss Chu was frightening when she went mad, but once rules had been established, she followed them to the letter. Less than ten minutes before the battle for the day began, Old Bull&#39;s formation was still incomplete, yet Miss Chu and her people waited quietly, with no intention of launching a surprise attack. After the battle began, the two parties were still evenly matched.</p>
+<p>Seeing that, Li Banfeng did not stay long. He returned to the Pocket Dwelling to fetch his painting supplies, then he went up the mountain again.</p>
+<p>There was...</p>
+</article>
+<article id="c476-1" data-label="476 pt 1">
+<h2 class="chapter">Chapter 476 pt 1: 1: Who Created the Daoist Path? (1) 🔒</h2>
+<p>Li Banfeng raced across the mountainside while the Judge&#39;s Brush flew low beside him, trying to carry him away.</p>
+<p>The mountainside was choked with thick forest, branches and foliage crowding the air. The Judge&#39;s Brush was having a hard time flying by himself, so imagine how difficult it would be to fly while carrying Li Banfeng.</p>
+<p>Li Banfeng held his breath and kept running, waving for the Judge&#39;s Brush to leave him and go on ahead.</p>
+<p><em>Pfft!</em></p>
+<p>A Toilblade Ghost spat a cloud of black mist at Li Banfeng. He dodged with Traceless Quick Steps, then struck back with Treading Through Ten Thousand Rivers, blasting holes all over the creature. To his surprise, the Toilblade Ghost still did not break apart. It was much tougher than he had expected.</p>
+<p>Two Toilblade Ghosts blocked the path ahead. Li Banfeng locked his gaze on them, ready to use Passing Flowers on Horseback, but two more were weaving through the trees above him, moving back and forth as they waited for a chance to ambush him.</p>
+<p>To guard against every Toilblade Ghost around him, he could not keep his eyes fixed on any one target for long. And if one of them managed to spray him with that black mist, what would be the consequences?</p>
+<p>Based on Li Banfeng&#39;s deduction, the painter Fu Taiyue had ended up in that state after being sprayed by a Toilblade Ghost.</p>
+<p>The woods ahead were thick and difficult to push through, so Li Banfeng used Severing Paths to Forge a Way and forced the trees apart, opening a path through...</p>
+</article>
+<article id="c476-2" data-label="476 pt 2">
+<h2 class="chapter">Chapter 476 pt 2: 2: Who Created the Daoist Path? (2) 🔒</h2>
+<p>Cedric began the treatment without using any medicine or medical instruments. He simply had Miss Chu lie flat on the ground, then sat beside her as motionless as a clay statue.</p>
+<p>Li Banfeng asked Miss Chu, &#34;What&#39;s your name?&#34;</p>
+<p>&#34;Chu Huaiyuan.&#34;</p>
+<p>&#34;Which Daoist path do you cultivate?&#34;</p>
+<p>&#34;Ascetic Cultivator.&#34;</p>
+<p>&#34;Are you a man or a woman?&#34;</p>
+<p>Miss Chu glanced at him. &#34;Do I need to strip and show you?&#34;</p>
+<p>Li Banfeng had no idea what else to ask. He and Miss Chu had never had much to say to each other.</p>
+<p>&#34;Why did you save me?&#34;</p>
+<p>Miss Chu smiled. &#34;Don&#39;t play dumb when you know perfectly well. I have taken a liking to you. Don&#39;t tell me you didn&#39;t know.&#34;</p>
+<p>&#34;What made you take a liking to me?&#34;</p>
+<p>&#34;I don&#39;t need a reason for that.&#34;</p>
+<p>&#34;Was what happened to Ma Wu your doing?&#34;</p>
+<p>Miss Chu shook her head. &#34;I only played a small part in it. Most of it was the Ling brothers&#39; doing. I went after Ma Wu because he had competed with me for business and taken some of it from me, so I wanted revenge. As for why the Ling brothers went after him, I don&#39;t know. They&#39;re members of the Brotherhood Alliance, so it might have something to do with Lu Xiaolan.&#34;</p>
+<p>Li Banfeng was taken aback. &#34;You know about the Brotherhood Alliance?&#34;</p>
+<p>Miss Chu gave a small laugh. &#34;In your eyes, I am just some stupid, clueless madwoman, aren&#39;t I?&#34;</p>
+<p>Li Banfeng shook his head and said, &#34;I don&#39;t think you are a madwoman.&#34;</p>
+<p>Miss Chu clenched her fist, then let out a long breath. &#34;I don&#39;t just know about the Brotherhood Alliance. I also know that its leader is He Jiaqing. I know He Jiaqing is in the Outer Provinces, but he&#39;s actually been controlling the Brotherhood Alliance from behind the scenes all along. As for why he&#39;s targeting Ma Wu, it could have been for the Brotherhood Alliance&#39;s interests or because of a personal grudge. After...</p>
+</article>
+<article id="c477-1" data-label="477 pt 1">
+<h2 class="chapter">Chapter 477 pt 1: 1: The Sage&#39;s Grand Ambition (1) 🔒</h2>
+<p>After Chu Shaoqiang left Virtuous Adept Peak, the Sage remained in the garden, pacing back and forth while his disciples stood silently nearby.</p>
+<p>At last, the Sage stopped and swept his gaze over them. &#34;All of you! What do you all have to say?&#34;</p>
+<p>It was not an easy question to answer. If everyone kept quiet, the Sage would certainly lose his temper, and there was no telling whether someone might even lose their life. However, anyone who spoke had to be careful not to overstep. They had to know what the Sage wanted to hear.</p>
+<p>One of the disciples, Song Deke, stepped forward and bowed. &#34;Venerable Teacher, I suspect there may be some trickery involved. We should send someone to keep watch on Chu Shaoqiang.&#34;</p>
+<p>Another disciple, Du Xiangwen, felt that Song Deke&#39;s suggestion was wrong. &#34;Junior Brother Song, if we do that, I am afraid Lord Chu will be disheartened. Of all the people who came from the Inner Provinces, Lord Chu has never once failed to show our teacher proper respect...&#34;</p>
+<p>&#34;That is his duty as a subject!&#34; the Sage said angrily. &#34;If he did not even understand basic courtesy, what right would he have to stand here and speak to me?&#34;</p>
+<p>The disciples lowered their heads and said nothing. The Sage gritted his teeth. &#34;Do you know how much effort I spent to keep Chu Shaoqiang safe? How many connections I used, and how many matters I took responsibility for on his behalf? And now he tells me that the Heavenheart Stone was lost along the way. He dares to brush me...</p>
+</article>
+<article id="c477-2" data-label="477 pt 2">
+<h2 class="chapter">Chapter 477 pt 2: 2: The Sage&#39;s Grand Ambition (2) 🔒</h2>
+<p>At dusk, the two of them came down from the mountain. Li Banfeng asked Cedric, &#34;How confident are you?&#34;</p>
+<p>Cedric smiled. &#34;Against this kind of unusual lifeform, I wouldn&#39;t dare say I am confident. I can only do my best. Wiping out everyone from the same Daoist path is a Disease Cultivator tradition, and it&#39;s also what I personally want.&#34;</p>
+<p>That night, Cedric spent the entire night preparing a pot of concoction. Strictly speaking, it was not a concoction, but a pathogen. Cedric was very confident in the pathogen he had created.</p>
+<p>After getting two hours of sleep before they set out, Cedric followed Li Banfeng back up Ghostblade Ridge.</p>
+<p>They went back to the same open area as before. Cedric poured the concoction into a washbasin and set six pictures around it.</p>
+<p>Each picture was made up of dense, fine lines. Li Banfeng did not look closely at the patterns. In fact, he did not even want to give the pictures a second glance. He was starting to understand the way Cedric thought. Some of the visual recognition patterns were indeed a kind of disease.</p>
+<p>Once everything was ready, Cedric gave Li Banfeng a simple explanation. &#34;These six pictures create a layout with a three-dimensional perspective. To the Toilblade Ghosts, it&#39;s like seeing spring water bubbling up from the ground. They will mistake the pathogen I made for spring water and drink it.&#34;</p>
+<p>&#34;And they will die if they drink it?&#34;</p>
+<p>Cedric shook his head. &#34;A pathogen that kills too quickly isn&#39;t suitable for spreading a plague. If a Toilblade Ghost drinks the concoction and dies within an hour,...</p>
+</article>
+<article id="c478-1" data-label="478 pt 1">
+<h2 class="chapter">Chapter 478 pt 1: 1: The Sage Musters His Troops (1) 🔒</h2>
+<p>When Li Banfeng mentioned the price, Chu Shaoqiang felt something twist unpleasantly in his gut. He had used five Heavenheart Stones to lead Ghostblade Ridge toward Sage&#39;s Peak, only to have them stolen when he was almost there.</p>
+<p>Those Heavenheart Stones had been given to him by the Sage, and they were worth a fortune. He had lost five of them, only two were being returned, and now he even had to pay to get them back. Whichever way he looked at it, the whole business made something sour twist inside him. But no matter what, there was nothing he could do about it. After all, he had been the one to lost the stones.</p>
+<p>Chu Shaoqiang said to Li Banfeng, &#34;You have the items, so name your price.&#34;</p>
+<p>Li Qi shook his head. &#34;First of all, I don&#39;t have the Heavenheart Stones. With what I am capable of, there&#39;s no way I could have stolen them from you. I simply don&#39;t have that kind of ability. And it&#39;s not just me. Even the local land deity of this territory couldn&#39;t have done it. Whoever took those Heavenheart Stones was obviously someone powerful.&#34;</p>
+<p>Every word Li Banfeng said was true. There wasn&#39;t so much as a speck of falsehood in it. To activate Words Chiseled in Stone, he had to start with a little truth.</p>
+<p>Chu Shaoqiang believed him completely. &#34;I would really like to know who this powerful figure was. Just how capable is he?&#34;</p>
+<p>&#34;I definitely can&#39;t tell you who he is,&#34; Li Banfeng said. &#34;As for what he&#39;s capable of, I would say he&#39;s about on the Peddler&#39;s level.&#34;</p>
+<p>Chu Shaoqiang shook his head. &#34;Now that&#39;s a bold claim....</p>
+</article>
+<article id="c478-2" data-label="478 pt 2">
+<h2 class="chapter">Chapter 478 pt 2: 2: The Sage Musters His Troops (2) 🔒</h2>
+<p>Cedric was furious when he discovered that Ghostblade Ridge had disappeared. &#34;Li Qi, we agreed on three days to investigate this. It&#39;s only been two days, and Ghostblade Ridge has already disappeared. You are clearly trampling all over our friendship!&#34;</p>
+<p>Li Banfeng explained, &#34;Ghostblade Ridge left just as mysteriously as it showed up. I really don&#39;t know why. You can&#39;t blame me for that.&#34;</p>
+<p>Cedric didn&#39;t believe him. &#34;I think you are lying to me!&#34;</p>
+<p>Li Banfeng said, &#34;Think about it. Do I have the ability to control Ghostblade Ridge?&#34;</p>
+<p>Cedric thought for a moment. &#34;Based on what you are capable of, probably not.&#34;</p>
+<p>&#34;If I can&#39;t do it, then obviously I wasn&#39;t the one who did it. Isn&#39;t that perfectly clear?&#34;</p>
+<p>Well... yes. Not only was it perfectly clear, it somehow seemed impossible to argue with.</p>
+<p>Cedric sighed. &#34;Wherever Ghostblade Ridge goes, it&#39;s going to cause a disaster. I wanted to see it happen with my own eyes, but now all I can do is wait for news from other people.&#34;</p>
+<p>Li Banfeng said, &#34;As long as no one goes onto Ghostblade Ridge, they won&#39;t run into the Toilblade Ghosts. The situation should still be manageable.&#34;</p>
+<p>Cedric shook his head. &#34;I spent all night thinking about it yesterday. The situation might have changed.&#34;</p>
+<p>Li Banfeng frowned. &#34;What changed this time?&#34;</p>
+<p>Cedric picked up a stick and began drawing on the ground. &#34;This change has...</p>
+</article>
+<article id="c479-1" data-label="479 pt 1">
+<h2 class="chapter">Chapter 479 pt 1: 1: New Grudges and Old Scores (1) 🔒</h2>
+<p>At the break of dawn, Xu Han left the little courtyard with a back basket, a barrel, and a bamboo basket.</p>
+<p>Was it really necessary to bring so much just to go out?</p>
+<p>As far as Old Mister Xu was concerned, every one of them was essential. The back basket was for medicinal herbs, the barrel was for golden juice, and the bamboo basket was for wild greens. Each had its own purpose.</p>
+<p>Walking along the mountain path, Xu Han spotted a shepherd&#39;s purse. Naturally, that went into the bamboo basket. Further on, in the woods, he came across a mushroom and that went into the bamboo basket too. Beside the mushroom grew a cocklebur. That was a medicinal herb, so it went into the back basket.</p>
+<p>Beside the cockleburs was a patch of tangled weeds, and crouching among them was a man named Gong Ziming. He was one of the Sage&#39;s disciples, which meant he belonged in the golden juice barrel.</p>
+<p>Old Mister Xu caught Gong Ziming with his fork and dragged him over. Gong Ziming howled in pain as he was hauled to Xu Han&#39;s side. &#34;My friend, you have...</p>
+</article>
+<article id="c479-2" data-label="479 pt 2">
+<h2 class="chapter">Chapter 479 pt 2: 2: New Grudges and Old Scores (2) 🔒</h2>
+<p>The old man in the round cap offered one last word of advice. &#34;I have always believed in putting virtue first, so I am telling you this with complete sincerity. Big Old Bro, if you are determined to get yourself killed, go ahead, but don&#39;t drag the child along with you.&#34;</p>
+<p>The old farmer stopped pushing the cart. A sudden pang of guilt struck him. What if they really did run into one of those monsters? He was already an old bag of bones. If he died, so be it. But what if he got his grandson killed too?</p>
+<p>Then again, they had already come this far without seeing a single monster. When he had left the house, he had deliberately chosen this moment to show the Sage his sincerity. Was he really going to lose his nerve and run away just because of a few words from some old man?</p>
+<p>The more the farmer thought about it, the more something felt wrong. He turned around, wanting to say a few more words to the old man, only to discover that the man in the round cap had vanished.</p>
+<p><em>OH MY MAMA! THAT OLD MAN WAS A MONSTER?</em></p>
+<p>The old farmer felt a chill of fear. He hurriedly gathered up his grandson and began pushing the cart back down the mountain.</p>
+<p>Before long, he spotted a beggar and a young man making their way uphill.</p>
+<p>The old farmer did not dare ask any questions. He hurriedly pushed the cart down the mountain.</p>
+<p>The Greenwater Beggar glanced back at him. &#34;Why was that guy in such a hurry? We should have stopped him and asked.&#34;</p>
+<p>He Jiaqing shook his head. &#34;No need. He probably saw a Toilblade Ghost. I saw one in the woods just now too.&#34;</p>
+<p>The Greenwater Beggar chuckled. &#34;Now that&#39;s strange. The Toilblade Ghosts can actually leave Ghostblade Ridge. I would really like to know whose handiwork this is.&#34;</p>
+<p>He Jiaqing frowned slightly. &#34;I really can&#39;t make sense of the methods being used here. Someone has laid out an elaborate scheme against the Sage, with one move following another and catching him off guard every step of...</p>
+</article>
+<article id="c480-1" data-label="480 pt 1">
+<h2 class="chapter">Chapter 480 pt 1: 1: Bloodbath (1) 🔒</h2>
+<p>On Sage&#39;s Peak, Song Deke was one of the Sage&#39;s more senior disciples. He managed to beat out the others and secure the chance to serve as their guide.</p>
+<p>Now that they had someone to lead the way, the Greenwater Beggar no longer hesitated. He picked Song Deke up and prepared to head into the house.</p>
+<p>Mu Yuejuan, the Painter of a Hundred Blossoms, called out to him. &#34;Greenwater Beggar, where did that young man who came with you go?&#34;</p>
+<p>The Greenwater Beggar turned and looked at Cedric. &#34;You mean him? He&#39;s my disciple. He came along to learn and see more of the world.&#34;</p>
+<p>Cedric smiled modestly. &#34;I came here to bear witness to what you all are about to accomplish. If there is anything I can do to help, please don&#39;t hesitate to ask.&#34;</p>
+<p>Mu Yuejuan shook her head. &#34;I am not talking about this foreigner. I mean that guy with the surname He who came with you!&#34;</p>
+<p>The Greenwater Beggar froze. If Mu Yuejuan had not brought it up, he would not have noticed at all. At some point, He Jiaqing had disappeared without a trace.</p>
+<p>When Mu Yuejuan asked the question, everyone else was shocked. Qiao Wuzui, the Half-Sip Yellow Broth, was very surprised as he remarked, &#34;Impressive. He was right there when we arrived, and now he&#39;s gone. To slip away without any of us noticing... just what level is this kid at?&#34;</p>
+<p>Ye Jianhuang, the Three-Pot Tobacco Pipe, spoke up. &#34;Green Beggar, don&#39;t tell me that kid slipped off ahead of us to take everything for himself.&#34;</p>
+<p>The Greenwater Beggar replied, &#34;He Jiaqing...</p>
+</article>
+<article id="c480-2" data-label="480 pt 2">
+<h2 class="chapter">Chapter 480 pt 2: 2: Bloodbath (2) 🔒</h2>
+<p>Perhaps Cedric had simply spent too much time around the Toilblade Ghost, but he no longer found it all that frightening. Even though the Toilblade Ghosts had drunk his medicine and become extremely excited and agitated, they didn&#39;t seem that scary anymore. And so, he thought that these powerful figures would surely have ways of dealing with these ghosts</p>
+<p>However, what happened next was completely beyond Cedric&#39;s expectations.</p>
+<p>Among them, Zhou Wencheng, the Ink Scholar of Eightfold Talent, had the highest cultivation and the greatest reputation.</p>
+<p>He quickly divided the dozens of spirit-bound items on the ground into several shares. He took one for himself, gave one to each of the other four important figures, and gave another to Pan Dehai. Even Cedric, who was following behind them, received two items.</p>
+<p>After dividing up the enchanted artifacts, Zhou Wencheng casually waved his hand and wrote two characters for &#34;Fly.&#34; With these two characters, he rode the wind and flew away.</p>
+<p>Ye Jianhuang took a puff from his pipe and blew out a cloud of smoke. By the time the smoke cleared, he had vanished.</p>
+<p>The others froze for a moment. Taking advantage of this opportunity, the Greenwater Beggar entered the Place That Must Not Be Named and disappeared.</p>
+<p>Mu Yuejuan sneered. &#34;That old thief ran off, and so did the Greenwater Beggar. I told you already. Even with Zhou Wencheng among you, not one of you is useful.&#34;</p>
+<p>A landscape...</p>
+</article>
+<article id="c481-1" data-label="481 pt 1">
+<h2 class="chapter">Chapter 481 pt 1: 1: Can&#39;t Tell What&#39;s Left or Right (1) 🔒</h2>
+<p>Inside the Border Control Office, Liao Zihui stared at the report with a deep frown.</p>
+<p>The Border Control Office had only recently established contact with Sage&#39;s Peak, and there had been plenty of room for their relationship to develop. Yet before they could make any real progress, disaster had struck.</p>
+<p>The Sage&#39;s Peak was gone. No one knew whether the Sage was dead or alive, and Vilefolk Hillock was now crawling with Toilblade Ghosts. No matter how Liao Zihui thought about it, he could not understand how so many things had gone wrong in just a few short days.</p>
+<p>All their previous work had come to nothing. Liao Zihui was still wondering how he was going to explain the situation to his superiors when Deputy Commissioner Xia Shumin walked in. &#34;Commissioner, there&#39;s still no word from Lightbulb.&#34;</p>
+<p>Liao Zihui sighed and stared at Xia Shumin for a long moment.</p>
+<p>He knew Xia Shumin&#39;s background was anything but ordinary. He also knew that once he retired, Xia Shumin would most likely succeed him as Commissioner. Because of that, Liao Zihui had always been careful to restrain himself when speaking to the man. This time, however, he could not hold back.</p>
+<p>&#34;Xia, why did you insist on sending Lightbulb to spy on Li Qi? It was his first time in Puluo Province. Why would you send him after Li Qi? Were you worried he might live too long?&#34;</p>
+<p>Xia Shumin lowered his head. &#34;I didn&#39;t think it through. But now that something has happened to Lightbulb, shouldn&#39;t we at least demand an explanation from Li Qi?&#34;</p>
+<p>Liao Zihui snapped, &#34;Who says something happened to him? Have you seen...</p>
+</article>
+<article id="c481-2" data-label="481 pt 2">
+<h2 class="chapter">Chapter 481 pt 2: 2: Can&#39;t Tell What&#39;s Left or Right (2) 🔒</h2>
+<p>Earlier, Luo Zhengnan had gathered a group of friends at the Jiangxiang Gang&#39;s main hall to discuss eliminating the bandits in the area. Their targets were none other than the surviving members of the Jiangxiang Gang, and Kang Qihai was one of the men Luo Zhengnan intended to deal with.</p>
+<p>As a former branch master of the Jiangxiang Gang, Kang Qihai was considered quite powerful among the mountain bandits. However, his abilities were nothing compared to Luo Zhengnan&#39;s.</p>
+<p>In less than two days, Luo Zhengnan had familiarized himself with the mountain paths. That night, while Kang Qihai was busy celebrating his wedding, Luo Zhengnan led his men up the mountain, wiped out the entire stronghold, and took Kang Qihai&#39;s head.</p>
+<p>Upon entering the bridal chamber, Luo Zhengnan lifted Lightbulb&#39;s veil and studied his face for a moment before remarking admiringly, &#34;He really is quite handsome.&#34;</p>
+<p>Lightbulb gritted his teeth, broke free of his ropes, and bolted for the door.</p>
+<p>Several of Luo Zhengnan&#39;s men tried to grab him, but he was so slippery that none of them could get a proper hold on him.</p>
+<p>Luo Zhengnan glanced at one of his men, a Fire Cultivator. The man understood the signal and released a wall of flames to block the doorway.</p>
+<p>Lightbulb no longer dared to run. He stood trembling in the middle of the room.</p>
+<p>Luo Zhengnan smiled. &#34;An Oil Cultivator, huh? You don&#39;t see many cultivators of that Daoist path these days.&#34;</p>
+<p>One of his subordinates chimed in, &#34;An Oil Cultivator is good! Very smooth!&#34;</p>
+<p>Luo Zhengnan instructed his men, &#34;Keep him here for now....</p>
+</article>
+<article id="c482-1" data-label="482 pt 1">
+<h2 class="chapter">Chapter 482 pt 1: 1: The Road Ahead and the Way Home (1) 🔒</h2>
+<p>In the bridal chamber, Li Banfeng had Lightbulb sit on the bed. Lightbulb was very nervous. He wanted to lift his red bridal veil, but Li Banfeng wouldn&#39;t let him.</p>
+<p>It was good to keep the veil on. Beneath it, Lightbulb was extremely nervous, and the more nervous he became, the more cooperative he would be later.</p>
+<p>Sure enough, after they sat in silence for a while, Lightbulb spoke before Li Banfeng even had a chance to question him.</p>
+<p>&#34;Are you Li Qi? If you are, say something so I know it&#39;s you.&#34;</p>
+<p>Li Banfeng remained silent.</p>
+<p>Lightbulb let out a couple of sobs. &#34;Master Qi, I was wrong. I didn&#39;t know my place, and I had no idea what I was getting myself into. I went to Freewind Wharf without even telling you. I swear I only wanted to see Jiang Mengting&#39;s song gala, but I didn&#39;t have a ticket, so I had to stand outside. I had absolutely no other intentions!&#34;</p>
+<p>Li Banfeng smiled. &#34;Since you enjoy listening to songs so much, why don&#39;t I find you a job at Freewind Wharf? You could listen to songs every night without even needing a ticket.&#34;</p>
+<p>Lightbulb cried, &#34;You are too kind, Master Qi! Freewind Wharf wouldn&#39;t have any use for someone like me. Everything that went wrong before was entirely my fault. I have suffered so much already, so I will...</p>
+</article>
+<article id="c482-2" data-label="482 pt 2">
+<h2 class="chapter">Chapter 482 pt 2: 2: The Road Ahead and the Way Home (2) 🔒</h2>
+<p>At the Paramount Club, Liao Zihui brought Lightbulb to the Singing Queen&#39;s Room and arranged for Chang Hongjiao, one of the club&#39;s most popular singers, to perform for them. He had invited Lightbulb alone, with no other guests, specifically to help him recover from his ordeal.</p>
+<p>Now, was Liao Zihui going to all this trouble because he was such a kind and considerate superior? This wasn&#39;t quite true. For one thing, Lightbulb was only there for further training and wasn&#39;t even technically his subordinate.</p>
+<p>Perhaps he was worried that Lightbulb would go back to the Dark Star Bureau and say something he shouldn&#39;t? That wasn&#39;t it either. The difference in their status was simply too great. As long as Lightbulb went back alive, he could say whatever nonsense he wanted and it wouldn&#39;t cause Liao Zihui much trouble.</p>
+<p>Liao Zihui&#39;s real purpose was to investigate Lightbulb&#39;s relationship with Li Qi. Lightbulb had supposedly followed Li Qi for several days without being discovered, something Liao Zihui found hard to believe. However, he had no intention of interrogating Lightbulb directly. Instead, he wanted to draw the truth out of him through casual conversation.</p>
+<p>After all, in a setting like this, surrounded by music and good company, people were more likely to let their guard down and reveal things they shouldn&#39;t say.</p>
+<p>After Chang Hongjiao had finished her second song, Liao Zihui asked her to leave them alone for a while. Once she was gone, he lowered his voice. &#34;Ning, what do you think of that girl?&#34;</p>
+<p>Lightbulb shook his head. &#34;I would say she&#39;s average.&#34;</p>
+<p>Liao Zihui stared at him in astonishment. &#34;Average? Just look at that pretty face, that lovely figure, and listen to that voice! Are you telling me she can&#39;t even compare to the singers in the Outer Provinces?&#34;</p>
+<p>&#34;Oh, she&#39;s miles better than the singers back home! Besides, a fellow of my standing would never get anywhere near...</p>
+</article>
+<article id="c483-1" data-label="483 pt 1">
+<h2 class="chapter">Chapter 483 pt 1: 1: Where Did He Come From? (1) 🔒</h2>
+<p>Li Banfeng was at Freewind Wharf, busy drawing a map of Vilefolk Hillock.</p>
+<p>Wan Jinxian had witnessed him use A Parting Across Ten Thousand Miles, which meant that the old fellow knew he had reached the ninth level of Wanderlust Cultivation. This had been weighing on Li Banfeng&#39;s mind ever since, and there was only one way to put his worries to rest. He had to find Wan Jinxian and get rid of him.</p>
+<p>Li Banfeng had sent Wan Jinxian to Ghostblade Ridge, which was currently located in Vilefolk Hillock.</p>
+<p>In the past, the Sage&#39;s Neverending Peaks ability had made Vilefolk Hillock a nightmare to navigate. The entrance was hard to find and the exit could never be found. In Vilfolk Hillock, the directions also made no sense. The terrain overlapped in strange ways, making it easy to get hopelessly lost. That was why no one in Puluo Province had ever managed to draw a complete map of the place.</p>
+<p>Now that the Sage was gone, the effects of his Neverending Peaks ability had vanished as well. Unfortunately, Vilefolk Hillock had become the territory of the Toilblade Ghosts, and ordinary folk wouldn&#39;t dare set foot inside. Getting a proper map of the place was now even less likely.</p>
+<p>Fortunately, Li Banfeng had already visited every village in Vilefolk Hillock. With his Wanderlust Cultivator&#39;s natural gift for judging direction and distance, he soon had the basic outline of a map...</p>
+</article>
+<article id="c483-2" data-label="483 pt 2">
+<h2 class="chapter">Chapter 483 pt 2: 2: Where Did He Come From? (2) 🔒</h2>
+<p>Ma Wu had taken a private room and was drinking away his gloom by himself and downing one glass after another. It wasn&#39;t business that had made him feel annoyed and frustrated. He was annoyed and angry with himself for his behavior earlier.</p>
+<p>&#34;Old Qi, I really should take a trip to the Outer Provinces. I have spent so long in Puluo Province that I hardly know a thing about the world outside it. All that stuff Dick Chen was talking about today, data, information, the internet... I have heard of them, sure, but I haven&#39;t the faintest idea what any of them actually look like.</p>
+<p>&#34;You know, I once wanted to go to the Outer Provinces to study, but my father wouldn&#39;t hear of it. Then I found out that men over there were only allowed one wife, and suddenly I wasn&#39;t so keen on going myself. Still, as much as I would hate to admit it, that foul-mouthed Dick Chen had a point. I can&#39;t spend my whole life cooped up in Puluo Province, knowing nothing about anything. I need to go out, learn a thing or two, and come back with some proper skills under my belt.&#34;</p>
+<p>Li Banfeng took a sip of wine and nodded. &#34;Going to the Outer...</p>
+</article>
+<article id="c484-1" data-label="484 pt 1">
+<h2 class="chapter">Chapter 484 pt 1: 1: The Entrance to the Inner Provinces (1) 🔒</h2>
+<p>Luo Zhengnan had sent men to investigate Dick Chen&#39;s movements outside the Border Control Office, but they had come up empty-handed.</p>
+<p>&#34;Master Qi, I have had my men keeping watch on the Border Control Office for the past two days, but they haven&#39;t seen the merchant you mentioned.&#34;</p>
+<p>Ma Wu had been investigating from the inside, but he hadn&#39;t had any better luck. &#34;Old Qi, I have spoken to our informants inside the Border Control Office, and I made sure to ask several of them. Not one has ever heard of anyone named Dick Chen.&#34;</p>
+<p>Lightbulb had also sent a message. &#34;Tangyuan&#39;s been investigating you, and she&#39;s putting quite a bit of effort into it. She&#39;s even planning to visit the Ridges of Bottomless Stomachs tomorrow to take a look at your ancestral home. Commissioner Liao was so impressed by her dedication that he personally came to our office to praise her.&#34;</p>
+<p>Lightbulb had been working hard to gather intelligence. He had even managed to dig up some information on Liao Zihui, yet somehow, he couldn&#39;t find a single lead on Dick Chen.</p>
+<p>Li Banfeng turned to Ma Wu. &#34;Who on earth is this guy? Why is he so hard to track down?&#34;</p>
+<hr class="separator">
+<p>Dick Chen studied Lu Xiaolan&#39;s file and shook his head. &#34;Finding the right person...</p>
+</article>
+<article id="c484-2" data-label="484 pt 2">
+<h2 class="chapter">Chapter 484 pt 2: 2: The Entrance to the Inner Provinces (2) 🔒</h2>
+<p>Dick Chen handed Daboinsky a scroll. Daboinsky unrolled it and found that it was completely blank, without a single word written on it.</p>
+<p>Dick Chen took the scroll back. &#34;You have probably seen this kind of letter before. The Outer Provinces have special equipment that can decipher its contents. There&#39;s nothing particularly surprising about the message though. The Inner Provinces want the Outer Provinces to help them break through the boundary line separating them from Puluo Province.&#34;</p>
+<p>Daboinsky was shocked. &#34;The Outer Provinces can even break through the boundary line between the Inner Provinces and Puluo Province?&#34;</p>
+<p>Dick Chen nodded. &#34;You see, there&#39;s really no fundamental difference between the boundary line separating the Inner Provinces from Puluo Province and the one between Greenwater City and Girdle-Slipping Hollow. The only difference with the boundary line separating Inner Provinces from Puluo Province is that it&#39;s much thicker. Think of the boundary line between Greenwater City and Girdle-Slipping Hollow as a sheet of paper, while the one between the Inner Provinces and Puluo Province is more like a wall. Breaking through a sheet of paper is easy enough for the Inner Provinces, but a wall is another matter entirely. They simply haven&#39;t the means to break through it.&#34;</p>
+<p>&#34;Breaking through the boundary line is what the Inner Provinces want most from the Outer Provinces, and it&#39;s also the greatest bargaining chip the Outer Provinces hold over the Inner Provinces. The two sides spent a long time negotiating over this matter.</p>
+<p>&#34;However, those negotiations were suspended when Xiao Zhenggong was acting as the Balancer. The official...</p>
+</article>
+<article id="c485-1" data-label="485 pt 1">
+<span id="last"></span>
+<h2 class="chapter">Chapter 485 pt 1: 1 🔒</h2>
+<p>Li Banfeng looked at Tangyuan, considering how he should set up a conversational slope. She was a trained investigator, so an ordinary conversational slope might not work very well on her.</p>
+<p>Tangyuan sat opposite Li Banfeng, doing her best to remain calm.</p>
+<p>Ever since the day she joined the Dark Star Bureau, she had been mentally prepared for the possibility that she might die on a mission someday. How would she stare death in the face on that fateful day?</p>
+<p>When she was alone, Tangyuan had sometimes imagined such a scenario.</p>
+<p>Especially in the bathroom, she would take the showerhead, spray herself all over, and pretend she had sustained a fatal wound. Then she would think of ways to use her last bit of strength to take the enemy down with her.</p>
+<p>Of course, she had received professional training and had measures to save herself after being wounded. Of course, it would be ideal if she could survive. However, if she could not, she wanted to have contingency plans that allowed her to give it everything she had before delivering her last words.</p>
+<p>Her dying words did not need to be long. Just three words would be enough: <em>&#34;I did it!&#34;</em></p>
+<p>Whenever she imagined that scene, Tangyuan would be so moved by her own heroism that she would burst into tears. Now, she was close to tears again, but this time, it was not because she was moved. It was because she was terrified.</p>
+<p>Reality was completely different from her imagination. She was not nearly as brave as she had imagined, and dying was...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <p class="caught-up">You're caught up: chapter 485 pt 1 is the latest.</p>
+    <p class="page-end-links"><a href="401-450.html" rel="prev">&larr; Chs 401–450</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">The Overlord of Puluo · Chs 451–485 pt 1</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c451">Chapter 451: Jiaqing, Heed My Advice 🔒</a></li>
+        <li><a href="#c452">Chapter 452: Just What Sort of Man Do You Think He Is? 🔒</a></li>
+        <li><a href="#c453">Chapter 453: So Who Is the Brush? 🔒</a></li>
+        <li><a href="#c454">Chapter 454: Where Is Blightland 🔒</a></li>
+        <li><a href="#c455">Chapter 455: Withering 🔒</a></li>
+        <li><a href="#c456">Chapter 456: Level-Eight Ability of Wanderlust Cultivation 🔒</a></li>
+        <li><a href="#c457">Chapter 457: The Stranger In the Pocket Dwelling 🔒</a></li>
+        <li><a href="#c458">Chapter 458: How Many Residents Are There in the Pocket Dwelling? 🔒</a></li>
+        <li><a href="#c459">Chapter 459: Causing Trouble 🔒</a></li>
+        <li><a href="#c460">Chapter 460: Daoist Path 🔒</a></li>
+        <li><a href="#c461-1">Chapter 461 pt 1: 1: Hong Ying&#39;s Eyes (1) 🔒</a></li>
+        <li><a href="#c461-2">Chapter 461 pt 2: 2: Hong Ying&#39;s Eyes (2) 🔒</a></li>
+        <li><a href="#c462-1">Chapter 462 pt 1: 1: Calculating Every Move (1) 🔒</a></li>
+        <li><a href="#c462-2">Chapter 462 pt 2: 2: Calculating Every Move (2) 🔒</a></li>
+        <li><a href="#c463-1">Chapter 463 pt 1: 1: The Creation of a Daoist Path (1) 🔒</a></li>
+        <li><a href="#c463-2">Chapter 463 pt 2: 2: The Creation of a Daoist Path (2) 🔒</a></li>
+        <li><a href="#c464-1">Chapter 464 pt 1: 1: Now This Is Lu Dongliang (1) 🔒</a></li>
+        <li><a href="#c464-2">Chapter 464 pt 2: 2: Now This Is Lu Dongliang (2) 🔒</a></li>
+        <li><a href="#c465-1">Chapter 465 pt 1: 1: Dance! (1) 🔒</a></li>
+        <li><a href="#c465-2">Chapter 465 pt 2: 2: Dance! (2) 🔒</a></li>
+        <li><a href="#c466-1">Chapter 466 pt 1: 1: Why Aren&#39;t You Crying? (1) 🔒</a></li>
+        <li><a href="#c466-2">Chapter 466 pt 2: 2: Why Aren&#39;t You Crying? (2) 🔒</a></li>
+        <li><a href="#c467-1">Chapter 467 pt 1: 1: Flying General Battalion (1) 🔒</a></li>
+        <li><a href="#c467-2">Chapter 467 pt 2: 2: Flying General Battalion (2) 🔒</a></li>
+        <li><a href="#c468-1">Chapter 468 pt 1: 1: Gallant Heroine Zhao Xiaowan 🔒</a></li>
+        <li><a href="#c468-2">Chapter 468 pt 2: 2: Gallant Heroine Zhao Xiaowan 🔒</a></li>
+        <li><a href="#c469">Chapter 469: Who Wants to Wipe Out the Jiangxiang Gang? 🔒</a></li>
+        <li><a href="#c470">Chapter 470: Fake It for Real 🔒</a></li>
+        <li><a href="#c471-1">Chapter 471 pt 1: 1: The Cry in the Basement (1) 🔒</a></li>
+        <li><a href="#c471-2">Chapter 471 pt 2: 2: The Cry in the Basement (2) 🔒</a></li>
+        <li><a href="#c472-1">Chapter 472 pt 1: 1: Obsession (1) 🔒</a></li>
+        <li><a href="#c472-2">Chapter 472 pt 2: 2: Obsession (2) 🔒</a></li>
+        <li><a href="#c473-1">Chapter 473 pt 1: 1: The Yin-Yang Gloves (1) 🔒</a></li>
+        <li><a href="#c473-2">Chapter 473 pt 2: 2: The Yin-Yang Gloves (2) 🔒</a></li>
+        <li><a href="#c474-1">Chapter 474 pt 1: 1: Such a Great Mountain (1) 🔒</a></li>
+        <li><a href="#c474-2">Chapter 474 pt 2: 2: Such a Great Mountain (2) 🔒</a></li>
+        <li><a href="#c475-1">Chapter 475 pt 1: 1: Where Great Danger Lies (1) 🔒</a></li>
+        <li><a href="#c475-2">Chapter 475 pt 2: 2: Where Great Danger Lies (2) 🔒</a></li>
+        <li><a href="#c476-1">Chapter 476 pt 1: 1: Who Created the Daoist Path? (1) 🔒</a></li>
+        <li><a href="#c476-2">Chapter 476 pt 2: 2: Who Created the Daoist Path? (2) 🔒</a></li>
+        <li><a href="#c477-1">Chapter 477 pt 1: 1: The Sage&#39;s Grand Ambition (1) 🔒</a></li>
+        <li><a href="#c477-2">Chapter 477 pt 2: 2: The Sage&#39;s Grand Ambition (2) 🔒</a></li>
+        <li><a href="#c478-1">Chapter 478 pt 1: 1: The Sage Musters His Troops (1) 🔒</a></li>
+        <li><a href="#c478-2">Chapter 478 pt 2: 2: The Sage Musters His Troops (2) 🔒</a></li>
+        <li><a href="#c479-1">Chapter 479 pt 1: 1: New Grudges and Old Scores (1) 🔒</a></li>
+        <li><a href="#c479-2">Chapter 479 pt 2: 2: New Grudges and Old Scores (2) 🔒</a></li>
+        <li><a href="#c480-1">Chapter 480 pt 1: 1: Bloodbath (1) 🔒</a></li>
+        <li><a href="#c480-2">Chapter 480 pt 2: 2: Bloodbath (2) 🔒</a></li>
+        <li><a href="#c481-1">Chapter 481 pt 1: 1: Can&#39;t Tell What&#39;s Left or Right (1) 🔒</a></li>
+        <li><a href="#c481-2">Chapter 481 pt 2: 2: Can&#39;t Tell What&#39;s Left or Right (2) 🔒</a></li>
+        <li><a href="#c482-1">Chapter 482 pt 1: 1: The Road Ahead and the Way Home (1) 🔒</a></li>
+        <li><a href="#c482-2">Chapter 482 pt 2: 2: The Road Ahead and the Way Home (2) 🔒</a></li>
+        <li><a href="#c483-1">Chapter 483 pt 1: 1: Where Did He Come From? (1) 🔒</a></li>
+        <li><a href="#c483-2">Chapter 483 pt 2: 2: Where Did He Come From? (2) 🔒</a></li>
+        <li><a href="#c484-1">Chapter 484 pt 1: 1: The Entrance to the Inner Provinces (1) 🔒</a></li>
+        <li><a href="#c484-2">Chapter 484 pt 2: 2: The Entrance to the Inner Provinces (2) 🔒</a></li>
+        <li><a href="#c485-1">Chapter 485 pt 1: 1 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="401-450.html" rel="prev">&larr; Chs 401–450</a>    <a href="../../index.html">Library</a>
+<span></span>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

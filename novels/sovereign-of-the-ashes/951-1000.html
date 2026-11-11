@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 951–1000</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="901-950.html#last" data-next-page="1001-1050.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c951">Chapter 951: Spider Queen’s Demands 🔒</a></li>
+        <li><a href="#c952">Chapter 952: Another World 🔒</a></li>
+        <li><a href="#c953">Chapter 953: Experimental Tests 🔒</a></li>
+        <li><a href="#c954">Chapter 954: End of Tenure 🔒</a></li>
+        <li><a href="#c955">Chapter 955: Dark Flame’s Admonishment 🔒</a></li>
+        <li><a href="#c956">Chapter 956: Parting Ways 🔒</a></li>
+        <li><a href="#c957">Chapter 957: Solo Travel 🔒</a></li>
+        <li><a href="#c958">Chapter 958: Advancing Arcanist Rank 🔒</a></li>
+        <li><a href="#c959">Chapter 959: Dual Cultivation 🔒</a></li>
+        <li><a href="#c960">Chapter 960: Two Pieces Of News 🔒</a></li>
+        <li><a href="#c961">Chapter 961: The Art of Reija 🔒</a></li>
+        <li><a href="#c962">Chapter 962: Sky City 🔒</a></li>
+        <li><a href="#c963">Chapter 963: Mecha Upgrade 🔒</a></li>
+        <li><a href="#c964">Chapter 964: Old Peyton’s Lecture 🔒</a></li>
+        <li><a href="#c965">Chapter 965: Amazing Mecha 🔒</a></li>
+        <li><a href="#c966">Chapter 966: Spending Time In The Library 🔒</a></li>
+        <li><a href="#c967">Chapter 967: Ocean Of Knowledge 🔒</a></li>
+        <li><a href="#c968">Chapter 968: Northern Witches Council 🔒</a></li>
+        <li><a href="#c969">Chapter 969: Ocstracized And Hitting A Wall 🔒</a></li>
+        <li><a href="#c970">Chapter 970: Ancient Scroll 🔒</a></li>
+        <li><a href="#c971">Chapter 971: Edelweiss World 🔒</a></li>
+        <li><a href="#c972">Chapter 972: Yuri’s Performance 🔒</a></li>
+        <li><a href="#c973">Chapter 973: Exchanging Knowledge 🔒</a></li>
+        <li><a href="#c974">Chapter 974: A Witch’s Way of Fighting 🔒</a></li>
+        <li><a href="#c975">Chapter 975: Sympathy 🔒</a></li>
+        <li><a href="#c976">Chapter 976: Huge Gains 🔒</a></li>
+        <li><a href="#c977">Chapter 977: Eastern Stargazing Heights 🔒</a></li>
+        <li><a href="#c978">Chapter 978: West Coast 🔒</a></li>
+        <li><a href="#c979">Chapter 979: Overwhelming Mode 🔒</a></li>
+        <li><a href="#c980">Chapter 980: Expediting That “Plan” 🔒</a></li>
+        <li><a href="#c981">Chapter 981: Spring Guardian 🔒</a></li>
+        <li><a href="#c982">Chapter 982: Unfamiliar World 🔒</a></li>
+        <li><a href="#c983">Chapter 983: Girl 🔒</a></li>
+        <li><a href="#c984">Chapter 984: Gray Monster 🔒</a></li>
+        <li><a href="#c985">Chapter 985: Shocking Discoveries 🔒</a></li>
+        <li><a href="#c986">Chapter 986: Exploration 🔒</a></li>
+        <li><a href="#c987">Chapter 987: Images Of The Past 🔒</a></li>
+        <li><a href="#c988">Chapter 988: Encountering an Attack 🔒</a></li>
+        <li><a href="#c989">Chapter 989: So-Called Power 🔒</a></li>
+        <li><a href="#c990">Chapter 990: Faeloria Continent 🔒</a></li>
+        <li><a href="#c991">Chapter 991: The Anger Of An Elementalist 🔒</a></li>
+        <li><a href="#c992">Chapter 992: Power Hierarchy 🔒</a></li>
+        <li><a href="#c993">Chapter 993: Vivisection 🔒</a></li>
+        <li><a href="#c994">Chapter 994: Widely Shared 🔒</a></li>
+        <li><a href="#c995">Chapter 995: Bone Lord 🔒</a></li>
+        <li><a href="#c996">Chapter 996: The Spider Queen’s Wrath 🔒</a></li>
+        <li><a href="#c997">Chapter 997: Bone Lord’s Conjecture 🔒</a></li>
+        <li><a href="#c998">Chapter 998: Lorthisra 🔒</a></li>
+        <li><a href="#c999">Chapter 999: Erasure 🔒</a></li>
+        <li><a href="#c1000">Chapter 1000: Marking Planar Nodes 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c951" data-label="951">
+<h2 class="chapter">Chapter 951: Spider Queen’s Demands 🔒</h2>
+<p>As an alchemist, Sein was no stranger to the concept of a world-class secret treasure.</p>
+<p>These treasures represented the pinnacle of craftsmanship that a race or civilization could attain.</p>
+<p>Generally, only medium-sized planes and above could produce such extraordinary creations.</p>
+<p>The recently destroyed Wild Gorilla World had managed to forge only one world-class secret treasure—the “Gorilla God Hammer”—even after harnessing the collective strength of the entire plane.</p>
+<p>None of the powerful Rank Four and above individuals Sein knew, including Lorianne, Gregory, Bernice, and Dark Flame, possessed a world-class secret treasure.</p>
+<p>Sein speculated that Grandmaster Feylis might own such a treasur...</p>
+</article>
+<article id="c952" data-label="952">
+<h2 class="chapter">Chapter 952: Another World 🔒</h2>
+<p>After participating in the battle against the underground creatures, Sein, along with the knights and mages around him, gathered in the area where the white stone slab had previously emitted intense spatial fluctuations.</p>
+<p>Despite being a Rank Three grand mage, Sein blended seamlessly with the surrounding knights and mages, overshadowed by the commanding presence of seven demigod-level powerhouses that dominated the grotto.</p>
+<p>Among the Rank Three individuals present, Sein recognized only one familiar face—Janice.</p>
+<p>Adrian and the other Rank Three grand mages from the neighboring divine towers had either not arrived yet or were busy investigating elsewhere.</p>
+<p>Leading the group was a demigod-level knight with a thick beard, clad in red armor.</p>
+<p>This knight’s...</p>
+</article>
+<article id="c953" data-label="953">
+<h2 class="chapter">Chapter 953: Experimental Tests 🔒</h2>
+<p>In addition to being an evil god, the Spider Queen appeared to be an expert in magic.</p>
+<p>Sein could not decide whether to think of her as an evil god who followed the path of a mage, or a mage who had embraced a faith-based system.</p>
+<p>Although his interactions with the Spider Queen had yielded little useful information about her background, Sein had pieced together enough to conclude that she was likely a native of the Magus World!</p>
+<p>This would explain her ability to spread faith within the Magus World, as well as her immediate recognition of the wisp of Planar Light and Dragon’s Blessing within him.</p>
+<p>For now, Sein lacked the strength to oppose her. Compliance with her orders was the...</p>
+</article>
+<article id="c954" data-label="954">
+<h2 class="chapter">Chapter 954: End of Tenure 🔒</h2>
+<p>The Spider Queen’s experiments had proven highly fruitful.</p>
+<p>After extensive research, she successfully determined that the world connected to this stone slab was, at the very least, a large-sized plane.</p>
+<p>The slab itself likely originated from that world.</p>
+<p>As for how it had ended up in the Magus World, the Spider Queen concluded it was the work of fate.</p>
+<p>Imbued with the power of fate, the slab’s appearance in the Magus World was undoubtedly linked to the most bizarre and inscrutable workings of this force.</p>
+<p>Sein, however, had grown increasingly uneasy at the mere mention of words like “fate” or “divination” due to the prophecy delivered centuries ago by a Rank Two astrologer named Marylou.</p>
+<p>Though curious about the slab, Sein had no intention of meddling with it.</p>
+<p>Astrologers in the Magus World were mostly short-lived, so he would rather leave this treasure...</p>
+</article>
+<article id="c955" data-label="955">
+<h2 class="chapter">Chapter 955: Dark Flame’s Admonishment 🔒</h2>
+<p>In the tower master’s office atop the divine tower…</p>
+<p>“You really won’t reconsider? I’ll even double your salary,” Dark Flame offered, his tone both persuasive and insistent.</p>
+<p>This Rank Five powerhouse was pretty generous with Sein.</p>
+<p>The salary he offered Sein as dean was already the highest among academy deans in the Magus World—so high, in fact, that even many demigod-level mages could not hope to match it.</p>
+<p>Now, Dark Flame was willing to double that offer!</p>
+<p>A staunch believer in rewarding results, Dark Flame had no qualms about spending lavishly if it meant securing worthwhile returns.</p>
+<p>Sein’s accomplishments over the past two centuries certainly justified such an offer. Under his leadership, the academy had achieved first...</p>
+</article>
+<article id="c956" data-label="956">
+<h2 class="chapter">Chapter 956: Parting Ways 🔒</h2>
+<p>After leaving Dark Flame’s office, Sein paid one final visit to the Divine Tower Academy to bid farewell to his colleagues and the juniors who had come to see him off.</p>
+<p>The real reason behind Sein’s departure was not solely his desire to continue exploring the Magus World. A bigger reason was the constant urging of the Spider Queen.</p>
+<p>Had it not been for her, Sein might have been swayed by Dark Flame’s generous offer to remain as dean of the Divine Tower of Dark Flame for another century.</p>
+<p>When Archimedes departed the Divine Tower of Verdant Spring, two-thirds of the mages from the divine tower had gathered to bid the old dean farewell.</p>
+<p>In contrast, only a small number came to see Sein off.</p>
+<p>This disparity stemmed partly from Sein’s temperament, which was vastly different...</p>
+</article>
+<article id="c957" data-label="957">
+<h2 class="chapter">Chapter 957: Solo Travel 🔒</h2>
+<p>Sein, now traveling alone, made no real effort to conceal the presence of the Spider Queen in the days that followed.</p>
+<p>Perhaps due to her origins as a native creature of the Magus World, the Spider Queen seemed entirely unbothered by revealing her presence in this world.</p>
+<p>In fact, save for Rank Four or higher powerhouses, most knights and mages could not discern that the woman in a flowing silver dress often seen at Sein’s side was actually a divine clone.</p>
+<p>The Spider Queen’s appearance was nothing short of breathtaking.</p>
+<p>Her pure, ethereal appearance left everyone who saw her utterly mesmerized—even Sein had been momentarily stunned upon their first meeting.</p>
+<p>Her presence during his travels often drew admirers and curious onlookers.</p>
+<p>Sein could not help but...</p>
+</article>
+<article id="c958" data-label="958">
+<h2 class="chapter">Chapter 958: Advancing Arcanist Rank 🔒</h2>
+<p>Not long after leaving the Ylli Knight Alliance, Sein stepped onto the soil of the Alveroth Empire.</p>
+<p>This time, however, he had not come to poach initiates.</p>
+<p>Alveroth the Magic Empire was a beacon of magical civilization, its advancements flourishing to unparalleled heights.</p>
+<p>Apart from Sky City, the Alveroth Empire stood as the most significant hub for spellcasters in the Magus World.</p>
+<p>It boasted the most advanced magitech and alchemy, the widest variety of elemental disciplines, the largest population of spellcasters, and the greatest number of Rank Four and above mages.</p>
+<p>Compared to other spellcaster-dominated powers like the Dragon Warlock Clan, the Northern Witches Council, or the Marmett Union Alliance—which...</p>
+</article>
+<article id="c959" data-label="959">
+<h2 class="chapter">Chapter 959: Dual Cultivation 🔒</h2>
+<p>Sein had chosen not to share his alchemy knowledge as a way of honoring his first mentor, Morsidor.</p>
+<p>The Verdant Flame was an elemental mystery he had inherited from the Verdant Flame Faction. Naturally, he did not have the right to sell knowledge that was not his own.</p>
+<p>Ashen Flame was Sein’s current source of power, and he had no intention of giving his trump card away.</p>
+<p>His body-tempering experiments remained a closely guarded secret, granting him a decisive advantage over his peers.</p>
+<p>These four profound truths were treasures he would only consider sharing under one condition—when he took on apprentices.</p>
+<p>Even while withholding these secrets, Sein had still managed to amass an impressive number of Arcane Points through his contributions to the Arcane Light.</p>
+<p>Over the years, Sein had not limited himself to studying the elemental mysteries...</p>
+</article>
+<article id="c960" data-label="960">
+<h2 class="chapter">Chapter 960: Two Pieces Of News 🔒</h2>
+<p>Sein stayed nearly four months at the Order of the Azure Dragon Sea.</p>
+<p>The magiknights’ unique path of power and truth was eye-opening for him.</p>
+<p>After friendly sparring sessions with the knights and exchanging crystal ball contact information, Sein bid them farewell and continued his journey eastward.</p>
+<p>The Alveroth Empire stretched far and wide, connecting to the icy region far north and the Capiche Business Alliance in the northeast.</p>
+<p>Sein had initially planned to visit those areas.</p>
+<p>However, under the looming pressure of the Spider Queen, he decided not to tarry and headed east toward Sky City instead.</p>
+<p>When Sein arrived in a small town called “Wellit” in the eastern part of the Alveroth Empire, he finally received a magic message from...</p>
+</article>
+<article id="c961" data-label="961">
+<h2 class="chapter">Chapter 961: The Art of Reija 🔒</h2>
+<p>The Art of Reija Flame was a pyro elemental mystery that Feylis had developed during her early travels in a special foreign plane within the Astral Realm.</p>
+<p>It was both a versatile and powerful defensive and offensive elemental mystery. It could even store energy for short-term bursts of explosive power.</p>
+<p>At its core, the Art of Reija Flame revolved around embedding flame nodes into various parts of the body.</p>
+<p>These nodes would serve as reservoirs, storing pure pyro elemental particles that could be linked together during battle.</p>
+<p>Whether creating a pyro elemental defensive wall or unleashing devastating offensive magic, the Reija Flame allowed a mage to wield it with greater ease and precision on the battlefield.</p>
+<p>It was a mature and well-refined...</p>
+</article>
+<article id="c962" data-label="962">
+<h2 class="chapter">Chapter 962: Sky City 🔒</h2>
+<p>Having just arrived at Sky City, Sein found himself at its very edge.</p>
+<p>Even from there, he was surrounded by the grandeur and magnificence of Sky City.</p>
+<p>The Sky Tower, which stood proudly in the center of Sky City, was still an incredible distance away.</p>
+<p>Yet, its sheer height and majesty were such that even from the outskirts, Sein could clearly see its towering splendor.</p>
+<p>“That tower… I once saw a similar one in the Marmett Union Alliance. It must be a soul tower—it looks far grander than a divine tower,” Sein murmured.</p>
+<p>The tower he had seen in the Marmett Union Alliance, however, had likely been shorter than the majestic structure before him.</p>
+<p>Both the Marmett Union Alliance and the Alveroth Empire had their own soul towers, yet Sein had never had the chance to examine...</p>
+</article>
+<article id="c963" data-label="963">
+<h2 class="chapter">Chapter 963: Mecha Upgrade 🔒</h2>
+<p>Old Peyton was a difficult man to get along with.</p>
+<p>Sein had joined the heavy industry laboratory with the intent to learn.</p>
+<p>However, neither the laboratory nor Peyton had any intention of teaching him for free. Instead, they saw an opportunity to leverage his alchemy expertise for their own benefit.</p>
+<p>After all, Sein was just a “temporary worker”, never having signed a long-term contract with the laboratory.</p>
+<p>Under such conditions, there was no chance they would allow him too much time to study.</p>
+<p>Every year, a vast number of Magus World mages visited Sky City.</p>
+<p>Yet, the scarcity of Arcane points, coupled with the strict rule requiring the mandatory consumption of one point per day, made prolonged stays difficult for lower-ranking...</p>
+</article>
+<article id="c964" data-label="964">
+<h2 class="chapter">Chapter 964: Old Peyton’s Lecture 🔒</h2>
+<p>Old Peyton’s private laboratory was hidden away in the basement of a residential block within the factory.</p>
+<p>It seemed that this place had originally been used as a storage warehouse for materials, but at some point, Peyton had converted it into his personal workshop.</p>
+<p>Much like his lifestyle, Old Peyton’s laboratory was incredibly messy.</p>
+<p>The air reeked of motor oil, and Sein could not help but wonder—could the old man even live to see three thousand?</p>
+<p>Long-term exposure to such an environment, combined with the erosive effects of heavy metals on the body, would inevitably take its toll on even a Rank Two mage.</p>
+<p>The reason Peyton had been swayed by Sein’s ten thousand magicoins...</p>
+</article>
+<article id="c965" data-label="965">
+<h2 class="chapter">Chapter 965: Amazing Mecha 🔒</h2>
+<p>During the mecha upgrade process, Sein gave Yuri a great deal of autonomy in making decisions about the modifications.</p>
+<p>Faced with the temptation of significantly increasing her combat ability, Yuri nodded in agreement without hesitation.</p>
+<p>The thrusters used in war airships would give her short-term burst speeds comparable to those of Rank Three creatures.</p>
+<p>The energy crystal used in prism forts would also vastly enhance her combat endurance.</p>
+<p><em>What if the thrusters on her mecha’s back were hit during a battle?</em></p>
+<p><em>What if the base material of her mecha could not withstand the prolonged elemental conductivity of the prism fort-grade energy crystal?</em></p>
+<p>None of that...</p>
+</article>
+<article id="c966" data-label="966">
+<h2 class="chapter">Chapter 966: Spending Time In The Library 🔒</h2>
+<p>“Kid, you haven’t been working with me for long, but you’ve already picked up quite a bit of my knowledge!” Old Peyton said with exasperation as their experiment came to an end.</p>
+<p>Sein snapped his fingers, conjuring a small flame, and used it to light another cigar for the old man.</p>
+<p>It would probably be the last time he did this.</p>
+<p>By tomorrow, Sein’s temporary contract with the heavy industry laboratory would be up, and it would be time for him to move on to other parts of Sky City.</p>
+<p>Although he had not spent much time under Peyton, he had gained an immense amount from the experience.</p>
+<p>Having an expert to guide him had been far more efficient than fumbling around on his own.</p>
+<p>One of the things Peyton had appreciated most about Sein was...</p>
+</article>
+<article id="c967" data-label="967">
+<h2 class="chapter">Chapter 967: Ocean Of Knowledge 🔒</h2>
+<p>Sein was burning through Arcane points in Sky City much faster than he had anticipated.</p>
+<p>He was soaking up knowledge like a sponge.</p>
+<p>At first, he had focused on lumen elemental mysteries and apothecary, but before he knew it, he had “accidentally” ventured into summoning arts, hydro and geo elemental magic, and even bloodline mysteries.</p>
+<p>Sein had been so engrossed in his studies that he lost track of time and even his original purpose.</p>
+<p>In the boundless ocean of knowledge, he was dazzled and drawn instinctively toward whatever fascinated him most.</p>
+<p>When one walked the path of magic, it became clear that all mysteries and truths would inevitably converge in the end.</p>
+<p>The elemental mysteries of different disciplines shared commonalities,...</p>
+</article>
+<article id="c968" data-label="968">
+<h2 class="chapter">Chapter 968: Northern Witches Council 🔒</h2>
+<p>“So it turns out that Hell, the homeplane of the demons, was destroyed long ago along with many of its native creatures, some of whom later migrated to Magus World. The Abyssal Dragons that dwell in the depths of the northern Magus Continent were originally inhabitants of the Hell Plane…” Sein murmured as he flipped through a comprehensive genealogy of Hell’s creatures.[1]</p>
+<p>In truth, Sein already knew quite a bit about the demons.</p>
+<p>With Natalya as his wife and Sia as his mother-in-law, combined with the extensive research he had conducted in divine tower libraries during his early years, he had accumulated a wealth of knowledge on the subject.</p>
+<p>During the Wild Gorilla World War, Sein had witnessed a knightly order fielding an entire legion of Drake Knights.</p>
+<p>Those drakes were a subspecies of the Abyssal...</p>
+</article>
+<article id="c969" data-label="969">
+<h2 class="chapter">Chapter 969: Ocstracized And Hitting A Wall 🔒</h2>
+<p>The Northern Witches Council was nestled deep within a range of snow-capped mountains in the Northlands.</p>
+<p>Although the Northlands were not the coldest place in Magus World, they undoubtedly had the harshest natural environment among all top-tier and major powers.</p>
+<p>Most Magus Civilization factions preferred to establish their domains in regions with milder climates and abundant resources.</p>
+<p>This principle extended even to Rank Four mages when selecting locations for their divine towers.</p>
+<p>Yet, the Northern Witches Council was an exception.</p>
+<p>This top-tier power, composed almost entirely of female spellcasters, had long been regarded by outsiders as “mysterious,” “powerful,” and “xenophobic”.</p>
+<p>However, unlike in the ancient era, the Northern Witches Council no longer outright rejected outsiders...</p>
+</article>
+<article id="c970" data-label="970">
+<h2 class="chapter">Chapter 970: Ancient Scroll 🔒</h2>
+<p>The Northlands were not only bitterly cold but also isolated, and this seclusion extended to its circle of spellcasters.</p>
+<p>Compared to other regions of the Magus World, the witches of the Northlands were even more detached from ordinary human society.</p>
+<p>More than ninety percent of the common people in the Northlands had never even seen a witch in their lifetime.</p>
+<p>To the humans dwelling among these snowy mountains, the powerful witches were nothing more than myths and legends.</p>
+<p>Unlike the Alveroth Empire, which had made magic accessible for all, the Northlands had never undergone such a movement.</p>
+<p>The selection process for a witch initiate was far more restrictive and rarer than the process of choosing magic initiates elsewhere in Magus World.</p>
+<p>The only way...</p>
+</article>
+<article id="c971" data-label="971">
+<h2 class="chapter">Chapter 971: Edelweiss World 🔒</h2>
+<p>Edelweiss World was a low-level plane, governed by the laws of ice and a frigid environment.</p>
+<p>This was the second interplanar war that Sein had participated in since setting off on his travels.</p>
+<p>Though the battle in Edelweiss World was intense, it was fundamentally different from the Gumo Plane War that Sein had previously fought in.</p>
+<p>In the Gumo Plane War, the Rank Five mage, Dark Flame, had clashed with three Rank Four native gods. It was a battle of equals, locked in a deadly stalemate.</p>
+<p>Had the three native gods not attempted—but ultimately failed—to seal Dark Flame, the war might have dragged on for years, with no clear victor in sight.</p>
+<p>In the case of the Gumo Plane War, both sides were actually desperately holding on.</p>
+<p>It was not that the Rank Four and above creatures could...</p>
+</article>
+<article id="c972" data-label="972">
+<h2 class="chapter">Chapter 972: Yuri’s Performance 🔒</h2>
+<p>Veyle was a rookie, but the knights and mages surrounding the Rank One witch were far from inexperienced.</p>
+<p>The native creatures of Edelweiss World that had launched the ambush might have made a huge commotion, but their combat strength was only mediocre at best.</p>
+<p>Even without Sein, the combined power of two witches and a group of knights would have been enough to handle them.</p>
+<p>The voice of Rank Two witch Berlitan echoed through the air as she began her incantation. A group of knights instinctively closed ranks around her, forming a protective barrier.</p>
+<p>Yet, before Berlitan could complete her spell, Sein had already acted.</p>
+<p>A barrage of Rank One and Rank Two spells was unleashed...</p>
+</article>
+<article id="c973" data-label="973">
+<h2 class="chapter">Chapter 973: Exchanging Knowledge 🔒</h2>
+<p>After the battle concluded, Sein and the others had captured over three hundred cryo elemental native creatures.</p>
+<p>Though individually weak, their capture was still a notable gain.</p>
+<p>Turning them over to the witches at the fortress base for branding as slaves would earn each participant in the skirmish a share of rewards.</p>
+<p>This battle had practically been a one-man show for Sein and Yuri.</p>
+<p>However, as a Rank Three grand mage with considerable wealth, he had little interest in the minor profits these low-level native creatures could bring.</p>
+<p>Aside from keeping two Edelweiss Spirits for himself, he allocated the rest of the captured creatures to the two witches and the group of knights.</p>
+<p>His generosity instantly earned him goodwill from them, despite being an “outsider”.</p>
+<p>These knights...</p>
+</article>
+<article id="c974" data-label="974">
+<h2 class="chapter">Chapter 974: A Witch’s Way of Fighting 🔒</h2>
+<p>The assembly area where Sein arrived was located on the western side of the fortress camp.</p>
+<p>Despite the magus tower he had temporarily joined being named “Merilyn’s Little Coven”, the scale of the war waged by this faction was anything but small.</p>
+<p>Sein could not accurately determine how many witches were stationed throughout the fortress camp. However, judging by the sheer number of knights gathered in the western assembly area alone, there were no fewer than twenty thousand.</p>
+<p>In addition to the large number of knights, Sein also observed over a hundred thousand enslaved creatures of varying appearances.</p>
+<p>Since Edelweiss World was a frigid and icy low-level plane, the deployed forces primarily consisted of cryo, hydro, and geo elemental enslaved...</p>
+</article>
+<article id="c975" data-label="975">
+<h2 class="chapter">Chapter 975: Sympathy 🔒</h2>
+<p>Aside from what had been mentioned, Sein also noticed the peculiar red elemental chains the knights on the battlefield wore.</p>
+<p>These chains, crafted by the witches, appeared to enhance the knights’ endurance, allowing them to fight for extended periods.</p>
+<p>With a combat structure entirely reliant on witches, it was no surprise that they held absolute authority in the Northlands.</p>
+<p>However, there was little concern that the knights would be marginalized; the witches had no interest in political struggles with them.</p>
+<p>The Northlands lacked prestigious magic families due to the witches’ unique inheritance system, so the knight-led noble houses continued to occupy the highest ranks of the commoners’ society in the Northlands.</p>
+<p>Moreover, witches faced...</p>
+</article>
+<article id="c976" data-label="976">
+<h2 class="chapter">Chapter 976: Huge Gains 🔒</h2>
+<p>The sheer number of Rank One and initiate-class sorcery spell models was eye-opening to Sein, a divine tower mage from Viridescent Land.</p>
+<p>One should never underestimate the importance of these foundational spell models.</p>
+<p>Even the tallest tower was built upon its smallest bricks.</p>
+<p>Without a solid foundation, how could one hope to grasp more profound and advanced magic?</p>
+<p>Compared to the more obscure Rank Two and Rank Three sorcery spell models Sein had never encountered yet, these fundamental spells were far more suitable for newcomers to explore.</p>
+<p>The spell models of ancient sorcery broadened Sein’s perspective.</p>
+<p>More importantly, he realized that the Northern Witches Council was far from stagnant.</p>
+<p>The spellcasting techniques and elemental principles utilized by these witches were partially derived from the latest advancements...</p>
+</article>
+<article id="c977" data-label="977">
+<h2 class="chapter">Chapter 977: Eastern Stargazing Heights 🔒</h2>
+<p>The value of the Edelweiss Spirits left even Sein—an experienced Rank Three grand mage who had explored numerous foreign planes—deeply moved.</p>
+<p>Although these spirits were only useful to Magus World mages proficient in cryo and hydro elemental magic, the boundless Astral Realm housed countless planes and civilizations.</p>
+<p>Creatures similar to the Edelweiss Spirits could exist somewhere within its vast void.</p>
+<p>Sein had yet to form a pact with a familiar.</p>
+<p>His bond with Sev the owl remained strong, but as Sein’s power grew at an extraordinary rate, Sev could no longer keep up.</p>
+<p>And it was not just Sev—only a handful of individuals around him could barely match his pace.</p>
+<p>Azelia, the fox maiden, with her Rank One life level and thunder beast familiar, possessed respectable combat capabilities.</p>
+<p>Yet,...</p>
+</article>
+<article id="c978" data-label="978">
+<h2 class="chapter">Chapter 978: West Coast 🔒</h2>
+<p>Sein’s idea, of course, had no chance of coming true.</p>
+<p>In the 57th year after his arrival at Eastern Stargazing Heights, the Spider Queen—who had vanished for over a century—reappeared.</p>
+<p>Her divine clone suddenly emerged from the Silver Spider Ring, jolting Sein from his magic experiment.</p>
+<p>Had it not been for his formidable mental fortitude and focus, the abrupt disturbance in his private laboratory might have triggered an elemental backlash.</p>
+<p>Even a mere magic initiate understood how dire the consequences of such a backlash could be.</p>
+<p>The Spider Queen’s sudden arrival was nothing short of an ambush.</p>
+<p>After a hundred years, her once imposing presence had dulled, and she looked rather weary.</p>
+<p>Clearly, whatever had occupied her during her absence had...</p>
+</article>
+<article id="c979" data-label="979">
+<h2 class="chapter">Chapter 979: Overwhelming Mode 🔒</h2>
+<p>After arriving on the West Coast, Sein continued his travels and training despite the Spider Queen’s increasingly frequent urgings.</p>
+<p>Having gradually learned the pattern of her appearances, he had even managed to anticipate the timing of her departures.</p>
+<p>This allowed him to sneak in brief excursions to foreign planes that piqued his interest.</p>
+<p>As one of the top forces in the Magus Civilization, the major Warlock clans and divine towers of the West Coast had long-established connections with numerous foreign planes.</p>
+<p>Compared to Stargazing Heights and the Northern Witches’ Council, which Sein had recently passed through, the West Coast had a far more open and diverse atmosphere.</p>
+<p>While Bloodline Warlocks were ever-present, Sein...</p>
+</article>
+<article id="c980" data-label="980">
+<h2 class="chapter">Chapter 980: Expediting That “Plan” 🔒</h2>
+<p>Above the rippling blue sea, Sein’s entire upper body was wrapped in silver spider silk, except for his head.</p>
+<p>He squinted slightly, feeling the gentle sea breeze and warm sunlight against his face.</p>
+<p>Beside him, the Spider Queen carried him effortlessly with one hand. With the sharp nails of her other, she tore through the fabric of space once more.</p>
+<p>Despite the immense scale of the Magus World and the vast sea separating the West Coast from Blackhaven, the journey would take no more than a week at her speed.</p>
+<p>This Spider Queen was undoubtedly an elusive figure within the West Coast, as Sein noticed that she avoided using the teleportation arrays of the major divine towers.</p>
+<p>Instead, she relied solely on her own strength to traverse these distances.</p>
+<p>Perhaps it was because they had known each other too long, but Sein, still cocooned in silver silk, found himself oddly calm.</p>
+<p>Rather than worrying about his uncertain fate, he began mentally calculating the gains he had accumulated...</p>
+</article>
+<article id="c981" data-label="981">
+<h2 class="chapter">Chapter 981: Spring Guardian 🔒</h2>
+<p>In less than five seconds, Sein vanished as if he had been completely erased from existence.</p>
+<p>Even his presence and energy fluctuations disappeared entirely.</p>
+<p>Not even the most advanced spatial magic could achieve such a complete disappearance.</p>
+<p>The slab, a fragment of a world-class secret treasure infused with the power of spatial and fate law, had certainly lived up to its reputation.</p>
+<p>With the slab as a medium, even the Rank Four astrologers of the Magus World would fail to track him as the slab’s power had already disrupted all future prophecies.</p>
+<p>After sending Sein away, the Spider Queen casually adjusted her attire, then ran her long nails through her silky hair, smoothing it into place.</p>
+<p>If she had sensed the Spring Guardian’s presence, then there was no doubt the guardian had already noticed her as well.</p>
+<p>Luckily, the spider silk she had used to bind Sein had been infused with her divine power, effectively...</p>
+</article>
+<article id="c982" data-label="982">
+<h2 class="chapter">Chapter 982: Unfamiliar World 🔒</h2>
+<p>After passing through the gray, illusory mist, Sein found himself inside a turbulent space-time corridor with no end in sight.</p>
+<p>As an erudite Rank Three grand mage and someone who had studied spatial theory extensively, Sein quickly deduced that he had been thrown into a space-time corridor leading to a specific destination.</p>
+<p>A space-time corridor was not the same as a teleportation passageway.</p>
+<p>In past journeys through teleportation arrays or when traveling to a foreign plane, the sensation of crossing these passageways had always been instantaneous.</p>
+<p>Even when spanning vast distances, his body would experience the crossing as if it lasted only a heartbeat.</p>
+<p>Yet, crossing a turbulent space-time corridor...</p>
+</article>
+<article id="c983" data-label="983">
+<h2 class="chapter">Chapter 983: Girl 🔒</h2>
+<p>After the flash of lightning, rain began pouring from the sky.</p>
+<p>At first, it was a steady downpour, but as the night deepened, it intensified into a torrential storm!</p>
+<p>The cabin where Sein lay had been built from subpar materials.</p>
+<p>Through the broken glass window, cold rainwater—driven by howling winds—splattered harshly against his face.</p>
+<p>As the storm raged on, water flooded the entire room.</p>
+<p>The bed beneath him felt as though it had begun to float, lifted by the rising water.</p>
+<p>He even felt a strange rocking sensation, as if he were adrift on a boat.</p>
+<p>The young girl, who had been kneeling beside his bed, now climbed in next to him.</p>
+<p>Beneath the tattered quilt, Sein felt her cold skin and trembling, frail body against his.</p>
+<p>He could not fully comprehend...</p>
+</article>
+<article id="c984" data-label="984">
+<h2 class="chapter">Chapter 984: Gray Monster 🔒</h2>
+<p>It was the fourth night since Sein had awakened.</p>
+<p>As usual, the girl climbed into bed and lay next to Sein.</p>
+<p>In the dilapidated wooden cabin, there was only a creaking bed and a musty quilt that smelled of mold.</p>
+<p>The girl drifted off to sleep quickly, perhaps because she was snuggled so close to him.</p>
+<p>A cool night breeze wafted in through the window.</p>
+<p>The moon emerged from behind dark clouds, bathing the world in silvery light.</p>
+<p>Much like the Magus World, this foreign plane had only a single sun and a single moon, though its sun was slightly smaller and its moon peculiarly large.</p>
+<p>One could even make out tiny craters on the moon’s surface with the naked eye.</p>
+<p>Due to the...</p>
+</article>
+<article id="c985" data-label="985">
+<h2 class="chapter">Chapter 985: Shocking Discoveries 🔒</h2>
+<p>The gray monster fled.</p>
+<p>It was not that Sein had intentionally let it go. He had planned to capture the creature alive to study its body structure when, all of a sudden, the girl in his arms clung to him tightly.</p>
+<p>The gesture was instinctive—almost as though it came from the depths of her soul.</p>
+<p>Her eyes remained shut, but the flower of death behind her head trembled softly.</p>
+<p>Just as the gray monster had avoided harming the girl, she seemed to harbor a similar, inexplicable need to protect it.</p>
+<p>A single drop of gray slime fell from the retreating creature and landed on the girl’s cheek.</p>
+<p>Sein could not tell if that was its tear or blood.</p>
+<p>When he tried to get up and give chase, the girl tightened her grip around him and whimpered, “Big Brother...”</p>
+<p>In truth, Sein had not entirely lost track of the creature. He saw it escape into a sewer on the western edge of the fishing village.</p>
+<p>It was a foul-smelling tunnel filled with dirty water...</p>
+</article>
+<article id="c986" data-label="986">
+<h2 class="chapter">Chapter 986: Exploration 🔒</h2>
+<p>Sein’s doubts remained unanswered for now.</p>
+<p>No matter the world, the use of elemental energy and cultivation methods was rarely widespread.</p>
+<p>Take the fishing village before him, for instance. Dozens of people lived here, yet not a single one had grown into a so-called “adventurer”.</p>
+<p>As for knights and priests, those professions were confined solely to the temples.</p>
+<p>From the fragmented images he had extracted from the fishermen’s memories, Sein deduced that “adventurers” in this world were individuals below Rank One, who had only just begun to grasp elemental power.</p>
+<p>In essence, they were similar to the magic initiates and squires of the Magus World.</p>
+<p>As for what lay beyond Rank One and above, Sein had yet to uncover the answer.</p>
+<p>Interestingly, he noticed something unusual...</p>
+</article>
+<article id="c987" data-label="987">
+<h2 class="chapter">Chapter 987: Images Of The Past 🔒</h2>
+<p>Two days ago, he had not gotten a clear look at the monster.</p>
+<p>But now, as Sein took a closer look at the creature, a startling realization dawned on him: This monster was—or at least had been—a “human”.</p>
+<p>Although its hideous appearance and razor-sharp claws bore little resemblance to a human, Sein recognized the truth in the subtle details like the structure of its joints, breathing rate, and pupillary response.</p>
+<p>“A mutation of a native human of this world, just like the abominations created by the necromancers back in the Magus World,” he concluded.</p>
+<p>He rubbed his chin, his thoughts turning inward.</p>
+<p>&#34;But those abominations were stitched together from corpses. In recent years, the necromancers even incorporated...</p>
+</article>
+<article id="c988" data-label="988">
+<h2 class="chapter">Chapter 988: Encountering an Attack 🔒</h2>
+<p>After Sein finished searching the monster’s soul, the gray creature trapped in the light net fell completely still.</p>
+<p>It appeared dead.</p>
+<p>What a tragic end for that teenager.</p>
+<p>When Sein dispelled the net, the monster’s body immediately began to corrode and dissolve.</p>
+<p>Thick, white vapor rose from the melting flesh.</p>
+<p>By the time the mist cleared, all that remained was a pitch-black pearl and a pool of corrosive acid on the ground.</p>
+<p>“Hm, physically and mentally unstable. As expected from a mere man-made product. In the Magus World’s academic circles, this would be considered a complete failure,” Sein remarked.</p>
+<p>He extended his hand and drew the pearl toward him, rolling it between his fingers. After a moment of inspection, he shook his head.</p>
+<p>“It looks like the crystal core of a Rank One creature, but it’s defective.”</p>
+<p>Of course, the true disappointment...</p>
+</article>
+<article id="c989" data-label="989">
+<h2 class="chapter">Chapter 989: So-Called Power 🔒</h2>
+<p>The battle had turned out to be even easier than Sein expected.</p>
+<p>The gray-robed man, who had been the focus of Sein’s attention, crumpled after a single spell.</p>
+<p>Despite possessing a Rank One life level, the man’s techniques were surprisingly basic—especially compared to the Magus World mages, whose arsenal of elemental spells was practically endless.</p>
+<p>From start to finish, Sein had only seen his opponent unleash a rapid volley of bone spears.</p>
+<p>Although the execution of the spell was rough, the firing speed and destructive power were quite impressive, to be fair.</p>
+<p>The gray-robed man had cast the spell without much visible preparation or chanti...</p>
+</article>
+<article id="c990" data-label="990">
+<h2 class="chapter">Chapter 990: Faeloria Continent 🔒</h2>
+<p>Sein left the templar and mage alone because he had sensed the faint fluctuation of divine power on them.</p>
+<p>Based on his understanding of the faith system and prior research into divine power, individuals like these typically shared a special connection with the deities they worshipped.</p>
+<p>It appeared to have something to do with the power of faith.</p>
+<p>Besides, Sein was not certain whether acting recklessly might draw the attention of the god they served.</p>
+<p>In truth, even he carried traces of divine power within his own body.</p>
+<p>The source was the Silver Spider Ring on his finger.</p>
+<p>The divine power stored within this artifact was far purer and more potent than anything possessed by these two.</p>
+<p>Although Sein had no exact idea how strong the Spider...</p>
+</article>
+<article id="c991" data-label="991">
+<h2 class="chapter">Chapter 991: The Anger Of An Elementalist 🔒</h2>
+<p>The so-called Convergent World referred to the phenomenon where different planes, through a mix of coincidence and circumstance, eventually merged and became one.</p>
+<p>It might sound unbelievable, but it was indeed possible.</p>
+<p>Sein had stumbled across a brief mention of such worlds in Sky City’s libraries.</p>
+<p>At the time, he had regarded it as nothing more than an abstract theory—something to broaden his horizons, not a reality he would one day encounter firsthand.</p>
+<p>Sky City’s records on Convergent Worlds were limited.</p>
+<p>Otherwise, he would not have brushed past the topic back then.</p>
+<p>As for whether Faeloria truly was a Convergent World, Sein could not say for certain.</p>
+<p>His understanding of this plane was still far too limited.</p>
+<p>The thief’s low life level meant his knowledge was not...</p>
+</article>
+<article id="c992" data-label="992">
+<h2 class="chapter">Chapter 992: Power Hierarchy 🔒</h2>
+<p>Sein’s fury at the state of Elementalists in Faeloria was accompanied by an urge to correct their misguided approach.</p>
+<p>It was not that Sein was a traitor to the Magus World. As a spellcaster, he simply could not sit idly by while elemental energy was acquired through unearned methods.</p>
+<p>Since when did elemental users start groveling for power instead of mastering it themselves?</p>
+<p>These so-called deities—creatures who had merely reached Rank Four and beyond—were nothing more than potential specimens for the laboratories of Magus World mages!</p>
+<p>It genuinely pained Sein to witness the Elementalists of this world “reduce” to such a state.</p>
+<p>He even briefly entertained the thought of establishing a magic academy here to teach...</p>
+</article>
+<article id="c993" data-label="993">
+<h2 class="chapter">Chapter 993: Vivisection 🔒</h2>
+<p>The distant sun began its ascent early in the morning, casting a golden glow across the land.</p>
+<p>Warmth returned to the world once again.</p>
+<p>Blessed with gentle natural conditions, Faeloria supported a diverse and thriving population.</p>
+<p>After setting up a simple underground laboratory, Sein placed the five captives inside before returning to the wooden cabin.</p>
+<p>There, he found the girl already awake.</p>
+<p>She slept only a few hours each night, always rising with the first rays of sunlight that flooded the cabin.</p>
+<p>Upon seeing Sein, her face lit up with excitement.</p>
+<p>She staggered slightly as she leaped into Sein’s arms,...</p>
+</article>
+<article id="c994" data-label="994">
+<h2 class="chapter">Chapter 994: Widely Shared 🔒</h2>
+<p>The results of the experiment were quite satisfactory.</p>
+<p>By vivisecting the three adventurers, Sein deduced that the deities of this world had endowed their followers with skills directly imprinted on specific areas of their brains.</p>
+<p>The brain was one of the most mysterious and crucial organs in intelligent beings.</p>
+<p>Even the mages of the Magus World had not mastered fully utilizing their brain, highlighting the complexity within.</p>
+<p>These mages cultivate mental focus and draw on extensive knowledge, primarily using their brains.</p>
+<p>From an unbiased perspective, those otherworldly gods following the faith system had their unique strengths.</p>
+<p>It was no surprise then that the Rank Four and higher mages of the Magus World vied for the honor of owning a specimen from these divine beings.</p>
+<p>The three...</p>
+</article>
+<article id="c995" data-label="995">
+<h2 class="chapter">Chapter 995: Bone Lord 🔒</h2>
+<p>As Sein delved deeper into his research, he not only uncovered secrets within the cellular tissue of his specimens’ bodies but also began to explore the connections between the two stronger natives and their god.</p>
+<p>The Faelorian divine power system was rather unique.</p>
+<p>In other planes, such as the Wild Gorilla World, only a select few could establish direct connections with gods of Rank Four or above and receive divine power.</p>
+<p>Typically, only individuals who had reached Rank Three or higher were granted a portion of divine power by their gods.</p>
+<p>After all, divine power was not distributed like candy; most deities in the Astral Realm were not that generous with their power.</p>
+<p>However, Faeloria was different.</p>
+<p>Here, the deities seemed overly generous.</p>
+<p>Even a templar, possessing merely the combat prowess of a Quasi Knight, had a trace of divine power in his body.</p>
+<p>This amalgamation of divine power with their flesh significantly offset their lack of combat skills and prowess.</p>
+<p>The gray-robed man was easily subdued by Sein due to an unfair disadvantage.</p>
+<p>Had he been able to activate his divine power earlier, even with just three offensive Rank One spells, he might have...</p>
+</article>
+<article id="c996" data-label="996">
+<h2 class="chapter">Chapter 996: The Spider Queen’s Wrath 🔒</h2>
+<p>Governed by a special law mechanism, Faeloria was not only isolated but also significantly shielded from the influence of Rank Four and higher beings on its lower-ranking beings.</p>
+<p>This mechanism, in its own way, served to protect the lower life forms and maintain Faeloria’s order of balance.</p>
+<p>Consequently, the Faelorian deities rarely bestowed “miracles” except under extraordinary circumstances.</p>
+<p>The only place where beings of Rank Four and above could freely exert their power was in the mist-shrouded zone directly above the Faeloria Continent and beneath the crystal wall of laws.</p>
+<p>Combat within this zone would largely not affect the Prime Materia Realm below.</p>
+<p>As a result, this special area was known as the “Battlefield of Gods” or “Graveyards of Gods”, owing to the countless deities who had perished there over the millennia.</p>
+<p>Every ten thousand years, during the Avatar Crisis, the Faelorian deities clashed...</p>
+</article>
+<article id="c997" data-label="997">
+<h2 class="chapter">Chapter 997: Bone Lord’s Conjecture 🔒</h2>
+<p>The Faelorian divine hierarchy was meticulously structured, with “wielders of weak divine powers” at the bottom and “wielders of mighty divine powers” at the top.</p>
+<p>Despite their varied ranks, direct conflicts between lesser deities and supreme deities rarely occurred, except during the Avatar Crisis, which occurred once every ten thousand years.</p>
+<p>The strength gap between these beings was simply too vast!</p>
+<p>While Faelorian history had seen its share of “divine wars”, outright battles among deities of Rank Four and above had become increasingly rare over the recent millennia.</p>
+<p>Apart from newly ascended deities, most had evolved to become extremely cunning and wise over tens of thousands of years.</p>
+<p>Moreover, Faelorian history had proven that nothing good ever came from wars between deitie...</p>
+</article>
+<article id="c998" data-label="998">
+<h2 class="chapter">Chapter 998: Lorthisra 🔒</h2>
+<p>Now that Sein had been spared from the Bone Lord, he now had the Spider Queen to deal with.</p>
+<p>To him, only a week had passed since his awakening.</p>
+<p>Yet, according to the Spider Queen, a century had elapsed since he had entered the space-time corridor formed by the ancient stone slab.</p>
+<p>The realization that a hundred years had slipped away so effortlessly filled Sein with both awe and disbelief.</p>
+<p>He was only a few hundred years old.</p>
+<p>In the Magus World, a Rank Three grand mage could theoretically live for nearly ten thousand years.</p>
+<p>Even so, the abrupt loss of a century was enough to leave anyone unsettled.</p>
+<p>More than that, the toll of lost time within the space-time corridor had been immense.</p>
+<p>Even now, he had yet...</p>
+</article>
+<article id="c999" data-label="999">
+<h2 class="chapter">Chapter 999: Erasure 🔒</h2>
+<p>At night, Blackwater City became even more captivating.</p>
+<p>Lights could be seen everywhere, casting a dim glow over the streets.</p>
+<p>In the busiest districts, the city pulsed with life.</p>
+<p>The Faelorian mages did not limit their magic to combat—they had seamlessly woven it into their daily lives.</p>
+<p>For instance, the streetlights of Blackwater City were powered by elemental energy.</p>
+<p>A simple illumination spell cast by a low-ranking mage could keep these lights burning throughout the night for at least a month.</p>
+<p>Blackwater City had four major districts that never slept.</p>
+<p>One was the city’s largest shopping street and pleasure district. The other three housed Blackwater City’s major places of worship—the Church of Bones, the Temple of Storms, and the Temple of Stealth.</p>
+<p>The Church of Bones was bathed in an eerie, grayish light that created...</p>
+</article>
+<article id="c1000" data-label="1000">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1000: Marking Planar Nodes 🔒</h2>
+<p>After leaving Blackwater City, Sein flew westward.</p>
+<p>Based on the information he had obtained from the Church of Bones, as well as the many records he had collected, Sein estimated that Blackwater City was likely located on the southern coast of Faeloria.</p>
+<p>This world was… rather peculiar.</p>
+<p>From Sein’s understanding and experience in exploring the truth, most worlds and planes were round.</p>
+<p>Many technological civilizations referred to their worlds as “planets” because they had discovered that their homes were spherical.</p>
+<p>Faeloria was different.</p>
+<p>This strange, expansive plane did not appear to be a sphere but rather a flat, three-dimensional structure.</p>
+<p>The mere thought of it stunned Sein, as even the Magus World, the place he...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1001-1050.html" rel="next">Next: Chs 1001–1050 &rarr;</a>
+    <p class="page-end-links"><a href="901-950.html" rel="prev">&larr; Chs 901–950</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 951–1000</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c951">Chapter 951: Spider Queen’s Demands 🔒</a></li>
+        <li><a href="#c952">Chapter 952: Another World 🔒</a></li>
+        <li><a href="#c953">Chapter 953: Experimental Tests 🔒</a></li>
+        <li><a href="#c954">Chapter 954: End of Tenure 🔒</a></li>
+        <li><a href="#c955">Chapter 955: Dark Flame’s Admonishment 🔒</a></li>
+        <li><a href="#c956">Chapter 956: Parting Ways 🔒</a></li>
+        <li><a href="#c957">Chapter 957: Solo Travel 🔒</a></li>
+        <li><a href="#c958">Chapter 958: Advancing Arcanist Rank 🔒</a></li>
+        <li><a href="#c959">Chapter 959: Dual Cultivation 🔒</a></li>
+        <li><a href="#c960">Chapter 960: Two Pieces Of News 🔒</a></li>
+        <li><a href="#c961">Chapter 961: The Art of Reija 🔒</a></li>
+        <li><a href="#c962">Chapter 962: Sky City 🔒</a></li>
+        <li><a href="#c963">Chapter 963: Mecha Upgrade 🔒</a></li>
+        <li><a href="#c964">Chapter 964: Old Peyton’s Lecture 🔒</a></li>
+        <li><a href="#c965">Chapter 965: Amazing Mecha 🔒</a></li>
+        <li><a href="#c966">Chapter 966: Spending Time In The Library 🔒</a></li>
+        <li><a href="#c967">Chapter 967: Ocean Of Knowledge 🔒</a></li>
+        <li><a href="#c968">Chapter 968: Northern Witches Council 🔒</a></li>
+        <li><a href="#c969">Chapter 969: Ocstracized And Hitting A Wall 🔒</a></li>
+        <li><a href="#c970">Chapter 970: Ancient Scroll 🔒</a></li>
+        <li><a href="#c971">Chapter 971: Edelweiss World 🔒</a></li>
+        <li><a href="#c972">Chapter 972: Yuri’s Performance 🔒</a></li>
+        <li><a href="#c973">Chapter 973: Exchanging Knowledge 🔒</a></li>
+        <li><a href="#c974">Chapter 974: A Witch’s Way of Fighting 🔒</a></li>
+        <li><a href="#c975">Chapter 975: Sympathy 🔒</a></li>
+        <li><a href="#c976">Chapter 976: Huge Gains 🔒</a></li>
+        <li><a href="#c977">Chapter 977: Eastern Stargazing Heights 🔒</a></li>
+        <li><a href="#c978">Chapter 978: West Coast 🔒</a></li>
+        <li><a href="#c979">Chapter 979: Overwhelming Mode 🔒</a></li>
+        <li><a href="#c980">Chapter 980: Expediting That “Plan” 🔒</a></li>
+        <li><a href="#c981">Chapter 981: Spring Guardian 🔒</a></li>
+        <li><a href="#c982">Chapter 982: Unfamiliar World 🔒</a></li>
+        <li><a href="#c983">Chapter 983: Girl 🔒</a></li>
+        <li><a href="#c984">Chapter 984: Gray Monster 🔒</a></li>
+        <li><a href="#c985">Chapter 985: Shocking Discoveries 🔒</a></li>
+        <li><a href="#c986">Chapter 986: Exploration 🔒</a></li>
+        <li><a href="#c987">Chapter 987: Images Of The Past 🔒</a></li>
+        <li><a href="#c988">Chapter 988: Encountering an Attack 🔒</a></li>
+        <li><a href="#c989">Chapter 989: So-Called Power 🔒</a></li>
+        <li><a href="#c990">Chapter 990: Faeloria Continent 🔒</a></li>
+        <li><a href="#c991">Chapter 991: The Anger Of An Elementalist 🔒</a></li>
+        <li><a href="#c992">Chapter 992: Power Hierarchy 🔒</a></li>
+        <li><a href="#c993">Chapter 993: Vivisection 🔒</a></li>
+        <li><a href="#c994">Chapter 994: Widely Shared 🔒</a></li>
+        <li><a href="#c995">Chapter 995: Bone Lord 🔒</a></li>
+        <li><a href="#c996">Chapter 996: The Spider Queen’s Wrath 🔒</a></li>
+        <li><a href="#c997">Chapter 997: Bone Lord’s Conjecture 🔒</a></li>
+        <li><a href="#c998">Chapter 998: Lorthisra 🔒</a></li>
+        <li><a href="#c999">Chapter 999: Erasure 🔒</a></li>
+        <li><a href="#c1000">Chapter 1000: Marking Planar Nodes 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="901-950.html" rel="prev">&larr; Chs 901–950</a>    <a href="../../index.html">Library</a>
+<a href="1001-1050.html" rel="next">Chs 1001–1050 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

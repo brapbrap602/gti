@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 501–550</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="451-500.html#last" data-next-page="551-600.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c501">Chapter 501: Skeletal Dragon 🔒</a></li>
+        <li><a href="#c502">Chapter 502: Black Crystal 🔒</a></li>
+        <li><a href="#c503">Chapter 503: Creature of the Undead World 🔒</a></li>
+        <li><a href="#c504">Chapter 504: Brand 🔒</a></li>
+        <li><a href="#c505">Chapter 505: Leena’s Considerations 🔒</a></li>
+        <li><a href="#c506">Chapter 506: Head of Magic Rod 🔒</a></li>
+        <li><a href="#c507">Chapter 507: Portal Gate 🔒</a></li>
+        <li><a href="#c508">Chapter 508: Resuming the Journey 🔒</a></li>
+        <li><a href="#c509">Chapter 509: Dark Crystal Rod 🔒</a></li>
+        <li><a href="#c510">Chapter 510: Beast Horde and Heisse 🔒</a></li>
+        <li><a href="#c511">Chapter 511: Different Rules 🔒</a></li>
+        <li><a href="#c512">Chapter 512: The Edge of the Trial Zone 🔒</a></li>
+        <li><a href="#c513">Chapter 513: Battle Between Rank Five Massive Beasts 🔒</a></li>
+        <li><a href="#c514">Chapter 514: Overlord 🔒</a></li>
+        <li><a href="#c515">Chapter 515: End of Trial 🔒</a></li>
+        <li><a href="#c516">Chapter 516: Like a True Human Being 🔒</a></li>
+        <li><a href="#c517">Chapter 517: Public Waters 🔒</a></li>
+        <li><a href="#c518">Chapter 518: Cheap Price 🔒</a></li>
+        <li><a href="#c519">Chapter 519: Revenge 🔒</a></li>
+        <li><a href="#c520">Chapter 520: Crazy Woman 🔒</a></li>
+        <li><a href="#c521">Chapter 521: Pitiful 🔒</a></li>
+        <li><a href="#c522">Chapter 522: Madness 🔒</a></li>
+        <li><a href="#c523">Chapter 523: Body Tempering Secrets 🔒</a></li>
+        <li><a href="#c524">Chapter 524: Intervene 🔒</a></li>
+        <li><a href="#c525">Chapter 525: Mentor’s Death Avenged 🔒</a></li>
+        <li><a href="#c526">Chapter 526: Unexpected Arrival 🔒</a></li>
+        <li><a href="#c527">Chapter 527: Trample 🔒</a></li>
+        <li><a href="#c528">Chapter 528: Request 🔒</a></li>
+        <li><a href="#c529">Chapter 529: Helpless 🔒</a></li>
+        <li><a href="#c530">Chapter 530: Returning Alone 🔒</a></li>
+        <li><a href="#c531">Chapter 531: Northern Frozen Ocean 🔒</a></li>
+        <li><a href="#c532">Chapter 532: Narwhal Oil 🔒</a></li>
+        <li><a href="#c533">Chapter 533: Splitting Ice Mountain 🔒</a></li>
+        <li><a href="#c534">Chapter 534: Farewells 🔒</a></li>
+        <li><a href="#c535">Chapter 535: Matter of Principle 🔒</a></li>
+        <li><a href="#c536">Chapter 536: East Coast 🔒</a></li>
+        <li><a href="#c537">Chapter 537: Hospitable Ghur 🔒</a></li>
+        <li><a href="#c538">Chapter 538: Trading Slaves 🔒</a></li>
+        <li><a href="#c539">Chapter 539: Fredem Underground City 🔒</a></li>
+        <li><a href="#c540">Chapter 540: Luna 🔒</a></li>
+        <li><a href="#c541">Chapter 541: Potential Partnership 🔒</a></li>
+        <li><a href="#c542">Chapter 542: Summoner Alliance 🔒</a></li>
+        <li><a href="#c543">Chapter 543: Long-Distance Conversation 🔒</a></li>
+        <li><a href="#c544">Chapter 544: Hierarchy 🔒</a></li>
+        <li><a href="#c545">Chapter 545: Magic Letters 🔒</a></li>
+        <li><a href="#c546">Chapter 546: Amazed 🔒</a></li>
+        <li><a href="#c547">Chapter 547: Cut Short 🔒</a></li>
+        <li><a href="#c548">Chapter 548: Trouble Follows 🔒</a></li>
+        <li><a href="#c549">Chapter 549: External Support Mages 🔒</a></li>
+        <li><a href="#c550">Chapter 550: Thunderfall World 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c501" data-label="501">
+<h2 class="chapter">Chapter 501: Skeletal Dragon 🔒</h2>
+<p>After Sein and the undead knight began fighting at close quarters, the other three Rank One undead creatures joined the fray.</p>
+<p>Each boasted considerable strength, and among them, the mummy was the most formidable. Shrouded in a deathly aura, it rivaled the undead knight in strength.</p>
+<p>While slightly less powerful, the purple Eye Demon and the Black-Shelled Worm possessed unique abilities.</p>
+<p>The Eye Demon, capable of long-range attacks, unleashed several purplish-red rays from its pupil, targeting Leena in mid-air.</p>
+<p>Meanwhile, the Black Shelled Worm demonstrated its impressive burrowing skills by vanishing suddenly, leaving...</p>
+</article>
+<article id="c502" data-label="502">
+<h2 class="chapter">Chapter 502: Black Crystal 🔒</h2>
+<p>“As a high-ranking undead creature, a skeletal dragon’s power is largely derived from its strength in life. After a dragon dies and transforms into an undead, its strength typically decreases by one rank. Could it have been a Rank Three dragon when it was still alive?” Angreas mused aloud.</p>
+<p>In the blink of an eye, half of the skeletal dragon&#39;s body had emerged from the rotting soil of the graveyard, and it seemed the rest would soon follow.</p>
+<p>“We should go,” Angreas announced with a sigh.</p>
+<p>If it were three against one, Angreas might have been tempted to take a chance and fight the Rank Two skeletal dragon with Sein and Leena’s support.</p>
+<p>However, they were currently...</p>
+</article>
+<article id="c503" data-label="503">
+<h2 class="chapter">Chapter 503: Creature of the Undead World 🔒</h2>
+<p>The skeletal dragon’s thunderous roar compelled the two Rank Two plant giants to suppress it with greater force.</p>
+<p>Perhaps due to its recent awakening, the dragon’s power had yet to fully return. Alternatively, it might have been weakened by some other factors.</p>
+<p>As the skeletal dragon attempted to lift its head, the relentless pressure from the two plant creatures forced it back down.</p>
+<p>Amidst the struggle, rotting soil scattered around. A frail skeleton, clinging to one of the skeletal dragon&#39;s spiked bones, crumbled under the intense force.</p>
+<p>Pinned down by the plant giants, the skeletal dragon finally began to slowly assess the situation around it.</p>
+<p>Whether due to its...</p>
+</article>
+<article id="c504" data-label="504">
+<h2 class="chapter">Chapter 504: Brand 🔒</h2>
+<p>The skeletal dragon before Sein was not his enemy, as evidenced by its actions in dispersing and calming the nearby undead creatures.</p>
+<p>However, Sein maintained a cautious stance toward the formidable creature.</p>
+<p>The significant disparity in their strengths made it difficult for them to interact calmly and as equals.</p>
+<p>Although Sein possessed the Viridescent Seeds from Master Lorianne, they were not high-level allies but merely disposable consumables with limited lifespans.</p>
+<p>While Sein conversed with the skeletal dragon, Leena flew to his side. Yet, her gaze was fixed on the black crystal that Sein had just retrieved.</p>
+<p>The composition...</p>
+</article>
+<article id="c505" data-label="505">
+<h2 class="chapter">Chapter 505: Leena’s Considerations 🔒</h2>
+<p>Sometimes, the relationship between two adversaries could change in just the blink of an eye.</p>
+<p>Moments before, they had been fighting each other, yet now they had become friends.</p>
+<p>The skeletal dragon, outwardly only Rank Two but potentially stronger in reality, was thrilled to learn that Leena knew how to return them to the Undead World.</p>
+<p>Its excitement was so great that even the two towering plant giants could barely hold it down.</p>
+<p>The skeletal dragon was not the only one that would be returning to its homeplane.</p>
+<p>Being a considerably powerful creature in the Undead World, it had once ruled over its own territory.</p>
+<p>However, several thousand years had passed so it was likely that other undead sovereigns had already claimed its lands.</p>
+<p>Creatures of the Undead World...</p>
+</article>
+<article id="c506" data-label="506">
+<h2 class="chapter">Chapter 506: Head of Magic Rod 🔒</h2>
+<p>After striking a deal with the skeletal dragon, Sein freed it from the oppressive grip of the two giant plant creatures.</p>
+<p>The skeletal dragon demonstrated a keen understanding of the Magus Alliance’s rules and recognized its own standing among the creatures of the Magus World.</p>
+<p>Despite Sein, Leena, and Angreas’ inferior life levels, the skeletal dragon wisely refrained from killing them.</p>
+<p>The high-ranking powerhouses of the Magus World, who were silently observing the Knight Continent, might not directly intervene; however, any aggressive act by the dragon could condemn it to remain trapped in this accursed place forever.</p>
+<p>Those with higher life levels and access to greater knowledge often experienced a profound sense of their own insignificance.</p>
+<p>In...</p>
+</article>
+<article id="c507" data-label="507">
+<h2 class="chapter">Chapter 507: Portal Gate 🔒</h2>
+<p>A few days later, a vast magic array appeared in the graveyard, showcasing Leena’s budding talents in summoning arts and spatial magic.</p>
+<p>In addition to utilizing energy crystals and soul crystals, she harnessed the dense necromantic fog pervading the graveyard as the energy source for the spatial passage.</p>
+<p>The black crystal, which Sein would eventually use for Leena’s new magic rod, was currently functioning as the eye of the magic array.</p>
+<p>Once Leena activated the spatial coordinates embedded within the black crystal, it became the core of the operation.</p>
+<p>The magic array, acting as the conduit, was powered by the energy crystals, soul crystals, and the necromantic fog.</p>
+<p>From the center of the graveyard, a towering...</p>
+</article>
+<article id="c508" data-label="508">
+<h2 class="chapter">Chapter 508: Resuming the Journey 🔒</h2>
+<p>The skeletal dragon was the last to leave, bestowing gifts upon Sein and the others before its departure.</p>
+<p>It might have seemed overly optimistic to expect a stingy, treasure-hoarding dragon like Sanchez to give lavish gifts.</p>
+<p>The gifts they received from Sanchez—soul crystals, soul essences, and various necromantic materials—were of little value to an undead creature like itself.</p>
+<p>However, the sheer quantity of these items made them unexpectedly generous gifts.</p>
+<p>The combined value of the soul crystals and necromantic materials alone matched, if not surpassed, the total gains Sein’s group had harvested from their explorations in the subspace realm.</p>
+<p>Thanks to these resources, Angreas’ overall gains were substantial.</p>
+<p>Had...</p>
+</article>
+<article id="c509" data-label="509">
+<h2 class="chapter">Chapter 509: Dark Crystal Rod 🔒</h2>
+<p>Sein and Leena did not attempt to change Angreas’ mind. After seeing him off, they resumed their journey northward.</p>
+<p>They chose this direction because the consensus among the knights and mages participating in the trial was that the heart of this trial zone lay to the north.</p>
+<p>Despite having spent three years in this trial zone, Sein and Leena had yet to explore its central region.</p>
+<p>With the Knight Continent recently opened, the exact number of trial zones within it remained a mystery.</p>
+<p>For Sein and other Rank One beings, exploring the entirety of the Knight Continent was unrealistic—navigating the trial zone they were in was challenging enough...</p>
+</article>
+<article id="c510" data-label="510">
+<h2 class="chapter">Chapter 510: Beast Horde and Heisse 🔒</h2>
+<p>Time seemed to pass quickly for Sein in the Knight Continent’s trial zone.</p>
+<p>Perhaps it wasn’t that time itself moved swiftly, but rather that the moments he spent with Leena just flew by.</p>
+<p>In what felt like the blink of an eye, another ten years had elapsed since the Dark Crystal Rod was crafted.</p>
+<p>Sein stood before a crystal ball inside the tent, reviewing his stats:</p>
+<p><em>Focus: 577.9</em></p>
+<p><em>Mana: 580.12</em></p>
+<p><em>Constitution: 660.77</em></p>
+<p><em>Pyro Elemental Affinity: 87%</em></p>
+<p><em>Umbra Elemental Affinity: 43%</em></p>
+<p><em>Lumen Elemental Affinity: 51%</em></p>
+<hr class="separator">
+<p>Sein’s crystal ball could now record data with even greater accuracy and precision, thanks to his continual enhancements to its functions, enabling him to collect data more scientifically.</p>
+<p>In the relatively...</p>
+</article>
+<article id="c511" data-label="511">
+<h2 class="chapter">Chapter 511: Different Rules 🔒</h2>
+<p>The creatures hatched through an undead chimera synthesis array were far from ordinary.</p>
+<p>Apart from the bottle of dragon blood contributed by Sein, Leena incorporated a considerable amount of flesh from various Rank One creatures during the hatching process.</p>
+<p>These materials were sourced from creatures that Sein and Leena had hunted over the years in the Knight Continent’s trial zone.</p>
+<p>Nourished by a huge amount of high-quality flesh and energized by an undead chimera synthesis array, Leena was confident that these four young creatures had the potential to advance to Rank One.</p>
+<p>Among them, the leader, Heisse, seemed to possess even greater potential!</p>
+<p>Perhaps due to the substantial amount...</p>
+</article>
+<article id="c512" data-label="512">
+<h2 class="chapter">Chapter 512: The Edge of the Trial Zone 🔒</h2>
+<p>As time progressed, the resistance Sein and Leena faced as they advanced northwest within the trial zone intensified.</p>
+<p>The relentless beast hordes were only one part of the challenge.</p>
+<p>Sein realized that among the beasts, there were intelligent lifeforms actively trying to expel the trialists. Whether these intelligent beings were native to the Knight Continent remained unclear.</p>
+<p>He also noticed the increasing presence of formidable Rank Two creatures within the beast hordes.</p>
+<p>Given the legacy of the Knight Continent, it would be unsurprising if Rank Three or even stronger creatures eventually appeared, aiming to purge more formidable trialists like Sein and Leena.</p>
+<p>The mounting external pressures frequently injured Sein and Leena over the ensuing years.</p>
+<p>The Aura...</p>
+</article>
+<article id="c513" data-label="513">
+<h2 class="chapter">Chapter 513: Battle Between Rank Five Massive Beasts 🔒</h2>
+<p>To the white giant bird of Rank Four or above flying away on the other side of the trial zone, Sein and Leena were as insignificant as grains of rice—tiny and inconspicuous.</p>
+<p>The bird had no intention of targeting the couple; in fact, it did not seem to notice them at all.</p>
+<p>“Want to go over and take a look?” Leena asked softly.</p>
+<p>Sein smiled wryly in response. “How can we get across? If we show up now, we’ll probably be swallowed by those beasts. There’s no way we can possibly fight our way through the beast horde and reach the other trial zone.”</p>
+<p>Leena understood what Sein was saying.</p>
+<p>Yet, solutions are often born of necessity. As two mages, known for their...</p>
+</article>
+<article id="c514" data-label="514">
+<h2 class="chapter">Chapter 514: Overlord 🔒</h2>
+<p><em>Boom, boom, boom!</em></p>
+<p>Taking large strides, the giant gray ape charged from between the mountains toward the black earth dragon.</p>
+<p>On the other side, the earth dragon responded with a roar before charging forward, its immense body colliding with the giant ape.</p>
+<p>With the naked eye alone, Sein and Leena could not determine which of the two creatures was stronger.</p>
+<p>In terms of size, the gray giant ape was clearly taller, with the earth dragon reaching only to its waist.</p>
+<p>However, the earth dragon had the advantage of considerably greater mass.</p>
+<p>Previously, Sein had not been able to see the dragon’s entire body. As the creature swooped closer and clashed with the ape, he estimated its...</p>
+</article>
+<article id="c515" data-label="515">
+<h2 class="chapter">Chapter 515: End of Trial 🔒</h2>
+<p>Driven by the surging horde of beasts within the trial zone, Sein and Leena were forced to retreat toward the southeast.</p>
+<p>Sein also realized that the beasts were not intent on killing them but merely aimed to drive them away.</p>
+<p>Under normal circumstances, one would not perish at the hands of a beast horde unless they chose to fight to the death; at worst, they might sustain injuries.</p>
+<p>Sein and Leena remained in the trial zone for a little over two more years, constantly pursued by the beast horde.</p>
+<p>It wasn’t until Sein’s twenty-third year in the trial zone that he and Leena finally reached the “exit” in the southeast—an elemental vortex suspended in mid-air.</p>
+<p>The surrounding horde of beasts seemed...</p>
+</article>
+<article id="c516" data-label="516">
+<h2 class="chapter">Chapter 516: Like a True Human Being 🔒</h2>
+<p>Unaware of his acquaintance observing from above, Sein remained oblivious as the airship ascended.</p>
+<p>From the deck, Selphy looked down with keen interest at both Sein and Leena.</p>
+<p>She remembered Sein&#39;s appearance well but had never met Leena before.</p>
+<p>After observing them for a few moments, she confirmed that the man was indeed Sein.</p>
+<p>“I heard Sein missed this Knight Continent’s trial because he was traveling the Magus World. But now, here he is, accompanied by a female mage. Tsk tsk…”</p>
+<p>She scrutinized Leena, trying to get a clearer view of her face.</p>
+<p>“I’ve heard that Sein has a reputation for being a womanizer. During the Viridian Venom Flame World war, he was quite close to a female mage from the Divine Tower of Verdant Spring. Given his...</p>
+</article>
+<article id="c517" data-label="517">
+<h2 class="chapter">Chapter 517: Public Waters 🔒</h2>
+<p>Since Sein had Zorro’s crystal ball contact, he was able to locate his senior shortly after arriving at the public waters.</p>
+<p>Despite not seeing each other for over twenty years, Zorro seemed unchanged to Sein.</p>
+<p>During this time, Sein’s focus, mana, and constitution levels had nearly tripled.</p>
+<p>The resources he had acquired and the depth of knowledge he had mastered were even more remarkable.</p>
+<p>Though Zorro’s appearance remained largely unchanged over these twenty years, he had changed in other ways.</p>
+<p>After all, he had not wasted his years in the public seas.</p>
+<p>Thanks to his decent alchemy skills, Zorro had secured multiple contracts with Blackhaven’s black mages and black knights,...</p>
+</article>
+<article id="c518" data-label="518">
+<h2 class="chapter">Chapter 518: Cheap Price 🔒</h2>
+<p>Fighting was strictly forbidden in the black market, and Sein had no interest in challenging a rule enforced by several Rank Three black mages.</p>
+<p>Consequently, his enormous verdant flame fist stopped just an inch from the gray-armored knight’s face.</p>
+<p>With Sein’s precise control over elemental power, not even a single strand of the knight’s eyebrow was singed.</p>
+<p>This display of meticulous control, combined with the potent properties of verdant flame magic, caused the gray-armored knight to take a half step back.</p>
+<p>He was a black knight from Blackhaven, clearly seasoned through countless battles and hardships.</p>
+<p>Nevertheless, the single demonstration was enough to affirm Sein’s super...</p>
+</article>
+<article id="c519" data-label="519">
+<h2 class="chapter">Chapter 519: Revenge 🔒</h2>
+<p>The creation of ranked magic artifacts was not only costly in terms of materials, which alone could amount to at least ten magicoins, but it also required a skilled maker to minimize raw material wastage and avoid experimental mishaps.</p>
+<p>For example, the Caldesia Shield that Zorro sold to the gray-armored knight cost about twelve magicoins in materials alone. Considering the labor costs, selling it for only twenty-four magicoins meant that Zorro did not make much profit.</p>
+<p>Since Zorro was under the protection of Martin, he was obligated to share a portion of his profits with him.</p>
+<p>Sein, also an alchemist, would never sell the magic items he crafted at low prices after investing so much...</p>
+</article>
+<article id="c520" data-label="520">
+<h2 class="chapter">Chapter 520: Crazy Woman 🔒</h2>
+<p>Leena’s blunt inquiry left Martin with no room for evasion.</p>
+<p>Sein was here to settle matters and had little time to waste on pleasantries.</p>
+<p>While Martin could perhaps afford to be evasive with Sein, given that Sein had no leverage to exploit Martin’s vulnerabilities, the situation with Leena was different.</p>
+<p>He had to consider the Black Tower of Cinderbones and its influence behind her.</p>
+<p>“I did indeed promise to assist Sein with the matter, but the agreement was for after thirty years. There are still five years remaining…” Martin murmured.</p>
+<p>Seeing the obvious displeasure on Leena’s face, he continued, “To be honest, Rank Three black mage Gandra also has shares in this medium-sized black...</p>
+</article>
+<article id="c521" data-label="521">
+<h2 class="chapter">Chapter 521: Pitiful 🔒</h2>
+<p>Sein’s icy words and taunts shook Daelis.</p>
+<p>Deep down, she despised Gandra, who had enslaved her, and she equally loathed Sein and Morsidor.</p>
+<p>Why didn’t Morsidor die right away back then?</p>
+<p>Why had Sein grown so rapidly?</p>
+<p>Originally, Daelis had planned to secretly assassinate Morsidor and then blame the Divine Tower of Dawn for his death.</p>
+<p>However, her failure to kill Morsidor herself, or even to prevent him from escaping with serious injuries, left Daelis frozen with indecision and unable to rejoin Martin and the others after she had managed to escape back to Blackhaven.</p>
+<p>After all, the black mage community still adhered to certain ethical standards and boundaries.</p>
+<p>Morsidor was highly respected in...</p>
+</article>
+<article id="c522" data-label="522">
+<h2 class="chapter">Chapter 522: Madness 🔒</h2>
+<p>While the two Rank Three black mages went out of their way to show Gypson respect, another group of onlookers was more interested in the outcome of the duel.</p>
+<p>Among them were Leena, Zorro, Faye, and Liliana, though the affair had little to do with her.</p>
+<p>After receiving magic letters from Zorro and Sein, Faye—who had recently ascended to Rank One—hurried to the public waters in the east, finally arriving two weeks ago.</p>
+<p>Sein’s vengeance for Master Morsidor was an important event both Zorro and Faye had to witness in person.</p>
+<p>Having not seen Faye in over twenty years, her appearance was strikingly younger and more radiant than before, reminiscent...</p>
+</article>
+<article id="c523" data-label="523">
+<h2 class="chapter">Chapter 523: Body Tempering Secrets 🔒</h2>
+<p>Sometimes, good intentions yield unexpected results—not necessarily zeal, but rather insatiable greed and invasive scrutiny.</p>
+<p>Sein’s mentor, Morsidor, excelled in many areas, yet his “excessive kindness” as a black mage was his downfall.</p>
+<p>“I will avenge my mentor’s death,” Sein declared in a dangerously low voice.</p>
+<p>Immediately afterward, dozens of red and green Verdant Flame Eyes vividly manifested amidst the verdant flame storm behind him and opened.</p>
+<p>Daelis, a Rank One black mage, had grown increasingly deformed and grotesque. In stark contrast, Sein, who was taller and infused with stronger elemental energy, appeared ever more formidable.</p>
+<p>Sein’s signature spell, Solar Eye, had evolved with him from his early days as a magic...</p>
+</article>
+<article id="c524" data-label="524">
+<h2 class="chapter">Chapter 524: Intervene 🔒</h2>
+<p><em>I had previously accelerated my body’s adaptation to the verdant flame’s power and improved the body tempering process by applying the verdant flame’s elemental energy to burn and stimulate my skin’s surface.</em></p>
+<p><em>Looking back, that method now seems overly cautious.</em></p>
+<p><em>Perhaps I could apply it externally as well as ingest it, tempering my body from both inside and out…?</em></p>
+<p><em>Consuming verdant flame syrup directly won’t work since my internal organs can’t withstand such intense heat yet.</em></p>
+<p><em>I suppose I must wait until I become a Rank Two mage and possess an elemental body before pursuing this further.</em></p>
+<p><em>In the meantime, should I consider ingesting poison to stimulate and fortify...</em></p>
+</article>
+<article id="c525" data-label="525">
+<h2 class="chapter">Chapter 525: Mentor’s Death Avenged 🔒</h2>
+<p>The pillar of green light was a spell known as Radiant Heart.</p>
+<p>It was Sein’s most powerful offensive magic spell, developed during his more than twenty years in the Knight Continent’s trial zone.</p>
+<p>This advanced form of pyro magic was even more destructive than the Verdant Flame Eye spell.</p>
+<p>Currently, Sein could only unleash such a potent spell when his focus and mana levels were amplified by the Verdant Flame Heart Rod.</p>
+<p>The name of the spell, Radiant Heart, commemorated the unforgettable twenty years Sein spent with Leena on the Knight Continent.</p>
+<p>Leena, too, developed a uniquely powerful magic spell during her two decades on the Knight Continent—Death Call.</p>
+<p>This spell, created with knowledge of necromancy, umbra element, and summoning...</p>
+</article>
+<article id="c526" data-label="526">
+<h2 class="chapter">Chapter 526: Unexpected Arrival 🔒</h2>
+<p>Each of these immense sea kings measured over a kilometer in length.</p>
+<p>For the many black mages observing in the area, especially those below Rank Three, these creatures were extremely powerful and terrifying.</p>
+<p>Even one of them would be too formidable for the black mages present, let alone all of them.</p>
+<p>In the event of a forced battle, it was likely that only the Rank Three mages—Martin and Gandra—along with Gypson’s elemental projection, could escape in one piece.</p>
+<p>Upon their arrival, these sea kings did not immediately succumb to a frenzied state of aggression.</p>
+<p>Legends of the sea kings were widespread throughout the vast ocean of the Magus ...</p>
+</article>
+<article id="c527" data-label="527">
+<h2 class="chapter">Chapter 527: Trample 🔒</h2>
+<p>Sein had never realized how deeply he mattered to Tourmaline.</p>
+<p>It was somewhat embarrassing to admit that while Tourmaline had occasionally thought of Sein over the past twenty years, Sein had been completely preoccupied with Leena during his time on the Knight Continent and had not spared a single thought for the dragon turtle.</p>
+<p>However, Sein had mentioned Tourmaline to Leena.</p>
+<p>Thus, when an assembly of sea kings, accompanied by a giant mermaid and a massive dragon turtle, emerged through the elemental gate, confusion and astonishment seized all the black mages in the surrounding waters—except for Leena, who exhaled a soft sigh of relief.</p>
+<p>Leena had already taken out the...</p>
+</article>
+<article id="c528" data-label="528">
+<h2 class="chapter">Chapter 528: Request 🔒</h2>
+<p>Martin and Gypson were fortunate to be far from Sein at the time.</p>
+<p>They, too, had considered attacking Sein, but because they were too far away, Gandra beat them to it.</p>
+<p>In retrospect, Gandra’s quick action had saved them!</p>
+<p>Had he not rushed in to test the waters first, Martin and Gypson could have been the unlucky ones.</p>
+<p>Both men were connected to Sein to some extent.</p>
+<p>Martin was the dean of the Black Magic Academy, and Gypson was overseeing the battle at Leena’s request.</p>
+<p>The two cunning old men paused in time and feigned innocence.</p>
+<p>A few crushing stomps from Tourmaline’s massive foot reduced Gandra to nothing, leaving everyone present, including Sein, in shock.</p>
+<p>His heart raced as he watched...</p>
+</article>
+<article id="c529" data-label="529">
+<h2 class="chapter">Chapter 529: Helpless 🔒</h2>
+<p>&#34;Which two ways?&#34; Sein asked hurriedly.</p>
+<p>&#34;The first is to eliminate the Magus World’s hostility and restrictions against black mages at the law level. That way, nothing will stop the two of you from being together. The second is for the major divine towers and knightly orders to rescind the bounty on her,” White Stella replied.</p>
+<p>“The first option isn’t viable for you; it’s beyond your capability, and even the soul overmages and overlords struggle with it. The second path is difficult but possible.</p>
+<p>“There have been instances in the history of the Magus World where black mages were no longer wanted. These individuals, without exception, made significant contributions to the advancement of the Magus ...</p>
+</article>
+<article id="c530" data-label="530">
+<h2 class="chapter">Chapter 530: Returning Alone 🔒</h2>
+<p>Leena and Faye were unable to accompany Sein back to the Magus Continent to clear their names, each for their own reasons.</p>
+<p>In the end, even Zorro politely declined Sein’s offer to migrate to the Magus Continent.</p>
+<p>“I’m a mage of the Western Archipelago; I’ve lived in Blackhaven with Master Morsidor since I was a child. This is where I belong. The lifestyle of the normal divine towers and Knight Continent won’t suit me,” Zorro explained with a sigh.</p>
+<p>“Besides, staying here allows me to look out for Faye,” he added.</p>
+<p>Faye had only recently been promoted to Rank One and was undoubtedly at her most vulnerable stage.</p>
+<p>With limited resources and few connections in Blackhaven,...</p>
+</article>
+<article id="c531" data-label="531">
+<h2 class="chapter">Chapter 531: Northern Frozen Ocean 🔒</h2>
+<p>There was no telling what Leena ultimately said to Gypson before she walked purposefully toward Sein.</p>
+<p>When Sein looked at the elemental projection of Gypson, the demigod-level black mage, the old man even managed a smile for him.</p>
+<hr class="separator">
+<p>Sein, along with Tourmaline and White Stella, eventually embarked on a journey northward from Blackhaven.</p>
+<p>This marked the last time Leena and Faye would spend with Sein for a while.</p>
+<p>It was uncertain how many years would pass before their next reunion.</p>
+<p>At the very least, Sein and Leena needed to collaborate on research to open access to the Undead World, which might allow them to rendezvous.</p>
+<p>The northern frozen ocean, where Tourmaline’s eldest brother resided,...</p>
+</article>
+<article id="c532" data-label="532">
+<h2 class="chapter">Chapter 532: Narwhal Oil 🔒</h2>
+<p>Sein and his companions halted in front of a frozen sea.</p>
+<p>There was still a path forward, but it would require underwater diving.</p>
+<p>After consulting the group, Sein decided they would wait for White Stella and the others outside the ice barrier.</p>
+<p>The intense cold made further progress daunting, even for Rank One mages.</p>
+<p>Sein could endure the frigid temperatures, thanks to his constitution being close to that of a Rank Two knight.</p>
+<p>Leena and Faye, however, found the cold more challenging.</p>
+<p>Sein had previously crafted three flame cloaks to shield them from the cold, but Faye sneakily joined Sein under his cloak, claiming it was larger and warmer—even though...</p>
+</article>
+<article id="c533" data-label="533">
+<h2 class="chapter">Chapter 533: Splitting Ice Mountain 🔒</h2>
+<p>After rolling four times while roaring, the Ice Narwhal finally left the surface, retreating to rest in the ocean’s depths.</p>
+<p>In its wake, Sein acquired four more barrels of narwhal oil.</p>
+<p>This milky white, fatty substance emitted a peculiar fragrance and was highly prized not merely for its aroma but for its special properties.</p>
+<p>When burned, the narwhal oil produced a unique cold flame that greatly benefited Sein’s Verdant Flame Body Tempering technique.</p>
+<p>Sein stored all four barrels himself, while Leena and Faye collected some surface microscopic tissues from the Ice Narwhal.</p>
+<p>To the colossal creature, these samples were negligible. But for the two female...</p>
+</article>
+<article id="c534" data-label="534">
+<h2 class="chapter">Chapter 534: Farewells 🔒</h2>
+<p>After Sein’s experience in interplanar war, he took immense pride in the Magus Civilization’s ability to develop advanced war platforms like the space fortress.</p>
+<p>As an alchemist, he was aware of the extensive valuable knowledge required to create such a magitech product.</p>
+<p>The platform was massive enough to accommodate and transport millions of creatures, yet there were even creatures in the Astral Realm larger than it.</p>
+<p>The sight of it struck Sein with the same amount of shock and awe as when he first laid eyes on the space fortress.</p>
+<p>Sein had previously encountered a creature that evoked a similar sense of unprecedented horror—the colossal creature with bull horns he had seen from afar at the border of the Knight...</p>
+</article>
+<article id="c535" data-label="535">
+<h2 class="chapter">Chapter 535: Matter of Principle 🔒</h2>
+<p>Before leaving Western Archipelago, Sein spoke with Leena and Faye.</p>
+<p>Although Sein had already told Leena all of this many times while they were in the Knight Continent’s trial zone, he felt the need to repeat himself—and Leena did not mind hearing it again.</p>
+<p>His conversation with Faye was much shorter than with Leena, but the advice he gave was blunt.</p>
+<p>“Release those slaves you’re keeping in your underground lab if you no longer need them,” he urged Faye.</p>
+<p>He did not wish to see her reduced to a pure black mage.</p>
+<p>Faye, having also heard the giant mermaid’s admonitions, understood Sein’s intentions clearly.</p>
+<p>She nodded solemnly, taking his...</p>
+</article>
+<article id="c536" data-label="536">
+<h2 class="chapter">Chapter 536: East Coast 🔒</h2>
+<p>The thirteenth Ice Burning Body Tempering Experiment was a success, despite some minor setbacks.</p>
+<p>Sein appeared calm as he observed the 1,009 points for his constitution displayed by the crystal ball.</p>
+<p>However, internally, he recognized that this data represented a significant transformation within his body.</p>
+<p>In the Magus World, a Rank Two Knight’s constitution must exceed 1,000 points.</p>
+<p>Yet, constitution alone does not define a Rank Two knight.</p>
+<p>Factors like battle qi, muscle strength, and bursts of energy also played crucial roles in determining a knight’s prowess.</p>
+<p>Though primarily a mage, Sein&#39;s constitution was the first to reach the Rank Two level, even as his focus and mana levels remained below 1,000 points.</p>
+<p>Although he...</p>
+</article>
+<article id="c537" data-label="537">
+<h2 class="chapter">Chapter 537: Hospitable Ghur 🔒</h2>
+<p>Mauritius Archipelago was situated in a region known for its hot climate.</p>
+<p>Though the Western Archipelago and the East Coast are on the same latitude, only their longitudes differ.</p>
+<p>However, the vast expanse and complexity of the Magus World meant that its environment and climate differed significantly from those of small or micro-sized planes.</p>
+<p>In Magus World, climate changes, as well as the timings of sunrise and sunset were governed by the plane’s laws.</p>
+<p>As these laws varied, so did the conditions and biodiversity across Magus World.</p>
+<p>Mauritius Archipelago, one of the more prosperous areas on the East Coast, benefited from its proximity to the Western Archipelago and boasted...</p>
+</article>
+<article id="c538" data-label="538">
+<h2 class="chapter">Chapter 538: Trading Slaves 🔒</h2>
+<p>Ghur’s friendliness and hospitality were not shaped by his nature as a knight. Instead, they were deeply rooted in his family’s values and environment.</p>
+<p>House Jobbs had members who cultivated battle qi or specialized in magic, but they were neither a traditional knight house nor an ancient magic family.</p>
+<p>Instead, they were fundamentally a business-oriented family, driven by profit, with their development steered by financial gain.</p>
+<p>Ghur’s enthusiasm for Sein was partly because they were peers of the same rank.</p>
+<p>In the Magus World, Rank One creatures were not considered powerful. Nevertheless, Sein was highly valued by House Jobbs for his status as a Knight Continent’s trialist, his considerable potential, and his significant background.</p>
+<p>This value was reflected in Ghur’s gifts to Sein, which were not acts of personal generosity but investments by House ...</p>
+</article>
+<article id="c539" data-label="539">
+<h2 class="chapter">Chapter 539: Fredem Underground City 🔒</h2>
+<p>House Jobbs was deeply involved in the trade of enslaved creatures.</p>
+<p>In Ghur’s private manor alone, Sein saw many catgirls and rabbitgirls employed as maids.</p>
+<p>These beautiful beastmen possessed an exotic allure distinct from the traditional women of the Magus World.</p>
+<p>Yet, none could rival the stunning beauty of the fox priestess named Azelia, who now stood before Sein.</p>
+<p>As Ghur had pointed out, this fox maiden was exceptional.</p>
+<p>House Jobbs had spent nearly two hundred magicoins solely in her importation.</p>
+<p>Considering the extensive efforts to tame and soul-enslave her, House Jobbs valued her at no less than a thousand magicoins.</p>
+<p>Given the profit Rank One knights and mages could only gain from participating in an interplanar war, such high-quality goods were clearly not something ordinary people could afford.</p>
+<p>Ghur and the House Jobbs had indeed presented Sein with a lavish gift.</p>
+<p>Observing the fox maiden, who appeared timid despite her conditioning, Sein paused to reflect before ultimately nodding in acceptance of Ghur’s generous ges...</p>
+</article>
+<article id="c540" data-label="540">
+<h2 class="chapter">Chapter 540: Luna 🔒</h2>
+<p>Ghur’s tastes were certainly unique, as evidenced by his interest in this particular centaur.</p>
+<p>If one could overlook the female centaur’s equine lower half, she was indeed a rare and exquisite beauty.</p>
+<p>The centaur trotted forward. After pausing to assess Sein and Ghur for a moment, she bowed slightly and said, “Greetings, honorable experts of the Magus World. I’m Luna Christine Maya from Centaurworld. It’s a pleasure to meet you.&#34;</p>
+<p>“Greetings, beautiful lady centaur,” Ghur responded.</p>
+<p>Despite letting out a disrespectful whistle at the centaur earlier, he quickly composed himself, adopting the demeanor...</p>
+</article>
+<article id="c541" data-label="541">
+<h2 class="chapter">Chapter 541: Potential Partnership 🔒</h2>
+<p>Although Luna detested Ghur, her expression betrayed no hint of revulsion.</p>
+<p>Throughout the entire time, she remained extremely courteous but noticeably lacked enthusiasm toward him.</p>
+<p>“I can guarantee she’s taken a liking to you. Do you want to make a move on her? In my experience, you have a sixty percent chance of success!” Ghur whispered to Sein via mental focus.</p>
+<p>Sein rolled his eyes at Ghur’s words, dismissing them.</p>
+<p>After taking a tour of Luna’s establishment, Sein, who was usually quiet, suddenly asked, “Have you considered expanding your business to other divine towers in the Magus World?”</p>
+<p>Sein’s question caught Luna off guard before her eyes lit up, sparkling like magicoin...</p>
+</article>
+<article id="c542" data-label="542">
+<h2 class="chapter">Chapter 542: Summoner Alliance 🔒</h2>
+<p>Sein stayed at House Jobbs for half a month.</p>
+<p>During his time in the Knight Continent’s trial zone, Sein had acquired various rare materials. He selected those he had in abundance and had little use for, trading them with House Jobbs.</p>
+<p>This exchange was possible because Sein and Leena had spent a significant amount of time in the trial zone and possessed large spatial storage like the space conch.</p>
+<p>Consequently, the total volume of his collection was unparalleled among Rank One mages.</p>
+<p>The substantial amount of magicoins he received from House Jobbs once again “inflated” his already considerable fortune.</p>
+<p>Sein was among the few spellcasters in the Magus World who did not need to worry about resources.</p>
+<p>He...</p>
+</article>
+<article id="c543" data-label="543">
+<h2 class="chapter">Chapter 543: Long-Distance Conversation 🔒</h2>
+<p>Compared to Gloomhaven, the underground world of the Summoner Alliance was more vast and challenging to fully explore.</p>
+<p>During his time here, Sein learned that over a dozen demihuman nations with populations exceeding a hundred million were situated around the entrances to the Underworld, adjacent to the Summoner Alliance.</p>
+<p>It was believed that even larger demihuman nations existed in deeper underground spaces.</p>
+<p>The richness of the underground world’s ecosystem rivaled that of the surface. It was home to a diverse array of demihumans, along with magic beasts and numerous dark creatures.</p>
+<p>Having conducted extensive research on the Underworld, Sein was aware that the apex predator of the Magus World’s underground...</p>
+</article>
+<article id="c544" data-label="544">
+<h2 class="chapter">Chapter 544: Hierarchy 🔒</h2>
+<p>Meanwhile in the perilous Death Valley of the Undead World…</p>
+<p>A deathly cloud loomed overhead, a manifestation of the concentrated deathly power and necromantic elements pervading the area.</p>
+<p>For the creatures of the Undead World, this valley was the ideal sanctuary for dwelling and resting.</p>
+<p>In the past, the Death Valley was dominated by a Peak Rank Two Specter Knight.</p>
+<p>However, two years ago, the valley witnessed a change of rulers.</p>
+<p>The formidable newcomer not only vanquished the Specter Knight but also led an army of twenty thousand undead creatures, annihilating nearly sixty percent of the valley’s undead inhabitants.</p>
+<p>This onslaught resulted in over a hundred thousand undead creatures being buried here, significantly intensifying the concentration of necromantic elements—more so than in any prior decade.</p>
+<p>To dominate and to be...</p>
+</article>
+<article id="c545" data-label="545">
+<h2 class="chapter">Chapter 545: Magic Letters 🔒</h2>
+<p>When Sein awoke, he found Yuri in his arms.</p>
+<p>The recliner in his laboratory was too small for two, so Yuri rested only the upper half of her body in his arm, careful not to put her full weight on him for fear of waking him.</p>
+<p>As Sein opened his eyes, he realized Yuri was still asleep.</p>
+<p>The engineer from the Neisse Civilization was quietly enjoying the tranquility and Sein’s natural scent, sleeping more peacefully than usual.</p>
+<p>Looking down, Sein noticed that his robe showed no signs of being disheveled.</p>
+<p>It was evident to him that the effect of the Mirage Soul Enslavement spell on Yuri was deepening.</p>
+<p>Fortunately, she showed no signs of going against him, which was a relief, considering the potential consequences.</p>
+<p>For the past ten years, Sein had never once viewed Yuri as a slave, despite the circumstances.</p>
+<p>As he slowly...</p>
+</article>
+<article id="c546" data-label="546">
+<h2 class="chapter">Chapter 546: Amazed 🔒</h2>
+<p>The Windpost Fortress was strategically situated, and accessible from all directions.</p>
+<p>To the east were the endless plains and the hinterlands of the Magus World, with Sky City in that direction.</p>
+<p>To the north of Windpost Fortress was the magic empire of Alveroth.</p>
+<p>The Capiche Business Alliance was situated northeast of Windpost Fortress.</p>
+<p>Thanks to the Magus Continent&#39;s advanced teleportation arrays and airships, traveling between these locations was quite manageable.</p>
+<p>The Ylli Knight Alliance lay to the south of Windpost Fortress, and the Pyro Secret Society was to the southeast.</p>
+<p>Thus, when Sein arrived at Windpost Fortress, he was actually not far from the Divine Tower of Verdant Spring.</p>
+<p>Had he headed directly for the Divine Tower of Verdant Spring, Sein could have returned in no more than four years, given...</p>
+</article>
+<article id="c547" data-label="547">
+<h2 class="chapter">Chapter 547: Cut Short 🔒</h2>
+<p>Although the social mores and attitudes of the citizens of the Magic Empire were unsettling to traditional mages like Sein, it was undeniably revered as a sacred site for spellcasters in the Magus World.</p>
+<p>The Alveroth Empire boasted an exceptionally large number of spellcasters, which contributed to the flourishing of various spellcasting professions.</p>
+<p>Should Sein have the opportunity to build his own divine tower in the future, he would undoubtedly choose to establish it in the Alveroth Empire.</p>
+<p>Due to the staggering number of spellcasters there, any newly established divine tower could easily attract over a thousand full-fledged mages.</p>
+<p>However, this would only be feasible if Sein had sufficient funds.</p>
+<p>The survival pressure on Rank One mages in the magic empire...</p>
+</article>
+<article id="c548" data-label="548">
+<h2 class="chapter">Chapter 548: Trouble Follows 🔒</h2>
+<p>With the help of a few female assistants, Sein was able to quickly pack up his belongings.</p>
+<p>As he left Frans City, Sein hovered in mid-air, looking northeast.</p>
+<p>A light blue elemental light barrier appeared in his view. It was the air purification shield of the city, likely possessing some protective abilities as well.</p>
+<p>The capital city of the Alveroth Empire lay just at the edge of Sein’s field of view.</p>
+<p>In addition to the capital city, the Capiche Business Alliance, Sky City, and the Northern Witches Council were all destinations Sein had originally planned to visit.</p>
+<p>Unfortunately, those plans were now canceled.</p>
+<p>Although Sein felt a little sad, he knew there would be plenty of opportunities to visit them in the...</p>
+</article>
+<article id="c549" data-label="549">
+<h2 class="chapter">Chapter 549: External Support Mages 🔒</h2>
+<p>The Order of the Steel Fist served not only as a refuge for a large number of wounded but also as a vital supply hub for Thunderfall World.</p>
+<p>War machines and essential resources were continually transported here.</p>
+<p>This was also the initial receiving point for resources scavenged from the Thunderfall World upon their return to the Magus World.</p>
+<p>Additionally, at the foot of the towering mountains that surrounded the Order of the Steel Fist, hundreds of thousands of various enslaved creatures were corralled to support the war effort.</p>
+<p>The dire war conditions in Thunderfall World demanded such reinforcements, using these creatures as expendable forces.</p>
+<p>After all, the life of a Rank One knight was...</p>
+</article>
+<article id="c550" data-label="550">
+<span id="last"></span>
+<h2 class="chapter">Chapter 550: Thunderfall World 🔒</h2>
+<p>The spatial passage was longer and more turbulent than usual.</p>
+<p>Sein, with his keen senses, detected subtle spatial disorientation twice during their journey, indicating that they had traversed through two distinct spatial gateways.</p>
+<p>Their travel from the Order of the Steel Fist to Thunderfall World was not direct; there was likely a transit in between.</p>
+<p>Over the years, Sein had extensively studied spatial magic and summoning.</p>
+<p>His nuanced awareness of his surroundings had deepened considerably since his first participation in interplanar wars.</p>
+<p>When Sein and the others emerged from the spatial passage, they were greeted by a world dominated by shades of azure.</p>
+<p>Faint flashes of lightning flickered deep within the...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="551-600.html" rel="next">Next: Chs 551–600 &rarr;</a>
+    <p class="page-end-links"><a href="451-500.html" rel="prev">&larr; Chs 451–500</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 501–550</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c501">Chapter 501: Skeletal Dragon 🔒</a></li>
+        <li><a href="#c502">Chapter 502: Black Crystal 🔒</a></li>
+        <li><a href="#c503">Chapter 503: Creature of the Undead World 🔒</a></li>
+        <li><a href="#c504">Chapter 504: Brand 🔒</a></li>
+        <li><a href="#c505">Chapter 505: Leena’s Considerations 🔒</a></li>
+        <li><a href="#c506">Chapter 506: Head of Magic Rod 🔒</a></li>
+        <li><a href="#c507">Chapter 507: Portal Gate 🔒</a></li>
+        <li><a href="#c508">Chapter 508: Resuming the Journey 🔒</a></li>
+        <li><a href="#c509">Chapter 509: Dark Crystal Rod 🔒</a></li>
+        <li><a href="#c510">Chapter 510: Beast Horde and Heisse 🔒</a></li>
+        <li><a href="#c511">Chapter 511: Different Rules 🔒</a></li>
+        <li><a href="#c512">Chapter 512: The Edge of the Trial Zone 🔒</a></li>
+        <li><a href="#c513">Chapter 513: Battle Between Rank Five Massive Beasts 🔒</a></li>
+        <li><a href="#c514">Chapter 514: Overlord 🔒</a></li>
+        <li><a href="#c515">Chapter 515: End of Trial 🔒</a></li>
+        <li><a href="#c516">Chapter 516: Like a True Human Being 🔒</a></li>
+        <li><a href="#c517">Chapter 517: Public Waters 🔒</a></li>
+        <li><a href="#c518">Chapter 518: Cheap Price 🔒</a></li>
+        <li><a href="#c519">Chapter 519: Revenge 🔒</a></li>
+        <li><a href="#c520">Chapter 520: Crazy Woman 🔒</a></li>
+        <li><a href="#c521">Chapter 521: Pitiful 🔒</a></li>
+        <li><a href="#c522">Chapter 522: Madness 🔒</a></li>
+        <li><a href="#c523">Chapter 523: Body Tempering Secrets 🔒</a></li>
+        <li><a href="#c524">Chapter 524: Intervene 🔒</a></li>
+        <li><a href="#c525">Chapter 525: Mentor’s Death Avenged 🔒</a></li>
+        <li><a href="#c526">Chapter 526: Unexpected Arrival 🔒</a></li>
+        <li><a href="#c527">Chapter 527: Trample 🔒</a></li>
+        <li><a href="#c528">Chapter 528: Request 🔒</a></li>
+        <li><a href="#c529">Chapter 529: Helpless 🔒</a></li>
+        <li><a href="#c530">Chapter 530: Returning Alone 🔒</a></li>
+        <li><a href="#c531">Chapter 531: Northern Frozen Ocean 🔒</a></li>
+        <li><a href="#c532">Chapter 532: Narwhal Oil 🔒</a></li>
+        <li><a href="#c533">Chapter 533: Splitting Ice Mountain 🔒</a></li>
+        <li><a href="#c534">Chapter 534: Farewells 🔒</a></li>
+        <li><a href="#c535">Chapter 535: Matter of Principle 🔒</a></li>
+        <li><a href="#c536">Chapter 536: East Coast 🔒</a></li>
+        <li><a href="#c537">Chapter 537: Hospitable Ghur 🔒</a></li>
+        <li><a href="#c538">Chapter 538: Trading Slaves 🔒</a></li>
+        <li><a href="#c539">Chapter 539: Fredem Underground City 🔒</a></li>
+        <li><a href="#c540">Chapter 540: Luna 🔒</a></li>
+        <li><a href="#c541">Chapter 541: Potential Partnership 🔒</a></li>
+        <li><a href="#c542">Chapter 542: Summoner Alliance 🔒</a></li>
+        <li><a href="#c543">Chapter 543: Long-Distance Conversation 🔒</a></li>
+        <li><a href="#c544">Chapter 544: Hierarchy 🔒</a></li>
+        <li><a href="#c545">Chapter 545: Magic Letters 🔒</a></li>
+        <li><a href="#c546">Chapter 546: Amazed 🔒</a></li>
+        <li><a href="#c547">Chapter 547: Cut Short 🔒</a></li>
+        <li><a href="#c548">Chapter 548: Trouble Follows 🔒</a></li>
+        <li><a href="#c549">Chapter 549: External Support Mages 🔒</a></li>
+        <li><a href="#c550">Chapter 550: Thunderfall World 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="451-500.html" rel="prev">&larr; Chs 451–500</a>    <a href="../../index.html">Library</a>
+<a href="551-600.html" rel="next">Chs 551–600 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

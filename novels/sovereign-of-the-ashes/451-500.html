@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 451–500</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="401-450.html#last" data-next-page="501-550.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c451">Chapter 451: Avenge 🔒</a></li>
+        <li><a href="#c452">Chapter 452: Picking A Fight 🔒</a></li>
+        <li><a href="#c453">Chapter 453: Brazen Arrogance 🔒</a></li>
+        <li><a href="#c454">Chapter 454: Kill 🔒</a></li>
+        <li><a href="#c455">Chapter 455: Mordoron Island 🔒</a></li>
+        <li><a href="#c456">Chapter 456: Legacy of Knowledge 🔒</a></li>
+        <li><a href="#c457">Chapter 457: Dividing the Legacy 🔒</a></li>
+        <li><a href="#c458">Chapter 458: Leena’s Whereabouts 🔒</a></li>
+        <li><a href="#c459">Chapter 459: Black Tower of Cinderbones 🔒</a></li>
+        <li><a href="#c460">Chapter 460: I’ll Consider It 🔒</a></li>
+        <li><a href="#c461">Chapter 461: Knight Continent 🔒</a></li>
+        <li><a href="#c462">Chapter 462: Transmission 🔒</a></li>
+        <li><a href="#c463">Chapter 463: Referee 🔒</a></li>
+        <li><a href="#c464">Chapter 464: Flock of Owls 🔒</a></li>
+        <li><a href="#c465">Chapter 465: Returning to Peak 🔒</a></li>
+        <li><a href="#c466">Chapter 466: A Year and a Half 🔒</a></li>
+        <li><a href="#c467">Chapter 467: Setting Out 🔒</a></li>
+        <li><a href="#c468">Chapter 468: Old Acquaintances 🔒</a></li>
+        <li><a href="#c469">Chapter 469: Detour 🔒</a></li>
+        <li><a href="#c470">Chapter 470: Klopp 🔒</a></li>
+        <li><a href="#c471">Chapter 471: War Between Civilizations 🔒</a></li>
+        <li><a href="#c472">Chapter 472: Black Mages 🔒</a></li>
+        <li><a href="#c473">Chapter 473: Stroll 🔒</a></li>
+        <li><a href="#c474">Chapter 474: Initiative 🔒</a></li>
+        <li><a href="#c475">Chapter 475: Entry 🔒</a></li>
+        <li><a href="#c476">Chapter 476: Different Laws 🔒</a></li>
+        <li><a href="#c477">Chapter 477: Ghur 🔒</a></li>
+        <li><a href="#c478">Chapter 478: Stag 🔒</a></li>
+        <li><a href="#c479">Chapter 479: Splitting Spoils 🔒</a></li>
+        <li><a href="#c480">Chapter 480: Invitation 🔒</a></li>
+        <li><a href="#c481">Chapter 481: Separation 🔒</a></li>
+        <li><a href="#c482">Chapter 482: Clash 🔒</a></li>
+        <li><a href="#c483">Chapter 483: Leena 🔒</a></li>
+        <li><a href="#c484">Chapter 484: Perilous Past 🔒</a></li>
+        <li><a href="#c485">Chapter 485: Trial 🔒</a></li>
+        <li><a href="#c486">Chapter 486: Warlock 🔒</a></li>
+        <li><a href="#c487">Chapter 487: Dragon Core Fruit 🔒</a></li>
+        <li><a href="#c488">Chapter 488: Battle Between Geniuses 🔒</a></li>
+        <li><a href="#c489">Chapter 489: No Discord, No Concord 🔒</a></li>
+        <li><a href="#c490">Chapter 490: Dragon Core Fruit Potion 🔒</a></li>
+        <li><a href="#c491">Chapter 491: Intense Needs 🔒</a></li>
+        <li><a href="#c492">Chapter 492: Black Tower of Cinderbones 🔒</a></li>
+        <li><a href="#c493">Chapter 493: Growth in Strength 🔒</a></li>
+        <li><a href="#c494">Chapter 494: Elemental Gate 🔒</a></li>
+        <li><a href="#c495">Chapter 495: Ancient Manor 🔒</a></li>
+        <li><a href="#c496">Chapter 496: Teamwork 🔒</a></li>
+        <li><a href="#c497">Chapter 497: Detached Family 🔒</a></li>
+        <li><a href="#c498">Chapter 498: Graveyard of Undead 🔒</a></li>
+        <li><a href="#c499">Chapter 499: Undead Horde 🔒</a></li>
+        <li><a href="#c500">Chapter 500: Undead Knight 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c451" data-label="451">
+<h2 class="chapter">Chapter 451: Avenge 🔒</h2>
+<p>After regaining her confidence, Faye showed Sein around her magic tower, which had been purchased for her by Zorro.</p>
+<p>The primary function of this magic tower was to protect Faye since Mordoron Island was not entirely safe for Quasi Mages,</p>
+<p>In addition to this tower, Faye had also received numerous life-saving items from Zorro.</p>
+<p>However, Faye’s extensive acquisitions were not solely due to Zorro’s generosity; much of it was attributed to the legacy of their late mentor, Morsidor.</p>
+<p>Morsidor’s legacy in the Western Archipelago included not just personal connections but also substantial resources.</p>
+<p>As Morsidor’s primary heir, who had traveled with him from the Western Archipelago...</p>
+</article>
+<article id="c452" data-label="452">
+<h2 class="chapter">Chapter 452: Picking A Fight 🔒</h2>
+<p>Upon hearing Faye’s words, a surge of anger rose within Sein.</p>
+<p>Daelis, the Rank One black mage, was undoubtedly Sein’s sworn enemy.</p>
+<p>Driven by both a duty to Morsidor and a personal obsession, Sein swore that he would kill that woman!</p>
+<p>His animosity extended beyond Daelis to the person she aligned herself with, Gandra the Rank Three black mage, who would not allow his precious apothecary to be killed so easily.</p>
+<p>This explained why Daelis had accepted Zorro’s challenge—most likely because many underestimated Zorro.</p>
+<p>Among Morsidor’s apprentices, Zorro was the one who had inherited the greatest portion of his legacy in alchemy and closely resembled his mentor in talent.</p>
+<p>In the realm...</p>
+</article>
+<article id="c453" data-label="453">
+<h2 class="chapter">Chapter 453: Brazen Arrogance 🔒</h2>
+<p>Just because Martin “valued” those black mages and treated them with “leniency&#34; did not necessarily mean he truly cherished friendships.</p>
+<p>Rather, this was because the Rank Three grand mage understood what was necessary to establish himself in Blackhaven.</p>
+<p>Only by leveraging his connections from the Black Magic Academy of Mystralora City could Martin hope to thrive in Blackhaven and continue his mentor&#39;s legacy.</p>
+<p>Otherwise, he would be merely an ordinary early-stage Rank Three black mage.</p>
+<p>In the periphery of Blackhaven, an early-stage Rank Three black mage was indeed a notable existence. However, in the heart or even the hinterlands of Blackhaven, he amounted to very little.</p>
+<p>Given Blackhaven&#39;s scarce resources, the relatively young Martin might only achieve mid or late-stage Rank Three status in his lifetime, barring...</p>
+</article>
+<article id="c454" data-label="454">
+<h2 class="chapter">Chapter 454: Kill 🔒</h2>
+<p>After activating the verdant flame, Sein’s mental focus remained relatively unchanged.</p>
+<p>However, his mana reserves surged to nearly 400 points—double its previous capacity.</p>
+<p>In addition to the significant increase in mana, Sein’s constitution and physical combat skills also showed significant improvements.</p>
+<p>Given the ever-present dangers in Blackhaven and the watchful eyes of malevolent black mages, Sein kept his Verdant Flame Heart Rod and Verdant Flame Eye Mask concealed.</p>
+<p>He also kept his Viridescent Seeds, along with Yuri and other resources, in his spatial equipment.</p>
+<p>For this battle,...</p>
+</article>
+<article id="c455" data-label="455">
+<h2 class="chapter">Chapter 455: Mordoron Island 🔒</h2>
+<p>In the end, Faye politely declined Sein’s unusual gift.</p>
+<p>“Offering the corpse of a Rank One mage as a gift, huh…? Sein certainly has unique tastes,” Faye thought to herself.</p>
+<p>It wasn’t that Faye found the corpse distasteful; rather, it was simply valuable.</p>
+<p>Furthermore, it appeared that Sein intended to give her not only the corpse but also the magic items and spatial equipment that belonged to the black mage.</p>
+<p>Sein respected Faye’s graceful refusal and did not press further.</p>
+<p>With a shrug, he stowed the charred remains into his space ring.</p>
+<p>After defeating Bhabaluka, Sein felt a significant lift in his spirits.</p>
+<p>The pent-up frustration that had clouded his heart was dispelled,...</p>
+</article>
+<article id="c456" data-label="456">
+<h2 class="chapter">Chapter 456: Legacy of Knowledge 🔒</h2>
+<p>Sein’s understanding of underground lives primarily encompassed the magic beasts, demihumans, and other creatures dwelling below the surface.</p>
+<p>Faye enlightened Sein that Mordoron Island was not the only place endowed with rich underground resources. In fact, the entire Western Archipelago boasted a natural abundance of underground riches greater than many other regions.</p>
+<p>Beneath the vast surface lay equally expansive underground space.</p>
+<p>Interestingly, these spaces formed a ladder-like structure.</p>
+<p>Although the resources near the surface were rapidly plundered by the black mages of Blackhaven, new resources continually emerged deeper underground.</p>
+<p>This cycle likely enabled Blackhaven...</p>
+</article>
+<article id="c457" data-label="457">
+<h2 class="chapter">Chapter 457: Dividing the Legacy 🔒</h2>
+<p>Morsidor left behind a substantial legacy.</p>
+<p>As an alchemist, his personal wealth was at least three times greater than that of other black mages at the same rank, if not more!</p>
+<p>This wealth was also evident in the legacies he bestowed upon his apprentices.</p>
+<p>Both Sein and Zorro had since been promoted to Rank One.</p>
+<p>Although Faye was still not a full-fledged mage, she had once used a considerable amount of resources in an attempt to make her mark. Unfortunately, she failed.</p>
+<p>Sein never intended to keep the entire legacy Master Morsidor entrusted to him for himself.</p>
+<p>The items he had given Faye two days ago were not part of Morsidor’s legacy. Instead, they were resources Sein...</p>
+</article>
+<article id="c458" data-label="458">
+<h2 class="chapter">Chapter 458: Leena’s Whereabouts 🔒</h2>
+<p>Sein noticed that Zorro’s left arm was metallic.</p>
+<p>It was a prosthetic, as the real one had been chopped off by their archenemy, Daelis.</p>
+<p>After decades of not seeing him, Zorro had changed significantly in Sein’s eyes.</p>
+<p>People change, especially when their external environment shifts drastically.</p>
+<p>Once upon a time, Sein thought of Zorro as just an alchemy maniac without any battle prowess.</p>
+<p>Observing his demeanor now, it was clear that Zorro, who had been promoted to Rank One about twenty years ago, was not weak among the recently promoted Rank One mages.</p>
+<p>Perhaps Zorro had been hiding his true abilities all along.</p>
+<p>Being defeated by Daelis must have...</p>
+</article>
+<article id="c459" data-label="459">
+<h2 class="chapter">Chapter 459: Black Tower of Cinderbones 🔒</h2>
+<p>Two days later, Zorro took Sein to meet Martin, the Rank Three black mage.</p>
+<p>The meeting was delayed as Zorro needed to ascertain Martin’s whereabouts and arrange the meeting.</p>
+<p>It was unclear whether it was Zorro’s influence or Sein’s emergence as a newly Rank One black mage that piqued Martin’s interest.</p>
+<p>Upon receiving Zorro’s message through his crystal ball, Martin promptly agreed to meet and directed Zorro to an island, north of Mordoron Island.</p>
+<p>Dalanar, one of the four islands Martin controlled in Blackhaven, boasted richer resources and a denser population than Mordoron Island.</p>
+<p>Sein met the renowned Rank Three black mage in an ancient castle at the heart of Dalanar Island.</p>
+<p>He had actually...</p>
+</article>
+<article id="c460" data-label="460">
+<h2 class="chapter">Chapter 460: I’ll Consider It 🔒</h2>
+<p>Leena truly cared about Sein.</p>
+<p>Her repeated visits to Mordoron Island to find Sein spoke volumes of her deep feelings for him.</p>
+<p>Martin had spent his early years living with his mentor in a black tower.</p>
+<p>The black towers in Blackhaven differed significantly from the divine towers found in the rest of the Magus World.</p>
+<p>In Blackhaven, neither black magic initiates nor black mages enjoyed much freedom.</p>
+<p>While the mages were allowed to leave the tower for brief periods to carry out missions, the initiates were strictly confined.</p>
+<p>Any attempt or even the mere thought of leaving was met with severe suppression or outright elimination by the black towers.</p>
+<p>Human rights...</p>
+</article>
+<article id="c461" data-label="461">
+<h2 class="chapter">Chapter 461: Knight Continent 🔒</h2>
+<p>The Knight Continent was a special place in the Magus World.</p>
+<p>Revered by hundreds of millions of knights as a holy land, it was also considered the crowning jewel of the Magus Civilization.</p>
+<p>Legend had it that the continent was the legacy of the only Rank Nine being in the annals of Magus history.</p>
+<p>It was a massive island that could sustain the lives of a large plane, and it was unequivocally the largest island in the Western Archipelago.</p>
+<p>In ancient times, the Knight Continent was only accessible once every five thousand years, with each opening lasting for a millennium.</p>
+<p>For some reason, the ruling elites of the Magus Civilization later modified the frequency and duration of these openings.</p>
+<p>Nowadays,...</p>
+</article>
+<article id="c462" data-label="462">
+<h2 class="chapter">Chapter 462: Transmission 🔒</h2>
+<p>After learning about the requirements to enter the Knight Continent in the Western Archipelago from Martin, Sein’s first thought was to contact Lorianne, his mentor at the Divine Tower of Verdant Spring, to ask for her assistance in securing a qualification.</p>
+<p>However, he quickly dismissed the idea.</p>
+<p>Sein preferred to keep his visit to the Western Archipelago a secret from Lorianne.</p>
+<p>Given her knowledge of his past, she would surely deduce that his journey to the Western Archipelago meant a visit to Blackhaven to reconnect with old friends.</p>
+<p>Lorianne had no doubt shown him greater favor than Morsidor, making the prospect of disappointing her a significant...</p>
+</article>
+<article id="c463" data-label="463">
+<h2 class="chapter">Chapter 463: Referee 🔒</h2>
+<p>Among Feylis’ apprentices, Lorianne was the only one who had not visited the Knight Continent yet.</p>
+<p>This lent credence to the rumor that visiting the Knight Continent—and surviving the experience—almost guaranteed elevation to peak Rank Three, the demigod level.</p>
+<p>In her earlier years, Lorianne had multiple opportunities to travel to the Knight Continent, but each time, unforeseen circumstances prevented her journey.</p>
+<p>Now that she had advanced to Rank Four, the costs and requirements to venture there had significantly increased.</p>
+<p>Lorianne could no longer independently apply for a trip to the Knight Continent.</p>
+<p>Instead, her mentor had to leverage a portion of her contributions from the Neisse Star Domain war to facilitate Lorianne’s exploration.</p>
+<p>Moved by her mentor’s support,...</p>
+</article>
+<article id="c464" data-label="464">
+<h2 class="chapter">Chapter 464: Flock of Owls 🔒</h2>
+<p>While Sein decided against troubling Lorianne regarding gaining entry to the Knight Continent, he was unaware that far away in the Divine Tower of Verdant Spring, Lorianne was also contemplating ways to save money.</p>
+<p>After leaving the ancient castle where Martin resided, Sein and Zorro headed back to Mordoron Island.</p>
+<p>Martin did not provide Sein with directions to find Leena in the north. He simply mentioned that if Leena came searching for Sein again, he would notify Sein immediately.</p>
+<p>Regarding the conflict with Daelis, Martin stated he would address it with Gandra in twenty years.</p>
+<p>Although the Knight Continent would be opened for up to a hundred...</p>
+</article>
+<article id="c465" data-label="465">
+<h2 class="chapter">Chapter 465: Returning to Peak 🔒</h2>
+<p>After returning to Mordoron Island, Sein resumed the familiar routine he had maintained while at the Divine Tower of Verdant Spring.</p>
+<p>For the past few years, Sein had been constantly on the move.</p>
+<p>His journey had taken him across a significant portion of the Magus World from Viridescent Land.</p>
+<p>During that time, he had relied on flying, boats, teleportation arrays, and finally Tourmaline the dragon turtle, to reach Blackhaven in the Western Archipelago.</p>
+<p>Although he had stopped in Steel City for a year and a half, that period had been relatively stationary for Sein.</p>
+<p>As a more reclusive mage, Sein had not really enjoyed the nomadic lifestyle of the past few years.</p>
+<p>He much preferred the peace and quiet of the laboratories...</p>
+</article>
+<article id="c466" data-label="466">
+<h2 class="chapter">Chapter 466: A Year and a Half 🔒</h2>
+<p>A year and a half later…</p>
+<p>“Sein, you look so handsome when you’re conducting experiments.”</p>
+<p>Faye leaned over the experimental table, resting her face on her hands as she watched Sein, who was immersed in his work.</p>
+<p>Speaking during an experiment was generally considered taboo, so she only broke the silence when Sein was wrapping up.</p>
+<p>Her flirtatious compliment went either unnoticed or ignored as Sein concentrated on finishing the Verdant Flame Eye Mask laid out before him.</p>
+<p>Since acquiring Morsidor’s remaining magic notes and the alchemy handbooks, Sein’s skills in alchemy had significantly improved.</p>
+<p>After receiving centuries of accumulated wisdom from Morsidor, Sein had identified several areas for enhancement and strengthening...</p>
+</article>
+<article id="c467" data-label="467">
+<h2 class="chapter">Chapter 467: Setting Out 🔒</h2>
+<p>As summer gave way to fall, with fallen leaves dancing in the wind and the sound of cicadas fading, it was time for Sein to head south.</p>
+<p>“Can’t I go with you?” Faye asked, reluctance clear in her eyes.</p>
+<p>“You’re still too weak, and this is a time for you to concentrate on meditation to improve your mana and mental focus levels. I would rather you reach Rank One by the time I return, instead of seeking temporary gains by traveling south with me,” Sein replied.</p>
+<p>“If you attain Rank One, we’ll have plenty of time together in the future,” he added.</p>
+<p>He spoke bluntly because clarity and rationalization were necessary...</p>
+</article>
+<article id="c468" data-label="468">
+<h2 class="chapter">Chapter 468: Old Acquaintances 🔒</h2>
+<p>At the beginning of the journey, Sein flew close to Zorro.</p>
+<p>They were from the same faction and harbored only very few secrets from each other. Besides, Sein had already confided half of his own to Zorro.</p>
+<p>Since Sein was an unfamiliar face and Zorro’s junior, others naturally assumed he was just another recently promoted Rank One black mage.</p>
+<p>Given Zorro’s lack of combat prowess, it made sense for the pair to stick close together to look out for each other.</p>
+<p>Their mutual support was a rare sight in Blackhaven and sent a clear message—meddling with them was a bad idea.</p>
+<p>Even without the formidable presence of Lady Jeanne, no full-fledged mage would likely risk...</p>
+</article>
+<article id="c469" data-label="469">
+<h2 class="chapter">Chapter 469: Detour 🔒</h2>
+<p>The journey from Blackhaven to the Knight Continent in the heart of the Western Archipelago was anything but brief.</p>
+<p>It took Sein and his group two months to reach a public sea, a region likely part of the central Western Archipelago and typically off-limits to the black mages from the north.</p>
+<p>However, with the upcoming opening of the Knight Continent, the authorities of Magus World decided to open this area to them after considering various factors.</p>
+<p>The black mages of Blackhaven, especially those at higher ranks, were not as marginal as perceived by other lesser beings in Magus World.</p>
+<p>They wielded some influence, which was evident from the allocation of a quota for exploring...</p>
+</article>
+<article id="c470" data-label="470">
+<h2 class="chapter">Chapter 470: Klopp 🔒</h2>
+<p>“Long time no see, Klopp.”</p>
+<p>Dressed in a pristine white tulle dress and mage robe, Bev approached a middle-aged knight.</p>
+<p>The knight walked out of the knightly order to receive Bev. Behind him stood a formidable assembly of dozens of knights and mages, each of Rank Four or above.</p>
+<p>Klopp, the middle-aged knight, served as the nominal governor of the Western Archipelago.</p>
+<p>All the three hundred divine towers and over eight hundred knightly orders in the archipelago were under his command.</p>
+<p>Though not yet among the overlords, Klopp’s strength surpassed that of many newly emerged overlords in the Magus World.</p>
+<p>His experiences, connections, and reputation made him the singular...</p>
+</article>
+<article id="c471" data-label="471">
+<h2 class="chapter">Chapter 471: War Between Civilizations 🔒</h2>
+<p>Bev nodded approvingly at Klopp’s commitment.</p>
+<p>She did not even mention anything about allocating resources to Klopp, knowing well that it was unnecessary.</p>
+<p>With his wealth and connections within the Magus World alone, Klopp surely had ample resources to attempt a breakthrough to become an overlord.</p>
+<p>This Rank Six Peak knight commanded respect from many overmages and overlords in the Magus World.</p>
+<p>It was even highly probable that the Magus Alliance would proactively provide all necessary resources for his rise to overlord status—at no cost!</p>
+<p>After all, Klopp’s long-standing contributions to the Magus Civilization more than justified such generosity.</p>
+<p>Contrary to Bev’s earlier...</p>
+</article>
+<article id="c472" data-label="472">
+<h2 class="chapter">Chapter 472: Black Mages 🔒</h2>
+<p>Greenland was a massive island situated in the northern part of the central Western Archipelago.</p>
+<p>Nearly two months had elapsed by the time Sein completed his detour to reach this location.</p>
+<p>This island was the largest Sein had encountered to date; it dwarfed even the continents of most planes.</p>
+<p>Even the combined landmass of the eastern and western continents in the Viridian Venom Flame World did not make up one-fifth of Greenland Island’s size.</p>
+<p>On this island, there were seven divine towers and over fifteen orders of the knights.</p>
+<p>In other words, the sheer might of this large island located within the central Western Archipelago nearly rivaled half of the southern coast.</p>
+<p>Moreover, Greenland’s extensive territory was surrounded by a few medium-sized islands and over a...</p>
+</article>
+<article id="c473" data-label="473">
+<h2 class="chapter">Chapter 473: Stroll 🔒</h2>
+<p>The group of black mages that appeared before them had a distinct temperament and aura.</p>
+<p>What further confirmed their identity was the array of special badges adorning their magic robes—featuring symbols like a skull, a dead spirit, a black cross, and others.</p>
+<p>Sein had a similar badge in his possession—a green leaf that signified the Divine Tower of Verdant Spring.</p>
+<p>It was clear that this group of Rank One black mages, with their exceptional demeanor, were likely elites from Blackhaven’s black towers.</p>
+<p>Sein was unsure why this group had appeared there and wondered if mages from the black towers in Blackhaven were also invited to enter the Knight Continent.</p>
+<p>Port Allen...</p>
+</article>
+<article id="c474" data-label="474">
+<h2 class="chapter">Chapter 474: Initiative 🔒</h2>
+<p>In a corner of the material store, the two mages stared at each other silently.</p>
+<p>Ultimately, the female black mage frowned slightly and walked away first.</p>
+<p>Just before disappearing around a corner, she suddenly turned to look at Sein once more.</p>
+<p>Sein was still watching her.</p>
+<p>After a few seconds, the tall female black mage left and headed to the store’s counter to check out.</p>
+<p>The materials she purchased were mostly umbra elemental type, including two specimens of desiccated carcasses she had just picked from the shelf.</p>
+<p>Over the years, Sein had also dabbled in umbra elemental magic and necromancy.</p>
+<p>Although his proficiency in those areas did not rival his achievements...</p>
+</article>
+<article id="c475" data-label="475">
+<h2 class="chapter">Chapter 475: Entry 🔒</h2>
+<p>“Hey, wait. Did you see anyone-...?” the silver-armored knight began, reaching out to grab Sein’s shoulder with his right hand.</p>
+<p>However, Sein had no time to waste on this knight.</p>
+<p>Ignoring the hand on his shoulder, he continued pushing through the crowd without even sparing the knight a glance.</p>
+<p>Although visibly annoyed, the knight held back his strength, knowing that mages had weaker constitutions.</p>
+<p>However, he was in for an unpleasant surprise and about to embarrass himself as Sein was no ordinary mage.</p>
+<p>The knight’s attempt not only failed to halt Sein but also knocked him off balance.</p>
+<p>His eyes widened in shock before bewilderment filled them.</p>
+<p><em>Clank!</em></p>
+<p>Before he could comprehend what had happened, he was sprawled...</p>
+</article>
+<article id="c476" data-label="476">
+<h2 class="chapter">Chapter 476: Different Laws 🔒</h2>
+<p>Sein had expected to emerge directly above the sea he had glimpsed through the barrier. Instead, he found himself in a special blue-violet space.</p>
+<p>The area extended before him like a long passage, stretching straight ahead toward a brilliant light at the far end.</p>
+<p>Strangely, there was no sign of the other trialists who had entered alongside him in the passage.</p>
+<p>“Is this spatial magic? Why can’t I detect any spatial arrays? And this passageway... it feels different from the teleportation arrays I’ve used previously,” he mumbled to himself.</p>
+<p>“Such a strange space. What secrets might it hold?” Sein marveled at the peculiar space surrounding him before pressing...</p>
+</article>
+<article id="c477" data-label="477">
+<h2 class="chapter">Chapter 477: Ghur 🔒</h2>
+<p>A swamp capable of trapping a Rank One knight was clearly no ordinary quagmire.</p>
+<p>Sein noticed that the wet mud was dragging the knight deeper while emitting a faint geo elemental glow.</p>
+<p>The mud appeared to be valuable geo elemental magic materials, but it was clearly not something an average person could easily collect.</p>
+<p>Confronted with the trapped knight&#39;s plea for help, Sein stood pensively by the swamp’s edge for a good while before he began fetching magic materials from his spatial equipment.</p>
+<p>He was not deliberating whether to assist but rather planning the best method of rescue.</p>
+<p>Now that Sein had finally met another person, he was eager to glean...</p>
+</article>
+<article id="c478" data-label="478">
+<h2 class="chapter">Chapter 478: Stag 🔒</h2>
+<p>Sein and Ghur did not travel together for long, primarily because they had different approaches to exploring the Knight Continent.</p>
+<p>Ghur preferred the thrill of dangerous locations. He was particularly drawn to the perilous caves and would occasionally pursue Rank One creatures native to the secret realm.</p>
+<p>As Ghur often said, “The higher the risk, the better the reward.”</p>
+<p>He believed he would be able to discover legacies left by ancient, powerful knights and mages in those caves.</p>
+<p>In fact, his grandfather had once acquired a battle qi technique from within the secret realm itself.</p>
+<p>He also reasoned that fighting Rank One creatures within the secret realm was essential for knights to hone their skills.</p>
+<p>Moreover, the potential rewards from such creatures...</p>
+</article>
+<article id="c479" data-label="479">
+<h2 class="chapter">Chapter 479: Splitting Spoils 🔒</h2>
+<p>Two beams of purple light burst forth from the stag’s eyes, slicing through the turquoise-green flames enveloping Sein’s body.</p>
+<p>The beams seemed impervious to ordinary elemental energies.</p>
+<p>Although the verdant flames on Sein’s body were powerless against the purple beams, two layers of shields—one green and one white—suddenly materialized around him, effectively blocking the attack.</p>
+<p>As the stag unleashed the light beams, the other knights and mages in pursuit caught up.</p>
+<p>There were four of them in total—two knights and two mages</p>
+<p>After Sein momentarily detained the stag, the knights charged forward, one on each side of him.</p>
+<p>The knight...</p>
+</article>
+<article id="c480" data-label="480">
+<h2 class="chapter">Chapter 480: Invitation 🔒</h2>
+<p>That evening, a sumptuous campfire roast appeared in a jungle clearing.</p>
+<p>The two knights, Mainz and Hopp, showed off their exceptional skills in roasting meat. They also carried an assortment of condiments in their space rings.</p>
+<p>The twin mages, Guinness and Genevieve, retrieved some cheese bread from their space rings. It was a unique product from the southern part of the Western Archipelago.</p>
+<p>Its rich flavor surpassed anything Sein had ever tasted, making it far more enjoyable than mere nutritional potions.</p>
+<p>Sein generously contributed to the feast by offering fruit juices he had personally concocted and stored in his space bangle.</p>
+<p>These concoctions included ingredients from Viridescent...</p>
+</article>
+<article id="c481" data-label="481">
+<h2 class="chapter">Chapter 481: Separation 🔒</h2>
+<p>Sein was open to the idea of joining the group.</p>
+<p>Guinness was right—navigating the trials of the Knight Continent with a supportive team would likely prove more successful than going it alone.</p>
+<p>Without much hesitation, Sein nodded and accepted Guinness’ invitation, making the bonfire gathering especially joyful.</p>
+<p>He could not help but wonder about the whereabouts of Ghur, who would have made an excellent partner too.</p>
+<p>From Guinness, Sein learned that their current location was still on the outskirts of the trial zone.</p>
+<p>To encounter more valuable finds, or creatures like the Noctowl Stag, they needed to head further north.</p>
+<p>This underscored the advantage of having...</p>
+</article>
+<article id="c482" data-label="482">
+<h2 class="chapter">Chapter 482: Clash 🔒</h2>
+<p>Half a month later, at the base of a large waterfall in a jungle…</p>
+<p>Water cascaded from a great height, sending white mist into the air and creating ripples that spread across the pool in all directions.</p>
+<p>At the edge of the pool, an intense confrontation unfolded.</p>
+<p>A black-armored knight bellowed in a deep voice, “How dare you injure two of my men! Go, take down that black mage!”</p>
+<p>It was an unfair battle, with three remarkably strong Rank One knights against a female black mage.</p>
+<p>Months of relentless battle and pursuit had taken their toll on the female black mage and the three knights, with all parties visibly fatigued.</p>
+<p>The knights’ armor showed varying degrees...</p>
+</article>
+<article id="c483" data-label="483">
+<h2 class="chapter">Chapter 483: Leena 🔒</h2>
+<p>The battle escalated in the jungle once Sein appeared, surpassing any prior conflict in intensity.</p>
+<p>Although Sein had exhausted considerable mana in his travel over the past two weeks, his focus and mana reserves remained impressive, fueled by a newfound eagerness for combat.</p>
+<p>This drive, emerging from his deepest consciousness, made Sein exceptionally fierce on the battlefield.</p>
+<p>With Sein’s arrival, the three knights from the Ylli Knight Alliance faced significant disruption in their pursuit of the female black mage.</p>
+<p>Under normal circumstances, any rational black mage would have seized the opportunity to escape....</p>
+</article>
+<article id="c484" data-label="484">
+<h2 class="chapter">Chapter 484: Perilous Past 🔒</h2>
+<p>“Why do you look so different now?” Sein could not help but ask as he embraced Leena tightly and inhaled her familiar scent, reassuring himself that she was indeed real.</p>
+<p>Leena now stood over 1.7 meters tall. Although still slightly shorter than Sein, she was undeniably a tall woman.</p>
+<p>The Leena that Sein remembered had been a petite girl, barely 1.5 meters tall. Her fiery red, curly hair was now dark, long, and straight.</p>
+<p>Sein remembered that Leena’s unchanging appearance had been the result of a magic experiment gone awry more than ten years ago.</p>
+<p>Her stunted growth never diminished his affection; rather, it had kindled a protective desire within him.</p>
+<p>Regardless of her appearance, Sein found Leena...</p>
+</article>
+<article id="c485" data-label="485">
+<h2 class="chapter">Chapter 485: Trial 🔒</h2>
+<p>Leena’s experiences during her initiate days were far richer and more perilous than Sein’s.</p>
+<p>While Sein was engrossed in his studies at the Divine Tower of Verdant Spring, delving into the mysteries of truth and magic, Leena was already undertaking extremely dangerous academy quests in Blackhaven.</p>
+<p>Moreover, sometimes the real danger came not from the vicious magic beasts in the dark magic beast forest or the undead creatures in the Catacomb Chasm, but from the black mages residing nearby.</p>
+<p>In Leena’s opinion, the Black Magic Academy in Blackhaven was far more brutal than the one in Mystralora City.</p>
+<p>The initiate elimination rate there was three times higher...</p>
+</article>
+<article id="c486" data-label="486">
+<h2 class="chapter">Chapter 486: Warlock 🔒</h2>
+<p>With Leena’s companionship, Sein found contentment in everything he did.</p>
+<p>There was a time when Sein believed he had gotten used to solitude and could pursue truth alone.</p>
+<p>However, with Leena by his side, he realized the path was better explored together.</p>
+<p>In terms of knowledge, Leena was every bit Sein’s equal, despite his rapid growth over the years.</p>
+<p>Sein had amassed a vast amount of knowledge in recent decades, never pausing in his quest for wisdom.</p>
+<p>Likewise, Leena had also continuously expanded her horizons.</p>
+<p>At the Black Tower of Cinderbones, Leena swiftly established herself as an exceptional, newly promoted full-fledged black mage.</p>
+<p>The fact that Leena managed to secure a spot in the...</p>
+</article>
+<article id="c487" data-label="487">
+<h2 class="chapter">Chapter 487: Dragon Core Fruit 🔒</h2>
+<p>When going through trials on the Knight Continent, encounters with knights and mages from various regions of the Magus World, along with a myriad of challenges, were common.</p>
+<p>The conflicts here extended beyond the trialists versus the native creatures of the area.</p>
+<p>Clashes between trialists from different factions were also prevalent.</p>
+<p>The battle between Leena’s group of black mages and the knights from the Ylli Knight Alliance was one such conflict.</p>
+<p>Conflicts also often arose over the looting of scarce resources and valuable loot.</p>
+<p>Despite these tensions, the atmosphere in the Magus World remained largely fair and free.</p>
+<p>In fact, those among the higher echelons of the Magus Civilization saw...</p>
+</article>
+<article id="c488" data-label="488">
+<h2 class="chapter">Chapter 488: Battle Between Geniuses 🔒</h2>
+<p>A fierce clash quickly ensued.</p>
+<p>Sein and Leena were not the type to exchange pleasantries before a fight.</p>
+<p>If they struck, it was with thunderous force.</p>
+<p>This approach not only defined their method of survival but also allowed them to easily adapt to the brutal laws of the Astral Realm compared to other newly promoted full-fledged mages.</p>
+<p>A massive verdant fireball hurtled toward one of the Red Flamed Anolis Warlocks. At the same time, Leena unleashed a ball of dark energy.</p>
+<p>Neither confined themselves to just one element in their magical repertoire.</p>
+<p>Sein’s verdant fireball was a mix of pyro and venom elemental particles, while Leena’s dark energy ball was a fusion...</p>
+</article>
+<article id="c489" data-label="489">
+<h2 class="chapter">Chapter 489: No Discord, No Concord 🔒</h2>
+<p>The melee that erupted between six Rank One creatures raged through the jungle over the course of a day and a night.</p>
+<p>Each combatant was a Rank One mage, blessed with an abundance of mana.</p>
+<p>Apart from Leena, the other five boasted significant prowess in physical combat, which prolonged the intense battle significantly.</p>
+<p>As dusk fell, the elemental bombardments ceased, and the combatants resorted to grappling with brute strength alone.</p>
+<p>Leena, however, did not participate in this final bout of physical struggle melee.</p>
+<p>Angreas managed to hold back the strongest of the Anolis Warlocks, while Sein faced two opponents at once.</p>
+<p>Armed with the Verdant Flame Heart Rod and an array of magic items, Sein’s resilience was unmatched.</p>
+<p>Indeed, equipment...</p>
+</article>
+<article id="c490" data-label="490">
+<h2 class="chapter">Chapter 490: Dragon Core Fruit Potion 🔒</h2>
+<p>When Sein and Leena approached, Angreas, the Rank One warlock, had already reverted to his normal human form.</p>
+<p>His eyes had reverted too, though they retained a demonic greenish-blue hue within the depths of his pupils.</p>
+<p>“Thank you for your assistance. I’m Angreas, a Rank One warlock from House Farrell on the West Coast,” Angreas said, formally reintroducing himself despite having done so earlier during the battle.</p>
+<p>“Hello, I’m Sein, a Rank One mage from the Divine Tower of Verdant Spring in Viridescent Land,” Sein replied with a smile.</p>
+<p>Although Viridescent Land was a lesser-known location, Angreas made a mental note to remember the divine tower that Sein was affiliated with.</p>
+<p>Beside Sein, Leena remained silent,...</p>
+</article>
+<article id="c491" data-label="491">
+<h2 class="chapter">Chapter 491: Intense Needs 🔒</h2>
+<p>Sein’s “Dragon Core Fruit Potion” was a concoction of several rare and exceptional ingredients like the Dragon Core Fruit, Dragon Blood Herb, Noctowl Stag Horn Powder, and Silver Spirit Apricot.</p>
+<p>To enhance the potion’s stability, Sein added a measure of dragon blood.</p>
+<p>The finished product comprised several vials of rich, crimson potions.</p>
+<p>The art of potion-making extended beyond merely grinding and mixing ingredients. A careless approach could easily result in a dangerous poison or, at best, a useless concoction.</p>
+<p>Over the years, Sein’s skills in apothecary had grown significantly—perhaps aided by a stroke of luck.</p>
+<p>In just half a day, he had expertly crafted these powerful red potions.</p>
+<p>“The...</p>
+</article>
+<article id="c492" data-label="492">
+<h2 class="chapter">Chapter 492: Black Tower of Cinderbones 🔒</h2>
+<p>Sein and Leena spent a total of two days resting in their tent by a pool.</p>
+<p>During this time, Sein rarely engaged in studying magic or delving into elemental knowledge.</p>
+<p>Instead, he enjoyed the simpler pleasures of life, much like an ordinary person might.</p>
+<p>He crafted a fishing rod and caught palm-sized, light blue fish from the pool for their dinners.</p>
+<p>Although he did not delve into any research or meditation, Sein noticed a subtle increase in his focus by the time they left this picturesque location.</p>
+<p>This slight boost in focus might have been the residual effects of the red potion he had taken a few days ago.</p>
+<p>Alternatively, it could have been influenced by some other factor.</p>
+<p>Sein had long...</p>
+</article>
+<article id="c493" data-label="493">
+<h2 class="chapter">Chapter 493: Growth in Strength 🔒</h2>
+<p>Time seemed to fly when life was fulfilling.</p>
+<p>Sein, for his part, felt as if he had only recently reunited with Leena, yet in reality, nearly two years had passed since they began traveling together in the Knight Continent’s trial zone.</p>
+<p>In those two years, both Sein and Leena had seen considerable increases in their statistical values. They had also accumulated a wealth of materials and specimens.</p>
+<p>Fortunately, Sein had received a space conch from Tourmaline. Without it, the limited capacity of their spatial storage equipment would have been insufficient for their extensive research needs.</p>
+<p>During this period, Sein’s constitution had shown the most remarkable growth.</p>
+<p>Perhaps the environment of the Knight Continent was particularly...</p>
+</article>
+<article id="c494" data-label="494">
+<h2 class="chapter">Chapter 494: Elemental Gate 🔒</h2>
+<p>As the battle concluded, Leena rushed to Sein’s side.</p>
+<p>The Iron-Backed Black Ape had succumbed to their attacks.</p>
+<p>The sporadic twitching of its limbs was nothing more than the last reactions of its dying neurons.</p>
+<p>Leena, also detecting the activities to the west, turned to look in that direction alongside Sein.</p>
+<p>“Should we check it out?” she asked.</p>
+<p>Over the past three years, Sein and Leena had gone through a great deal.</p>
+<p>Their experiences ranged from fierce battles to internal conflicts among knights and mages of the same rank, as well as the witnessing of rare phenomena within the secret realm.</p>
+<p>Their journey to the Knight Continent was intended to hone their skills and broaden their knowledge.</p>
+<p>Thus, when Sein detected a peculiar elemental disturbance...</p>
+</article>
+<article id="c495" data-label="495">
+<h2 class="chapter">Chapter 495: Ancient Manor 🔒</h2>
+<p>Angreas&#39; personality was quite similar to Sein&#39;s—both were reclusive mages who preferred to travel alone.</p>
+<p>However, Angreas was much more of a loner compared to Sein.</p>
+<p>Before meeting Leena, Sein had contemplated traveling with Guinness and others.</p>
+<p>Angreas, on the other hand, had journeyed alone through the Knight Continent’s trial zone the entire time.</p>
+<p>It was unclear whether he was the only member of House Farrell in this trial zone or if solitude was simply in his nature.</p>
+<p>Sein recalled learning that the ancient bloodline inherited by bloodline warlocks might have a profound influence on their nature and moods. It made him wonder if snakes were generally solitary by nature.</p>
+<p>When Sein warmly...</p>
+</article>
+<article id="c496" data-label="496">
+<h2 class="chapter">Chapter 496: Teamwork 🔒</h2>
+<p>The secret realm itself was a treasure trove, far surpassing the individual treasures it held within.</p>
+<p>Sein had never truly delved into the study of subspace before.</p>
+<p>He took out a crystal ball that recorded information as he walked toward the manor’s gate within this secret realm so that the device could log various environmental details such as elemental density, air composition, and temperature.</p>
+<p>While this basic information might seem trivial, it was crucial for Sein’s future endeavors in decrypting subspace.</p>
+<p>This was the spirit of a true seeker of knowledge, a trait Sein realized he shared with several other mages.</p>
+<p>The knights who entered this secret realm only cared about the treasures...</p>
+</article>
+<article id="c497" data-label="497">
+<h2 class="chapter">Chapter 497: Detached Family 🔒</h2>
+<p>Sein and Leena moved quickly, though not as swiftly as the knights.</p>
+<p>Following closely behind, the second wave of trialists entered the manor in this subspace, which was surprisingly larger than one might expect.</p>
+<p>Outside, the manor was protected by extremely formidable prohibition arrays. Once inside, Sein quickly detected signs of spatial magic at work.</p>
+<p>This manipulation of spatial forces allowed the interior to expand far beyond the dimensions apparent from the outside.</p>
+<p>After stepping through the vermilion wooden door, Sein and the others ventured deeper into the manor.</p>
+<p>The structure seemed to stretch endlessly,...</p>
+</article>
+<article id="c498" data-label="498">
+<h2 class="chapter">Chapter 498: Graveyard of Undead 🔒</h2>
+<p>Elemental explosions reverberated throughout the area one after another.</p>
+<p>With the combined efforts of Sein, Leena, and Angreas, the weaker prohibition arrays could not detain them for long.</p>
+<p>Compared to the robust vermilion wooden door outside the manor, the internal defenses were significantly weaker.</p>
+<p>In an azure-colored pool of water, Sein discovered an Ice Soulstone of exceptional purity.</p>
+<p>The surrounding trees, flowers, and other plants, once researched and collected, proved to be valuable specimens.</p>
+<p>The finds were divided equally among Sein, Leena, and Angreas.</p>
+<p>Initially, Angreas had worried that his yield from this secret realm might be meager, but it quickly became apparent that...</p>
+</article>
+<article id="c499" data-label="499">
+<h2 class="chapter">Chapter 499: Undead Horde 🔒</h2>
+<p>The dispersal of the gray fog caused the undead horde before them to surge forward.</p>
+<p>These creatures, likely slumbering in this subspace for eons, were rudely roused by the intrusion of outsiders, naturally souring their mood.</p>
+<p>At that moment, Angreas appeared the most troubled.</p>
+<p>Based on past experiences with the undead, they normally would not awaken simultaneously.</p>
+<p>However, it seemed his infrasonic waves had stirred every last one of them within this graveyard.</p>
+<p>What they were facing now was merely a fraction of those buried here.</p>
+<p>From beneath the gray soil of the graveyard, white bony arms and decaying claws emerged one by one.</p>
+<p>The true number of undead in this vast graveyard remained unknown.</p>
+<p>Leena, standing beside Sein,...</p>
+</article>
+<article id="c500" data-label="500">
+<span id="last"></span>
+<h2 class="chapter">Chapter 500: Undead Knight 🔒</h2>
+<p>The first Rank One creature to emerge from the gray fog was an undead knight mounted on a white skeletal warhorse.</p>
+<p>A dense, deathly aura enveloped them, manifesting as a thick, swirling gray mist.</p>
+<p>Nourished by this sinister mist, the skeletal warhorse shimmered silvery-white, as if it were clad in shiny silver armor.</p>
+<p>The undead knight, a formidable force in its own right, rode a warhorse that itself rivaled the strength of a Rank One creature.</p>
+<p>As for the undead knight itself, the oppressive power it radiated was nearing the late stage of Rank One.</p>
+<p>Together with its white skeletal warhorse, their combined strength could rival a peak Rank One creature.</p>
+<p>The graveyard, rich in necrotic elements, had cultivated...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="501-550.html" rel="next">Next: Chs 501–550 &rarr;</a>
+    <p class="page-end-links"><a href="401-450.html" rel="prev">&larr; Chs 401–450</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 451–500</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c451">Chapter 451: Avenge 🔒</a></li>
+        <li><a href="#c452">Chapter 452: Picking A Fight 🔒</a></li>
+        <li><a href="#c453">Chapter 453: Brazen Arrogance 🔒</a></li>
+        <li><a href="#c454">Chapter 454: Kill 🔒</a></li>
+        <li><a href="#c455">Chapter 455: Mordoron Island 🔒</a></li>
+        <li><a href="#c456">Chapter 456: Legacy of Knowledge 🔒</a></li>
+        <li><a href="#c457">Chapter 457: Dividing the Legacy 🔒</a></li>
+        <li><a href="#c458">Chapter 458: Leena’s Whereabouts 🔒</a></li>
+        <li><a href="#c459">Chapter 459: Black Tower of Cinderbones 🔒</a></li>
+        <li><a href="#c460">Chapter 460: I’ll Consider It 🔒</a></li>
+        <li><a href="#c461">Chapter 461: Knight Continent 🔒</a></li>
+        <li><a href="#c462">Chapter 462: Transmission 🔒</a></li>
+        <li><a href="#c463">Chapter 463: Referee 🔒</a></li>
+        <li><a href="#c464">Chapter 464: Flock of Owls 🔒</a></li>
+        <li><a href="#c465">Chapter 465: Returning to Peak 🔒</a></li>
+        <li><a href="#c466">Chapter 466: A Year and a Half 🔒</a></li>
+        <li><a href="#c467">Chapter 467: Setting Out 🔒</a></li>
+        <li><a href="#c468">Chapter 468: Old Acquaintances 🔒</a></li>
+        <li><a href="#c469">Chapter 469: Detour 🔒</a></li>
+        <li><a href="#c470">Chapter 470: Klopp 🔒</a></li>
+        <li><a href="#c471">Chapter 471: War Between Civilizations 🔒</a></li>
+        <li><a href="#c472">Chapter 472: Black Mages 🔒</a></li>
+        <li><a href="#c473">Chapter 473: Stroll 🔒</a></li>
+        <li><a href="#c474">Chapter 474: Initiative 🔒</a></li>
+        <li><a href="#c475">Chapter 475: Entry 🔒</a></li>
+        <li><a href="#c476">Chapter 476: Different Laws 🔒</a></li>
+        <li><a href="#c477">Chapter 477: Ghur 🔒</a></li>
+        <li><a href="#c478">Chapter 478: Stag 🔒</a></li>
+        <li><a href="#c479">Chapter 479: Splitting Spoils 🔒</a></li>
+        <li><a href="#c480">Chapter 480: Invitation 🔒</a></li>
+        <li><a href="#c481">Chapter 481: Separation 🔒</a></li>
+        <li><a href="#c482">Chapter 482: Clash 🔒</a></li>
+        <li><a href="#c483">Chapter 483: Leena 🔒</a></li>
+        <li><a href="#c484">Chapter 484: Perilous Past 🔒</a></li>
+        <li><a href="#c485">Chapter 485: Trial 🔒</a></li>
+        <li><a href="#c486">Chapter 486: Warlock 🔒</a></li>
+        <li><a href="#c487">Chapter 487: Dragon Core Fruit 🔒</a></li>
+        <li><a href="#c488">Chapter 488: Battle Between Geniuses 🔒</a></li>
+        <li><a href="#c489">Chapter 489: No Discord, No Concord 🔒</a></li>
+        <li><a href="#c490">Chapter 490: Dragon Core Fruit Potion 🔒</a></li>
+        <li><a href="#c491">Chapter 491: Intense Needs 🔒</a></li>
+        <li><a href="#c492">Chapter 492: Black Tower of Cinderbones 🔒</a></li>
+        <li><a href="#c493">Chapter 493: Growth in Strength 🔒</a></li>
+        <li><a href="#c494">Chapter 494: Elemental Gate 🔒</a></li>
+        <li><a href="#c495">Chapter 495: Ancient Manor 🔒</a></li>
+        <li><a href="#c496">Chapter 496: Teamwork 🔒</a></li>
+        <li><a href="#c497">Chapter 497: Detached Family 🔒</a></li>
+        <li><a href="#c498">Chapter 498: Graveyard of Undead 🔒</a></li>
+        <li><a href="#c499">Chapter 499: Undead Horde 🔒</a></li>
+        <li><a href="#c500">Chapter 500: Undead Knight 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="401-450.html" rel="prev">&larr; Chs 401–450</a>    <a href="../../index.html">Library</a>
+<a href="501-550.html" rel="next">Chs 501–550 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

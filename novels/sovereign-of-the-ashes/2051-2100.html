@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 2051–2100</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="2001-2050.html#last" data-next-page="2101-2150.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c2051">Chapter 2051: Inert Crystal Deal 🔒</a></li>
+        <li><a href="#c2052">Chapter 2052: The Thousand-Year Assistant 🔒</a></li>
+        <li><a href="#c2053">Chapter 2053: Incident 🔒</a></li>
+        <li><a href="#c2054">Chapter 2054: An Audience with the Empress 🔒</a></li>
+        <li><a href="#c2055">Chapter 2055: Promise 🔒</a></li>
+        <li><a href="#c2056">Chapter 2056: Peak of Rank Five 🔒</a></li>
+        <li><a href="#c2057">Chapter 2057: Blood Mosquitoes Flee, Yunqi Withdraws 🔒</a></li>
+        <li><a href="#c2058">Chapter 2058: The Arrival of the Buddhist Faction 🔒</a></li>
+        <li><a href="#c2059">Chapter 2059: Chase and the Escape 🔒</a></li>
+        <li><a href="#c2060">Chapter 2060: Army of Immortal Realm Rogue Cultivators 🔒</a></li>
+        <li><a href="#c2061">Chapter 2061: No Victors in War 🔒</a></li>
+        <li><a href="#c2062">Chapter 2062: Getting Rewarded 🔒</a></li>
+        <li><a href="#c2063">Chapter 2063: Auction 🔒</a></li>
+        <li><a href="#c2064">Chapter 2064: Return to the Magus Civilization 🔒</a></li>
+        <li><a href="#c2065">Chapter 2065: Major Change 🔒</a></li>
+        <li><a href="#c2066">Chapter 2066: Magic Tea House 🔒</a></li>
+        <li><a href="#c2067">Chapter 2067: Expansion of Influence 🔒</a></li>
+        <li><a href="#c2068">Chapter 2068: Leaders Assembled 🔒</a></li>
+        <li><a href="#c2069">Chapter 2069: Fighting Over Treasures 🔒</a></li>
+        <li><a href="#c2070">Chapter 2070: Summit 🔒</a></li>
+        <li><a href="#c2071">Chapter 2071: A Successful Summit 🔒</a></li>
+        <li><a href="#c2072">Chapter 2072: Young Aunt 🔒</a></li>
+        <li><a href="#c2073">Chapter 2073: Transit Hub 🔒</a></li>
+        <li><a href="#c2074">Chapter 2074: Verdant Flame Faction Reunion 🔒</a></li>
+        <li><a href="#c2075">Chapter 2075: Generous Gifts 🔒</a></li>
+        <li><a href="#c2076">Chapter 2076: Family 🔒</a></li>
+        <li><a href="#c2077">Chapter 2077: Those Who Stay, Those Who Leave 🔒</a></li>
+        <li><a href="#c2078">Chapter 2078: Socialize 🔒</a></li>
+        <li><a href="#c2079">Chapter 2079: The Path to Rank Six 🔒</a></li>
+        <li><a href="#c2080">Chapter 2080: Friendly 🔒</a></li>
+        <li><a href="#c2081">Chapter 2081: Sea Heart Flame 🔒</a></li>
+        <li><a href="#c2082">Chapter 2082: Return to Magus World 🔒</a></li>
+        <li><a href="#c2083">Chapter 2083: Meeting the Phantom Crow King Again 🔒</a></li>
+        <li><a href="#c2084">Chapter 2084: Hands-off Approach and Familiar 🔒</a></li>
+        <li><a href="#c2085">Chapter 2085: House Grantt 🔒</a></li>
+        <li><a href="#c2086">Chapter 2086: Blood Crystal Life Potion 🔒</a></li>
+        <li><a href="#c2087">Chapter 2087: Experimental Modification 🔒</a></li>
+        <li><a href="#c2088">Chapter 2088: Overlord’s Eye 🔒</a></li>
+        <li><a href="#c2089">Chapter 2089: Omnipotent Trait 🔒</a></li>
+        <li><a href="#c2090">Chapter 2090: Apprentice 🔒</a></li>
+        <li><a href="#c2091">Chapter 2091: Socializing 🔒</a></li>
+        <li><a href="#c2092">Chapter 2092: Common Traits 🔒</a></li>
+        <li><a href="#c2093">Chapter 2093: Catherine 🔒</a></li>
+        <li><a href="#c2094">Chapter 2094: Sein’s First Apprentice 🔒</a></li>
+        <li><a href="#c2095">Chapter 2095: Stubborn Girl 🔒</a></li>
+        <li><a href="#c2096">Chapter 2096: Grow On Her Own 🔒</a></li>
+        <li><a href="#c2097">Chapter 2097: Two Knightly Orders 🔒</a></li>
+        <li><a href="#c2098">Chapter 2098: Seven Space Fortresses 🔒</a></li>
+        <li><a href="#c2099">Chapter 2099: The Concept of Fusion 🔒</a></li>
+        <li><a href="#c2100">Chapter 2100: Path to Rank Six Mechanic 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c2051" data-label="2051">
+<h2 class="chapter">Chapter 2051: Inert Crystal Deal 🔒</h2>
+<p>Just as Sein thought of the Insectoids, they appeared at his door.</p>
+<p>They had come to discuss a deal involving inert crystals.</p>
+<p>The one who arrived was a Rank Six Insectoid Bladeist whom Sein had never met before. His stern expression made him seem rather difficult to deal with at first glance.</p>
+<p>However, the Rank Six Bladeist immediately offered Sein an extremely generous price.</p>
+<p>The Insectoids’ offer was calculated mainly in energy crystals and souls.</p>
+<p>Both were considered hard currency throughout the Astral Realm, but the Insectoids preferred to pay Sein in soul crystals.</p>
+<p>Aside from a small number of specialized units, the breeding of most Insectoids did not require large quantities of soul crystals.</p>
+<p>Hence, this type of crystal was considered a slow-moving resource within...</p>
+</article>
+<article id="c2052" data-label="2052">
+<h2 class="chapter">Chapter 2052: The Thousand-Year Assistant 🔒</h2>
+<p>Belphane’s joy was understandable.</p>
+<p>Aside from the vast wealth and resources she had gained during the war in Divine Descendants World, she had also seized a peak Rank Five geo-attribute secondary divine relic during the final battle.</p>
+<p>The divine relic complemented the battle qi laws she had mastered, while the war itself had given her new insights that would help her grow even stronger.</p>
+<p>Mel, on the other hand, had returned empty-handed.</p>
+<p>She had actually been quite happy throughout most of the war in Divine Descendants World.</p>
+<p>Although she was relatively weak, Sein and Belphane had always made sure to include her whenever they divided their spoils.</p>
+<p>After all, Mel was kind of like Belphane’s younger sister and had once served as the envoy to the Dawn Empire.</p>
+<p>During the final battle, Mel had set her sights on one of Marduk’s secondary divine relics, only to be defeated by one of his divine consciousness clones.</p>
+<p>Had two demon kings not arrived on the battlefield in time, Mel might have lost her life!</p>
+<p>Not only had Marduk’s divine consciousness severely wounded her, but she had also failed to secure the divine relic.</p>
+<p>In the end, Mel returned...</p>
+</article>
+<article id="c2053" data-label="2053">
+<h2 class="chapter">Chapter 2053: Incident 🔒</h2>
+<p>“Tourmaline and I are good friends, so don’t even try anything funny.”</p>
+<p>Sitting on the experimental table, Mel crossed her legs shyly as she warned Sein.</p>
+<p>Standing before her, Sein rolled his eyes.</p>
+<p>Although Mel was not wearing any clothes, she was hardly exposing anything. Patches of violet-golden dragon scales covered all the important areas.</p>
+<p>Apart from her pale arms, thighs, and navel, Sein could not see a thing.</p>
+<p>“This is just a normal experiment. What are you getting so worked up about?” Sein asked in exasperation.</p>
+<p>“Oh,” Mel mumbled before lowering the arms she had raised to cover her chest.</p>
+<p>Sein truly had not been thinking about anything inappropriate. Nothing of the sort had even crossed his mind.</p>
+<p>Yet after Mel interrupted him like that, he gradually found his gaze beginning to wander.</p>
+<p>Was this what people called reverse psychology?</p>
+<p>As for what he saw—well, aside from dragon scales, there were only...</p>
+</article>
+<article id="c2054" data-label="2054">
+<h2 class="chapter">Chapter 2054: An Audience with the Empress 🔒</h2>
+<p>In addition to his body tempering experiments, Sein had continued studying the mechanical arts and advancing his research into the pyro element over the years.</p>
+<p>His progress in mechanical arts had been especially significant. After repeatedly analyzing the Ark’s core fragment and studying the laws contained within it, Sein finally decided to let the Magic Cube devour it.</p>
+<p>The Magic Cube possessed a certain degree of sentience and had been eyeing the fragment for a long time.</p>
+<p>Back on the edge of the overlord-level battlefield, it had only managed to absorb some of the law energy leaking from the Ark. That tiny amount had been nowhere near enough to satisfy it.</p>
+<p>It wanted more!</p>
+<p>The only reason the Magic Cube had not clamored to be “fed” was that Sein did not possess a complete Ark Core and had collected only a few of its fragments.</p>
+<p>With its appetite finally satiated, the world-class secret treasure once again entered a rare state of slumber.</p>
+<p>The last time it had fallen into such a deep sleep was in the ruins of the Eiyurant Papillon Civilization’s secret realm.</p>
+<p>“I don’t think the Magic Cube will remain asleep for very long this time. After all, it only consumed a small fragment of the Ark Core, not the complete Ark,” Sein...</p>
+</article>
+<article id="c2055" data-label="2055">
+<h2 class="chapter">Chapter 2055: Promise 🔒</h2>
+<p>The Empress appeared to be in a good mood, and for some reason, Sein found her rather warm and approachable.</p>
+<p>Perhaps it had something to do with the fact that she had once saved his life and had even spoken to him so “casually” back then.</p>
+<p>After hesitating for a moment, Sein took the initiative to ask, “Your Majesty, the overgod you slew on the battlefield of Divine Descendants World possessed a world-class secret treasure known as the Ark. That treasure is extremely important to my research. Would it be possible for me to borrow it for a while?”</p>
+<p>Sein naturally did not dare shamelessly ask her to hand it over outright. He merely wanted the chance to examine it.</p>
+<p>Besides, a world-class secret treasure like the Ark was still far beyond what he could handle at his current level, even if he already possessed two such treasures and was planning to craft a third.</p>
+<p>The Empress of Blades seemed briefly caught off guard by his request, but recovered after only two seconds.</p>
+<p>“Come to think of it, this is actually one of the reasons I summoned you today. I recall that you picked up a fragment of the Ark Core from Marduk’s crash site back then, didn’t you, boy?”</p>
+<p>She smiled, narrowing her eyes slightly as she...</p>
+</article>
+<article id="c2056" data-label="2056">
+<h2 class="chapter">Chapter 2056: Peak of Rank Five 🔒</h2>
+<p>Monotonous yet fulfilling experiments were a constant part of every spellcaster’s life.</p>
+<p>After once again leaving Fermont’s body, Sein declined all visitors and threw himself back into the pursuit of profound truths.</p>
+<p>This time, his goal was to reach the peak of Rank Five.</p>
+<p>Inside the laboratory, a deep blue flame gave off a faint, eerie glow.</p>
+<p>Beside it floated two other flames, one pale gold and the other crimson.</p>
+<p>The laws contained within the three flames differed greatly in both nature and intensity, rising in clear succession.</p>
+<p>The deep blue flame was the Cobalt Flame, which Sein had obtained from Enrique Gustavo.</p>
+<p>The pale golden flame had been painstakingly extracted from Venerable Tianyang’s overlord blood. Sein had named it the <em>Heavenly Sun Flame</em>.[1]</p>
+<p>As for the crimson flame, Sein had extracted it from several pyro-attribute secondary divine...</p>
+</article>
+<article id="c2057" data-label="2057">
+<h2 class="chapter">Chapter 2057: Blood Mosquitoes Flee, Yunqi Withdraws 🔒</h2>
+<p>The battlefield on Planet Teyran was dominated by endless stretches of metallic ruins.</p>
+<p>Broken pieces of metal lay scattered everywhere, mixed among the corpses of Yao Clan cultivators, Destruction Legion soldiers, Blood Mosquitoes, Beastmen, Elves, and creatures from Myriad Manifestations World.</p>
+<p>It was one of the most diverse battlefields in the entire war.</p>
+<p>Amidst such chaos, it was sometimes difficult to tell who was an enemy and who was an ally.</p>
+<p>After being severely wounded by the Great Monkey of Destruction, the Rank Eight Mosquito Daoist fought desperately to escape before the God of Elves and the God of Beastmen could close in on him.</p>
+<p>To carve out a path of retreat, he forcibly tore through the Gallant Federation’s fleet formation and smashed his way straight through their ranks.</p>
+<p>That guy was supposed to be an ally of the Gallant Federation…</p>
+<p>Venerable Yunqi of Myriad Manifestations World, another ally of the Gallant Federation, had turned against Mosquito Daoist during the battle and become a blade aimed at him.</p>
+<p>Venerable Yunqi was not the only...</p>
+</article>
+<article id="c2058" data-label="2058">
+<h2 class="chapter">Chapter 2058: The Arrival of the Buddhist Faction 🔒</h2>
+<p>The Buddhist faction’s army had not gone to support the battlefield on Planet Teyran. So where had they gone?</p>
+<p>Sure enough, everything had unfolded just as the Great Sage of Demonic Heaven, Li Qingshan, had expected.</p>
+<p>Led by the Rank Eight Lamp-Bearing Buddha, the Buddhist faction did not head toward the perilous battlefield on Planet Teyran. Instead, they established their own long-distance teleportation channel across the star domains and arrived directly near the Grand Apocalypse World, one of the Magus Civilization’s main battle zones.</p>
+<p>The Magus Civilization could only look at them speechlessly.</p>
+<p>It had never formally invited the Buddhist faction to take part in this civilizational war. Even the diplomatic delegation sent from Magus World to the Immortal Realm had failed to reach an agreement with them.</p>
+<p>Yet the Buddhist faction had somehow found both an opportunity and a justification to enter the battlefield on its own.</p>
+<p>They were even considerate enough not to ask the Magus Civilization to pay a single coin toward the cost of the long-distance teleportation.</p>
+<p>On the surface, it almost seemed as though the Buddhist faction had come to practise “Astral Realm humanitarianism”, generously helping the Magus Civilization defeat its powerful enemies without asking for anything in return.</p>
+<p>But was that even possible?</p>
+<p>“Amitabha.”</p>
+<p>Bathed in dazzling golden light, the Rank Eight Lamp-Bearing...</p>
+</article>
+<article id="c2059" data-label="2059">
+<h2 class="chapter">Chapter 2059: Chase and the Escape 🔒</h2>
+<p>Before long, a spectacular scene unfolded across the Astral Realm.</p>
+<p>Golden light flooded the starry sky as hundreds of millions of Buddhist disciples, led by several sages, chased after the fleeing Tenth Pharaoh.</p>
+<p>The sight of a Rank Eight overlord being pursued in such a miserable state was certainly rare.</p>
+<p>As she fled, the Tenth Pharaoh quickly regrouped with the two monster kings under her command, along with what little remained of the Amenkha Empire’s vanguard legion.</p>
+<p>After being surrounded and ruthlessly attacked by the Immortal Realm’s Dragon Clan and its vast army, the Amenkha Empire’s vanguard legion had already suffered devastating losses. Those who remained were little more than a scattered band of defeated soldiers.</p>
+<p>And now, they had run straight into these Buddhist cultivators. Their luck could hardly have been worse!</p>
+<p>The two monster kings had yet to recover from their injuries. When they saw the Tenth Pharaoh flying toward them with an enormous sea of oppressive golden light close behind, they froze where they stood.</p>
+<p>Enveloped in boundless death energy, the...</p>
+</article>
+<article id="c2060" data-label="2060">
+<h2 class="chapter">Chapter 2060: Army of Immortal Realm Rogue Cultivators 🔒</h2>
+<p>News that the remnants of the army led by the Tenth Pharaoh of the Amenkha Empire had been chased into a panic by the Buddhist faction’s powerhouses soon reached the Magus Civilization’s high command.</p>
+<p>The Magus Civilization’s leadership found the situation both amusing and exasperating.</p>
+<p>Initially, they had been rather displeased that the Buddhist faction had interfered in their civilizational war without so much as a heads-up.</p>
+<p>Then again, the Buddhist faction had already arrived—and immediately helped the Magus Civilization settle an old score. Under such circumstances, the high command could only accept their participation.</p>
+<p>Still, that did not mean the Buddhist powerhouses could simply lead hundreds of millions of cultivators onto the Magus Civilization’s front lines and join whichever battle they pleased.</p>
+<p>Most importantly, they could not be allowed to disrupt the Magus Civilization’s existing war plans, especially when the Insectoids, the Dawn Empire, the Dragon Clan of the Immortal Realm, and the Great Monkey of Destruction had already intervened across the Magus Civilization’s main battlefronts.</p>
+<p>Thus, the Magus Civilization decided to send the Buddhist Army through another cross-star-domain teleportation array, directing them toward the Amenkha Empire battlefield at the edge of the Grand Cosmic World Star Domain.</p>
+<p>The Magus Civilization and the Immortal Realm might be allied civilizations, but when it came to matters involving...</p>
+</article>
+<article id="c2061" data-label="2061">
+<h2 class="chapter">Chapter 2061: No Victors in War 🔒</h2>
+<p>The vast number of rogue cultivators arriving from the Immortal Realm greatly strengthened the Magus Civilization’s mid and lower-tier forces along the front lines.</p>
+<p>Throughout the war against the Gallant Federation, the federation’s mechanical armies, together with its seemingly endless fleets of warships and mobile suits, had remained a constant headache for the Magus Civilization.</p>
+<p>The Magus Civilization no longer feared the federation’s high-tier combat power.</p>
+<p>Its enormous mid and lower-tier legions, however, were still a serious problem.</p>
+<p>The arrival of the Immortal Realm’s rogue cultivators went a long way toward easing the shortage of lower-tier troops across the main battlefront.</p>
+<p>With these cultivators joining the war, the Magus Civilization could at least reduce the extent to which it exploited the Magus Alliance’s member planes for manpower and resources.</p>
+<p>At the same time, its own mid and lower-ranking knights and mages could finally catch their breath. More...</p>
+</article>
+<article id="c2062" data-label="2062">
+<h2 class="chapter">Chapter 2062: Getting Rewarded 🔒</h2>
+<p>After reaching the peak of Rank Five, Sein spent most of his time in Divine Descendants World conducting experiments.</p>
+<p>This world was, after all, a large-sized plane filled with peculiar environmental laws and countless dangerous regions.</p>
+<p>During this relatively long and leisurely period, Sein travelled extensively, setting up temporary laboratories wherever his research took him.</p>
+<p>He did not destroy any of them when he left.</p>
+<p>Who knew? Perhaps one day in the distant future, a native creature of Divine Descendants World might stumble upon one and discover traces left behind by a mage from an earlier era.</p>
+<p>As Sein explored the plane’s various danger zones, his attention eventually turned to the three craters scattered across the battlefield.</p>
+<p>As expected of the crash sites of overlord-level beings, these vast “basins”...</p>
+</article>
+<article id="c2063" data-label="2063">
+<h2 class="chapter">Chapter 2063: Auction 🔒</h2>
+<p>Before Sein realised it, the forces at his disposal had already grown to an astonishing scale.</p>
+<p>Although he was still only a peak Rank Five mage, Sein now commanded a Rank Six robot, a mecha maid whose combat power rivalled that of a Rank Five mage, and a considerable number of foreign deities, including the God of Black Mist.</p>
+<p>Aside from these direct subordinates, the Huusians, the Klytherans, and the planar forces represented by Beatrice and the others who had joined the Magus Alliance and were currently on the distant main battlefield could effectively be counted among Sein’s forces.</p>
+<p>On top of that, Sein could also control and deploy the formidable Nexon intelligent robots through the ever-evolving Magic Cube.</p>
+<p>At the beginning of the Clash of Civilizations, Sein had been little more...</p>
+</article>
+<article id="c2064" data-label="2064">
+<h2 class="chapter">Chapter 2064: Return to the Magus Civilization 🔒</h2>
+<p>Perhaps the earlier bidding frenzy over Goddess Dith had simply been too intense.</p>
+<p>By the time the item Sein had come for finally appeared on the auction block, many of the top-tier powerhouses present still seemed caught up in the previous excitement.</p>
+<p>As a result, Sein managed to secure Venerable Muge’s overlord blood at what could almost be called a bargain.</p>
+<p>Of course, “bargain” was a relative term. He had still spent several hundred million magicoins on it.</p>
+<p>Although the Arriba Interstellar Chamber of Commerce accepted magicoins, Sein ultimately paid using tangible assets such as energy crystals, rare ores, soul crystals, and even divine relics.</p>
+<p>He simply did not have that much cash on hand. Besides, the chamber valued physical resources slightly higher than their equivalent worth in magicoins.</p>
+<p>After Sein successfully won the bid, the God of Dusk Desire beside...</p>
+</article>
+<article id="c2065" data-label="2065">
+<h2 class="chapter">Chapter 2065: Major Change 🔒</h2>
+<p>The teleportation array Sein and his party used at the edge of the Divine Descendants Star Domain had been constructed by the Arriba Interstellar Chamber of Commerce.</p>
+<p>Thus, during the first leg of their journey, they had no choice but to follow the teleportation routes established by the chamber across the surrounding star domains.</p>
+<p>Those routes were rather chaotic. Most of the teleportation arrays connected directly to planes and worlds with which the Arriba Chamber of Commerce conducted trade.</p>
+<p>As a result, Sein and his companions ended up making several detours along the way, taking the opportunity to visit a few foreign planes near the Divine Descendants Star Domain.</p>
+<p>Their journey only became smoother after they reached the main battlefield between the Magus Civilization and the Gallant Federation.</p>
+<p>Their destination was the Valthwain Star Domain.</p>
+<p>This region had once been one of the Gallant Federation’s central star domains. It could just barely be considered part of...</p>
+</article>
+<article id="c2066" data-label="2066">
+<h2 class="chapter">Chapter 2066: Magic Tea House 🔒</h2>
+<p>Sein reunited with his mentor at Collector Starport in the Valthwain Star Domain.</p>
+<p>She had arrived before him.</p>
+<p>It seemed Lorianne had received the letter Sein sent before leaving Divine Descendants World.</p>
+<p>After more than a thousand years apart, both of them had changed considerably.</p>
+<p>The most obvious difference was their respective life levels. Lorianne had reached the peak of Rank Four, while Sein had already advanced to the peak of Rank Five.</p>
+<p>Before their reunion, Sein had imagined all the things he wanted to say to her.</p>
+<p>Yet when Lorianne finally appeared before him, he suddenly found himself at a loss for words.</p>
+<p>Lorianne seemed to feel the same way.</p>
+<p>In the arrival area of Collector Starport, the two simply stood there, gazing at each other in silence for a long time.</p>
+<hr class="separator">
+<p>“I really didn’t expect you to have already...</p>
+</article>
+<article id="c2067" data-label="2067">
+<h2 class="chapter">Chapter 2067: Expansion of Influence 🔒</h2>
+<p>Once Lorianne opened up, she quickly returned to her usual lively self.</p>
+<p>At first, perhaps because master and apprentice had not seen each other for so long, there had been a slight awkwardness between them. Neither seemed quite sure how to act around the other.</p>
+<p>But as the atmosphere gradually warmed, that distance soon disappeared.</p>
+<p>Lorianne began by telling Sein about Feylis and the others.</p>
+<p>At present, his grandmaster and her group were fighting on the central battlefield of the Grand Apocalypse World Star Domain.</p>
+<p>More than a thousand years ago, when Sein first became stranded in a distant star domain, Feylis and the others had already been operating somewhere in that region. At the time, however, the Magus Civilization had yet to formally launch its offensive against the Grand Apocalypse World.</p>
+<p>Now, over...</p>
+</article>
+<article id="c2068" data-label="2068">
+<h2 class="chapter">Chapter 2068: Leaders Assembled 🔒</h2>
+<p>Lorianne was stationed at a frontline logistics base, where most of her work over the years had involved brewing potions and treating severely wounded Magus Civilization powerhouses.</p>
+<p>As for Sein’s question, she truly did not know the answer.</p>
+<p>She had never paid much attention to the situation in the forces of Myriad Springs Worlds.</p>
+<p>The only reason she knew anything about the fighting around the Grand Apocalypse World was because Feylis and the others were there.</p>
+<p>Across the vast Clash of Civilizations, even Rank Four and Rank Five mages represented only a small fraction of the forces involved.</p>
+<p>“When I left Myriad Springs Worlds, I heard the Destruction Spring Overlord mention that Tourmaline’s uncle would be arriving soon. She shouldn’t be in any real danger. I’ll ask the Arriba Chamber of Commerce about her later,” Sein said.</p>
+<p>Lorianne gave him a slightly envious look. “All your friends are overlord-level beings now, huh?”</p>
+<p>Sein...</p>
+</article>
+<article id="c2069" data-label="2069">
+<h2 class="chapter">Chapter 2069: Fighting Over Treasures 🔒</h2>
+<p>The summit between the high-ranking leaders of the Magus Civilization and the Immortal Realm was considered a top-level secret on the civilizational battlefield.</p>
+<p>On the Magus Civilization’s side, only the core powerhouses stationed in the Valthwain Star Domain who had reached peak Rank Six or above knew of this event.</p>
+<p>In fact, news of the summit had not even been made public within the Magus Alliance.</p>
+<p>Among the alliance’s member planes, perhaps only Titan World, Elven World, and Beastmen World had caught the faintest hint that something was happening.</p>
+<p>The summit was being held at the heart of the Valthwain Star Domain.</p>
+<p>Three majestic star cities stood side by side there, surrounded by nearly a thousand space fortresses.</p>
+<p>Apart from the familiar high-ranking figures of Magus World, several powerhouses with more mysterious backgrounds had also gathered at the site.</p>
+<p>“Hey, you bald donkey! This isn’t right at all! I sent a distress signal to the Buddhist Realm ages ago, yet I didn’t see so much as the shadow of a Buddhist legion until the war was already over!”</p>
+<p>The moment he arrived at the venue, the Great Monkey...</p>
+</article>
+<article id="c2070" data-label="2070">
+<h2 class="chapter">Chapter 2070: Summit 🔒</h2>
+<p>The farce of the Great Monkey of Destruction insisting on taking half of the Lamp-Bearing Buddha’s horn was merely a brief interlude before the high-level meeting began.</p>
+<p>Even overlord-level beings had an ordinary side. Once one interacted with them, it became clear that these majestic beings who stood above countless lives were not always as distant or unapproachable as others imagined.</p>
+<p>Sometimes, they even joked and bickered among themselves.</p>
+<p>The last few figures to arrive, however, held rather special status.</p>
+<p>When Nezha, the renowned sage-level powerhouse of the Chan Sect, entered the venue on her Wind-Fire Wheels, the murmurs within the conference hall immediately died away.[1]</p>
+<p>Wukong greeted her with a nod. The two were pretty good friends and had known each other for hundreds of thousands of years.</p>
+<p>However, Wukong’s relationship with another renowned sage of the Chan Sect—Yang Jian, who was also known as Erlang True Lord—was somewhat strained.</p>
+<p>He glanced behind Nezha and, as expected, saw no sign of Yang Jian. The Chan Sect had not sent him this time.</p>
+<p>Sending Nezha to attend this high-level meeting on the Magus Civilization’s battlefield had undoubtedly...</p>
+</article>
+<article id="c2071" data-label="2071">
+<h2 class="chapter">Chapter 2071: A Successful Summit 🔒</h2>
+<p>The high-level summit hosted by the Magus Civilization began shortly thereafter.</p>
+<p>The discussions mainly revolved around the overall war strategy for the next several thousand years, as well as the interests and demands of the various factions involved.</p>
+<p>If any faction leaders had concerns regarding recent military deployments, or requests they wished to raise, this was also the place to voice them.</p>
+<p>In truth, however, the Magus Civilization had already reached a consensus on most of the major policies long before the representatives of the various factions arrived.</p>
+<p>This summit was meant more to fill in the gaps and settle whatever issues remained.</p>
+<p>One such issue concerned the Buddhist faction.</p>
+<p>Lady Bev urged the Lamp-Bearing Buddha and the forces he represented to make use of the teleportation arrays as soon as possible and accelerate their deployment toward the border battlefields of the Grand Cosmic World.</p>
+<p>The Buddhist faction had been moving quite slowly. Even now, nearly one-third of its legions had yet to reach their designated combat zones.</p>
+<p>Part of the reason was that some of those legions still had their eyes on the enormous war profits being made on the Gallant Federation’s...</p>
+</article>
+<article id="c2072" data-label="2072">
+<h2 class="chapter">Chapter 2072: Young Aunt 🔒</h2>
+<p>After the high-level summit came to an end, Bi’an and Immortal Emperor Qinghua took their leave one after another.</p>
+<p>The Lamp-Bearing Buddha was also hauled away by the Great Monkey of Destruction, who had casually slung an arm around his shoulders.</p>
+<p>Meanwhile, the Great Sage of Demonic Heaven seemed to have something to discuss with Zenasus, the soul overmage of Magus World.</p>
+<p>Nezha, the Third Princess, did not leave immediately. Instead, she made her way toward Lady Bev and the others.</p>
+<p>After exchanging a few pleasantries, Nezha’s gaze settled on Gongsun Wudi, who had remained relatively inconspicuous beside Lady Bev throughout the entire summit.</p>
+<p>By this point, most of the other overlords had already departed, leaving only a handful of people behind.</p>
+<p>Nezha pointed toward Gongsun Wudi and asked through divine consciousness, <em>“Is she connected to the three people Locke took away from the Heavenly Prison back then?”</em></p>
+<p>Before Lady Bev could answer, Gongsun Wudi stepped forward and answered for herself.</p>
+<p>“The three people my sworn father took away back then were my elder brother and my two mothers.”</p>
+<p>She paused briefly...</p>
+</article>
+<article id="c2073" data-label="2073">
+<h2 class="chapter">Chapter 2073: Transit Hub 🔒</h2>
+<p>Bev had brought the Three Divine Children of Titan World to the Valthwain Star Domain for more than just a simple reunion with their aunts.</p>
+<p>At the high-level multilateral summit that had just concluded, nearly every faction involved in this Clash of Civilizations had sent representatives to attend.</p>
+<p>The only exception was the Magus Alliance. Its interests were already deeply intertwined with those of Magus World, so there was little need for an alliance overlord to participate.</p>
+<p>Besides, a summit of that level—one involving the division of interests among the major powers—was not really the sort of occasion where alliance overlords should involve themselves.</p>
+<p>Titan World, however, was a special case.</p>
+<p>Setting aside the fact that Titan World was currently the largest plane within the Magus Civilization, Odin was also Bev’s own younger brother. Naturally, she had to show them a little consideration.</p>
+<p>People were selfish by nature. Even the leaders of civilizations were not always exceptions.</p>
+<p>By summoning Hela and the others this time, Bev and Liese were essentially giving Titan World an advance heads-up on several...</p>
+</article>
+<article id="c2074" data-label="2074">
+<h2 class="chapter">Chapter 2074: Verdant Flame Faction Reunion 🔒</h2>
+<p>The two cultivators Sein and Lorianne had encountered were nothing more than a minor interlude during their journey through the network of teleportation arrays.</p>
+<p>There was no dramatic scene of Sein drawing his weapon to help someone in trouble. He had no interest in meddling in other people’s affairs.</p>
+<p>Besides, as Lorianne had pointed out, if Immortal Realm cultivators started fighting within the Magus Civilization’s territory, the Magus Civilization would most likely intervene.</p>
+<p>One was Rank Four and the other Rank Five. If the two of them truly came to blows, there was no way the commotion would remain small.</p>
+<p>The knights and mages stationed throughout the surrounding star domains were not decorative statues. If anything serious happened, someone would naturally step in.</p>
+<p>So why should Sein bother himself with such trivial matters?</p>
+<p>Still, this brief encounter once again reminded Sein of one major difference between the Immortal Realm Civilization and the Magus Civilization.</p>
+<p>At the very least, very few law-wielding black mages would dare openly target other Magus Civilization powerhouses on the Magus Civilization’s own battlefields.</p>
+<p>Sein and Lorianne encountered many other Immortal Realm cultivators and Magus Alliance members during their journey.</p>
+<p>Many Immortal...</p>
+</article>
+<article id="c2075" data-label="2075">
+<h2 class="chapter">Chapter 2075: Generous Gifts 🔒</h2>
+<p>The gathering of the Verdant Flame Faction’s members was naturally a joyful occasion.</p>
+<p>This time, Feylis had not summoned any of her grand apprentices below Rank Four. Only the few who had already stepped into the law-wielding realm were gathered here.</p>
+<p>With everyone together again, there was naturally plenty to talk about. They exchanged insights into the truths they had been exploring recently and shared their experiences on the civilizational battlefield so far.</p>
+<p>Everyone was also curious about what Sein had experienced after being cast into the shattered space-time corridor.</p>
+<p>By now, the Myriad Springs Worlds, the Dawn Empire, and the Insectoids had all officially intervened in the Magus Civilization battlefield. There was little reason to keep those matters secret anymore, so Sein openly recounted some of his experiences in the distant foreign star domains.</p>
+<p>“Myriad Springs Worlds… I actually traveled through that large-sized...</p>
+</article>
+<article id="c2076" data-label="2076">
+<h2 class="chapter">Chapter 2076: Family 🔒</h2>
+<p>In the end, although Sein had given away quite a few of the materials he had gathered on the Divine Descendants World battlefield, he also received plenty in return from his elders and seniors.</p>
+<p>Most of these gifts were materials the Verdant Flame Faction had obtained on the Grand Apocalypse World battlefield.</p>
+<p>In terms of scale, the war there was only slightly smaller than the one in Divine Descendants World.</p>
+<p>Naturally, some of the things Gregory, Bernice, and the others brought out were interesting to Sein.</p>
+<p>However, when Grandmaster Feylis was about to give him a gift as well, Sein quickly stopped her.</p>
+<p>“Grandmaster, I’ve recently encountered a major bottleneck in my exploration of the pyro element. What I need most right now is your guidance,” Sein said respectfully.</p>
+<p>Feylis smiled at him.</p>
+<p>“Very well. You may come directly to my laboratory whenever you need. I’ll repay your generous gift with knowledge instead.”</p>
+<p>The divine relic Sein had gifted Feylis was not only Rank Six, but also the highest-ranked among all the divine relics he had given out.</p>
+<p>Likewise, the blood crystal of Venerable Tianyang that Feylis...</p>
+</article>
+<article id="c2077" data-label="2077">
+<h2 class="chapter">Chapter 2077: Those Who Stay, Those Who Leave 🔒</h2>
+<p>The death crystals gathered from Fermont’s body, Marduk’s Rank Five pyro-attribute secondary divine relic, Venerable Tianyang’s overlord blood, and all the other rare materials Sein had brought back...</p>
+<p>The sight of these treasures dazzled Leena, but it also stirred Mikaeli, whose soul resided within her.</p>
+<p>At first, Mikaeli had no intention of speaking.</p>
+<p>Sein and Leena had not seen each other in years. This was their time to catch up and enjoy their long-awaited reunion.</p>
+<p>In the end, however, Mikaeli simply could not contain her curiosity.</p>
+<p>“Where did you get all these things?” she asked.</p>
+<p>As Mikaeli spoke, Leena walked over to the experimental table. She first picked up a death crystal and examined it before reaching for Marduk’s pyro-attribute secondary divine relic.</p>
+<p>A pair of dark elemental goggles materialised before her beautiful eyes as she immediately began analysing the properties of both crystals.</p>
+<p>After more than a thousand years of sharing the...</p>
+</article>
+<article id="c2078" data-label="2078">
+<h2 class="chapter">Chapter 2078: Socialize 🔒</h2>
+<p>Everyone journeyed through this world on a path of their own. Along the way, many paths might cross, but few would remain intertwined forever.</p>
+<p>Knights and mages of Rank One and above in the Magus Civilization generally enjoyed remarkably long lifespans.</p>
+<p>Upon reaching Rank One, one could typically live for around a thousand years.</p>
+<p>The theoretical lifespan of a Rank Two being was three thousand years, while a Rank Three could live for as long as ten thousand.</p>
+<p>Such longevity was enough to make countless beings from foreign worlds envious.</p>
+<p>In some worlds, even demigods could live for only a few hundred years at most.</p>
+<p>From another perspective, this was also one of the reasons Magus World had so many law-wielding powerhouses.</p>
+<p>After all, the longer one lived, the more time one had to accumulate the knowledge needed to achieve a breakthrough.</p>
+<p>Of course, there were always exception...</p>
+</article>
+<article id="c2079" data-label="2079">
+<h2 class="chapter">Chapter 2079: The Path to Rank Six 🔒</h2>
+<p>After all the social engagements were finally over, Sein at last had some time to himself.</p>
+<p>He first sent a message to Marie, informing her that he would soon be leading the Divine Tower of Ashes Legion back to Magus World.</p>
+<p>Now that the law-wielding mages had entered a period of rest and recuperation, the mage legions under their respective divine towers, along with the cannon-fodder legions of enslaved creatures, could finally enjoy some much-needed respite as well.</p>
+<p>After taking care of that, Sein returned to his laboratory.</p>
+<p>Now that he was finally home, he could afford to relax for a while.</p>
+<hr class="separator">
+<p>Those leisurely days did not last long.</p>
+<p>Sein had always been an extremely disciplined mage.</p>
+<p>After spending a few days with the Huusian sisters, Leena, and Reina, he soon returned to his usual routine of experiments and research.</p>
+<p>Selina and Eileen, however, could no longer participate in many of Sein’s activities as they once had.</p>
+<p>Although Sein had specially concocted a diluted Blood Crystal Potion to improve their physical condition, both women still showed clear signs of weakness in nearly every aspect of their health.</p>
+<p>Of course, the bond between people was never limited to physical intimacy alone.</p>
+<p>Lately, Sein had been making time to sit with the two women, chatting with them...</p>
+</article>
+<article id="c2080" data-label="2080">
+<h2 class="chapter">Chapter 2080: Friendly 🔒</h2>
+<p>Their discussion yielded new insights for both sides, with Feylis gaining particularly much from it.</p>
+<p>Sein had spent so many years away from her that even she did not fully understand the profound truths he had mastered over the course of his growth.</p>
+<p>As Sein gradually explained some of his core insights, Feylis found herself increasingly surprised.</p>
+<p>Eventually, he touched on so many topics that interested her that she could not help but ask, “When you were describing your core paths earlier, you mentioned something called <em>Mechanical Fusion</em>. What exactly is that?”</p>
+<p>“Have you already embarked on the path of mechanics?” Feylis asked curiously.</p>
+<p>“I even heard that you turned a Rank Six robot of the Gallant Federation against its own masters on the civilizational battlefield...” she added thoughtfully.</p>
+<p>In truth, Feylis had never taken much interest in mechanics. It was simply...</p>
+</article>
+<article id="c2081" data-label="2081">
+<h2 class="chapter">Chapter 2081: Sea Heart Flame 🔒</h2>
+<p>Perhaps because his relationship with the Dragon Clan had grown considerably closer, Sein received quite a few resources from White Stella as a parting gift before he left.</p>
+<p>Most were hydro-attribute resources, including many rare materials unique to the Immortal Realm.</p>
+<p>Among them, the one Sein valued most was a peculiar flame known as the <em>Sea Heart Flame</em>.</p>
+<p>According to White Stella, this wondrous flame had been born in the depths of an ocean on a medium-sized plane within the Immortal Realm.</p>
+<p>It had originally been a tribute to the Dragon Clan by the sea races of that plane before eventually being brought to the battlefields of the Magus Civilization.</p>
+<p>What made the Sea Heart Flame particularly unusual was that it actually gave off law fluctuations of the ocean.</p>
+<p>The flame could conjure towering waves and tsunamis, and...</p>
+</article>
+<article id="c2082" data-label="2082">
+<h2 class="chapter">Chapter 2082: Return to Magus World 🔒</h2>
+<p>The days spent pursuing truth were brief, fulfilling, and enjoyable.</p>
+<p>Before they knew it, the time had come for Feylis and the others to set out on another expedition.</p>
+<p>White Stella and her group near the border of the Apocalypse Star Domain had already departed half a year earlier.</p>
+<p>Since Sein was now on a pretty good relationship with the Dragon Clan, White Stella had specially sent someone to inform him before they left.</p>
+<p>The person she sent was Orric, the Rank Five Ocean King.</p>
+<p>By now, Orric had firmly aligned himself with the combat forces of Magus World’s sea races.</p>
+<p>During the years he had led his Aquarian Legion under White Stella’s command, he and his people had also gained considerable benefits.</p>
+<p>White Stella was indeed one of the few generous powerhouses in the Magus Civilization willing to share benefits with the allied forces fighting under her command.</p>
+<p>Most other powerhouses, including Sein, were usually more inclined to squeeze as...</p>
+</article>
+<article id="c2083" data-label="2083">
+<h2 class="chapter">Chapter 2083: Meeting the Phantom Crow King Again 🔒</h2>
+<p>On the way back to Magus World, Sein first dropped Lorianne off at her logistics base near the front lines.</p>
+<p>Since Lorianne still had several years of unused leave remaining, returning to duty ahead of schedule simply meant that the rest of her leave would be carried over to her next rest period.</p>
+<p>Lorianne told Sein that once she had accumulated a longer stretch of leave, she would return to Magus World.</p>
+<hr class="separator">
+<p>After bidding farewell to his mentor, Sein continued on his journey home.</p>
+<p>Since Reina and Sia each had their own space fortress, three space fortresses were returning to Magus World together this time.</p>
+<p>Sein had previously conceived several experiments involving the integration of multiple space fortresses.</p>
+<p>However, three fortresses were clearly not enough to achieve what he had envisioned.</p>
+<p>More importantly, mechanically transforming space fortresses carried considerable risks.</p>
+<p>If such an experiment went wrong, the consequences could be severe, as shown by the two successive waves of God of Black Mist followers that had been wiped out inside the planetary-class fortress back then.</p>
+<p>For that reason, Sein intended to wait until he returned to Magus World before making...</p>
+</article>
+<article id="c2084" data-label="2084">
+<h2 class="chapter">Chapter 2084: Hands-off Approach and Familiar 🔒</h2>
+<p>After bidding farewell to the Phantom Crow King, Sein continued toward Magus World.</p>
+<p>As the familiar world gradually came into view, Sein could not help but murmur, “I’m back, Magus World.”</p>
+<hr class="separator">
+<p>The three space fortresses eventually docked side by side at the Titans’ starport outside Magus World.</p>
+<p>These were all berths Thor had reserved for them anyway, so there was no reason not to make use of them.</p>
+<p>Besides, just like the last time Sein had passed through, there were very few space fortresses currently docked at this starport.</p>
+<p>Most of the Titans’ main forces were still fighting in the Valthwain Star Domain, which Sein himself had left not long ago.</p>
+<p>It was only natural that so few space fortresses remained here.</p>
+<p>Once the three fortresses were docked, Sein’s group and the mages under his command began...</p>
+</article>
+<article id="c2085" data-label="2085">
+<h2 class="chapter">Chapter 2085: House Grantt 🔒</h2>
+<p>Sein absolutely hated being disturbed in the middle of an experiment.</p>
+<p>Azelia and Yuri had both been with him for many years, so naturally, they were well aware of this.</p>
+<p>There were, however, a few exceptions.</p>
+<p>Members of the Verdant Flame Faction were one exception. Urgent matters were another, as were visits from members of Sein’s immediate family.</p>
+<p>Besides, Azelia also had a feeling that Sein was almost done with his current mechanical experiment.</p>
+<p>“Someone from House Grantt, huh...” Sein murmured as he rose from the experimental table and glanced out of the window.</p>
+<p>In truth, House Grantt had not come to visit on their own accord. As soon as Sein returned to Magus World, he had already sent a message to his family.</p>
+<p>His great-grandfather, Julius, had failed twice in his attempts to advance...</p>
+</article>
+<article id="c2086" data-label="2086">
+<h2 class="chapter">Chapter 2086: Blood Crystal Life Potion 🔒</h2>
+<p>House Grantt was currently situated on one of the most fertile plains in Ashenreach. The surrounding region was rich in underground resources and bordered by several exceptionally vast magic beast forests.</p>
+<p>As Sein’s own family, House Grantt now directly controlled at least seven empires and human kingdoms of varying sizes throughout Ashenreach.</p>
+<p>As for the smaller kingdoms and factions that fell within its sphere of influence, there were simply too many to count.</p>
+<p>With the Divine Tower of Ashes at the heart of the region, more than thirty human nations in the surrounding territories were now under House Grantt’s influence to varying degrees.</p>
+<p>Even foreign Land Knights or Sky Knights hoping to establish kingdoms of their own in Ashenreach would usually pay a visit to House Grantt first.</p>
+<p>Sein’s rise had indeed lifted the entire House Grantt along with him.</p>
+<p>As long as his Divine Tower of Ashes remained...</p>
+</article>
+<article id="c2087" data-label="2087">
+<h2 class="chapter">Chapter 2087: Experimental Modification 🔒</h2>
+<p>Deep within the dimly lit cave, Sein found Julius sitting cross-legged on a platform at its centre.</p>
+<p>Every knight house in Magus World had its own training methods, and House Grantt was no exception.</p>
+<p>The moment Sein stepped inside, he noticed that the concentration of pyro elemental particles was unusually high.</p>
+<p>Clearly, House Grantt had specially prepared this cave as a secluded training ground.</p>
+<p>As Sein approached, Julius slowly opened his eyes.</p>
+<p>“You’re here, Sein,” he said in a deep voice.</p>
+<p>As the founder of House Grantt and Sein’s elder, Julius, much like Kelman, had no reason to speak overly respectfully toward Sein simply because of the latter’s current strength and status.</p>
+<p>Sein nodded. “I’ve come to help, Great-Grandfather.”</p>
+<p>Then, without beating around the bush, he said, “If possible, I’d also like...</p>
+</article>
+<article id="c2088" data-label="2088">
+<h2 class="chapter">Chapter 2088: Overlord’s Eye 🔒</h2>
+<p>Julius and the Reverse Winged Lion King had not immediately advanced to Rank Four.</p>
+<p>Even with Sein’s strength as a peak Rank Five mage, all he could really do was give them one more chance.</p>
+<p>If Sein truly possessed the ability to mass-produce Rank Four beings, he would not have needed to worry so much about Selina, Eileen, and Sev as their soul flames neared their end.</p>
+<p>That said, Julius and the Reverse Winged Lion King did possess certain advantages that Selina and the others lacked.</p>
+<p>Julius had embarked on the path of a knight, while the Reverse Winged Lion King had produced many offspring over the years. In some respects, these conditions gave the pair slightly better odds.</p>
+<p>Furthermore, the success rate of knights advancing in rank was inherently higher than that of mages at the same level.</p>
+<p>This could already be seen from the ratio...</p>
+</article>
+<article id="c2089" data-label="2089">
+<h2 class="chapter">Chapter 2089: Omnipotent Trait 🔒</h2>
+<p>Discovering an overlord’s eye in a collection room he had barely paid attention to in years was something Sein had never expected.</p>
+<p>As he stared at the eyeball before him, he searched through his memories for quite some time before finally recalling that Tourmaline did leave him a gift.</p>
+<p>It must have been around the time the war on Planet Aquaria ended.</p>
+<p>Back then, Tourmaline’s father had travelled to Aquaria to visit Tourmaline, White Stella, and the others.</p>
+<p>It was also around that time that White Stella advanced to Rank Six.</p>
+<p>“I never expected Tourmaline to have left me such a grand gift so long ago.”</p>
+<p>Sein gazed at the eyeball before him and gradually fell into thought.</p>
+<p>“This overlord’s eye…”</p>
+<p>Tourmaline should still be travelling with the Myriad Springs Worlds Legion at the moment.</p>
+<p>White Stella had previously mentioned that Tourmaline would be returning...</p>
+</article>
+<article id="c2090" data-label="2090">
+<h2 class="chapter">Chapter 2090: Apprentice 🔒</h2>
+<p>Sein gradually began to uncover the <em>Omnipotent </em>trait contained within the overlord soul.</p>
+<p>Leena, Fermera, HALL-E, and the others provided considerable assistance throughout the research, and almost every day brought some new discovery.</p>
+<p>The mysterious energy within the overlord’s eye greatly fascinated Sein. At one point, he even considered extracting it from the eyeball for further study.</p>
+<p>“Apart from the overlord soul, which is already an extremely special form of energy, the eye itself is also incredibly valuable,” Sein commented as he carefully examined the eyeball before him.</p>
+<p>“A material of this calibre would be more than enough for crafting a world-class secret treasure. It’s just a shame there isn’t enough of it.”</p>
+<p>Based on his findings, Sein suspected that the eye had once belonged to the overlord of the Grand Eye Demon World, who had betrayed the Magus Civilization.</p>
+<p>The Evileye Tyrant Monarch had been really unlucky. Even at the moment...</p>
+</article>
+<article id="c2091" data-label="2091">
+<h2 class="chapter">Chapter 2091: Socializing 🔒</h2>
+<p>Marie’s question did not receive an immediate answer.</p>
+<p>Instead, Sein found himself recalling something from his time on Primeval Wilds Plane.</p>
+<p>Grandmaster Feylis had asked him to set aside some time to give a few lessons to the younger members of the Verdant Flame Faction who were Rank Four or below.</p>
+<p>Despite how busy Sein had been at the time, he had still completed the task entrusted to him.</p>
+<p>During those lessons, he had not only shared some of his understanding of the deeper mysteries of the pyro element, but also touched upon the principles behind Verdant Flame magic.</p>
+<p>Those accepted into the Verdant Flame Faction, particularly the Rank One to Rank Three mages, were undoubtedly exceptional talents with very high intelligence.</p>
+<p>Yet throughout all his lectures, not a single one of them had truly caught Sein’s attention or left a particularly deep impression on him.</p>
+<p>They were certainly clever. However, whenever Sein deliberately slipped some of his own more profound insights into his lectures, none of them seemed able to grasp what he was really trying to convey.</p>
+<p>Afterward, Sein wondered if perhaps the problem lay with him. Maybe what he had taught was simply too advanced.</p>
+<p>Even Bernice, who had attended several of his lectures, later remarked that some of the elemental knowledge Sein had shared was simply too advanced for most of those present.</p>
+<p>Some of it would have been difficult even for a demigod-level mage to fully grasp, let alone mages of lower ranks.</p>
+<p>Back when Sein was still at the Divine Tower of Verdant Spring, Lorianne had always given him preferential treatment. Because of that, Sein had rarely taken the routine duties assigned to him by the academy very...</p>
+</article>
+<article id="c2092" data-label="2092">
+<h2 class="chapter">Chapter 2092: Common Traits 🔒</h2>
+<p>This female initiate was by no means a top-tier genius.</p>
+<p>Throughout the entire Regional Inter-Divine Tower Academy War, she had barely stood out. She was a senior initiate, but she seemed to have broken through only recently.</p>
+<p>Even so, she possessed something many of the other initiates lacked… the patience to endure and the resolve to strike without hesitation when the moment came.</p>
+<p>The harsh environment around her did not seem to affect her in the slightest.</p>
+<p>Even though the sharp thorns of the Woodthorn Grass had already pierced her skin, she remained perfectly still, without so much as flinching.</p>
+<p>She was clearly exceptionally skilled at concealment, and it was obvious that this ambush had been carefully planned in advance.</p>
+<p>The pungent, acrid scent of the Woodthorn Grass masked...</p>
+</article>
+<article id="c2093" data-label="2093">
+<h2 class="chapter">Chapter 2093: Catherine 🔒</h2>
+<p>Throughout the rest of the academy war, the female initiate continued to perform remarkably.</p>
+<p>She rarely fought alongside the other magic initiates from the Divine Tower of Radiant Sun. Most of the time, she operated alone, constantly searching for opportunities to hunt down her opponents.</p>
+<p>Given how much modern divine tower education emphasized teamwork, her approach was certainly somewhat unconventional.</p>
+<p>In that respect, she actually resembled the black magic initiates of Blackhaven.</p>
+<p>Those black magic initiates were often trained to operate independently at the forefront, and the environment they grew up in was even harsher. Naturally, that also fostered greater patience, resilience, and the ability to endure hardship.</p>
+<p>However, there was one important difference between this female initiate and the black magic initiates of Blackhaven.</p>
+<p>Despite preferring to operate alone, she still possessed the sense of responsibility and dedication to the collective commonly instilled in initiates from regular divine towers. She would still fight to secure resource points for the Divine Tower of Radiant Sun and contribute toward the overall objectives of its legions.</p>
+<p>She simply did so in her own way, roaming the...</p>
+</article>
+<article id="c2094" data-label="2094">
+<h2 class="chapter">Chapter 2094: Sein’s First Apprentice 🔒</h2>
+<p>For law-wielding mages, many of the troubles that ordinary people found difficult to resolve were hardly worth mentioning.</p>
+<p>If some other Rank Three grand mage tried to recruit an initiate from a Rank Six divine tower, nine times out of ten, they would be turned away.</p>
+<p>After all, why should a Rank Six tower master do them such a favor?</p>
+<p>For Sein, however, it was merely a minor inconvenience.</p>
+<p>The Divine Tower of Ashes had maintained close ties with the Byrne Empire for many years, particularly with its military, which Sein had dealt with on numerous occasions.</p>
+<p>He would not even need to handle the matter personally. A word to a few familiar divine towers that frequently cooperated with the Byrne Empire would probably be enough to settle things.</p>
+<p>The real question was whether the girl named Catherine was worth Sein going to such lengths for.</p>
+<p>When Marie told him her name, Sein’s first thought was…</p>
+<p><em>What a coincidence.</em></p>
+<p>The languages and scripts of Magus World...</p>
+</article>
+<article id="c2095" data-label="2095">
+<h2 class="chapter">Chapter 2095: Stubborn Girl 🔒</h2>
+<p>Sometimes, things in this world were just that strange.</p>
+<p>Sein, a peak Rank Five grand mage who had gone nearly ten thousand years without ever taking an apprentice, had finally decided to accept one. Yet just when he had made up his mind, things did not go quite as smoothly as he expected.</p>
+<p>After returning to his laboratory at the Divine Tower of Ashes that day, Sein received an unexpected report from Marie.</p>
+<p>Her attempt to poach Catherine had failed.</p>
+<p>“What? The Divine Tower of Radiant Sun refuses to let her go?” Sein asked with a frown.</p>
+<p>He had never dealt with the Divine Tower of Radiant Sun before. If its tower master or academy dean refused to grant him this favor, Sein was hardly in a position to force the issue.</p>
+<p>“No, that’s not it. Dean Miladin of the Divine Tower of Radiant Sun is actually quite reasonable. He has already agreed to transfer Catherine’s contract to our Divine Tower of Ashes,” Marie explained.</p>
+<p>“In fact, Master Miladin and the Divine...</p>
+</article>
+<article id="c2096" data-label="2096">
+<h2 class="chapter">Chapter 2096: Grow On Her Own 🔒</h2>
+<p>While the Rank Two mage was speaking with Catherine in the library of the Divine Tower of Radiant Sun, neither of them realized that four other people were nearby.</p>
+<p>Two of them were Sein and Marie.</p>
+<p>The other two were Tiertz, a Rank Five mage, and Miladin, the demigod-level dean of the Divine Tower of Radiant Sun.</p>
+<p>Sein had made a trip to the Divine Tower of Radiant Sun in the Byrne Empire to find out why the apprentice he had personally chosen was unwilling to come to the Divine Tower of Ashes.</p>
+<p>After hearing Catherine’s earlier conversation with the Rank Two elder mage, Sein fell silent.</p>
+<p><em>Is it really just about honoring the spirit of a contract...? No, it’s probably more than that.</em></p>
+<p><em>This girl places immense importance on keeping the promises she made!</em></p>
+<p>As Sein looked at Catherine, he suddenly thought back to the promises he...</p>
+</article>
+<article id="c2097" data-label="2097">
+<h2 class="chapter">Chapter 2097: Two Knightly Orders 🔒</h2>
+<p>Setting Catherine’s matter aside for the time being, Sein returned to his laboratory in the Divine Tower of Ashes and once again took out the fist-sized Venerable Tianyang’s blood crystal from his spatial storage equipment.</p>
+<p>“The profound mysteries of pyro elemental energy, huh…? And those three flames I saw in Grandmaster’s laboratory...” Sein mused to himself.</p>
+<p>Time always passed quickly during research.</p>
+<p>In the blink of an eye, another fifty years had gone by.</p>
+<p>The grand necromancer mentioned by his mother-in-law, Sia, had still not arrived at the Divine Tower of Ashes, largely because of the ongoing war on the front lines.</p>
+<p>Naturally, Sein could not remain here waiting for him indefinitely.</p>
+<p>Over the past fifty years, aside from immersing himself in experimental research day and night, Sein had also made a trip to Sky City.</p>
+<p>Meanwhile,...</p>
+</article>
+<article id="c2098" data-label="2098">
+<h2 class="chapter">Chapter 2098: Seven Space Fortresses 🔒</h2>
+<p>The names chosen by the two Rank Four knights for their respective knightly orders clearly reflected their individual strengths and characteristics.</p>
+<p>In the future, those names would also influence the kind of knights their orders attracted, much like Sein’s Divine Tower of Ashes naturally drew in mostly pyromancers.</p>
+<p>Aside from their names, the two Rank Four knights had also more or less settled on the locations of their orders and branch halls, having already gone over them with Sein during their earlier discussions.</p>
+<p>As “newcomers” who had only recently settled in Ashenreach, their orders were located somewhat farther from Sein’s Divine Tower of Ashes. At best, the locations could only be considered above average.</p>
+<p>Likewise, the territories covered by their branch halls...</p>
+</article>
+<article id="c2099" data-label="2099">
+<h2 class="chapter">Chapter 2099: The Concept of Fusion 🔒</h2>
+<p>Knowing the right people really did make things easier, especially when those connections had been forged through war.</p>
+<p>As a magic beast, the Reverse Winged Lion King naturally had its own circle of acquaintances within Magus World.</p>
+<p>However, Rank Four and above magic beasts were nowhere near as organized as the divine towers or knightly orders, and they had always received relatively little attention from the upper echelons of the Magus Civilization.</p>
+<p>Meanwhile, sea beasts, which made up a considerable portion of the magic beast population, were generally classified among the sea races instead.</p>
+<p>As a result, the Reverse Winged Lion King had few opportunities to establish closer ties with other magic beast kings, much less seek guidance or assistance from powerful elders of his race.</p>
+<p>By making the introductions, Sein had essentially done it a favor.</p>
+<p>Besides, the continued prosperity of Ashenreach’s magic beasts would benefit both Sein and the region as a whole.</p>
+<p>At the very least, whenever the local knightly orders or divine towers needed suitable targets for trials, powerful mounts, or rare magic ingredients, they would never be short of options.</p>
+<p>When Milena...</p>
+</article>
+<article id="c2100" data-label="2100">
+<span id="last"></span>
+<h2 class="chapter">Chapter 2100: Path to Rank Six Mechanic 🔒</h2>
+<p>Sein spent a total of five years in Steel City.</p>
+<p>During that time, he held dozens of discussions with several Rank Four mechanics about the modifications to his space fortresses.</p>
+<p>Naturally, those discussions also involved the blueprints Sein had drawn up and some of his ideas for the combined fortress.</p>
+<p>At first, the mechanics of Steel City were skeptical that Sein could actually control something so massive.</p>
+<p>Their doubts quickly faded, however, when Sein showed them recordings of his battles in the Divine Descendants Star Domain and demonstrated the true nature of his mechanical fusion with Fermera, the eight-winged angel.</p>
+<p>The Steel City mechanics were stunned.</p>
+<p>The magnificent and mysterious law energy revealed by the Magic Cube during the demonstration naturally did not escape the eyes of these highly accomplished mechanics.</p>
+<p>The Rank...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="2101-2150.html" rel="next">Next: Chs 2101–2117 &rarr;</a>
+    <p class="page-end-links"><a href="2001-2050.html" rel="prev">&larr; Chs 2001–2050</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 2051–2100</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c2051">Chapter 2051: Inert Crystal Deal 🔒</a></li>
+        <li><a href="#c2052">Chapter 2052: The Thousand-Year Assistant 🔒</a></li>
+        <li><a href="#c2053">Chapter 2053: Incident 🔒</a></li>
+        <li><a href="#c2054">Chapter 2054: An Audience with the Empress 🔒</a></li>
+        <li><a href="#c2055">Chapter 2055: Promise 🔒</a></li>
+        <li><a href="#c2056">Chapter 2056: Peak of Rank Five 🔒</a></li>
+        <li><a href="#c2057">Chapter 2057: Blood Mosquitoes Flee, Yunqi Withdraws 🔒</a></li>
+        <li><a href="#c2058">Chapter 2058: The Arrival of the Buddhist Faction 🔒</a></li>
+        <li><a href="#c2059">Chapter 2059: Chase and the Escape 🔒</a></li>
+        <li><a href="#c2060">Chapter 2060: Army of Immortal Realm Rogue Cultivators 🔒</a></li>
+        <li><a href="#c2061">Chapter 2061: No Victors in War 🔒</a></li>
+        <li><a href="#c2062">Chapter 2062: Getting Rewarded 🔒</a></li>
+        <li><a href="#c2063">Chapter 2063: Auction 🔒</a></li>
+        <li><a href="#c2064">Chapter 2064: Return to the Magus Civilization 🔒</a></li>
+        <li><a href="#c2065">Chapter 2065: Major Change 🔒</a></li>
+        <li><a href="#c2066">Chapter 2066: Magic Tea House 🔒</a></li>
+        <li><a href="#c2067">Chapter 2067: Expansion of Influence 🔒</a></li>
+        <li><a href="#c2068">Chapter 2068: Leaders Assembled 🔒</a></li>
+        <li><a href="#c2069">Chapter 2069: Fighting Over Treasures 🔒</a></li>
+        <li><a href="#c2070">Chapter 2070: Summit 🔒</a></li>
+        <li><a href="#c2071">Chapter 2071: A Successful Summit 🔒</a></li>
+        <li><a href="#c2072">Chapter 2072: Young Aunt 🔒</a></li>
+        <li><a href="#c2073">Chapter 2073: Transit Hub 🔒</a></li>
+        <li><a href="#c2074">Chapter 2074: Verdant Flame Faction Reunion 🔒</a></li>
+        <li><a href="#c2075">Chapter 2075: Generous Gifts 🔒</a></li>
+        <li><a href="#c2076">Chapter 2076: Family 🔒</a></li>
+        <li><a href="#c2077">Chapter 2077: Those Who Stay, Those Who Leave 🔒</a></li>
+        <li><a href="#c2078">Chapter 2078: Socialize 🔒</a></li>
+        <li><a href="#c2079">Chapter 2079: The Path to Rank Six 🔒</a></li>
+        <li><a href="#c2080">Chapter 2080: Friendly 🔒</a></li>
+        <li><a href="#c2081">Chapter 2081: Sea Heart Flame 🔒</a></li>
+        <li><a href="#c2082">Chapter 2082: Return to Magus World 🔒</a></li>
+        <li><a href="#c2083">Chapter 2083: Meeting the Phantom Crow King Again 🔒</a></li>
+        <li><a href="#c2084">Chapter 2084: Hands-off Approach and Familiar 🔒</a></li>
+        <li><a href="#c2085">Chapter 2085: House Grantt 🔒</a></li>
+        <li><a href="#c2086">Chapter 2086: Blood Crystal Life Potion 🔒</a></li>
+        <li><a href="#c2087">Chapter 2087: Experimental Modification 🔒</a></li>
+        <li><a href="#c2088">Chapter 2088: Overlord’s Eye 🔒</a></li>
+        <li><a href="#c2089">Chapter 2089: Omnipotent Trait 🔒</a></li>
+        <li><a href="#c2090">Chapter 2090: Apprentice 🔒</a></li>
+        <li><a href="#c2091">Chapter 2091: Socializing 🔒</a></li>
+        <li><a href="#c2092">Chapter 2092: Common Traits 🔒</a></li>
+        <li><a href="#c2093">Chapter 2093: Catherine 🔒</a></li>
+        <li><a href="#c2094">Chapter 2094: Sein’s First Apprentice 🔒</a></li>
+        <li><a href="#c2095">Chapter 2095: Stubborn Girl 🔒</a></li>
+        <li><a href="#c2096">Chapter 2096: Grow On Her Own 🔒</a></li>
+        <li><a href="#c2097">Chapter 2097: Two Knightly Orders 🔒</a></li>
+        <li><a href="#c2098">Chapter 2098: Seven Space Fortresses 🔒</a></li>
+        <li><a href="#c2099">Chapter 2099: The Concept of Fusion 🔒</a></li>
+        <li><a href="#c2100">Chapter 2100: Path to Rank Six Mechanic 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="2001-2050.html" rel="prev">&larr; Chs 2001–2050</a>    <a href="../../index.html">Library</a>
+<a href="2101-2150.html" rel="next">Chs 2101–2117 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

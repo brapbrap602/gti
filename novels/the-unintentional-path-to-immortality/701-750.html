@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unintended Immortality Chs 701–720</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="651-700.html#last">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c701">Chapter 701: The Strength of Lady Calico 🔒</a></li>
+        <li><a href="#c702">Chapter 702: Another Old Story 🔒</a></li>
+        <li><a href="#c703">Chapter 703: Old Memories Stir, Quietly Awaiting an Old Friend’s Return 🔒</a></li>
+        <li><a href="#c704">Chapter 704: An Old Friend Prepares Chicken and Millet 🔒</a></li>
+        <li><a href="#c705">Chapter 705: Idle Matters in the Mountains 🔒</a></li>
+        <li><a href="#c706">Chapter 706: The Last Group of Old Friends 🔒</a></li>
+        <li><a href="#c707">Chapter 707: The Cycle of Succession 🔒</a></li>
+        <li><a href="#c708">Chapter 708: How Could I Impose? 🔒</a></li>
+        <li><a href="#c709">Chapter 709: A Place Where the Heart is at Ease 🔒</a></li>
+        <li><a href="#c710">Chapter 710: Still Remembering That Time 🔒</a></li>
+        <li><a href="#c711">Chapter 711: Between Heaven and Earth, Old Friends Come to Yin-Yang Mountain 🔒</a></li>
+        <li><a href="#c712">Chapter 712: Extra Chapter 1: The Eternal General Without Defeat, Achievements Unequaled in the World 🔒</a></li>
+        <li><a href="#c713">Chapter 713: Extra Chapter 2: The Next Twenty Years 🔒</a></li>
+        <li><a href="#c714">Chapter 714: Extra Chapter 3 🔒</a></li>
+        <li><a href="#c715">Chapter 715: Extra Chapter 4 🔒</a></li>
+        <li><a href="#c716">Chapter 716: Extra Chapter 5 🔒</a></li>
+        <li><a href="#c717">Chapter 717: Extra Chapter 6 (I) Lady Calico’s Modern Travelogue (Part One) 🔒</a></li>
+        <li><a href="#c718">Chapter 718: Extra Chapter 6 (II) 🔒</a></li>
+        <li><a href="#c719">Chapter 719: Extra Chapter 7 (I) Lady Calico’s Modern Travelogue (Part Two) 🔒</a></li>
+        <li><a href="#c720">Chapter 720: Extra Chapter 7 (II) 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="the-unintentional-path-to-immortality">
+<article id="c701" data-label="701">
+<h2 class="chapter">Chapter 701: The Strength of Lady Calico 🔒</h2>
+<p>“This tiger has cultivated into a demon!”</p>
+<p>“It must have! Otherwise, how could it grow that big? And how could it slaughter all those armed bandits in just a few moves?”</p>
+<p>“It didn’t eat the bandits! And it spared us!”</p>
+<p>“Could it be the mountain god of this range?”</p>
+<p>“Ah, heavenly spirits revealing themselves to save us…”</p>
+<p>The crowd was still shaken, but noisy all the same.</p>
+<p>“Sir! Sir!”</p>
+<p>Someone finally came back to their senses, recalling what had just happened, and looked toward Song You’s group.</p>
+<p>“May I ask, sir, whether you are acquainted with that… that…”</p>
+<p>“Mountain Lord,” Song You prompted.</p>
+<p>“Yes, yes! Mountain Lord! Sir, are you acquainted with the Mountain Lord?” someone asked.</p>
+<p>“We met many years ago.”</p>
+<p>“No wonder, we often hear that travelers are robbed and killed by bandits on this road, but never that the Mountain Lord came to save them. In truth, we all owe our lives to you, sir!”</p>
+<p>As he spoke, the man quickly bowed deeply.</p>
+<p>The others, realizing the same, hurried to follow suit.</p>
+<p>“Please don’t,” Song You shook his head. “Your thanks should go to the Mountain Lord.”</p>
+<p>“Yes, yes…”</p>
+<p>The man immediately turned toward the direction the Mountain Lord had departed and bowed there instead.</p>
+<p>The others also turned around to bow.</p>
+<p>“The bandits have been dealt with. This place isn’t safe to linger,” the Daoist said. From the moment the tiger appeared, he had pulled little Jiang Han in front of him, covering her eyes the whole time. Now, glancing...</p>
+</article>
+<article id="c702" data-label="702">
+<h2 class="chapter">Chapter 702: Another Old Story 🔒</h2>
+<p><em>“Flap, flap, flap…”</em></p>
+<p>The Daoist and the little girl were slowly making their way along the mountain road, the Daoist leaning on his staff. Suddenly, a swallow flew in and landed in the treetops.</p>
+<p>“Sir, up ahead there’s a group of constables and soldiers. They seem to have something to do with you.”</p>
+<p>“Oh? Constables and soldiers? How would they have anything to do with me?”</p>
+<p>“They seem to be escorting something, and there’s an official with them. They’ve stopped to rest by the roadside. After we passed them, some common folk who saw them asked the official if they could travel together. The official kindly agreed, and then I heard him ask those commoners if they knew Yin-Yang Mountain in Lingquan County.”</p>
+<p>“I see…” The Daoist walked on, thinking.</p>
+<p>The official road wound around the mountains like an earthen serpent, sometimes exposing patches of stone beneath, but it was fairly easy to walk.</p>
+<p><em>“Flap, flap, flap…”</em></p>
+<p>The swallow glanced at Lady Calico, who was acting as a porter for little Jiang Han, and decided scouting ahead was far more pleasant, so it flew off again.</p>
+<p>Lady Calico, on the other hand, didn’t feel tired at all. She chatted with Jiang Han as they walked, teaching her a bit of cat speech. But after a while, she suddenly...</p>
+</article>
+<article id="c703" data-label="703">
+<h2 class="chapter">Chapter 703: Old Memories Stir, Quietly Awaiting an Old Friend’s Return 🔒</h2>
+<p>The white crane delivered the encyclopedia back to Hidden Dragon Temple on Yin-Yang Mountain. Song You, meanwhile, rested for the night on the open ground, setting out again only the next day.</p>
+<p>They were now within the borders of Yizhou.</p>
+<p>The Daoist and Lady Calico traveled onward. It was already quite warm in late spring, and even in the mountains at night it was not cold. They often camped out under the open sky wherever they happened to be. If they were thirsty, they sought mountain springs or asked for water from roadside households. If their food ran short, they bought some in the towns along the way or from mountain villagers. It was convenient enough that they had little to worry about.</p>
+<p>Yizhou, too, had fallen into disorder.</p>
+<p>As the Daoist journeyed on, whether from invitations by villagers or chance encounters on the road, they ran into quite a few rampaging demons and monsters.</p>
+<p>Naturally, it was Lady Calico and the swallow who did the fighting.</p>
+<p>Sometimes they received silver as thanks, sometimes a good meal, sometimes a bounty of dried rations and fruit. They were all gains in their own way.</p>
+<p>Because of this, their pace slowed considerably.</p>
+<p>In some places, there were so many demons and malicious spirits in the mountains that Song You would linger to eat and drink while Lady Calico and the swallow went about demon-hunting. The grateful villagers would insist on putting them up for the night and serving them a banquet. At first, Song You thought this was simply rustic hospitality. But after one such evening feast and a night’s rest, he discovered that the neighboring village had already heard the news, and people arrived at dawn to line up and extend...</p>
+</article>
+<article id="c704" data-label="704">
+<h2 class="chapter">Chapter 704: An Old Friend Prepares Chicken and Millet 🔒</h2>
+<p><em>“Flutter, flutter…”</em></p>
+<p>The swallow returned, and with it came the short sword. Without a word, it perched on a bamboo tip and began grooming its feathers.</p>
+<p>The Daoist was still sitting at the doorway, waiting.</p>
+<p>The sun sank in the west; twilight brought drifting wisps of mist.</p>
+<p>The Daoist sat there all night. Lady Calico and little Jiang Han also sat there all night. The swallow stayed on its bamboo perch all night. And the yellow dog, too, lay in front of them, keeping its eyes on them the whole night and guarding faithfully. When the chickens returned to their coop, it lay at the coop’s door; when they came out, it stood watch over them.</p>
+<p>It wasn’t until the next morning that the dog suddenly turned its head, looking off into the distance. Then it ignored the Daoist entirely, bounded off, and disappeared into the bamboo grove.</p>
+<p>Song You knew at once that its master had returned.</p>
+<p>A moment later, a faint <em>ding-ding</em> sound echoed through the mountains. It was likely the bell on a mule or horse, though it was hard to tell from where.</p>
+<p>The sound drew nearer, clearer.</p>
+<p>Now its direction was obvious, but the secluded dwelling was blocked by dense bamboo; the Daoist couldn’t see anything.</p>
+<p>Even so, the Daoist before the bamboo...</p>
+</article>
+<article id="c705" data-label="705">
+<h2 class="chapter">Chapter 705: Idle Matters in the Mountains 🔒</h2>
+<p>The previous day, a light drizzle had fallen in the mountains. After killing the chicken, Heroine Wu took a walk into the bamboo grove, and when she came back, she had picked a few termite mushrooms. In Yizhou they were usually called <em>mountain mushrooms</em>. She used the old hen from the bamboo grove to stew a pot of chicken and mushroom soup. A layer of golden chicken fat floated on the surface, the rich fragrance of <em>termite mushroom</em> filling the air.</p>
+<p>While the soup simmered, she took down some cured meat hanging from the beam, scrubbed it clean, and stir-fried it with garlic sprouts. With the two mushrooms left over, she simply stir-fried them as well. Everything was served in big, rough clay bowls.</p>
+<p>The old wooden table and the unpretentious but abundant dishes formed a scene full of homely warmth.</p>
+<p>The old friends sat facing each other, eating meat in big mouthfuls and talking as they ate.</p>
+<p>Because she needed to look after little Jiang Han, Lady Calico didn’t revert to her true form but kept her human guise. Sitting on a bench beside the child, she fed her while listening to the two converse, and making sure the unsteady Jiang Han didn’t...</p>
+</article>
+<article id="c706" data-label="706">
+<h2 class="chapter">Chapter 706: The Last Group of Old Friends 🔒</h2>
+<p>At night, in the mountains…</p>
+<p>A bonfire became a lone star amid the great mountain ranges, surrounded by the chorus of insects and the crackling of burning wood. Occasionally, a firefly would drift out from the trees, passing in front of the Daoist.</p>
+<p>Song You sat cross-legged facing the fire, but he was not cultivating. In fact, he hadn’t practiced in a long time. At this moment, he turned slightly to the side and looked at little Jiang Han, who was sitting haphazardly beside him. He pointed toward the sky.</p>
+<p>“Stars.”</p>
+<p>“Stars!” Little Jiang Han tilted her head up, her eyes sparkling.</p>
+<p>“Those bright, twinkling things in the sky are called stars.”</p>
+<p>“Stars!”</p>
+<p>“What about a few days ago, what was that in the sky?” Song You quizzed her. “That big, bright one.”</p>
+<p>“It’s… it’s… the moon!”</p>
+<p>“That’s right. Very smart.”</p>
+<p>Unlike Lady Calico, he didn’t hand her a roasted cicada or grilled grasshopper as a reward. Instead, he patted her head. Her hair was growing thicker now, and it felt warm under his hand. He then gently asked, “And what time is it now?”</p>
+<p>“Ah…”</p>
+<p>“Hmm? What time is it?”</p>
+<p>“Lady Calico!” Little Jiang Han looked around helplessly.</p>
+<p>“It’s nighttime,” Song You prompted.</p>
+<p>“Nighttime!”</p>
+<p>“So clever.” Song You smiled.</p>
+<p>It wasn’t just empty flattery.</p>
+<p>Little Jiang Han was probably about a year old now, maybe a year and a couple of months. Children from ordinary families would generally be speaking at this age, but few could answer questions like this. When she had drifted down from the river half a year ago, she hadn’t been able to say...</p>
+</article>
+<article id="c707" data-label="707">
+<h2 class="chapter">Chapter 707: The Cycle of Succession 🔒</h2>
+<p>The venerable Fuqing Temple elder, with his hair entirely white and esteemed for his virtue, bowed respectfully. The two middle-aged Daoists, famed throughout Qingcheng Mountain and even the surrounding tens of li below, were also extremely courteous. The seemingly ageless Daoist remained calm and composed, while the girl beside him stared expressionlessly, unafraid.</p>
+<p>The younger Daoists in the temple exchanged glances but dared not ask questions. They quietly observed, listening to the conversation and speculating in their hearts.</p>
+<p>“Is Senior Daoist Brother Guanghuazi still here?”</p>
+<p>“Daoist Master, our master’s master has already passed away.”</p>
+<p>“When did he pass away?”</p>
+<p>“In the second year of Da’an.”</p>
+<p>“The second year of Da’an… that’s eight years ago.”</p>
+<p>“Yes, the second year of Da’an, in summer. It’s been almost exactly eight years,” Daoist Master Yingfeng replied.</p>
+<p>“<em>Sigh…</em>”</p>
+<p>Although Song You had long suspected it, he still let out a sigh.</p>
+<p>The late Fuqing temple owner, Guanghuazi, had been an old acquaintance of his own master. Before Song You descended the mountain, the only person he could truly call familiar in Fuqing Temple had been Guanghuazi.</p>
+<p>Now there were two more, both of whom had grown from the young Daoists of that time into middle-aged cultivators.</p>
+<p>Life was but a grand dream, and the human world experienced many autumn chills.</p>
+<p>“When our master&#39;s master...</p>
+</article>
+<article id="c708" data-label="708">
+<h2 class="chapter">Chapter 708: How Could I Impose? 🔒</h2>
+<p>Inside the temple room…</p>
+<p>Daoist Master Song You spread out sheets of paper, picked up his brush, and began writing. Little Jiang Han wandered slowly around the room, while a cat crouched at the corner of the table, licking its paw, savoring the lingering feelings from the banquet earlier.</p>
+<p>“Daoist Elder Calico!”</p>
+<p>“What is it?”</p>
+<p>“Daoist Elder Calico!”</p>
+<p>“…”</p>
+<p>“They’re calling me Daoist Elder Calico!!”</p>
+<p>“In Daoism, titles usually don’t distinguish between male and female. Lady Calico, you’re older than them, your cultivation is higher, and they respect you. Thus, it’s perfectly fine for them to call you ‘Daoist Elder’,” Song You said, keeping his head down while writing.</p>
+<p>“I’ve become really powerful!”</p>
+<p>“That’s natural.”</p>
+<p>Song You paused mid-brush and said to her, “Since you’re now Daoist Elder Calico, tomorrow go teach those little Daoists the signature spells of Daoist Elder Calico.”</p>
+<p>“Signature spells!”</p>
+<p>“Daoist Elder Calico, you can also share your insights about spells, especially those unique to you.”</p>
+<p>“Daoist Elder Calico!”</p>
+<p>“Now that you’re an elder, you must be composed when facing juniors, teach patiently, and guide them step by step,” Song You continued, writing while thinking to himself about whether his master and Daoist Elder Heiyu were like this back in the day.</p>
+<p>“Got it!” The cat stood and crawled toward him.</p>
+<p>Song You casually pushed her off...</p>
+</article>
+<article id="c709" data-label="709">
+<h2 class="chapter">Chapter 709: A Place Where the Heart is at Ease 🔒</h2>
+<p>On the right side of the path stood a large tree, its branches thick and leaves lush. Beneath it was a flat area, the grass soft as silk.</p>
+<p>Song You reached this spot, leaned on his staff, and turned to look at the tree with a thoughtful expression on his face.</p>
+<p>After a moment, a smile appeared on his face, then he continued walking forward.</p>
+<p>Already, an ancient bell had been hung on the large, leafy tree. The bell was engraved with auspicious clouds and depictions of the four seasons. Beside it lay a large stone inscribed with a few lines, <em>“Few people dwell in the mountain. The Daoist here is lazy. If old friends arrive, please ring this bell so they may be welcomed.”</em></p>
+<p>Song You then continued up the mountain. The horse and the little girl followed behind.</p>
+<p>He could hear them talking quietly. Lady Calico was asking the horse if it had been grazing on the mountain for the past two or three years and where it took shelter in the rain, but the horse didn’t answer.</p>
+<p>Halfway up the mountain, in a slightly elevated spot, a simple, rustic temple courtyard appeared before them.</p>
+<p>At the entrance stood an ancient pine, its branches spreading wide like a canopy. Not far below, part of a stream had...</p>
+</article>
+<article id="c710" data-label="710">
+<h2 class="chapter">Chapter 710: Still Remembering That Time 🔒</h2>
+<p>The Daoist tended the stove while the little girl stoked the fire. In the pot was a soup of sponge gourd and tender meat.</p>
+<p>Only one oil lamp burned on the stove, casting a dim, yellow light. Song You used the lamp’s glow to place the pieces of tender meat into the pot, small bubbles continuously forming along the edges.</p>
+<p>The meat, coated in a thin layer of starch, quickly turned a lotus-red hue under the heat. The starch became translucent and glossy, giving a clear sense of the silky texture to come.</p>
+<p>The sponge gourd had only recently been introduced from another region. Being in season between summer and autumn, it was a prized ingredient. Sponge gourd required little space to grow, climbing trees for support. Beyond being eaten, its dried inner sponge could even serve as a scrub for dishes. Many areas in Yizhou cultivated it.</p>
+<p>Yesterday, while wandering in Lingquan City, Song You had spotted some for sale at a very cheap price. Without hesitation, he bought a single one. Now, cut into small pieces, the sponge gourd floated and sank in the pot, releasing a fresh, gentle fragrance.</p>
+<p>After adding all the tender meat, Song You didn’t pause. Covering the pot, he picked up several eggs, cracked them into a bowl, added a spoonful of salt, and quickly stirred.</p>
+<p>The clink of chopsticks against the bowl rang out c...</p>
+</article>
+<article id="c711" data-label="711">
+<h2 class="chapter">Chapter 711: Between Heaven and Earth, Old Friends Come to Yin-Yang Mountain 🔒</h2>
+<p>He thought of the mountain rain and fog ghosts of the Jinyang Road, the rock carvings and twilight on the cliffs, the first sight of Yidu City, the singing and dancing in the little courtyard, the upright constable across the street, and the prefect in the <em>goulan washe</em> feigning chance encounters to inquire about the secret of longevity.</p>
+<p>Who at the time could have imagined that the constable would follow in Duke of Thunder Zhou’s footsteps, or that the prefect would become a wise prime minister and a lord of the underworld?</p>
+<p>At Liujiang in Xuzhou, a small boat drifted for days through a thousand-li painted landscape.</p>
+<p>At Lingbo, a woman of the <em>jianghu </em>who kept her word greeted him for the first time with cupped hands, “As a <em>jianghu</em> person, I’ll introduce myself first. My surname is Wu, and my name is Suowei. I am a disciple of the Xishan Sect in Yizhou. How do I address you?”</p>
+<p>Anqing, in the misty rain, was still a wonder of the world. The Great Liujiang Gathering lived up to its reputation as a grand event of the <em>jianghu</em>. The figures of martial artists moving like dancers or in combat still appeared before his eyes, as vivid as his encounters with the old Swallow Immortal and young Swallow Immortal, which seemed like yesterday.</p>
+<p>A chance meeting with a peerless swordsman in a mortuary, a visit to the inherent Mountain God deep in the mountains… The memory that left the deepest impression was still the mountains covered with lily magnolias.</p>
+<p>At Southern Art County, night rains lingered; atop Yunding Mountain, people comprehend the Dao and sought immortality</p>
+<p>By the shores of Mirror Island Lake, he first met Duke of Thunder...</p>
+</article>
+<article id="c712" data-label="712">
+<h2 class="chapter">Chapter 712: Extra Chapter 1: The Eternal General Without Defeat, Achievements Unequaled in the World 🔒</h2>
+<p>In the spring of the eleventh year of Mingde, at the palace of Changjing….</p>
+<p>The young emperor, just ascended to the throne, carried little of the usual imperial gravitas. Instead, he had regained his former elegance, wearing loose, simple robes and sitting on a long couch.</p>
+<p>Standing beside him was a young Daoist.</p>
+<p>Miaohuazi stood straight, smiling as he said, “Your Majesty, I have two pieces of good news to report.”</p>
+<p>“Oh?” The emperor, holding a book, glanced up at him, thinking for a moment. “Is the resettlement in the northern territories going smoothly?”</p>
+<p>“It seems Your Majesty is deeply concerned with state affairs,” Miaohuazi said confidently. “But since Your Majesty has already received reports from elsewhere, how could I consider them ‘good news’ to report again?”</p>
+<p>“Oh? And how do you know I received reports from officials?”</p>
+<p>“I have also inherited some of my master’s insight.”</p>
+<p>“Truly a worthy disciple of the State Preceptor,” the emperor said, pausing. Curious, he asked, “Then what is this good news?”</p>
+<p>“First, I observed the heavens at night, calculated with my fingers, employed various divination methods, and even used secret techniques passed down by my master to deduce over several months. Finally, I confirmed that the late emperor has indeed met with misfortune.”</p>
+<p>“Hmm?”</p>
+<p>The emperor immediately put down his book, sat upright, and widened his eyes at Miaohuazi. A faint expression of joy surfaced on his face, only to be quickly repressed. Frowning, he spoke to the quietly standing Miaohuazi, “How can this be considered good news?”</p>
+<p>“I simply believe, Your Majesty, that you are wiser than the late emperor. The prosperous era of Great Yan cannot withstand another great turmoil. Hence, I consider it good news.”</p>
+<p>“Nonsense!”</p>
+<p>“There is another piece of news.”</p>
+<p>“Speak!”</p>
+<p>“The Imperial Guardian Duke is gravely injured and beyond cure. I visited him yesterday; he will likely not survive more than three days.”</p>
+<p>“Truly?”</p>
+<p>“Truly.”</p>
+<p>“This…”</p>
+<p>The emperor hesitated longer this time. Finally, he sighed, “The Imperial Guardian Duke is a general without parallel in history, with achievements unmatched. He has been loyal to Great Yan. The empire’s prosperity owes much to him. Losing him cannot be considered...</p>
+</article>
+<article id="c713" data-label="713">
+<h2 class="chapter">Chapter 713: Extra Chapter 2: The Next Twenty Years 🔒</h2>
+<p>(1)</p>
+<p>In the late autumn of the tenth year of the Da’an era, Song You saw off the last old friend who had come to visit that year. Yin-Yang Mountain returned to its usual quiet and solitude, except for a nearby peak where the sound of hammering rang out. Under the mist, numerous unpaid supernatural craftsmen were busy building pavilions and towers. Judging by the style, it resembled the old Crane-Immortal Pavilion of Changjing.</p>
+<p>The following spring, the political situation became turbulent, with unrest spreading across the land. The Great Yan Emperor performed a ritual at Mount Ding and changed the era name to Zhiyuan.</p>
+<p>By the second year of Zhiyuan, winter had arrived.</p>
+<p>Song You designated little Jiang Han’s birthday as the day of the Daxue, marking the day he had found her as her first year. Now she was four years old, though technically she was just over three.</p>
+<p>The little girl was very smart, diligent, and eager to learn, showing much of Lady Calico’s old demeanor, perhaps because she had been taught by Lady Calico herself. Though human, her odd, unusual thoughts were slightly less eccentric than Lady Calico’s; her physical and mental growth was even faster.</p>
+<p>Still, she was ultimately influenced by Lady Calico.</p>
+<p>“Another year has passed already…” Song You sighed as he warmed himself by the fire.</p>
+<p>“Another year has passed!...</p>
+</article>
+<article id="c714" data-label="714">
+<h2 class="chapter">Chapter 714: Extra Chapter 3 🔒</h2>
+<p>(2)</p>
+<p>By the autumn of the fourth year of Zhiyuan, Yin-Yang Mountain was as peaceful as ever.</p>
+<p>Mountain winds rustled the ancient pines surrounding the temple. The entire mountain was quiet, with no visitors coming to burn incense. Only faint music drifted from a mist-shrouded pavilion across the way, disappearing almost entirely by the time it reached them.</p>
+<p>Beneath the pines sat a girl in a three-colored outfit, a boy in black and white, and a five-year-old girl in a small Daoist robe with her hair in buns.</p>
+<p>The three of them sat cross-legged facing each...</p>
+</article>
+<article id="c715" data-label="715">
+<h2 class="chapter">Chapter 715: Extra Chapter 4 🔒</h2>
+<p>(3)</p>
+<p>At the turn of summer and autumn in the tenth year of Zhiyuan, at the village below the mountain, called Liu Family Village…</p>
+<p>About a hundred households lived there, backed by the mountains covered in vegetation. On the branch of a large tree, a calico cat sat properly, gazing at the village below.</p>
+<p>Another branch held Yan An, also facing the village, using the height to observe.</p>
+<p>Meanwhile, in the village, the “expert” summoned from the immortal mountain to exorcise demons had just arrived. When the “expert” announced themselves, the villagers realized that the revered figure they had respectfully invited down from Yin-Yang Mountain was only a twelve-year-old girl.</p>
+<p>Although she was just a child Daoist, her expression was serious, meticulous, and disciplined. Coming from Hidden Dragon Temple on Yin-Yang Mountain, the villagers considered her a real immortal. Some elders recalled seeing the mountain’s little immortal descend to exorcise demons in their youth, and it had always been effective. So, while the villagers were nervous, they dared not disrespect...</p>
+</article>
+<article id="c716" data-label="716">
+<h2 class="chapter">Chapter 716: Extra Chapter 5 🔒</h2>
+<p>(IV)</p>
+<p>The way of the world was such that after long division there must be unity, and after long unity there must be division. Twenty years after returning to the mountain, the human world had become a scene of chaos.</p>
+<p>Meanwhile, Yin-Yang Mountain remained as green as ever.</p>
+<p>At this moment on Yin-Yang Mountain, the new heir of Hidden Dragon Temple had packed her belongings, which consisted of just a small cloth bundle and a single pouch, and stood before the mountain gate. She had now grown into a tall, graceful young woman.</p>
+<p>People were there to see her off.</p>
+<p>“Over the past twenty years, you’ve mostly stayed on the mountain. Though you went down occasionally, even into the city, and once...</p>
+</article>
+<article id="c717" data-label="717">
+<h2 class="chapter">Chapter 717: Extra Chapter 6 (I) Lady Calico’s Modern Travelogue (Part One) 🔒</h2>
+<p>At Qingbai Airport in Lingquan City of Yizhou Prefecture...</p>
+<p>In the departure lounge sat an exceptionally beautiful young girl. She looked youthful, dressed casually in a loose hoodie with a pocket and comfortable loose pants. Most striking were the cat-ear headphones perched on her head, highlighting both her youthfulness and liveliness.</p>
+<p>Perhaps lost in music, the girl wore a composed, expressionless face. She looked cool and focused. Beside her lay a simple brocade pouch, which contrasted with the modern environment yet aligned surprisingly well with recent vintage trends, giving a sense of simplicity and warmth.</p>
+<p>“<em>Bzzzz</em>!”</p>
+<p>She lifted one hand from her hoodie pocket and pulled out a small phone.</p>
+<p><em>Old Daoist: Where are you?</em></p>
+<p>She raised her head, still expressionless, glanced around, then looked down again and began typing.</p>
+<p><em>Lady Calico: At the airport.</em></p>
+<p>“<em>Bzzzz</em>!”</p>
+<p><em>Old Daoist: It’s good that you’re experiencing it for yourself.</em></p>
+<p><em>Old Daoist: Let me know when you reach Langzhou.</em></p>
+<p>After reading the messages, she returned the phone to her pocket, sighed slightly with her stern face, and continued scanning the surroundings. She then removed her noise-canceling headphones...</p>
+</article>
+<article id="c718" data-label="718">
+<h2 class="chapter">Chapter 718: Extra Chapter 6 (II) 🔒</h2>
+<p>The path she had once traveled with the Daoist priest, the horse, and swallow would have taken them far longer. Ordinary people would need even more time, and there would have been countless hardships along the way. Now, in this era, even common travelers could reach the same destination quickly and easily.</p>
+<p>It was truly a completely different age.</p>
+<p>Yet, on second thought, wasn’t this just like those earliest days, on some aimless nights during her travels, when the Daoist priest had told her about the world?</p>
+<p>And the salt tower… The girl still remembered.</p>
+<p>Meal service began on the plane. She chose a potato and beef set meal with a sweet soda. The boy copied her choice, and when she turned her head, she met his clear eyes and his mother’s gentle smile.</p>
+<p>After some small talk, they discovered both were heading to Langzhou for leisure. Their journeys overlapped by two days. The mother, noticing she was traveling alone and that her son seemed fond of her, warmly invited her along. Lady Calico had intended to travel alone, and cats like her preferred solitude, but after a moment of thought, she agreed.</p>
+<p>The hotel was conveniently nearby. The plane began its descent, arriving at Langzhou Lan’an, Canghai Airport. With that, the mobile signal returned.</p>
+<p><em>“Buzz buzz!”</em></p>
+<p><em>Old Daoist: Arrived? How’s the...</em></p>
+</article>
+<article id="c719" data-label="719">
+<h2 class="chapter">Chapter 719: Extra Chapter 7 (I) Lady Calico’s Modern Travelogue (Part Two) 🔒</h2>
+<p>Half a month later, at Xu Family Mansion in Fuyao City of Yuzhou…</p>
+<p>Yuzhou truly had few famous sights, and Fuyao only had a scattered little hill. Yet here stood Yuzhou’s only A-grade[1] tourist attraction: the Xu Family Mansion.</p>
+<p>The weather was perfect that day. In the morning, soft beige sunlight fell across white walls and blue-gray tiles, tall courtyards rose in quiet dignity, and at the entrance, people came and went in a steady stream with tickets in hand as they filed inside.</p>
+<p>A beautiful long-haired calico cat lay lazily by the gate. Sunlight passed through the treetops, reflected off the eaves, and painted a clear line on the white wall and the cat, emphasizing its laziness. Even its eyes were half-closed.</p>
+<p>Nearby stood a young couple holding a local specialty dried rat.</p>
+<p>“The guidebook says it’s best to hire a guide for Xu Family Mansion, but lots of tour groups come daily. Just wait for one and follow along,” the girl said, nibbling on a dried rat.</p>
+<p>“Isn’t it too early now?”</p>
+<p>“Not really. The first groups are probably already inside. They’re like special forces travelers, they wake up earlier than roosters.”</p>
+<p>“Then we should wait…”</p>
+<p>“Hey, look! A cat! So pretty!” The girl’s eyes lit up at the sight of the calico cat. She quickly crouched and offered her dried rat.</p>
+<p>“It’s too salty for it,” her boyfriend reminded her,...</p>
+</article>
+<article id="c720" data-label="720">
+<span id="last"></span>
+<h2 class="chapter">Chapter 720: Extra Chapter 7 (II) 🔒</h2>
+<p>The bespectacled elder shook his head as he ate from the dish of lamb. “From our research and discussion, we’ve reached a preliminary conclusion: what the <em>Mingde Great Encyclopedia</em> recorded was true. What was false was the statement made by that Daoist master in front of all those covetous rogues. In truth, the painting remained with the Dou family.”</p>
+<p>“Then the Daoist did that in order to…”</p>
+<p>“To divert the eyes of the martial world, protecting the Dou family and their painting. He himself had no desire for the so-called ‘Greatest Painting of the Ages.’“</p>
+<p>“…”</p>
+<p>The group exchanged looks.</p>
+<p>“A man of great virtue…”</p>
+<p>“How I’d love to see it.”</p>
+<p>“Yes…”</p>
+<p>Lady Calico listened in silence, expressionless.</p>
+<p>Perhaps because she had such stories to accompany her meal, she finished the entire clay pot of congee, polished off half a braised chicken—bones and all—and cleared the lamb flatbread long before the end of the discussion. Only the plate of cherry flatbread remained, nearly untouched, save for one piece with a neat bite mark, placed back on the dish.</p>
+<p>The girl slipped her hand into the brocade pouch, drew out a plastic bag, and swept the cherry flatbread, bite-marked one included, into it, intending to freeze them and take them back to feed the Daoist. She rinsed her private little porcelain bowl with some water, then stood to leave.</p>
+<p>Out of the...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <p class="caught-up">You're caught up: chapter 720 is the latest.</p>
+    <p class="page-end-links"><a href="651-700.html" rel="prev">&larr; Chs 651–700</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Unintended Immortality · Chs 701–720</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c701">Chapter 701: The Strength of Lady Calico 🔒</a></li>
+        <li><a href="#c702">Chapter 702: Another Old Story 🔒</a></li>
+        <li><a href="#c703">Chapter 703: Old Memories Stir, Quietly Awaiting an Old Friend’s Return 🔒</a></li>
+        <li><a href="#c704">Chapter 704: An Old Friend Prepares Chicken and Millet 🔒</a></li>
+        <li><a href="#c705">Chapter 705: Idle Matters in the Mountains 🔒</a></li>
+        <li><a href="#c706">Chapter 706: The Last Group of Old Friends 🔒</a></li>
+        <li><a href="#c707">Chapter 707: The Cycle of Succession 🔒</a></li>
+        <li><a href="#c708">Chapter 708: How Could I Impose? 🔒</a></li>
+        <li><a href="#c709">Chapter 709: A Place Where the Heart is at Ease 🔒</a></li>
+        <li><a href="#c710">Chapter 710: Still Remembering That Time 🔒</a></li>
+        <li><a href="#c711">Chapter 711: Between Heaven and Earth, Old Friends Come to Yin-Yang Mountain 🔒</a></li>
+        <li><a href="#c712">Chapter 712: Extra Chapter 1: The Eternal General Without Defeat, Achievements Unequaled in the World 🔒</a></li>
+        <li><a href="#c713">Chapter 713: Extra Chapter 2: The Next Twenty Years 🔒</a></li>
+        <li><a href="#c714">Chapter 714: Extra Chapter 3 🔒</a></li>
+        <li><a href="#c715">Chapter 715: Extra Chapter 4 🔒</a></li>
+        <li><a href="#c716">Chapter 716: Extra Chapter 5 🔒</a></li>
+        <li><a href="#c717">Chapter 717: Extra Chapter 6 (I) Lady Calico’s Modern Travelogue (Part One) 🔒</a></li>
+        <li><a href="#c718">Chapter 718: Extra Chapter 6 (II) 🔒</a></li>
+        <li><a href="#c719">Chapter 719: Extra Chapter 7 (I) Lady Calico’s Modern Travelogue (Part Two) 🔒</a></li>
+        <li><a href="#c720">Chapter 720: Extra Chapter 7 (II) 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="651-700.html" rel="prev">&larr; Chs 651–700</a>    <a href="../../index.html">Library</a>
+<span></span>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

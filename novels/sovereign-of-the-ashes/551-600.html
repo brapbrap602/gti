@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 551–600</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="501-550.html#last" data-next-page="601-650.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c551">Chapter 551: Unconscious 🔒</a></li>
+        <li><a href="#c552">Chapter 552: Thunder Marsh 🔒</a></li>
+        <li><a href="#c553">Chapter 553: Truth and Justice 🔒</a></li>
+        <li><a href="#c554">Chapter 554: Never Flaunt Your Wealth 🔒</a></li>
+        <li><a href="#c555">Chapter 555: Arranged Marriage 🔒</a></li>
+        <li><a href="#c556">Chapter 556: Demigod-level Technique 🔒</a></li>
+        <li><a href="#c557">Chapter 557: Strict Wives 🔒</a></li>
+        <li><a href="#c558">Chapter 558: Absorbing Lightning 🔒</a></li>
+        <li><a href="#c559">Chapter 559: Steel And Courage 🔒</a></li>
+        <li><a href="#c560">Chapter 560: Thunderfall World’s Resistance 🔒</a></li>
+        <li><a href="#c561">Chapter 561: Green-Skinned Garth 🔒</a></li>
+        <li><a href="#c562">Chapter 562: Partial Elementalization 🔒</a></li>
+        <li><a href="#c563">Chapter 563: Defeat and Retreat 🔒</a></li>
+        <li><a href="#c564">Chapter 564: Relations 🔒</a></li>
+        <li><a href="#c565">Chapter 565: Interplanar Communication 🔒</a></li>
+        <li><a href="#c566">Chapter 566: Rank Two 🔒</a></li>
+        <li><a href="#c567">Chapter 567: Impending Major Battle 🔒</a></li>
+        <li><a href="#c568">Chapter 568: Fiancee 🔒</a></li>
+        <li><a href="#c569">Chapter 569: Calling Off The Wedding 🔒</a></li>
+        <li><a href="#c570">Chapter 570: Battle of Rank Two 🔒</a></li>
+        <li><a href="#c571">Chapter 571: Clash of Flames 🔒</a></li>
+        <li><a href="#c572">Chapter 572: Subdued 🔒</a></li>
+        <li><a href="#c573">Chapter 573: Unrequited 🔒</a></li>
+        <li><a href="#c574">Chapter 574: Traveling West 🔒</a></li>
+        <li><a href="#c575">Chapter 575: The Last Stand 🔒</a></li>
+        <li><a href="#c576">Chapter 576: Death’s Door 🔒</a></li>
+        <li><a href="#c577">Chapter 577: Battle Commenced 🔒</a></li>
+        <li><a href="#c578">Chapter 578: Encirclement 🔒</a></li>
+        <li><a href="#c579">Chapter 579: Fortress Defense (I) 🔒</a></li>
+        <li><a href="#c580">Chapter 580: Fortress Defense (II) 🔒</a></li>
+        <li><a href="#c581">Chapter 581: Fortress Defense (III) 🔒</a></li>
+        <li><a href="#c582">Chapter 582: Fortress Defense (IV) 🔒</a></li>
+        <li><a href="#c583">Chapter 583: Fortress Defense (V) 🔒</a></li>
+        <li><a href="#c584">Chapter 584: Fortress Defense (VI) 🔒</a></li>
+        <li><a href="#c585">Chapter 585: Fortress Defense (VII) 🔒</a></li>
+        <li><a href="#c586">Chapter 586: Fortress Defense (VIII) 🔒</a></li>
+        <li><a href="#c587">Chapter 587: Fortress Defense (IX) 🔒</a></li>
+        <li><a href="#c588">Chapter 588: Distributing Potions 🔒</a></li>
+        <li><a href="#c589">Chapter 589: Father-In-Law 🔒</a></li>
+        <li><a href="#c590">Chapter 590: Soul War Song 🔒</a></li>
+        <li><a href="#c591">Chapter 591: Network of Allies 🔒</a></li>
+        <li><a href="#c592">Chapter 592: Call Of The Wild 🔒</a></li>
+        <li><a href="#c593">Chapter 593: Meeting 🔒</a></li>
+        <li><a href="#c594">Chapter 594: Gravity Training Room 🔒</a></li>
+        <li><a href="#c595">Chapter 595: Reina 🔒</a></li>
+        <li><a href="#c596">Chapter 596: The Ultimate Body Tempering 🔒</a></li>
+        <li><a href="#c597">Chapter 597: Mother’s Assistance 🔒</a></li>
+        <li><a href="#c598">Chapter 598: Experiment Invitation 🔒</a></li>
+        <li><a href="#c599">Chapter 599: Low Self-Esteem 🔒</a></li>
+        <li><a href="#c600">Chapter 600: Big News! 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c551" data-label="551">
+<h2 class="chapter">Chapter 551: Unconscious 🔒</h2>
+<p>The conflict in the middle of the Rocky Range was minor—a mere skirmish rather than a large-scale war.</p>
+<p>The native creatures of the Thunderfall World airlifted into the fray were wiped out in the mountains before they could even reach the western edge of the fortress camp.</p>
+<p>The battle lasted only two and a half days.</p>
+<p>During this time, Sein profited handsomely, acquiring half of a Rank Two Garth’s corpse, two complete Rank One Garths’ corpses, and several other lower-ranked specimens from Thunderfall World.</p>
+<p>The reason he had only half of the Rank Two Garth’s corpse was tied to the events of the battle.</p>
+<p>Sein vividly remembered the black-bearded knight’s dismayed expression at the end of the skirmish.</p>
+<p>Knights were typically not as calculating as mages, but it...</p>
+</article>
+<article id="c552" data-label="552">
+<h2 class="chapter">Chapter 552: Thunder Marsh 🔒</h2>
+<p>On his second day at the Thunder Marsh camp, Sein headed directly to the Thunder Marsh, located to the east of the camp, instead of commencing his assigned task of performing various maintenance work and constructing the magic towers at the fortress base.</p>
+<p>Fortunately, the battle near the camp was not particularly fierce, and the mission Sein had accepted did not have a strict deadline.</p>
+<p>Therefore, his departure did not violate the directives of the operations command center.</p>
+<p>Besides, the operations command center often granted mages like Sein more leniency and freedom.</p>
+<p>Before leaving, Sein personally concocted several alchemy potions for his father.</p>
+<p>With decent apothecary knowledge, Sein managed to amass quite a number...</p>
+</article>
+<article id="c553" data-label="553">
+<h2 class="chapter">Chapter 553: Truth and Justice 🔒</h2>
+<p>The native creatures of the Thunderfall World extended far beyond the blue-skinned Garths.</p>
+<p>Although Garths were the predominant species, the Thunderfall World, with its unique environmental laws, nurtured a plethora of other bizarre creatures.</p>
+<p>These native beings were primarily electro elemental creatures; however, a few rare species also existed.</p>
+<p>At this moment, Sein was pursuing a small creature resembling a three-winged chicken, darting swiftly through the marsh.</p>
+<p>Despite its modest life level—only comparable to a high-level magic beast—its speed was remarkable.</p>
+<p>A hidden sheen of electric light flickered beneath its mud-coated wings.</p>
+<p>Sein could tell that the creature was considerably intelligent and deduced it was likely...</p>
+</article>
+<article id="c554" data-label="554">
+<h2 class="chapter">Chapter 554: Never Flaunt Your Wealth 🔒</h2>
+<p>Sein’s confrontation with the Rank One wolf spider marked the climax of his ten-day campaign through the Thunder Marsh.</p>
+<p>This wolf spider was adept at harnessing electro elemental energy and boasted formidable close-quarters combat skills.</p>
+<p>However, it was no match for Sein, who possessed superior strength and was skilled in close-quarters combat.</p>
+<p>Sein’s constitution significantly outstripped his focus and mana levels, which led him to adopt a combat style quite unlike that of traditional mages.</p>
+<p>He remained unfazed at the prospect of suffering minor pains and injuries.</p>
+<p>On the battlefield, Sein’s mastery of the verdant flame body transformed him into a towering figure akin to a pyro elemental...</p>
+</article>
+<article id="c555" data-label="555">
+<h2 class="chapter">Chapter 555: Arranged Marriage 🔒</h2>
+<p>“What kind of person could stumble upon such treasures during their travels?” Julius wondered aloud, smiling wryly as he observed his descendant’s nonchalant expression.</p>
+<p>Unlike Julius, who maintained his composure, the Reverse Winged Lion King was far less reserved.</p>
+<p>Licking its tongue shamelessly, it approached Sein and asked, “You must have other good stuff on you, right? Mind sharing some with me? Even just a bite of that Blood Coral is fine!&#34;</p>
+<p>Sein remained silent for a long while, and Samson, the Reverse Winged Lion King, did not rush him, instead coughing and feigning calmness.</p>
+<p>“I know you mages believe in equivalent exchange. I won’t take advantage of you. After all, you’re a descendant of Sterk’s...</p>
+</article>
+<article id="c556" data-label="556">
+<h2 class="chapter">Chapter 556: Demigod-level Technique 🔒</h2>
+<p>In the Magus World, battle qi techniques were the core legacy of every knight house.</p>
+<p>Unlike mages, knights did not heavily depend on meditation techniques. Hence, a knight house could only ascend to higher realms with an exceptional battle qi technique.</p>
+<p>Although bloodline and potential played significant roles in the knights’ cultivation process, advancement was impossible without a sophisticated battle qi technique to propel them to the next rank.</p>
+<p>Different tiers of battle qi techniques were linked to specific methods of meridian tempering and battle qi circulation.</p>
+<p>Even a minor oversight could result in significant disparities.</p>
+<p>The rigor required for mastering battle qi techniques was comparable to that of mages...</p>
+</article>
+<article id="c557" data-label="557">
+<h2 class="chapter">Chapter 557: Strict Wives 🔒</h2>
+<p>Julius had been stuck at mid-stage Rank Two for quite some time.</p>
+<p>Although he had enough experience and resources, he lacked a complete cultivation technique and a clear path forward.</p>
+<p>Of course, House Grantt would not follow exactly the battle qi technique that Sein provided.</p>
+<p>After all, the Violet Flame Battle Qi was their hallmark.</p>
+<p>For squires below Rank One, transitioning from this battle qi to another would not pose a significant issue, as the costs involved were minimal.</p>
+<p>However, for Julius, Jeremy, and others at higher ranks, the potential losses and costs would be prohibitive.</p>
+<p>Numerous concerns also needed to be addressed—What if the technique was flawed or fake? What if it proved incompatible with the constitution...</p>
+</article>
+<article id="c558" data-label="558">
+<h2 class="chapter">Chapter 558: Absorbing Lightning 🔒</h2>
+<p>The body of a Garth that had been split into half and slightly charred lay on Sein’s experimental table in the magic tower&#39;s laboratory.</p>
+<p>This was the first and most valuable specimen Sein had acquired since his arrival in the Thunderfall World.</p>
+<p>The daily life of mages involved much less combat than that of knights.</p>
+<p>Deep research in the lab was routine for these mages.</p>
+<p>After confirming that his father’s life was no longer in danger and was recovering slowly, Sein’s life also settled into a quieter routine.</p>
+<p>His experiments, then, were once again a priority.</p>
+<p>“Hmm… According to its various muscle tissues, this Garth is still at Rank One and hasn’t reached Rank Two. How did it...</p>
+</article>
+<article id="c559" data-label="559">
+<h2 class="chapter">Chapter 559: Steel And Courage 🔒</h2>
+<p>“An urgent deployment, huh? Have the native creatures of the Thunderfall World breached our defense?” Sein mumbled to himself, gazing westward amidst the thunderclouds.</p>
+<p>At that moment, Sein’s skin crackled with electricity. He could feel the thunder energy on its surface, strengthening his muscles.</p>
+<p>The urgent order meant that Sein could no longer continue his experiment.</p>
+<p>He swiftly descended from the sky, returned to the magic tower for quick preparations, and then flew to the designated area west of the fortress to assemble.</p>
+<p>The Thunder Marsh camp housed many knights; although a rear camp, it was bustling due to the presence of numerous wounded and served as a communication hub between the...</p>
+</article>
+<article id="c560" data-label="560">
+<h2 class="chapter">Chapter 560: Thunderfall World’s Resistance 🔒</h2>
+<p>In the interplanar wars, Rank One creatures on the opposing side remained a minority.</p>
+<p>On the other hand, the Magus World’s rich heritage ensured that every participating knight and mage here was at least Rank One.</p>
+<p>Despite this advantage, the Magus World still used enslaved creatures in vast numbers, exceeding ten times the count of its own knights and mages, to serve as cannon fodder on the battlefield.</p>
+<p>The strength of these enslaved creatures varied significantly.</p>
+<p>The strongest among them had reached Rank Two, but such elite slaves were rare.</p>
+<p>Over ninety percent of the enslaved creature legion consisted of expendable, lower-ranked cannon fodder from other worlds.</p>
+<p>This was the norm in Magus World’s expendable legions, and the legion of Thunderfall...</p>
+</article>
+<article id="c561" data-label="561">
+<h2 class="chapter">Chapter 561: Green-Skinned Garth 🔒</h2>
+<p>As a mage who had undergone body tempering experiments and favored close-quarters combat, Sein remained unfazed by the sight of blood and the chaotic elemental energies around him.</p>
+<p>This astonished many on the battlefield.</p>
+<p>The knights quickly devolved into a frenzied state of slaughter.</p>
+<p>Despite being on the front lines, Sein maintained the composure expected of a spellcaster.</p>
+<p>As he flew toward the battlefield’s center, he deliberately navigated toward the area where Jeremy the Rank One knight was located, steering clear of the most intense conflict at the center.</p>
+<p>That area was where creatures of Rank One and above—the elite of the Thunderfall World’s forces—were fighting.</p>
+<p>The first to engage with...</p>
+</article>
+<article id="c562" data-label="562">
+<h2 class="chapter">Chapter 562: Partial Elementalization 🔒</h2>
+<p>The sight of Sein charging toward the green-skinned Garth, dispatching every hostile creature in his path, left Jeremy stunned as he was close enough to witness Sein’s onslaught.</p>
+<p>Originally, Jeremy had envisioned himself leading the charge on the frontlines, with Sein providing support from behind with medium and long-range magic strikes.</p>
+<p>In the several interplanar wars Jeremy had participated in, two of which involved cooperation with the divine towers, this had always been his approach when working with mages.</p>
+<p>However, Sein surged forward with a speed and ferocity that surpassed even Jeremy, who was a knight!</p>
+<p>Watching Sein blaze across the battlefield like a torch, Jeremy felt a complex mix of emotions.</p>
+<p>Although he was still...</p>
+</article>
+<article id="c563" data-label="563">
+<h2 class="chapter">Chapter 563: Defeat and Retreat 🔒</h2>
+<p>With a muffled grunt, Sein, half of his body paralyzed, plummeted from mid-air toward the ground.</p>
+<p>The force behind Sein’s recent attack was tremendous, but the Rank Two Garth’s counterattack was equally formidable.</p>
+<p>The intensity of the dense electric light easily surpassed 2,000 points, swiftly destroying all of Sein’s magic shields in the blink of an eye.</p>
+<p>If it was not for Sein’s extraordinary constitution and the protection provided by a layer of verdant flames, a strike of this magnitude could have reduced an ordinary Rank One mage to ashes.</p>
+<p>Apart from Bloodline Warlocks, all mages were glass cannons.</p>
+<p>Although Sein’s body tempering experiment had somewhat mitigated this issue, it did not grant him invincibility on a chaotic battlefield.</p>
+<p>With half...</p>
+</article>
+<article id="c564" data-label="564">
+<h2 class="chapter">Chapter 564: Relations 🔒</h2>
+<p>The Thunder Beast was not Sein’s trophy, yet he was deeply intrigued by it.</p>
+<p>At its prime, the Thunder Beast boasted the strength of a late-stage Rank One creature.</p>
+<p>The pillar-shaped crystals on its massive back could communicate with the thunderclouds above, unleashing long-range lightning strikes.</p>
+<p>During the battle, these Thunder Beasts had been the primary targets of the Magus World Army.</p>
+<p>Mages positioned at the rear of the battlefield had focused their attacks on these massive creatures, treating them as prime targets.</p>
+<p>The Thunder Beast before Sein was covered in wounds. Clearly, it had endured a barrage of various elemental spells.</p>
+<p>The most...</p>
+</article>
+<article id="c565" data-label="565">
+<h2 class="chapter">Chapter 565: Interplanar Communication 🔒</h2>
+<p>Sein was currently engaged in long-distance interplanar communication with Leena.</p>
+<p>In the Magus World, such communication was a capability reserved for only a few mages of Rank Two or Three.</p>
+<p>The method Sein and Leena used for communication was independent of their physical locations in their respective worlds.</p>
+<p>Even when both of them were in the Magus World, they were still communicating through the Undead World.</p>
+<p>Therefore, even though Sein was now in Thunderfall World, his ability to communicate with Leena remained unhindered.</p>
+<p>This communication channel could be established because the Thunderfall World, Undead World, and Magus World were relatively close in proximity.</p>
+<p>Communication spanning several large star domains would likely require the capabilities...</p>
+</article>
+<article id="c566" data-label="566">
+<h2 class="chapter">Chapter 566: Rank Two 🔒</h2>
+<p>Ever since the war on the western part of Thunder Marsh concluded, Sein and his companions had enjoyed a period of peaceful rest.</p>
+<p>However, the tranquility was short-lived.</p>
+<p>Almost three months after the battle, the Thunder Marsh camp ramped up its operations significantly.</p>
+<p>New supplies and combatants arrived every day.</p>
+<p>Some of these combatants were knights who had withdrawn from the main battlegrounds in the east and west, seeking refuge at the Thunder Marsh camp to heal their wounds.</p>
+<p>Others were passing through the area, headed to their assigned destinations to carry out the missions given to them by the fortress command center.</p>
+<p>For mages like Sein, moments of leisure were brief.</p>
+<p>The Thunder Marsh camp...</p>
+</article>
+<article id="c567" data-label="567">
+<h2 class="chapter">Chapter 567: Impending Major Battle 🔒</h2>
+<p>When Sein emerged from his meditative state, it was the tenth month of his seclusion.</p>
+<p>The transition to Rank Two had been smoother than he anticipated.</p>
+<p>Upon opening his eyes, Sein saw his arms and then his entire body, now fully transformed into verdant flames.</p>
+<p>He surmised that even his eyes had become twin sparks of radiant verdant flames.</p>
+<p>To outsiders, he indeed appeared as a living “fire man”.</p>
+<p>A crystal ball floated before him, unaffected by the raging verdant flames thanks to Sein’s refined control over elemental energy even after his advancement.</p>
+<p>The information within the crystal ball swiftly transmitted into Sein’s sea of consciousness.</p>
+<p>Upon reviewing his stats, Sein sighed in sati...</p>
+</article>
+<article id="c568" data-label="568">
+<h2 class="chapter">Chapter 568: Fiancee 🔒</h2>
+<p>Bringing Kelman Grantt to the main battlefield on the western front was, naturally, for his own good.</p>
+<p>Sein was well aware of Jeremy and Julius’ intentions with this decision.</p>
+<p>The western front was on the brink of erupting into the grandest battle Sein had experienced since joining the Thunderfall World War.</p>
+<p>However, it was likely the safest place because the Order of the Steel Fist had concentrated the majority of its troops there.</p>
+<p>In contrast, at the Thunder Marsh camp, all the knights had been redeployed, leaving only a group of both lightly and seriously injured people behind.</p>
+<p>Should the creatures of Thunderfall World decide to split their forces and attack here along with the frontline...</p>
+</article>
+<article id="c569" data-label="569">
+<h2 class="chapter">Chapter 569: Calling Off The Wedding 🔒</h2>
+<p>Following the voice, Sein looked up and saw a female knight with long red hair clad in crimson armor hovering in mid-air.</p>
+<p>His expression flickered briefly before settling back to normal.</p>
+<p>It was not the knight’s beauty that caught his attention—she was an average-looking plain Jane.</p>
+<p>She was not a southern belle like Selina, nor did she possess the beauty of Leena.</p>
+<p>This Rank Two female knight looked as androgynous as she sounded, projecting a certain “toughness”.</p>
+<p>It might seem unusual to describe a woman as “tough”, but it suited her well; her arms and thighs were...</p>
+</article>
+<article id="c570" data-label="570">
+<h2 class="chapter">Chapter 570: Battle of Rank Two 🔒</h2>
+<p>For some proud women, certain subjects might be appropriate for them to initiate, but not for others.</p>
+<p>It was acceptable for her to call off the wedding, but had the suggestion come from the other party, she would have been deeply offended.</p>
+<p>The female knight named Natalya was precisely this type of woman.</p>
+<p>With the logical mindset typical of mages, Natalya&#39;s decision to call off the wedding and Sein’s agreement seemed a straightforward solution.</p>
+<p>Both parties were satisfied, each achieving their objectives.</p>
+<p>However, Natalya was not a mage but a knight, known for her quick temper and impulsive nature.</p>
+<p>Unsurprisingly, Natalya did not take Sein’s concurrence well.</p>
+<p>Her brow furrowed and her expression darkened with displeasure as she snapped, “What? You think I’m not good enough for you?!”</p>
+<p>Upon hearing her question and the displeasure in her tone,...</p>
+</article>
+<article id="c571" data-label="571">
+<h2 class="chapter">Chapter 571: Clash of Flames 🔒</h2>
+<p>The betting booth at the fortress camp had opened.</p>
+<p>Most bets favored Natalya, with Sein as the clear underdog.</p>
+<p>Sein and Natalya’s battle mirrored the fervor of the knights gambling with abandon.</p>
+<p>Both were prideful and refused to back down, unleashing their full power almost immediately upon engaging.</p>
+<p>On one side stood Sein, a fiery giant enveloped by the power of verdant flame, and on the other, Natalya, a formidable female warrior clad in scarlet battle qi.</p>
+<p>Their clash resembled the explosive collision of two fiery meteors, causing not only a massive surge of energy but also a considerable commotion within the Thunder Marsh camp.</p>
+<p>Strangely, no one...</p>
+</article>
+<article id="c572" data-label="572">
+<h2 class="chapter">Chapter 572: Subdued 🔒</h2>
+<p>The Radiant Heart beam, with only thirty percent of its destructive potential, was not lethal, but it was still potent enough to significantly injure the target.</p>
+<p>Upon advancing to Rank Two, the destructive capabilities of Sein’s magic spells naturally increased due to his enhanced focus and mana levels.</p>
+<p>The verdant beam caught Natalya off guard and shot straight through her shoulder.</p>
+<p>Her thick armor and tough demon skin failed to block the attack.</p>
+<p>The Radiant Heart beam not only pierced Natalya&#39;s shoulder but also continued to streak into the sky beyond without losing momentum, leaving an eye-catching green light trail across the sky above Thunder Marsh camp.</p>
+<p>Although the beam&#39;s destructive...</p>
+</article>
+<article id="c573" data-label="573">
+<h2 class="chapter">Chapter 573: Unrequited 🔒</h2>
+<p>The more Sein listened to the elders’ conversation, the more something seemed off to him.</p>
+<p>When had he and Natalya become “lovebirds”?</p>
+<p>He thought Natalya was a quick-tempered woman, but she was extremely calm for some reason.</p>
+<p>“Where&#39;s your fire? Where&#39;s your temper? Come on, show it!” Sein silently urged in his heart.</p>
+<p>If Natalya were to speak up and call off this marriage, Sein would secretly be overjoyed.</p>
+<p>Unfortunately, things seemed to be heading in a direction he had not anticipated.</p>
+<p>Natalya, who had been bickering with Cleona, seemed to notice Sein’s gaze and suddenly lowered her voice.</p>
+<p>Not only did she avoid his gaze, but her healthy, wheat-colored...</p>
+</article>
+<article id="c574" data-label="574">
+<h2 class="chapter">Chapter 574: Traveling West 🔒</h2>
+<p>After returning to his magic tower, Sein began by organizing his laboratory and various pieces of experimental equipment.</p>
+<p>All of these items were to be packed and transported to the western front.</p>
+<p>Despite the intense interplanar war, Sein would still find meager free time to conduct his experimental research during the conflict.</p>
+<p>Thanks to Natalya, his plan to visit the fortress’ trading center to acquire necessary supplies had been disrupted.</p>
+<p>Nevertheless, Sein intended to make another trip to the trading center before departing the Thunder Marsh camp.</p>
+<p>Besides, the western front, where combat was significantly more intense, offered not only a greater variety of materials and specimens from the Thunderfall...</p>
+</article>
+<article id="c575" data-label="575">
+<h2 class="chapter">Chapter 575: The Last Stand 🔒</h2>
+<p>“Are you displeased with your marriage arrangement?” Kelman asked Sein as they traveled west.</p>
+<p>The relationship between the father and the son was never overly close.</p>
+<p>While Sein acknowledged Kelman as his father, he mostly acted independently. Kelman seldom imposed his will on Sein in any significant manner either.</p>
+<p>At his father’s question, Sein fell silent for a moment before responding, “I am already in love with someone.”</p>
+<p>“Oh? Who might that be? A colleague from the Divine Tower of Verdant Spring? Which family does she belong to?” Kelman pressed curiously.</p>
+<p>His questions reminded Sein that Leena was not of noble birth but a true commoner. She lacked close family ties,...</p>
+</article>
+<article id="c576" data-label="576">
+<h2 class="chapter">Chapter 576: Death’s Door 🔒</h2>
+<p>Sein’s new residence was a twenty-five-meter-tall cylindrical magic tower, topped with a conical roof.</p>
+<p>There were five floors in the tower, each remarkably spacious.</p>
+<p>Initially, the basement comprised three levels, but Sein expanded it to five shortly after moving in.</p>
+<p>The tower’s builder was exceptionally skilled; the second basement even came with a small elemental reactor.</p>
+<p>Although its energy output could not rival that of a proper elemental pool, constructing it under the harsh conditions of this planar battlefield was no small feat.</p>
+<p>More importantly, Sein was able to draw and convert different types of elemental energy without heavily depleting his own energy cr...</p>
+</article>
+<article id="c577" data-label="577">
+<h2 class="chapter">Chapter 577: Battle Commenced 🔒</h2>
+<p>The Sky Knight who appeared in Sein’s line of sight was a handsome man, clad in gold and silver armor.</p>
+<p>Among the human males of the Magus World, Sein was considered exceptionally handsome. The Sky Knight before him was handsome too, but in a different way altogether.</p>
+<p>In the Magus World, the life level of a Sky Knight made it impossible for their age to be determined based on appearance alone.</p>
+<p>He appeared as young as Sein, yet he might have lived anywhere from two to three thousand years.</p>
+<p>Given that Rank Three knights and mages in the Magus World could theoretically live up to ten thousand years and maintain a youthful appearance until they reached eight thousand years, age was a deceptive trait...</p>
+</article>
+<article id="c578" data-label="578">
+<h2 class="chapter">Chapter 578: Encirclement 🔒</h2>
+<p>The energy pillar was actually a lumen spell known as “Light’s Wish”.</p>
+<p>Its magic array, located on the top floor of the magic tower, had been enhanced and upgraded by Sein.</p>
+<p>It was likely that the architect of this magic tower was a grand mage wielding formidable lumen elemental magic.</p>
+<p>Coincidentally, Sein was also distinguished in lumen elemental magic, and thus, he was uniquely suited to maximize the potential of this central tower and its surrounding counterparts.</p>
+<p>During the war, the fortress supplied all the energy required by the magic towers.</p>
+<p>Therefore, Sein had no reason to hold back.</p>
+<p>As long as he had enough focus, he could provide limitless long-range fire support...</p>
+</article>
+<article id="c579" data-label="579">
+<h2 class="chapter">Chapter 579: Fortress Defense (I) 🔒</h2>
+<p>“Legions of more than a hundred thousand Thunderfall World creatures are approaching the outskirts of the fortress. All knights and mages, prepare for battle!”</p>
+<p>An ear-splitting announcement echoed throughout the main fortress base of the Thunder Plains.</p>
+<p>Sein, along with the other knights and mages in the base, also received a direct battle order from the command center.</p>
+<p>Even without the announcement, Sein, who had been supporting the front line with long-range magic, noticed the shift in the battle dynamics at the very outset.</p>
+<p>He had already reduced the frequency of the magic towers’ attacks to conserve energy while maintaining their operational status.</p>
+<p>On the west side of the fortress, where Sein was stationed, roughly a hundred thousand Thunderfall...</p>
+</article>
+<article id="c580" data-label="580">
+<h2 class="chapter">Chapter 580: Fortress Defense (II) 🔒</h2>
+<p>The battle outside the fortress was more intense than expected.</p>
+<p>The enslaved creatures, used as cannon fodder by the Magus Civilization, stirred up clouds of blood mist in their initial clash with the native creatures of Thunderfall World.</p>
+<p>The inhabitants of Thunderfall World wielded javelins tipped with sharp, diamond-shaped stones, seemingly crafted from electro-attribute ores, granting them the ability to harness electro elemental energy.</p>
+<p>In contrast, the weapons used by the enslaved creatures of the Magus Civilization varied widely.</p>
+<p>These cannon fodder creatures, hailing from different planes and ethnic groups, were too diverse for their armaments to be standardized.</p>
+<p>Besides, their primary value in this interplanar war lay not in their weaponry,...</p>
+</article>
+<article id="c581" data-label="581">
+<h2 class="chapter">Chapter 581: Fortress Defense (III) 🔒</h2>
+<p>Sein’s brief respite was abruptly cut short on the evening of the second day as the situation escalated.</p>
+<p>He no longer needed to monitor the situation in the northeast; the command center had issued a clear update—nearly half a million Thunderfall World creatures were advancing toward the fortress base.</p>
+<p>It remained uncertain which section of the base these creatures were targeting.</p>
+<p>However, it was likely that over a hundred thousand of them would be storming the western side where Sein was stationed.</p>
+<p>The command center speculated that the primary focus of the Thunderfall World’s assault would be on the northern and eastern sides of the fortress, expecting an onslaught of approximately two hundred thousand creature...</p>
+</article>
+<article id="c582" data-label="582">
+<h2 class="chapter">Chapter 582: Fortress Defense (IV) 🔒</h2>
+<p>“Are those Thunderfall World creatures planning to go all out?” Sein wondered as he continued unleashing a barrage of elemental attacks from the third floor of the magic tower. He peered toward the west and north, his expression grim.</p>
+<p>Just moments before, a group of knights and mages, previously stationed at the southern part of the fortress, had departed to support the northern defenses.</p>
+<p>As attacks from the creatures of Thunderfall World intensified, their numbers also surged around the fortress.</p>
+<p>To prevent a breach, it was crucial to redeploy forces from quieter sectors like the southern and western fronts to bolster the more threatened areas.</p>
+<p>Yesterday, Sein saw two Land Knights in the west, leading a group of Rank One knights and a considerable number...</p>
+</article>
+<article id="c583" data-label="583">
+<h2 class="chapter">Chapter 583: Fortress Defense (V) 🔒</h2>
+<p>As soon as the Rank Four knight, Brendek Satorra, appeared in the sky above the battlefield, the space fortress hovering above the main base fired dense energy beams in all directions.</p>
+<p>These energy beams were shot by the magic cannons of the space fortress, following a pre-determined attack pattern.</p>
+<p>Thousands of them struck the western front of the camp, helping the knights and mages ruthlessly repel a wave of Thunderfall World creatures.</p>
+<p>However, the majority of the fortress attacks were concentrated on the east, north, and center of the main battlefield.</p>
+<p>For an order of the knights, using fortress fire on this scale was an absolute luxury.</p>
+<p>Even the Divine Tower of Verdant Flame could only sustain such...</p>
+</article>
+<article id="c584" data-label="584">
+<h2 class="chapter">Chapter 584: Fortress Defense (VI) 🔒</h2>
+<p>The loss of the main fortress base’s western front resulted from multiple factors.</p>
+<p>The most significant factor was the Thunderfall World creatures’ sudden shift in their main attack direction.</p>
+<p>Additionally, many defense forces on the west side of the fortress had been redirected to the east and north, weakening the western defenses.</p>
+<p>On top of that, the main wall on the west side of the fortress was breached by a demigod-level Thunder Beast King, a massive creature with a horn on its head, standing over four hundred meters tall.</p>
+<p>Furthermore, the silence of seventy percent of the magic towers created a temporary gap in elemental support on the battlefield.</p>
+<p>Of the five magic towers that Sein controlled, two became entirely...</p>
+</article>
+<article id="c585" data-label="585">
+<h2 class="chapter">Chapter 585: Fortress Defense (VII) 🔒</h2>
+<p>At the bottom of Sein’s tower dwelled a horde of undead creatures, filling the expanded multi-level basement to the brim.</p>
+<p>Known for their cold and quiet demeanor, these beings rarely descended into chaos despite being confined in a small space. More importantly, they were bound by a shared allegiance to their lord.</p>
+<p>Before they departed from the Undead World, they were ordered to exhibit absolute obedience.</p>
+<p>“Go forth, aid the legions of knights outside and repel any otherworldly creatures nearing the magic towers!” Sein commanded, his magic rod glowing with an ominous black light.</p>
+<p>Under its dark glow, the long-silent undead creatures...</p>
+</article>
+<article id="c586" data-label="586">
+<h2 class="chapter">Chapter 586: Fortress Defense (VIII) 🔒</h2>
+<p>To those encountering it for the first time, Sein’s fighting style could be quite disconcerting.</p>
+<p>He wondered if Master Gregory had also caused such an impact when demonstrating his unique abilities in front of other knights and mages.</p>
+<p>No, not just Master Gregory; nearly everyone in the Verdant Flame Faction was considered abnormal, except for Sein’s mentor, Lorianne.</p>
+<p>She was the sole exception, not having inherited the verdant flame magic but instead fully embracing her profession as a pure dendromancer.</p>
+<p>Sein’s dramatic entrance, combined with his formidable strength and surprising fighting style, significantly alleviated the pressure on the nearby Rank Two Land Knight.</p>
+<p>Battles involving mages were typically more spectacular than those of knights,...</p>
+</article>
+<article id="c587" data-label="587">
+<h2 class="chapter">Chapter 587: Fortress Defense (IX) 🔒</h2>
+<p>The black-armored knight’s laughter made Sein purse his lips.</p>
+<p>As an external support mage, Sein was not bound to fight to the death like the registered knights from the orders.</p>
+<p>He could have slipped away early.</p>
+<p>However, the complex, chaotic situation around him left no time for such considerations.</p>
+<p>By the time he realized the battle was untenable and withdrawal necessary, it was already too late!</p>
+<p>Creatures from the Thunderfall World surrounded him from all directions.</p>
+<p>Instead of trying to escape alone, he should rely on the other registered knights nearby and fight alongside them.</p>
+<p>This way, maybe Sein could last a little longer.</p>
+<p>There was also another reason—while he could escape, Kelman Grantt could not.</p>
+<p>The Order of the...</p>
+</article>
+<article id="c588" data-label="588">
+<h2 class="chapter">Chapter 588: Distributing Potions 🔒</h2>
+<p>The retreat of the creatures from Thunderfall World was slow.</p>
+<p>Having exerted all their strength in a prior offensive, many found their morale low as they attempted to withdraw.</p>
+<p>Certain inhabitants, particularly those of Rank One and Rank Two, were unwilling to abandon the battlefield.</p>
+<p>They simply could not understand why they had to retreat with victory seemingly within grasp.</p>
+<p>These creatures lingered on the battlefield, fighting a “meaningless” battle.</p>
+<p>As the elite main army of the Magus World approached, those who remained would be swiftly crushed under iron hooves, reduced to mere pulp.</p>
+<p>If they could not take down the scantily defended...</p>
+</article>
+<article id="c589" data-label="589">
+<h2 class="chapter">Chapter 589: Father-In-Law 🔒</h2>
+<p>The vast majority of knights in the Magus World were simple creatures.</p>
+<p>If someone treated them well, they would naturally reciprocate.</p>
+<p>Granted, there were petty schemes and noble games among the knights, but the overall atmosphere remained positive.</p>
+<p>Those who were particularly fond of scheming rarely did well in this environment.</p>
+<p>After fighting side-by-side on the battlefield, the bond between Sein and these knights deepened, culminating in mutual trust.</p>
+<p>For these knights, relationships founded on friendship proved far more effective than any arrangement bound by cold magic contracts.</p>
+<p>With their help, Sein’s efficiency in collecting valuable...</p>
+</article>
+<article id="c590" data-label="590">
+<h2 class="chapter">Chapter 590: Soul War Song 🔒</h2>
+<p>Wilson Ernst was his full name, but numerous titles filled the space between his first and last names due to his lineage within the ancient and powerful House Ernst.</p>
+<p>House Ernst boasted over a dozen Rank Three beings and several demigod-level experts throughout its history.</p>
+<p>In fact, Wilson’s name would also likely be included between the first and last names of House Ernst’s future descendants.</p>
+<p>Wilson’s concerns in recent years centered around his daughter, Natalya, who had been slow to choose a partner to continue the family lineage.</p>
+<p>In response to the pressure, Natalya had brought home a female knight from the Order of the Steel Fist years earlier.</p>
+<p>That female knight was...</p>
+</article>
+<article id="c591" data-label="591">
+<h2 class="chapter">Chapter 591: Network of Allies 🔒</h2>
+<p>After the battle to defend the fortress, Sein was moved to the space fortress to recuperate.</p>
+<p>This relocation was necessary primarily because the main fortress base below had been destroyed by creatures from Thunderfall World, reducing even Sein’s magic towers to rubble.</p>
+<p>Naturally, he needed a new place to rest.</p>
+<p>Like Sein, many other knights and mages also returned to the space fortress.</p>
+<p>Most of them were the knights and mages stationed at the fortress, as well as those who had suffered injuries during the recent conflict.</p>
+<p>Below the fortress, the enslaved creatures who had returned were now serving as laborers, tasked with repairing the damaged base.</p>
+<p>However, Sein noticed a distinct lack of motivation among the slaves for the repairs.</p>
+<p>It was...</p>
+</article>
+<article id="c592" data-label="592">
+<h2 class="chapter">Chapter 592: Call Of The Wild 🔒</h2>
+<p>The encounter with Gould was a brief interlude in Sein’s life at the fortress.</p>
+<p>Sein returned to his temporary quarters provided by the space fortress with Yuri without extending an invitation for Gould to enter due to limited space.</p>
+<p>The rooms were filled with various experimental equipment essential to Sein’s work, leaving little room for guests even to take a seat.</p>
+<p>Moreover, Gould, with his large bear-like stature, might accidentally knock Sein’s delicate apparatuses over.</p>
+<p>Since Sein did not extend an invitation, Gould refrained from barging in uninvited despite his intense curiosity about the laboratory.</p>
+<p>Despite his rough exterior,...</p>
+</article>
+<article id="c593" data-label="593">
+<h2 class="chapter">Chapter 593: Meeting 🔒</h2>
+<p>Sein did not mind the fox maiden erasing the soul seal from Thunder Beast’s brow.</p>
+<p>Though he had lost direct control over Thunder Beast, the soul seal on the fox maiden remained intact.</p>
+<p>Recently, Sein had gained new insights into the matter of the erased soul seal during one of his interplanar communications with Leena.</p>
+<p>Erasing the soul seal was actually a way to prioritize where the soul truly belonged.</p>
+<p>Evidently, the basic soul war song sung by billions of priests in the Beastmen World could bind souls more effectively than the Mirage’s Almanac of Souls, which Sein had purchased for a substantial amount of Arcane points.</p>
+<p>In essence,...</p>
+</article>
+<article id="c594" data-label="594">
+<h2 class="chapter">Chapter 594: Gravity Training Room 🔒</h2>
+<p>The Order of the Steel Fist&#39;s space fortress embraced a simple, utilitarian design characteristic of the knightly order.</p>
+<p>Unlike the Divine Tower of Verdant Flame, which featured booth seating and conference rooms for mages to engage in discussions, this fortress lacked special entertainment facilities, luxurious lounges, or quaint spots for tea and conversation.</p>
+<p>Its gray exterior was stark and plain too.</p>
+<p>The mages who retreated here to rest were often left to their own devices. Some spent their days in solitude or with their comfort slaves in their rooms, while others gathered in groups to drink.</p>
+<p>Although there were a few spots serving food and spirits in...</p>
+</article>
+<article id="c595" data-label="595">
+<h2 class="chapter">Chapter 595: Reina 🔒</h2>
+<p>Sein’s genuine feelings for Leena were undeniable.</p>
+<p>Yet, like many men, Sein struggled with lust.</p>
+<p>One thing was certain, though—he would never hold any other woman in as high regard as he did Leena.</p>
+<p>Nevertheless, this did not deter Sein from seeking decent-looking women to satisfy his physical desires.</p>
+<p>Fortunately, Leena did not seem to mind.</p>
+<p>Leena had a lower drive than Sein, making it impossible for her to fulfill his needs by herself.</p>
+<p>When they were in the Western Archipelago, Leena had occasionally encouraged him to turn to Faye.</p>
+<p>Due to his Verdant Flame Body Tempering experiments, Sein’s physical needs were more intense than those of typical mages.</p>
+<p>He could not help but...</p>
+</article>
+<article id="c596" data-label="596">
+<h2 class="chapter">Chapter 596: The Ultimate Body Tempering 🔒</h2>
+<p>Reina and Natalya were not romantically involved; in fact, they considered each other best friends.</p>
+<p>The primary reason Natalya had brought Reina home previously was to deter her family from pressuring her.</p>
+<p>However, due to Reina’s notorious reputation within the Order of the Steel Fist and Natalya’s fiery temper, rumors of their so-called romantic relationship escalated into a scandal.</p>
+<p>Neither was willing to clarify the nature of their relationship, maintaining an air of indifference.</p>
+<p>They were unconcerned as long as no one discussed it in their presence.</p>
+<p>Moreover, no one dared offend these formidable female knights, especially with Reina recognized as the strongest among them.</p>
+<p>They were also supported by seniors ranked as high...</p>
+</article>
+<article id="c597" data-label="597">
+<h2 class="chapter">Chapter 597: Mother’s Assistance 🔒</h2>
+<p>Sein’s exceptional performance not only astounded Gould but also elicited a long sigh of relief from Natalya.</p>
+<p>He was her chosen partner, and Reina was her best friend.</p>
+<p>Natalya dearly hoped to avoid any significant rift between them.</p>
+<p>Of course, she perceived Sein’s words as mere flattery and did not take them to heart.</p>
+<p>Reina, on the other hand, merely took a deep breath but did not directly respond to Sein’s question.</p>
+<p>It seemed she too regarded his comments as polite, yet it was undeniable that they significantly improved her mood.</p>
+<p>After all, Sein’s sincerity was unmistakable.</p>
+<p>Reina had only seen such an earnest expression of admiration in her parents&#39; eyes before.</p>
+<p>Regardless of Sein’s intentions, Reina decided to acknowledge him.</p>
+<p>She...</p>
+</article>
+<article id="c598" data-label="598">
+<h2 class="chapter">Chapter 598: Experiment Invitation 🔒</h2>
+<p>Sein was unaware of Natalya&#39;s mother’s involvement in the scheme.</p>
+<p>He had not even met Sia in person.</p>
+<p>How could he have known that someone was orchestrating all this?</p>
+<p>Sein was not overly cautious about visiting Natalya’s room.</p>
+<p>Yuri was not with him right now; only Gould was there.</p>
+<p>Given the pressure from Reina, it seemed unlikely that Gould would stick around for long.</p>
+<p>In fact, even without Reina’s influence, Gould was already eager to escape for a few drinks.</p>
+<p>Despite being Natalya’s best friend, Reina was oblivious to the schemes brewing in her mind.</p>
+<p>Despite their closeness, there were just some things they would not share, especially not something...</p>
+</article>
+<article id="c599" data-label="599">
+<h2 class="chapter">Chapter 599: Low Self-Esteem 🔒</h2>
+<p>Sein was not lying; his quarters were indeed cluttered, filled with experimental equipment and piles of magic ingredients in every corner.</p>
+<p>Aside from the spacious bed for resting and the meditation room, the rest of the space was barely navigable.</p>
+<p>Azelia was a qualified maid who could tidy Sein’s room until it was speckless and organize all items.</p>
+<p>However, she could not magically expand Sein’s space.</p>
+<p><em>CRACK!</em></p>
+<p>This was the fourth beaker Reina had accidentally stepped on since she entered the quarters.</p>
+<p>In addition, she had broken two of Sein’s test tubes and destroyed a section of the elemental energy...</p>
+</article>
+<article id="c600" data-label="600">
+<span id="last"></span>
+<h2 class="chapter">Chapter 600: Big News! 🔒</h2>
+<p>Reina accepted Sein’s invitation to assist with his experiments, primarily because he was engaged to Natalya, her best friend.</p>
+<p>Reina did not want to turn him down and risk jeopardizing their friendship.</p>
+<p>Moreover, Sein had made a positive first impression on her.</p>
+<p>Since Sein acknowledged their mutual friendship, he became Reina’s second friend after Natalya.</p>
+<p>Reina only wished Sein would stop using odd laboratory devices on her and stop her from eating during the experiment!</p>
+<p>“The body tempering experiment we’re conducting requires extremely precise data. You can’t eat during the experiment as it’ll severely...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="601-650.html" rel="next">Next: Chs 601–650 &rarr;</a>
+    <p class="page-end-links"><a href="501-550.html" rel="prev">&larr; Chs 501–550</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 551–600</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c551">Chapter 551: Unconscious 🔒</a></li>
+        <li><a href="#c552">Chapter 552: Thunder Marsh 🔒</a></li>
+        <li><a href="#c553">Chapter 553: Truth and Justice 🔒</a></li>
+        <li><a href="#c554">Chapter 554: Never Flaunt Your Wealth 🔒</a></li>
+        <li><a href="#c555">Chapter 555: Arranged Marriage 🔒</a></li>
+        <li><a href="#c556">Chapter 556: Demigod-level Technique 🔒</a></li>
+        <li><a href="#c557">Chapter 557: Strict Wives 🔒</a></li>
+        <li><a href="#c558">Chapter 558: Absorbing Lightning 🔒</a></li>
+        <li><a href="#c559">Chapter 559: Steel And Courage 🔒</a></li>
+        <li><a href="#c560">Chapter 560: Thunderfall World’s Resistance 🔒</a></li>
+        <li><a href="#c561">Chapter 561: Green-Skinned Garth 🔒</a></li>
+        <li><a href="#c562">Chapter 562: Partial Elementalization 🔒</a></li>
+        <li><a href="#c563">Chapter 563: Defeat and Retreat 🔒</a></li>
+        <li><a href="#c564">Chapter 564: Relations 🔒</a></li>
+        <li><a href="#c565">Chapter 565: Interplanar Communication 🔒</a></li>
+        <li><a href="#c566">Chapter 566: Rank Two 🔒</a></li>
+        <li><a href="#c567">Chapter 567: Impending Major Battle 🔒</a></li>
+        <li><a href="#c568">Chapter 568: Fiancee 🔒</a></li>
+        <li><a href="#c569">Chapter 569: Calling Off The Wedding 🔒</a></li>
+        <li><a href="#c570">Chapter 570: Battle of Rank Two 🔒</a></li>
+        <li><a href="#c571">Chapter 571: Clash of Flames 🔒</a></li>
+        <li><a href="#c572">Chapter 572: Subdued 🔒</a></li>
+        <li><a href="#c573">Chapter 573: Unrequited 🔒</a></li>
+        <li><a href="#c574">Chapter 574: Traveling West 🔒</a></li>
+        <li><a href="#c575">Chapter 575: The Last Stand 🔒</a></li>
+        <li><a href="#c576">Chapter 576: Death’s Door 🔒</a></li>
+        <li><a href="#c577">Chapter 577: Battle Commenced 🔒</a></li>
+        <li><a href="#c578">Chapter 578: Encirclement 🔒</a></li>
+        <li><a href="#c579">Chapter 579: Fortress Defense (I) 🔒</a></li>
+        <li><a href="#c580">Chapter 580: Fortress Defense (II) 🔒</a></li>
+        <li><a href="#c581">Chapter 581: Fortress Defense (III) 🔒</a></li>
+        <li><a href="#c582">Chapter 582: Fortress Defense (IV) 🔒</a></li>
+        <li><a href="#c583">Chapter 583: Fortress Defense (V) 🔒</a></li>
+        <li><a href="#c584">Chapter 584: Fortress Defense (VI) 🔒</a></li>
+        <li><a href="#c585">Chapter 585: Fortress Defense (VII) 🔒</a></li>
+        <li><a href="#c586">Chapter 586: Fortress Defense (VIII) 🔒</a></li>
+        <li><a href="#c587">Chapter 587: Fortress Defense (IX) 🔒</a></li>
+        <li><a href="#c588">Chapter 588: Distributing Potions 🔒</a></li>
+        <li><a href="#c589">Chapter 589: Father-In-Law 🔒</a></li>
+        <li><a href="#c590">Chapter 590: Soul War Song 🔒</a></li>
+        <li><a href="#c591">Chapter 591: Network of Allies 🔒</a></li>
+        <li><a href="#c592">Chapter 592: Call Of The Wild 🔒</a></li>
+        <li><a href="#c593">Chapter 593: Meeting 🔒</a></li>
+        <li><a href="#c594">Chapter 594: Gravity Training Room 🔒</a></li>
+        <li><a href="#c595">Chapter 595: Reina 🔒</a></li>
+        <li><a href="#c596">Chapter 596: The Ultimate Body Tempering 🔒</a></li>
+        <li><a href="#c597">Chapter 597: Mother’s Assistance 🔒</a></li>
+        <li><a href="#c598">Chapter 598: Experiment Invitation 🔒</a></li>
+        <li><a href="#c599">Chapter 599: Low Self-Esteem 🔒</a></li>
+        <li><a href="#c600">Chapter 600: Big News! 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="501-550.html" rel="prev">&larr; Chs 501–550</a>    <a href="../../index.html">Library</a>
+<a href="601-650.html" rel="next">Chs 601–650 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

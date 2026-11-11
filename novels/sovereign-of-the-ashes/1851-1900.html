@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1851–1900</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1801-1850.html#last" data-next-page="1901-1950.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1851">Chapter 1851: Breaking Out 🔒</a></li>
+        <li><a href="#c1852">Chapter 1852: Dragon Bloodline  🔒</a></li>
+        <li><a href="#c1853">Chapter 1853: Overlord-level Shockwave 🔒</a></li>
+        <li><a href="#c1854">Chapter 1854: Shared Thoughts 🔒</a></li>
+        <li><a href="#c1855">Chapter 1855: Tourmaline’s Treasures 🔒</a></li>
+        <li><a href="#c1856">Chapter 1856: Stepping In 🔒</a></li>
+        <li><a href="#c1857">Chapter 1857: The Shattered Portal 🔒</a></li>
+        <li><a href="#c1858">Chapter 1858: Dragon’s Head 🔒</a></li>
+        <li><a href="#c1859">Chapter 1859: Bloodline Link 🔒</a></li>
+        <li><a href="#c1860">Chapter 1860: A Narrow Escape 🔒</a></li>
+        <li><a href="#c1861">Chapter 1861: Space Pirates 🔒</a></li>
+        <li><a href="#c1862">Chapter 1862: The God of Ashes  🔒</a></li>
+        <li><a href="#c1863">Chapter 1863: The Dragon Clan of the Immortal Realm 🔒</a></li>
+        <li><a href="#c1864">Chapter 1864: A Unique Civilization 🔒</a></li>
+        <li><a href="#c1865">Chapter 1865: A Mass Mobilization 🔒</a></li>
+        <li><a href="#c1866">Chapter 1866: Mission 🔒</a></li>
+        <li><a href="#c1867">Chapter 1867: Vermi Star Domain 🔒</a></li>
+        <li><a href="#c1868">Chapter 1868: Shopping Auction 🔒</a></li>
+        <li><a href="#c1869">Chapter 1869: Law-Infused Spring Waters 🔒</a></li>
+        <li><a href="#c1870">Chapter 1870: Spring Lords 🔒</a></li>
+        <li><a href="#c1871">Chapter 1871: Blocked by Maniacs 🔒</a></li>
+        <li><a href="#c1872">Chapter 1872: Active Phase 🔒</a></li>
+        <li><a href="#c1873">Chapter 1873: The Fiend Tide Civilization 🔒</a></li>
+        <li><a href="#c1874">Chapter 1874: Star Charts 🔒</a></li>
+        <li><a href="#c1875">Chapter 1875: Choice 🔒</a></li>
+        <li><a href="#c1876">Chapter 1876: Three Against One 🔒</a></li>
+        <li><a href="#c1877">Chapter 1877: The Eye of Sealing 🔒</a></li>
+        <li><a href="#c1878">Chapter 1878: Path to Peak 🔒</a></li>
+        <li><a href="#c1879">Chapter 1879: Mechanical Mark 🔒</a></li>
+        <li><a href="#c1880">Chapter 1880: Blue Waves World 🔒</a></li>
+        <li><a href="#c1881">Chapter 1881: Regaining Strength 🔒</a></li>
+        <li><a href="#c1882">Chapter 1882: The Myriad Springs Worlds 🔒</a></li>
+        <li><a href="#c1883">Chapter 1883: Destruction Spring 🔒</a></li>
+        <li><a href="#c1884">Chapter 1884: Potentially a Top-Tier Civilization 🔒</a></li>
+        <li><a href="#c1885">Chapter 1885: Rank Eight Overlord 🔒</a></li>
+        <li><a href="#c1886">Chapter 1886: The Power of Destruction 🔒</a></li>
+        <li><a href="#c1887">Chapter 1887: The Driving Force of War 🔒</a></li>
+        <li><a href="#c1888">Chapter 1888: Noble Clans 🔒</a></li>
+        <li><a href="#c1889">Chapter 1889: Valiant Dragon 🔒</a></li>
+        <li><a href="#c1890">Chapter 1890: Gongsun Wudi 🔒</a></li>
+        <li><a href="#c1891">Chapter 1891: Meteor Shower 🔒</a></li>
+        <li><a href="#c1892">Chapter 1892: Those With Nothing Left to Lose 🔒</a></li>
+        <li><a href="#c1893">Chapter 1893: Growth and Prosperity 🔒</a></li>
+        <li><a href="#c1894">Chapter 1894: Law Nodes 🔒</a></li>
+        <li><a href="#c1895">Chapter 1895: The Tragedy of Rongyue 🔒</a></li>
+        <li><a href="#c1896">Chapter 1896: Surrender Negotiations 🔒</a></li>
+        <li><a href="#c1897">Chapter 1897: Dawn Empire 🔒</a></li>
+        <li><a href="#c1898">Chapter 1898: Dynasty’s Fortune 🔒</a></li>
+        <li><a href="#c1899">Chapter 1899: An Audience with the Emperor 🔒</a></li>
+        <li><a href="#c1900">Chapter 1900: Civilizational Diplomacy 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1851" data-label="1851">
+<h2 class="chapter">Chapter 1851: Breaking Out 🔒</h2>
+<p>Rank Five vizier Raebius of the Amenkha Empire ultimately ended up as just another specimen in Sein’s laboratory.</p>
+<p>That said, there was a small dispute over how the spoils should be divided.</p>
+<p>The Rank Four Dragon Warlock Mel insisted she deserved half of the vizier’s remains.</p>
+<p>In truth, it was Sein who had suppressed Raebius during his burst phase and kept him locked in place, cutting off any chance of escape.</p>
+<p>Facing Sein, who was backed by two world-class secret treasures, Raebius had no choice but to accept defeat!</p>
+<p>Aside from the vizier, the other key figure on this battlefield was the Rank Six monster Fermera had engaged earlier.</p>
+<p>Its immense physique and the single sharp horn on its head that was...</p>
+</article>
+<article id="c1852" data-label="1852">
+<h2 class="chapter">Chapter 1852: Dragon Bloodline  🔒</h2>
+<p>Planet Mordora was located at the very heart of its star domain.</p>
+<p>A fierce battle between overlords had already erupted across its skies.</p>
+<p>On one side stood Bhaal, who had already unleashed his dragon form, and Avril, the Mermaid Overlord.</p>
+<p>Their opponent was the Tenth Pharaoh of the Amenkha Empire, backed by two monster kings.</p>
+<p>Avril and Bhaal had arrived in the Mordora Star Domain at nearly the same time.</p>
+<p>However, since the Astral Realm was three-dimensional and they had approached from different directions, Sein and the others who had been stationed on the outskirts of this medium-sized star domain never encountered Avril’s sea race legions.</p>
+<p>Instead, they had only joined forces with a legion of Dragon Warlocks.</p>
+<p>In terms of raw...</p>
+</article>
+<article id="c1853" data-label="1853">
+<h2 class="chapter">Chapter 1853: Overlord-level Shockwave 🔒</h2>
+<p>Bhaal and Avril had no intention of answering the Tenth Pharaoh’s question.</p>
+<p>The Tenth Pharaoh quickly lost interest. A suffocating wave of necromantic energy began to spread from her, rolling outward across the battlefield.</p>
+<p>Bathed in that dense, deathly aura, the Spider King let out a series of excited roars.</p>
+<p>The smaller spiders behind it also stirred restlessly, though under the Pharaoh’s overwhelming presence, they did not dare make as much noise as their “parent”.</p>
+<p><em>“Your Excellency, I have already reported the situation here to command,” </em>came the voice of five-star federal general Saden through the communication device.</p>
+<p>He continued, <em>“If you can hold them off for 32,600 quantum ticks</em>[1]<em>, at least one Erebus-class battle fleet and...</em></p>
+</article>
+<article id="c1854" data-label="1854">
+<h2 class="chapter">Chapter 1854: Shared Thoughts 🔒</h2>
+<p>Sein and Tourmaline’s attempt to break out was not going well.</p>
+<p>The problem was that Tourmaline, in her dragon turtle form, was far too large and far too slow.</p>
+<p>On the chaotic battlefield, she stood out like a massive target, drawing the attention of countless Amenkha Empire creatures.</p>
+<p>On top of that, she did not seem particularly eager to break out.</p>
+<p>Her thoughts were still on her big sister and the others.</p>
+<p>“My sister… and the others…” Tourmaline murmured, turning her massive dragon head toward the depths of the Mordora Star Domain.</p>
+<p>Something within her bloodline stirred, telling her that White Stella, Black Oblivion, and the rest were still trapped at the very...</p>
+</article>
+<article id="c1855" data-label="1855">
+<h2 class="chapter">Chapter 1855: Tourmaline’s Treasures 🔒</h2>
+<p>The encirclement of several Rank Four and Rank Five viziers and monsters became a major obstacle blocking Sein and his group’s path.</p>
+<p>Now that Tourmaline had reverted to her true form, the support she could offer Sein on the battlefield had noticeably decreased.</p>
+<p>Her two green arm ribbons drifted and danced in the air.</p>
+<p>While they pushed back the creeping deathly energy, they also drew the attention of more and more Amenkha Empire powerhouses to their position.</p>
+<p>It could not be helped—those with real strength always stand out.</p>
+<p>On top of that, Sein’s repeated use of the Faceless Mask to fend off enemies only made things worse. Its nature as a world-class secret treasure was now exposed,...</p>
+</article>
+<article id="c1856" data-label="1856">
+<h2 class="chapter">Chapter 1856: Stepping In 🔒</h2>
+<p>“Is Sein still in there?” Feylis asked, standing outside the Mordora Star Domain in her verdant flame lawful body.</p>
+<p>Gregory, who was covered in wounds, stood beside her.</p>
+<p>Feylis’ elemental form was slender and tall, but its resilience and explosive power were anything but delicate.</p>
+<p>During the earlier breakout, she had even clashed head-on with a peak Rank Six vizier in his unsealed state.</p>
+<p>Although she had been slightly outmatched, she still managed to leave a mark on him and successfully led the surrounding legions off the battlefield.</p>
+<p>The price she paid, however, was a visible scar that now marred her cheek.</p>
+<p>A faint but potent aura of necromantic energy lingered around the wound, clinging to it like...</p>
+</article>
+<article id="c1857" data-label="1857">
+<h2 class="chapter">Chapter 1857: The Shattered Portal 🔒</h2>
+<p>At one point, Sein had been forced close to a shattered portal.</p>
+<p>Close behind him, a Rank Six vizier and two Rank Six monsters pressed forward without pause.</p>
+<p>Under their relentless assault, Fermera had already lost two of her wings. The rest of her injuries were likely even worse than Sein’s.</p>
+<p>The vizier’s target was obviously Sein and Tourmaline.</p>
+<p>Earlier, when the Magus Civilization’s forces, led by the Ashen Fortress and the Rank Four Dragon Warlocks, broke through his encirclement and flew past, the vizier did not even try to stop them. He stayed locked onto Sein’s group the entire time.</p>
+<p>During the fight, the vizier revealed his world-class secret treasure—the Skull of Death.</p>
+<p>It appeared to have been crafted...</p>
+</article>
+<article id="c1858" data-label="1858">
+<h2 class="chapter">Chapter 1858: Dragon’s Head 🔒</h2>
+<p>The razor-sharp forces of space and time tore through everything around him.</p>
+<p>Even Sein, whose body had been tempered, felt searing pain.</p>
+<p>Elemental blood seeped from his skin.</p>
+<p>New cracks began to spread across his demonic lawful body.</p>
+<p>The closer he drew to the heart of the shattered portal, the more intense the pain became.</p>
+<p>As Sein rapidly calculated the limits of his endurance against the distance remaining, a grim conclusion hit him….</p>
+<p>He would not even make it inside. The chaotic spatial forces would rip him apart first, reducing him to nothing but a cloud of blood mist.</p>
+<p>And that was not even considering what might be waiting on the other side.</p>
+<p>This was the price of a desperate gamble. Too many unknowns,...</p>
+</article>
+<article id="c1859" data-label="1859">
+<h2 class="chapter">Chapter 1859: Bloodline Link 🔒</h2>
+<p>Driven by fury, Baxia lunged forward and clamped his jaws down on the Amenkha Empire’s Rank Six vizier.</p>
+<p>Although the vizier was nearing the end of his burst phase, he stood no chance of resisting a direct bite from an overlord!</p>
+<p>The two Rank Six monsters at his side were no better off.</p>
+<p>In a region riddled with space-time rifts, creatures nearly a kilometer in size looked like toys before Baxia’s enormous dragon head.</p>
+<p>And as Baxia attacked the Rank Six vizier, neither of them dared make a sound.</p>
+<p>The crushing pressure of Baxia’s bloodline and overwhelming life force made them tremble where they stood.</p>
+<p>“Ahhh—!”</p>
+<p>A scream tore through space.</p>
+<p>Baxia showed no mercy....</p>
+</article>
+<article id="c1860" data-label="1860">
+<h2 class="chapter">Chapter 1860: A Narrow Escape 🔒</h2>
+<p>Sein’s spirit and will were exceptionally strong.</p>
+<p>After entering this space-time corridor and enduring constant erosion and tearing from every direction, Yuri and Tourmaline both collapsed one after the other as their bodies reached their limits. Only Sein managed to stay barely conscious.</p>
+<p>The first thing he needed to do was figure out where he was and keep control of his body, avoiding the unstable zones in the corridor.</p>
+<p>Since entering this seemingly endless passage, Sein had already come across at least five areas that gave him a strong sense of danger.</p>
+<p>As for the lower to mid-risk areas, there were too many to count.</p>
+<p>The constant erosion and...</p>
+</article>
+<article id="c1861" data-label="1861">
+<h2 class="chapter">Chapter 1861: Space Pirates 🔒</h2>
+<p>Sein stored away the head of the Burning Flame Unit.</p>
+<p>Rebuilding her body later would surely cost a fortune.</p>
+<p>He also returned Yuri to her spatial living device. She was still unconscious and showed no signs of waking.</p>
+<p>After calling Fermera over, Sein gently caressed her face.</p>
+<p>Her once beautiful features were now almost half-destroyed, replaced by a large charred patch with internal mechanisms and metal wiring exposed.</p>
+<p>Faint sparks flickered across her body, accompanied by soft crackling sounds.</p>
+<p>As Fermera moved closer, Sein could already sense through the Magic Cube embedded in her chest that her combat strength had dropped to less than ten percent of its original level.</p>
+<p>Her weapon, propulsion,...</p>
+</article>
+<article id="c1862" data-label="1862">
+<h2 class="chapter">Chapter 1862: The God of Ashes  🔒</h2>
+<p>Taking control of the pirate crew went smoothly.</p>
+<p>Even though Sein had not fully recovered, dealing with a group that did not even have a single Rank Four among them was effortless.</p>
+<p>He seized control of two ships, Fermera destroyed another two, and Tourmaline forced the capital ship carrying the pirate leader to stop with her sheer presence alone.</p>
+<p>The shockwaves from the destroyed ships left the rest of the pirates frozen, not daring to make a move.</p>
+<p>Once Sein boarded the capital ship, he quickly extracted information about their background and this star domain.</p>
+<p>The pirate crew led by Aribbean offered Sein almost nothing of value.</p>
+<p>When Sein used a bit of soul...</p>
+</article>
+<article id="c1863" data-label="1863">
+<h2 class="chapter">Chapter 1863: The Dragon Clan of the Immortal Realm 🔒</h2>
+<p>As Baxia’s roar shook the heavens and echoed across the cosmos…</p>
+<p>Far away, in the civilization of the Immortal Realm…</p>
+<p>In the Western Niuhe Continent of the Great Primordial Land, where endless deserts and yellow sands stretched as far as the eye could see…[1]</p>
+<p>A ferocious dragon suddenly opened his eyes. His body was covered in blade-like protrusions, and a chakram was clamped in his jaws.</p>
+<p>His blood-red eyes burned with killing intent, radiating an overwhelming, oppressive aura.</p>
+<p>Across the entire Primordial World…no, across the Immortal Realm, this was a creature no one dared provoke!</p>
+<p>Even sage-level powerhouses would usually choose to avoid him rather than face him head-on.</p>
+<p>This dragon was not a creature to reason with. Violence and bloodshed were in his very nature.</p>
+<p>Once, a Buddha from the Western Buddhist Nation had tried to temper his savagery through enlightenment.</p>
+<p>The Buddha almost lost his head for it.</p>
+<p>In the Immortal Realm Civilization, a Buddha stood on equal footing with a sage.</p>
+<p>This was a top-tier civilization...</p>
+</article>
+<article id="c1864" data-label="1864">
+<h2 class="chapter">Chapter 1864: A Unique Civilization 🔒</h2>
+<p>Fuhai was an oddity within the Dragon Clan of the Immortal Realm.</p>
+<p>He was the illegitimate son of the former North Sea Dragon King, and his dragon bloodline was far from pure.</p>
+<p>Yet despite that, he carved out his own legend—step by step, claw by claw—in the brutal, frozen lands of the Northern Kuru Continent[1].</p>
+<p>Hundreds of thousands of years later, this self-proclaimed Flood Dragon King had risen to the rank of overlord, earning the title “Great Sage Who Overturns the Seas”[2].</p>
+<p>Fuhai had also formed a sworn brotherhood with several top-tier Yao Kings of the Immortal Realm. Together, they were known as the <em>Seven Great Sages</em>!</p>
+<p>Every one of them possessed overlord-level strength.</p>
+<p>Aside from the Nuwa Palace, almost no power commanded the same level of awe as the Seven Great Sages within the Immortal Realm Civilization.</p>
+<p>As for newer Yao factions like <em>Lion Camel...</em></p>
+</article>
+<article id="c1865" data-label="1865">
+<h2 class="chapter">Chapter 1865: A Mass Mobilization 🔒</h2>
+<p>While Fuhai was entangled in the Yao Clan’s complicated web of factions, the newly risen Torch Dragon also had deep ties with the Wu Clan, in addition to the Dragon Clan.</p>
+<p>The Wu Clan of the Immortal Realm was fundamentally different from the magi of the Magus World’s ancient era.</p>
+<p>According to legend, the Immortal Realm had risen into a top-tier civilization after Pangu split heaven and earth.[1]</p>
+<p>In this civilization, the Wu people were considered the truest inheritors of Pangu’s bloodline.</p>
+<p>They did not cultivate primordial spirit, only their physical bodies.[2]</p>
+<p>At their peak, their raw strength rivalled that of so-called “Immortals” and “Buddhas”.</p>
+<p>At present, most of the Wu Clan in Primordial World were gathered near the infamous Reincarnation Underworld.</p>
+<p>That region was steeped in Yin energy, with dark, oppressive forces saturating every...</p>
+</article>
+<article id="c1866" data-label="1866">
+<h2 class="chapter">Chapter 1866: Mission 🔒</h2>
+<p>As the person in charge of the Western Archipelago and Lady Bev’s most trusted aide, Klopp had excellent composure and emotional control.</p>
+<p>He showed no trace of emotion in front of Feylis and the others. After asking about the casualties in the Mordora Star Domain, he smoothly shifted to another topic.</p>
+<p>“I believe you have a grand apprentice named Sein, correct?”</p>
+<p>“I assigned him a covert mission some time ago, and he handled it well. I have another task for him now—something involving diplomatic outreach to other civilizations. He should be able to manage it,” he said.</p>
+<p>“I remember he already has experience in this area and has helped secure several allies for the Magus...</p>
+</article>
+<article id="c1867" data-label="1867">
+<h2 class="chapter">Chapter 1867: Vermi Star Domain 🔒</h2>
+<p>The star domains surrounding the Vermi Star Domain were regions where space-time fluctuations occurred frequently.</p>
+<p>Sein guessed this was due to the relatively weak spatial barriers in the area.</p>
+<p>That was what made it possible for him and the others to arrive here through a relatively stable portal.</p>
+<p>The space-time fluctuation zone Aribbean mentioned was a special area where space-time forces appeared even more often.</p>
+<p>Where these forces converged, they formed a dangerous region governed by its own laws—a forbidden zone that lower-ranking creatures could not easily approach.</p>
+<p>According to Aribbean, this space-time fluctuation zone had existed for a long time.</p>
+<p>It had been there since at least when he broke through to Rank Two and began...</p>
+</article>
+<article id="c1868" data-label="1868">
+<h2 class="chapter">Chapter 1868: Shopping Auction 🔒</h2>
+<p>Upon entering Weggis Star City, Sein chose not to bring out Fermera. She was still unrepaired and might attract unnecessary attention.</p>
+<p>Only Tourmaline, Aribbean, and a handful of high-performing space pirates accompanied him into the city.</p>
+<p>The vast majority of the crew remained confined to their battered ships, kept firmly in place by the magic wards Sein had set.</p>
+<p>Even if some of them broke through to the demigod level, there was no way they could escape!</p>
+<p>To outsiders, Sein appeared to be a demigod, while Tourmaline gave off the aura of a Rank Three being.</p>
+<p>He had no concern about their true strength being exposed.</p>
+<p>The Faceless Mask had long concealed Sein’s aura through countless battles and missions.</p>
+<p>As for Tourmaline’s aura-restraining<em> </em>technique,...</p>
+</article>
+<article id="c1869" data-label="1869">
+<h2 class="chapter">Chapter 1869: Law-Infused Spring Waters 🔒</h2>
+<p>The Astral Realm was vast. Strange things could be found everywhere.</p>
+<p>A deity like the Tear God, with such an unusual divine ability, might be rare, but it was not beyond reason.</p>
+<p>As the name suggested, the Tear God was a deity whose tears possessed unique properties.</p>
+<p>From Aribbean’s explanation, Sein learned that in the region around the Vermi Star Domain, the Tear God’s role was somewhat similar to that of an apothecary in the Magus Civilization.</p>
+<p>The Tear God Gem currently being auctioned was considered a high-grade restorative item.</p>
+<p>Even rarer variants existed, but they rarely circulated. The Tear God only traded those in small quantities with a select few deities with whom he was on good terms.</p>
+<p>“His eyes must be extraordinary,” Sein...</p>
+</article>
+<article id="c1870" data-label="1870">
+<h2 class="chapter">Chapter 1870: Spring Lords 🔒</h2>
+<p>In the end, Sein only picked up a few trinkets at the auction.</p>
+<p>One thing that stood out, however, was a star chart covering the Vermi Star Domain and several nearby minor star regions.</p>
+<p>The chart itself was limited in scope and did not include any medium-sized planes.</p>
+<p>Even so, Sein had a feeling that this Interstellar Chamber of Commerce—despite its unclear origins—must be connected to higher-level planes.</p>
+<p>After all, materials like the <em>Spring Water of Hatred</em> and <em>Spring Water of Joy</em> were considered rare even within the Magus Civilization.</p>
+<p>It was hard to believe such high-quality materials could come from low-level planes.</p>
+<p>Sein left before the auction came to an end.</p>
+<p>Using the Faceless Mask, he quietly marked the two...</p>
+</article>
+<article id="c1871" data-label="1871">
+<h2 class="chapter">Chapter 1871: Blocked by Maniacs 🔒</h2>
+<p>A battle broke out without warning in the narrow interstellar passage.</p>
+<p>With space-time fluctuation zones hemming in both sides, the merchant ships had nowhere to run when Sein and his crew moved in.</p>
+<p>Leading his fleet as space pirates, the battered ships under Sein’s command raised a crude “Dragon Horn Flag”.</p>
+<p>The flag had been designed by Tourmaline, featuring her own dragon horns.</p>
+<p>No one in the Vermi Star Domain had ever seen this flag before.</p>
+<p>In fact, even the Aribbean Star Pirates were likely unknown to the God of Dusk Desire and the God of Evil Tides.</p>
+<p>After all, Aribbean usually went out of his way to avoid figures like them, so there was little chance they had ever crossed paths.</p>
+<p>Sein and Tourmaline appeared at...</p>
+</article>
+<article id="c1872" data-label="1872">
+<h2 class="chapter">Chapter 1872: Active Phase 🔒</h2>
+<p>“Oh?” Sein let out a soft sound of surprise as he looked in the direction the God of Evil Tides had fled.</p>
+<p>By now, the battle had all but ended.</p>
+<p>With both Rank Four deities having lost the will to fight, the remaining airships posed no real threat.</p>
+<p>The entire clash had ended far too quickly for the native gods of the Vermi Star Domain to react.</p>
+<p>On top of that, Sein had already set up concealment and camouflage arrays in the surrounding space.</p>
+<p>Still, he had no intention of letting his prey escape.</p>
+<p>If that Rank Four managed to flee back to the Vermi Star Domain and return later with reinforcements, it would be nothing but trouble.</p>
+<p>After instructing Tourmaline and Fermera to watch over the surrendered God of Dusk Desire...</p>
+</article>
+<article id="c1873" data-label="1873">
+<h2 class="chapter">Chapter 1873: The Fiend Tide Civilization 🔒</h2>
+<p>The golden light was not some treasure or a natural manifestation of law power—it was alive!</p>
+<p>Wearing the Faceless Mask, Sein quickly identified it as something akin to a meteor.</p>
+<p>No… it was far more unusual than that!</p>
+<p>It was a strange lifeform that existed somewhere between rock and light.</p>
+<p>It had shot out from the deepest reaches of the space-time fluctuation zone—but where was it going?</p>
+<p>Curiosity got the better of him. Sein took off after the peculiar being.</p>
+<p>It was incredibly fast!</p>
+<p>Faster even than Auron, the Rank Four electro elemental creature Sein had encountered before.</p>
+<p>Using the Faceless Mask to predict its trajectory, Sein cut ahead and barely managed to intercept its path.</p>
+<p>He attempted a brief exchange.</p>
+<p>“Who are you?” Sein asked.</p>
+<p>The lifeform did...</p>
+</article>
+<article id="c1874" data-label="1874">
+<h2 class="chapter">Chapter 1874: Star Charts 🔒</h2>
+<p>Sein took a moment to look over their haul.</p>
+<p>It was indeed substantial. Alongside the four types of law-infused spring waters he had seen at the earlier auction, he found three more—the Spring Waters of Yellow Sand, Flowing Fire, and Dark Flow.</p>
+<p>Of the three, the Spring Water of Flowing Fire caught his attention.</p>
+<p>It was a strange substance where pyro and hydro elemental laws had fused together in an almost unnatural way.</p>
+<p>The study of elemental interactions had always been a major focus in Magus World.</p>
+<p>After all, when opposing elements collided, the energy released far exceeded that of ordinary interactions.</p>
+<p>Sein brought the Spring Water of Flowing Fire, stored in a special test tube, closer....</p>
+</article>
+<article id="c1875" data-label="1875">
+<h2 class="chapter">Chapter 1875: Choice 🔒</h2>
+<p>Anyone involved in interplanar or even cross-star domain trade understood well that a complete star chart was the foundation of survival in the Astral Realm.</p>
+<p>The complex star chart the God of Dusk Desire had just provided was valuable enough to buy back at least half his life—and he had taken a real risk in handing it over.</p>
+<p>If the ruler of Water Ripple World or the Spring Lords of the Myriad Springs Worlds ever found out he had sold star charts of their surrounding regions, he would be in serious trouble.</p>
+<p>But when faced with a choice between possibly being killed in the future or dying right now at Sein’s hands, the God of Dusk Desire chose the former.</p>
+<p>At least that way, he could live a little...</p>
+</article>
+<article id="c1876" data-label="1876">
+<h2 class="chapter">Chapter 1876: Three Against One 🔒</h2>
+<p>Evon Makhast, the Third Pharaoh of the Amenkha Empire, was a burly man.</p>
+<p>He was slightly shorter than Ozman Dias, the renowned First Pharaoh, but far more built than the Second Pharaoh, Sathograel Mokorn.</p>
+<p>When he appeared before the Cosmic King, the Fire Phoenix, and Vivian, his thick arm was still locked around the neck of a Rank Seven overlord from the Grand Cosmic World.</p>
+<p>The unfortunate overlord bore a faint resemblance to a rooster. His bright, five-pointed red crest looked ready to burst at any moment from the pressure.</p>
+<p>Even now, the Third Pharaoh had not unleashed his full strength.</p>
+<p>Up to this point, he simply had not faced an opponent worthy of it.</p>
+<p>Vivian, the...</p>
+</article>
+<article id="c1877" data-label="1877">
+<h2 class="chapter">Chapter 1877: The Eye of Sealing 🔒</h2>
+<p>The fierce clash between the overlords dragged on for more than a decade.</p>
+<p>For a battle at this level, that was not especially long.</p>
+<p>Even so, the battle pushed several of them to their limits.</p>
+<p>The first to withdraw was the Rank Eight Cosmic King.</p>
+<p>His earlier taunts had likely angered the Third Pharaoh.</p>
+<p>During the fight, Makhast singled him out more than once, bombarding him with relentless attacks.</p>
+<p>By the third year of the war, Makhast had already broken the first layer of his seal.</p>
+<p>He could not afford to hold back while facing three Rank Eight overlords at once.</p>
+<p>Once the seal was broken, Makhast’s strength surged to a terrifying level.</p>
+<p>Even with all three working together, Vivian...</p>
+</article>
+<article id="c1878" data-label="1878">
+<h2 class="chapter">Chapter 1878: Path to Peak 🔒</h2>
+<p>By the time Makhast came back to his senses, the Cosmic King and the others were long gone!</p>
+<p>It was not just the Cosmic King who escaped—Vivian and the Fire Phoenix had also used their own ways to leave this battlefield behind.</p>
+<p>The glow of the Eye of Sealing still lingered across the starry sky, even though Vivian had already taken the eye itself with her.</p>
+<p>Activating a high-grade world-class secret treasure like that was no simple matter.</p>
+<p>Its sealing power did not come from any laws Vivian had mastered. It was the artifact’s own power.</p>
+<p>Vivian had merely used her overlord power, along with a few techniques, to trigger its internal mechanisms.</p>
+<p>Still, the sealing effect could...</p>
+</article>
+<article id="c1879" data-label="1879">
+<h2 class="chapter">Chapter 1879: Mechanical Mark 🔒</h2>
+<p>This space pirate skirmish began when Sein and his crew came across an interstellar merchant fleet under attack.</p>
+<p>The Ashen Star Pirates were only the third party to step in.</p>
+<p>Before they arrived, a small pirate crew known as the <em>Redbeard Pirates </em>had been on the verge of wiping out the merchant fleet completely.</p>
+<p>If it had just been the original core members of Aribbean’s crew, they would not have stood a chance in a clash like this.</p>
+<p>But with the addition of Fermera and her legion, things were very different!</p>
+<p>Those once strictly law-abiding intelligent robots seemed to have found a new calling after taking part in several interstellar...</p>
+</article>
+<article id="c1880" data-label="1880">
+<h2 class="chapter">Chapter 1880: Blue Waves World 🔒</h2>
+<p>The Redbeard Pirates were quickly broken up and absorbed.</p>
+<p>Since leaving the Vermi Star Domain, Sein’s pirate crew had grown noticeably stronger.</p>
+<p>In front of Sein, Tourmaline, and the others, Aribbean played the obedient henchman—but he was arrogant and overbearing when dealing with lower-ranking pirates.</p>
+<p>Right now, he was clearly enjoying a level of power and comfort he had never imagined before.</p>
+<p>As for the unfortunate interstellar merchant fleet that had been raided, the Ashen Star Pirates did not kill them.</p>
+<p>They plundered most of the valuables and left just enough for the survivors to reach the nearest supply station.</p>
+<p>“The Astral Realm has its own rules. Not just in the Magus Civilization, even in remote star domains like this, there are systems...</p>
+</article>
+<article id="c1881" data-label="1881">
+<h2 class="chapter">Chapter 1881: Regaining Strength 🔒</h2>
+<p>In the end, Sein sent a friendlier-looking Rank Three space pirate and several angel robots to Blue Waves World to carry out his orders.</p>
+<p>Sein’s calm demeanor, sharp mind, dark aura, and quiet cruelty left the God of Dusk Desire with a complicated expression.</p>
+<p>His decision to leave Blue Waves World untouched came down to caution.</p>
+<p>He had no intention of provoking the forces behind this region without understanding the bigger picture.</p>
+<p>From the star chart provided by the God of Dusk Desire, Sein had already worked out that several nearby planes—including Blue Waves World, Flowing Water Plane, and Water Ripple World—were all vassals of the Myriad Springs Worlds.</p>
+<p>They might not be part of the cluster itself,...</p>
+</article>
+<article id="c1882" data-label="1882">
+<h2 class="chapter">Chapter 1882: The Myriad Springs Worlds 🔒</h2>
+<p>With their course set once more for the Myriad Springs Worlds, Sein and his group picked up the pace.</p>
+<p>The God of Dusk Desire proved to be sensible. Upon reaching Flowing Water Plane, he simply had his men deliver the ransom and did not enter the plane himself.</p>
+<p>His merchant fleet continued traveling alongside Sein’s group as well.</p>
+<p>His actions helped avoid suspicion. It made it less likely anyone would think he had turned informant.</p>
+<p>In return, Sein removed the magical restraints he had placed on him.</p>
+<p>At least on the surface, the God of Dusk Desire had regained his freedom after paying the ransom.</p>
+<p>Another twenty-one years passed.</p>
+<p>At last, Sein and his crew reached the outer edge of the Myriad Springs Worlds.</p>
+<p>After such a long journey, one thing became...</p>
+</article>
+<article id="c1883" data-label="1883">
+<h2 class="chapter">Chapter 1883: Destruction Spring 🔒</h2>
+<p>Tourmaline’s impulsive move actually worked in their favor, giving Sein and the others a surprisingly smooth start in the Myriad Springs Worlds.</p>
+<p>Just as the God of Dusk Desire had said, most of the Spring Lords here were quite peaceful.</p>
+<p>They were calm by nature, shaped by the gentle, all-embracing qualities of hydro elemental laws.</p>
+<p>Perhaps because Tourmaline was getting along so well with the giant red fish, even Gurgling Spring—the nearest Rank Four being—seemed drawn in.</p>
+<p>The rich hydro elemental aura radiating from Tourmaline gave the Spring Lords an instinctive sense of familiarity.</p>
+<p>Sometimes, that was all it took. Even a first meeting could turn into easy rapport, as long as the other party’s presence felt right.</p>
+<p>That was exactly what was happening between Tourmaline, the giant red fish, and Gurgling Spring.</p>
+<p>The other...</p>
+</article>
+<article id="c1884" data-label="1884">
+<h2 class="chapter">Chapter 1884: Potentially a Top-Tier Civilization 🔒</h2>
+<p>The Vitality Spring Plane was not very large; it was merely a low-level plane.</p>
+<p>Even Vitality Spring itself was only a Rank Five Spring Lord, so its overall strength within the Myriad Springs Worlds was not particularly impressive.</p>
+<p>However, Vitality Spring Plane lay near the heart of this world cluster.</p>
+<p>Sein was not entirely clear on the power structure of the Myriad Springs Worlds or how its hierarchy was divided.</p>
+<p>But based on the details and information previously revealed by the God of Dusk Desire, Vitality Spring seemed to hold greater authority than other Rank Five Spring Lords and Rank Five beings within this world cluster.</p>
+<p>This was evident from the numerous interplanar teleportation channels found on its plane.</p>
+<p>It...</p>
+</article>
+<article id="c1885" data-label="1885">
+<h2 class="chapter">Chapter 1885: Rank Eight Overlord 🔒</h2>
+<p>The visitor from beyond the plane was a top-tier powerhouse known throughout the outer reaches of the Myriad Springs Worlds—Dark Spring.</p>
+<p>Among the Spring Lords, those with peaceful dispositions usually addressed each other as brothers and sisters.</p>
+<p>Besides, they might have all originated from the same source.</p>
+<p>Over time, as they split and developed, differences and even mutations began to emerge.</p>
+<p>That was especially true for the more extreme and negative Spring Lords, like Dark Spring before them.</p>
+<p>A small number of Spring Lords possessed dark, twisted natures and were obsessed with violence and aggressive expansion.</p>
+<p>They also placed great importance on social standing and status.</p>
+<p>Dark Spring was one such outlier. Under his command were beings like Hatred Spring, Putrefaction...</p>
+</article>
+<article id="c1886" data-label="1886">
+<h2 class="chapter">Chapter 1886: The Power of Destruction 🔒</h2>
+<p>“Oh, so you’re Master Jorces’ apprentice.” Destruction Spring’s tone softened noticeably.</p>
+<p>Most Spring Lords in the Myriad Springs Worlds did not have a fixed form.</p>
+<p>That included Destruction Spring.</p>
+<p>All Sein could see was a vast mass of hydro elemental energy.</p>
+<p>The eleventh-grade lotus throne beneath it was equally immense.</p>
+<p>To be more precise, the throne was halfway to the twelfth grade.</p>
+<p>Like Sein’s Magic Cube, it seemed to be a world-class secret treasure with room to grow.</p>
+<p>“What brings you to the Myriad Springs Worlds?” Destruction Spring asked.</p>
+<p>Sein glanced at Tourmaline, who was trying to climb onto the Destruction Lotus Throne, then replied, “We were hunted...</p>
+</article>
+<article id="c1887" data-label="1887">
+<h2 class="chapter">Chapter 1887: The Driving Force of War 🔒</h2>
+<p>It was clear Destruction Spring intended to send Sein away.</p>
+<p>Seeing this, Tourmaline rushed forward, grabbed his magic robe, and tried to follow him.</p>
+<p>Sein was just as reluctant to leave her behind alone in the Myriad Springs Worlds.</p>
+<p>But Destruction Spring spoke up. “As for supporting your Magus Civilization, even with my authority, I can’t make that decision alone. Leaving this little one here will help persuade the other Spring Lords, especially the neutral ones like Illusion Spring, my little sister.”</p>
+<p>“Besides, her uncle will be arriving soon. If she leaves with you, how am I supposed to explain that to him?” Destruction Spring added with a chuckle.</p>
+<p>Sein believed he was not lying. After all,...</p>
+</article>
+<article id="c1888" data-label="1888">
+<h2 class="chapter">Chapter 1888: Noble Clans 🔒</h2>
+<p>The spatial spring created by the Destruction Spring Overlord was far more stable than the shattered spacetime passage Sein had traveled through before.</p>
+<p>This was what true mastery of spatial power looked like!</p>
+<p>Sein felt almost no discomfort as he moved through the passage.</p>
+<p>The journey itself was brief.</p>
+<p>When the power of spatial laws was pushed to its limits, crossing vast distances to reach a distant star domain or even an entirely alien civilization in an instant was not difficult.</p>
+<p>The surrounding space-time currents gradually receded, while the white light at the edge of his vision grew brighter and brighter.</p>
+<p>As Sein reached the end and extended his hand, a powerful force yanked him through space and time, and he instantly materialized in an unfamiliar star domain.</p>
+<p>Moments later, Fermera, the Rank Four God of Dusk Desire,...</p>
+</article>
+<article id="c1889" data-label="1889">
+<h2 class="chapter">Chapter 1889: Valiant Dragon 🔒</h2>
+<p>Sein’s first encounter with the Martial Civilization was… not as pleasant as he hoped.</p>
+<p>As expected, the space pirates under his command were a useless bunch.</p>
+<p>When it came to bullying weak targets or raiding merchant fleets, they were always the first to rush in.</p>
+<p>But the moment they ran into a disciplined, elite legion from a true civilization, they collapsed almost instantly.</p>
+<p>By the time Sein arrived, a group of pirates led by a Rank Three chief was already being routed by a Dawn Empire legion.</p>
+<p>The soldiers rode massive white birds that looked like a cross between cranes and dragons.</p>
+<p>Their overall form resembled cranes, but they carried faint traces of a draconic bloodline. Their talons and hooked beaks were unusually sharp, showing traits typical of dragonkind.</p>
+<p><em>A specialized unit like the Magus Civilization’s Dragon Legion...</em></p>
+</article>
+<article id="c1890" data-label="1890">
+<h2 class="chapter">Chapter 1890: Gongsun Wudi 🔒</h2>
+<p>“So, this is Mage Sein, the envoy from the Magus Civilization?” the Rank Five general in golden armor asked Ximen Feixiao.</p>
+<p>After receiving confirmation, the general gave a slight nod and had Sein <em>escorted </em>toward Rongyue Plane, where the war was still raging.</p>
+<p>Ximen Feixiao did not go with them.</p>
+<p>Now that he had delivered Sein, his task was complete. He still had his own campaign to oversee back in Juemu World.</p>
+<hr class="separator">
+<p>Stepping onto a battlefield that had nothing to do with him felt strange to Sein.</p>
+<p>During the journey, he had already pieced together a rough understanding of the Dawn Empire.</p>
+<p>Unlike the Magus Civilization, the Dawn Empire had not developed particularly advanced magitech or alchemy.</p>
+<p>They did...</p>
+</article>
+<article id="c1891" data-label="1891">
+<h2 class="chapter">Chapter 1891: Meteor Shower 🔒</h2>
+<p>The war in his own civilization was not even over, and now he was being asked to help another civilization push forward theirs.</p>
+<p>This was pretty damn frustrating for Sein.</p>
+<p>Still, after a moment of thought, he agreed to the Invincible General’s request.</p>
+<p>He did not really have a choice.</p>
+<p>Besides, in the bigger picture, the war in this medium-sized star domain was already nearing its end.</p>
+<p>If Sein could truly bring back a legion from another powerful world civilization to reinforce the Magus World, then his contribution in the Rongyue World would pale in comparison to the Dawn Empire’s future support for the Magus Civilization.</p>
+<p>Gongsun Wudi, a peak Rank Six powerhouse known for her straightforward nature, immediately assigned Sein to the...</p>
+</article>
+<article id="c1892" data-label="1892">
+<h2 class="chapter">Chapter 1892: Those With Nothing Left to Lose 🔒</h2>
+<p>War had never been about justice or evil. It brought only destruction and death.</p>
+<p>When the forbidden-level <em>Meteor Fire Rain </em>spell swallowed the giant mountain city in Rongyue World, the entire place was quickly reduced to a sea of fire.</p>
+<p>Rongyue World might be a medium-sized plane, but its overall development was nothing remarkable.</p>
+<p>After all, truly exceptional civilizations were rare in the Astral Realm.</p>
+<p>Most planes were simply… <em>average</em>.</p>
+<p>Against Sein’s forbidden spell, the Rongyue creatures had little to rely on. The totem poles scattered around the giant mountain city barely managed to project a faint white totem barrier, struggling to hold back the attack.</p>
+<p>Beyond that,...</p>
+</article>
+<article id="c1893" data-label="1893">
+<h2 class="chapter">Chapter 1893: Growth and Prosperity 🔒</h2>
+<p>The fight with the Rank Five Rongyue creature ended quickly.</p>
+<p>That was how battles between law-wielding beings often went. If one side chose to retreat or drag things out, the outcome could remain undecided for years—sometimes even decades.</p>
+<p>But when both sides went all in, especially when one refused to back down, the fight could end in an instant.</p>
+<p>This reckless Rank Five Rongyue warrior met exactly that fate, collapsing as a lifeless corpse under the combined assault of Sein and Fermera.</p>
+<p>Aside from the severed arm Fermera had cut off for Sein’s collection, there was barely anything left intact.</p>
+<p>By the time it was over, the body was riddled with holes from energy beams and scorched black by pyro elemental magic.</p>
+<p>“This one...</p>
+</article>
+<article id="c1894" data-label="1894">
+<h2 class="chapter">Chapter 1894: Law Nodes 🔒</h2>
+<p>Gongsun Wudi’s command tent stood at the very heart of Rongyue World.</p>
+<p>It was also the final stronghold where resistance on this plane remained at its fiercest.</p>
+<p>The two Rank Six beings of Rongyue World—the King of Mount Yue and Rongdi the Earth Hound—were locked in a desperate last stand here.</p>
+<p>This plane’s navel and its guardian were likely nearby as well.</p>
+<p>When Sein arrived, the sounds of war, with blazing beacons streaking across the sky, had not ceased for even a moment.</p>
+<p>Gongsun Wudi was not the only Rank Six being the Dawn Empire had deployed to this battlefield.</p>
+<p>Whenever she withdrew briefly to rest, another would take her place.</p>
+<p>By denying the Rongyue creatures...</p>
+</article>
+<article id="c1895" data-label="1895">
+<h2 class="chapter">Chapter 1895: The Tragedy of Rongyue 🔒</h2>
+<p>The navel of the plane in Rongyue World lay within the Nine Abyss Mountains.</p>
+<p>This was the birthplace of its races and civilization.</p>
+<p>Countless gray-white peaks rose and clustered together here.</p>
+<p>At first glance, the region seemed barren, almost devoid of greenery or life. Yet it had nurtured the ancestors of nearly every native lifeform in Rongyue World.</p>
+<p>The small patches of grass clinging to cracks along sheer cliffs reflected the resilience of the Rongyue people, while the rivers surging through deep gorges represented their untamed spirit.</p>
+<p>This was a medium-sized world that lived in harmony with nature, following its most primal laws of survival.</p>
+<p>But everything...</p>
+</article>
+<article id="c1896" data-label="1896">
+<h2 class="chapter">Chapter 1896: Surrender Negotiations 🔒</h2>
+<p>The war in Rongyue World ended far sooner than Sein had expected.</p>
+<p>Only seven years after his arrival, the main forces of the Dawn Empire were already preparing to withdraw.</p>
+<p>In truth, pockets of resistance still lingered.</p>
+<p>Some factions within the Rongyue World continued to fight, and a few planes across the star domain still refused to accept defeat.</p>
+<p>Ever since the two Rank Six beings of this world were dealt with, the outcome was already decided.</p>
+<p>The King of Mount Yue, the strongest among the two Rank Six beings, had been slain.</p>
+<p>Even in death, he refused to bow.</p>
+<p>It was said that when he died, he neither collapsed nor knelt!</p>
+<p>He...</p>
+</article>
+<article id="c1897" data-label="1897">
+<h2 class="chapter">Chapter 1897: Dawn Empire 🔒</h2>
+<p>It was clear that Gongsun Wudi had complete confidence in the Dawn Empire legions under her command.</p>
+<p>She was equally certain that the defeated Rongyue Civilization would not stir up any further major trouble.</p>
+<p>With only a few scattered pockets of resistance left in the Rongyue Star Domain, Gongsun Wudi led Sein and a group of prisoners straight back to the Dawn Empire.</p>
+<p>As expected, the empire’s most elite legion was the Valiant Dragon Army Sein had seen earlier.</p>
+<p>This unit answered directly to the Emperor, and its total strength was rumored to be only around one million.</p>
+<p>The force deployed to the Rongyue Star Domain this time was just a small fraction of that number.</p>
+<p>Even so, this contingent had been personally ordered by the Emperor and placed...</p>
+</article>
+<article id="c1898" data-label="1898">
+<h2 class="chapter">Chapter 1898: Dynasty’s Fortune 🔒</h2>
+<p>When Sein asked about the “Dragon Qi”, Gongsun Wudi explained it using terms like “fortune” and “dragon veins”.</p>
+<p>These were concepts unique to the Martial Civilization, leaving Sein still quite puzzled.</p>
+<p>From what he could observe, however, he concluded that the energy dragon was a manifestation of some special occult force, similar to the intangible totem projection he had seen in Rongyue World.</p>
+<p>Clearly, after more than a hundred thousand years of development, the Martial Civilization had developed its own distinct methods of harnessing power.</p>
+<p>Even Sein found himself impressed by this Dragon Qi.</p>
+<p>“May I ask—aside from protecting your homeplane, does this Dragon Qi have other uses?” Sein asked. “Can it be used offensively in battles?”</p>
+<p>“Of course. In the Dawn Empire, the higher one’s authority, the more the ‘dynasty fortune’ they can draw upon. No one can wield more Dragon Qi in battle than...</p>
+</article>
+<article id="c1899" data-label="1899">
+<h2 class="chapter">Chapter 1899: An Audience with the Emperor 🔒</h2>
+<p>During the Rongyue World War, Gongsun Wudi rarely used her formal title.</p>
+<p>Most of the time, both soldiers and officers simply addressed her as “Grand General”.</p>
+<p>The title itself—combining “Guardian of the Nation” and “Great Peace”—hinted at the expectations her father had placed on his children.</p>
+<p>It may even have reflected the broader direction of the empire’s governance.</p>
+<p>Her father was known as the <em>First Emperor</em>, the founder of the Dawn Empire.</p>
+<p>And yet, the one currently on the throne was her older brother.</p>
+<p>As the topic came up, Sein asked, “What about your father?”</p>
+<p>A trace of sadness flickered across Gongsun Wudi’s face. “He passed away not long after I was born. In truth, he never actually took the throne. That title was granted to him posthumously by my br...</p>
+</article>
+<article id="c1900" data-label="1900">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1900: Civilizational Diplomacy 🔒</h2>
+<p>The Emperor of the Dawn Empire struck Sein as surprisingly approachable.</p>
+<p>During their conversation, he not only asked about the current state of the Magus Civilization but also inquired about Lady Bev, its leader.</p>
+<p>As a mere Rank Five, Sein naturally had no direct contact with figures of her standing.</p>
+<p>So far, the overlord-level powerhouse he had interacted with most was only Klopp of the Western Archipelago.</p>
+<p>To Sein’s surprise, the Emperor was not only aware of Klopp but also quite familiar with the Western Archipelago of Magus World.</p>
+<p>Although Sein had never met Lady Bev in person, he had seen her once during the 25th Magus Alliance Conference.</p>
+<p>He explained that after the Magus Civilization declared war on the Gallant Federation at that...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1901-1950.html" rel="next">Next: Chs 1901–1950 &rarr;</a>
+    <p class="page-end-links"><a href="1801-1850.html" rel="prev">&larr; Chs 1801–1850</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1851–1900</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1851">Chapter 1851: Breaking Out 🔒</a></li>
+        <li><a href="#c1852">Chapter 1852: Dragon Bloodline  🔒</a></li>
+        <li><a href="#c1853">Chapter 1853: Overlord-level Shockwave 🔒</a></li>
+        <li><a href="#c1854">Chapter 1854: Shared Thoughts 🔒</a></li>
+        <li><a href="#c1855">Chapter 1855: Tourmaline’s Treasures 🔒</a></li>
+        <li><a href="#c1856">Chapter 1856: Stepping In 🔒</a></li>
+        <li><a href="#c1857">Chapter 1857: The Shattered Portal 🔒</a></li>
+        <li><a href="#c1858">Chapter 1858: Dragon’s Head 🔒</a></li>
+        <li><a href="#c1859">Chapter 1859: Bloodline Link 🔒</a></li>
+        <li><a href="#c1860">Chapter 1860: A Narrow Escape 🔒</a></li>
+        <li><a href="#c1861">Chapter 1861: Space Pirates 🔒</a></li>
+        <li><a href="#c1862">Chapter 1862: The God of Ashes  🔒</a></li>
+        <li><a href="#c1863">Chapter 1863: The Dragon Clan of the Immortal Realm 🔒</a></li>
+        <li><a href="#c1864">Chapter 1864: A Unique Civilization 🔒</a></li>
+        <li><a href="#c1865">Chapter 1865: A Mass Mobilization 🔒</a></li>
+        <li><a href="#c1866">Chapter 1866: Mission 🔒</a></li>
+        <li><a href="#c1867">Chapter 1867: Vermi Star Domain 🔒</a></li>
+        <li><a href="#c1868">Chapter 1868: Shopping Auction 🔒</a></li>
+        <li><a href="#c1869">Chapter 1869: Law-Infused Spring Waters 🔒</a></li>
+        <li><a href="#c1870">Chapter 1870: Spring Lords 🔒</a></li>
+        <li><a href="#c1871">Chapter 1871: Blocked by Maniacs 🔒</a></li>
+        <li><a href="#c1872">Chapter 1872: Active Phase 🔒</a></li>
+        <li><a href="#c1873">Chapter 1873: The Fiend Tide Civilization 🔒</a></li>
+        <li><a href="#c1874">Chapter 1874: Star Charts 🔒</a></li>
+        <li><a href="#c1875">Chapter 1875: Choice 🔒</a></li>
+        <li><a href="#c1876">Chapter 1876: Three Against One 🔒</a></li>
+        <li><a href="#c1877">Chapter 1877: The Eye of Sealing 🔒</a></li>
+        <li><a href="#c1878">Chapter 1878: Path to Peak 🔒</a></li>
+        <li><a href="#c1879">Chapter 1879: Mechanical Mark 🔒</a></li>
+        <li><a href="#c1880">Chapter 1880: Blue Waves World 🔒</a></li>
+        <li><a href="#c1881">Chapter 1881: Regaining Strength 🔒</a></li>
+        <li><a href="#c1882">Chapter 1882: The Myriad Springs Worlds 🔒</a></li>
+        <li><a href="#c1883">Chapter 1883: Destruction Spring 🔒</a></li>
+        <li><a href="#c1884">Chapter 1884: Potentially a Top-Tier Civilization 🔒</a></li>
+        <li><a href="#c1885">Chapter 1885: Rank Eight Overlord 🔒</a></li>
+        <li><a href="#c1886">Chapter 1886: The Power of Destruction 🔒</a></li>
+        <li><a href="#c1887">Chapter 1887: The Driving Force of War 🔒</a></li>
+        <li><a href="#c1888">Chapter 1888: Noble Clans 🔒</a></li>
+        <li><a href="#c1889">Chapter 1889: Valiant Dragon 🔒</a></li>
+        <li><a href="#c1890">Chapter 1890: Gongsun Wudi 🔒</a></li>
+        <li><a href="#c1891">Chapter 1891: Meteor Shower 🔒</a></li>
+        <li><a href="#c1892">Chapter 1892: Those With Nothing Left to Lose 🔒</a></li>
+        <li><a href="#c1893">Chapter 1893: Growth and Prosperity 🔒</a></li>
+        <li><a href="#c1894">Chapter 1894: Law Nodes 🔒</a></li>
+        <li><a href="#c1895">Chapter 1895: The Tragedy of Rongyue 🔒</a></li>
+        <li><a href="#c1896">Chapter 1896: Surrender Negotiations 🔒</a></li>
+        <li><a href="#c1897">Chapter 1897: Dawn Empire 🔒</a></li>
+        <li><a href="#c1898">Chapter 1898: Dynasty’s Fortune 🔒</a></li>
+        <li><a href="#c1899">Chapter 1899: An Audience with the Emperor 🔒</a></li>
+        <li><a href="#c1900">Chapter 1900: Civilizational Diplomacy 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1801-1850.html" rel="prev">&larr; Chs 1801–1850</a>    <a href="../../index.html">Library</a>
+<a href="1901-1950.html" rel="next">Chs 1901–1950 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

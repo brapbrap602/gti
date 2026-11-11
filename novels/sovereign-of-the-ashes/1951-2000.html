@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1951–2000</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1901-1950.html#last" data-next-page="2001-2050.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1951">Chapter 1951: Raging Might 🔒</a></li>
+        <li><a href="#c1952">Chapter 1952: A Fierce Battle 🔒</a></li>
+        <li><a href="#c1953">Chapter 1953: The Essence of Life 🔒</a></li>
+        <li><a href="#c1954">Chapter 1954: The New Burning Flame Unit 🔒</a></li>
+        <li><a href="#c1955">Chapter 1955: Cloud Dragon Stream World 🔒</a></li>
+        <li><a href="#c1956">Chapter 1956: Fighting for Survival 🔒</a></li>
+        <li><a href="#c1957">Chapter 1957: A Life-or-Death Struggle 🔒</a></li>
+        <li><a href="#c1958">Chapter 1958: Two Regions 🔒</a></li>
+        <li><a href="#c1959">Chapter 1959: The Sky-Reaching Giant Arm 🔒</a></li>
+        <li><a href="#c1960">Chapter 1960: The Arrival of the Jie Sect Army 🔒</a></li>
+        <li><a href="#c1961">Chapter 1961: The Cunning Magus Civilization 🔒</a></li>
+        <li><a href="#c1962">Chapter 1962: Rise and Decline 🔒</a></li>
+        <li><a href="#c1963">Chapter 1963: Overgod’s Intervention 🔒</a></li>
+        <li><a href="#c1964">Chapter 1964: Reinforcements from the Divine Descendants 🔒</a></li>
+        <li><a href="#c1965">Chapter 1965: The Battle of the Gods 🔒</a></li>
+        <li><a href="#c1966">Chapter 1966: The Great Monkey of Destruction 🔒</a></li>
+        <li><a href="#c1967">Chapter 1967: Mightiest Reinforcements 🔒</a></li>
+        <li><a href="#c1968">Chapter 1968: The Federation’s Reinforcements 🔒</a></li>
+        <li><a href="#c1969">Chapter 1969: Upholding Justice 🔒</a></li>
+        <li><a href="#c1970">Chapter 1970: Mechanical Legion 🔒</a></li>
+        <li><a href="#c1971">Chapter 1971: Florenza 🔒</a></li>
+        <li><a href="#c1972">Chapter 1972: Transitioning Plane 🔒</a></li>
+        <li><a href="#c1973">Chapter 1973: The Third Target 🔒</a></li>
+        <li><a href="#c1974">Chapter 1974: Punching a Hole Through the Planet 🔒</a></li>
+        <li><a href="#c1975">Chapter 1975: The Fury of Destruction 🔒</a></li>
+        <li><a href="#c1976">Chapter 1976: Reinforcements to Two Fronts 🔒</a></li>
+        <li><a href="#c1977">Chapter 1977: Return 🔒</a></li>
+        <li><a href="#c1978">Chapter 1978: Retreat to the Final Bastion 🔒</a></li>
+        <li><a href="#c1979">Chapter 1979: Two-Thirds 🔒</a></li>
+        <li><a href="#c1980">Chapter 1980: Another Clash 🔒</a></li>
+        <li><a href="#c1981">Chapter 1981: Photonic Electromagnetic Cannon 🔒</a></li>
+        <li><a href="#c1982">Chapter 1982: It’s Great to Be Young 🔒</a></li>
+        <li><a href="#c1983">Chapter 1983: Farce 🔒</a></li>
+        <li><a href="#c1984">Chapter 1984: The Arrival of the Swarm 🔒</a></li>
+        <li><a href="#c1985">Chapter 1985: Six Overlords! 🔒</a></li>
+        <li><a href="#c1986">Chapter 1986: The Insectoids’ Base 🔒</a></li>
+        <li><a href="#c1987">Chapter 1987: Empress of Blades 🔒</a></li>
+        <li><a href="#c1988">Chapter 1988: Second Sister 🔒</a></li>
+        <li><a href="#c1989">Chapter 1989: Shadow of Death 🔒</a></li>
+        <li><a href="#c1990">Chapter 1990: Overwhelmed 🔒</a></li>
+        <li><a href="#c1991">Chapter 1991: Up-Close Exploration 🔒</a></li>
+        <li><a href="#c1992">Chapter 1992: Insect Eggs 🔒</a></li>
+        <li><a href="#c1993">Chapter 1993: Bone-Scraping Treatment 🔒</a></li>
+        <li><a href="#c1994">Chapter 1994: Short on Funds 🔒</a></li>
+        <li><a href="#c1995">Chapter 1995: One Cannot Bite Off More Than One Can Chew 🔒</a></li>
+        <li><a href="#c1996">Chapter 1996: Entry 🔒</a></li>
+        <li><a href="#c1997">Chapter 1997: Thinking of Her Apprentice 🔒</a></li>
+        <li><a href="#c1998">Chapter 1998: Ganging Up and Getting Ganged Up On 🔒</a></li>
+        <li><a href="#c1999">Chapter 1999: Reinforcements for Everyone 🔒</a></li>
+        <li><a href="#c2000">Chapter 2000: Enrique Gustavo 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1951" data-label="1951">
+<h2 class="chapter">Chapter 1951: Raging Might 🔒</h2>
+<p>A massive arm descended from the sky, slamming directly into the Grand Cosmic World’s planar barrier.</p>
+<p>The starlight barrier, woven from the laws of the world itself, now visibly caved inward under the combined force of Makhast’s immense strength and the impact of his law power.</p>
+<p>The dozens of stacked shields and energy barriers layered over it began collapsing and shattering one after another.</p>
+<p>To accomplish such a feat through the strength of a single individual was something even overlord-level beings found difficult to believe.</p>
+<p>Was this the power of a peak Rank Eight?</p>
+<p>No wonder the Cosmic King, Fire Phoenix, Vivian, and the others had been no match for the Third Pharaoh before them, even when they joined forces!</p>
+<p>With the First Pharaoh of the Amenkha Empire in seclusion and the Monster Emperor still embroiled in severe internal conflict, the Third Pharaoh, Makhast, effectively...</p>
+</article>
+<article id="c1952" data-label="1952">
+<h2 class="chapter">Chapter 1952: A Fierce Battle 🔒</h2>
+<p>The war in Reebos World was progressing smoothly.</p>
+<p>The only real incident during this period was an attempted ambush by Reebos, the God of Night, who tried to assassinate Sein from the shadows.</p>
+<p>Unfortunately for him, Fermera and Belphane joined forces and quickly subdued him.</p>
+<p>Facing two Rank Six combatants, with a group of eager Rank Four and Rank Five powerhouses by their side, Reebos stood little chance.</p>
+<p>As an intermediate deity who specialized in ambushes and stealth rather than direct combat, he did not last long before meeting a grim end.</p>
+<p>The fall of his divine nation signaled the collapse of Reebos’ faith system.</p>
+<p>With his death, the process of eroding and taking control of Reebos World became much smoother for Sein and his companions.</p>
+<p>Trying to ambush Sein, who possessed the Faceless Mask, was beyond the ability of most Rank Six beings, let alone Reebos, a peak Rank Five deity.</p>
+<p>Moreover,...</p>
+</article>
+<article id="c1953" data-label="1953">
+<h2 class="chapter">Chapter 1953: The Essence of Life 🔒</h2>
+<p>The Arriba Interstellar Chamber of Commerce had long been actively purchasing the wreckage of Gallant Federation fleets and mobile suits.</p>
+<p>As a top-tier civilization, the Gallant Federation’s ships and mobile suits contained various alloys and advanced technological secrets coveted by civilizations throughout the Astral Realm.</p>
+<p>Arriba was a purely commercial organization. Influenced by its founding principles, it would do its best to meet the needs of even beings from microplanes, as long as they could afford to pay.</p>
+<p>It would never exploit a trading partner simply because they were too weak. Nor would it force sales on others or outright swindle them out of their assets.</p>
+<p>It was precisely because of this that the Arriba Chamber of Commerce’s reputation in the surrounding star domains had grown increasingly strong in recent years.</p>
+<p>The vast majority of plane civilizations were willing to do business with it.</p>
+<p>In the war between the Magus Civilization and the Gallant Federation, countless bystanders were waiting...</p>
+</article>
+<article id="c1954" data-label="1954">
+<h2 class="chapter">Chapter 1954: The New Burning Flame Unit 🔒</h2>
+<p>After the Green God Plane War concluded, Sein and his forces waited for their next combat assignment.</p>
+<p>During this period, the spare parts Sein had ordered for the Burning Flame Unit through the Arriba Chamber of Commerce finally arrived.</p>
+<p>Delivered along with them was a letter from the Verdant Flame Faction.</p>
+<p>Grandmaster Feylis and the others had already learned that Sein was safe and sound. In her letter, she advised him to proceed with caution while operating alone in this region.</p>
+<p>Feylis also shared her current view of the Clash of Civilizations with him.</p>
+<p>As more and more foreign civilizations and powerful factions joined the Magus Civilization’s war effort, Feylis remained optimistic about the prospects of this Clash of Civilizations.</p>
+<p>However, she also warned Sein not to let his guard down.</p>
+<p>The overall direction of the Clash of Civilizations was one thing. An individual’s fortune...</p>
+</article>
+<article id="c1955" data-label="1955">
+<h2 class="chapter">Chapter 1955: Cloud Dragon Stream World 🔒</h2>
+<p>The pace of a Clash of Civilizations was relentless.</p>
+<p>Unlike when he was back home, Sein no longer had the freedom to soar through the skies at his leisure and quietly pursue the mysteries of truth.</p>
+<p>Yuri’s mecha experiments were nearing completion. Sein’s body-tempering research, as well as his experiments involving the “Essence of Life” and its ability to increase fertility, had also begun drawing to a close, though neither had achieved complete success.</p>
+<p>Then, new combat orders arrived from the Dawn Empire.</p>
+<p>Sein had no choice but to set his experiments aside for the time being and lead his legions toward the designated battlefield.</p>
+<p>In just over two decades, the Dawn Empire had already conquered numerous planes along the outskirts of the Divine Descendants Star Domain.</p>
+<p>Yet the deeper they advanced, the stranger this civilization seemed.</p>
+<p>At the very least, the Divine Descendants Star Domain was completely unlike any enemy the Dawn Empire had faced in the past.</p>
+<p>They had already fought their...</p>
+</article>
+<article id="c1956" data-label="1956">
+<h2 class="chapter">Chapter 1956: Fighting for Survival 🔒</h2>
+<p>Drawing upon the wisdom of Magus World, Sein explained the optimal strategy for attacking Cloud Dragon Stream Plane to Gongsun Wudi and the assembled generals of the Dawn Empire.</p>
+<p>The plan required precise and extremely complex calculations.</p>
+<p>By targeting the various law nodes outside this medium-sized plane, they could force the pillars of White Jade Dragon Qi within the world to collapse.</p>
+<p>Once those pillars fell, the planar barrier would shatter along with them.</p>
+<p>After that, everything would become much simpler.</p>
+<p>The Dawn Empire had no shortage of Rank Six or higher combatants. Once the barrier was breached, they could crush the resistance within the plane through sheer strength and numbers.</p>
+<p>Moreover, judging from what they had seen on previous battlefields, the native deities of the Divine Descendants Star Domain did not possess a particularly resolute will to resist.</p>
+<p>Each seemed more concerned with fighting for themselves than for the civilization as a whole.</p>
+<p>“If we can turn some of the resistance forces within this plane against their own side and have them stir up chaos from within, it would make breaching the planar barrier much easier.”</p>
+<p>Sein paused before adding, “After all, a sturdy fort is often easiest to breach from within.”</p>
+<p>He had personally heard those words...</p>
+</article>
+<article id="c1957" data-label="1957">
+<h2 class="chapter">Chapter 1957: A Life-or-Death Struggle 🔒</h2>
+<p>The God of Black Mist was able to sense the God of Scorching Wind because the latter had once belonged to his pantheon and had, in fact, served under him for many years.</p>
+<p>Beings who followed the path of divine faith possessed certain distinct characteristics.</p>
+<p>When low-level believers meditated upon or called out the name of the deity they worshipped, the threads of faith connecting them gave that deity a chance to sense their prayers.</p>
+<p>On planes where faith-based systems had flourished, miracles often occurred.</p>
+<p>In truth, many of those so-called <em>miracles </em>were simply instances in which a deity heard the pleas of a follower and chose to respond.</p>
+<p>Sometimes, deities could be quite reasonable.</p>
+<p>So long as believers offered sufficient devotion, a deity might respond to them at their own...</p>
+</article>
+<article id="c1958" data-label="1958">
+<h2 class="chapter">Chapter 1958: Two Regions 🔒</h2>
+<p>The “<em>purge” </em>outside Cloud Dragon Stream Plane was progressing smoothly.</p>
+<p>Since the Gallant Federation and the native deities of this medium-sized world had chosen to concentrate their forces and defend their homeplane to the death, the defenses of the nearly one hundred surrounding planes had naturally weakened considerably.</p>
+<p>Moreover, many of the native deities of the Divine Descendants Star Domain were still fighting on the Gallant Federation’s other battlefields and had not been able to return in time.</p>
+<p>With Overgod Marduk still refusing to make an appearance, how could they possibly withstand the full might of the Dawn Empire?</p>
+<p>Sein believed that even if he had not raised the suggestion during their previous meeting, Gongsun Wudi would eventually have made the same arrangements herself.</p>
+<p>The Princess was a peak Rank Six powerhouse who had experienced countless battles. When it came to commanding...</p>
+</article>
+<article id="c1959" data-label="1959">
+<h2 class="chapter">Chapter 1959: The Sky-Reaching Giant Arm 🔒</h2>
+<p>The formidable barrier of Cloud Dragon Stream Plane, upon which its defenders had placed such high hopes, ultimately held out for less than half a day before the Dawn Empire broke through.</p>
+<p>Before this, the Gallant Federation commander had confidently declared, based on calculations performed by the fleet’s computers, that the planar barrier could hold for at least three months.</p>
+<p>Reality proved far crueler…</p>
+<p>On Sein’s side of the battlefield, Belphane was the first to force her way through the barrier under a storm of enemy fire.</p>
+<p>Fermera, Ximen Feixiao, the God of Black Mist, and the others followed closely behind, breaking into the plane one after another.</p>
+<p>Piloting the newly reconstructed Burning Flame Unit, Yuri returned to the battlefield once more.</p>
+<p>Burning Flame looked markedly different from her previous form...</p>
+</article>
+<article id="c1960" data-label="1960">
+<h2 class="chapter">Chapter 1960: The Arrival of the Jie Sect Army 🔒</h2>
+<p>The battle for Cloud Dragon Stream Plane lasted nearly twenty years.</p>
+<p>For a war involving a medium-sized plane, that was actually a relatively short time.</p>
+<p>Back when the Verdant Flame Faction invaded Wild Gorilla World, the campaign had dragged on far longer.</p>
+<p>During his most recent written exchange with his elders in the faction, Sein had learned that among the many battlefronts in the war between the Magus Civilization and the Gallant Federation, one of the few regions where the Magus Civilization remained at a slight disadvantage was the area surrounding Wild Gorilla World.</p>
+<p>For some reason, the war in that medium-sized star domain had always progressed at a frustratingly slow pace.</p>
+<p>Feylis had casually mentioned that the main reason seemed to be the Feral Beast Star Domain near Wild Gorilla World, which had stubbornly resisted every attempt at conquest despite repeated assaults.</p>
+<p>However, the situation on that distant front was none of Sein’s concern for now. His current responsibility was the war in the Divine Descendants Star Domain.</p>
+<p>During the...</p>
+</article>
+<article id="c1961" data-label="1961">
+<h2 class="chapter">Chapter 1961: The Cunning Magus Civilization 🔒</h2>
+<p>Upon closer consideration, the Magus Civilization’s deployment of its allied forces across the various battlefronts revealed a deeper strategic intent.</p>
+<p>The main forces of the Immortal Realm and the Dawn Empire had been deployed on two separate fronts to prevent the ancient animosity between the two civilizations from resurfacing.</p>
+<p>The Dragon Clan and the Phoenix Clan had likewise been kept apart, for these two mighty races had never seen eye to eye.</p>
+<p>As for the two Great Sages of the Immortal Realm, they were to proceed to the central battlefield of the Magus Civilization.</p>
+<p>This was not only because the Magus Civilization shared close ties with those two Immortal Realm powerhouses, but also because their participation would accelerate the overall war effort against the Gallant Federation.</p>
+<p>Upon hearing this arrangement, Celestial Venerable Duobao did not object.</p>
+<p>Strictly speaking, the forces led by those two Great Sages were not part of the same faction as the Jie Sect Army under his command.</p>
+<p>So long as...</p>
+</article>
+<article id="c1962" data-label="1962">
+<h2 class="chapter">Chapter 1962: Rise and Decline 🔒</h2>
+<p>Even for a Rank Eight overlord, killing another Rank Eight being was never an easy task.</p>
+<p>The Third Pharaoh Makhast’s combat prowess was indeed unparalleled. But even he could not single-handedly prevent several overlords, such as Aeberton and Violet Thistlestar, from escaping at once.</p>
+<p>Compared to the Dark Knight, who had actually managed to stir Makhast’s interest, it was obvious that the Amenkha powerhouse truly despised the Cosmic King.</p>
+<p>He wanted him dead.</p>
+<p>Other Amenkha Empire powerhouses quickly set off in pursuit of the Dark Knight.</p>
+<p>Makhast, however, remained where he was. His primary target had never changed. It was still the true ruler of the Grand Cosmic World—the Cosmic King.</p>
+<p>Top-tier civilizations such as the Amenkha Empire and the Magus Civilization acted with clear purpose. Once they set their sights on an objective, they rarely changed course on a whim.</p>
+<p>The Amenkha Empire’s main target was the Grand Cosmic...</p>
+</article>
+<article id="c1963" data-label="1963">
+<h2 class="chapter">Chapter 1963: Overgod’s Intervention 🔒</h2>
+<p>The Magus Civilization’s favorable situation was not limited to its main battlefield. Things were also proceeding smoothly in the Divine Descendants Star Domain, one of its secondary theaters of war.</p>
+<p>After capturing Cloud Dragon Stream Plane, Gongsun Wudi wasted no time. She immediately led her legions in a relentless assault deeper into the Divine Descendants Star Domain.</p>
+<p><em>Efficiency </em>was the key!</p>
+<p>Gongsun Wudi was not the only one moving quickly. From what Sein had learned, the Dawn Emperor and the other commanding generals were advancing with equally fierce momentum.</p>
+<p>At this rate, it was entirely possible that within another two hundred years, the Dawn Empire’s forces would push all the way to the largest plane at the heart of this star domain—the Divine Descendants World.</p>
+<p>Even Sein was surprised by how quickly the war in this vast star domain was progressing.</p>
+<p>He was no battle maniac, and besides, the recently conquered Cloud Dragon Stream Plane still needed someone to govern and develop it.</p>
+<p>Thus, at his own suggestion, Sein remained behind...</p>
+</article>
+<article id="c1964" data-label="1964">
+<h2 class="chapter">Chapter 1964: Reinforcements from the Divine Descendants 🔒</h2>
+<p>Overgod Marduk was not one to hesitate once he had made up his mind.</p>
+<p>The moment he decided to march on Typhoon Plane, forces from the depths of Divine Descendants World quickly followed, pouring into this strategically important medium-sized world battlefield.</p>
+<p>Coincidentally, just as Marduk personally set out, two separate reinforcement forces approached the Divine Descendants Star Domain from the direction of the Gallant Federation’s distant border.</p>
+<p>One was a reinforcement contingent newly dispatched by the Gallant Federation.</p>
+<p>Its size was not particularly impressive.</p>
+<p>After all, the Gallant Federation itself no longer had troops to spare. In recent years, it had already been struggling to maintain its own battlefronts.</p>
+<p>Even sending roughly twenty million troops to reinforce Divine Descendants World had required the Gallant Federation to grit its teeth and squeeze out everything it could afford.</p>
+<p>This was most likely the last reinforcement force the Gallant Federation...</p>
+</article>
+<article id="c1965" data-label="1965">
+<h2 class="chapter">Chapter 1965: The Battle of the Gods 🔒</h2>
+<p>A fierce battle was about to erupt.</p>
+<p>The Divine Descendants World legions had previously fought only among themselves within their own planes.</p>
+<p>When it came to wars between pantheons, they were certainly experienced.</p>
+<p>But in grand strategic warfare and the massive clashes between civilizations, those Rank Four and Rank Five divine descendants and gods were sorely lacking.</p>
+<p>Most of them knew nothing more than charging straight into battle.</p>
+<p>In terms of layered deployments and coordinated waves of firepower, Divine Descendants World lagged far behind top-tier civilizations such as the Magus Civilization and the Gallant Federation.</p>
+<p>The Dawn Empire was also a <em>“newbie”</em> in this kind of large-scale Clash of Civilizations.</p>
+<p>Over the past hundred thousand years, most of its conquests had been directed at small and medium-sized world civilizations.</p>
+<p>However, one of the Dawn Empire’s greatest strengths was the strict discipline of its military forces.</p>
+<p>Their absolute obedience to orders allowed the Dawn Empire...</p>
+</article>
+<article id="c1966" data-label="1966">
+<h2 class="chapter">Chapter 1966: The Great Monkey of Destruction 🔒</h2>
+<p>Typhoon Plane…</p>
+<p>As its name suggested, this was a plane where aero elemental energy surged with astonishing intensity.</p>
+<p>At the very center of Typhoon Plane, a colossal hurricane vortex churned.</p>
+<p>Beneath this great vortex stood the temple of the mightiest being on this plane, the God of Hurricanes.</p>
+<p>But today, the temple had welcomed a new master.</p>
+<p>Marduk.</p>
+<p>Apart from the immense central vortex, hundreds, perhaps even thousands, of secondary vortices of varying sizes swirled throughout Typhoon Plane.</p>
+<p>The entire world was practically an ocean of aero elemental energy.</p>
+<p>Yet today, the plane’s usual free and untamed atmosphere had been replaced by a heavy, suffocating sense of oppression.</p>
+<p>The Dawn Emperor had no intention of exchanging pleasantries with his opponent, and Marduk was hardly an overgod skilled in diplomacy.</p>
+<p>These two overlord-level powerhouses had no conflicting interests. Yet because of the war between the Magus Civilization and the Gallant Federation,...</p>
+</article>
+<article id="c1967" data-label="1967">
+<h2 class="chapter">Chapter 1967: Mightiest Reinforcements 🔒</h2>
+<p>The Great Monkey of Destruction had not arrived alone.</p>
+<p>Behind him, another figure gradually emerged from the black hole of destruction.</p>
+<p>This newcomer was a horned overlord with flowing red hair. Crossing his arms over his chest, he calmly surveyed the battlefield.</p>
+<p>He was not the Bull King.</p>
+<p>Compared to the savage and brutal impression given by the Bull King, this creature was far more handsome. Even the bull horns on his head were slimmer and more elegant.</p>
+<p>The law power radiating from both of these formidable overlords was overwhelming.</p>
+<p>The moment they descended into the Mortewigen Star Domain, the Gallant Federation legions that had been approaching immediately began to retreat.</p>
+<p>Clearly, the Gallant Federation had already recognized their strength and identities.</p>
+<p>Once the gap in strength grew too vast, staying behind became meaningless. They would no longer be defending the federation’s territory, but merely throwing away their lives.</p>
+<p>Unfortunately, the monkey overlord and the red-haired bull overlord had no intention...</p>
+</article>
+<article id="c1968" data-label="1968">
+<h2 class="chapter">Chapter 1968: The Federation’s Reinforcements 🔒</h2>
+<p>The power of destruction once again swept through the federation’s star domain…</p>
+<p>Faced with the threat of civilizational collapse, the supreme council of the Gallant Federation finally agreed to sign unequal treaties with two civilizations from distant star domains in exchange for their military support.</p>
+<p>Such was the nature of the Astral Realm.</p>
+<p>More often than not, only self-interest could drive unrelated civilizations to involve themselves in a war that had nothing to do with them.</p>
+<p>One of the parties to sign a cooperation agreement with the Gallant Federation was Myriad Manifestations World.</p>
+<p>This was a formidable civilization that had remained at the level of a large-sized world civilization for countless years.</p>
+<p>Many civilizations in the surrounding star domains believed that, over the past hundred thousand years, Myriad Manifestations World had already begun advancing toward the ranks of top-tier civilizations.</p>
+<p>In truth, its strongest...</p>
+</article>
+<article id="c1969" data-label="1969">
+<h2 class="chapter">Chapter 1969: Upholding Justice 🔒</h2>
+<p>The terms the Gallant Federation offered Mosquito Daoist were simple: star core extraction and utilization technology, a steady supply of overlord flesh and blood, and acceptance of Mosquito Daoist’s demand to launch surprise attacks on several specific overlords across the civilizational battlefield.</p>
+<p>In terms of raw strength, these two powers recruited by the Gallant Federation were not especially powerful. At the very least, they could not compare to the Immortal Realm reinforcements secured by the Magus Civilization.</p>
+<p>Still, it was enough to leave an extremely unpleasant taste in the Magus Civilization’s mouth.</p>
+<p>What had once seemed like unstoppable momentum had now been thrown into uncertainty by the arrival of these two external forces.</p>
+<hr class="separator">
+<p>In Myriad Manifestations World, thick white mist drifted through...</p>
+</article>
+<article id="c1970" data-label="1970">
+<h2 class="chapter">Chapter 1970: Mechanical Legion 🔒</h2>
+<p>Fierce battles had raged for years along the border of the Divine Descendants Star Domain.</p>
+<p>The sector under Sein’s responsibility mainly involved fighting the native deities from Divine Descendants World who had returned as reinforcements.</p>
+<p>Over the years, Sein had made a fortune by acquiring seven divine relics in total. Two of them had even belonged to Rank Five beings.</p>
+<p>Of course, he was able to gather such a bountiful harvest in so short a time only because he was not fighting alone.</p>
+<p>Fermera was undoubtedly one of the greatest contributors.</p>
+<p>In addition, Yuri and her Burning Flame Unit, along with the God of Black Mist, the God of Twilight, the God of Scorching Wind, the God of the Black Dog, the God of Dusk Desire, and the God of Rotten Soil, all served as Sein’s loyal henchmen.</p>
+<p>A large portion of the war...</p>
+</article>
+<article id="c1971" data-label="1971">
+<h2 class="chapter">Chapter 1971: Florenza 🔒</h2>
+<p>Florenza was a world filled with the rich scent of vegetation.</p>
+<p>Low-lying plants grew in abundance, covering many corners of the world.</p>
+<p>A unique species known as the <em>Florenzans </em>was native to this land.</p>
+<p>Over the course of their long evolution, the Florenzans came to dominate this world and gradually gave rise to gods of their own.</p>
+<p>Within the Divine Descendants Star Domain, there were countless gods and pantheons.</p>
+<p>At its peak, it had more than one thousand three hundred recorded deities of Rank Four and above.</p>
+<p>Since the outbreak of the Clash of Civilizations, the number of deities had inevitably fallen sharply.</p>
+<p>Even so, it remained a formidable large-sized star domain.</p>
+<p>As more and more deities from Divine Descendants World returned to their home star domain,...</p>
+</article>
+<article id="c1972" data-label="1972">
+<h2 class="chapter">Chapter 1972: Transitioning Plane 🔒</h2>
+<p>“Has this world reached the critical phase of ascending into a medium-sized plane?” Sein asked in astonishment after arriving at the battlefield.</p>
+<p>“Yes. Reports from all sources indicate that the current situation on this low-level plane is highly unusual,” Ximen Feixiao replied.</p>
+<p>“The native beings here have all undergone varying degrees of evolutionary mutation within a short period of time. Their advancement speed has already exceeded theoretical limits. The concentration of planar energy in this world is also continuing to rise.”</p>
+<p>Ximen Feixiao held a high rank within the Dawn Empire’s military and was also responsible for the deployment and assignment of scouting forces.</p>
+<p>The Dawn Empire controlled quite a few complete planes, so he had likely encountered cases where a plane ascended...</p>
+</article>
+<article id="c1973" data-label="1973">
+<h2 class="chapter">Chapter 1973: The Third Target 🔒</h2>
+<p>It had not been long since Sein shifted his focus to Florenza Plane.</p>
+<p>Yet once again, signs of unrest appeared on the battlefield of the Gallant Federation’s home star domain.</p>
+<p>This time, the source of the unrest was the federation itself.</p>
+<p>Perhaps it had finally realized that with more and more alien civilizations joining the battlefield, and its enemies growing ever stronger, its chances of winning the Clash of Civilizations were becoming increasingly slim.</p>
+<p>In order to turn the tide, the Gallant Federation once again activated its civilizational treasure—the Infinity Light.</p>
+<p>This time, the target of this apocalyptical weapon was the Great Monkey of Destruction, who had only recently arrived at the frontlines of this civilizational battlefield and was already wreaking havoc.</p>
+<p>Although the Great Monkey of Destruction had only been on this battlefield for a few decades, he had already brought profound calamity upon the Gallant Federation.</p>
+<p>Wherever he went, ruin and...</p>
+</article>
+<article id="c1974" data-label="1974">
+<h2 class="chapter">Chapter 1974: Punching a Hole Through the Planet 🔒</h2>
+<p>Inside the capital ship of the overlord-class federal war fleet, a veteran marshal stood silently, medals adorning his chest while streams of constantly changing data and warning signals flashed across the screens before him.</p>
+<p>The atmosphere aboard the ship was incredibly tense. Many of the officers did not even dare to speak.</p>
+<p>“5… 4… 3… 2… 1!”</p>
+<p>A blinding white beam of energy tore through everything in its path, racing toward the interstellar battlefield ahead.</p>
+<p>Gasps of astonishment and cries of joy erupted throughout the command room. The marshal, however, maintained his composure the entire time.</p>
+<p>While some generals were already popping champagne bottles, the old marshal kept his gaze fixed calmly on the developments unfolding across the screen.</p>
+<p>The Gallant Federation’s ultimate weapon, the <em>Infinity Light</em>, had reached a new level of technological maturity after several rounds of fine-tuning...</p>
+</article>
+<article id="c1975" data-label="1975">
+<h2 class="chapter">Chapter 1975: The Fury of Destruction 🔒</h2>
+<p><em>Huff…</em></p>
+<p><em>Huff…</em></p>
+<p>Heavy breathing echoed from the bottomless abyss.</p>
+<p>At this moment, the Great Monkey of Destruction was in a truly miserable state.</p>
+<p>The once-magnificent world-class secret treasures he wore now looked like scraps.</p>
+<p>The dark-gold chainmail covering him from his chest down to his arms had suffered the worst of it, pierced through and melted.</p>
+<p>Blackened burn wounds covered nearly one-third of his body.</p>
+<p>A large chunk of flesh was missing from his chest.</p>
+<p>Overlord blood poured from his wounds, quickly soaking the Great Monkey of Destruction’s entire body.</p>
+<p>The monkey attempted to heal his wounds with his Omnipotent Soul. Still, for the time being, the effect was minimal due to the residual radiation left behind by the Infinity Light’s strike.</p>
+<p>It was not that recovery was impossible. Rather, even as he healed, the lingering corrosive effect of the radiation continued to ravage his body.</p>
+<p>Even...</p>
+</article>
+<article id="c1976" data-label="1976">
+<h2 class="chapter">Chapter 1976: Reinforcements to Two Fronts 🔒</h2>
+<p>A civilizational treasure could indeed play a decisive role in certain critical battles.</p>
+<p>However, expecting a civilizational treasure to easily kill Rank Eight beings with Eternal Souls was clearly unrealistic.</p>
+<p>No matter how powerful a civilizational treasure might be, it was still only an <em>inanimate object </em>at the end of the day.</p>
+<p>War remained a contest between living beings.</p>
+<p>The Magus Civilization understood this well. That was why they had only used their civilizational treasures a handful of times.</p>
+<p>Of course, there was also another possibility—the Magus Civilization’s civilizational treasures simply were not very practical.</p>
+<p>After all, it was impossible for the Magus Civilization to hold every advantage!</p>
+<p>At least when it came to civilizational treasures, whether it was the Light of Wisdom or the Supreme Knight Overlord Armor Set, both were powerful artifacts meant for specific, exceptionally strong individuals.</p>
+<p>They were unlike the Gallant Federation’s Infinity Light device and Ultimate Quantum Computer, which were far less selective about their users.</p>
+<p>Anyone could operate them and put them to good us...</p>
+</article>
+<article id="c1977" data-label="1977">
+<h2 class="chapter">Chapter 1977: Return 🔒</h2>
+<p>The appearance of the blood mosquitoes signaled the arrival of another reinforcement for the Gallant Federation—the Mosquito Heavenly Emperor of the Immortal Realm.</p>
+<p>Before becoming the Mosquito Heavenly Emperor, he had been known as Mosquito Daoist, a major menace within the Immortal Realm Civilization.</p>
+<p>He had been wanted and hunted by numerous sages and sects across the Immortal Realm, yet had never been captured. In fact, he had even established his own faction. That alone was enough to prove just how formidable Mosquito Daoist truly was.</p>
+<p>Having joined the Gallant Federation’s cause this time, the Mosquito Heavenly Emperor naturally had demands of his own.</p>
+<p>Aside from the vast wealth the federation had already agreed to pay him, another condition for his intervention was that he and his legions would be allowed to choose their own targets in this war.</p>
+<p>The federation had no authority...</p>
+</article>
+<article id="c1978" data-label="1978">
+<h2 class="chapter">Chapter 1978: Retreat to the Final Bastion 🔒</h2>
+<p>The main battlefield of the Divine Descendants Star Domain.</p>
+<p>Facing three opponents alone was an extremely taxing battle for Marduk.</p>
+<p>Although he possessed peak Rank Seven combat power and his divine abilities carried a somewhat omniscient and omnipotent quality, Marduk had one major weakness.</p>
+<p>He was too <em>well-rounded.</em></p>
+<p>So well-rounded, in fact, that he appeared somewhat <em>mediocre </em>overall, lacking any truly outstanding strength.</p>
+<p>This directly made his attempt to break through to Rank Eight incredibly difficult.</p>
+<p>Back then, had he focused on mastering a specific divine portfolio or a single path of laws, then given that Divine Descendants World’s overall foundation was on par with Faeloria’s, Marduk might well have reached Rank Eight by now.</p>
+<p>Marduk’s <em>omniscience </em>and <em>omnipotence </em>were fundamentally different from the profound achievements accumulated by the seasoned soul overmages...</p>
+</article>
+<article id="c1979" data-label="1979">
+<h2 class="chapter">Chapter 1979: Two-Thirds 🔒</h2>
+<p>Outside Typhoon Plane, the Holy Dragon King watched as Overgod Marduk drew farther and farther away. It could not help but growl under its breath.</p>
+<p>“Damn it, he got away again.”</p>
+<p>Blood trickled down Gongsun Wuji’s arm, dripping steadily onto the Son of Heaven Sword.</p>
+<p>It was not just his blood. Mixed within it was Marduk’s overgod blood, Gongsun Wuji’s own overlord blood, and some of the Holy Dragon King’s dragon blood.</p>
+<p>In Gongsun Wuji’s philosophy of battle, there was no such thing as a stalemate. No such thing as holding back.</p>
+<p>Almost every move he made carried killing intent, forcing Marduk into a defense he could not fully maintain.</p>
+<p>And it was in that battle against Gongsun Wuji and his allies that Marduk finally felt something he had nearly forgotten…</p>
+<p><em>The sense of impending doom.</em></p>
+<p>That was why he withdrew so quickly, fleeing back to his homeplane to fortify his defenses.</p>
+<p>Marduk had...</p>
+</article>
+<article id="c1980" data-label="1980">
+<h2 class="chapter">Chapter 1980: Another Clash 🔒</h2>
+<p>Vast quantities of resources were being transported into the Divine Descendants Star Domain without pause.</p>
+<p>At the same time, large numbers of low-tier cannon fodder and enslaved creatures were continuously being thrown into this massive star domain battlefield.</p>
+<p>As the number of overlords joining the fray in this vast star domain drew close to six, and the total number of legions on both sides was about to exceed ten billion, Divine Descendants World was destined to become another major theater of war in the grand conflict between the Gallant Federation and the Magus Civilization!</p>
+<p>On the current civilizational battlefield, there were already four such major theaters of war.</p>
+<p>For a local theater to escalate into a major theater of war was not something a single person or a single event could decide.</p>
+<p>Rather, it was the result of both civilizations pushing forward at the same time,...</p>
+</article>
+<article id="c1981" data-label="1981">
+<h2 class="chapter">Chapter 1981: Photonic Electromagnetic Cannon 🔒</h2>
+<p>“Myriad Manifestations World…”</p>
+<p>The skirmish between the lower-tier legions had already begun. Sein watched the situation unfold beyond the plane and murmured the name of their new opponent.</p>
+<p>When choosing the battlefield, the Dawn Empire had abandoned the idea of garrisoning the Boundary Rocks on the outskirts of the Divine Descendants Star Domain. Doing so would only stretch their frontlines too thin.</p>
+<p>Instead, they chose to hold their ground and rely on the planes and defensive lines already under their control to withstand the threat from Myriad Manifestations World.</p>
+<p>Because they had advanced too quickly earlier, the Divine Descendants World legions and Gallant Federation legions had both withdrawn with equal decisiveness.</p>
+<p>Many of the defensive lines where the Dawn Empire legions were currently stationed had originally been built by the Gallant Federation. Now, they had simply been taken over and put to immediate use.</p>
+<p>Judging by the overall situation...</p>
+</article>
+<article id="c1982" data-label="1982">
+<h2 class="chapter">Chapter 1982: It’s Great to Be Young 🔒</h2>
+<p>Wanderer Weiming was not dead.</p>
+<p>With the extraordinary regenerative abilities of a Rank Six lifeform, even a severed head could be regrown in a very short time.</p>
+<p>Even so, he had definitely been badly wounded.</p>
+<p>Sein’s earlier attack had channeled a fraction of the photonic electromagnetic cannon’s power. In theory, it possessed enough force to threaten even a peak Rank Six creature.</p>
+<p>After restoring his body, Wanderer Weiming’s face turned deathly pale, and his expression grew savage.</p>
+<p>In that split second, he had truly sensed the threat of death.</p>
+<p>And that threat had come from a Rank Five mage and a Rank Six robot in a fused state.</p>
+<p>No! After the two had merged, the cubic crystal glowing with ethereal blue light between them was definitely no ordinary object!</p>
+<p>Wanderer Weiming was still a well-traveled Rank Six being.</p>
+<p>Long-distance travel between star domains was already quite...</p>
+</article>
+<article id="c1983" data-label="1983">
+<h2 class="chapter">Chapter 1983: Farce 🔒</h2>
+<p>The war in Buros World had dragged on for far too long.</p>
+<p>Both the defenders and the invaders were powerful forces in their own right.</p>
+<p>Because this battlefield lay close to the overlord-level battlefield, neither side held anything back.</p>
+<p>At that moment, the overlord-level battle raging on the outskirts of Buros World was being fought between the Holy Dragon King and Venerable Muge.</p>
+<p>In terms of cultivation, the two were roughly on the same level.</p>
+<p>However, the Holy Dragon King had already been locked in battle with Marduk for quite some time, so its condition had inevitably declined.</p>
+<p>Fortunately, Venerable Muge was an overlord-level powerhouse who wielded dendro elemental power. This meant he was not particularly strong in combat.</p>
+<p>Against the Holy Dragon King, who was strengthened by the profound Dragon Qi of the Dawn Empire, Venerable Muge could only fight him to a stands...</p>
+</article>
+<article id="c1984" data-label="1984">
+<h2 class="chapter">Chapter 1984: The Arrival of the Swarm 🔒</h2>
+<p>A dense network of wormholes appeared throughout the Divine Descendants Star Domain.</p>
+<p>They could be seen both within and beyond the star domain.</p>
+<p>The clash between the Magus Civilization and the Gallant Federation had not only shattered the former peace of the Divine Descendants Star Domain, but also made its spatial power incredibly fragile.</p>
+<p>The Boundary Rocks had been struck and damaged repeatedly, making it even more difficult for the Divine Descendants Star Domain to withstand forced spatial incursions from powerful beings of distant realms.</p>
+<p>The reason the Myriad Manifestations World legions had not teleported directly into the Divine Descendants Star Domain before was that they were unfamiliar with this star domain and lacked suitable teleportation nodes.</p>
+<p>However, this newly arrived force had clearly locked onto the interstellar coordinates of the Divine Descendants Star Domai...</p>
+</article>
+<article id="c1985" data-label="1985">
+<h2 class="chapter">Chapter 1985: Six Overlords! 🔒</h2>
+<p>As the swarm descended upon the world, the first to bear the brunt of their assault were the Myriad Manifestations World legions scattered across the various battlefields.</p>
+<p>After all, they were positioned at the outermost layer.</p>
+<p>The Divine Descendants World legions and the Gallant Federation legions were both stationed in the innermost layer of this star domain battlefield. Even if the Insectoids wanted to target them first, they would have to wait a while.</p>
+<p>As the terrifying, pitch-black colossus of death descended upon the star domain, not a single member of the Federation camp dared to stand in its way.</p>
+<p>Presumably, they feared that by the time they flew over, the colossal entity would have already completed its descent, leaving them to become the target of everyone’s attacks.</p>
+<p>The overlord-level beings on this star domain battlefield were not exactly die-hard...</p>
+</article>
+<article id="c1986" data-label="1986">
+<h2 class="chapter">Chapter 1986: The Insectoids’ Base 🔒</h2>
+<p>The Insectoids’ offensive was fierce.</p>
+<p>With three overlords leading the charge and billions of insects sweeping across most of the Divine Descendants Star Domain, nearly every planar battlefield instantly sank into the quagmire of war.</p>
+<p>The strongest Bladeist charged straight toward Venerable Tianyang.</p>
+<p>The Insectoids did not seem to rely on world-class secret treasures. Their bodies themselves were their sharpest weapons and sturdiest shields.</p>
+<p>Fighting relentlessly with their own bodies and maximizing their passive evolutionary abilities was the path these creatures had chosen.</p>
+<p>When the overlord-level Bladeist charged directly at Venerable Tianyang, he fought using nothing but his own body.</p>
+<p>Opposite him, Venerable Tianyang, who was constantly being forced back, relied on a crimson orb and a special mirror disc as his weapons. Both items emitted the law fluctuations unique to world-class secret treasures.</p>
+<p>When the Insectoids launched their charge, the Dawn Empire legions and the Quatar Star Pirates on the Divine Descendants Star Domain battlefield reacted with lightning speed.</p>
+<p>They almost instantly identified these Insectoids as allies.</p>
+<p>Their combined offensive dealt another devastating blow to Myriad Manifestations...</p>
+</article>
+<article id="c1987" data-label="1987">
+<h2 class="chapter">Chapter 1987: Empress of Blades 🔒</h2>
+<p>Atop the head of Fermont the Deathspawn, a figure clad in bright red imperial armor slowly materialized upon a thick carpet of Insectoid slime.</p>
+<p>Standing closely behind the Empress was a Bladeist who served as her bodyguard.</p>
+<p>This Bladeist also possessed overlord-level strength. In fact, he was even slightly stronger than the overlord-level Bladeist currently battling Venerable Tianyang.</p>
+<p>“What a vast and bountiful star domain. It seems my sister has assigned me a fine place,” the Empress of Blades stroked her chin, gazing at the distant interstellar battlefield with a faint smile. “And Wuji is here too. I heard he now has a little sister?”</p>
+<p>The incredibly grand and perilous Clash of Civilizations unfolding throughout this star domain did not seem particularly special in the eyes of the Empress of Blades.</p>
+<p>It was no wonder. This being was a powerhouse standing at the very pinnacle of Rank Eight, powerful enough to go head-to-head with Venerable Weiwu of Myriad Manifestations...</p>
+</article>
+<article id="c1988" data-label="1988">
+<h2 class="chapter">Chapter 1988: Second Sister 🔒</h2>
+<p>Gongsun Wuji held the Son of Heaven Sword in one hand and the Heirloom Seal in the other.</p>
+<p>A faint trace of blood trickled down his arm, proof that his earlier battle against Overgod Marduk had been far from easy.</p>
+<p>The Empress of Blades’ gaze gradually shifted from Gongsun Wuji’s face to his arm, before finally settling on the Heirloom Seal in his hand.</p>
+<p>A unique Dragon Qi swirled within the square seal.</p>
+<p>The Empress of Blades stared at it for a moment, then let out a soft sigh. “Has Uncle Xuance passed away?”</p>
+<p>Her question caused the joy on Gongsun Wuji’s face, which had appeared when he saw his sworn sister, to gradually turn into melancholy.</p>
+<p>“Yes. After my father established the laws of the Dawn Empire, created the systems of Dragon Qi and dynastic fortune, and forged the Heirloom Seal, his lifespan...</p>
+</article>
+<article id="c1989" data-label="1989">
+<h2 class="chapter">Chapter 1989: Shadow of Death 🔒</h2>
+<p>The towering, colossal figure of Fermont the Deathspawn gradually loomed over Divine Descendants World.</p>
+<p>Moments earlier, while the Empress of Blades had been casually exchanging a few words with the Dawn Emperor, Overgod Marduk, who remained on the battlefield below, had naturally noticed everything.</p>
+<p>She had not rushed to attack Divine Descendants World.</p>
+<p>Yet from the moment she made her move, she had already displayed overwhelming superiority over the Divine Descendant Overgod.</p>
+<p>The heavily injured Marduk did not have the courage to flee his own homeplane.</p>
+<p>How could such a terrifying existence exist in the Astral Realm?</p>
+<p>Having never left the Divine Descendants Star Domain, this was most likely Marduk’s first time encountering a Rank Eight overlord.</p>
+<p>Although he had previously been subdued and recruited by the Gallant Federation, the federation had only deployed its peerless, magnificent...</p>
+</article>
+<article id="c1990" data-label="1990">
+<h2 class="chapter">Chapter 1990: Overwhelmed 🔒</h2>
+<p>“Oh, God, what kind of calamity has befallen our world…”</p>
+<p>In a remote corner of Divine Descendants World, within a small, ordinary village, a woman wearing a headscarf clutched her child tightly to her chest, murmuring prayers over and over.</p>
+<p>At the edge of her vision, a pitch-black tide was already sweeping down from the sky.</p>
+<p>The woman did not know that the black tide was actually made up of hordes of ferocious Insectoids. She only instinctively felt a dreadful sense of unease.</p>
+<p>Under the invasion of these powerful foreign enemies, the entire world was shrouded in an ominous atmosphere.</p>
+<p>When the planar barrier shattered moments ago, nearly every living being in Divine Descendants World sensed the collapsing, destructive aura of the apocalypse descending upon them.</p>
+<p>In Frantes City...</p>
+<p>“Fight for the God of Righteousness!”</p>
+<p>Hundreds of golden-armored templars raised their holy-water-soaked swords and cried out in defiance at the insect horde surging toward Frantes.</p>
+<p>Because they rarely engaged in foreign...</p>
+</article>
+<article id="c1991" data-label="1991">
+<h2 class="chapter">Chapter 1991: Up-Close Exploration 🔒</h2>
+<p>The Insectoids had an extremely clear sense of friend and foe, and guarded their hive with absolute vigilance.</p>
+<p>The legions from Myriad Manifestations World and the native creatures of Buros Plane could not get within ten thousand meters of the Insectoid base.</p>
+<p>Even the armies of the Dawn Empire and the combat legions under Sein’s command would be warned off and driven back if they approached within a few thousand meters.</p>
+<p>Yet to Sein’s surprise, he encountered almost no resistance.</p>
+<p>That was because, not long ago, the Empress of Blades had glanced in his direction.</p>
+<p>With the Empress taking an interest in him, Sein had, in effect, gained the temporary authority to command a portion of the Insectoid forces.</p>
+<p>Sein himself had no idea about it yet....</p>
+</article>
+<article id="c1992" data-label="1992">
+<h2 class="chapter">Chapter 1992: Insect Eggs 🔒</h2>
+<p>Led by the little insect, Sein explored more than eighty percent of the Insectoid base.</p>
+<p>Even in the middle of an interplanar war, he actually had the leisure to do something like this. The more Sein thought about it, the more unbelievable it felt.</p>
+<p>When they finally reached the breeding chamber, Sein found himself staring at a mountain of white insect eggs.</p>
+<p>The little insect stepped forward, tapped one of the palm-sized living eggs, then picked it up and handed it to Sein.</p>
+<p>The Insectoids had their own unique method of communication. Through telepathy or bloodline resonance, they could instantly coordinate combat deployments with one another.</p>
+<p>During its limited communication with Sein, the little insect used mental focus.</p>
+<p>As a result, Sein was able to identify the palm-sized living egg before him as a Swiftling egg.</p>
+<p>He could not help but look up toward the deepest parts...</p>
+</article>
+<article id="c1993" data-label="1993">
+<h2 class="chapter">Chapter 1993: Bone-Scraping Treatment 🔒</h2>
+<p>“You’re injured?” Sein asked when he saw Gongsun Wudi again.</p>
+<p>A deep wound was visible on her right shoulder, radiating fluctuations of law power.</p>
+<p>There were smaller wounds on other parts of her body as well, but none were as serious as the one on her shoulder.</p>
+<p>The legions from Myriad Manifestations World were different from those of Divine Descendants World. Their civilization’s development had not been restricted by some eccentric overlord ruling over their homeworld.</p>
+<p>Within the vast Myriad Manifestations World army led by the two venerables, there was more than one peak Rank Six being.</p>
+<p>The wound on Gongsun Wudi’s right shoulder had been sustained during her battle against two of those peak Rank Six Wanderers.</p>
+<p>Even someone as powerful as Gongsun Wudi could not emerge completely unscathed from a battle on a plane like this.</p>
+<p>Of course, her condition also had much to do with her habit of leading from the front and personally engaging the...</p>
+</article>
+<article id="c1994" data-label="1994">
+<h2 class="chapter">Chapter 1994: Short on Funds 🔒</h2>
+<p>After finishing the treatment and chatting with Gongsun Wudi for a while, Sein finally took his leave.</p>
+<p>As for the Golden Silver Potion, of which only a quarter remained, Sein thought it over and decided to take it back with him.</p>
+<p>Wastefulness was not in his nature.</p>
+<p>A precious potion of this caliber, even after being diluted, would definitely be enough for his next round of healing.</p>
+<p>Before he left, Gongsun Wudi informed him that another batch of supplies would be dispatched to his legion.</p>
+<hr class="separator">
+<p>After Sein and his legions joined the fray, the war on Phylis Plane continued for another two years.</p>
+<p>As a medium-sized plane that had nearly become a battlefield for overlords, Phylis Plane hosted a considerable number of legions from Myriad Manifestations World. Their overall...</p>
+</article>
+<article id="c1995" data-label="1995">
+<h2 class="chapter">Chapter 1995: One Cannot Bite Off More Than One Can Chew 🔒</h2>
+<p>After returning to the planetary fortress, Gongsun Wudi went off to handle her official duties, while Sein headed straight back to his laboratory.</p>
+<p>The God of Dusk Desire took the opportunity to report his recent business achievements to Sein.</p>
+<p>Just as Sein had predicted, the Insectoids were indeed quite easy to deal with.</p>
+<p>From Buros Plane all the way to Phylis Plane, the God of Dusk Desire had acted on Sein’s behalf and concluded several major transactions with the Insectoids in both worlds.</p>
+<p>What excited him even more was that these Insectoid legions, having traveled through wormholes, possessed many items that clearly came from distant star domains.</p>
+<p>Many of those trade goods were things even the God of Dusk Desire had never seen before.</p>
+<p>He assured Sein that as long as these rare resources from distant star domains were transported to Myriad...</p>
+</article>
+<article id="c1996" data-label="1996">
+<h2 class="chapter">Chapter 1996: Entry 🔒</h2>
+<p>The wars surrounding Divine Descendants World were broadly divided into three areas.</p>
+<p>These corresponded to the three overlords from Myriad Manifestations World who were still putting up a fight.</p>
+<p>Among them, Venerable Tianyang’s battlefield was located outside Divine Descendants World.</p>
+<p>This late-stage Rank Seven venerable was currently under siege by a Bladeist, a demon overlord, and a Thunder Beast King.</p>
+<p>Even from far away, Sein could tell that Venerable Tianyang was desperately trying to get closer to Divine Descendants World.</p>
+<p>Unfortunately, things were not going according to his wishes!</p>
+<p>Whether it was the Bladeist, the demon overlord, or the Thunder Beast King, any one of them alone would be more than a match for Venerable Tianyang, let alone all three attacking together.</p>
+<p>Even the Thunder Beast King, who appeared to be at a lower cultivation level and seemed somewhat slow-witted, possessed terrifying strength. In his wounded state, Venerable Tianyang was clearly unwilling to...</p>
+</article>
+<article id="c1997" data-label="1997">
+<h2 class="chapter">Chapter 1997: Thinking of Her Apprentice 🔒</h2>
+<p>In the Peydor Star System, the main theater of the Magus Civilization’s war.</p>
+<p>Strictly speaking, this area had already fallen outside the scope of the main battlefield. It was now a logistics and transit zone firmly under the Magus Civilization’s control.</p>
+<p>This galaxy had once been an important hub for the Gallant Federation’s mineral extraction and plant resource processing. Now, however, rows of magic towers had replaced the federation’s once-bustling heavy industrial plants.</p>
+<p>Dilapidated ruins could be seen scattered throughout many corners of the galaxy.</p>
+<p>In fact, many of those ruins and factories could still function.</p>
+<p>The machinery and technological creations produced by the Gallant Federation were of quite high quality.</p>
+<p>War and slaughter were not the only objectives of conquest. After the Gallant Federation was conquered, the Magus Civilization would inevitably develop its resources and even directly utilize the advanced technological capabilities it had acquired.</p>
+<p>However, these ruins...</p>
+</article>
+<article id="c1998" data-label="1998">
+<h2 class="chapter">Chapter 1998: Ganging Up and Getting Ganged Up On 🔒</h2>
+<p>The Divine Descendants World battlefield…</p>
+<p>Sein, who had just been missed by his mentor, suddenly sneezed.</p>
+<p>Rank Five mages did not usually sneeze. The reason for this particular reaction was that Sein had just defeated a Rank Five cryo elemental deity.</p>
+<p>This battlefield lay in a region of the plane covered in ice and snow.</p>
+<p>Divine Descendants World was not a place of eternal spring. As a large-sized world governed by a complete set of laws, it contained nearly every type of planar environment and terrain.</p>
+<p>Battles were even taking place beneath the surface of Divine Descendants World.</p>
+<p>The Dawn Empire legions had already discovered that beneath many of Divine Descendants World’s continental plates were two to three layers of underground worlds, each containing vast resources.</p>
+<p>The Insectoids had demonstrated even greater capability in...</p>
+</article>
+<article id="c1999" data-label="1999">
+<h2 class="chapter">Chapter 1999: Reinforcements for Everyone 🔒</h2>
+<p>From the moment Sein and Fermera arrived on the battlefield, the three powerhouses had lost any chance of escape.</p>
+<p>In fact, there was no need for Yuri to bring the others over. With just Sein, Fermera, and the Rank Six demon, each taking one opponent, they were already enough to hold the three enemies back.</p>
+<p>Once Yuri and her group arrived, their main role was to provide support.</p>
+<p>Even a Rank Six deity would feel a chill run down their spine at the sight of a horde of Rank Four and Rank Five beings charging straight toward them.</p>
+<p>Sein’s target was the weakest of the three—a peak Rank Five Divine Descendant native, and yet another cryo elemental deity.</p>
+<p>To be honest, in this frozen, snow-covered environment, deities like this received the greatest boost to their power.</p>
+<p>Sein and the demon kings, on the other...</p>
+</article>
+<article id="c2000" data-label="2000">
+<span id="last"></span>
+<h2 class="chapter">Chapter 2000: Enrique Gustavo 🔒</h2>
+<p>As the massive metal fist came crashing down from the sky, the Rank Six Wanderer from Myriad Manifestations World suddenly thought of his grandmother.</p>
+<p>Perhaps this was an instinctive reaction shared by sentient beings throughout the Astral Realm.</p>
+<p>When faced with death, or a moment of extreme shock, they would think of those closest to them.</p>
+<p>When Sein was confronted with the mortal threat posed by the Rank Six vizier of the Amenkha Empire, the first people he thought of were Leena and Lorianne.</p>
+<p>For Wanderer Xinming, that thought lasted only an instant. His confidence in his trump card quickly snapped him out of the oppressive pressure brought by the giant metal robot.</p>
+<p>He was certain he would be fine, and he was right.</p>
+<p>The shockwave from the giant fortress...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="2001-2050.html" rel="next">Next: Chs 2001–2050 &rarr;</a>
+    <p class="page-end-links"><a href="1901-1950.html" rel="prev">&larr; Chs 1901–1950</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1951–2000</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1951">Chapter 1951: Raging Might 🔒</a></li>
+        <li><a href="#c1952">Chapter 1952: A Fierce Battle 🔒</a></li>
+        <li><a href="#c1953">Chapter 1953: The Essence of Life 🔒</a></li>
+        <li><a href="#c1954">Chapter 1954: The New Burning Flame Unit 🔒</a></li>
+        <li><a href="#c1955">Chapter 1955: Cloud Dragon Stream World 🔒</a></li>
+        <li><a href="#c1956">Chapter 1956: Fighting for Survival 🔒</a></li>
+        <li><a href="#c1957">Chapter 1957: A Life-or-Death Struggle 🔒</a></li>
+        <li><a href="#c1958">Chapter 1958: Two Regions 🔒</a></li>
+        <li><a href="#c1959">Chapter 1959: The Sky-Reaching Giant Arm 🔒</a></li>
+        <li><a href="#c1960">Chapter 1960: The Arrival of the Jie Sect Army 🔒</a></li>
+        <li><a href="#c1961">Chapter 1961: The Cunning Magus Civilization 🔒</a></li>
+        <li><a href="#c1962">Chapter 1962: Rise and Decline 🔒</a></li>
+        <li><a href="#c1963">Chapter 1963: Overgod’s Intervention 🔒</a></li>
+        <li><a href="#c1964">Chapter 1964: Reinforcements from the Divine Descendants 🔒</a></li>
+        <li><a href="#c1965">Chapter 1965: The Battle of the Gods 🔒</a></li>
+        <li><a href="#c1966">Chapter 1966: The Great Monkey of Destruction 🔒</a></li>
+        <li><a href="#c1967">Chapter 1967: Mightiest Reinforcements 🔒</a></li>
+        <li><a href="#c1968">Chapter 1968: The Federation’s Reinforcements 🔒</a></li>
+        <li><a href="#c1969">Chapter 1969: Upholding Justice 🔒</a></li>
+        <li><a href="#c1970">Chapter 1970: Mechanical Legion 🔒</a></li>
+        <li><a href="#c1971">Chapter 1971: Florenza 🔒</a></li>
+        <li><a href="#c1972">Chapter 1972: Transitioning Plane 🔒</a></li>
+        <li><a href="#c1973">Chapter 1973: The Third Target 🔒</a></li>
+        <li><a href="#c1974">Chapter 1974: Punching a Hole Through the Planet 🔒</a></li>
+        <li><a href="#c1975">Chapter 1975: The Fury of Destruction 🔒</a></li>
+        <li><a href="#c1976">Chapter 1976: Reinforcements to Two Fronts 🔒</a></li>
+        <li><a href="#c1977">Chapter 1977: Return 🔒</a></li>
+        <li><a href="#c1978">Chapter 1978: Retreat to the Final Bastion 🔒</a></li>
+        <li><a href="#c1979">Chapter 1979: Two-Thirds 🔒</a></li>
+        <li><a href="#c1980">Chapter 1980: Another Clash 🔒</a></li>
+        <li><a href="#c1981">Chapter 1981: Photonic Electromagnetic Cannon 🔒</a></li>
+        <li><a href="#c1982">Chapter 1982: It’s Great to Be Young 🔒</a></li>
+        <li><a href="#c1983">Chapter 1983: Farce 🔒</a></li>
+        <li><a href="#c1984">Chapter 1984: The Arrival of the Swarm 🔒</a></li>
+        <li><a href="#c1985">Chapter 1985: Six Overlords! 🔒</a></li>
+        <li><a href="#c1986">Chapter 1986: The Insectoids’ Base 🔒</a></li>
+        <li><a href="#c1987">Chapter 1987: Empress of Blades 🔒</a></li>
+        <li><a href="#c1988">Chapter 1988: Second Sister 🔒</a></li>
+        <li><a href="#c1989">Chapter 1989: Shadow of Death 🔒</a></li>
+        <li><a href="#c1990">Chapter 1990: Overwhelmed 🔒</a></li>
+        <li><a href="#c1991">Chapter 1991: Up-Close Exploration 🔒</a></li>
+        <li><a href="#c1992">Chapter 1992: Insect Eggs 🔒</a></li>
+        <li><a href="#c1993">Chapter 1993: Bone-Scraping Treatment 🔒</a></li>
+        <li><a href="#c1994">Chapter 1994: Short on Funds 🔒</a></li>
+        <li><a href="#c1995">Chapter 1995: One Cannot Bite Off More Than One Can Chew 🔒</a></li>
+        <li><a href="#c1996">Chapter 1996: Entry 🔒</a></li>
+        <li><a href="#c1997">Chapter 1997: Thinking of Her Apprentice 🔒</a></li>
+        <li><a href="#c1998">Chapter 1998: Ganging Up and Getting Ganged Up On 🔒</a></li>
+        <li><a href="#c1999">Chapter 1999: Reinforcements for Everyone 🔒</a></li>
+        <li><a href="#c2000">Chapter 2000: Enrique Gustavo 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1901-1950.html" rel="prev">&larr; Chs 1901–1950</a>    <a href="../../index.html">Library</a>
+<a href="2001-2050.html" rel="next">Chs 2001–2050 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1701–1750</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1651-1700.html#last" data-next-page="1751-1800.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1701">Chapter 1701: Free 🔒</a></li>
+        <li><a href="#c1702">Chapter 1702: Central Battlefield 🔒</a></li>
+        <li><a href="#c1703">Chapter 1703: The Iron Triangle 🔒</a></li>
+        <li><a href="#c1704">Chapter 1704: Blood for Blood 🔒</a></li>
+        <li><a href="#c1705">Chapter 1705: Life for Life 🔒</a></li>
+        <li><a href="#c1706">Chapter 1706: Betrayal! 🔒</a></li>
+        <li><a href="#c1707">Chapter 1707: Dictator 🔒</a></li>
+        <li><a href="#c1708">Chapter 1708: Pursuit 🔒</a></li>
+        <li><a href="#c1709">Chapter 1709: Joint Assault 🔒</a></li>
+        <li><a href="#c1710">Chapter 1710: Facade 🔒</a></li>
+        <li><a href="#c1711">Chapter 1711: Apocalyptical Weapon Resurfaces 🔒</a></li>
+        <li><a href="#c1712">Chapter 1712: Shocking Momentum 🔒</a></li>
+        <li><a href="#c1713">Chapter 1713: Enemies Crossing Paths 🔒</a></li>
+        <li><a href="#c1714">Chapter 1714: Respective Missions 🔒</a></li>
+        <li><a href="#c1715">Chapter 1715: Stalemate and Perfect Situation 🔒</a></li>
+        <li><a href="#c1716">Chapter 1716: Defeated 🔒</a></li>
+        <li><a href="#c1717">Chapter 1717: Distribution 🔒</a></li>
+        <li><a href="#c1718">Chapter 1718: Moraia 🔒</a></li>
+        <li><a href="#c1719">Chapter 1719: Crossfire 🔒</a></li>
+        <li><a href="#c1720">Chapter 1720: Overlord’s Might 🔒</a></li>
+        <li><a href="#c1721">Chapter 1721: Recuperation 🔒</a></li>
+        <li><a href="#c1722">Chapter 1722: Experimenting in Excitement 🔒</a></li>
+        <li><a href="#c1723">Chapter 1723: Lorianne Arrives 🔒</a></li>
+        <li><a href="#c1724">Chapter 1724: Played Out Differently 🔒</a></li>
+        <li><a href="#c1725">Chapter 1725: Misunderstanding 🔒</a></li>
+        <li><a href="#c1726">Chapter 1726: Visiting 🔒</a></li>
+        <li><a href="#c1727">Chapter 1727: Information Exchange 🔒</a></li>
+        <li><a href="#c1728">Chapter 1728: Genetic Warbeast Cultivation Technique 🔒</a></li>
+        <li><a href="#c1729">Chapter 1729: Two Years 🔒</a></li>
+        <li><a href="#c1730">Chapter 1730: Phantom Crow King 🔒</a></li>
+        <li><a href="#c1731">Chapter 1731: Negotiations 🔒</a></li>
+        <li><a href="#c1732">Chapter 1732: Talent 🔒</a></li>
+        <li><a href="#c1733">Chapter 1733: Bold Invitation 🔒</a></li>
+        <li><a href="#c1734">Chapter 1734: Devour 🔒</a></li>
+        <li><a href="#c1735">Chapter 1735: Purchasing Fortresses 🔒</a></li>
+        <li><a href="#c1736">Chapter 1736: The Pitiful Evileye Tyrant Monarch 🔒</a></li>
+        <li><a href="#c1737">Chapter 1737: The Eighth Pharaoh 🔒</a></li>
+        <li><a href="#c1738">Chapter 1738: The Amenkha Empire 🔒</a></li>
+        <li><a href="#c1739">Chapter 1739: The Fire Phoenix 🔒</a></li>
+        <li><a href="#c1740">Chapter 1740: A Trap 🔒</a></li>
+        <li><a href="#c1741">Chapter 1741: Gathering of the Overlords 🔒</a></li>
+        <li><a href="#c1742">Chapter 1742: Melee 🔒</a></li>
+        <li><a href="#c1743">Chapter 1743: Eleven Against One 🔒</a></li>
+        <li><a href="#c1744">Chapter 1744: Despicable 🔒</a></li>
+        <li><a href="#c1745">Chapter 1745: Left Arm 🔒</a></li>
+        <li><a href="#c1746">Chapter 1746: Small-Volume Trade 🔒</a></li>
+        <li><a href="#c1747">Chapter 1747: The Federation’s Withdrawal 🔒</a></li>
+        <li><a href="#c1748">Chapter 1748: Operational Target 🔒</a></li>
+        <li><a href="#c1749">Chapter 1749: Art 🔒</a></li>
+        <li><a href="#c1750">Chapter 1750: Mechanical Space 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1701" data-label="1701">
+<h2 class="chapter">Chapter 1701: Free 🔒</h2>
+<p>“Well done. Your grandmaster has already heard about your performance on this battlefield. It seems the battle reports from White Stella and those around Marvelous Plane were not exaggerated after all.” Bernice said to Sein once the battle had concluded.</p>
+<p>“Oh? Has Grandmaster Feylis withdrawn from the frontlines as well?” Sein asked curiously.</p>
+<p>“Not yet. The situation on her side is still tense. Your next assignment might be to head straight there as reinforcement,” Bernice replied with a smile.</p>
+<p>“I’d be happy to assist our old lady. Even in my current condition, I’m ready to deploy at any moment,” Sein said without hesitation.</p>
+<p>Bernice shook her head. “You should rest first. The fighting...</p>
+</article>
+<article id="c1702" data-label="1702">
+<h2 class="chapter">Chapter 1702: Central Battlefield 🔒</h2>
+<p>Sein’s next combat assignment arrived swiftly.</p>
+<p>On a frontline battlefield like this, there was scarcely any room for idle hands.</p>
+<p>Since Sein had suffered only minimal injuries in previous engagements, his next mission was naturally assigned ahead of many others.</p>
+<p>This time, Sein himself was ordered to head to the center of the subspace battlefield to support Feylis and the others fighting there.</p>
+<p>As for the Divine Tower of Ashes Army under his command, they would continue their steady advance.</p>
+<p>The legion’s upcoming operations carried relatively low risk, as they would remain coordinated with knights and allied creatures.</p>
+<p>Before departing, Sein gave the matter some thought and ultimately...</p>
+</article>
+<article id="c1703" data-label="1703">
+<h2 class="chapter">Chapter 1703: The Iron Triangle 🔒</h2>
+<p>The Batwing Helmet was a world-class secret treasure of the Shadowbat Civilization.</p>
+<p>Its appearance on this battlefield, brought by Darian Wraith, clearly signaled that the Shadowbat Civilization had now fully committed itself to Magus World.</p>
+<p>Darian Wraith was also widely acknowledged as the Shadowbat Civilization’s next leader.</p>
+<p>His Phantom Chariot struck Sein as a formidable technological war machine.</p>
+<p>It could even travel a short distance within the Astral Realm.</p>
+<p>While splitting into countless clones to engage enemies in close combat, the chariot could simultaneously provide long-range strike support.</p>
+<p>With the Batwing Helmet equipped, Darian Wraith’s combat power surged dramatically.</p>
+<p>Though Karl had no world-class secret treasure,...</p>
+</article>
+<article id="c1704" data-label="1704">
+<h2 class="chapter">Chapter 1704: Blood for Blood 🔒</h2>
+<p>As a large-sized world civilization, the Grand Apocalypse World’s powerhouses possessed genuine combat prowess.</p>
+<p>Unlike certain law-wielding creatures from weak medium-sized or low-level planes, who lost their nerve before a battle even began, these natives of the Grand Apocalypse World dared to charge headlong, even when they knew their strength fell short of Sein and his allies.</p>
+<p>Leading the charge toward Sein was a Rank Five Grand Apocalypse World creature wielding an energy blade.</p>
+<p>After prolonged combat with the Gallant Federation, one would notice that whether it was the federation’s giant mobile suit pilots or the fighters of its vassal civilizations, many wielded technological weapons such as lightsabers and energy blades.</p>
+<p>There was a simple reason for...</p>
+</article>
+<article id="c1705" data-label="1705">
+<h2 class="chapter">Chapter 1705: Life for Life 🔒</h2>
+<p>Be it ruthlessness or some unknown cause, Seiron, the mightiest being of the Arid Expanse World, remained unfazed by the elemental beam Feylis unleashed.</p>
+<p>Instead, he pushed his Lightning Ax to its absolute limit.</p>
+<p>Crackling thunder and blinding lightning erupted in tandem, their brilliance amplified by the surrounding storm and sea of fire.</p>
+<p>The Lightning Ax’s target was none other than the eight-winged angel, Fermera.</p>
+<p>Under the overwhelming might unleashed by this world-class secret treasure, Fermera looked like a lone boat caught in a sudden tempest.</p>
+<p>The eight metal wings on her back shimmered brightly.</p>
+<p>Many assumed the robot flying straight ahead had finally felt fear—that...</p>
+</article>
+<article id="c1706" data-label="1706">
+<h2 class="chapter">Chapter 1706: Betrayal! 🔒</h2>
+<p>A massive gray-black mushroom cloud rose once again into the air within this subspace.</p>
+<p>This marked the third time such a cloud had appeared in the Eiyurant Papillon Civilization’s secret realm in recent times.</p>
+<p>The first had occurred when Sein wounded Fermera, the second when the Gallant Federation unleashed its apocalyptical weapon, and the third was this very moment.</p>
+<p>The fact that the Gallant Federation had not deployed its apocalyptical weapon again since that last launch made it clear that weapons of this caliber were not something that could be used at will.</p>
+<p>The long interval between attacks was a fundamental weakness of such weapons.</p>
+<p>The Gallant Federation’s strategy of equipping Rank Six warships with...</p>
+</article>
+<article id="c1707" data-label="1707">
+<h2 class="chapter">Chapter 1707: Dictator 🔒</h2>
+<p>The turn of events on the battlefield had far exceeded anyone’s expectations.</p>
+<p>Not only were many Magus Civilization powerhouses left momentarily stunned, but even the Magus Alliance creatures and the Gallant Federation’s vassal forces were briefly at a loss over how to respond.</p>
+<p>Feylis was among the first to recover her composure.</p>
+<p>Staring at Seiron, now consumed by madness, brutality, and bloodlust, she could not help but wonder aloud, “Did that explosion just now destroy most of the Gallant Federation’s control chips inside him?”</p>
+<p><em>I never imagined his hatred for the Gallant Federation ran this deep. If I had known earlier, perhaps I should have…</em></p>
+<p><em>Though he has been severely injured, if he survives this crisis intact, he’ll undoubtedly...</em></p>
+</article>
+<article id="c1708" data-label="1708">
+<h2 class="chapter">Chapter 1708: Pursuit 🔒</h2>
+<p>Fermera was now heavily damaged.</p>
+<p>Seiron’s earlier strike had been truly vicious. Beyond losing her arm at the shoulder, Fermera had a deep gash across her back.</p>
+<p>When Sein reached her side, he gently touched her back.</p>
+<p>Robots were not supposed to feel pain, yet Fermera had once mentioned that Sein’s super bomb had hurt like hell.</p>
+<p>In her current state, she must be in pain.</p>
+<p>“How are you feeling? Can you keep fighting?” Sein asked. “Or should I find a way to get you out of this battlefield first?”</p>
+<p>The fighting around them had eased considerably.</p>
+<p>Seiron had defected, the fate of the other Grand Apocalypse World Rank Six being was still unclear, and Grandmaster Feylis had already...</p>
+</article>
+<article id="c1709" data-label="1709">
+<h2 class="chapter">Chapter 1709: Joint Assault 🔒</h2>
+<p>The God of Decay was a Rank Six entity without a fixed form.</p>
+<p>Simply drawing a little too close made Sein feel a vague sense of discomfort, caused by the divine law power of corruption, decay, and ruin it constantly radiated.</p>
+<p>This was not the God of Decay deliberately targeting him; it was merely an unconscious emission.</p>
+<p>No wonder this being was so unpopular within the Magus Alliance.</p>
+<p>Who would want to befriend something like this?</p>
+<p>Lingering near the God of Decay for too long could not only affect one’s lawful body, but might even invite “bad luck”.</p>
+<p>The concept of luck itself had a solid theoretical foundation within the Magus Civilization.</p>
+<p>Mages versed in occult and related fields were especially familiar with luck power factors.</p>
+<p>Sein had encountered more than...</p>
+</article>
+<article id="c1710" data-label="1710">
+<h2 class="chapter">Chapter 1710: Facade 🔒</h2>
+<p>Though the God of Decay was notoriously unpopular within the Magus Alliance, it still had its own backing and a modest network of allies.</p>
+<p>After all, it was still a Rank Six entity—a force to be reckoned with wherever it appeared.</p>
+<p>The sheer strength of Decaying Plane alone made it a significant faction within the Magus Alliance.</p>
+<p>Their joint assault on the Rank Six Apocalypse World creature proceeded smoothly.</p>
+<p>Though the creature still retained some residual strength, the combined attacks from the God of Decay, Fermera, and Sein left it with no chance of escape. It could only die a slow, agonizing death.</p>
+<p>During the fight, the powerful attacks unleashed through Sein’s Faceless Mask opened fresh wounds across the creature’s...</p>
+</article>
+<article id="c1711" data-label="1711">
+<h2 class="chapter">Chapter 1711: Apocalyptical Weapon Resurfaces 🔒</h2>
+<p>While Seiron was barely hanging on, his former opponent could still fight.</p>
+<p>Wielding a world-class magic scepter, every spell Feylis unleashed posed a lethal threat to both the enemy before her and the lower-tier Gallant Federation legions.</p>
+<p>Moreover, Sein’s grandmaster was a rare “dual-wielder”.</p>
+<p>In addition to her magic scepter, she had another ancient magic staff engulfed in roaring verdant flames.</p>
+<p>This was actually the weapon she used most often.</p>
+<p>Had the Clash of Civilizations not forced her to unleash her full strength, Sein would never have witnessed his grandmaster wield the world-class magic scepter.</p>
+<p>Both weapons provided Feylis with tremendous elemental energy amplification.</p>
+<p>More importantly, Sein’s grandmaster was practically a walking...</p>
+</article>
+<article id="c1712" data-label="1712">
+<h2 class="chapter">Chapter 1712: Shocking Momentum 🔒</h2>
+<p>The central battlefield within this subspace was vast, yet even the coverage of an apocalyptical weapon had its limits.</p>
+<p>As the activation order was issued, Five-Star General Meston swiftly evaluated the precise firing coordinates.</p>
+<p>The Gallant Federation’s central computer rapidly filtered the battlefield data and presented dozens of alternative targeting options.</p>
+<p>In the end, General Meston pointed toward the northeastern sector of the central battlefield.</p>
+<p>That region held a dense concentration of Magus Civilization forces and also lay at the junction between the combat zones of the Rank Six mage named Feylis and another Rank Six knight known as Harrison.</p>
+<p>Having spent his entire life on the battlefield, General Meston possessed exceptionally sharp combat instincts.</p>
+<p>He also held a deep understanding of Magus World and the operational structure of the Magus Alliance.</p>
+<p>In General Meston’s view, eliminating large numbers of Magus Alliance creatures and those so-called “foreign deities” served little real purpose.</p>
+<p>They were nothing more than fence-sitters. The Magus Civilization likely paid scant attention to their fate.</p>
+<p>Only by slaughtering the Magus World’s native knights, mages, and law-wielding creatures on the battlefield could the...</p>
+</article>
+<article id="c1713" data-label="1713">
+<h2 class="chapter">Chapter 1713: Enemies Crossing Paths 🔒</h2>
+<p>In terms of individual strength, this overlord-level entity from the Rosen Dynasty Civilization surpassed the Gallant Federation fleet facing her.</p>
+<p>Even so, the Gallant Federation’s overlord-class war fleet was no pushover. Its supreme commander, Marshal Rommel, had personally led a fleet that eliminated an overlord-level Rosen Dynasty psychic during the war between their civilizations.</p>
+<p>The combat strength of technologically advanced civilizations like the Gallant Federation was difficult to assess.</p>
+<p>After all, starships did not possess life levels, and the specialized weaponry mounted on certain vessels could produce unexpected effects on the battlefield.</p>
+<p>Behind the Gallant Federation fleet, an immense pitch-black wormhole continuously poured forth an unending stream of warships.</p>
+<p>This was not merely a single overlord-class war...</p>
+</article>
+<article id="c1714" data-label="1714">
+<h2 class="chapter">Chapter 1714: Respective Missions 🔒</h2>
+<p>The overlord-class war fleet led by Rommel, along with its accompanying vessels, showed noticeable residual energy fluctuations across many of their hulls.</p>
+<p>This made it clear that this federal fleet had not arrived at this subspace battlefield unchallenged.</p>
+<p>In fact, Rommel’s fleet had faced relentless ambushes and blockades from Magus Civilization legions along the way.</p>
+<p>Otherwise, he would have arrived here long ago.</p>
+<p>It was hardly a coincidence that the fleet appeared at the same time as the Rosen Dynasty Civilization’s reinforcements.</p>
+<p>As pronounced energy fluctuations rippled across the federal fleet, a slender missile suddenly launched from beneath an overlord-class warship.</p>
+<p>It emitted a shrill sound as it shot forward with a sharp whoosh, streaking toward the heart of subspace at lightning speed.</p>
+<p>Moraia immediately furrowed her brow.</p>
+<p>Among overlord-level...</p>
+</article>
+<article id="c1715" data-label="1715">
+<h2 class="chapter">Chapter 1715: Stalemate and Perfect Situation 🔒</h2>
+<p>The High-Frequency Concussion Missile aimed at Feylis detonated midair, barely a third of the distance from its intended target.</p>
+<p>An overlord-level psychic force shattered the missile from within.</p>
+<p>The premature detonation, combined with the collision of psychic force, triggered a massive energy clash that rippled across a large portion of the subspace.</p>
+<p>Feylis’ position was some distance from the blast site.</p>
+<p>Even so, the violent shockwave unleashed in that instant, coupled with the suffocating pressure of being locked onto by an overlord-class vessel, caused Feylis to spit out a mouthful of deep crimson blood mid-incantation.</p>
+<p>Her forbidden spell was interrupted. The faint volcanic elemental pattern that had begun to...</p>
+</article>
+<article id="c1716" data-label="1716">
+<h2 class="chapter">Chapter 1716: Defeated 🔒</h2>
+<p>The first Rosen Dynasty Civilization legions to arrive in support of Sein numbered nearly one hundred thousand mobile suits, led by two brown-red units.</p>
+<p>Both of these brown-red mobile suits possessed Rank Four combat capabilities.</p>
+<p>They focused on lower-tier battles after arriving, likely aware that they could not contend with the Rank Six Apocalypse World creature.</p>
+<p>The two brown-red mobile suits also shifted their attention to the Rank Four and Five Grand Apocalypse World creatures.</p>
+<p>Their arrival was only the beginning, as millions of mobile suits streamed into the area soon after.</p>
+<p>Many of these units had passed through battle zones previously assigned to Decaying World.</p>
+<p>With the arrival of reinforcements from the...</p>
+</article>
+<article id="c1717" data-label="1717">
+<h2 class="chapter">Chapter 1717: Distribution 🔒</h2>
+<p>During this brief clash, both the Rank Five psychic and the Rank Five mobile suit pilot sustained injuries.</p>
+<p>After all, they were ordinary Rank Five beings, unlike Sein, who possessed a world-class secret treasure.</p>
+<p>The Rank Five psychic with pink hair wore an outfit made of chiffon. The thin fabric was now marred by numerous cuts, along with patches where enemy flesh had melted into it.</p>
+<p>Two streaks of blood ran down her cheek, lending her a touch of heroic resolve while also giving her an air of fragility.</p>
+<p>The physique of a Rosen Dynasty psychic was indeed delicate. As a ranged combat class, their defensive capabilities were comparable to those of mages from the Magus...</p>
+</article>
+<article id="c1718" data-label="1718">
+<h2 class="chapter">Chapter 1718: Moraia 🔒</h2>
+<p>The Astral Realm was vast, filled with wonders beyond imagination.</p>
+<p>Methods of enhancing divine power like those used by the God of Decay were rare, but not entirely unheard of.</p>
+<p>Much like the occult arts and curses practiced by Magus World mages, some magic ingredient lists shockingly included bizarre materials, such as the hair of a maiden or even the saliva of a guinea pig.</p>
+<p>Who could say how many other strange practices existed across the Astral Realm?</p>
+<p>Since the God of Decay wielded the laws of decay, enhancing power by absorbing the putrid essence of deceased beings was, at least in theory, plausible.</p>
+<p>As Sein continued his conversation with the God of Decay, a deep, thunderous rumble suddenly rolled across the northern horizon.</p>
+<p>He instinctively turned in that direction, only to witness a vast,...</p>
+</article>
+<article id="c1719" data-label="1719">
+<h2 class="chapter">Chapter 1719: Crossfire 🔒</h2>
+<p>Both fleets passed by the wreckage of the Black Merlot Civilization’s overlord-class biological warship.</p>
+<p>Rommel simply led his fleet straight past the site without sparing it even a glance.</p>
+<p>Intense fighting was already raging around the remains of that overlord-class biological warship.</p>
+<p>Two federal generals commanded their respective Rank Six fleets at this location, supported by the Ocean King of Planet Aquaria and detachments from the Grand Apocalypse World’s legions.</p>
+<p>And yes—Bond, the Rank Five agent who had clashed with Sein multiple times and ultimately failed to stop his escape, was also here.</p>
+<p>The Gallant Federation had deliberately dispatched Bond to this location because of his exceptional talent for deciphering the ancestral...</p>
+</article>
+<article id="c1720" data-label="1720">
+<h2 class="chapter">Chapter 1720: Overlord’s Might 🔒</h2>
+<p>For lesser beings, being caught on an overlord’s battlefield was an extremely tragic fate.</p>
+<p>An overlord’s might was so overwhelming that even a stray ripple of its energy could deliver a devastating blow to lesser creatures.</p>
+<p>Because of an overlord’s extraordinarily high life level, even ordinary Rank Four and Rank Five beings are reduced to mere <em>lesser creatures</em> by comparison.</p>
+<p>When the Gallant Federation’s apocalyptical weapons locked onto him, Sein had just begun collecting the Rank Six Apocalypse World creature’s remains.</p>
+<p>Time was short. He had not been able to gather every part of it.</p>
+<p>Large pieces of the creature’s flesh were likely still scattered across the battlefield, and even a segment of...</p>
+</article>
+<article id="c1721" data-label="1721">
+<h2 class="chapter">Chapter 1721: Recuperation 🔒</h2>
+<p>After enduring a series of rampages unleashed by overlord-tier forces, the combat legions of both civilizations regrouped and reorganized, then simultaneously shifted the battlefield to the outer periphery of the Steel Ruins.</p>
+<p>The heart of the Steel Ruins was now off-limits, especially the area where the towering skyscraper had once stood.</p>
+<p>With two overlord-tier forces clashing there so violently, any lower-tier creature that wandered too close would be courting death.</p>
+<p>The annihilation of many lower-tier legions and the severe casualties suffered by many law-wielding combat units did nothing to dampen the Gallant Federation’s or the Magus Civilization’s appetite for war in this subspace.</p>
+<p>After the core combat zone moved to the outskirts of the Steel Ruins, the battle intensity...</p>
+</article>
+<article id="c1722" data-label="1722">
+<h2 class="chapter">Chapter 1722: Experimenting in Excitement 🔒</h2>
+<p>After seeing off the God of Decay, Sein found his thoughts drifting back to a minor incident that had occurred earlier on the central battlefield.</p>
+<p>At the time, an overlord-level psychic from the Rosen Dynasty Civilization had intercepted several of the Gallant Federation’s apocalyptical strikes with a psychic force beam, shielding Sein and the others.</p>
+<p>Sein had assumed the gesture was meant to protect the numerous Rosen Dynasty legions in the warzone, as well as the God of Decay.</p>
+<p>But on further reflection, that overlord-level psychic seemed to have glanced in his direction more than once.</p>
+<p>Of course, the attention had not been on Sein himself. More precisely, it had been focused on the Faceless Mask covering his face.</p>
+<p>This world-class secret treasure was of truly exceptional quality.</p>
+<p>After all, the vast majority of Rank Six Magus World knights and mages wielded only low-grade world-class secret treasures.</p>
+<p>For a Rank...</p>
+</article>
+<article id="c1723" data-label="1723">
+<h2 class="chapter">Chapter 1723: Lorianne Arrives 🔒</h2>
+<p><em>What defines an intelligent being?</em></p>
+<p><em>How does one awaken to self-awareness?</em></p>
+<p>These were questions Sein had pondered in the past.</p>
+<p>From the looks of it, the emergence of something like “shame” had also become a marker of a robot’s awakening to self-awareness.</p>
+<p>The shift in Fermera’s facial expression, along with the subsequent rise in her temperature during the experiment, clearly reflected the multifaceted impact that Yuri and the Burning Flame Unit had on her after their arrival in the laboratory.</p>
+<p>During Sein’s previous experiments on Fermera, she had never displayed such heightened sensitivity.</p>
+<p>Fortunately, this round of experimentation did not last long, as Sein still had other research topics to complete.</p>
+<p>Even as his body continued to be eroded...</p>
+</article>
+<article id="c1724" data-label="1724">
+<h2 class="chapter">Chapter 1724: Played Out Differently 🔒</h2>
+<p>Despite Sein’s instructions, Marie had the most success with recruiting talents from Master Chakra’s Divine Tower of Dark Wind.</p>
+<p>This was likely why Sein had assigned her to target the Divine Tower of Dark Wind in the first place.</p>
+<p>Marie treated this task from Sein as a matter of utmost importance.</p>
+<p>After all, when assessing the long-term development potential of a divine tower, the number of registered full-fledged mages within it was one of the most critical indicators.</p>
+<p>This outcome also reflected Marie’s professional competence.</p>
+<p>Among the Divine Tower of Dark Wind’s mages left behind on the frontlines, most were war mages—precisely the type the Divine Tower of Ashes currently lacked the most.</p>
+<p>By contrast, academic mages were not in short supply at the Divine Tower of Ashes.</p>
+<p>Even if a temporary shortage did arise, hiring...</p>
+</article>
+<article id="c1725" data-label="1725">
+<h2 class="chapter">Chapter 1725: Misunderstanding 🔒</h2>
+<p>A mentor lecturing an apprentice was only natural.</p>
+<p>As Lorianne’s apprentice, Sein could only accept her nagging without complaint, regardless of how high his life level was or how many profound truths he had unraveled.</p>
+<p>This reflected the Magus World’s reverence for mentors and respect for tradition.</p>
+<p>What few people knew was the immense satisfaction Lorianne felt deep inside when she, a Rank Four mage, lectured a Rank Five apprentice. It was a pleasure outsiders could scarcely comprehend.</p>
+<p>After reprimanding Sein, Lorianne casually walked past him and entered the laboratory.</p>
+<p>Compared to her last visit, Sein’s private laboratory within the Ashen Fortress had gained many new additions.</p>
+<p>Whether...</p>
+</article>
+<article id="c1726" data-label="1726">
+<h2 class="chapter">Chapter 1726: Visiting 🔒</h2>
+<p>“What are you spacing out for? Did you even hear what I said?” Seeing Sein’s dazed expression, Lorianne could not help but scold him.</p>
+<p>Snapping back to his senses, Sein hurriedly nodded in agreement.</p>
+<p>Pushing aside some unrealistic fantasies, he offered, “I’ll take you to see Fermera right now, Master Lorianne.”</p>
+<p>In truth, Lorianne felt a little unsettled by Sein’s gaze earlier. Her thoughts were already in disarray, and she was no longer in the mood to meet the Rank Six angel robot anymore.</p>
+<p>“Forget it, we can look at her another time,” she said, waving it off.</p>
+<p>“I did not come here just to check on you,” Lorianne said, her expression finally calming. “I heard that after Gregory was badly injured, you did not even...</p>
+</article>
+<article id="c1727" data-label="1727">
+<h2 class="chapter">Chapter 1727: Information Exchange 🔒</h2>
+<p>Reuniting with old friends brought Sein genuine joy.</p>
+<p>Aside from Selphy, several other junior members of the Verdant Flame Faction were also present at Gregory’s fortress. Some were familiar to Sein, others less so.</p>
+<p>The younger generation of the Verdant Flame Faction continued to grow and develop.</p>
+<p>Aside from a handful of people like Sein, who had not taken on apprentices, most Rank Three grand mages now had numerous apprentices and grand apprentices under their wing.</p>
+<p>As the host, Gregory appeared today wrapped in layers of white bandages. From a distance, he looked like a mummy.</p>
+<p>Despite his severe injuries, Gregory seemed to be in high spirits.</p>
+<p>The visit from Lorianne and the other juniors, in particular, clearly lifted his mood.</p>
+<p>He even joked to Sein, “We both took a hit from the Gallant Federation’s apocalyptical weapon,...</p>
+</article>
+<article id="c1728" data-label="1728">
+<h2 class="chapter">Chapter 1728: Genetic Warbeast Cultivation Technique 🔒</h2>
+<p>As the Magus Civilization’s legion commander on this subspace battlefield, Feylis understood that certain decisions were not hers to make alone.</p>
+<p>When faced with the Gallant Federation’s overtures, she chose not to give a direct response. Instead, she escalated the matter to the higher authorities within the Magus Civilization responsible for overseeing this war zone.</p>
+<p>Sein was well aware of what he had recovered from the Grandlight Tech Center. In short, most of it consisted of technological information that was of little use to the Magus Civilization, and the vast majority of it was incomplete.</p>
+<p>For example, Sein had obtained partial information on two civilizational treasures of the Eiyurant Papillon Civilization—the Infinite Energy device and the Space-time Shocker. However,...</p>
+</article>
+<article id="c1729" data-label="1729">
+<h2 class="chapter">Chapter 1729: Two Years 🔒</h2>
+<p>After visiting his grandmaster, Sein returned to his daily research routine.</p>
+<p>This time, however, he found it difficult to immerse himself as deeply as before.</p>
+<p>From time to time, Lorianne would come by to visit.</p>
+<p>At first, she brought him a few vials of purification potions specifically formulated to eliminate the abnormal energy lingering within the Ashen Fortress.</p>
+<p>The potions proved remarkably effective. They were capable of purging even the residual divine energy particles unconsciously emitted by the Rank Six God of Decay.</p>
+<p>Fortunately, those residual energy particles were few in number.</p>
+<p>Had the God of Decay deliberately emitted this energy, even Lorianne’s purification potions would not have been enough.</p>
+<p>Naturally, Sein expressed his sincere gratitude to his...</p>
+</article>
+<article id="c1730" data-label="1730">
+<h2 class="chapter">Chapter 1730: Phantom Crow King 🔒</h2>
+<p>The Phantom Crow King’s true form was massive.</p>
+<p>When it entered Sein’s Ashen Fortress, it immediately drew the attention of many nearby.</p>
+<p>Sein directly led the Phantom Crow King to his private living room.</p>
+<p>Upon entering the Ashen Fortress, the creature instinctively compressed its massive body, shrinking to just a few meters in size so it could meet Sein at eye level.</p>
+<p>It had been over a millennium since Sein and the Phantom Crow King last met during the Magus Alliance Conference.</p>
+<p>Clearly, the Clash of Civilizations, along with the Phantom Crow King’s prolonged involvement within the Magus Alliance, had brought about a profound change in the creature.</p>
+<p>Sein noticed battle scars across its body, talons, and beak.</p>
+<p>As a Rank Six being within the alliance, the Phantom Crow King had remained active on the frontlines...</p>
+</article>
+<article id="c1731" data-label="1731">
+<h2 class="chapter">Chapter 1731: Negotiations 🔒</h2>
+<p>The Phantom Crow King remained Sein’s guest for quite some time.</p>
+<p>For the foreign deities of the Magus Alliance, cultivating relationships with Magus World powerhouses was a way to affirm their standing and status.</p>
+<p>The more top-tier beings from Magus World one knew, the easier it was to hold one’s head high within the Magus Alliance and even gain an edge over others.</p>
+<p>The Phantom Crow King knew very well how to make an impression. During this visit, it presented Sein with an extraordinary gift: the <em>Ten Thousand Souls Orb</em>.</p>
+<p>This orb was one of the Phantom Crows’ special products. When these powerful crows absorbed enough souls and flesh essence, a blood-red orb would condense within their beaks—known as a <em>Soul Orb</em>.</p>
+<p>Soul Orbs could be consumed to strengthen one’s soul ene...</p>
+</article>
+<article id="c1732" data-label="1732">
+<h2 class="chapter">Chapter 1732: Talent 🔒</h2>
+<p>Although the Magus Civilization’s delegation said they could forcibly seize the Black Merlot Civilization’s technology brought by the Gallant Federation, they showed remarkable restraint and strict adherence to protocol during the actual talks.</p>
+<p>A massive rectangular table was placed in the middle of the negotiation site, with representatives from the two civilizations seated on opposite sides.</p>
+<p>The Eiyurant Papillon Civilization’s technologies brought by Sein and his group had been “carefully selected”.</p>
+<p>At first glance, these technologies appeared highly advanced and profound.</p>
+<p>In reality, however, every single one of them was a trap.</p>
+<p>The Eiyurant Papillon Civilization technologies provided by the Magus Civilization were all incomplete. Worse still, nearly two-thirds of the content was outright wrong!</p>
+<p>These were fabricated technologies...</p>
+</article>
+<article id="c1733" data-label="1733">
+<h2 class="chapter">Chapter 1733: Bold Invitation 🔒</h2>
+<p>In this world, what truly mattered was strength, not eloquence.</p>
+<p>Because the Magus Civilization was stronger and held the upper hand on the battlefield, mages like Potsdam and Sein could afford to take such an aggressive stance at the negotiating table.</p>
+<p>The Gallant Federation, by contrast, could only argue its case through logic.</p>
+<p>They could not possibly flip the table and walk out.</p>
+<p>After all, it was the Gallant Federation that had initiated the request for an information exchange.</p>
+<p>This meant that only the Magus Civilization could afford to flip the table if the talks did not go the way they wanted.</p>
+<p>Although Potsdam was a well-read Rank Five mage, his behavior at the negotiating table was closer to that of a domineering,...</p>
+</article>
+<article id="c1734" data-label="1734">
+<h2 class="chapter">Chapter 1734: Devour 🔒</h2>
+<p>After the negotiations concluded, the representatives from both sides departed one after another.</p>
+<p>Before leaving with the Magus Civilization’s delegation, Sein turned to glance at Bond once more.</p>
+<p>Bond, seemingly sensing his gaze, also looked in Sein’s direction before boarding the warship he and the others had arrived on.</p>
+<p>This marked the first official meeting between the Magus Civilization and the Gallant Federation against the backdrop of the Clash of Civilizations.</p>
+<p>Although the talks deliberately avoided any discussion of the war’s direction and focused solely on information exchange, the presence of overlord-tier entities and the marshal standing behind both sides ensured that this encounter would leave an indelible mark on the history of the Clash of Civili...</p>
+</article>
+<article id="c1735" data-label="1735">
+<h2 class="chapter">Chapter 1735: Purchasing Fortresses 🔒</h2>
+<p>Darian commanded several Rank Four creatures from the Shadowbat Civilization, while Orric was rumored to have recruited two powerful beings from Planet Aquaria.</p>
+<p>In addition, Auron the Rank Four Voltaran, and Beatrice of Marvelous Plane were also present within the legions led by the two.</p>
+<p>Since joining the Magus Alliance, the bonds between these powerhouses born in the surrounding star domains and planes had grown increasingly close.</p>
+<p>Sein had heard Kram mention that Darian, Orric, Karl, and the others seemed to be planning the formation of an organization.</p>
+<p>Naturally, this small group, formed by powerful individuals from several member planes, would operate under the Magus Alliance.</p>
+<p>Similar small groups and organizations were...</p>
+</article>
+<article id="c1736" data-label="1736">
+<h2 class="chapter">Chapter 1736: The Pitiful Evileye Tyrant Monarch 🔒</h2>
+<p>The war spreading across this sea of yellow sands had already dragged on for more than a year.</p>
+<p>Sein had taken part in the fighting, though rarely.</p>
+<p>Throughout the conflict, he detected no signs that the Gallant Federation legions intended to withdraw from this subspace.</p>
+<p>It was unclear whether this was due to the sheer intensity of the Magus Civilization’s offensive or a misjudgment on Feylis’ part.</p>
+<p>In truth, the battle in this region overseen by Sein was far from over.</p>
+<p>At least one-third of the Gallant Federation’s forces were still trapped within Sein’s encirclement, desperately holding out while awaiting reinforcements.</p>
+<p>Recently, however, Sein’s presence on the frontlines had grown increasingly rare.</p>
+<p>This was not due to neglect—rather, a far more pressing matter demanded...</p>
+</article>
+<article id="c1737" data-label="1737">
+<h2 class="chapter">Chapter 1737: The Eighth Pharaoh 🔒</h2>
+<p>For an overlord like the Evileye Tyrant Monarch to be driven into such a pitiful state was truly humiliating.</p>
+<p>It was not simply a matter of bad luck. First, the Evileye Tyrant Monarch had been thoroughly battered by the soul overmages of the Alveroth Empire. Then it was subjected to an even more terrifying pursuit by Hela and her subordinate.</p>
+<p>The power of the World Serpent, Jormungandr, alone was already enough to match the Evileye Tyrant Monarch head-on.</p>
+<p>Combined with the cunning tactics, abundant treasures, and terrifying backing that Hela, the Goddess of Death, possessed, the outcome was all but inevitable.</p>
+<p>Having been part of the Magus Alliance for twenty or thirty thousand years, the Evileye Tyrant Monarch knew full well that Hela was the eldest daughter of Odin, the Rank Eight Titan World...</p>
+</article>
+<article id="c1738" data-label="1738">
+<h2 class="chapter">Chapter 1738: The Amenkha Empire 🔒</h2>
+<p>“How irritating this power of light is. It feels different from the light wielded by those giants of the Luminara Civilization. Is this the so-called lumen elemental magic of your Magus Civilization? Or is it the power left behind by the Radiant Celestials who departed the Astral Realm, as the Second Pharaoh once mentioned?” the hideous Eighth Pharaoh asked, unable to restrain his curiosity.</p>
+<p>Hela, naturally, had no intention of answering him. She just continued pouring her power into the pearl she was holding.</p>
+<p>A blinding radiance erupted, visibly dispersing a portion of the black mist surrounding the Eighth Pharaoh. Without hesitation, Hela followed up by swinging her Space-Rending Blade straight at him.</p>
+<p><em>CLANG!</em></p>
+<p>A metallic impact rang out as violent spatial tremors rippled in all directions. Even the...</p>
+</article>
+<article id="c1739" data-label="1739">
+<h2 class="chapter">Chapter 1739: The Fire Phoenix 🔒</h2>
+<p>The Amenkha Empire excelled above all else in the power of death and darkness. It also possessed formidable achievements in sealing techniques and the creation of monsters.</p>
+<p>Nearly every powerful figure within the Amenkha Empire mastered a unique and terrifying self-sealing technique.</p>
+<p>This practice traced its origins to an ancient tradition of the Amenkha Empire—flaying the skin of defeated enemies and wearing it as both a trophy of war and a personal adornment.</p>
+<p>What Hela saw wrapped around the Eighth Pharaoh’s body were not bandages at all, but the skins of fallen powerhouses.</p>
+<p>Over the course of his conquests across the Astral Realm, countless powerful beings had perished at the Eighth Pharaoh’s hands, including two formidable overlord-level entities.</p>
+<p>These “bandages” were actually the skins...</p>
+</article>
+<article id="c1740" data-label="1740">
+<h2 class="chapter">Chapter 1740: A Trap 🔒</h2>
+<p>Confronted by the Rank Eight Fire Phoenix’s interrogation, the Evileye Tyrant Monarch felt on the verge of tears.</p>
+<p>During its time within the Magus Alliance, it had indeed heard vague rumors that the Ice Phoenix had an older brother.</p>
+<p>But the Fire Phoenix had not appeared within the alliance’s territory for tens of thousands of years—who could possibly still remember such an existence?</p>
+<p>Moreover, that Fire Phoenix was rumored to possess no more than Rank Seven strength.</p>
+<p>Backed by the Amenkha Empire and the Gallant Federation, the Evileye Tyrant Monarch had never truly regarded the Fire Phoenix as a threat.</p>
+<p>Who could have imagined that after reemerging following tens of thousands of years of absence, this Fire Phoenix had ascended to the terrifying realm of Rank Eight?</p>
+<p><em>“You…?!”</em> The Evileye Tyrant Monarch’s mental focus rippled outward in all directions.</p>
+<p>This Rank Seven...</p>
+</article>
+<article id="c1741" data-label="1741">
+<h2 class="chapter">Chapter 1741: Gathering of the Overlords 🔒</h2>
+<p>The pitch-black war blade streaked toward the Eighth Pharaoh, faintly taking the shape of a black dragon’s head as it flew.</p>
+<p>It was an enormous dragon head covered in scars. Though its fangs were crooked, they were all still razor-sharp!</p>
+<p>Compared to Morineo, the Fire Phoenix who had only recently ascended to Rank Eight, this black blade and its wielder clearly posed a far greater threat to the Eighth Pharaoh.</p>
+<p>The Eighth Pharaoh’s attempt to escape from the battlefield was abruptly halted.</p>
+<p>His bone staff transformed into a grayish-white claw that shot forward to meet the oncoming dragon head.</p>
+<p>The collision sent shockwaves rippling through space. Fresh claw marks were left across the dragon head, while a deep, glaring crack spread along the Eighth Pharaoh’s grayish-white claw.</p>
+<p><em>Clang—!</em></p>
+<p>A space-shaking hum echoed across the surrounding starry sky.</p>
+<p>The vibrations shattered the meteoroids that were burning with Nirvana Flames into fine...</p>
+</article>
+<article id="c1742" data-label="1742">
+<h2 class="chapter">Chapter 1742: Melee 🔒</h2>
+<p>A fierce battle erupted once more.</p>
+<p>This time, charging at the very front was General Kassedar of the Byrne Empire.</p>
+<p>Also known as General Tiger Eye, Kassedar was the most senior general still actively serving the Byrne Empire. Long before Magus World had grown beyond a medium-sized plane, he was already a renowned and formidable knight within the empire.</p>
+<p>As the ages passed and his peers retired, fell in battle, or died of old age, only Tiger Eye remained—still standing in Magus World, waging war to this very day.</p>
+<p>Kassedar looked like a middle-aged powerhouse, his body packed with defined muscles.</p>
+<p>Time had not dulled him in the slightest. If anything, he seemed even more arrogant than in his youth.</p>
+<p>The rebellious lock of hair that refused to lie flat at his forehead embodied the...</p>
+</article>
+<article id="c1743" data-label="1743">
+<h2 class="chapter">Chapter 1743: Eleven Against One 🔒</h2>
+<p><em>ROAR—!</em></p>
+<p>A dragon’s roar that seemed to shake the space erupted from Baxia.</p>
+<p>Overwhelming laws of water vapor and raw strength tore violently through the surrounding starry sky.</p>
+<p>From Baxia’s left and right sides, two pillars of water formed and surged straight toward the Eighth Pharaoh.</p>
+<p>The water pillars twisted into dragons of uncanny realism—slender-bodied, each bearing five sharp, clawed limbs.</p>
+<p>They bore little resemblance to the dragons native to Magus World. Instead, they closely matched the “<em>true dragons”</em> of the Immortal Realm.[1]</p>
+<p>At the same time, Baxia’s massive dragon paw came crashing down, radiating the terrifying law of strength.</p>
+<p>Sein had long been curious about where Tourmaline inherited her strength law and...</p>
+</article>
+<article id="c1744" data-label="1744">
+<h2 class="chapter">Chapter 1744: Despicable 🔒</h2>
+<p>At the heart of the battlefield, the Eighth Pharaoh was battered by a relentless barrage of attacks from the Magus Civilization’s soul overmages behind him, all while fending off the Dark Knight wielding the Imperial Blade and the Fire Phoenix, whose body was wreathed in Nirvana Flames.</p>
+<p>As one of the First Pharaoh’s personal weapons, the Imperial Blade carried mythical significance throughout the Amenkha Empire.</p>
+<p>Legend claimed that this peerless blade had once demanded the sacrifice of every living being on a large-sized world and had also forcibly imprinted the souls of three overlords into its very essence.</p>
+<p>Among them was even the soul of a Rank Eight overlord!</p>
+<p>For a top-tier civilization, killing a Rank Eight overlord might be possible.</p>
+<p>But capturing one alive and branding their Eternal Soul into a weapon in an act of utter humiliation?</p>
+<p>That was something even the current Magus Civilization...</p>
+</article>
+<article id="c1745" data-label="1745">
+<h2 class="chapter">Chapter 1745: Left Arm 🔒</h2>
+<p>The sealing techniques of the Amenkha Empire were profound and complex.</p>
+<p>In truth, some Magus World knights and mages had also achieved notable accomplishments in sealing arts and self-sealing techniques.</p>
+<p>Yet compared to the Amenkha Empire, where the entire populace cultivated sealing arts, they still fell short.</p>
+<p>The most common form of sealing technique within the Amenkha Empire was the <em>First Seal</em>.</p>
+<p>This First Seal was far from simple. When broken down, it encompassed more than ten distinct cultivation tiers.</p>
+<p>As a Rank Eight overlord, the Eighth Pharaoh had undoubtedly mastered the First Seal.</p>
+<p>Beyond First Seal was <em>Second Seal</em>, a state attained by only an exceedingly rare few.</p>
+<p>If breaking the First Seal represented advancement...</p>
+</article>
+<article id="c1746" data-label="1746">
+<h2 class="chapter">Chapter 1746: Small-Volume Trade 🔒</h2>
+<p>“You fool! Have you not figured it out yet? These Magus Civilization overlords never intended to take you back!” the Eighth Pharaoh shouted at the Evileye Tyrant Monarch.</p>
+<p>“Hurry and help me! With my left arm’s current burst power, I still have a chance to tear open a space-time rift!”</p>
+<p>A sinister light flashed across the Evileye Tyrant Monarch’s colossal eyeball.</p>
+<p>Its broken sclera, soaked in dark crimson-purple blood, glimmered with an eerie, demonic radiance.</p>
+<p>Caught between Bev of the Magus Civilization and the Eighth Pharaoh, the despicable and shameless creature finally made what it believed to be the correct decision.</p>
+<p>An Evileye beam shot straight toward Klopp on the flank of the battlefield.</p>
+<p>As an overlord-level being, the Evileye Tyrant Monarch’s perception was frighteningly sharp.</p>
+<p>During this battle, it had determined that Klopp—who had only...</p>
+</article>
+<article id="c1747" data-label="1747">
+<h2 class="chapter">Chapter 1747: The Federation’s Withdrawal 🔒</h2>
+<p>In the laboratory, Sein stared at the Magic Cube before him, lost in thought.</p>
+<p>HALL-E was there as well.</p>
+<p>After joining Sein’s team, drawn by the promise of one day seeing the sights of the Astral Realm, HALL-E gradually proved itself to be a remarkably capable experimental assistant.</p>
+<p>Whether it was alchemy experiments, mechanical research, or studies related to the refinement of the pyro element, the robot displayed astonishingly high aptitude.</p>
+<p>While it exhibited almost exceptionally broad support capabilities across nearly all of Sein’s research domains, body-tempering experiments were the sole exception.</p>
+<p>As an intelligent robot without a body of flesh and blood, HALL-E had little exposure to that field and was ill-suited to it.</p>
+<p>“This...</p>
+</article>
+<article id="c1748" data-label="1748">
+<h2 class="chapter">Chapter 1748: Operational Target 🔒</h2>
+<p>For the Gallant Federation, withdrawing its forces from this subspace was not something that could be done on a whim.</p>
+<p>This area had long served as a critical battlefield, one graced by the presence of overlords. Over the years, the federation had never ceased reinforcing its forces here, though the pace of reinforcement had slowed in recent times.</p>
+<p>When even robotic cannon fodder and drone combat units were taken into account, the Gallant Federation’s operational deployment in this subspace easily numbered in the hundreds of millions.</p>
+<p>The withdrawal of such a massive force inevitably involved countless logistical and operational matters.</p>
+<p>Some legions would withdraw immediately. Others would remain behind to cover the retreat, while still others would...</p>
+</article>
+<article id="c1749" data-label="1749">
+<h2 class="chapter">Chapter 1749: Art 🔒</h2>
+<p>Before Sein and his group lay an endless expanse of metallic bases and countless black railway tracks that vanished into the distant horizon.</p>
+<p>The Gallant Federation truly excelled at engineering and construction.</p>
+<p>Using the vast quantities of scrap metal and raw materials left behind in this subspace secret realm, the federation had erected numerous metal fortifications and technologically advanced fortress bases in an astonishingly short amount of time.</p>
+<p>Sein and his group’s next objective was to launch a full-scale assault on this vast base.</p>
+<p>Functionally, this base served as a major troop transit hub for the Gallant Federation.</p>
+<p>Countless mobile suits, warships, robots, and various metallic combat units had likely passed through this sector.</p>
+<p>Across...</p>
+</article>
+<article id="c1750" data-label="1750">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1750: Mechanical Space 🔒</h2>
+<p>The fierce battle dragged on for months.</p>
+<p>During this time, Sein personally joined the fray. This time, he did not rely heavily on the Faceless Mask. Instead, he treated the Magic Cube as his primary equipment.</p>
+<p>A faint red, grid-like energy fortress formed around him. This was the protection granted to him by the cube during combat.</p>
+<p>This energy barrier bore a striking resemblance to the defensive structures found within the ruins of the Eiyurant Papillon Civilization.</p>
+<p>The crimson hue came from Sein deeply infusing the Magic Cube with his pyro elemental energy.</p>
+<p>Beyond this protective shield, the cube also provided combat support through attacks such as energy beams, macro-light...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1751-1800.html" rel="next">Next: Chs 1751–1800 &rarr;</a>
+    <p class="page-end-links"><a href="1651-1700.html" rel="prev">&larr; Chs 1651–1700</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1701–1750</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1701">Chapter 1701: Free 🔒</a></li>
+        <li><a href="#c1702">Chapter 1702: Central Battlefield 🔒</a></li>
+        <li><a href="#c1703">Chapter 1703: The Iron Triangle 🔒</a></li>
+        <li><a href="#c1704">Chapter 1704: Blood for Blood 🔒</a></li>
+        <li><a href="#c1705">Chapter 1705: Life for Life 🔒</a></li>
+        <li><a href="#c1706">Chapter 1706: Betrayal! 🔒</a></li>
+        <li><a href="#c1707">Chapter 1707: Dictator 🔒</a></li>
+        <li><a href="#c1708">Chapter 1708: Pursuit 🔒</a></li>
+        <li><a href="#c1709">Chapter 1709: Joint Assault 🔒</a></li>
+        <li><a href="#c1710">Chapter 1710: Facade 🔒</a></li>
+        <li><a href="#c1711">Chapter 1711: Apocalyptical Weapon Resurfaces 🔒</a></li>
+        <li><a href="#c1712">Chapter 1712: Shocking Momentum 🔒</a></li>
+        <li><a href="#c1713">Chapter 1713: Enemies Crossing Paths 🔒</a></li>
+        <li><a href="#c1714">Chapter 1714: Respective Missions 🔒</a></li>
+        <li><a href="#c1715">Chapter 1715: Stalemate and Perfect Situation 🔒</a></li>
+        <li><a href="#c1716">Chapter 1716: Defeated 🔒</a></li>
+        <li><a href="#c1717">Chapter 1717: Distribution 🔒</a></li>
+        <li><a href="#c1718">Chapter 1718: Moraia 🔒</a></li>
+        <li><a href="#c1719">Chapter 1719: Crossfire 🔒</a></li>
+        <li><a href="#c1720">Chapter 1720: Overlord’s Might 🔒</a></li>
+        <li><a href="#c1721">Chapter 1721: Recuperation 🔒</a></li>
+        <li><a href="#c1722">Chapter 1722: Experimenting in Excitement 🔒</a></li>
+        <li><a href="#c1723">Chapter 1723: Lorianne Arrives 🔒</a></li>
+        <li><a href="#c1724">Chapter 1724: Played Out Differently 🔒</a></li>
+        <li><a href="#c1725">Chapter 1725: Misunderstanding 🔒</a></li>
+        <li><a href="#c1726">Chapter 1726: Visiting 🔒</a></li>
+        <li><a href="#c1727">Chapter 1727: Information Exchange 🔒</a></li>
+        <li><a href="#c1728">Chapter 1728: Genetic Warbeast Cultivation Technique 🔒</a></li>
+        <li><a href="#c1729">Chapter 1729: Two Years 🔒</a></li>
+        <li><a href="#c1730">Chapter 1730: Phantom Crow King 🔒</a></li>
+        <li><a href="#c1731">Chapter 1731: Negotiations 🔒</a></li>
+        <li><a href="#c1732">Chapter 1732: Talent 🔒</a></li>
+        <li><a href="#c1733">Chapter 1733: Bold Invitation 🔒</a></li>
+        <li><a href="#c1734">Chapter 1734: Devour 🔒</a></li>
+        <li><a href="#c1735">Chapter 1735: Purchasing Fortresses 🔒</a></li>
+        <li><a href="#c1736">Chapter 1736: The Pitiful Evileye Tyrant Monarch 🔒</a></li>
+        <li><a href="#c1737">Chapter 1737: The Eighth Pharaoh 🔒</a></li>
+        <li><a href="#c1738">Chapter 1738: The Amenkha Empire 🔒</a></li>
+        <li><a href="#c1739">Chapter 1739: The Fire Phoenix 🔒</a></li>
+        <li><a href="#c1740">Chapter 1740: A Trap 🔒</a></li>
+        <li><a href="#c1741">Chapter 1741: Gathering of the Overlords 🔒</a></li>
+        <li><a href="#c1742">Chapter 1742: Melee 🔒</a></li>
+        <li><a href="#c1743">Chapter 1743: Eleven Against One 🔒</a></li>
+        <li><a href="#c1744">Chapter 1744: Despicable 🔒</a></li>
+        <li><a href="#c1745">Chapter 1745: Left Arm 🔒</a></li>
+        <li><a href="#c1746">Chapter 1746: Small-Volume Trade 🔒</a></li>
+        <li><a href="#c1747">Chapter 1747: The Federation’s Withdrawal 🔒</a></li>
+        <li><a href="#c1748">Chapter 1748: Operational Target 🔒</a></li>
+        <li><a href="#c1749">Chapter 1749: Art 🔒</a></li>
+        <li><a href="#c1750">Chapter 1750: Mechanical Space 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1651-1700.html" rel="prev">&larr; Chs 1651–1700</a>    <a href="../../index.html">Library</a>
+<a href="1751-1800.html" rel="next">Chs 1751–1800 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Overlord of Puluo Chs 401–450</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="351-400.html#last" data-next-page="451-500.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c401">Chapter 401: Head of the Chu Family 🔒</a></li>
+        <li><a href="#c402">Chapter 402: The Thievery Cultivator&#39;s Nimble Fingers 🔒</a></li>
+        <li><a href="#c403">Chapter 403: This Move Works Wonders 🔒</a></li>
+        <li><a href="#c404">Chapter 404: The Lunatic Craftsman 🔒</a></li>
+        <li><a href="#c405">Chapter 405: Autumn Wind Sweeps the Leaves 🔒</a></li>
+        <li><a href="#c406">Chapter 406: How He Made a Fortune 🔒</a></li>
+        <li><a href="#c407">Chapter 407: Do You Recognize This Sword? 🔒</a></li>
+        <li><a href="#c408">Chapter 408: Grudges 🔒</a></li>
+        <li><a href="#c409">Chapter 409: This is the Useful Hong Ying! 🔒</a></li>
+        <li><a href="#c410">Chapter 410: The Beggar Cultivator 🔒</a></li>
+        <li><a href="#c411">Chapter 411: We Are All Very Loyal! 🔒</a></li>
+        <li><a href="#c412">Chapter 412: He Is Still Alive 🔒</a></li>
+        <li><a href="#c413">Chapter 413: Yuan Shoulu 🔒</a></li>
+        <li><a href="#c414">Chapter 414: Rest Assured, My Lord 🔒</a></li>
+        <li><a href="#c415">Chapter 415: The World’s Distorted Perception of Me 🔒</a></li>
+        <li><a href="#c416">Chapter 416: The Escaped Convicts 🔒</a></li>
+        <li><a href="#c417">Chapter 417: A Path to Survival 🔒</a></li>
+        <li><a href="#c418">Chapter 418: She Misses You 🔒</a></li>
+        <li><a href="#c419">Chapter 419: Home 🔒</a></li>
+        <li><a href="#c420">Chapter 420: Gotta Learn to Adapt 🔒</a></li>
+        <li><a href="#c421">Chapter 421: It&#39;s Lit 🔒</a></li>
+        <li><a href="#c422">Chapter 422: What Moved? 🔒</a></li>
+        <li><a href="#c423">Chapter 423: Neighbor 🔒</a></li>
+        <li><a href="#c424">Chapter 424: Neverbury 🔒</a></li>
+        <li><a href="#c425">Chapter 425: If You Have Got the Guts, Come Take It 🔒</a></li>
+        <li><a href="#c426">Chapter 426: What Makes Disease Cultivators Dangerous 🔒</a></li>
+        <li><a href="#c427">Chapter 427: Kinless Township 🔒</a></li>
+        <li><a href="#c428">Chapter 428: Bloodshed in the Abandoned Village 🔒</a></li>
+        <li><a href="#c429">Chapter 429: Two Deeds 🔒</a></li>
+        <li><a href="#c430">Chapter 430: What Matters is Determination 🔒</a></li>
+        <li><a href="#c431">Chapter 431: You are a Robber 🔒</a></li>
+        <li><a href="#c432">Chapter 432: Qi Qiu City 🔒</a></li>
+        <li><a href="#c433">Chapter 433: Heartfelt Gifts From the Inner Provinces 🔒</a></li>
+        <li><a href="#c434">Chapter 434: Old Qi, Live Well For Me! 🔒</a></li>
+        <li><a href="#c435">Chapter 435: Come, Let&#39;s Fight to the Death 🔒</a></li>
+        <li><a href="#c436">Chapter 436: Because This Is Our Home 🔒</a></li>
+        <li><a href="#c437">Chapter 437: The Three Trials 🔒</a></li>
+        <li><a href="#c438">Chapter 438: Miss, Are You Alive? 🔒</a></li>
+        <li><a href="#c439">Chapter 439: Ironclad and Mountain-Solid Evidence 🔒</a></li>
+        <li><a href="#c440">Chapter 440: The Skill of Fleshbuilding 🔒</a></li>
+        <li><a href="#c441">Chapter 441: A Change of Flesh and Bones 🔒</a></li>
+        <li><a href="#c442">Chapter 442: Elephant Qiu, Farewell 🔒</a></li>
+        <li><a href="#c443">Chapter 443: Ink Fragrance Shop 🔒</a></li>
+        <li><a href="#c444">Chapter 444: The Customs of Scholars 🔒</a></li>
+        <li><a href="#c445">Chapter 445: A Business of Murky Water 🔒</a></li>
+        <li><a href="#c446">Chapter 446: Ge Junma 🔒</a></li>
+        <li><a href="#c447">Chapter 447: Is This What You Call Incredibly Smart? 🔒</a></li>
+        <li><a href="#c448">Chapter 448: The Overworked Land Deity 🔒</a></li>
+        <li><a href="#c449">Chapter 449: Since You Have Already Given It 🔒</a></li>
+        <li><a href="#c450">Chapter 450: The Greenwater and Jiaqing Alliance 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="the-overlord-of-puluo">
+<article id="c401" data-label="401">
+<h2 class="chapter">Chapter 401: Head of the Chu Family 🔒</h2>
+<p>At Chu Huaijun&#39;s secondary residence, Ma Wu sat smoking in the courtyard with Qin and Miss Severed-No-Grudge beside him.</p>
+<p>Several support hooks had once been stationed there, but after their bloody clash with the Three Heroes Sect, every one of them had been left wounded. Clearing them out had not taken much effort, especially since Miss Chu had brought along some help of her own.</p>
+<p>Her helper was a woman who looked to be in her thirties. Qin, however, could tell that her cultivation level was very high and guessed she was probably over fifty.</p>
+<p>The woman herself was of little concern. What bothered Qin was discovering that Ma Wu had another woman in his heart.</p>
+<p>Qin&#39;s voice was even trembling slightly when she scolded, &#34;The expression you have when you look at her is different!</p>
+<p>Ma Wu froze. &#34;You mean Miss Chu? How can I possibly have feelings for her? She and I are enemies!&#34;</p>
+<p>Qin gave a cold snort. &#34;Who said I was talking about Miss Chu?&#34;</p>
+<p>Immediately, Qin turned and looked resentfully at Miss Severed-No-Grudge.</p>
+<p>Ma Wu&#39;s face reddened. &#34;W-Well... how should I put this...&#34;</p>
+<p>Miss Severed-No-Grudge showed no particular expression. The head on her neck was not her own. It had been created through Shui Yongquan&#39;s ability Hundred Transformations with Hundred Streams, and it was not capable of making much of an expression in the first place.</p>
+<p>Soon, Miss Chu came out of the house.</p>
+<p>She had washed away...</p>
+</article>
+<article id="c402" data-label="402">
+<h2 class="chapter">Chapter 402: The Thievery Cultivator&#39;s Nimble Fingers 🔒</h2>
+<p>After seeing Sun Junfu off, Liao Zihui turned his attention to more serious matters.</p>
+<p>Chu Huaijun was dead, which was far beyond anything Liao Zihui had expected. During his many years as Border Controller, he had dealt with plenty of unexpected situations, but never one this outrageous. A force he had personally supported and built up had suddenly lost its leader. Nothing this crazy had ever happened before.</p>
+<p>It wouldn&#39;t be hard to find out how Chu Huaijun died. Miss Chu came back and rejected the sale of the Paramount Club. She also took over the Chu Family&#39;s business. All these events indicated that Chu Huaijun had likely been killed by her.</p>
+<p>The real problem was deciding what to do with her. Should he kill her? But killing her wouldn&#39;t solve any issue. It would only cause an even greater uproar and make the whole situation even more intense.</p>
+<p>Liao Zihui summoned his secretary, Ling Sujun. &#34;Draft a report. Put the acquisition of the Paramount Club on hold, along with the operation against He Yuxiu.&#34;</p>
+<p>Ling Sujun wrote down his orders in her notebook, then cautiously raised an objection. &#34;Commissioner, the task list we received gave clear deadlines for both the Paramount Club and He Yuxiu. If we request a suspension now, I am afraid…&#34;</p>
+<p>Liao Zihui shook his head. &#34;As long as I remain Commissioner, both matters will stay on hold. If we continue, it might result in consequences that are impossible to save.</p>
+<p>&#34;What about the operation against Li Qi? Should we put that one on hold as well?&#34;</p>
+<p>Liao Zihui hesitated for a long while before rubbing his chin. &#34;No. The operation against Li Qi must continue, but we need to change our strategy.&#34;</p>
+<hr class="separator">
+<p>Li Banfeng bought more than a hundred...</p>
+</article>
+<article id="c403" data-label="403">
+<h2 class="chapter">Chapter 403: This Move Works Wonders 🔒</h2>
+<p>At seven in the morning, Xie Juncong, the seventy-year-old Boss of the Ghosthand Sect, was sprinting desperately past the gates of Freewind Wharf without a stitch of clothing on him.</p>
+<p>Li Banfeng ran alongside him while a Film Projector hovered nearby, faithfully recording the entire scene.</p>
+<p>Li Banfeng raised his voice so that everyone nearby could hear him. &#34;Isn&#39;t this Xie Juncong, the leader of the Ghosthand Sect?&#34;</p>
+<p>Xie Juncong gave a dry laugh. &#34;Master Qi, I never expected to run into you here.&#34;</p>
+<p>&#34;Sect Master Xie, why did you leave in such a hurry? Is there some urgent business you need to attend to?&#34;</p>
+<p>&#34;Nothing urgent. I merely came out to stretch my legs.&#34;</p>
+<p>&#34;Sect Master Xie, are you wearing this little because the weather&#39;s burning hot?&#34;</p>
+<p>&#34;Now that you mention it, the weather is really hot today!&#34;</p>
+<p>&#34;Are you on your way home? Why don&#39;t I hire a carriage and send you home?&#34;</p>
+<p>&#34;No need to be so courteous, I can walk back myself!&#34;</p>
+<p>Li Banfeng really wanted to send him all the way back into his mother&#39;s womb. This was already the second time the old thief had tried to steal from him.</p>
+<p>However, the Glove begged Li Banfeng repeatedly, &#34;Boss, we can&#39;t kill him yet. There are still things I need to pry out of him. Besides, his cultivation isn&#39;t weak. If you fight him head-on, you might not be able to gain the upper hand.&#34;</p>
+<p>Li Banfeng smiled. &#34;With you here, why should I be afraid we can&#39;t beat...</p>
+</article>
+<article id="c404" data-label="404">
+<h2 class="chapter">Chapter 404: The Lunatic Craftsman 🔒</h2>
+<p>Three days later, Liao Zihui&#39;s secretary, Ling Sujun, arrived at Freewind Wharf with a written order.</p>
+<p>The Border Control Office had agreed to Li Qi&#39;s demand. Starting from today, the transport fees for all businesses under Li Qi would be cut in half.</p>
+<p>Ma Wu was filled with such excitement. He was not even in the mood to flirt with Ling Sujun and went straight to find Li Qi.</p>
+<p>Li Banfeng, however, remained perfectly calm. &#34;I am guessing that the Great Families will be knocking on our door soon.&#34;</p>
+<p>They were bound to come. Li Qi&#39;s businesses now enjoyed a fifty-percent discount, while the great families could not even get their fees restored to the original rate. They would certainly try to find a way to sell their goods through Li Qi.</p>
+<p>Ma Wu had already worked it all out. &#34;We can help the families we are close to sell their goods and pocket the difference. Big Sis Yuxiu will probably turn up today. Once she does, we can decide how much of a margin to charge her.&#34;</p>
+<p>Li Banfeng shook his head. &#34;No margin for He Yuxiu. Charge her only enough to cover the labor.&#34;</p>
+<p>Ma Wu blinked. &#34;Why?&#34;</p>
+<p>&#34;Because she earned it. She played a major part in making this happen.&#34;</p>
+<p>He Yuxiu had indeed played a major part. She had been the strongest fighter in the battle against the Three Heroes Sect, and, even more importantly,...</p>
+</article>
+<article id="c405" data-label="405">
+<h2 class="chapter">Chapter 405: Autumn Wind Sweeps the Leaves 🔒</h2>
+<p>A faint glow spread across Properfolk Village.</p>
+<p>When enough people successfully activated land within the same region, the glow from each plot overlapped and blended together. It created the illusion that this was no longer New Land at all.</p>
+<p>Of course, the glow over New Land could never be as bright as the light shining over the Proper Land. Yet as the light from countless activated plots blended together, it looked much like daybreak in Proper Land.</p>
+<p>Just how many plots surrounded Properfolk Village were activated? Someone would have to sit down and count them properly.</p>
+<p>Li Banfeng led the land activators into a stretch of woodland. They were still more than two and a half kilometers from Properfolk Village, yet houses were already scattered across the landscape, and there was even a small restaurant.</p>
+<p>For some of the hunters, this was their first visit to Properfolk Village. They could not help but wonder how a restaurant out here managed to get its ingredients.</p>
+<p>There was not much to eat in New Land.</p>
+<p>In the past, most of Properfolk Village’s food came from the oranges grown in Orange Grove, the fish caught in the lake, and the few wild beasts that were safe to eat.</p>
+<p>Things had become different. More and more Agrarian Cultivators had successfully activated the surrounding land. They had begun growing crops and raising livestock, steadily expanding the village’s...</p>
+</article>
+<article id="c406" data-label="406">
+<h2 class="chapter">Chapter 406: How He Made a Fortune 🔒</h2>
+<p>Qiu Luoye agreed to having more of his land activated, and Li Banfeng brought the workers into his territory that same day.</p>
+<p>More than a thousand people had come to activate the land. Without proper supervision, the situation could easily descend into chaos. They might start fighting over the plots before the work even began.</p>
+<p>Fortunately, Li Banfeng had planned everything in advance. He handed out maps during the journey, with the available plots clearly marked. He had also used the Film Projector to show everyone footage of the land. They were given three days to choose their plots, and if several people selected the same one, it would go to whoever had chosen it first.</p>
+<p>They had seen the maps and the footage, and Li Banfeng had explained everything that needed explaining. Even so, once they arrived at Qiu Luoye&#39;s territory, some people still asked to change their plots.</p>
+<p>Were they allowed to? Of course. They could choose a piece of land outside the plots Li Banfeng had marked out and become landowners in their own right. However, they would receive no reward, and they would have to cover the cost of activating the land themselves.</p>
+<p>Once the plots were settled, the land activators prepared their offerings that same day. Qiu Luoye responded to them one by one, and the trials of worthiness began the following morning.</p>
+<p>However, having more than a thousand workers did not mean they could activate more than a thousand plots.</p>
+<p>Some formed teams of three or five to activate a plot half a kilometer across. Others gathered in groups of thirty, fifty, or even more than a hundred to tackle a plot one-and-a-half kilometers across.</p>
+<p>Li Banfeng did not care how they formed their teams. He paid them according to the...</p>
+</article>
+<article id="c407" data-label="407">
+<h2 class="chapter">Chapter 407: Do You Recognize This Sword? 🔒</h2>
+<p>Li Banfeng wandered through his territory and discovered that Zhang Wanlong had somehow built an entire village. Crops stretched across the territory&#39;s one-and-a-half-kilometer diameter, with neat rows of farmhouses standing between the fields.</p>
+<p>It made sense for him to plant so many crops, but why did he build so many houses? Only he and Little Gen lived here.</p>
+<p>Li Banfeng stepped into the plot and followed the winding country paths. Farmers were busy in the fields, while others stood by the roadside chatting away.</p>
+<p>In one courtyard, a man chopped firewood while a woman who appeared to be his wife rinsed rice nearby.</p>
+<p>Li Banfeng stopped outside the gate and activated Hundred Flavors at the Tip of the Nose. The couple gave off a pungent, crisp scent with just a touch of sweetness. They were a pair of radishes.</p>
+<p>An old man came rumbling toward him in an oxcart piled high with potatoes, bringing with him the rich, earthy smell of freshly turned soil. As they passed, the old man gave Li Banfeng a friendly smile. The man smelled of potatoes. So did the ox, and so did every potato in the cart.</p>
+<p>Down by the river, several women were pounding laundry with wooden clubs. Some wiped the sweat from their brows, some chatted away, and others laughed and fooled around. No ordinary person would ever have guessed that every one of them was a zucchini.</p>
+<p>At the edge of the field, a young man was bustling about, ladle in hand, with seven buckets strapped to his back.</p>
+<p>What sort of crop had this fellow grown from? Li Banfeng did not dare take another sniff. He deactivated Hundred Flavors at the Tip of the Nose and walked over.</p>
+<p>Li Banfeng called out, &#34;Little Gen.&#34;</p>
+<p>Little Gen&#39;s face lit up when he saw him. &#34;Master Qi! When did you get here?&#34;</p>
+<p>&#34;Just now. I was having a look around,&#34; Li Banfeng said. He eyed the seven...</p>
+</article>
+<article id="c408" data-label="408">
+<h2 class="chapter">Chapter 408: Grudges 🔒</h2>
+<p>The Gramophone raised the longsword. &#34;You wretched bitch. Do you really think I will not cut you down?&#34;</p>
+<p>Hong Ying extended her spearhead toward the Gramophone. &#34;Then do it. Make it quick.&#34;</p>
+<p>The Gramophone was enraged. &#34;You feel no remorse at all?&#34;</p>
+<p>Hong Ying laughed. &#34;I have nothing to regret. Even if I had to choose again, I would still kill you.&#34;</p>
+<p>&#34;You wretched bitch!&#34; The Gramophone smashed the sword hilt into her, sending her staggering.</p>
+<p>Hong Ying regained her balance and spoke slowly. &#34;I am no wretched bitch. The most wretched thing I ever did in this life was trust you. From the day we met, I listened to you in everything. Even when I was thrown onto death row and passed through the gates of hell, I still went back to the battlefield and listened to you.</p>
+<p>&#34;Then you commanded the entire army to march to Wildgoose Sandplain. That was when I knew I could no longer obey you. The seller of sundries and that lunatic craftsman were both there. You were leading us straight to our deaths.&#34;</p>
+<p>&#34;I told you I could win the battle!&#34;</p>
+<p>Hong Ying laughed out loud. &#34;So what if you won? Cong Shixiang had an imperial edict in his hands, with the orders written plainly in black and white. If you lost, he would make every one of us die on the battlefield. If you won, he would read out the edict at once, drag the two of us back...</p>
+</article>
+<article id="c409" data-label="409">
+<h2 class="chapter">Chapter 409: This is the Useful Hong Ying! 🔒</h2>
+<p>A tall, slender woman stepped out of the fragrant muskmelon.</p>
+<p>At once, the Film Projector&#39;s lens began flashing with a fierce, fiery light. &#34;Her long hair is tied neatly behind her head, though a few strands have escaped. The cold wind sends them dancing to and fro across her rather thin face.</p>
+<p>&#34;No, no, not thin. Chiseled! Just look at those marvelous angles. From her forehead to her cheekbones, from her cheeks to her jaw, every line has been carved as sharply as the edge of a knife!</p>
+<p>&#34;Her long, sword-shaped brows stand guard above a pair of deep-set eyes. Her pupils are black as midnight and so clear that I can see myself reflected in them. And those slightly lifted corners! One glance from them pierces straight through my heart!</p>
+<p>&#34;Then there is her nose, tall and straight and filled with such heroic spirit that any man would turn green with envy. Her lips are pressed tightly together and look rather pale, as though the cold wind has stolen every drop of color from them.</p>
+<p>&#34;But no! It is not the wind at all. It is the chill inside her, a terrible icy chill rising from the very depths of her heart. And it has not stopped at her lips. It has spread through every inch of her strong and beautiful body!</p>
+<p>&#34;Just look at the strength in her shoulders, the toughness of her slender waist, and the firm lines below it. She might not have the soft curves or delicate sweetness one expects from a woman, but who needs them? Those fierce, cutting lines are...</p>
+</article>
+<article id="c410" data-label="410">
+<h2 class="chapter">Chapter 410: The Beggar Cultivator 🔒</h2>
+<p>The Pocket Dwelling chose a forest within Qiu Luoye&#39;s territory as the site for the station. The station would be built underground. The Pocket Dwelling was confident he could hide the construction from both Qiu Luoye and the aberrant creatures in his territory, but he still needed Li Banfeng to provide cover.</p>
+<p>Fortunately, Qiu Luoye had little attention to spare. He was already overwhelmed by the land activation and the trials of worthiness, all while remaining on guard against anyone the Inner Provinces might send. He spent every day rushing from one problem to the next.</p>
+<p>While helping the Pocket Dwelling conceal the construction, Li Banfeng contacted Luo Zhengnan and asked him to tell Ma Wu to continue recruiting people for the land activation.</p>
+<p>Ma Wu could not help feeling curious.<em> More than a thousand people are already activating plots in the New Land. Just what kind of spectacle is that going to be? And Old Qi still wants more people?</em></p>
+<p>Ma Wu opened the account books and looked over the figures. Money had been pouring out lately as though someone had opened a floodgate.</p>
+<p><em>Just how grand a scheme is he planning?</em></p>
+<hr class="separator">
+<p>A beggar covered in festering sores stood outside the entrance to Freewind Wharf, quietly watching the crowd sign up for the land activation.</p>
+<p>Li Qi was offering high wages. Anyone in Greenwater City who was struggling to make ends meet wanted to give it a try. Those who had been to the New Land before needed no convincing. They were ready to leave that very day. Even some who had never been there before worked up the courage to join them.</p>
+<p>Greenwater Beggar...</p>
+</article>
+<article id="c411" data-label="411">
+<h2 class="chapter">Chapter 411: We Are All Very Loyal! 🔒</h2>
+<p>The beggar touched the festering sores on his face, his hand trembling uncontrollably. He said incoherently, &#34;I… I definitely won&#39;t let him get away again. I swear there won&#39;t be a next time. Don&#39;t kill me, don&#39;t kill me…&#34;</p>
+<p>&#34;Don&#39;t be afraid. They&#39;re just a few sores,&#34; the Greenwater Beggar said with a smile. &#34;You&#39;re a beggar. Which beggar hasn&#39;t had sores before? As long as you keep working for me obediently and stop messing things up, these sores will disappear in no time. Don&#39;t you trust what I say?&#34;</p>
+<p>The beggar only wished the sores on his face would disappear immediately, but the Greenwater Beggar was not interested in hearing him speak anymore at this moment.</p>
+<p>He heard a voice ringing by his ear. It kept calling out for him.</p>
+<p>—Great Ancestral Cultivator, I offer my sincere prayer to you. An unwelcome guest has appeared within your territory. I am reporting this news to you straight after finding out. I am ready to fight for you.</p>
+<p><em>Prayer? What kind of word is that?</em></p>
+<p>The Greenwater Beggar frowned and thought of the few followers his Daoist path had.</p>
+<p>He glanced at the beggar and said, &#34;Keep watch here.&#34;</p>
+<p>Then he turned and vanished.</p>
+<p>The beggar sat by the roadside, still trembling uncontrollably.</p>
+<p><em>Li Qi. Goodbye, Li Qi. He absolutely cannot be allowed to escape.</em></p>
+<hr class="separator">
+<p>At Beyond Borders, Wan Jinxian sat in an office and looked at Cedric. &#34;What exactly is so urgent...</p>
+</article>
+<article id="c412" data-label="412">
+<h2 class="chapter">Chapter 412: He Is Still Alive 🔒</h2>
+<p>Miss Chu had come to activate some New Land. That put Ma Wu at a loss for words.</p>
+<p>Ma Wu said, &#34;Miss Chu, don&#39;t joke around. If you really want to activate some New Land, you can go do it yourself. If you come to us, we can&#39;t afford to pay you.&#34;</p>
+<p>Miss Chu&#39;s expression was composed, and her tone was utterly serious. &#34;Young Master Wu, I&#39;m not joking. I don&#39;t want your payment. I&#39;ll activate the land, and every plot I activate will go to Li Qi. Consider it my way of repaying him.&#34;</p>
+<p>Miss Chu had truly changed. She had changed so much that Ma Wu felt uncomfortable. He could not even bring himself to joke with her anymore.</p>
+<p>She continued, &#34;Young Master Wu, I&#39;m not familiar with the area where the New Land is. Could you tell me about it? If you&#39;re too busy, forget it. I&#39;ll ask someone else.&#34;</p>
+<p>&#34;What are you saying?&#34; Ma Wu made a welcoming gesture. &#34;Miss Chu, please come inside.&#34;</p>
+<p>Miss Chu followed Ma Wu into Freewind Wharf, and the man in the ash-gray overcoat silently followed behind them. Once they reached the private room, Ma Wu took out a map and gave a general explanation of the characteristics of Qiu Luoye&#39;s territory.</p>
+<p>After weighing her options, Miss Chu chose a plot of land measuring five hundred meters in diameter.</p>
+<p>Then she felt a little embarrassed. &#34;I&#39;ve taken up so much of your time, and I&#39;m only activating such a small plot. If I can succeed with it, then we&#39;ll activate another fifteen hundred mete...</p>
+</article>
+<article id="c413" data-label="413">
+<h2 class="chapter">Chapter 413: Yuan Shoulu 🔒</h2>
+<p>Inside the Pocket Dwelling, Li Banfeng inspected his enchanted artifacts and weapons one by one.</p>
+<p>The Gramophone asked, &#34;Husband dear, who are you planning to deal with this time?&#34;</p>
+<p>&#34;Wifey, Yuan Shoulü blocked my path, so I&#39;m planning to kill him.&#34;</p>
+<p>&#34;Yuan Shoulü?&#34; Hong Ying was startled. &#34;Where is he?&#34;</p>
+<p>The Gramophone blasted out a puff of steam that made Hong Ying shudder. &#34;You wretch, my man called for his wife. Why are you answering?&#34;</p>
+<p>Hong Ying did not dare make a sound.</p>
+<p>The Gramophone turned her horn toward Li Banfeng, and her voice immediately became gentle. &#34;My darling husband, how do you know that man was Yuan Shoulü?&#34;</p>
+<p>Li Banfeng said, &#34;That man was a Beggar Cultivator, and his cultivation level was at the Cloudborne Layer.&#34;</p>
+<p>&#34;You fought him?&#34;</p>
+<p>Li Banfeng roughly recounted the fight. &#34;His abilities were very unusual, and he was very experienced. I almost suffered a huge loss.&#34;</p>
+<p>Hong Ying said, &#34;Husband dear, if it really is Yuan Shoulü, you must avoid him in the future. With your current cultivation level, you&#39;re still no match for him.&#34;</p>
+<p>The Gramophone snapped, &#34;Bitch, who gave you permission to call him &#39;Husband dear&#39;?&#34;</p>
+<p>Then she turned back to Li Banfeng with a gentle voice. &#34;My darling husband, after Yuan Shoulü left the military, he switched to the Beggar path. He was originally a Martial Cultivator, and his combat skills were excellent. Are you absolutely sure you didn&#39;t mistake him for someone else?&#34;</p>
+<p>&#34;I&#39;m sure. His combat skills were indeed excellent. I didn&#39;t have much of an advantage even in close combat.&#34;</p>
+<p>&#34;A Beggar Cultivator?&#34;...</p>
+</article>
+<article id="c414" data-label="414">
+<h2 class="chapter">Chapter 414: Rest Assured, My Lord 🔒</h2>
+<p>Li Banfeng carried the Tang Saber as he walked through the night.</p>
+<p>&#34;My lord, this humble general…&#34; the Tang Saber began, hesitating for a long while. He did not know what to say.</p>
+<p>&#34;When did it start?&#34; Li Banfeng asked as he walked. &#34;When did you start referring to yourself as &#39;this humble general&#39;? If I remember correctly, it was after we left Iron Gate Fort.&#34;</p>
+<p>&#34;My lord, you remember correctly. There were some things I never told you. It wasn&#39;t because I intended to hide them from you but because they were too shameful to mention.&#34;</p>
+<p>&#34;What was so shameful about them?&#34;</p>
+<p>The Tang Saber said very quietly, &#34;General Hong and the Chief Commander once said that among the three vanguard commanders, only one fled. That one… was me.&#34;</p>
+<p>&#34;I didn&#39;t know you back then. After you started following me, you&#39;ve never fled.&#34;</p>
+<p>&#34;I did…&#34;</p>
+<p>&#34;At least you struck three times before you fled. At least when we fought Qiu Luoye to the death, you didn&#39;t flee.&#34;</p>
+<p>&#34;The Chief Commander&#39;s life had been hanging by a thread. My lord, you were fighting with your life on the line. If I had fled again, I…&#34; The Tang Saber sighed. &#34;Let&#39;s not talk about that anymore. I hid this from you, my lord. I can&#39;t deny that. Allow me to fight this battle for you, and afterward, you may deal with me however you wish.&#34;</p>
+<p>Li Banfeng was silent for a moment. Then he said, &#34;My wife said from the beginning that you weren&#39;t an ordinary enchanted artifact. Did she know your true identity all along?&#34;</p>
+<p>&#34;I would never dare to guess the Chief Commander&#39;s thoughts. When I first met the Chief Commander, I truly didn&#39;t know who she was.&#34;</p>
+<p>&#34;At home, you&#39;ve never said &#39;With every slash, a head is taken&#39; except that one time, when we were about to fight Qiu Luoye to the death. Did you think my wife couldn&#39;t hear you?&#34;</p>
+<p>The Tang Saber said quietly, &#34;Even by then, I still didn&#39;t dare acknowledge that she was the Chief Commander. She&#39;s different from how she had been back then.&#34;</p>
+<p>&#34;When the Glove tried to take advantage of Muskmelon Hong Ying, you almost...</p>
+</article>
+<article id="c415" data-label="415">
+<h2 class="chapter">Chapter 415: The World’s Distorted Perception of Me 🔒</h2>
+<p>&#34;Since you&#39;ve already given it, then give me more—&#34;</p>
+<p>While the beggar was still talking, Hong Ying hacked off one of the beggar&#39;s hands and shoved it into his mouth. &#34;Have I given you enough now?&#34;</p>
+<p>Li Banfeng found it rather curious. Hong Ying could not see, yet she had managed to stuff the hand into the beggar&#39;s mouth with perfect accuracy.</p>
+<p>Whether it was because this beggar had taken too many beatings in his life or because Beggar Cultivators were simply that resilient, he endured it. He spat the hand back out and tried to activate his ability again. &#34;Since you&#39;ve already given it…&#34;</p>
+<p>Before he could finish, a cloud of steam swept from his feet to the top of his head, stripping away an entire layer of skin. The excruciating pain finally forced him to abandon all resistance.</p>
+<p>&#34;Spare me! I am a land deity! Someone sent me here! I was only following orders! I never intended to harm you!&#34;</p>
+<p>Hong Ying fell silent for a moment before saying to Li Banfeng, &#34;Darling Qi, this isn&#39;t Yuan Shoulü.&#34;</p>
+<p>Li Banfeng pretended to be surprised. &#34;Oh? It really isn&#39;t him?&#34;</p>
+<p>Hong Ying gently shook her spearhead. &#34;Yuan Shoulü might have run away, but he isn&#39;t a coward.&#34;</p>
+<p>The Tang Saber unconsciously straightened at those words.</p>
+<p>The Gramophone asked, &#34;Who sent you?&#34;</p>
+<p>&#34;I… I…&#34; The beggar broke into another fit of coughing.</p>
+<p>&#34;Still won&#39;t talk?&#34; The Gramophone gave a cold laugh. Wave after wave of steam washed back and forth over the skinless beggar.</p>
+<p>&#34;Urgh… urgh…&#34; The beggar kept coughing. He seemed to have lost the ability to speak altogether.</p>
+<p>Hong Ying shouted, &#34;You wicked woman, ease up! We still haven&#39;t gotten any answers out of him!&#34;</p>
+<p>The Gramophone probed the beggar&#39;s throat with her stylus. &#34;Doesn&#39;t look like we are going to. He can&#39;t speak. Someone did something to him.&#34;</p>
+<p>&#34;If he can&#39;t say it,...</p>
+</article>
+<article id="c416" data-label="416">
+<h2 class="chapter">Chapter 416: The Escaped Convicts 🔒</h2>
+<p>Zhong Huaien spent three days soaking in the barrel, fighting against the illness inflicted by Green Beggar the entire time. In the end, he lost the fight and died in the barrel.</p>
+<p>Old Mister Xu looked at Zhong Huaien and sighed repeatedly. &#34;What a pity. Such a good barrel, and such a fine batch of golden juice, all gone to waste.&#34;</p>
+<p>Old Mister Xu had never had much of a good impression of the disciples of the Sage. Out of respect for the dead, Old Xu couldn&#39;t bear to let Zhong Huaien die in a foreign land. He grew two eggplant men, crafted a stretcher, and made these two eggplant men carry Zhong Huaien back to Sage&#39;s Peak.</p>
+<p>Old Mister Xu was somewhat different from Zhang Wanlong when it came to growing eggplant men. In terms of appearance, Old Mister Xu could not compare to Zhang Wanlong. Every eggplant person he grew looked exactly the same.</p>
+<p>The eggplant men had thick brows, large eyes, broad noses, square lips, and dark, weathered skin. At a glance, they looked like rough men who had spent years enduring wind and snow.</p>
+<p>When it came to combat strength, however, these two eggplant people were anything but ordinary. Carrying Zhong Huaien’s corpse on a stretcher, they traveled through the New Land, crossing mountains and traversing rivers along the way, and actually managed to deliver him all the way back to Vilefolk Hillock.</p>
+<p>Inside the estate, the Sage was cultivating...</p>
+</article>
+<article id="c417" data-label="417">
+<h2 class="chapter">Chapter 417: A Path to Survival 🔒</h2>
+<p>Pan Dehai&#39;s threat was clear. If the three-headed people refused to listen, he would force them out of the Ridges of Bottomless Stomachs.</p>
+<p>Each of the three heads had a name. The adult man on the left was Meng, while the adult woman in the middle was Juan. She controlled their shared body most of the time. The child on the right was called Little Shan.</p>
+<p>Meng was enraged. &#34;Pan, you think two days without food will scare us? Even if we starve to death right here, we are not leaving until you give us an explanation!&#34;</p>
+<p>Pan Dehai nodded approvingly. &#34;Now that&#39;s some backbone. Since you are all such virtuous people, this old man will gladly oblige.&#34;</p>
+<p>With a wave of his hand, the sacks of grain on the ground vanished.</p>
+<p>Juan, the head in the middle, hurriedly called out, &#34;Master Pan! We were wrong. Please don&#39;t hold it against us. Give us the grain, and we will leave as soon as we have eaten!&#34;</p>
+<p>Pan Dehai sighed. &#34;Normally, once someone tells me they don&#39;t want something, I would never offer it again. But I&#39;ll make an exception today. Take the grain.&#34;</p>
+<p>As soon as he finished speaking, the sacks of grain reappeared on the ground and Juan responded with such profuse words of thanks.</p>
+<p>Pan Dehai waved a hand. &#34;Don&#39;t thank me yet. I have given you the food, but I am not letting you eat before you leave. Get moving now. Once you are fifty kilometers away, you can stop and eat.&#34;</p>
+<p>Pan Dehai was worried that once they had eaten enough, they would regain their strength and cause trouble. If he made them travel fifty...</p>
+</article>
+<article id="c418" data-label="418">
+<h2 class="chapter">Chapter 418: She Misses You 🔒</h2>
+<p>Juan controlled their body as she cleaned the wounds on Meng and Little Shan.</p>
+<p>The three of them shared a single body. Apart from the wounds on their faces, every other injury belonged to all three of them, so no matter whose wounds Juan cleaned, they all felt the same pain.</p>
+<p>Meng felt horrible. &#34;Our problem is that we are not united. Liang Zhenjiao treated us that badly, yet some of our own people just stood there watching, too afraid to even lend a hand.&#34;</p>
+<p>Juan sighed. &#34;The land deity did show us some mercy. If he had not held back, who knows how many of us would have died.&#34;</p>
+<p>Meng said nothing.</p>
+<p>Another three-headed person came over and sat beside Juan. The elderly woman in the middle was the one in charge, with a middle-aged woman on her left and a young girl on her right.</p>
+<p>&#34;Juan, that land deity didn&#39;t show us any mercy. He was ruthless just now.&#34;</p>
+<p>The elderly woman, who just spoke, was Ma Huifang, though everyone around her usually called her Aunt Fang. All three of her heads were female, which was quite rare among the three-headed people.</p>
+<p>When they reached Kinless Township, Juan had gathered people like her together, hoping they could settle there. Aunt Fang, however, had refused to go. When it came to certain matters, she clearly had more experience than Juan.</p>
+<p>Juan did not agree with her. &#34;Aunt Fang, that land deity had the upper hand, but then he suddenly...</p>
+</article>
+<article id="c419" data-label="419">
+<h2 class="chapter">Chapter 419: Home 🔒</h2>
+<p>&#34;What exactly did the convicts in Convict City do to end up there?&#34; Li Banfeng was still unfamiliar with all these terms.</p>
+<p>Qiu Luoye shook his head. &#34;It&#39;s hard to get a straight answer. All I know is that this bunch is bad news. I have even heard they have ties to the Outer Provinces.&#34;</p>
+<p>Li Banfeng immediately grew wary. &#34;What kind of ties? Were they sent here by the Outer Provinces?&#34;</p>
+<p>If the Outer Provinces were behind this, then there was no way he could let these people enter his territory.</p>
+<p>Qiu Luoye explained, &#34;The Border Controllers in the Outer Provinces have already put out word that no one is allowed to shelter anyone who escaped from Convict City. Take them in, and you will be making an enemy of the Border Controllers. I don&#39;t care about that. I am not afraid of them. The real problem is that these three-headed monsters are dangerous, so I would rather strike first. For now, tell everyone working on the land activation to be careful. Those three-headed freaks are all east of our territory, so have our people stay away from that area.&#34;</p>
+<p>Qiu Luoye turned to leave again, but Li Banfeng stopped him. &#34;Big Bro Qiu, let&#39;s switch. You stay here and keep an eye on the land activation while I go take a look at those people. We are at a critical point right now. As long as they weren&#39;t sent by the Outer Provinces or the Inner Provinces to cause trouble, let&#39;s avoid fighting if we can.&#34;</p>
+<p>Qiu Luoye waved dismissively. &#34;I say they have come here precisely to cause trouble! Killing every last one of them right here would be the safest option!&#34;</p>
+<p>There was no talking Qiu Luoye out of it the usual way, so Li Banfeng tried a different approach.</p>
+<p>&#34;Big Bro Qiu, there are hundreds of...</p>
+</article>
+<article id="c420" data-label="420">
+<h2 class="chapter">Chapter 420: Gotta Learn to Adapt 🔒</h2>
+<p>Early next morning, two support hooks were patrolling Qiu Luoye&#39;s territory when they spotted a plump figure walking along the newly built path leading more than a dozen people.</p>
+<p>The three-headed people&#39;s settlement was just ahead.</p>
+<p>What were these people going there for? Judging by their clothes, these people clearly were not here to activate land. The support hooks sensed something was wrong and hurried off to find Ma Wu.</p>
+<p>Ma Wu pushed the spotted snake off his bed, pulled on his clothes, and made his way to the three-headed people&#39;s settlement.</p>
+<p>The moment he saw that plump figure, his heart gave a jolt. It was Liao Zihui, Commissioner of Border Control Office. He had actually come in person.</p>
+<p>More than a dozen subordinates accompanied him, all of them men of some standing in the Border Control Office. Among them was Cai Junshan, the Border Controller in charge of Convict City.</p>
+<p>Cai Junshan called Juan over and said, &#34;You are the one in charge, aren&#39;t you? Call everyone out. It&#39;s time to go back.&#34;</p>
+<p>Juan was terrified. She knew Cai Junshan. She had seen the things he could do, and she knew how many three-headed people he had tormented until death would have seemed like mercy. The fear of him had been driven so deep into her that now, with him standing in front of her, even breathing felt difficult.</p>
+<p>Even Meng,...</p>
+</article>
+<article id="c421" data-label="421">
+<h2 class="chapter">Chapter 421: It&#39;s Lit 🔒</h2>
+<p>Qiu Luoye wanted to keep several of his old subordinates with him. Among them were a tiger that had often followed at his side and a rock that had sat outside his door for years.</p>
+<p>&#34;Back when I fought Old Shui, that bastard played dirty. He wouldn&#39;t face me head-on. Instead, he took his men straight to my home. I left plenty of people behind to defend the place, but the moment they saw Old Shui, they nearly pissed themselves in fright. Only this tiger, this rock, and a few others still had the guts to fight. They have followed me faithfully all these years. Now that this place is becoming Proper Land, I don&#39;t want to leave them behind.&#34;</p>
+<p>Li Banfeng had no idea how to handle the situation. He knew quite a few land deities, but Old Mister Yao was the only useful example that came to mind, and no aberrant creatures followed him.</p>
+<p>Then again, Medicine King Gully had once been Bitter Medicine Pass, and Old Mister Yao had guarded the territory even back then. He had most likely never gone through the process of turning New Land into Proper Land.</p>
+<p>As for whether the local land deities of other Proper Lands had aberrant creatures serving them, neither Li Banfeng nor Qiu Luoye knew.</p>
+<p>Fortunately, Xiao Yeci had found some books containing records of similar cases.</p>
+<p>&#34;When a New Land becomes Proper Land, any aberrant creatures that want to stay with it must become a Pactkeeper Spirit.&#34;</p>
+<p>Qiu Luoye nodded as though he understood. &#34;So you are saying I just need to give them a new name? That&#39;s...</p>
+</article>
+<article id="c422" data-label="422">
+<h2 class="chapter">Chapter 422: What Moved? 🔒</h2>
+<p>A brilliant light suddenly burst over Qiu Luoye&#39;s territory, turning the whole place as bright as day.</p>
+<p>&#34;It&#39;s Heavenly Light! Take cover!&#34; Shui Yongquan shouted. He immediately turned into ghostly fire and darted straight into the nearest wooden house.</p>
+<p>The Heavenly Light he was talking about was clearly not the gentle Heavenly Light in the New Land. This was the far more powerful Heavenly Light of Proper Land. No matter what level a cultivator had reached, being exposed to Proper Land&#39;s Heavenly Light even once was dangerous.</p>
+<p>Qiu Luoye also hurried into a wooden house. Could a wooden house block the Heavenly Light? Not completely. But it was certainly better than standing outside and being exposed to it directly.</p>
+<p>Li Banfeng grabbed He Yuxiu with one hand and Ma Wu with the other, then lifted them both into a wooden house.</p>
+<p>Lu Chunying hoisted Xiao Yeci over her shoulder and carried her inside.</p>
+<p>Juan shouted, &#34;This isn&#39;t Heavenly Light!&#34;</p>
+<p>Yang Yanzheng brought Miss Chu into a wooden house. Zuo Wugang brought Cao Zhida into another. Tiger picked up the Rock in its arms and carried it inside.</p>
+<p>Little Shan shouted with all his might, &#34;It really isn&#39;t Heavenly Light!&#34;</p>
+<p>However, the shouting did nothing. Everyone had already taken cover wherever they could. Only the three-headed people stayed outside, because no one knew Heavenly Light better than they did. And this really wasn&#39;t Heavenly Light. It was the midday sun.</p>
+<p>Shui Yongquan couldn&#39;t be blamed for the mistake, and...</p>
+</article>
+<article id="c423" data-label="423">
+<h2 class="chapter">Chapter 423: Neighbor 🔒</h2>
+<p>Hong Ying was dressing herself in front of the mirror when she heard a sound outside the door. She hurried over to greet him.</p>
+<p>&#34;Husband dear, you are back?</p>
+<p>&#34;Ying, give me your hand.&#34;</p>
+<p>Li Banfeng grabbed Hong Ying’s hand.</p>
+<p>Hong Ying shyly lowered her spearhead and thought, <em>Wicked woman, are you about to cry?</em></p>
+<p>She could hardly wait to see how the Gramophone would react.</p>
+<p>Li Banfeng made a small cut in Hong Ying’s palm, squeezed out some blood, and then walked away.</p>
+<p>The Gramophone burst out laughing.</p>
+<p>Hong Ying covered the wound, went back to the mirror, and continued dressing herself.</p>
+<p>Before long, Li Banfeng came running back. Seven or eight muskmelon Hong Yings followed behind him, each carrying seven or eight aberrant creatures. Together, they hauled the creatures into the Pocket Dwelling.</p>
+<p>The Gramophone chuckled. &#34;Our Ying is useful, isn&#39;t she?&#34;</p>
+<p>Li Banfeng nodded. &#34;Very useful! Though she&#39;s made of muskmelon, she is as strong as me.&#34;</p>
+<p>Hong Ying threw down her comb, hid herself away in the third room, and wiped her tears.</p>
+<p>Li Banfeng kept making trip after trip, carrying aberrant creatures into the Pocket Dwelling. Before long, every room was packed full of them.</p>
+<p>The Gramophone reminded him, &#34;Husband dear, you don&#39;t need to bring this kind of food home. I can&#39;t eat it.&#34;</p>
+<p>&#34;I can&#39;t eat it&#34; was merely the polite...</p>
+</article>
+<article id="c424" data-label="424">
+<h2 class="chapter">Chapter 424: Neverbury 🔒</h2>
+<p>Qiu Luoye and the burly man clearly had nothing more to say to each other, so Qiu Luoye suddenly lashed out with a kick and sent him flying.</p>
+<p>The burly man shot off the ground, smashed through the front gate of the residence, and flew straight out the back. He hit the ground and skidded for over a hundred meters, gouging a deep trench behind him.</p>
+<p>The man was remarkably tough and had barely been hurt. Before he could even get back to his feet, Qiu Luoye was already in front of him and was about to stomp on him.</p>
+<p>If Elephant Qiu actually landed that stomp, the man&#39;s thick hide would not save him. In fact, he would have a hard time getting back up.</p>
+<p>Unexpectedly, the burly man was quite nimble. He rolled aside, dodging Qiu Luoye&#39;s foot, then tipped his head back and spat a mouthful of thick phlegm straight at his face.</p>
+<p>Back when Qiu Luoye&#39;s cultivation was still at the Terranean Layer, he had ventured the jianghu and seen plenty of street brawls. Spitting in someone&#39;s face was actually a rather effective trick.</p>
+<p>Anyone skilled enough could spit straight at the other person&#39;s face. Those who lacked the skill could spit into their palm first, then smear it across their opponent&#39;s face. Either way, it blocked their vision and took some of the fight out of them.</p>
+<p>Normally, a trick like that would never have worked on Qiu Luoye. Unfortunately, this man&#39;s spit was unbelievably sticky. It plastered itself across Qiu Luoye&#39;s face so thoroughly that he could...</p>
+</article>
+<article id="c425" data-label="425">
+<h2 class="chapter">Chapter 425: If You Have Got the Guts, Come Take It 🔒</h2>
+<p>At the Border Control Office, Liao Zihui studied the report while confirming several details with Liu Guocai, the Chief Border Controller of Kinless Township. &#34;At the time, none of you sensed anything unusual, but your geographical location definitely changed?&#34;</p>
+<p>Liu Guocai nodded. &#34;The main changes were our position relative to the Ink Fragrance Shop and the exit leading into New Land.&#34;</p>
+<p>Kinless Township had originally bordered the Ink Fragrance Shop directly, but a new territory had suddenly appeared between the two. According to the information sent over by the Ink Fragrance Shop, they had not noticed anything unusual when it happened either.</p>
+<p>&#34;Are you sure this territory belongs to Li Qi?&#34;</p>
+<p>Liu Guocai replied, &#34;We have already sent people to scout along the edge of the territory. They didn&#39;t see Li Qi, but they did spot the three-headed monsters who escaped from Convict City, as well as He Yuxiu, Ma Wu, and the others. The general terrain also matches the New Land that Li Qi activated.&#34;</p>
+<p>Liao Zihui summed it up for himself. &#34;A plot in the territory deep within New Land was successfully activated, and the entire territory suddenly appeared right in the middle of Proper Land. Nothing unusual happened around it. It simply forced its way in...&#34;</p>
+<p>Halfway through, he suddenly laughed. &#34;Puluo Province really is a strange place. I have been here all these years, and I still can&#39;t make sense of it.&#34;</p>
+<p>He...</p>
+</article>
+<article id="c426" data-label="426">
+<h2 class="chapter">Chapter 426: What Makes Disease Cultivators Dangerous 🔒</h2>
+<p>The Western-style house had just been repainted, and its walls were very white. Against them, Greenwater Beggar&#39;s smile, smeared with green pus, looked strangely sinister and cheerful at the same time.</p>
+<p>Greenwater Beggar really did have reason to smile. At this distance, Chu Shaoqiang had little chance of surviving a head-on fight with him.</p>
+<p>Disease Cultivators were extremely difficult to deal with. Unless someone had a much higher cultivation level or followed a special cultivation path that could counter their abilities, fighting one head-on was dangerous. Even at the same cultivation level, it was hard to win. This was something all the high-level cultivators in Puluo Province knew.</p>
+<p>Chu Shaoqiang walked down the stairs one step at a time. Looking at Greenwater Beggar, he said, &#34;There is something about what happened back then that I have always wanted to ask you. Why were you so sure I wanted to take Greenwater Bay from you?&#34;</p>
+<p>Greenwater Beggar blinked as if recalling the past. &#34;There were four great families and four family heads. Back then, everyone thought Lu Dongliang had the highest cultivation, but it was actually you. Your cultivation level is above level nine, and you used certain Artificer Cultivator abilities to hide much of your cultivation. Even a land deity at level one of the Cloudborne Layer would be no match for you. I knew all of that.&#34;</p>
+<p>Chu Shaoqiang frowned. &#34;So being the strongest made me guilty? I never said I wanted to take Greenwater Bay. Why did you try to kill me?&#34;</p>
+<p>Greenwater Beggar laughed....</p>
+</article>
+<article id="c427" data-label="427">
+<h2 class="chapter">Chapter 427: Kinless Township 🔒</h2>
+<p>Kinless Township was a very small town. It was smaller than Medicine King Gully and Girdle-Slipping Hollow. Of all the towns Li Banfeng had ever visited, it was the smallest.</p>
+<p>There were not many people in town, and they did not talk much to one another either. The only thing there was plenty of was swampland.</p>
+<p>Li Banfeng spent a whole day looking around and found swamps everywhere, beside the wilderness, among the woods, around the farmland, along the country roads, and even between the village houses.</p>
+<p>By evening, Li Banfeng stopped at a little restaurant and ordered a bowl of braised pork noodles. The owner charged him thirty yuan.</p>
+<p>It was clearly more expensive than it should have been, but Li Banfeng did not make a fuss. The woman who ran the noodle shop was a kind old lady, and she had told him plainly from the start that the bowl of noodles would cost thirty.</p>
+<p>Before leaving, Li Banfeng gave her another twenty yuan and asked which way he should go to get to a stretch of New Land.</p>
+<p>The old lady was very helpful. &#34;Child, walk right along the foot of the wall and head east. When you reach the second alley, turn south and keep going. At the end of the alley, you will find a mountain path. Cross the mountain, and you will see New Land.&#34;</p>
+<p>In Kinless Township, it was rare to find anyone willing...</p>
+</article>
+<article id="c428" data-label="428">
+<h2 class="chapter">Chapter 428: Bloodshed in the Abandoned Village 🔒</h2>
+<p>Qiao Shaofen hurried along at full speed, with Li Banfeng following close behind.</p>
+<p>Li Banfeng stayed on edge the entire way. Qiao Shaofen&#39;s Daoist path was weird, and her methods were ruthless. One careless mistake could easily cost him his life.</p>
+<p>Even so, he dared to follow because he had already spotted one rather useful weakness. Her perception was dreadful. Earlier, she had buried a &#34;Li Banfeng&#34; in the swamp without noticing that the fellow was not Li Banfeng at all. She didn&#39;t notice that it was a man made out of cabbage.</p>
+<p>He followed her all the way to an abandoned village. Qiao Shaofen entered a large manor, and that was where Li Banfeng decided he had followed quite far enough.</p>
+<p>This was clearly where Qiao Shaofen lived, and the Madam Kinless she had mentioned was most likely living here as well.</p>
+<p>Li Banfeng did not linger. He slipped out of the village at once and went back to the New Land, where he spent the entire night searching for a suitable route. By morning, he still had not found one.</p>
+<p>Li Banfeng had originally planned to cut through New Land and make his way back to Qiu Luoye&#39;s territory, but the journey proved far more difficult than he had expected. Even though he knew which direction to go, he simply could not find a route that would take him there.</p>
+<p>As dawn approached, Li Banfeng circled back to Kinless Township. He used the device to deactivate the boundary line, then crossed through Proper Land and returned to Qiu Luoye&#39;s territory.</p>
+<p>The territory was completely quiet. When the land became Proper Land, everyone quickly settled back into a normal rhythm of sleeping at night and waking during the day.</p>
+<p>By daybreak, people in every household were getting up. The land activators went out in search of a way home, while the three-headed people repaired their houses and tended the...</p>
+</article>
+<article id="c429" data-label="429">
+<h2 class="chapter">Chapter 429: Two Deeds 🔒</h2>
+<p>Killing Qiao Shaofen was only half the job.</p>
+<p>Shui Yongquan said, &#34;If I am right, Qiao Shaofen should be a Contract Guardian Spirit, one of Madam Kinless&#39;s trusted followers assigned to protect her contract with the land.&#34;</p>
+<p>Li Banfeng and Qiu Luoye both understood what a Contract Guardian Spirit was. Xiao Yeci had explained it to them before. However, Li Banfeng thought otherwise.</p>
+<p>&#34;Big Bro Shui, Big Bro Qiu, Qiao Shaofen&#39;s cultivation isn&#39;t low. She should have reached the Cloudborne Layer, right?&#34;</p>
+<p>Qiu Luoye nodded. &#34;Definitely Cloudborne Layer. She handled that mud far too well, and it took us forever to kill her. Someone at the Terranean Layer wouldn&#39;t be able to do that.&#34;</p>
+<p>Li Banfeng asked, &#34;Would a Cloudborne Layer cultivator really serve someone else as a Contract Guardian Spirit?&#34;</p>
+<p>Shui Yongquan was cautious by nature. After thinking for a moment, he said, &#34;Whenever people talked about Kinless Township before, they always said Madam Kinless was the land deity. I have never once heard of Qiao Shaofen.&#34;</p>
+<p>Qiu Luoye waved a hand. &#34;Qiao Shaofen is obviously a fake name she used to hide her identity. What&#39;s there to think about?&#34;</p>
+<p>&#34;We shouldn&#39;t jump to conclusions,&#34; Shui Yongquan said as he shook his head slightly. &#34;She might have been one of Madam Kinless&#39;s trusted followers. Even after reaching a higher cultivation level, she could still have remained completely loyal to Madam Kinless.&#34;</p>
+<p>Qiu Luoye snorted. &#34;They are neither kin nor friends. In a place like this, what loyalty are you talking about?&#34;</p>
+<p>Shui Yongquan had no answer for that. Qiu Luoye had a point. Talking about loyalty in Kinless...</p>
+</article>
+<article id="c430" data-label="430">
+<h2 class="chapter">Chapter 430: What Matters is Determination 🔒</h2>
+<p>The land of Kinless Township had once been eaten away, shrinking from more than ten thousand plots to just over three thousand. No one knew why.</p>
+<p>Madam Kinless was most likely Qiao Shaofen, yet every bit of the township&#39;s history had been erased from the deeds. Who had done it, and what had they hoped to achieve?</p>
+<p>There were still plenty of unanswered questions, but none of them spoiled Li Banfeng&#39;s good mood.</p>
+<p>After leaving the abandoned village, Li Banfeng began planning their next move.</p>
+<p>&#34;We build a railway through New Land and connect Big Bro Qiu&#39;s territory to Kinless Township. Then we can use the station here to transport supplies. It will be a little more troublesome, but as long as everything runs smoothly, the transport costs shouldn&#39;t increase by much.&#34;</p>
+<p>Shui Yongquan listened with a serious expression. &#34;If you want to manage both territories together, the local customs in Kinless Township will have to change.&#34;</p>
+<p>&#34;It must change indeed and Big Bro Qiu will need to help them.&#34;</p>
+<p>Shui Yongquan glanced back at Qiu Luoye. Qiu Luoye was walking slowly, as though something was weighing on his mind.</p>
+<p>Shui Yongquan asked, &#34;Are you thinking about where to bury your deed? It would be best to bury it somewhere near your territory, so you can keep an eye on it.&#34;</p>
+<p>This was something that Shui Yongquan was worried about.</p>
+<p>Qiu Luoye responded, &#34;Sure.&#34;</p>
+<p>Li Banfeng said, &#34;The area...</p>
+</article>
+<article id="c431" data-label="431">
+<h2 class="chapter">Chapter 431: You are a Robber 🔒</h2>
+<p>Bai Zhiming had once been one of Liao Zihui&#39;s most trusted subordinates. Liao Zihui had promoted him again and again, recommended him whenever the chance came, and eventually helped him rise all the way to Deputy Commissioner.</p>
+<p>Bai Zhiming had never forgotten it. He was fiercely loyal to Liao Zihui, and he was good at getting things done.</p>
+<p>After reaching Kinless Township, he spent only two days to uncover a few clues. He quickly sent word back through a Surveillant. Madam Kinless, the land deity of Kinless Township, was nowhere to be found, and something bad had most likely happened to her.</p>
+<p>Liao Zihui carefully confirmed the details with Bai Zhiming. &#34;Could Madam Kinless have gone somewhere else to deal with something and simply be away from Kinless Township for now?&#34;</p>
+<p>&#34;It&#39;s possible,&#34; Bai Zhiming replied, &#34;but very unlikely. Madam Kinless rarely has anything to do with other people, and she almost never leaves her own territory.&#34;</p>
+<p>Liao Zihui picked up the map and thought for a long while. &#34;Could the two territories have joined into one because Qiu Luoye killed Madam Kinless? Is that why the boundary line between them disappeared?&#34;</p>
+<p>Bai Zhiming nodded. &#34;Commissioner, that&#39;s what I think too. But it&#39;s hard to communicate with Qiu Luoye, so I haven&#39;t been able to confirm it yet.&#34;</p>
+<p>Liao Zihui thought...</p>
+</article>
+<article id="c432" data-label="432">
+<h2 class="chapter">Chapter 432: Qi Qiu City 🔒</h2>
+<p>He Jiaqing only recognized the man when Chu Shaoqiang took off his hat.</p>
+<p>He would be lying if he said he was not shocked. In Puluo Province, everyone knew Chu Shaoqiang was dead. Most believed he had died while activating land, while a small number knew he had died at the hands of a Border Controller.</p>
+<p>Almost no one knew Chu Shaoqiang was still alive, and He Jiaqing certainly had no idea. However, there was one thing He Jiaqing did know. Meeting Chu Shaoqiang here was probably no coincidence.</p>
+<p>&#34;Uncle Shaoqiang, did you come to Kinless Township to see me?&#34; Chu Shaoqiang was his elder, so He Jiaqing spoke to him very politely.</p>
+<p>Chu Shaoqiang smiled. &#34;Let&#39;s eat first. My treat.&#34;</p>
+<p>He ordered two bowls of noodles, two side dishes, and a pot of liquor.</p>
+<p>The two of them ate together. After the meal, He Jiaqing asked, &#34;Uncle Shaoqiang, isn&#39;t it time we talked about why you are really here?&#34;</p>
+<p>Chu Shaoqiang paid for the meal, then smiled. &#34;Let&#39;s talk outside. The people here are neither kin nor friends to us. It wouldn&#39;t be right to drag them into this.&#34;</p>
+<p>The two left the noodle shop. Chu Shaoqiang even gave him a warning. &#34;Don&#39;t walk too close to the walls. There are mud pits.&#34;</p>
+<p>With that, he glanced down at his leather shoes. The dried mud from earlier was still stuck to them.</p>
+<p>The two talked as they walked.</p>
+<p>Chu Shaoqiang said, &#34;You were a very lovable child when you were little. Haiqin and I were quite close back then, and we even thought about arranging a childhood engagement between you and Huaiyuan. But I spoiled that girl too much. No matter what I said,...</p>
+</article>
+<article id="c433" data-label="433">
+<h2 class="chapter">Chapter 433: Heartfelt Gifts From the Inner Provinces 🔒</h2>
+<p>&#34;Oi ya! Cha-cha-cha-cha-cha! Let&#39;s dance! Everyone! Don&#39;t be shy! Don&#39;t be shy! Oi! Ya! Cha-cha-cha-cha-cha! Rumba&#39;s old news, samba&#39;s lost its spark…&#34;</p>
+<p>The song &#34;I Love Chachacha&#34; was currently trending in Puluo Province. Once you hear it, it would easily get stuck on endless repeat in your mind.</p>
+<p>Liao Zihui really liked this song today. He kept singing it and dancing to it in the office. He danced for an entire afternoon without feeling tired at all. He was behaving this way because the people investigating his work as well as the Balancer had left.</p>
+<p>&#34;Commissioner, Liu Guocai, the Border Controller of Kinless Township, is here,&#34; Ling Sujun said as she entered the office:</p>
+<p>It was like Liao Zihui had never been dancing there as he settled back behind his desk so quickly. He nodded and said, &#34;Let him in.&#34;</p>
+<p>Liu Guocai came in, once again offering apologies for what had happened before.</p>
+<p>Liao Zihui waved him off dismissively. &#34;Guocai, you don&#39;t have to keep apologizing. That&#39;s all water under the bridge. Get back to Kinless Township and focus on the real work. The railway link to Ink Fragrance Shop has been down for way too long. It&#39;s about time we get it fixed. Have a good talk with Li Qi, make sure neither side starts trouble, and try to get the construction started before the new year.&#34;</p>
+<p>With the new year being only a few days away, this task had quite the tight deadline.</p>
+<p>Liu Guocai wasted no time and went straight to Deputy Commissioner Tang Huanjie as Tang Huanjie was the one mainly in charge of the...</p>
+</article>
+<article id="c434" data-label="434">
+<h2 class="chapter">Chapter 434: Old Qi, Live Well For Me! 🔒</h2>
+<p>Qiu Luoye&#39;s attitude did not surprise Chu Shaoqiang.</p>
+<p>&#34;Qiu Luoye, I just told you. I have heard your name in the Inner Provinces, and I have seen your iron deed. Do you not believe me?&#34;</p>
+<p>&#34;So what if you did?&#34;</p>
+<p>&#34;Same time three days from now, I will come find you again. I will also introduce you to two friends. You can give me your answer then.&#34;</p>
+<p>Chu Shaoqiang turned to leave, but Qiu Luoye laughed. &#34;You still want to come back? I told you to get lost, and you won&#39;t listen? Then there&#39;s no need to wait three days. &#34;Today&#39;s a perfectly good day. We can get your funeral over with before the New Year and save ourselves the bad luck of holding it in the first lunar month!&#34;</p>
+<p>As soon as Qiu Luoye finished talking, he strode toward him at an unhurried pace.</p>
+<p>Chu Shaoqiang flicked his sleeve, sending a rain of arrows shooting toward Qiu Luoye.</p>
+<p>Qiu Luoye didn&#39;t dodge or hide. He simply let the arrows strike him and waited until Chu Shaoqiang had used them all up. Then he shook his body, sending every arrow stuck in him clattering to the ground.</p>
+<p>&#34;What a strong and fierce Physique Cultivator.&#34; Chu Shaoqiang was inwardly startled. He pulled a saber, a spear, and a pair of longswords from beneath his coat. The weapons surrounded Qiu Luoye, thrusting, slashing, and hacking at him from every direction.</p>
+<p>Qiu Luoye caught every weapon with his bare hands and snapped them one by one as he continued stomping forward.</p>
+<p>Ordinary weapons were clearly useless against Qiu Luoye. Chu Shaoqiang...</p>
+</article>
+<article id="c435" data-label="435">
+<h2 class="chapter">Chapter 435: Come, Let&#39;s Fight to the Death 🔒</h2>
+<p>The person coming for Qiu Luoye was a cultivator at the Cloudborne Layer. He would bring two helpers, who might also be at the Cloudborne Layer. Even if they were not, they were probably at level eight or nine of the Terranean Layer.</p>
+<p>Li Banfeng could throw everything he had into a fight and hold his own against a level-one Cloudborne cultivator outside the Pocket Dwelling. However, if he wanted to win, he had to trick that level-one Cloudborne cultivator into entering the Pocket Dwelling.</p>
+<p>According to Qiu Luoye&#39;s description, the person that the Inner Provinces had sent was clearly not a level-one Cloudborne cultivator. His cultivation level might even surpass Qiu Luoye&#39;s. Li Banfeng had little chance of winning against the opponent, let alone if he had two helpers with him.</p>
+<p>Did Li Qi have no helpers? He did, of course.</p>
+<p>He Yuxiu counted as one. She could fight really well and shared a tacit understanding with Li Banfeng that came naturally to them.</p>
+<p>This was a matter of risking their lives. It would be best if He Yuxiu were willing to help, but Li Banfeng would not force her to do it. Furthermore, he could not let her help for free; he had to give He Yuxiu some property in Qi Qiu City.</p>
+<p>Huo Ling was at level seven and could at most hold out for a while.</p>
+<p>Zuo Wugang, Qin, the Street-Cursing Crone, Miss Severed-No-Grudge, Trusty-Doubty, Mr. Hundredhands, Omnidirectional Peeper, and Madam Gobble-the-World were all at level six. If Li Banfeng placed them together under He Yuxiu&#39;s command, perhaps they could stand their ground against one Cloudborne cultivator.</p>
+<p>With Li Banfeng handling one Cloudborne cultivator and He Yuxiu&#39;s group handling a second, that meant they had two Cloudborne cultivators more or less covered. But if there were a third Cloudborne cultivator, how were they supposed to handle it?</p>
+<p>Did Li Banfeng have anyone else?</p>
+<p>He did not know Tan Fucheng&#39;s cultivation level. Nevertheless, Tan Fucheng followed a special Daoist path, so perhaps he could take part in the battle.</p>
+<p>Lu Yuanxin was an Entomic Cultivator, which was also a special...</p>
+</article>
+<article id="c436" data-label="436">
+<h2 class="chapter">Chapter 436: Because This Is Our Home 🔒</h2>
+<p>He Yuxiu and her group had tied down Tian Dasong, and the fact that Chu Huaiyuan had come to fight Chu Shaoqiang to the death tied him down.</p>
+<p>Meanwhile, Guo Jinshi was in an extremely dire situation. Li Banfeng had bitten through his throat, and his ability One Word Worth a Thousand Pieces of Gold was about to lose effect.</p>
+<p>Seeing Guo Jinshi lying motionless, the Tang Saber prepared to take his head. However, an invisible force suddenly separated Li Banfeng and Guo Jinshi. Guo Jinshi was moved toward Chu Shaoqiang, while Li Banfeng was forced back dozens of meters.</p>
+<p>Li Banfeng thought, <em>What ability is this? Did Guo Jinshi use A Parting Across Ten Thousand Miles?</em></p>
+<p>At the same time, He Yuxiu and the others were also separated from Tian Dasong. The chaotic melee had turned into the two sides standing apart.</p>
+<p>Now Li Banfeng knew what kind of ability it was. The person who used the ability had not been Guo Jinshi; it had been Chu Shaoqiang.</p>
+<p>The Gramophone had told Li Banfeng that Artificer Cultivators had a Cloudborne ability called Halt the Battle and Divide, which could rapidly separate friend from foe in the middle of a melee, provided the enemy forces had cultivation levels far below his own.</p>
+<p>What was the utility of this ability? For most cultivators, it did not have much utility, but for Artificer Cultivators, it was extremely useful.</p>
+<p>Artificer Cultivators feared surprise attacks the most. Without adequate preparation, they could easily use the wrong tactics and even be defeated by lower-level cultivators. Halt the Battle and Divide could buy an Artificer Cultivator time to prepare for their next moves. Additionally, Artificer...</p>
+</article>
+<article id="c437" data-label="437">
+<h2 class="chapter">Chapter 437: The Three Trials 🔒</h2>
+<p>Qiu Luoye glanced at Li Banfeng&#39;s back and saw that his two injuries were still bleeding. So, Qiu Luoye called over Old Tiger and had him fetch some medicine for Li Banfeng.</p>
+<p>Li Banfeng shook his head. &#34;No medicine. It&#39;ll be fine in a little while.&#34;</p>
+<p>&#34;You still need to bandage it.&#34;</p>
+<p>&#34;No need. This blood is all fresh. Can&#39;t let it go to waste,&#34; Li Banfeng said and placed the Blood-Drinking Pendulum on his back.</p>
+<p>Once he saw Li Banfeng&#39;s bleeding stop, Qiu Luoye smiled. &#34;How about we have a couple of drinks?&#34;</p>
+<p>&#34;Sure!&#34;</p>
+<p>Qiu Luoye looked at He Yuxiu. &#34;Are you Old Qi&#39;s sweetheart?&#34;</p>
+<p>A pink blush crept into He Yuxiu&#39;s cheeks. &#34;I... If you say I am, then I am.&#34;</p>
+<p>Qiu Luoye praised, &#34;She&#39;s a good one. Just looking at her build, you can tell she&#39;ll have no trouble bearing children.&#34;</p>
+<p>He Yuxiu looked smugly at Li Banfeng. &#34;See? Big Bro Qiu says so too.&#34;</p>
+<p>Qiu Luoye then looked at Miss Chu. &#34;I didn&#39;t think much of you before, but you were all right today. You&#39;ve got guts.&#34;</p>
+<p>&#34;I don&#39;t,&#34; Miss Chu replied, shaking her head shyly.</p>
+<p>Qiu Luoye called out to the crowd of three-headed people, &#34;Everyone, if you&#39;re injured, come to me and get treated. I&#39;ve got excellent medicine. If you&#39;re not injured, come have a drink. I&#39;ve got plenty of good wine. I was too wary of you all before. I was wrong to be that way. We&#39;re all fellow followers of the same Daoist Path to begin with, so let&#39;s drink our fill today!&#34;</p>
+<p><em>Fellow followers of the same Daoist Path?</em> Juan thought.</p>
+<p>The three-headed people were technically Physique Cultivators...</p>
+</article>
+<article id="c438" data-label="438">
+<h2 class="chapter">Chapter 438: Miss, Are You Alive? 🔒</h2>
+<p>Hong Ying did not even have eyes, yet she had written the character for &#34;despicable&#34; on Li Banfeng&#39;s head with such accuracy.</p>
+<p>Out of respect for Hong Ying, Li Banfeng did not even wipe it off. In a soft, tender tone, he asked, &#34;Ying, I wanted to ask you about regenerating flesh.&#34;</p>
+<p>Hong Ying laughed. &#34;Got this body of mine on your mind? Do you like my peach or my conscience?[1] That vicious wife of yours can&#39;t regenerate a body like this, can she? Getting anxious about that now?&#34;</p>
+<p>Li Banfeng answered honestly, &#34;I am indeed rather anxious about this.&#34;</p>
+<p>&#34;Sure, then. I&#39;ll teach you. Call me &#39;Wifey,&#39; and I&#39;ll teach you.&#34;</p>
+<p>&#34;Easy enough!&#34; Li Banfeng exclaimed. He worked himself up for a long while and strained with all his might to squeeze out, &#34;Ying.&#34;</p>
+<p>&#34;I told you to call me &#39;Wifey&#39;!&#34;</p>
+<p>&#34;Then, um... Darling Ying.&#34;</p>
+<p>&#34;I told you to call me &#39;Wifey!&#39;&#34;</p>
+<p>The Gramophone said from the main room, &#34;Darling husband, just call her &#39;Wifey.&#39; I won&#39;t get angry.&#34;</p>
+<p>Li Banfeng took a deep breath and stared at Hong Ying for a long while, but in the end, he did not say it. He simply could not say it. Anything else was negotiable, but to him, he had only one wife.</p>
+<p>Hong Ying gnashed her teeth in frustration. &#34;Fine! I won&#39;t make things difficult for you anymore. I can&#39;t really explain how to regenerate flesh, either. Go ask the old man!&#34;</p>
+<p>Li Banfeng ran to the third room and said with a cheerful smile, &#34;Sir, regarding regenerating flesh—&#34;</p>
+<p>The Pocket Dwelling let out a cold laugh. &#34;You come empty-handed, yet you expect to learn my craft? Have you no shame?&#34;</p>
+<p>Li Banfeng thumped his chest and raised his head. &#34;I&#39;ll make it up to you afterward. I&#39;ve never...</p>
+</article>
+<article id="c439" data-label="439">
+<h2 class="chapter">Chapter 439: Ironclad and Mountain-Solid Evidence 🔒</h2>
+<p>Sun Tiecheng, the master of Yuren City, was the man who had once disguised himself as a hunter and tricked Li Banfeng into entering the city. After Li Banfeng passed the trial of worthiness, Sun Tiecheng had taught him two abilities.</p>
+<p>Now, without any warning, Sun Tiecheng had appeared. Li Banfeng had no idea when he even stood among the girls.</p>
+<p>Li Banfeng brightened at the sight of him. &#34;Since you are here, I don&#39;t need to ask anyone else.&#34;</p>
+<p>Sun Tiecheng frowned. &#34;What exactly did you come back here for?&#34;</p>
+<p>Li Banfeng grinned. &#34;It&#39;s New Year&#39;s. I thought I would come home for a visit.&#34;</p>
+<p>&#34;Then visit. Why are you stirring up trouble?&#34;</p>
+<p>&#34;I wasn&#39;t causing trouble. I just want to learn another ability. Look at these people! After all these years, they still think they are alive. This must be more than just the effect of the ability Words Chiseled in Stone...&#34;</p>
+<p>As Li Banfeng spoke, Tang Changfa and the girls all looked over at him.</p>
+<p>Sun Tiecheng gnashed his teeth. &#34;Shut up. If you say another word, I will beat you to death right here!&#34;</p>
+<p>Li Banfeng smiled. &#34;Don&#39;t worry. We are all on the same side, and there aren&#39;t any secrets between us. I just want to know how you pulled this off.&#34;</p>
+<p>Sun Tiecheng waved a hand and sent everyone in the Literary House out of the hall to wait in the rear courtyard.</p>
+<p>Once they...</p>
+</article>
+<article id="c440" data-label="440">
+<h2 class="chapter">Chapter 440: The Skill of Fleshbuilding 🔒</h2>
+<p>Sun Tiecheng taught Li Banfeng the key principles of the Ironclad and Mountain-Solid Evidence ability.</p>
+<p>&#34;For the ability Ironclad and Mountain-Solid Evidence, the first thing you need is proper evidence. Not promises, not swearing, and certainly not someone thumping their chest and declaring that every word they say is true. That&#39;s all nonsense.</p>
+<p>&#34;Real ironclad evidence has to be something the other person can see with their own eyes and touch with their own hands. It has to be solid, undeniable, and sitting right there in front of them.</p>
+<p>&#34;Once you have got that, you must settle the matter without the slightest hesitation. Don&#39;t say it seems reasonable. Don&#39;t say it should be true. And don&#39;t say you are ninety percent certain. Ninety percent still leaves ten percent for doubt, and the moment doubt creeps in, the ability stops working.</p>
+<p>&#34;When the evidence is ironclad and mountain-solid, there is no room left for hesitation, argument, retreat, or clever little excuses. The other person has nowhere to wriggle and nowhere to hide. That&#39;s when the evidence becomes as solid and immovable as a mountain. And if they still refuse to accept it, that mountain will come down on top of them and pin them there until they can&#39;t move!&#34;</p>
+<p>So that was why Li Banfeng had been unable to move when Yancui&#39;er pinned him down. A mountain had really been pressing on him.</p>
+<p>What a useful ability!</p>
+<p>Li Banfeng already had a good grasp of how it worked. With this move, he was certain he could help Qiu Luoye get past the first trial.</p>
+<p>After thanking Sun Tiecheng, Li Banfeng prepared to head back to Qi Qiu City, but Sun Tiecheng was not pleased and complained, &#34;You come whenever you feel like it, learn what you want, then leave the moment you have got it. What do you take this place for? Weren&#39;t you here to celebrate New Year&#39;s? At least stay and eat the New Year&#39;s dinner first!&#34;</p>
+<p>Li Banfeng said, &#34;I can have the dinner another time, and I won&#39;t forget to repay you for this. Let me take care of the important matter first.&#34;</p>
+<p>Sun...</p>
+</article>
+<article id="c441" data-label="441">
+<h2 class="chapter">Chapter 441: A Change of Flesh and Bones 🔒</h2>
+<p>Li Banfeng said that he would help Qiu Luoye pass the three trials.</p>
+<p>Wifey hurried to stop him. &#34;Husband dear, you mustn&#39;t. I am afraid he isn&#39;t ready for either the first trial or the third.&#34;</p>
+<p>&#34;Then we&#39;ll prepare for both at once,&#34; Li Banfeng said. He leaned close to the left horn of the Gramophone and lowered his voice, whispering a lot of things.</p>
+<p>The Gramophone trembled. &#34;Husband dear, don&#39;t talk so fast. My ear is terribly ticklish.&#34;</p>
+<p>Li Banfeng slowed down, but that only made it tickle even more, and the Gramophone was giggling helplessly.</p>
+<p>&#34;Husband dear, how did you come up with this solution?&#34;</p>
+<p>&#34;Ever since I learned the Skill of Fleshbuilding, I have been thinking about it. I have spent days working it over in my head. I just don&#39;t know whether it will actually work.&#34;</p>
+<p>Wifey considered the idea for a moment. &#34;In principle, it should. But the Inner Provinces already have their eyes on the deed. If they notice anything changing, they might try something else. And if you want to put yourself in danger, I absolutely won&#39;t allow it.&#34;</p>
+<p>Li Banfeng had already thought of that. &#34;I know someone who doesn&#39;t have to fear whatever tricks the Inner Provinces might use.&#34;</p>
+<p>&#34;I don&#39;t believe you. How could there possibly be someone in this world who isn&#39;t afraid of dying? And where would you even find such a person? If they aren&#39;t doing this willingly and you tricked them into it, they might change their mind at the crucial moment. By then, it will be far too late for regrets.&#34;</p>
+<p>&#34;This person will never change his mind! The only thing I am worried about is whether the deed will react and connect with him,&#34; Li Banfeng said. He pressed close to the horn again and whispered the name of that person.</p>
+<p>Wifey listened, then laughed softly. &#34;Husband dear, only you can come up with something like that. Since they are related by blood, there should be a connection....</p>
+</article>
+<article id="c442" data-label="442">
+<h2 class="chapter">Chapter 442: Elephant Qiu, Farewell 🔒</h2>
+<p>Qiu Luoye stood in the scrubbing room, shivering uncontrollably. He was cold, which was exactly how it should be. The muskmelon body was icy, crisp, and refreshing, so of course he felt cold.</p>
+<p>Qiu Luoye rolled his shoulders and neck. &#34;What kind of poison was that? My body doesn&#39;t even feel like mine anymore.&#34;</p>
+<p>Li Banfeng shivered along with him. &#34;I am cold too. The poison must fill the body with a chill. Take an antidote first, then soak in the hot water for a while.&#34;</p>
+<p>Li Banfeng handed him the pill Crimson Lotus had made, but Qiu Luoye shook his head. &#34;I don&#39;t need it. You two take it.&#34;</p>
+<p>&#34;We have got our own,&#34; Li Banfeng said. He took out two lozenges, handed one to Ma Wu, and swallowed the other himself.</p>
+<p>Only then did Qiu Luoye take the pill. After swallowing it, he stared at the chunks of flesh scattered across the floor for a long while.</p>
+<p>They had come from his own body. Inevitably, some of them would look familiar.</p>
+<p>Li Banfeng had originally planned to cover everything with lime, but there was no good way to explain where the lime had come from.</p>
+<p>Instead, they had disguised it with the grime scrubbed off a person&#39;s body. It looked perfectly natural and would never seem suspicious.</p>
+<p>Qiu Luoye gave the bloody pulp another kick. &#34;Is that bath scrubber really dead?&#34;</p>
+<p>Li Banfeng pointed at what was left of him. &#34;The corpse is right there. How could he not be?&#34;</p>
+<p>Ma Wu backed him up at once. &#34;I saw it with my own eyes. Old Qi blew him to bits!&#34;</p>
+<p>Qiu Luoye looked at Li Banfeng. Suddenly, he could not see any reason to doubt them. The corpse was right there, so the man was obviously...</p>
+</article>
+<article id="c443" data-label="443">
+<h2 class="chapter">Chapter 443: Ink Fragrance Shop 🔒</h2>
+<p>Chu Shaoqiang finished writing a letter and slipped it into an envelope. Before sealing it, however, he took the letter back out and carefully went over every word and sentence one more time.</p>
+<p>Five days had passed. It was time to give the Inner Provinces an explanation for what had happened to Guo Jinshi and Tian Dasong.</p>
+<p>Chu Shaoqiang had taken the two of them to Qiu Luoye&#39;s territory, hoping they could earn enough merit and level up to the Cloudborne Layer. Instead, they had lost their lives there.</p>
+<p>For the past few days, Chu Shaoqiang had been trying to figure out how to get himself off the hook, but he still had not come up with a good excuse. He thought he would just tell the truth, but just make the truth sound a little better. Instead of simply using the word &#34;fail,&#34; he could use &#34;slow progress&#34; instead.</p>
+<p>As Chu Shaoqiang was revising the letter, a man suddenly appeared before him. He had large eyes, a long face, and a pair of wings on his back that made him look like a bat.</p>
+<p>Chu Shaoqiang knew at once that someone had arrived. The bat-like man was Wang Fuqi, his personal messenger for communicating with the Inner Province.</p>
+<p>Chu Shaoqiang said, &#34;Go get some rest. I will call you once the letter is ready.&#34;</p>
+<p>Wang Fuqi bowed. &#34;Lord Chu, I actually came to bring you some news. Something happened to the three lords guarding the deeds.&#34;</p>
+<p>Chu Shaoqiang was not particularly concerned. The men guarding the deeds were all high-ranking figures from the Inner Province, but whatever had happened to them had nothing to do with him. Still, if it had nothing to do with him, why had Wang Fuqi come...</p>
+</article>
+<article id="c444" data-label="444">
+<h2 class="chapter">Chapter 444: The Customs of Scholars 🔒</h2>
+<p>Tan Fucheng hired more than a dozen rickshaws to take everyone to Wildgoose Sand Studio.</p>
+<p>He did not say another word along the way, and the support hooks traveling with him did not dare speak either. In front of these rickshaw drivers, Tan Fucheng and the others suddenly felt embarrassed by how crude and uncultured they were.</p>
+<p>Li Banfeng was rather curious about this. What was there to be embarrassed about? Tan Fucheng had always been a carefree man, so why had he suddenly started looking down on himself today? Lu Chunying and Lu Yuanxin, on the other hand, did not seem affected at all.</p>
+<p>&#34;Haihhh…&#34; Li Banfeng heard someone sigh again.</p>
+<p>The rickshaw driver lowered the shafts and said to Tan Fucheng, &#34;What we call a destination is nothing more than a brief pause along the road. When that pause comes to an end, we must all set out once more. The cycle of life is but a passing view along the journey. Only the footsteps that carry us onward remain eternal.&#34;</p>
+<p>Tan Fucheng bowed deeply, then warned his men, &#34;From now on, don&#39;t tell anyone I used to be a rickshaw driver. I really don&#39;t deserve to call myself a rickshaw driver.&#34;</p>
+<p>Wildgoose Sand Studio was a large study with more than ten thousand books, but it also served as an inn. Many scholars came there to read, and some became so absorbed in their books that they simply stayed the night.</p>
+<p>Xiao Yeci had chosen the place herself. She had wanted to visit Wildgoose Sand Studio for a long time, and when she saw row after row of bookshelves filling the study, her breathing quickened.</p>
+<p>Lu Chunying looked at her. &#34;Mom, your face is red, and you are sweating.&#34;</p>
+<p>&#34;I like...</p>
+</article>
+<article id="c445" data-label="445">
+<h2 class="chapter">Chapter 445: A Business of Murky Water 🔒</h2>
+<p>Cedric had come to see Li Banfeng to do a business with him.</p>
+<p>Li Banfeng found a teahouse, booked a private room, and sat down with him for a proper talk. There was one thing he wanted to know first. &#34;Why does Chu Shaoqiang want to take the territory of Ink Fragrance Shop?&#34;</p>
+<p>Cedric replied, &#34;From what I have learned, Chu Shaoqiang desperately needs a piece of Proper Land. The Inner Province has been putting pressure on him, so he&#39;s looking for somewhere easy to take.&#34;</p>
+<p><em>The Ink Fragrance Shop is easy to take?</em> Li Banfeng couldn&#39;t help but doubt this. He asked, &#34;The land deity of Ink Fragrance Shop should be a Literary Cultivator, right?&#34;</p>
+<p>Cedric nodded. &#34;Ever since I came here, I have been affected by this place. I have become very interested in the literature of Puluo Province. I think the land deity is using some kind of ability to influence everyone here.&#34;</p>
+<p>Li Banfeng took out a map he had bought from a street stall. &#34;Ink Fragrance Shop isn&#39;t small. A land deity who can affect an entire territory like this is rare. Literary Cultivation is one of the biggest cultivation paths in Puluo Province, and it&#39;s very powerful. If Chu Shaoqiang wanted an easy target, he wouldn&#39;t have picked this place.&#34;</p>
+<p>Cedric said, &#34;I thought the same thing....</p>
+</article>
+<article id="c446" data-label="446">
+<h2 class="chapter">Chapter 446: Ge Junma 🔒</h2>
+<p>Li Banfeng was woken up by the Judge&#39;s Brush. When he woke up, the Judge&#39;s Brush was still hovering in midair.</p>
+<p>Li Banfeng asked, &#34;You wanted to tell me something?&#34;</p>
+<p>&#34;Mm,&#34; the Judge&#39;s Brush replied.</p>
+<p>&#34;Then tell me.&#34;</p>
+<p>The Judge&#39;s Brush remained silent. Li Banfeng watched it for a moment before realizing what was wrong. &#34;Too many people around?&#34;</p>
+<p>&#34;Mm.&#34;</p>
+<p>Although they all lived under the same roof, the Judge&#39;s Brush seemed to trust only Li Banfeng.</p>
+<p>Li Banfeng took the Judge&#39;s Brush to the fifth room, while the Glove followed silently behind them. The Gramophone was a little worried, but she could sense that the Pocket Dwelling was watching.</p>
+<p>Once they entered the fifth room, Li Banfeng looked at the Judge&#39;s Brush. &#34;You went through all this trouble to wake me in the middle of the night, so this must be important. Go on, tell me.&#34;</p>
+<p>The Judge&#39;s Brush said, &#34;I take you to land deity&#39;s house. Don&#39;t tell anyone.&#34;</p>
+<p>Li Banfeng yawned. &#34;Let&#39;s go.&#34;</p>
+<p>After they left the Pocket Dwelling, the Judge&#39;s Brush took the initiative and drew a circle, lifting Li Banfeng into the air. It was the first time Li Banfeng had ever seen the Judge&#39;s Brush be this diligent.</p>
+<p>They flew south from Wildgoose Sand Studio, crossed three streets, and arrived in a garden.</p>
+<p>There were many parks and gardens in Ink Fragrance Shop, but this was hardly the season for a leisurely stroll in the park. The weather was bitterly cold, and the flowers and trees had long since withered. Aside from the layers of bare, leafless trees, Li Banfeng saw nothing especially noteworthy.</p>
+<p>The Judge&#39;s Brush set Li Banfeng down beneath a willow tree...</p>
+</article>
+<article id="c447" data-label="447">
+<h2 class="chapter">Chapter 447: Is This What You Call Incredibly Smart? 🔒</h2>
+<p>&#34;Ge Junma is a pure-blooded native of the Inner Provinces,&#34; Li Banfeng asked Qiu Luoye. &#34;Are all people from the Inner Provinces toads?&#34;</p>
+<p>Qiu Luoye shook his head. &#34;There are chickens, ducks, geese, and dogs too. Some even look human.&#34;</p>
+<p>&#34;So they are Physique Cultivators?&#34;</p>
+<p>Qiu Luoye shook his head again. &#34;I don&#39;t know what cultivation path they follow, and I don&#39;t know what level Ge Junma is either. He can read, and I&#39;ve seen him use One Word Worth a Thousand Gold before, so he might be a Literary Cultivator.&#34;</p>
+<p>&#34;In other words, he was born a toad?&#34;</p>
+<p>Qiu Luoye could not answer. He had met people from the Inner Provinces before, but he did not know much about them. Just as Meng Yuchun had said, people like them were only utility animals there. No one bothered explaining much to livestock.</p>
+<p>Li Banfeng used Treading Through Ten Thousand Rivers and crushed the cabbage toad into a pulp. At the same time, the clues in his mind began to come together.</p>
+<p>Chu Shaoqiang would definitely come to Ink Fragrance Shop.</p>
+<p>He had suffered a serious setback because of Qiu Luoye. Once he returned to the Inner Province, he would have a hard time explaining what had happened. If he wanted to make up for his failure, he needed to earn some merit. The best way to do that was to obtain a piece of Proper Land. If he could secure Proper Land, there was a good chance his earlier mistakes would be forgiven.</p>
+<p>If Chu Shaoqiang could secure a piece of Proper Land and rescue someone from the Inner Provinces at the same time, his...</p>
+</article>
+<article id="c448" data-label="448">
+<h2 class="chapter">Chapter 448: The Overworked Land Deity 🔒</h2>
+<p>Back at Wildgoose Sand Studio, Tan Fucheng was squatting by the entrance eating noodles with a group of support hooks. Some broth splashed onto him, and he casually grabbed the book <em>Hundred Family Surnames</em> and wiped it off.</p>
+<p>Li Banfeng froze. &#34;You used the book to wipe your hand?&#34;</p>
+<p>Tan Fucheng did not seem bothered in the slightest. &#34;I didn&#39;t bring a handkerchief, so it will have to do.&#34;</p>
+<p>Why had his attitude changed so quickly? Just last night, he had wanted to chop off his own finger because he had sneezed on the book.</p>
+<p>&#34;When you wipe it with the book, you will get the book all greasy. How are you supposed to read it afterward?&#34;</p>
+<p>Tan Fucheng shook his head.&#34;I am not! Reading this stuff is exhausting. I barely read a book for half my life, and I got along just fine, didn&#39;t I?&#34;</p>
+<p><em>Riiip!</em></p>
+<p>One of the support hooks beside him tore a page from the book and used it to wipe his mouth.</p>
+<p>Li Banfeng was on his way back to his room when he spotted Xiao Yeci in the corridor. She had dressed herself up a little and was about to take Lu Chunying out.</p>
+<p>&#34;Not reading today?&#34; Li Banfeng asked.</p>
+<p>Xiao Yeci shook her head. &#34;No. There are so many books that my head hurts from reading them. We do not get many chances to come out like this, so I thought I would take Nan&#39;nan for a walk. Benefactor, would you like to come with us?&#34;</p>
+<p>&#34;You two go ahead. I want to get some sleep.&#34;</p>
+<p>Lu Yuanxin stepped out of his room to escort Xiao Yeci and her daughter. Once he saw that they were still some distance away, he whispered...</p>
+</article>
+<article id="c449" data-label="449">
+<h2 class="chapter">Chapter 449: Since You Have Already Given It 🔒</h2>
+<p>Li Banfeng sat in a teahouse with <em>Tales by the Lamp of Wisdom-Bound Deeds</em> in his hands, slowly turning through the pages.</p>
+<p>This was also a legendary novel about the Wisdom-Bound Scholar, but unlike the other versions, it included some of Murong Gui&#39;s less flattering history.</p>
+<p>The Murong Gui depicted in the book was still skilled at reading people&#39;s minds and intentions. However, he had twice misjudged someone so badly that he nearly lost everything his family had built.</p>
+<p>Murong Gui had once run a gang. In other books, he was portrayed as exceptionally diligent, never neglecting his responsibilities for even a moment. In this version, however, he spent half a month lounging around the red-light district without concerning himself with anything, nearly causing the gang under his control to collapse.</p>
+<p>Li Banfeng idly ran his fingers over the Judge&#39;s Brush. &#34;So which one is the real Murong Gui?&#34;</p>
+<p>The Judge&#39;s Brush gave him a simple answer. &#34;All.&#34;</p>
+<p>Cedric arrived at the teahouse and found Li Banfeng reading. He nodded. &#34;If I am not mistaken, Murong Gui must be in excellent condition right now. Even you have taken such a liking to books.&#34;</p>
+<p>&#34;I have always been a great lover of knowledge,&#34; Li Banfeng said as he set down <em>Tales by the Lamp of Wisdom-Bound Deeds</em>. &#34;Has the founding cultivator of your Daoist path made his move?&#34;</p>
+<p>&#34;Yes. He will arrive at Ink Fragrance Shop tonight, and he is bringing that good friend of yours with him. He plans to find Murong Gui first, kill him, take Ge Junma hostage, and force Chu Shaoqiang to show himself. If Chu Shaoqiang finds Murong Gui first, things will become a little more complicated. The founding cultivator might cut in and steal the winning tile, or wait and take the last winning tile for...</p>
+</article>
+<article id="c450" data-label="450">
+<span id="last"></span>
+<h2 class="chapter">Chapter 450: The Greenwater and Jiaqing Alliance 🔒</h2>
+<p>Greenwater Beggar was a beggar, and &#34;since you have already given it…&#34; was the setup for the Beggar Cultivator ability Making Insatiable Demands. If a famous beggar suddenly came out with a line like &#34;Since you have already given it,&#34; any reasonable person would assume he was using a Beggar Cultivator ability. However, Chu Shaoqiang knew very well that the Greenwater Beggar was not a Beggar Cultivator.</p>
+<p>Wang Fuqi had been tricked. He should never have touched anything that the Greenwater Beggar touched.</p>
+<p>Wang Fuqi&#39;s right hand was already rotting away. Without hesitation, he drew his dagger and severed his arm at the elbow.</p>
+<p>The Greenwater Beggar smiled. &#34;Not enough.&#34;</p>
+<p>He was right. Even after Wang Fuqi cut off his forearm, the decay continued creeping up his upper arm. Wang Fuqi&#39;s face changed in horror. He swung the dagger again and hacked off the entire arm at the shoulder.</p>
+<p>The Greenwater Beggar chuckled again. &#34;Too late.&#34;</p>
+<p>The arm fell away, but the rot had already reached Wang Fuqi&#39;s body. The disease nidus spread rapidly through him.</p>
+<p>Chu Shaoqiang lowered his eyes. &#34;Greenwater Beggar, you are here early.&#34;</p>
+<p>The Greenwater Beggar merely smiled without saying a word.</p>
+<p>Cedric spoke from the side. &#34;We didn&#39;t want to come this early either, but your friend was stupid enough to offer up his life. We couldn&#39;t exactly turn down such an easy piece of business.&#34;</p>
+<p>Chu Shaoqiang frowned slightly. &#34;Foreign devil, this isn&#39;t your territory. If you die here, no one will even see it. And you are still in the mood to talk business with me?&#34;</p>
+<p>Cedric shrugged and said nothing...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="451-500.html" rel="next">Next: Chs 451–485 pt 1 &rarr;</a>
+    <p class="page-end-links"><a href="351-400.html" rel="prev">&larr; Chs 351–400</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">The Overlord of Puluo · Chs 401–450</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c401">Chapter 401: Head of the Chu Family 🔒</a></li>
+        <li><a href="#c402">Chapter 402: The Thievery Cultivator&#39;s Nimble Fingers 🔒</a></li>
+        <li><a href="#c403">Chapter 403: This Move Works Wonders 🔒</a></li>
+        <li><a href="#c404">Chapter 404: The Lunatic Craftsman 🔒</a></li>
+        <li><a href="#c405">Chapter 405: Autumn Wind Sweeps the Leaves 🔒</a></li>
+        <li><a href="#c406">Chapter 406: How He Made a Fortune 🔒</a></li>
+        <li><a href="#c407">Chapter 407: Do You Recognize This Sword? 🔒</a></li>
+        <li><a href="#c408">Chapter 408: Grudges 🔒</a></li>
+        <li><a href="#c409">Chapter 409: This is the Useful Hong Ying! 🔒</a></li>
+        <li><a href="#c410">Chapter 410: The Beggar Cultivator 🔒</a></li>
+        <li><a href="#c411">Chapter 411: We Are All Very Loyal! 🔒</a></li>
+        <li><a href="#c412">Chapter 412: He Is Still Alive 🔒</a></li>
+        <li><a href="#c413">Chapter 413: Yuan Shoulu 🔒</a></li>
+        <li><a href="#c414">Chapter 414: Rest Assured, My Lord 🔒</a></li>
+        <li><a href="#c415">Chapter 415: The World’s Distorted Perception of Me 🔒</a></li>
+        <li><a href="#c416">Chapter 416: The Escaped Convicts 🔒</a></li>
+        <li><a href="#c417">Chapter 417: A Path to Survival 🔒</a></li>
+        <li><a href="#c418">Chapter 418: She Misses You 🔒</a></li>
+        <li><a href="#c419">Chapter 419: Home 🔒</a></li>
+        <li><a href="#c420">Chapter 420: Gotta Learn to Adapt 🔒</a></li>
+        <li><a href="#c421">Chapter 421: It&#39;s Lit 🔒</a></li>
+        <li><a href="#c422">Chapter 422: What Moved? 🔒</a></li>
+        <li><a href="#c423">Chapter 423: Neighbor 🔒</a></li>
+        <li><a href="#c424">Chapter 424: Neverbury 🔒</a></li>
+        <li><a href="#c425">Chapter 425: If You Have Got the Guts, Come Take It 🔒</a></li>
+        <li><a href="#c426">Chapter 426: What Makes Disease Cultivators Dangerous 🔒</a></li>
+        <li><a href="#c427">Chapter 427: Kinless Township 🔒</a></li>
+        <li><a href="#c428">Chapter 428: Bloodshed in the Abandoned Village 🔒</a></li>
+        <li><a href="#c429">Chapter 429: Two Deeds 🔒</a></li>
+        <li><a href="#c430">Chapter 430: What Matters is Determination 🔒</a></li>
+        <li><a href="#c431">Chapter 431: You are a Robber 🔒</a></li>
+        <li><a href="#c432">Chapter 432: Qi Qiu City 🔒</a></li>
+        <li><a href="#c433">Chapter 433: Heartfelt Gifts From the Inner Provinces 🔒</a></li>
+        <li><a href="#c434">Chapter 434: Old Qi, Live Well For Me! 🔒</a></li>
+        <li><a href="#c435">Chapter 435: Come, Let&#39;s Fight to the Death 🔒</a></li>
+        <li><a href="#c436">Chapter 436: Because This Is Our Home 🔒</a></li>
+        <li><a href="#c437">Chapter 437: The Three Trials 🔒</a></li>
+        <li><a href="#c438">Chapter 438: Miss, Are You Alive? 🔒</a></li>
+        <li><a href="#c439">Chapter 439: Ironclad and Mountain-Solid Evidence 🔒</a></li>
+        <li><a href="#c440">Chapter 440: The Skill of Fleshbuilding 🔒</a></li>
+        <li><a href="#c441">Chapter 441: A Change of Flesh and Bones 🔒</a></li>
+        <li><a href="#c442">Chapter 442: Elephant Qiu, Farewell 🔒</a></li>
+        <li><a href="#c443">Chapter 443: Ink Fragrance Shop 🔒</a></li>
+        <li><a href="#c444">Chapter 444: The Customs of Scholars 🔒</a></li>
+        <li><a href="#c445">Chapter 445: A Business of Murky Water 🔒</a></li>
+        <li><a href="#c446">Chapter 446: Ge Junma 🔒</a></li>
+        <li><a href="#c447">Chapter 447: Is This What You Call Incredibly Smart? 🔒</a></li>
+        <li><a href="#c448">Chapter 448: The Overworked Land Deity 🔒</a></li>
+        <li><a href="#c449">Chapter 449: Since You Have Already Given It 🔒</a></li>
+        <li><a href="#c450">Chapter 450: The Greenwater and Jiaqing Alliance 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="351-400.html" rel="prev">&larr; Chs 351–400</a>    <a href="../../index.html">Library</a>
+<a href="451-500.html" rel="next">Chs 451–485 pt 1 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

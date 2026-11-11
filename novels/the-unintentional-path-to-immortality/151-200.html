@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unintended Immortality Chs 151–200</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="101-150.html#last" data-next-page="201-250.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c151">Chapter 151: Go Upstairs and Sleep First 🔒</a></li>
+        <li><a href="#c152">Chapter 152: The Portrait Becomes a Living Thing 🔒</a></li>
+        <li><a href="#c153">Chapter 153: Giving Punishment 🔒</a></li>
+        <li><a href="#c154">Chapter 154: The Jianghu and the Painter 🔒</a></li>
+        <li><a href="#c155">Chapter 155: A Midnight Conversation in the Palace 🔒</a></li>
+        <li><a href="#c156">Chapter 156: A Half-Day Tour of the Imperial Palace 🔒</a></li>
+        <li><a href="#c157">Chapter 157: A Nightly Conversation of Timeless Matters with the Emperor 🔒</a></li>
+        <li><a href="#c158">Chapter 158: A Brush with History 🔒</a></li>
+        <li><a href="#c159">Chapter 159: Lying Low 🔒</a></li>
+        <li><a href="#c160">Chapter 160: The Princess and the Qin Master 🔒</a></li>
+        <li><a href="#c161">Chapter 161: Seeking the Divine Doctor at Mount Beiqin 🔒</a></li>
+        <li><a href="#c162">Chapter 162: No One Knows the Outcome Until the Very End 🔒</a></li>
+        <li><a href="#c163">Chapter 163: The Incomparable Painting 🔒</a></li>
+        <li><a href="#c164">Chapter 164: Entrust to the Immortal Master 🔒</a></li>
+        <li><a href="#c165">Chapter 165: There are Six Instead of Five Heroes of Angzhou 🔒</a></li>
+        <li><a href="#c166">Chapter 166: Treasure Seizing in the Jianghu 🔒</a></li>
+        <li><a href="#c167">Chapter 167: The Snake Immortal of Mount Beiqin Comes to Aid 🔒</a></li>
+        <li><a href="#c168">Chapter 168: The Changjing Ghost Market 🔒</a></li>
+        <li><a href="#c169">Chapter 169: The Ghostface Grass of Mount Ye in Fengzhou 🔒</a></li>
+        <li><a href="#c170">Chapter 170: Ghostly Visit at Midnight 🔒</a></li>
+        <li><a href="#c171">Chapter 171: Asking a Ghost for Help 🔒</a></li>
+        <li><a href="#c172">Chapter 172: Rainbow After the Rain 🔒</a></li>
+        <li><a href="#c173">Chapter 173: General Chen&#39;s Probing 🔒</a></li>
+        <li><a href="#c174">Chapter 174: Cui Nanxi&#39;s Yunding Mountain Stories 🔒</a></li>
+        <li><a href="#c175">Chapter 175: Tea at the Anle Pavilion 🔒</a></li>
+        <li><a href="#c176">Chapter 176: Do You Eat Monitor Lizards? 🔒</a></li>
+        <li><a href="#c177">Chapter 177: The Disguise of an Unparalleled Beauty 🔒</a></li>
+        <li><a href="#c178">Chapter 178: It’s Excellent, Of Course 🔒</a></li>
+        <li><a href="#c179">Chapter 179: The Little Mouse and the Great Mouse 🔒</a></li>
+        <li><a href="#c180">Chapter 180: An Unusual Day 🔒</a></li>
+        <li><a href="#c181">Chapter 181: The World Within the Painting 🔒</a></li>
+        <li><a href="#c182">Chapter 182: Reunion with Sir Dou 🔒</a></li>
+        <li><a href="#c183">Chapter 183: I Have No Way to Repay You, so I Will Gift You a Stroke of Immortal Magic 🔒</a></li>
+        <li><a href="#c184">Chapter 184: From This Day Forth, Peach Blossoms 🔒</a></li>
+        <li><a href="#c185">Chapter 185: Lady Calico Turns Another Year Older 🔒</a></li>
+        <li><a href="#c186">Chapter 186: Drifting Down the River And A Brief Talk on Immortality 🔒</a></li>
+        <li><a href="#c187">Chapter 187: Changjing Enters Autumn 🔒</a></li>
+        <li><a href="#c188">Chapter 188: The General&#39;s Dream 🔒</a></li>
+        <li><a href="#c189">Chapter 189: The Transformation of Heavenly Dao 🔒</a></li>
+        <li><a href="#c190">Chapter 190: The Mid-Autumn Lantern Festival and the Mysterious Person 🔒</a></li>
+        <li><a href="#c191">Chapter 191: Can a Cat That Spits Fire Make Money? 🔒</a></li>
+        <li><a href="#c192">Chapter 192: Lady Calico Also Has to Guess the Lantern Riddles 🔒</a></li>
+        <li><a href="#c193">Chapter 193: A Chance Encounter with an Old Friend 🔒</a></li>
+        <li><a href="#c194">Chapter 194: Lady Calico and the Lighting Spell 🔒</a></li>
+        <li><a href="#c195">Chapter 195: North or South 🔒</a></li>
+        <li><a href="#c196">Chapter 196: Visiting the Snake Immortal in the Snowstorm 🔒</a></li>
+        <li><a href="#c197">Chapter 197: Thank You for Waiting 🔒</a></li>
+        <li><a href="#c198">Chapter 198: The Destitute Fortune Teller 🔒</a></li>
+        <li><a href="#c199">Chapter 199: The Heroine Returns and Talks About the Events at Mount Ye 🔒</a></li>
+        <li><a href="#c200">Chapter 200: Tea and Guidance 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="the-unintentional-path-to-immortality">
+<article id="c151" data-label="151">
+<h2 class="chapter">Chapter 151: Go Upstairs and Sleep First 🔒</h2>
+<p>“You’re finally here, Daoist priest.” The calico cat gazed at the Daoist from the beam.</p>
+<p>Her tone was quite natural, as if she had merely climbed the willow tree to play and happened to encounter the returning Daoist, rather than being driven onto the beam by someone.</p>
+<p>The Daoist walked directly through the people at the door. This time, they did not faint, but they were too startled to make a sound.</p>
+<p>The Daoist entered the room, stopped under the beam, and looked up at the cat with his arms extended.</p>
+<p>“Lady Calico, please come down.”</p>
+<p>“Mm...” The calico cat locked eyes with him for a moment before standing up on the beam. She adjusted her position slightly and then leapt down gracefully, like a delicate swallow.</p>
+<p>The Daoist caught her steadily, as promised.</p>
+<p>Holding the cat, he turned around and scanned the people present, asking, “I am Song You from Yizhou of Lingquan County. May I know who the son of the Grand Commander of this residence is?”</p>
+<p>Though he asked, his gaze was fixed on the young man in the crowd. It was quite easy to distinguish between the master and the servant.</p>
+<p>The young man swallowed nervously, his fear palpable, but he tried to muster some courage. “Where did you come from, Daoist? Do you know...</p>
+</article>
+<article id="c152" data-label="152">
+<h2 class="chapter">Chapter 152: The Portrait Becomes a Living Thing 🔒</h2>
+<p>The Grand Commander mansion was filled with a heavy atmosphere and a decayed scent.</p>
+<p>“Grand Commander, I’ve returned.”</p>
+<p>“Did you see that gentleman?”</p>
+<p>“I did.”</p>
+<p>“Speak!”</p>
+<p>“The gentleman said, he said...” The messenger hesitated, and upon seeing the old man showing signs of anger, he quickly continued, “He said that the young master has been arrogant and domineering, with a bad reputation among the people of Changjing. He believes this punishment is well-deserved and even said that the punishment was too light.”</p>
+<p>“<em>Cough, cough, cough</em>...”</p>
+<p>“Grand Commander!”</p>
+<p>“So he is unwilling to lift the curse?”</p>
+<p>“Don’t be angry, Grand Commander! That Daoist is extremely arrogant! In my opinion, even if he has some cultivation skills, there’s no need to be polite with him or request such a grand favor! This is Changjing, under the Emperor’s rule. Just have the county <em>yamen </em>and the patrolling troops arrest him. If necessary, we can even ask for help from the masters of the Juxian Mansion!”</p>
+<p>“Go to the county <em>yamen</em>, and find someone to go to the military camp as well.”</p>
+<p>“Yes!”</p>
+<p>Time passed gradually, from morning to noon.</p>
+<p>The Grand Commander’s mansion remained quiet, only interrupted by the old man’s coughing.</p>
+<p>The elderly man, with all his hair and beard white, was dressed in luxurious robes as he sat in a wooden...</p>
+</article>
+<article id="c153" data-label="153">
+<h2 class="chapter">Chapter 153: Giving Punishment 🔒</h2>
+<p><em>Clack</em>! A brush fell to the floor.</p>
+<p>The painter&#39;s mouth gaped open in shock. The expressions of the others varied, but they were all equally stunned.</p>
+<p>Everyone had witnessed the servant laying out the drawing paper, seen the painter pick up the brush, and watched every stroke under their scrutiny. The final portrait was astonishingly vivid, almost lifelike, yet no one could have anticipated that the figure in the painting seemed to come to life and turned its head to stare directly at them just moments later.</p>
+<p>Could the legends of the past centuries about Master Dou&#39;s ability to bring portraits to life be true? Had a descendant inherited such divine artistic skills after all these years?</p>
+<p>Everyone turned their gaze to Sir Dou. However, Sir Dou looked even more shocked than they did.</p>
+<p>In his astonishment, there was also a hint of fear.</p>
+<p>No one knew better than he did that he did not possess the divine skill of his ancestors to bring portraits to life. This phenomenon was not due to his own painting skills.</p>
+<p>As for the cause...</p>
+<p>It reminded him of the teachings from his ancestors—one should not casually paint people or gods. To paint people casually was to risk imbuing the painting with too much realism, which could lead to unforeseen consequences, good or bad.</p>
+<p>To paint gods casually was even more dangerous, as gods with high cultivation could detect their likeness in a painting. If the painting was too lifelike, the god might become aware and even manifest in the painting to question why they were depicted. Even powerful demons of great skill could sometimes behave this way.</p>
+<p>Could...</p>
+</article>
+<article id="c154" data-label="154">
+<h2 class="chapter">Chapter 154: The Jianghu and the Painter 🔒</h2>
+<p>On Willow Street, inside a small building, the Daoist opened his eyes.</p>
+<p>A cloth ball, about the size of a steamed bun, flew through the air. The cat leaped up and caught it steadily, then brought it back.</p>
+<p>Initially, the cat was running toward the woman. But upon seeing the Daoist open his eyes, it immediately changed direction and walked over to him, placing the cloth ball on his lap.</p>
+<p>“Look at you, how heartless. What a waste of the time I&#39;ve spent playing with you for so long!” Heroine Wu pretended to be angry, though her tone was light-hearted. She then turned to the Daoist and asked, “What were you doing just now?”</p>
+<p>“I just went to handle a small matter,” the Daoist replied, picking up the ball from his lap and tossing it.</p>
+<p>Heroine Wu, curious, asked, “Did the Grand Commander’s estate send someone to deal with you? Were they planning to fight you with spells?”</p>
+<p>“You’re quite perceptive, heroine.”</p>
+<p>“Don’t use the same words you use to coax the cat to try and charm me.”</p>
+<p>“It’s a habit.”</p>
+<p>“How did the Grand Commander’s estate deal with you? Did they use a curse? Did you resolve it? How did you resolve it?” Heroine Wu seemed particularly interested in these matters. “Tell me in detail.”</p>
+<p>“Pretty much,” Song You answered. “The Grand Commander’s estate invited a Daoist to cast a spell on me.”</p>
+<p>“So, it seems you resolved that situation?”</p>
+<p>“Indeed.”</p>
+<p>“You see, I told you...</p>
+</article>
+<article id="c155" data-label="155">
+<h2 class="chapter">Chapter 155: A Midnight Conversation in the Palace 🔒</h2>
+<p>The Emperor asked, “The realm is ultimately our Great Yan’s domain, and Changjing is also our Great Yan’s capital. Even gods should not cause chaos in Changjing. Tomorrow, it’s certain that the ministers in court will discuss this matter. Grand Commander Chang was an elder statesman and a royal relative of the former dynasty. State Preceptor, what do you think…?”</p>
+<p>The Emperor finally turned to look at the State Preceptor beside him. “What should I do?”</p>
+<p>“I believe that by tomorrow morning, the Martial Guards will have uncovered the full details of the incident.”</p>
+<p>“And what about the odd alchemist from the<em> jianghu</em>…?”</p>
+<p>“I have already sent someone to find him.”</p>
+<p>“What is your view on this matter?”</p>
+<p>“I have some reflections,” the State Preceptor said.</p>
+<p>“What reflections?”</p>
+<p>“It is natural for people to fear death, but it is both ridiculous and lamentable that a dignified Grand Commander would be manipulated by a <em>jianghu </em>oddity to the point of losing his life without realizing it.”</p>
+<p>“Grand Commander has lost his mind.”</p>
+<p>“Does Your Majesty know about this dark art?”</p>
+<p>“I would like to hear more about it.”</p>
+<p>The State Preceptor said, “In the first two days, those subjected to the spell will feel a revival, their bodies improving. Even if they were previously bedridden, they might be able to walk. However, the spell soon loses its effect, and the body will begin to decay. The victim finds it hard to recognize or believe they are dead, and they will seek doctors to treat their ‘illness.’</p>
+<p>“The most severe and stubborn will only realize they are dead when their body is fully decayed, unable to...</p>
+</article>
+<article id="c156" data-label="156">
+<h2 class="chapter">Chapter 156: A Half-Day Tour of the Imperial Palace 🔒</h2>
+<p>“Ahh! That was satisfying!”</p>
+<p>“I guess Lady Calico and I have taken advantage of you again.”</p>
+<p>“I was just about to say the same about taking advantage of you,” Heroine Wu replied, shaking her head. “We’re old friends, so there’s no need to talk about such things. As long as we’ve eaten well, that’s enough.”</p>
+<p>“Indeed, it was quite satisfying.”</p>
+<p>“You have great skills. It’s all thanks to you.”</p>
+<p>Heroine Wu burped again and said, “For people like us from the <em>jianghu</em>, a meal of mushroom chicken soup and hot rabbit meat is already very satisfying. I wonder what divine delicacies that old Emperor eats every day?”</p>
+<p>“Perhaps they’re not that special.”</p>
+<p>“Impossible!”</p>
+<p>“It’s just a guess.”</p>
+<p>“Alright, I’m leaving. Please take care of the cleanup.”</p>
+<p>Heroine Wu stood up and left the room.</p>
+<p>Song You watched her leave. Despite having had some wine and her face being a bit flushed, her steps were steady, and her tone was as calm as ever. One had to be very observant to notice any sign of drunkenness in her words, just as she had cheerfully imagined her leisurely life back in Yizhou.</p>
+<p>Song You shook his head and was about to look away when he suddenly spotted a figure outside on the street.</p>
+<p>A middle-aged Daoist with a limp was bowing to him. The Daoist smiled and returned the bow.</p>
+<p>At last, he had arrived.</p>
+<hr class="separator">
+<p>After tidying up the table and chairs, the two of them sat down facing each other.</p>
+<p>“This...</p>
+</article>
+<article id="c157" data-label="157">
+<h2 class="chapter">Chapter 157: A Nightly Conversation of Timeless Matters with the Emperor 🔒</h2>
+<p>A rectangular table, draped with a cloth embroidered in golden threads, was laden with imperial dishes. Each dish was modest in portion, served in small plates and bowls, but the sheer variety was staggering—more than twenty different dishes at least.</p>
+<p>There was fine wine served in luminous goblets, and even the chopsticks were inlaid with gold.</p>
+<p>The Daoist priest, as usual, first picked some food and placed it before Lady Calico.</p>
+<p>“When did you descend from the mountains, Immortal Master?” the Emperor asked.</p>
+<p>“In the late summer of the first year of Mingde,” the Daoist replied respectfully. After a brief pause, he added, “I am merely a humble Daoist and cannot bear the title of ‘Immortal Master.’ Moreover, Your Majesty is an Emperor for the ages, far above offering me such a lofty honor. If Your Majesty would follow the customs of this dynasty and simply call me ‘sir,’ it would already be a tremendous privilege.”</p>
+<p>“Very well! Then I shall call you ‘sir!’“ The Emperor’s face brightened with satisfaction, seemingly pleased by the praise of someone from the Hidden Dragon Temple.</p>
+<p>He continued with another question, “Sir, do you plan to travel the world, exploring the vast lands of Great Yan?”</p>
+<p>“More or less,” the Daoist answered, all the while picking a piece of food and placing it in the cat’s bowl.</p>
+<p>He could feel the gaze of the general across the table.</p>
+<p>“Sir, you truly live a carefree life,” the Emperor remarked with a chuckle.</p>
+<p>“I’m merely idle,” the Daoist replied simply.</p>
+<p>“I have been burdened with military and political affairs for most of my life,” the aging Emperor remarked with a touch of wistfulness. “At my age, I truly envy you, sir. It’s amusing when you think about it—this world is said to be my empire, yet I fear I’ve seen far less of it than you have in...</p>
+</article>
+<article id="c158" data-label="158">
+<h2 class="chapter">Chapter 158: A Brush with History 🔒</h2>
+<p>“However, after years of war, the northern region is in chaos, and the common people are living in extreme hardship. No one wants to fight anymore; they just wish for a few days of peace.” The Emperor&#39;s tone softened, losing the vigor from before.</p>
+<p>“I wish to wipe out the northern tribes in one decisive strike, yet the ministers in court have advised a more gradual approach. I also believe that Great Yan is weary and needs to recuperate, but I fear there is not much time. When the next emperor takes the throne, I cannot guarantee he will have the same ambition as I do. I don&#39;t know what to do.”</p>
+<p>How could the Daoist provide an answer to that?</p>
+<p>If he could accomplish such an extraordinary feat, it would naturally be excellent. But behind such achievements, there were often countless lives lost in suffering.</p>
+<p>Looking back at these historical achievements provided a different perspective. The unbearable hardships had been smoothed over by the passage of time, leaving only the glorious highlights. Yet, going through it in the present, one could truly grasp that every step in history was paved with the lives of countless beings.</p>
+<p>In his view, there were three kinds of wars.</p>
+<p>One was unavoidable, where the benefits outweighed the costs. A battle fought for a period of long-lasting peace. When this battle was...</p>
+</article>
+<article id="c159" data-label="159">
+<h2 class="chapter">Chapter 159: Lying Low 🔒</h2>
+<p>“We’ve arrived at Willow Street.”</p>
+<p>“Here is fine.”</p>
+<p>“Yes…”</p>
+<p>The young eunuch lifted two food containers out of the carriage. The Daoist and the cat both stepped down.</p>
+<p>“Thank you.”</p>
+<p>“Then, I’ll take my leave.”</p>
+<p>With the crack of a whip, the carriage rumbled away again.</p>
+<p>It was already deep into the night, and by the faint starlight, they could barely make out the road. The Daoist picked up the two food containers, while the cat stared curiously at the door next door.</p>
+<p>“Has the heroine gone to bed yet?” the Daoist asked.</p>
+<p>“Not yet!” The cat answered.</p>
+<p>“Not yet,” came a voice from next door as well.</p>
+<p>Suddenly, the door swung open. The heroine, who had been pressed against the doorframe and eavesdropping ever since she heard the sound of the carriage, appeared in the doorway. She stared at them and said, “Where did you two come back from? And why did you take a carriage?”</p>
+<p>“Have you eaten yet, heroine?”</p>
+<p>“Of course I’ve eaten. It’s so late already.”</p>
+<p>“And how was your meal?”</p>
+<p>“I had gruel and pickled vegetables—decent enough.” Heroine Wu sniffed the air. “What’s that you’re holding?”</p>
+<p>“We went out for a meal and brazenly packed some food to bring back,” Song You said, extending the food containers toward her. “Please try some, to repay you for the mountain delicacies you shared with us the other day.”</p>
+<p>“Where did you pack this from?” Heroine Wu reached out to take the containers. Although it was...</p>
+</article>
+<article id="c160" data-label="160">
+<h2 class="chapter">Chapter 160: The Princess and the Qin Master 🔒</h2>
+<p>After a round of washing up, the Daoist lay down on the bed.</p>
+<p>The cat stood on the coffee table by the window, occasionally turning its head to glance at the night outside, then looking back at the Daoist on the bed.</p>
+<p>“Lady Calico, you should go to sleep early.”</p>
+<p>“Was that person today the Emperor?”</p>
+<p>“Yes, he is the Emperor.”</p>
+<p>The Daoist, lying on the bed with his eyes open, looked into the darkness and said to her, “If you had received his imperial edict back then, you could have remained a cat god by the Jinyang Road without fear of being captured. You wouldn’t have to wander around like this with me.”</p>
+<p>“I enjoy wandering around with you.” The cat immediately turned around to respond.</p>
+<p>“…” The Daoist couldn’t help but smile.</p>
+<p>The calico cat back then didn’t think that way.</p>
+<p>Unknowingly, a long time had passed.</p>
+<p>“Daoist priest.”</p>
+<p>“Mm?”</p>
+<p>“Will people still come looking for me to catch mice in the future?”</p>
+<p>“Of course they will.” The Daoist remained still on the bed, his voice the only sound that came through. “And no one will dare to harbor ulterior motives anymore. But you should learn how to interact with people. Not just as a cat, but also as a demon, as a person.”</p>
+<p>“I will do my best.”</p>
+<p>“Are you going out to catch mice tonight?”</p>
+<p>“I&#39;m full tonight.”</p>
+<p>“Then you should sleep early.”</p>
+<p>“I need to absorb the moon’s...</p>
+</article>
+<article id="c161" data-label="161">
+<h2 class="chapter">Chapter 161: Seeking the Divine Doctor at Mount Beiqin 🔒</h2>
+<p>The cat ran ahead again, sniffing the grass by the roadside. It sniffed and then took a couple of bites.</p>
+<p>While chewing, it glanced back at the two people and the horse behind it.</p>
+<p>Heroine Wu was leading the horse and pointed to a path, saying, “If we go this way, we’ll reach the famous Changjing Ghost Market.”</p>
+<p>“I’ve heard of the Changjing Ghost Market as well.”</p>
+<p>“Where did you hear about it?”</p>
+<p>“At a tea house.”</p>
+<p>“Have you been there?”</p>
+<p>“No.”</p>
+<p>“I thought so.”</p>
+<p>“Yeah.”</p>
+<p>The ghost market was located outside the city and only opened at night. If they were to visit, they definitely wouldn’t return until late. With the soundproofing of the small building and this woman’s vigilance, she would likely know if he didn’t return home one night.</p>
+<p>“I’d like to take a look at it, but I’m not sure how to get there, what makes it special, or if there are any particular customs?”</p>
+<p>Song You wanted to ask her for guidance.</p>
+<p>Heroine Wu didn’t hesitate and replied, “The ghost market opens on the fourth, seventh, and tenth days of the month. Today is the fourteenth of May. We’ll need more than a day to reach Mount Beiqin, and if we find Divine Doctor Cai, it might take some time. If we don’t find him, we won’t be returning right away.</p>
+<p>“If we can make it in time for the market on the seventeenth, I can take you there....</p>
+</article>
+<article id="c162" data-label="162">
+<h2 class="chapter">Chapter 162: No One Knows the Outcome Until the Very End 🔒</h2>
+<p>Today, the sky was overcast, with no sunset in sight.</p>
+<p>The Daoist sat cross-legged at the entrance of the thatched cottage with his eyes closed, quietly listening to the sound of the mountain wind sweeping through the air, the rustling of grass and trees, and the cicadas gradually being replaced by the sounds of insects and frogs.</p>
+<p>The little girl curled up beside him, indifferent to the dirt and unbothered about staining her clothes. She was lying sideways on the ground, resembling a cat.</p>
+<p>Heroine Wu leaned against the door frame, cradling her sword, occasionally opening her eyes to glance into the distance.</p>
+<p>The yellow-maned horse was tied nearby, munching on grass.</p>
+<p>As night fell completely, the sounds of calls from the mountains echoed, the wind rustled the grass, and occasionally, the commotion from wandering martial artists could be heard.</p>
+<p>The night passed like this.</p>
+<p>The next morning, Heroine Wu opened her eyes to find green mountains and white clouds before her, a picturesque scene. Turning her head, she saw her horse standing quietly. The Daoist still sat a few chi away beside her, but the little girl was nowhere to be seen, leaving behind only a small bowl filled with half a bowl of water.</p>
+<p>That bowl was made of exquisite...</p>
+</article>
+<article id="c163" data-label="163">
+<h2 class="chapter">Chapter 163: The Incomparable Painting 🔒</h2>
+<p>“Leave this place?”</p>
+<p>“Please, immortal master, assist me.”</p>
+<p>“How far do you consider far enough?”</p>
+<p>“The further, the better.”</p>
+<p>“…” Song You revealed a smile.</p>
+<p>Although his first encounter with Sir Dou a few days ago at the Grand Commander&#39;s residence hadn’t been friendly, he knew that Sir Dou was being coerced. As a Daoist, Song You naturally held no grudges against him.</p>
+<p>Moreover, he felt a sense of connection with Sir Dou, understanding his exceptional painting skills and respecting the legacy of the Dou family ancestor. The ancestor of the Dou family was also renowned for his divine techniques, a talent that was indeed rare. Just like Master Kong from Yizhou back in the day, Song You certainly didn’t want such skills to be lost.</p>
+<p>From Sir Dou’s account, he could glean one thing. The reason he had come here to seek Doctor Cai and believed that the physician would most likely help him, was not only because he knew Doctor Cai had a kind heart and was willing to save people, but also because of Doctor Cai’s exceptional medical skills.</p>
+<p>Sir Dou believed that Doctor Cai was also a person of divine skills and would surely understand how rare such techniques were and how regrettable it would be for them to be lost. Thus, by revealing his identity and explaining that his life was in imminent danger, he thought Doctor Cai...</p>
+</article>
+<article id="c164" data-label="164">
+<h2 class="chapter">Chapter 164: Entrust to the Immortal Master 🔒</h2>
+<p>Song You had a rough understanding of Sir Dou&#39;s approach.</p>
+<p>“This painting is so extraordinary, and you&#39;ve previously painted my portrait in the Grand Commander’s residence. How could you dare to entrust this painting, along with your life, to me?”</p>
+<p>Sir Dou said respectfully with a deep bow, “As the saying goes, &#39;It’s easy to paint a person or a tiger, but hard to capture their bones; one may know a person’s face, but not their heart.&#39; If you want to portray the essence and spirit, you must first learn to observe people before painting them, and learn to observe tigers before painting tigers.</p>
+<p>“Although I lack my ancestor’s divine abilities, I have my own insights into observing and painting people. Although I have offended you, I have also come to know that you possess great virtues and cultivation skills, akin to the divine immortal. Your heart is calm, and your character is noble; I believe you wouldn’t covet this painting of mine.”</p>
+<p>He paused for a moment before continuing, “Moreover, at this moment, countless people from the <em>jianghu </em>are searching for my whereabouts on Mount Beiqin. I am at my wit&#39;s end.</p>
+<p>“If you truly desire this painting, it would be better to give it to you rather than handing it over to them, where it might be destroyed or collected by officials and nobles. Perhaps entrusting it to you...</p>
+</article>
+<article id="c165" data-label="165">
+<h2 class="chapter">Chapter 165: There are Six Instead of Five Heroes of Angzhou 🔒</h2>
+<p>“Daoist priest.”</p>
+<p>“Hmm?”</p>
+<p>“I&#39;ve read it a hundred times, yet I still don&#39;t understand its meaning.”</p>
+<p>“Really?”</p>
+<p>“Really! I was afraid of miscounting, so I read it over a hundred times!”</p>
+<p>“I see.”</p>
+<p>“Why do I still not understand its meaning?”</p>
+<p>“It’s my mistake.” The Daoist thought for a moment before recalling, “I forgot to tell you that in ancient sayings, numbers like ‘hundred’ and ‘thousand’ are generally used metaphorically.”</p>
+<p>“Metaphorically!”</p>
+<p>“It doesn’t mean its literal meaning; one hundred doesn’t actually mean one hundred, and one thousand doesn’t mean one thousand either.”</p>
+<p>“Then what does it mean?”</p>
+<p>“It refers to a large quantity.”</p>
+<p>“A large quantity!”</p>
+<p>“Reading a hundred times means you should read it many times, not literally a hundred times.” The Daoist patiently explained, “Sometimes it could be a hundred times, sometimes more than a hundred, or even ten thousand times.”</p>
+<p>“...!”</p>
+<p>“However, you don&#39;t need to worry. First, this matter is like cultivation; it cannot be rushed. If you want to finish in a day, no matter how many times you read, it may not work. It should follow the natural flow.” As the Daoist spoke, he reached out to pat the little girl’s head, feeling warm in his heart.</p>
+<p>“Secondly, poetry doesn’t always have to have a clear...</p>
+</article>
+<article id="c166" data-label="166">
+<h2 class="chapter">Chapter 166: Treasure Seizing in the Jianghu 🔒</h2>
+<p>“Daoist Master, you have quite the skill.” Heroine Wu squinted her eyes, staring at the figure gradually being burned to nothing, leaving only his clothes behind. She chuckled, “I’ve heard that many extraordinary people in the <em>jianghu </em>spend their whole lives mastering just one or two skills, while the high achievers in palaces and temples usually only learn three to five. Yet you, Daoist Master, are so young and already possess so many spells.”</p>
+<p>“It’s just a few minor tricks, not worth mentioning.”</p>
+<p>“What about these five?” Heroine Wu turned her gaze to the remaining five <em>jianghu </em>men.</p>
+<p>“Hey, you…” The Daoist looked at them, paused for a moment, and asked, “Have you ever killed any innocent people?”</p>
+<p>The wind rustled, but no one answered.</p>
+<p>The five <em>jianghu </em>men were frozen in place; some turned their eyes this way, catching glimpses with their peripheral vision, while others looked away, unable to see what was happening here. Yet they could hear the sounds, and from the sounds, they understood what was transpiring and the Daoist&#39;s abilities.</p>
+<p>At this moment, upon hearing the Daoist’s question, their hearts were filled with extreme fear. Fear, anxiety, and regret churned within them.</p>
+<p>At times, they felt they were facing a divine immortal; at others, they recalled the innocent lives they had recklessly taken, believing...</p>
+</article>
+<article id="c167" data-label="167">
+<h2 class="chapter">Chapter 167: The Snake Immortal of Mount Beiqin Comes to Aid 🔒</h2>
+<p>“<em>Boom</em>!”</p>
+<p>“<em>Rumble…</em>”</p>
+<p>The thunder rolled, and the world darkened.</p>
+<p>The summer storm ravaged the trees and grasses in the mountains, and amidst the rustling, the sound of snapping branches could be heard from time to time.</p>
+<p>Raindrops dripped down from the eaves of the pavilion, coursing down branches and blades of grass, and flowing down the hats and hair of the <em>jianghu </em>people. In the heavy rain, everything appeared somewhat blurred, yet also strikingly clear.</p>
+<p>Seeing the Daoist remain seated and silent in the pavilion while their own numbers grew larger, the <em>jianghu </em>people felt more at ease. Not only were more skilled <em>jianghu </em>experts gathering, but also members from many prominent <em>jianghu </em>sects, as well as some well-informed individuals that everyone knew were working for powerful ministers in the court.</p>
+<p>With so many people, the atmosphere became increasingly confident, and they edged closer to the pavilion.</p>
+<p>However, the Daoist turned his gaze toward the distant scenery.</p>
+<p>“<em>Boom</em>!”</p>
+<p>Amidst the thunder, the Daoist finally stood up. The clamor of the <em>jianghu </em>people suddenly paused.</p>
+<p>The <em>jianghu </em>heroine in the pavilion glanced at the crowd. No matter how skilled she was, she feared that in a mass of people like this, she wouldn&#39;t be able to make much of an impact. But since she couldn’t win a fight, there was no point in being...</p>
+</article>
+<article id="c168" data-label="168">
+<h2 class="chapter">Chapter 168: The Changjing Ghost Market 🔒</h2>
+<p>May 17th was a bright sunny day.</p>
+<p>It was the summer solstice, the longest day of the year. With the sun at its peak, the world’s yang energy reached its zenith while the spirits and ghosts grew weaker. Even the most powerful of ghosts dared not venture out during the day.</p>
+<p>From early in the morning, the sun shone down directly on the earth, making it feel scorchingly hot even when covered with cloth. It was truly a typical summer day.</p>
+<p>The Daoist expressed gratitude to the family from whom they borrowed lodging, while Heroine Wu took out a small handful of copper coins. She offered a few flattering words before the host accepted them.</p>
+<p>The little girl beside her, seeing this, felt she too had borrowed a place to stay and didn’t want to be treated differently. Thus, she took out a small handful of copper coins from her own pocket, trying to offer them to the host. The host, being kind-hearted, couldn’t accept the coins again after already taking Heroine Wu’s money. The little girl, imitating Heroine Wu, began to speak in her gentle, soft voice, saying a string of identical flattering words.</p>
+<p>The host still refused to accept her coins, leaving the little girl confused. She stared blankly at the host, unable to figure out what was wrong.</p>
+<p>It wasn’t until the Daoist spoke up that the host finally accepted the coins....</p>
+</article>
+<article id="c169" data-label="169">
+<h2 class="chapter">Chapter 169: The Ghostface Grass of Mount Ye in Fengzhou 🔒</h2>
+<p>“There aren’t many people right now, so you can find a place to wait or take a stroll. It’s only about three or four li down from here,” Heroine Wu said to him. “While it’s still quiet, I’ll set up my stall to sell these items. I’m worried I might run into someone who recognizes me when it gets busier. Once I sell everything, I’ll split the earnings with you.”</p>
+<p>“Then I’ll go for a walk.”</p>
+<p>“Alright!”</p>
+<p>Heroine Wu casually found an empty spot, took out the swords and knives she had picked up yesterday and set them out on the ground.</p>
+<p>Beside her stood a tall, thin man who covered his face, and he made a chilling remark, “This isn’t usually your spot, is it, miss…”</p>
+<p>“It’s none of your business!” Heroine Wu replied sharply, her cold gaze silencing him.</p>
+<p>The Daoist chuckled at this; she was demonstrating the local rules to him.</p>
+<p>He exchanged a glance with the girl beside him before stepping forward, while behind him, Heroine Wu&#39;s voice rang out, “Rare swords and blades… A top-quality Taoquan Blade… Tanxi Sword…”</p>
+<p>Nearby, a man reeking of sweat suddenly struck a match. As the sparks ignited a small flame, he lit an oil lamp. Holding the lamp, he exchanged glances with the Daoist as he passed by. Once the Daoist was out of sight, he settled down, placing...</p>
+</article>
+<article id="c170" data-label="170">
+<h2 class="chapter">Chapter 170: Ghostly Visit at Midnight 🔒</h2>
+<p>By the time they left that place, it was nearly three in the morning.</p>
+<p>Heroine Wu led the horse while holding a lantern, being quite vigilant. She frequently glanced left and right, fearing that hidden arrows might suddenly spring from the grass or that a nefarious individual might be following them from behind.</p>
+<p>However, they encountered no trouble until they returned to the village.</p>
+<p>“Surprisingly, nothing happened!” The woman seemed a bit taken aback.</p>
+<p>“It’s because you were vigilant.”</p>
+<p>“It’s not just me being cautious; something feels off today.”</p>
+<p>“What do you mean?”</p>
+<p>“When we were walking through the ghost market, I noticed several subtle gazes darting around me, my divine steed, you, and even behind you and on Lady Calico. They were hidden well, but I could see through it. Most likely, some surviving <em>jianghu </em>heroes from Mount Beiqin spread word of our characteristics,” Heroine Wu paused for a moment.</p>
+<p>She added, “I initially thought they were coming to find us, but now I think it’s more likely that news of those <em>jianghu </em>heroes&#39; grim fates and deaths reached them, which made them hesitant to act.”</p>
+<p>The Daoist, upon hearing this, was secretly worried. “Then won’t you face trouble when you leave the city in the future?”</p>
+<p>“Stop overthinking it.” Heroine Wu reached...</p>
+</article>
+<article id="c171" data-label="171">
+<h2 class="chapter">Chapter 171: Asking a Ghost for Help 🔒</h2>
+<p>The Daoist priest remained seated cross-legged on the bed, calmly looking at him.</p>
+<p>“It sounds like this isn’t your first offense.” Even his tone was remarkably calm.</p>
+<p>“...” The scholar ghost was immediately startled, his entire body trembling. He realized that he had slipped up in his words.</p>
+<p>It wasn’t because he was foolish, but the yang energy in the room was burning like fire. His body was rapidly shrinking, and it took all his energy just to endure the pain. He had no capacity left to focus on anything else.</p>
+<p>At this moment, he could only stammer, “But it’s my first offense against you, Immortal Master...”</p>
+<p>“I see.”</p>
+<p>“Please, Immortal Master, spare my life!” The scholar ghost&#39;s form continued to shrink rapidly.</p>
+<p>At this rate, he would likely dissolve completely in less than a moment, like snow under the noon sun. Seeing this, the scholar ghost dared not harbor any further tricks and pleaded for mercy with all his might. “Spare me, Immortal Master!”</p>
+<p>“Don’t worry,” the Daoist priest said, simply waving his sleeve. Instantly, all the solstice spiritual energy and yang energy in the room dissipated.</p>
+<p>The scholar ghost heaved a sigh of relief.</p>
+<p>Not only was he no longer suffering from the excruciating burn as if being roasted by flames, but it was also the early hours of the morning, when yin qi was at its peak and yang energy was at its weakest....</p>
+</article>
+<article id="c172" data-label="172">
+<h2 class="chapter">Chapter 172: Rainbow After the Rain 🔒</h2>
+<p>“In Changjing City…”</p>
+<p>“What’s the problem?”</p>
+<p>“If it were half a year ago, even with the heavy yang energy in the city, it wouldn’t have been much trouble for me to make a trip inside. But recently, I’ve heard that the City God of Changjing has gone mad, patrolling every day, hunting demons and ghosts. Though I possess some skill in concealing my whereabouts, the City God is particularly adept at finding and summoning spirits.”</p>
+<p>The scholar ghost appeared troubled. “Moreover, I’ve stolen things in the city before, so I’m rather hesitant to return.”</p>
+<p>“My name is Song You,” the Daoist repeated. “If you are stopped by the martial officers of the City God’s temple, just give them my name, and you should be able to get out of trouble.”</p>
+<p>“…” The scholar ghost was startled once more, quickly bowing in panic.</p>
+<p>“I understand!”</p>
+<p>“Thank you in advance for your help.”</p>
+<p>“Don’t mention it.”</p>
+<p>“Please take care of yourself, and proceed cautiously. If you encounter any danger, prioritize your own safety.”</p>
+<p>“Farewell…”</p>
+<p>The Daoist bowed to him, and the scholar ghost bowed in return.</p>
+<p>Moments later, the scholar ghost transformed into a wisp of green smoke, slipping through a hole in the window and vanishing into the night.</p>
+<p>The Daoist glanced outside....</p>
+</article>
+<article id="c173" data-label="173">
+<h2 class="chapter">Chapter 173: General Chen&#39;s Probing 🔒</h2>
+<p>“I’ve been delayed for four and a half days. I can imagine there’s a pile of things waiting for me to do. I need to hurry back to the city, so I won’t accompany you any longer, Daoist,” said Heroine Wu. “Even if we traveled together, we would have to part ways once we enter the city.”</p>
+<p>“Feel free to go about your business, heroine.”</p>
+<p>“Alright!”</p>
+<p>“Take care.”</p>
+<p>“Hya!” Heroine Wu called out. Without her urging the horse, the yellow-maned horse took off on its own, splashing mud with its hooves.</p>
+<p>Although the horse was short, it ran quickly, actually trotting along. Her figure quickly disappeared on the main road ahead.</p>
+<p>Song You withdrew his gaze.</p>
+<p>This heroine had brought him out for a journey that delayed them for four and a half days. Not only did she fail to find Doctor Cai, whom she was looking for, but she also got caught up in the conflicts of the <em>jianghu</em>. He wondered if those who wanted to steal the painting had remembered her and whether they would come looking for trouble.</p>
+<p>In any case, he felt somewhat guilty.</p>
+<p>Thinking too much was useless, so he decided to stop. The Daoist continued to stroll leisurely along the roadside.</p>
+<p>The girl beside him seemed completely carefree. Having found a stick from somewhere, she was swishing it and striking the heads of the weeds by the road, making sounds as she did. Whenever a dragonfly or butterfly fluttered by, she would jump up to catch it, often splashing mud when she landed back on the ground.</p>
+<p>The capital city,...</p>
+</article>
+<article id="c174" data-label="174">
+<h2 class="chapter">Chapter 174: Cui Nanxi&#39;s Yunding Mountain Stories 🔒</h2>
+<p>Once inside the city, the ground was noticeably cleaner, so walking became much easier.</p>
+<p>The Daoist strolled leisurely along the street, passing through the city. He slowly made his way back to Willow Tree Street.</p>
+<p>The willow trees were lush and green in the height of summer, and there was a small building with a flag bearing the character “Dao” at the entrance. The shop sign read “Rodent Extermination,” but the main door was tightly locked. There were no vendors setting up stalls outside, making it quite tranquil.</p>
+<p>It seemed as if no one knew that the recent uproar concerning the Grand Commander’s residence was caused by the Daoist living here.</p>
+<p>The Daoist walked over and opened the door.</p>
+<p>“<em>Creak…</em>” He opened the door and then closed it behind him.</p>
+<p>However, the wooden door wasn’t very secure; the afternoon sunlight streamed through the cracks, casting slanted beams of light across the dim room. At first, his eyes weren’t used to the light, and he felt it was a bit dark. But after a moment, he was able to catch the scattered rays illuminating the interior.</p>
+<p>There was hardly any change in the house.</p>
+<p>The dim room contrasted sharply with the bright light outside, the blazing sun with the coolness inside, creating a typical summer atmosphere.</p>
+<p>“<em>Sigh…</em>” The Daoist sighed, unloaded...</p>
+</article>
+<article id="c175" data-label="175">
+<h2 class="chapter">Chapter 175: Tea at the Anle Pavilion 🔒</h2>
+<p>“The sky is getting darker; it&#39;s just the right time to share some tales of immortals and ghosts, along with some stories from the capital.” A slightly plump storyteller stepped out, flicking his folding fan to cool his slightly sweaty face. “Let’s all enjoy the breeze while you listen.”</p>
+<p>Immediately, some familiar patrons below asked, “What will you tell us today, sir?”</p>
+<p>“Not long ago, I’m sure everyone has heard about the incident at the Grand Commander&#39;s residence. The authorities have also issued a notice explaining what happened,” the storyteller said.</p>
+<p>He continued, “Yesterday afternoon, the demon who deceived the Grand Commander with wicked sorcery was captured by the officers. It’s quite lamentable that such a dignified Grand Commander could be so foolish in his old age.”</p>
+<p>“What did the demon look like?”</p>
+<p>“It wasn’t some three-headed, six-armed creature, nor a hulking beast. It was just a talented eccentric from the <em>jianghu </em>who could wield sorcery. He was short and thin, with a tuft of goat-like beard. I heard that tomorrow morning, he will be paraded through the streets. He’s likely to pass by here as well. If you wish to see him, just grab a stool and sit by the roadside,” the storyteller continued.</p>
+<p>He suddenly widened his eyes, his tone...</p>
+</article>
+<article id="c176" data-label="176">
+<h2 class="chapter">Chapter 176: Do You Eat Monitor Lizards? 🔒</h2>
+<p>“Greetings, sir.”</p>
+<p>A middle-aged man approached, appearing somewhat handsome and dressed as a scholar. After respectfully bowing to Song You, he sat down on the other side.</p>
+<p>The attendant brought over a set of elaborate tea utensils.</p>
+<p>In this establishment, the tea wasn&#39;t simply brewed and served; instead, a dedicated person came to your table to brew it, showcasing their confidence in their skills and allowing you to experience something unique during the process.</p>
+<p>This tea was likely the best in the Anle Pavilion, personally brewed by the shop owner, who had a reputation for being a refined gentleman.</p>
+<p>“Is this your first time here, sir?”</p>
+<p>“Yes, it is my first time.”</p>
+<p>“You&#39;re not from Changjing?”</p>
+<p>“No, I&#39;m from Yizhou and have only recently arrived in Changjing.”</p>
+<p>“Yizhou produces tea as well.”</p>
+<p>“Yes, it does; the tea-horse trade market is located there.”</p>
+<p>The shop owner moved gracefully, taking his time. He first retrieved some tea from a jar, placed it in a tea bag, and began to crush it gently with a small pestle while chatting quietly with his guest.</p>
+<p>“This tea is homemade, but it originally came from Yangzhou. It reminds me of my father&#39;s youth. One time, he traveled to Yangzhou, and while passing through a certain place, he randomly chose...</p>
+</article>
+<article id="c177" data-label="177">
+<h2 class="chapter">Chapter 177: The Disguise of an Unparalleled Beauty 🔒</h2>
+<p>The woman was dressed in plain white clothes with her face concealed by a veil, and she held a scroll in her arms. Despite the sweltering summer heat, she appeared neither hurried nor anxious, quietly standing at the door with her maid accompanying her.</p>
+<p>Song You recognized her at a glance; it was Miss Wanjiang from the Hexian Pavilion.</p>
+<p>Her graceful presence seemed to linger in his mind, and the sound of her <em>qin </em>still echoed in his ears.</p>
+<p>However, with her face veiled now, the Daoist felt a moment of disorientation. He realized that he had already caught a fleeting glimpse of her earlier in front of the Hexian Pavilion.</p>
+<p>Song You exchanged glances with the little girl and walked over.</p>
+<p>“Ladies…” He looked toward them. He couldn’t tell if there were two or just one woman.</p>
+<p>“Sir.” It seemed the two women had only just noticed him, and they both bowed in greeting. Their voices came one after the other.</p>
+<p>Song You hurriedly returned the greeting, then took out his key. While unlocking the door, he asked, “Are you two looking for me?”</p>
+<p>“Indeed we are,” the woman in white replied gently. “Seeing that you had closed the door, we asked the neighbors, who informed us that you left this morning and have been keeping the door open for the past few days. So we decided...</p>
+</article>
+<article id="c178" data-label="178">
+<h2 class="chapter">Chapter 178: It’s Excellent, Of Course 🔒</h2>
+<p>Since the veil had been lifted, Song You no longer respected the other’s privacy and asked directly, “You, as a great demon, should be cultivating in the mountains. Yet, you conceal yourself in the capital, amassing wealth through your <em>qin </em>tavern. Why do you disguise yourself so heavily?”</p>
+<p>“I dare not deceive you any longer,” the woman said, lowering her head before asking, “Do you know about Princess Changping?”</p>
+<p>“Of course.”</p>
+<p>“Then let me explain…” the woman sitting opposite him replied helplessly. “I am originally a demon from Yangzhou. Many years ago, Princess Changping traveled south to Yangzhou and formed a bond with me; she showed me kindness.</p>
+<p>“A few years ago, I came to the capital. One reason was to witness the splendor of Changjing, and the other was to find my benefactor from those days and personally thank her.</p>
+<p>“When she saved me back then, she was unaware that I was a demon. Now that I’m in Changjing and she knows my true identity, she expects me to repay her kindness, as I have considerable abilities.</p>
+<p>“I have always preferred a free and unrestrained life and never wished to be bound. However, I must repay her for saving my life. If I don’t repay her, my cultivation will stagnate right here.”</p>
+<p>Upon hearing this, the Daoist remarked, “You’re quite appreciative and polite...”</p>
+<p>The...</p>
+</article>
+<article id="c179" data-label="179">
+<h2 class="chapter">Chapter 179: The Little Mouse and the Great Mouse 🔒</h2>
+<p>“Was that person just now here to deliver the painting to us?”</p>
+<p>“Pretty much.”</p>
+<p>“Then we should thank her a lot.”</p>
+<p>“Since you say so, I’ll thank her.”</p>
+<p>“Exactly!”</p>
+<p>“You can already make decisions.”</p>
+<p>“I can already make decisions!”</p>
+<p>“Yeah.”</p>
+<p>“Let’s hang this up on the wall!”</p>
+<p>“Since you say, I’ll do it.”</p>
+<p>“Exactly!”</p>
+<p>The cat still stood on the table, seriously examining the painting.</p>
+<p>Now that Lady Calico mentioned it, this painting was indeed excellent… He had to admit, the more he looked at it, the more it resembled them!</p>
+<p>“Let’s go, Lady Calico.”</p>
+<p>“Where to?”</p>
+<p>“To buy a hook.”</p>
+<p>Since Lady Calico had already made the decision, the Daoist dared not delay. Taking advantage of the time before it became the hottest part of the day, he promptly took her out to buy a hook.</p>
+<p>When they returned, he asked Lady Calico where to hang it, and she casually pointed to a spot. The Daoist then pressed the hook into the wooden wall with ease and hung the painting up.</p>
+<p>In the room, there were now two paintings.</p>
+<p>One was a large horizontal painting, depicting mountains and waters as if it was an immortal&#39;s realm. It was full of spirit qi and vibrancy, lifelike and captivating.</p>
+<p>The other was a vertical hanging scroll,...</p>
+</article>
+<article id="c180" data-label="180">
+<h2 class="chapter">Chapter 180: An Unusual Day 🔒</h2>
+<p>During the three hottest periods in the summer, even midnight was cool.</p>
+<p>With the windows open, a breeze flowed in.</p>
+<p>In the center of the room stood a ceramic pot filled with fire wicks made by the neighbor next door. When lit, they didn’t produce an open flame but burned very slowly, emitting no sparks and giving off a herbal fragrance.</p>
+<p>The Daoist lay on the cool mat, which should have felt refreshing, but unfortunately, he had a calico cat laying on him.</p>
+<p>Ever since returning from Mount Beiqin, Lady Calico’s mouse-catching business had thrived again. However, to ensure sustainable mouse-catching while balancing study and rest, the Daoist had agreed with her to continue the previous arrangement: catching the mice from each household over five days, taking a two-day break after finishing with one household, and requesting leave when necessary.</p>
+<p>Today was a scheduled day off, but the cat couldn&#39;t fully relax. First, it needed to devote more time to studying to maintain its facade of being a gifted cat.</p>
+<p>Additionally, today marked <em>Dashu</em>, with the yang energy at its peak during the day. At night, both the moon and the yin qi were abundant.</p>
+<p>Lady Calico cultivated her yin-yang spiritual energy,...</p>
+</article>
+<article id="c181" data-label="181">
+<h2 class="chapter">Chapter 181: The World Within the Painting 🔒</h2>
+<p>The Daoist walked intermittently, his pace slow.</p>
+<p>The cat, on the other hand, took cheerful little steps. It also moved forward and stopped frequently. It often scampered ahead, then fell back again.</p>
+<p>If it lagged behind a bit, once the Daoist had gone far, it would stretch its neck to look for him. If it couldn’t see him, it would hurry to catch up. If it reached in front of him, it would often stop and glance back. Seeing he hadn’t caught up, it would have to wait.</p>
+<p>“Daoist Master!” The cat called out as it waited for the Daoist to catch up, lifting its head high, following the waterbirds flying overhead with its gaze while shouting at him.</p>
+<p>“Hmm?”</p>
+<p>“Are we going to find Sir Dou?”</p>
+<p>“Lady Calico, you’re quite clever; I admire you,” the Daoist said patiently, still immersed in the world of the painting.</p>
+<p>“But where is he?”</p>
+<p>“That’s a good question.”</p>
+<p>The Daoist shifted his gaze from the sky down to the towering mountains ahead.</p>
+<p>The mountains were magnificent, their bases far away. From the size visible in the painting, they stretched at least several dozen li from left to right. Now, looking again, his gaze seemed not limited to the painting; it could extend beyond...</p>
+</article>
+<article id="c182" data-label="182">
+<h2 class="chapter">Chapter 182: Reunion with Sir Dou 🔒</h2>
+<p>In addition to providing delicious food and drink, the old man prepared a room for Song You and the cat to stay in.</p>
+<p>The Daoist thanked him respectfully and settled in.</p>
+<p>Indeed, there was no day or night here; from the beginning until now, it had been dusk.</p>
+<p>By this time, most of the old man&#39;s family had gone to sleep, and it was nearly time for the Daoist to rest as well. However, sitting by the window and gazing at the scenery outside during dusk made it difficult for him to fall asleep.</p>
+<p>This feeling was quite interesting.</p>
+<p>In the past, while in the outside world, he could sense the cycle of seasons and the alternation of yin and yang, but he didn’t perceive it so clearly. It was like air; one is constantly breathing and can be acutely aware of its existence, but when placed in a place without air, one would inevitably gain a new understanding of its presence.</p>
+<p>Time gradually passed.</p>
+<p>The cat ran a few laps around the room before finally lying down on the bed, half-closing its eyes, ready to sleep.</p>
+<p>The Daoist, on the other hand, sat cross-legged. He was calming his mind to perceive the spiritual resonance of the world and experience the mysteries of this realm.</p>
+<p>After nearly a whole day of deep conversation, his understanding of this world had significantly increased....</p>
+</article>
+<article id="c183" data-label="183">
+<h2 class="chapter">Chapter 183: I Have No Way to Repay You, so I Will Gift You a Stroke of Immortal Magic 🔒</h2>
+<p>Inside the bamboo house, the Daoist sat cross-legged, staring at the seemingly unchanging scenery outside. He asked, “How do you find this place?”</p>
+<p>“<em>Meow</em>?”</p>
+<p>“How do you find this place?”</p>
+<p>“It’s nice and cool.”</p>
+<p>“Indeed.”</p>
+<p>“It’s like being in a mouse hole.”</p>
+<p>“What else?” the Daoist turned to ask it. “Do you have any other thoughts regarding this place?”</p>
+<p>“It doesn’t get dark here.”</p>
+<p>“True.”</p>
+<p>“We should bring the horse here.”</p>
+<p>“Good idea.”</p>
+<p>“Right!”</p>
+<p>This painted world was both real and illusory.</p>
+<p>The Daoist continued to sit there, lost in thought and feeling for a long time, before finally pulling down the heavy black curtains and lying down in bed for a peaceful sleep.</p>
+<p>He had a faint sensation of being watched. Waking naturally, he felt a bit dazed.</p>
+<p>After getting up, he went out again with Sir Dou for a leisurely stroll, discussing the world within the painting. Upon returning, they spread out drawing paper to talk about painting techniques, how spiritual resonance is born, the prohibitions passed down through the Dou family, and their deeper meanings.</p>
+<p>Several days passed, and he gained much from the experience. Finally, Song You said his goodbyes to Sir Dou.</p>
+<p>Sir Dou was quite surprised and wanted to ask him to stay for a few more days.</p>
+<p>“It&#39;s been over ten days since I arrived here, and I&#39;ve gained enough. Staying longer would be counterproductive; it&#39;s better to return and digest what I&#39;ve learned. I also heard there’s a Daoist temple on the mountain, so I’ll pay a visit before I leave,” the Daoist said, glancing back at the towering mountain behind...</p>
+</article>
+<article id="c184" data-label="184">
+<h2 class="chapter">Chapter 184: From This Day Forth, Peach Blossoms 🔒</h2>
+<p>“Peaches!”</p>
+<p>“Peaches!”</p>
+<p>The old Daoist temple owner raised a trembling hand and pointed ahead, shouting aloud, his arm quivering with excitement.</p>
+<p>There stood a peach tree, lush with branches and leaves, its trunk thicker than a person&#39;s thigh and darkening to an almost black hue. From the main trunk, large branches extended, and from these, numerous smaller ones branched out. Hanging densely on the tree were peaches, each larger than the rim of a bowl, their crimson hue so enchanting it was intoxicating.</p>
+<p>The middle-aged Daoists around him were equally astounded.</p>
+<p>To put it plainly, this was merely a small world within a painting, its boundaries perhaps less than a tenth of a county’s size. These Daoists were born and raised here, having lived within it all their lives. Although they practiced Daoist cultivation at the temple and often heard the old temple owner speak of the profound mysteries of Daoist scriptures and the wonders of magic, they had never witnessed it firsthand.</p>
+<p>The old master’s explanations had not been particularly clear either, so they usually treated his stories as interesting tales. But now, they were witnessing real magic.</p>
+<p>A Daoist from the outside world had picked up a brush, painted a tree on the white wall, breathed life into it, and the painted fruit tree became real. The peaches that grew on it were irresistibly tempting, and they could faintly smell the fragrant scent of ripe peaches...</p>
+</article>
+<article id="c185" data-label="185">
+<h2 class="chapter">Chapter 185: Lady Calico Turns Another Year Older 🔒</h2>
+<p>In a second-floor room on Willow Street in Changjing City, the Daoist was gently setting the cat down on the floor.</p>
+<p>It was morning, and the room wasn’t too hot. Bright sunlight streamed in through the open window, and a gentle summer breeze blew inside, offering a completely different sensation from the world within the painting.</p>
+<p>He glanced around the room.</p>
+<p>The window was wide open, with footprints on the window ledge and the floor. Some were going in, others going out. A piece of fabric was even caught on the window’s edge, suggesting the intruder had left in a hurry.</p>
+<p>The reason Song You dared to leave the painting here and walk away unbothered was that he had made preparations beforehand. He had placed a spell on the painting so it couldn’t be removed. It was impervious to blades, fire, and water, and even breaking through the walls wouldn’t work.</p>
+<p>Additionally, the one-year curse, which originally activated upon touching the painting, had been altered to trigger upon entering the room without permission. So, most people likely ran off in a panic the moment they stepped inside.</p>
+<p>That was why the footprints were mostly concentrated near the window, with only one set making it to the center of the room, near the wall. It was clear that Changjing had its share of skilled individuals, adept at handling such curses. However, while they managed to avoid the spell, they still failed to take the painting.</p>
+<p>Judging by the footprints, not many had come by during his absence. Perhaps after...</p>
+</article>
+<article id="c186" data-label="186">
+<h2 class="chapter">Chapter 186: Drifting Down the River And A Brief Talk on Immortality 🔒</h2>
+<p>The woman&#39;s expression remained calm. She noticed the dishes on the table, the young girl with slightly damp and oily cheeks, and the Daoist&#39;s hands as he peeled shrimp. Naturally, she also saw the helpless look on his face.</p>
+<p>“Perhaps I could come back a little later...”</p>
+<p>“Is there something troubling you?”</p>
+<p>“It&#39;s nothing important,” the woman replied with a smile. “It’s just that autumn is approaching, and I wanted to invite you to join me on a boat ride along the river to enjoy the autumn scenery. I wonder if you’re free?”</p>
+<p>“We’ve been in Changjing for quite some time now, keeping our identities hidden. You are the only one who has seen through us,” the maid behind the woman said, grinning. “And the only one who can converse with us.”</p>
+<p>“I wonder, will there be music to listen to?”</p>
+<p>“If you wish to hear some, I would be happy to oblige.”</p>
+<p>“When shall we go?”</p>
+<p>“We will have the best weather three days from now.”</p>
+<p>“I&#39;ll come to fetch you, Daoist Master.”</p>
+<p>“I’ll surely be there.”</p>
+<p>“We won’t trouble you any longer.”</p>
+<p>“Many thanks, Daoist Master.”</p>
+<p>“Take care.”</p>
+<p>Lady Wanjiang gave a final glance at the young girl by the table, performed a courteous bow, and left.</p>
+<p>The Daoist watched them depart, finding it all quite amusing.</p>
+<p>In truth, he was still very curious. These two shared the same body, but did their thoughts remain independent,...</p>
+</article>
+<article id="c187" data-label="187">
+<h2 class="chapter">Chapter 187: Changjing Enters Autumn 🔒</h2>
+<p>In ancient times, the Mortal Dao was not prosperous, and demons, monsters, and ghosts were far more rampant than they are today. Even the gods were in chaos—there were great gods, minor gods, good gods, evil gods, and all manner of confusing deities.</p>
+<p>Interestingly, while the Mortal Dao was not flourishing, human cultivators were much more formidable than they are now. There were often extraordinary masters in the world, either living in seclusion deep in the mountains or walking among the people, using various methods in their pursuit of the Dao and immortality.</p>
+<p>It was a chaotic era.</p>
+<p>Not only were the human dynasties in disarray, but so were the demons, monsters, and ghosts, as well as the gods on all sides. It seemed as if everything was waiting for time to settle and cool, bringing about a stable order to the world.</p>
+<p>And indeed, that was how the Heavenly Dao evolved.</p>
+<p>The peerless demons and monsters that once wreaked havoc on the human world and devoured entire cities of people on a whim, had now been reduced to nothing, not even leaving behind ashes. The primitive deities once revered by the ancient peoples had also vanished. A few remained as characters in ancient myths, but the majority could no longer even be found on stone carvings or tablets.</p>
+<p>And what about those cultivators who sought the Immortal Dao and...</p>
+</article>
+<article id="c188" data-label="188">
+<h2 class="chapter">Chapter 188: The General&#39;s Dream 🔒</h2>
+<p>The capital city had indeed entered autumn; the leaves had begun to pile up at the entrance.</p>
+<p>Some early risers, eager to clean, took advantage of the sparse street traffic and used bamboo brooms to sweep the fallen leaves into heaps.</p>
+<p>According to the regulations of the <em>yamen</em>, residents living on the street were required to maintain the cleanliness of the area in front of their homes. In practice, if it was an ordinary household, the <em>yamen </em>might not be too strict; however, for businesses, a messy entrance would certainly lead to orders for cleanup. Especially after a windy night like last night, which had blown down countless dried leaves.</p>
+<p>Now, the streets were filled with the sounds of sweeping, mixed with the chatter of small vendors, creating a lively yet tranquil atmosphere.</p>
+<p>It was unusual for a military general to ride in a litter [1]. General Chen arrived on horseback, followed by several personal guards, all tall and robust, either skilled fighters from the military or renowned martial artists from the <em>jianghu</em>.</p>
+<p>As they walked to the middle of Willow Street, they soon spotted the “Dao“ flag. It hung beneath the shop sign reading “Rodent Extermination.”</p>
+<p>The door was open, and someone was already seated inside.</p>
+<p>General Chen did not rush in but instead quietly stood at the entrance, looking...</p>
+</article>
+<article id="c189" data-label="189">
+<h2 class="chapter">Chapter 189: The Transformation of Heavenly Dao 🔒</h2>
+<p>“Thank you for your assistance, sir.”</p>
+<p>“Don’t mention it.”</p>
+<p>“Then I shall take my leave.” General Chen carefully tucked away a triangular talisman and walked out the front door.</p>
+<p>The street was bustling at this time, with several vendors occupying the area in front of the shops. General Chen cautiously made his way through the vendors, stepping over a pile of dry leaves on the ground. He glanced back at the leaves, sensing something, but didn’t pay it any mind and continued to stride away.</p>
+<p>Behind him, one person stayed back to lead the horse, while the others hurriedly followed.</p>
+<p>After a moment, there was some movement in the pile of leaves.</p>
+<p>“<em>Swish…</em>”</p>
+<p>The leaves scattered, and a calico cat emerged. It shook its body before stretching lazily, glancing around before gracefully returning to the house.</p>
+<p>With a nimble leap, it jumped onto the table.</p>
+<p>Outside was noisy as the calico cat spoke softly, “Daoist Master…”</p>
+<p>“Hmm?”</p>
+<p>“Why did you bury me with leaves?”</p>
+<p>“It was clearly the wind that blew the leaves to you; I didn’t bury you.”</p>
+<p>“You blew them.”</p>
+<p>“How could you sully my reputation for no reason?”</p>
+<p>“It was you who blew them.”</p>
+<p>“Well, it’s autumn now. Since you were sleeping on the street, I was afraid you would catch a chill, so I covered you with leaves to keep you warm.”</p>
+<p>“…?” The calico cat tilted her head, staring at him with suspicion.</p>
+<p>It was unclear whether she chose to believe him or simply didn’t...</p>
+</article>
+<article id="c190" data-label="190">
+<h2 class="chapter">Chapter 190: The Mid-Autumn Lantern Festival and the Mysterious Person 🔒</h2>
+<p>However, after the State Preceptor left, Song You frowned.</p>
+<p>As the Heavenly Dao evolved, the difficulty of dying and becoming a ghost had slightly decreased, and the probability had increased. Countless people had died in the north and along the borders. Many of the border soldiers were skilled fighters, unwilling to accept their fate, and many resentful spirits linger in the border regions.</p>
+<p>Thus, there were likely to be numerous ghosts appearing in the north and along the borders. The Daoists, monks, and old ghosts under the State Preceptor’s command were escorting them to Fengzhou to prevent chaos from erupting, which was why people had witnessed terrifying scenes of a hundred ghosts roaming at night.</p>
+<p>Fengzhou’s Mount Ye had imprisoned a large number of ghosts, resulting in the emergence of Ghostface Grass.</p>
+<p>Everything seemed to make sense. Even General Chen’s dreams had an explanation.</p>
+<p>These days, the character of soldiers in the army varied greatly. No matter how good a general was, he must make choices, sometimes turning a blind eye for the sake of combat effectiveness and defending the country.</p>
+<p>Among the soldiers at the border, some, confident in their strength, behaved poorly. After being brought to Fengzhou’s Mount Ye, it was inevitable that they would come into conflict with the Daoists, monks, and old ghosts under the State Preceptor’s...</p>
+</article>
+<article id="c191" data-label="191">
+<h2 class="chapter">Chapter 191: Can a Cat That Spits Fire Make Money? 🔒</h2>
+<p>“It’s just a mere little spell. Compared to this benefactor, I’m truly insignificant.” The monk bowed to everyone. “Thank you all for your kindness, and a special thanks to this benefactor for your generosity, which allows this humble monk to present my poor skills. I’m currently staying at Tianhai Temple in the city; if any of you benefactors are interested, you can offer a few sticks of incense before the Buddha.”</p>
+<p>After speaking, he put his hands together in prayer and bowed to the crowd, as well as to the middle-aged performer who had presented earlier.</p>
+<p>Indeed, he took not a single coin from the money that had fallen to the ground, smiling as he walked back to his friends. He then displayed a look of helplessness, as if he wanted to admonish his friends but couldn’t find the words.</p>
+<p>The middle-aged performer, who had previously performed here, must have had some confidence to invite the monk to perform. Seeing everyone’s astonishment at the monk’s spell, he refused to admit defeat. He instructed his disciple to return the money picked up from the ground to the monk, saying it was for the incense offerings.</p>
+<p>When the monk flatly refused, he took it back and laughed, saying, “This master’s spell is impressive, undoubtedly a master of the craft. However, there are...</p>
+</article>
+<article id="c192" data-label="192">
+<h2 class="chapter">Chapter 192: Lady Calico Also Has to Guess the Lantern Riddles 🔒</h2>
+<p>This shop was a riverside brothel, and the one reading the riddles was a delicate, heavily made-up woman. At that moment, a middle-aged scholar was guessing, while most of the others around seemed to be there for the spectacle.</p>
+<p>“Oh, you…” Song You gently rubbed the cat&#39;s head and walked over with her.</p>
+<p>The lights here were particularly bright. The heavily made-up woman at the entrance was illuminated by the light, her face resembling a peach blossom, with a charming smile.</p>
+<p>She held a lantern and softly recited,</p>
+<p>“<em>At the foot of the steps, children stand,</em></p>
+<p><em>Gazing upward, in garments so grand.</em></p>
+<p><em>Dressed for the Qingming, in honor they gleam,</em></p>
+<p><em>A scene so serene, like a soft, fleeting dream.</em></p>
+<p><em>When the silk thread drifts and breaks with grace,</em></p>
+<p><em>Do not curse the east wind for its pace.</em></p>
+<p><em>For winds, like time, must move and sway,</em></p>
+<p><em>Carrying away what cannot stay.</em></p>
+<p>Sir, that’s the second riddle.”</p>
+<p>“When the silk thread drifts and breaks with grace, do not curse the east wind for its pace…” The middle-aged scholar muttered softly, without needing to ponder too deeply. He exclaimed, “Is it a kite?”</p>
+<p>“Exactly!”</p>
+<p>As soon as the words were spoken, some of the onlookers began to smile, likely because they had guessed the answer in their hearts. Others had a sudden realization, and after thinking it over carefully,...</p>
+</article>
+<article id="c193" data-label="193">
+<h2 class="chapter">Chapter 193: A Chance Encounter with an Old Friend 🔒</h2>
+<p>“This poem is simple yet neatly constructed and clever. It would be excellent for young children to learn,” a nearby scholar couldn’t help but voice his praise upon hearing. “May I ask where you heard it?”</p>
+<p>“It’s been too long; I’ve forgotten.”</p>
+<p>“What a pity…”</p>
+<p>“Indeed,” the Daoist said, feeling somewhat nostalgic.</p>
+<p>After passing by this person, he lowered his head, continuing to look at the cat in his arms. The cat was also staring up at him.</p>
+<p>“I don’t understand…” The soft voice was barely audible, only Song You could hear.</p>
+<p>“What it means is, from a distance, you can see the color of the mountain, but when you get closer, there’s no sound of water. So this thing has both mountains and water. But even after spring, the flowers won’t wither, and when a person walks by, the birds won’t fly away.” Song You gently guided, “What do you think it is, Lady Calico?”</p>
+<p>“What could it be?”</p>
+<p>“Should I give a hint to you, Lady Calico?”</p>
+<p>“Give me a hint!”</p>
+<p>“It’s something we have at home.”</p>
+<p>“Something we have at home!”</p>
+<p>“…”</p>
+<p>“…” The Daoist looked down at the cat, while the cat gazed back up at hi...</p>
+</article>
+<article id="c194" data-label="194">
+<h2 class="chapter">Chapter 194: Lady Calico and the Lighting Spell 🔒</h2>
+<p>It was only in the afternoon that Song You finally sent him away. Meanwhile, Lady Calico had already started studying upstairs.</p>
+<p>Song You ascended the stairs slowly, the wooden steps creaking underfoot.</p>
+<p>The little girl sat at the desk, which he usually occupied, her feet swinging back and forth rapidly. Strangely, her upper body was perfectly upright, creating a stark contrast between the two halves.</p>
+<p>On the desk lay several sheets of paper covered in writing, along with a sandbox. She was holding a willow branch, carefully copying the words on the paper.</p>
+<p>At that moment, the topmost word was “cat.”</p>
+<p>“Cat…” she murmured softly as she copied the word.</p>
+<p>After finishing one iteration, she paused, intently staring at the characters on the paper before glancing at her own writing on the sandbox. She went back and forth several times, focusing intently on each comparison for a long time. Only then did she use a bamboo stick to smooth the sand on the wooden tray, preparing to write it again with utmost care, striving for perfection.</p>
+<p>Song You’s footsteps came to a halt behind her. The little girl’s ears twitched, but she didn’t acknowledge him.</p>
+<p>The Daoist felt that this scene was truly...</p>
+</article>
+<article id="c195" data-label="195">
+<h2 class="chapter">Chapter 195: North or South 🔒</h2>
+<p>Changjing was growing colder day by day. Fortunately, the weather had been decent in recent days.</p>
+<p>The houses within Changjing were not as spacious as those outside the city, especially the residences of the shops in the western district, which lacked courtyards for drying cured meats and had to hang them outside instead. However, not many people made cured foods.</p>
+<p>In recent days, anyone passing through Willow Street could see the shop displaying the characters for “Dao” and the sign “Rodent Extermination,” with cured meats hanging at its entrance. After a few days, they added sausages and preserved meat.</p>
+<p>Strangely, there was often a cat lying in the sun at the entrance, sleeping, yet it never stole any meat. In fact, whenever other cats or dogs approached, it would immediately wake up and chase them away.</p>
+<p>Passersby found it quite remarkable. A writer of miscellaneous tales considered it one of the curiosities of Changjing and recorded it in his book.</p>
+<p>When the cat was absent, the Daoist would take its place. In any case, someone had to be there to keep watch.</p>
+<p>Sometimes both the Daoist and the cat were present, with the cat often sound asleep at the door, while the autumn winds sent countless leaves falling. The Daoist would sit on a stool...</p>
+</article>
+<article id="c196" data-label="196">
+<h2 class="chapter">Chapter 196: Visiting the Snake Immortal in the Snowstorm 🔒</h2>
+<p>In the mountain hollow, there was no wind; the surface of the lake was as calm as a mirror, with cold mist rising, and a small boat remained motionless on the water. An old man sat in the boat, holding a bamboo pole, and the fishing line sank into the water, causing not even a ripple.</p>
+<p>Suddenly, there was some movement on the water&#39;s surface.</p>
+<p>Song You stopped at the edge of the lake, raised his hand, and was about to greet the old man when a gust of wind blew by. The mist swirled with the wind, and then the lake surface cracked with a loud noise, forming a solid ice path that extended straight to the small boat.</p>
+<p>Song You then lowered his hand and stepped onto the ice path. The floating ice was unsteady, wobbling often, but it didn’t crack or sink. As he walked, it only sent out ripples in the water.</p>
+<p>The mirror-like ice was also disturbed. As Song You walked, he glanced back at the calico cat. He noticed that, although the cat felt apprehensive and doubted the strength of the ice, it followed him cautiously, which reassured him.</p>
+<p>When he reached the front of the boat, he performed his greeting once more.</p>
+<p>“I am Song You, the heir of the Hidden Dragon Temple from Lingquan County in Yizhou. Greetings, Snake Immortal.”</p>
+<p>“Please, come aboard,” the old man said.</p>
+<p>“Alright.” Only then...</p>
+</article>
+<article id="c197" data-label="197">
+<h2 class="chapter">Chapter 197: Thank You for Waiting 🔒</h2>
+<p>“I am Song You, from Changjing.” Song You stood in the woods, wearing a paper robe over his Daoist garb, snow already covering him as he looked at them.</p>
+<p>“Why would you be walking in the deep mountains during such a heavy snowstorm?” The middle-aged man curiously looked at him, feeling relaxed and unafraid. “Are you a spirit or demon of the mountains, or perhaps a divine immortal master from the outside world?”</p>
+<p>“I am just a Daoist.”</p>
+<p>“How did you end up in the deep mountains?”</p>
+<p>“Aren’t you also in the deep mountains?”</p>
+<p>“Pardon my rudeness.” The middle-aged man smiled and bowed. “I have long admired Doctor Cai and the Snake Immortal of Mount Beiqin. I heard that Doctor Cai is grateful for the Snake Immortal’s kindness, so he settled here. In return, the Snake Immortal often guides and protects him. Such deeds should be celebrated throughout the ages, and when I heard of them, I found them quite beautiful.”</p>
+<p>After a brief pause, he continued, “A few days ago, I came to Mount Beiqin to admire the snow. While descending the mountain, I encountered a hunter. We conversed, and the hunter informed me that there is a small lake on this mountain. He had seen the Snake Immortal fishing by the...</p>
+</article>
+<article id="c198" data-label="198">
+<h2 class="chapter">Chapter 198: The Destitute Fortune Teller 🔒</h2>
+<p>The middle-aged Daoist struggled to his feet, revealing the <em>jie </em>banner he had been using as a cushion for warmth underneath him. He glanced at Song You and immediately nodded, repeatedly saying, &#34;We’re leaving, we’re leaving...&#34;</p>
+<p>However, he stumbled, and he heard the voice of the young Daoist behind him just as he took two steps. “Changjing is vast, and the nights are long. Where are you going, fellow Daoist?”</p>
+<p>The middle-aged Daoist halted and turned around.</p>
+<p>Song You looked at him and, seeing his frail frame, said helplessly, “Fate must’ve brought us together. Please come in, fellow Daoist. Have a cup of hot water and something to eat to warm yourself before you go.”</p>
+<p>“…” The middle-aged Daoist met his gaze, his lips moving hesitantly. Finally, he raised his hand to salute, saying, “Thank you, fellow Daoist…”</p>
+<p>Song You then opened the door and led the horse inside. Lady Calico followed him over the threshold.</p>
+<p>The middle-aged Daoist trailed behind, feeling somewhat relieved upon discovering that Song You was also a Daoist.</p>
+<p>“Please take a seat.”</p>
+<p>Song You set down his pack and said, “Fellow Daoist, wait a moment while I go upstairs to get a heater and prepare some food for you.”</p>
+<p>He noticed the middle-aged Daoist looking at the jujube-red horse. “My horse is quite intelligent; it doesn’t need reins and won’t harm anyone, so you can rest assured,...</p>
+</article>
+<article id="c199" data-label="199">
+<h2 class="chapter">Chapter 199: The Heroine Returns and Talks About the Events at Mount Ye 🔒</h2>
+<p>Song You turned around and closed the door, then opened the scroll to bring in the jujube-red horse and the calico cat. He found a piece of uninhabited land rich in water and pasture so the jujube-red horse could stay for some time before returning with the calico cat.</p>
+<p>After closing the window to block the cold wind, he got into bed and tucked himself under the covers, pondering his thoughts while trying to drift off to sleep.</p>
+<p>In the summer, the calico cat felt like a hot iron, burning when she lay next to him. But in the cold winter, she turned into a warm companion, providing plenty of warmth for the chilly nights.</p>
+<p>Suddenly, some sounds came from downstairs. He heard the sound of a key turning in a lock, followed by the noise of a door opening and closing.</p>
+<p>The calico cat was more alert than he was, lifting her head early to listen with perked ears. When she saw the Daoist had also opened his eyes, she said, “That woman has returned!”</p>
+<p>“Mm…” The Daoist didn’t think much of it and continued to keep his eyes closed.</p>
+<p>There were indeed some noises from next door.</p>
+<p>Although Heroine Wu had been gone for a long time—from late summer to winter, for several months, almost reaching the half-year she had mentioned—she was always alert and highly skilled. While Song You couldn’t know what...</p>
+</article>
+<article id="c200" data-label="200">
+<span id="last"></span>
+<h2 class="chapter">Chapter 200: Tea and Guidance 🔒</h2>
+<p>“<em>Like a tiger, it climbs the trees,</em></p>
+<p><em>Twisting round the trunk with grace and ease.</em></p>
+<p><em>Like a young colt, free and untamed,</em></p>
+<p><em>No harness needed, no reins to be claimed.</em></p>
+<p><em>It hunts for mice, swift and sure,</em></p>
+<p><em>But fish is a hunt it won’t endure.</em>”</p>
+<p>The night had slowly deepened. The cat lay flat on the bed, all four paws facing the sky, softly reciting poetry while gazing at the tiled roof.</p>
+<p>As it recited, it turned over and glanced at the paper beside it. “But fish is a hunt it won’t endure!”</p>
+<p>Song You sat cross-legged on the bed, feeling very calm inside.</p>
+<p>Today marked the <em>Daxue</em>[1], and Heroine Wu had already returned, but the scholar ghost was still missing.</p>
+<p>Fengzhou wasn’t actually far. A journey of over a thousand li would take Song You about a month for a round trip, which an ordinary person could complete in about a month as well.</p>
+<p>However, according to Heroine Wu, Mount Ye was remote, with many mountains and difficult paths, and there were no waterways. Sometimes, there weren’t even places to stay, and the official post stations were quite desolate, which meant it would take more time. An ordinary traveler would need at least one and a half to two months to make the round trip.</p>
+<p>Ghosts, unless they had special abilities, actually traveled no faster than humans; they too needed to walk slowly.</p>
+<p>Additionally, ghosts had to avoid the times just after...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="201-250.html" rel="next">Next: Chs 201–250 &rarr;</a>
+    <p class="page-end-links"><a href="101-150.html" rel="prev">&larr; Chs 101–150</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Unintended Immortality · Chs 151–200</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c151">Chapter 151: Go Upstairs and Sleep First 🔒</a></li>
+        <li><a href="#c152">Chapter 152: The Portrait Becomes a Living Thing 🔒</a></li>
+        <li><a href="#c153">Chapter 153: Giving Punishment 🔒</a></li>
+        <li><a href="#c154">Chapter 154: The Jianghu and the Painter 🔒</a></li>
+        <li><a href="#c155">Chapter 155: A Midnight Conversation in the Palace 🔒</a></li>
+        <li><a href="#c156">Chapter 156: A Half-Day Tour of the Imperial Palace 🔒</a></li>
+        <li><a href="#c157">Chapter 157: A Nightly Conversation of Timeless Matters with the Emperor 🔒</a></li>
+        <li><a href="#c158">Chapter 158: A Brush with History 🔒</a></li>
+        <li><a href="#c159">Chapter 159: Lying Low 🔒</a></li>
+        <li><a href="#c160">Chapter 160: The Princess and the Qin Master 🔒</a></li>
+        <li><a href="#c161">Chapter 161: Seeking the Divine Doctor at Mount Beiqin 🔒</a></li>
+        <li><a href="#c162">Chapter 162: No One Knows the Outcome Until the Very End 🔒</a></li>
+        <li><a href="#c163">Chapter 163: The Incomparable Painting 🔒</a></li>
+        <li><a href="#c164">Chapter 164: Entrust to the Immortal Master 🔒</a></li>
+        <li><a href="#c165">Chapter 165: There are Six Instead of Five Heroes of Angzhou 🔒</a></li>
+        <li><a href="#c166">Chapter 166: Treasure Seizing in the Jianghu 🔒</a></li>
+        <li><a href="#c167">Chapter 167: The Snake Immortal of Mount Beiqin Comes to Aid 🔒</a></li>
+        <li><a href="#c168">Chapter 168: The Changjing Ghost Market 🔒</a></li>
+        <li><a href="#c169">Chapter 169: The Ghostface Grass of Mount Ye in Fengzhou 🔒</a></li>
+        <li><a href="#c170">Chapter 170: Ghostly Visit at Midnight 🔒</a></li>
+        <li><a href="#c171">Chapter 171: Asking a Ghost for Help 🔒</a></li>
+        <li><a href="#c172">Chapter 172: Rainbow After the Rain 🔒</a></li>
+        <li><a href="#c173">Chapter 173: General Chen&#39;s Probing 🔒</a></li>
+        <li><a href="#c174">Chapter 174: Cui Nanxi&#39;s Yunding Mountain Stories 🔒</a></li>
+        <li><a href="#c175">Chapter 175: Tea at the Anle Pavilion 🔒</a></li>
+        <li><a href="#c176">Chapter 176: Do You Eat Monitor Lizards? 🔒</a></li>
+        <li><a href="#c177">Chapter 177: The Disguise of an Unparalleled Beauty 🔒</a></li>
+        <li><a href="#c178">Chapter 178: It’s Excellent, Of Course 🔒</a></li>
+        <li><a href="#c179">Chapter 179: The Little Mouse and the Great Mouse 🔒</a></li>
+        <li><a href="#c180">Chapter 180: An Unusual Day 🔒</a></li>
+        <li><a href="#c181">Chapter 181: The World Within the Painting 🔒</a></li>
+        <li><a href="#c182">Chapter 182: Reunion with Sir Dou 🔒</a></li>
+        <li><a href="#c183">Chapter 183: I Have No Way to Repay You, so I Will Gift You a Stroke of Immortal Magic 🔒</a></li>
+        <li><a href="#c184">Chapter 184: From This Day Forth, Peach Blossoms 🔒</a></li>
+        <li><a href="#c185">Chapter 185: Lady Calico Turns Another Year Older 🔒</a></li>
+        <li><a href="#c186">Chapter 186: Drifting Down the River And A Brief Talk on Immortality 🔒</a></li>
+        <li><a href="#c187">Chapter 187: Changjing Enters Autumn 🔒</a></li>
+        <li><a href="#c188">Chapter 188: The General&#39;s Dream 🔒</a></li>
+        <li><a href="#c189">Chapter 189: The Transformation of Heavenly Dao 🔒</a></li>
+        <li><a href="#c190">Chapter 190: The Mid-Autumn Lantern Festival and the Mysterious Person 🔒</a></li>
+        <li><a href="#c191">Chapter 191: Can a Cat That Spits Fire Make Money? 🔒</a></li>
+        <li><a href="#c192">Chapter 192: Lady Calico Also Has to Guess the Lantern Riddles 🔒</a></li>
+        <li><a href="#c193">Chapter 193: A Chance Encounter with an Old Friend 🔒</a></li>
+        <li><a href="#c194">Chapter 194: Lady Calico and the Lighting Spell 🔒</a></li>
+        <li><a href="#c195">Chapter 195: North or South 🔒</a></li>
+        <li><a href="#c196">Chapter 196: Visiting the Snake Immortal in the Snowstorm 🔒</a></li>
+        <li><a href="#c197">Chapter 197: Thank You for Waiting 🔒</a></li>
+        <li><a href="#c198">Chapter 198: The Destitute Fortune Teller 🔒</a></li>
+        <li><a href="#c199">Chapter 199: The Heroine Returns and Talks About the Events at Mount Ye 🔒</a></li>
+        <li><a href="#c200">Chapter 200: Tea and Guidance 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="101-150.html" rel="prev">&larr; Chs 101–150</a>    <a href="../../index.html">Library</a>
+<a href="201-250.html" rel="next">Chs 201–250 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

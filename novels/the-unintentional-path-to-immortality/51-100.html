@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unintended Immortality Chs 51–100</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1-50.html#last" data-next-page="101-150.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c51">Chapter 51: Demon Exorcism in the First Month of the Second Year of Mingde 🔒</a></li>
+        <li><a href="#c52">Chapter 52: The Jianghu is Everywhere 🔒</a></li>
+        <li><a href="#c53">Chapter 53: No Need to Spell Everything Out 🔒</a></li>
+        <li><a href="#c54">Chapter 54: Immortality and Dust 🔒</a></li>
+        <li><a href="#c55">Chapter 55: Stillness and Movement 🔒</a></li>
+        <li><a href="#c56">Chapter 56: I Am No Longer Interested in Swallows 🔒</a></li>
+        <li><a href="#c57">Chapter 57: The Swallow Youth 🔒</a></li>
+        <li><a href="#c58">Chapter 58: A Wonderful Journey 🔒</a></li>
+        <li><a href="#c59">Chapter 59: Just a Night Stroll 🔒</a></li>
+        <li><a href="#c60">Chapter 60: How Could a Common Person Understand an Immortal&#39;s Intent 🔒</a></li>
+        <li><a href="#c61">Chapter 61: Jianghu Affairs Are Also Mankind’s Affairs 🔒</a></li>
+        <li><a href="#c62">Chapter 62: The Humble Learns from Everyone 🔒</a></li>
+        <li><a href="#c63">Chapter 63: Far From Ordinary 🔒</a></li>
+        <li><a href="#c64">Chapter 64: Daoist Priest Maojuzi and Cang&#39;erzi 🔒</a></li>
+        <li><a href="#c65">Chapter 65: The Mortuary and the Swordsman 🔒</a></li>
+        <li><a href="#c66">Chapter 66: The Grace of the Swordsman 🔒</a></li>
+        <li><a href="#c67">Chapter 67: The Familiar Jianghu Grudges 🔒</a></li>
+        <li><a href="#c68">Chapter 68: Must Have Met an Immortal 🔒</a></li>
+        <li><a href="#c69">Chapter 69: Mountains Beyond Mountains, Immortals Beyond Humans 🔒</a></li>
+        <li><a href="#c70">Chapter 70: Poor Commoners Do Not Keep Idle Gods 🔒</a></li>
+        <li><a href="#c71">Chapter 71: What’s the Harm in Walking a Little Further? 🔒</a></li>
+        <li><a href="#c72">Chapter 72: Spring Equinox in the Second Year of Mingde—Arriving at Pingzhou 🔒</a></li>
+        <li><a href="#c73">Chapter 73: The Market of Demons and Ghosts in the Mountains 🔒</a></li>
+        <li><a href="#c74">Chapter 74: The Diversity of Beings 🔒</a></li>
+        <li><a href="#c75">Chapter 75: Casual Conversation with a Ghost 🔒</a></li>
+        <li><a href="#c76">Chapter 76: An Unremarkable Way of Reformation 🔒</a></li>
+        <li><a href="#c77">Chapter 77: Are You All Humans or Demons? 🔒</a></li>
+        <li><a href="#c78">Chapter 78: They Could All Be Regarded as Immortals 🔒</a></li>
+        <li><a href="#c79">Chapter 79: The Mountain God by the Roadside 🔒</a></li>
+        <li><a href="#c80">Chapter 80: Toasting to the East Wind at Dusk 🔒</a></li>
+        <li><a href="#c81">Chapter 81: Night Rain in Southern Art County 🔒</a></li>
+        <li><a href="#c82">Chapter 82: Lord Li and the Clever Immortal 🔒</a></li>
+        <li><a href="#c83">Chapter 83: The Charm of Money 🔒</a></li>
+        <li><a href="#c84">Chapter 84: Catching Mice at Night 🔒</a></li>
+        <li><a href="#c85">Chapter 85: The Unreliable Clever Immortal 🔒</a></li>
+        <li><a href="#c86">Chapter 86: Clear Conscience 🔒</a></li>
+        <li><a href="#c87">Chapter 87: Journey to Yunding Mountain 🔒</a></li>
+        <li><a href="#c88">Chapter 88: Changsheng County at the Foot of Yunding Mountain 🔒</a></li>
+        <li><a href="#c89">Chapter 89: It Doesn’t Matter if There Are Gods or Immortals 🔒</a></li>
+        <li><a href="#c90">Chapter 90: Visitors on Yunding Mountain 🔒</a></li>
+        <li><a href="#c91">Chapter 91: Likely Closer to the Immortals 🔒</a></li>
+        <li><a href="#c92">Chapter 92: The Distant Green Pines and Dark Hills Without Splendor 🔒</a></li>
+        <li><a href="#c93">Chapter 93: Realizations of Dao at the Summit of Yunding Mountain 🔒</a></li>
+        <li><a href="#c94">Chapter 94: Deep Mountains and the Mortal Realm 🔒</a></li>
+        <li><a href="#c95">Chapter 95: There’s a Banished Immortal in the Human Realm 🔒</a></li>
+        <li><a href="#c96">Chapter 96: The Mirror Goddess Extends an Invitation 🔒</a></li>
+        <li><a href="#c97">Chapter 97: The Frog God by the Lake 🔒</a></li>
+        <li><a href="#c98">Chapter 98: Inviting Thunder God to Come Out and Meet 🔒</a></li>
+        <li><a href="#c99">Chapter 99: The Heavenly Palace and the Thunder God 🔒</a></li>
+        <li><a href="#c100">Chapter 100: Don&#39;t Think You’re the First to Rise 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="the-unintentional-path-to-immortality">
+<article id="c51" data-label="51">
+<h2 class="chapter">Chapter 51: Demon Exorcism in the First Month of the Second Year of Mingde 🔒</h2>
+<p>Not even half a li ahead, there was a small path on the left leading to the riverbank.</p>
+<p>This was the original Lingbo ferry crossing.</p>
+<p>The ferry crossing was small, just a set of steps for people to get on and off, and the path was very narrow. It had been abandoned for a long time, overgrown with weeds and obstructed by tree branches. One had to shield their face while passing through.</p>
+<p>The shepherd boy rode his water buffalo down the path.</p>
+<p>He did not encounter the Daoist priest on his way back.</p>
+<p>The shepherd boy hoped that he had gone too far before turning back earlier and that the Daoist priest had already finished washing his hands and returned to the main road before he himself had entered the path. He hoped he was now heading toward Anqing County and not lingering by the river or met with some accident. Despite their brief conversation, the Daoist priest&#39;s gentleness and praise had touched him.</p>
+<p>As he neared the riverbank, he heard splashing.</p>
+<p>The shepherd boy brushed away the last layer of branches and weeds and looked toward the river, only to be startled…</p>
+<p>He saw a man in a Daoist robe flailing in the water, seemingly having fallen in accidentally and unable to swim. He was already choking...</p>
+</article>
+<article id="c52" data-label="52">
+<h2 class="chapter">Chapter 52: The Jianghu is Everywhere 🔒</h2>
+<p>A group of people gathered around the stove, eating beef with chopsticks in one hand and gnawing on steamed buns brought by Chen Han and his wife with the other.</p>
+<p>The woman was a <em>jianghu</em> person who always did not take things to heart. Moreover, she had provided meat and did the work, so she had no reservations. She was eating the meat in big bites without concern for etiquette or her image.</p>
+<p>The Chen family was initially somewhat restrained. After all, they had only provided the steamed buns, and they already owed the Daoist priest and the heroine a favor. Now, they even had to cook for their family, which really made them feel very apologetic. However, Song You&#39;s cooking skills were truly ahead of this era. Faced with such delicious food, their restraint lessened.</p>
+<p>Song You&#39;s cooking skills were indeed exceptional. Not to mention this era, even in the previous world with such a variety of seasonings, abundant and easy-to-obtain ingredients, and convenient information exchange, the level of cooking skills nationwide was still uneven, with no shortage of culinary low points.</p>
+<p>No one wanted to admit that the food from their province was bad, but most acknowledged that people from certain provinces were better at cooking.</p>
+<p>This was even more true for this era.</p>
+<p>Song You even spent a lot of money buying...</p>
+</article>
+<article id="c53" data-label="53">
+<h2 class="chapter">Chapter 53: No Need to Spell Everything Out 🔒</h2>
+<p>“There are still several dozen li of mountain road to Anqing. If we walk slowly, even if we make it, we might not be able to enter the city in time,” the woman said to Song You. “If we ride the horses and gallop, we actually would be able to enter the city, but we&#39;d miss out on the scenery close to Anqing along the way. What do you choose?”</p>
+<p>“I came out to travel the world and wish to enjoy the scenery.”</p>
+<p>“A wise choice.”</p>
+<p>The woman led her horse forward. “My master said that from Lingbo to Anqing, the last stretch before reaching Anqing is known as the ‘Ten Li Gallery’. The morning and evening scenery each has its merits. Besides, with so many <em>jianghu</em> people flooding into Anqing now, even though the city often has many tourists and plenty of inns and guesthouses, they might still be overwhelmed. Even the dilapidated temples outside the city could be full, and there might be no place to stay even if we get into the city.”</p>
+<p>“That makes sense.” Song You replied softly.</p>
+<p>Hearing the woman speak so seriously, including the time when she was negotiating with the mountain bandits yesterday, actually Song You could only...</p>
+</article>
+<article id="c54" data-label="54">
+<h2 class="chapter">Chapter 54: Immortality and Dust 🔒</h2>
+<p>“No rooms left...”</p>
+<p>“Sorry, sir.”</p>
+<p>“We&#39;ve been fully booked for a while.”</p>
+<p>“There are no rooms left in the city.”</p>
+<p>“All full...all full”</p>
+<p>“Oh dear, sir, I&#39;m really sorry. Our place doesn&#39;t even have room in the wood shed! Recently, there&#39;s the Great Liujiang Gathering outside the city, and many <em>jianghu</em> people from all over have come. Every guest-house in the city is packed, even the simple inns and temples outside the city are full. Many <em>jianghu</em> people are just simply finding a spot in the alleys, and spreading out whatever bedding they have, or just sleeping under the sky and on the ground.”</p>
+<p>After asking around for a long time, all Song You got was a series of refusals.</p>
+<p>Maybe people had been asked too many times about rooms recently, and some were starting to lose patience, though they weren&#39;t being dismissive.</p>
+<p>The last innkeeper was kinder. Seeing that Song You was a Daoist, he spoke to him at length and finally said, “If you really don&#39;t want to sleep on the streets, I can offer you two suggestions.”</p>
+<p>Song You immediately bowed. “Please, tell me.”</p>
+<p>“First, you could try knocking on the doors of the local residents. Some quick-witted folks without womenfolk in the house have prepared extra beds in their homes to rent to <em>jianghu</em> people, making some money that...</p>
+</article>
+<article id="c55" data-label="55">
+<h2 class="chapter">Chapter 55: Stillness and Movement 🔒</h2>
+<p>“Creak…”</p>
+<p>Song You pushed open the door to his room.</p>
+<p>The room was very spacious. As soon as he entered, he could tell the bedding had just been taken out from the closet. Zoujiao Temple probably rarely hosted overnight guests, so the bedding had absorbed the closet&#39;s smell over time. Upon being taken out and shaken open, the smell dispersed into the room. It was a woody smell, but not unpleasant.</p>
+<p>“Ah...” Song You sighed in relief and lay down on the bed.</p>
+<p>The feeling of lying on a bed was indeed completely different.</p>
+<p>However, he had just lay down and hadn&#39;t had the chance to enjoy the sensation when he felt the calico cat pawing at his trouser leg. Understanding, he sat up and picked her up to wipe her paws.</p>
+<p>Actually, this process was quite enjoyable.</p>
+<p>As he wiped, Song You asked, “Did the heroine notice something about you during the day, Lady Calico?”</p>
+<p>“She figured it out a long time ago.” The calico cat lay obediently, her voice soft and clear.</p>
+<p>“How did she figure it out?”</p>
+<p>“I don&#39;t know.”</p>
+<p>“Then how do you know she has long figured it out?”</p>
+<p>“Because she kept talking to me.”</p>
+<p>“I see...” Song You couldn&#39;t help but laugh.</p>
+<p>It seemed the cat didn&#39;t quite understand people yet. Actually, talking to cats was completely normal for people.</p>
+<p>Lady...</p>
+</article>
+<article id="c56" data-label="56">
+<h2 class="chapter">Chapter 56: I Am No Longer Interested in Swallows 🔒</h2>
+<p>As evening approached, the rain fell heavier than it had during the day. It drummed dully on the oil-paper umbrella, a sound that brought a sense of calm.</p>
+<p>Song You walked slowly, lost in thought.</p>
+<p>The trick on Mati Mountain was truly ingenious. Even with his level of Daoist cultivation, he had only seen the small path and the pavilion but hadn&#39;t noticed the mysterious principles within. He felt that whoever had arranged it must have considerable expertise.</p>
+<p>Of course, it was not necessarily so.</p>
+<p>Every kind of magic in the world each has their own mysterious principle, much like the countless fields of knowledge and professions. Who can master them all?</p>
+<p>Especially in this age of inaccessible information, once one’s knowledge and experience reach a certain level, further progress truly requires seeing with one&#39;s own eyes, spending time, and using one&#39;s heart to comprehend. Even immortals of a thousand years wouldn&#39;t claim to fully understand all the world&#39;s arcane arts. Moreover, Song You had only been here for a little over twenty years. There were many methods in the world that he didn’t know, nor were they recorded in Hidden Dragon Temple.</p>
+<p>Having profound cultivation skills doesn&#39;t mean being able to understand the principles behind all things. Cultivation is cultivation, knowledge is knowledge, experience is experience, and level of attainment...</p>
+</article>
+<article id="c57" data-label="57">
+<h2 class="chapter">Chapter 57: The Swallow Youth 🔒</h2>
+<p>Early next morning, the weather was cloudy.</p>
+<p>The martial arts competitions of the Great Liujiang Gathering would last for three days, and today many <em>jianghu</em> people were heading to the Swallow Immortal Terrace again.</p>
+<p>Song You saw the pavilion again, and he saw the small winding path leading to it. However, today there was no hazy mist, and everything appeared very clear.</p>
+<p>He had no worries and continued to walk up.</p>
+<p>It didn&#39;t take long before he arrived at the pavilion.</p>
+<p>He sat cross-legged again, quietly observing the scenery.</p>
+<p>Anqing&#39;s mountains and rivers were beautiful in both clear and rainy weather, each having its own charm.</p>
+<p>Not long after, a swallow flew in from somewhere in the sky, still flying randomly, up and down, left and right, but never leaving the sky above Swallow Immortal Terrace. This reminded Song You of summer evenings when swallows would always be flying and frolicking in the sky agilely like this, giving people a sense of freedom and carefree existence.</p>
+<p>Song You stood up and brushed off the dust.</p>
+<p>He cupped his hands and bowed to the sky, saying, “You have lingered here for a long time, why not come down for a chat?”</p>
+<p>The swallow continued to fly randomly in the sky.</p>
+<p>Some of the <em>jianghu</em> people below were also amazed…</p>
+<p>It was indeed too early in...</p>
+</article>
+<article id="c58" data-label="58">
+<h2 class="chapter">Chapter 58: A Wonderful Journey 🔒</h2>
+<p>At dusk, on Mati Mountain.</p>
+<p>A swallow hovered above the clouds, circling repeatedly, rehearsing in his mind how to speak and act in the upcoming meeting to ensure no mistakes. Then he finally descended through the clouds and flew into the pavilion.</p>
+<p>The <em>jianghu</em> people on Swallow Immortal Terrace below had mostly dispersed long ago, leaving only a few individuals either sparring, discussing matters, or strolling around chatting.</p>
+<p>Inside the pavilion, a young Daoist sat cross-legged on the floor with his eyes closed.</p>
+<p>A calico cat was on the left side of the pavilion, stretching lazily with her torso low and her rear raised. After stretching, she shook her head so vigorously that her facial features became a blur.</p>
+<p>The swallow landed on the far right of the pavilion and transformed into a youth.</p>
+<p>The young Daoist also opened his eyes. “Greetings,” he said.</p>
+<p>“Sorry to keep you waiting, Mister. I…” The words he had rehearsed vanished inexplicably from his mind.</p>
+<p>The boy fell silent for a moment, then bowed and extended his hand, offering a small red pill on his palm. “Mister, please take this pill.”</p>
+<p>Song You accepted it, took a brief look, and then said to the cat beside him, “Lady Calico, please stay here. I&#39;ll be away for a while. However, my body will remain here, so don&#39;t think I&#39;m dead…”</p>
+<p>The calico cat turned her head to look at him. “What?”</p>
+<p>Song You shook his head and swallowed the pill.</p>
+<p>The world shook violently, and his soul left his body.</p>
+<p>The world was still the same world, the colors were...</p>
+</article>
+<article id="c59" data-label="59">
+<h2 class="chapter">Chapter 59: Just a Night Stroll 🔒</h2>
+<p>“Sigh...” The old Swallow Immortal let out a long sigh, raised his cup to drink, but then put it down and said to him, “Pity me, though I borrowed some astrological insight from Daoist friend Tiansuan to benefit this region, in the end, I am still an anomaly, feared by the Heavenly Palace. Distributing grain from the official storehouses had also displeased the court of this world...”</p>
+<p>The hint of sorrow in his voice was inevitable.</p>
+<p>“Pity my kind who are barn swallows to begin with. We have always coexisted closely with humans since ancient times. How could we, unlike other transformed demons, commit acts harmful to humanity?”</p>
+<p>Song You thought to himself, as expected.</p>
+<p>However, he didn&#39;t show it and remained respectful, merely asking, “Swallow Immortal, you had ensured the weather for the area back then, already benefiting countless lives. Why did you also take the risk of taking grain from official storehouses elsewhere? You must know that if the emperor at the time had the same temperament as the current emperor, he would have never let you off easily.”</p>
+<p>“How could I not know?”</p>
+<p>Swallow Immortal sighed again, “But I had an agreement with Daoist friend Tiansuan to do my utmost not to let anyone in this area starve to death. I am not human and already feared by them. If I were also untrustworthy and unrighteous, how could I have established a place in this world for nine hundred years?”</p>
+<p>“Swallow Immortal, you are righteous,” Song You said sincerely.</p>
+<p>Such...</p>
+</article>
+<article id="c60" data-label="60">
+<h2 class="chapter">Chapter 60: How Could a Common Person Understand an Immortal&#39;s Intent 🔒</h2>
+<p>Song You walked forward.</p>
+<p>In the night, the starlight was faint, and he couldn’t actually see the grasses and trees by the roadside clearly, but there was no need to see them clearly.</p>
+<p>Everything was already in his heart…</p>
+<p>Plum, orchid, bamboo, and chrysanthemum; pine, cypress, poplar, and willow.</p>
+<p>The alfalfa that the jujube-red horse loved to eat, the dandelion he had just picked today on Mati Mountain…Oh right, there were wild chrysanthemums blooming on that small path going up the mountain.</p>
+<p>Narcissus, Chinese rose[1], lotus, and Chinese peony[2].</p>
+<p>Mandarin oranges, pomelos, peas, and cucumbers.</p>
+<p>These familiar things...</p>
+<p>Song You turned his head to look at the old Swallow Immortal and asked again. “Are there people across the sea?”</p>
+<p>“Naturally, there are. Some places even trade with Great Yan or declare themselves our vassals.”</p>
+<p>“And other lands?”</p>
+<p>“Of course,” The old Swallow Immortal replied. “Not only are there people, but also prosperous dynasties. They just have different customs from this place. The people also look different, and they worship different gods.”</p>
+<p>“Do they also eat rice?”</p>
+<p>“Naturally not...” At this point, the old Swallow Immortal suddenly widened his eyes.</p>
+<p>“You have been to all the places swallows have...</p>
+</article>
+<article id="c61" data-label="61">
+<h2 class="chapter">Chapter 61: Jianghu Affairs Are Also Mankind’s Affairs 🔒</h2>
+<p>The third day of the Great Liujiang Gathering was also the final day of the martial arts competition. Song You did not go to the pavilion halfway up the mountain. Instead, he accepted the enthusiastic invitation of Heroine Wu and went with her to observe the event from the center of Swallow Immortal Terrace.</p>
+<p>This spot, at the edge of the yin-yang symbol, was exclusively reserved for Xishan Sect. The martial arts competition took place on the yin-yang symbol in front of them, so they had a clear view, and even the wind from punches and sword slashes could brush past their heads.</p>
+<p>Xishan Sect arrived with dozens of skilled fighters. Daoism was popular in Yizhou, so Xishan Sect maintained good relations with several Daoist temples on Qingcheng Mountain. Song You, being a Daoist and a native of Yizhou, was greeted by the sect leader and Heroine Wu’s master. They exchanged a few words with him about Qingcheng Mountain and its temples before taking their seats.</p>
+<p>There weren’t many chairs, and most were occupied by the leaders and elders of various major sects and other distinguished guests. Those with lesser standing either stood at the back or sat on the ground in the front, as formality was not a concern. Heroine Wu sat cross-legged on the ground at the very front, and as her guest, Song You sat beside her. A calico...</p>
+</article>
+<article id="c62" data-label="62">
+<h2 class="chapter">Chapter 62: The Humble Learns from Everyone 🔒</h2>
+<p>“Lady Calico,” Song You said.</p>
+<p>“<em>Meow</em>?”</p>
+<p>“Stop crossing your paws, let&#39;s go.”</p>
+<p>“<em>Meow</em>...” The calico cat immediately got up and followed him. The <em>jianghu</em> people around them found it quite amusing.</p>
+<p>Master Chen watched as Song You left. After savoring the moment, he turned his gaze to Heroine Wu. “It’s truly fate that you’re able to meet in the <em>jianghu</em>. He’s such a remarkable person too. Why didn’t you invite him to stay for dinner? People might think the Xishan Sect is stingy and lacks hospitality.”</p>
+<p>“Master, you must be hard of hearing.” Heroine Wu pretended to bow respectfully. “I did invite him, but he had other matters to attend to and couldn&#39;t join us.”</p>
+<p>“Does he think our food is subpar?”</p>
+<p>“He said the Daoist monk at the temple where he stayed yesterday picked some mushrooms. This morning, the monk invited him to return early to eat them.”</p>
+<p>“Mountain mushrooms? Stewed in chicken soup, they might indeed taste better than our food. If made into a tofu and egg soup, it’s comparable to what we have. However, when stir-fried, they might fall a bit short in comparison.” Master Chen leisurely stretched his neck, speaking in a thick accent. “But since he agreed, it&#39;s not right...</p>
+</article>
+<article id="c63" data-label="63">
+<h2 class="chapter">Chapter 63: Far From Ordinary 🔒</h2>
+<p>That noon, in a city in Anqing County…</p>
+<p>There was an inn near the north gate of the city, which was quite easy to find. Opposite the inn was a meat soup restaurant, one of the better dining spots in Anqing County.</p>
+<p>At a table made of aged elm wood, Song You and Heroine Wu sat across from each other on the wide benches. The calico cat, Lady Calico, crouched by the side of Song You&#39;s bench. Since they were eating out, she couldn’t sit at the table but didn’t run around either.</p>
+<p>Song You brought her a deep dish and placed it in front of her. Inside was a large chunk of dragon bone, with half of the dish filled with soup. She crouched down and ate in a serious manner.</p>
+<p>On the table was a large pot of pork bone and radish soup. The bones were primarily big chunks of thigh bones and dragon bones, covered with plenty of meat, all simmered until tender. The white radish had turned semi-transparent, soaking up the meat broth and tasting just as good as the meat. The clear broth, dotted with scum, was garnished with jade-green spring onions. Its color made it look very appetizing.</p>
+<p>“<em>Slurp</em>...”</p>
+<p>Heroine Wu held a thigh bone in her left hand and brought it to her mouth. With...</p>
+</article>
+<article id="c64" data-label="64">
+<h2 class="chapter">Chapter 64: Daoist Priest Maojuzi and Cang&#39;erzi 🔒</h2>
+<p>Inside a tailor&#39;s shop in the city, Song You had just gathered his thoughts and was now standing in front of an old granny. He was showing her some measurements, explaining that he wanted something similar to a <em>dalian</em> to be sewn onto a saddle bag.</p>
+<p>“About this size...” he gestured.</p>
+<p>The old granny squinted and carefully examined the measurements before pulling out a ruler. “It’s bigger than a wallet,” she remarked.</p>
+<p>“Yes, it shouldn’t be too flat.”</p>
+<p>“Are you planning to carry something large, sir?” she asked.</p>
+<p>“Yes.”</p>
+<p>“How big?” she inquired.</p>
+<p>“About...”</p>
+<p>“<em>Meow</em>!” A cat pawed at his robe.</p>
+<p>Song You looked down and understood immediately. He picked up the cat and held it up to show it to the old granny.</p>
+<p>“To carry this,” he explained.</p>
+<p>“You want it to be sewn onto a horse’s saddle bag?” she confirmed.</p>
+<p>“I&#39;m taking her on a long journey,” he replied.</p>
+<p>“Understood,” the granny said confidently, waving her hand.</p>
+<p>“Thank you, granny,” Song You said. He trusted the expertise of the seasoned craftswoman. After leaving a deposit and agreeing on a time to bring the saddle bag for sewing, he left with the calico cat.</p>
+<hr class="separator">
+<p>A few days later, Song You had nearly mastered the swallows&#39; flight techniques. Besides gaining a new skill, he had also experienced a fresh perspective and gained new insights. He had truly learned a lot.</p>
+<p>It was time to leave. With Qingyangzi&#39;s permission, Song You went to the backyard of the Daoist temple. The yard and its surroundings were...</p>
+</article>
+<article id="c65" data-label="65">
+<h2 class="chapter">Chapter 65: The Mortuary and the Swordsman 🔒</h2>
+<p>The green hills stood like ink against the sky, enveloped in serene clouds.</p>
+<p>On a dirt path in the mountains, a Daoist priest walked ahead, with a horse following closely behind. The path was only three to five chi wide and often broken or collapsed in places. While the man had no trouble walking, the jujube-red horse had to tread carefully.</p>
+<p>A swallow circled above them. The weather was pleasantly cool today.</p>
+<p>Song You glanced up at the sky, unable to discern much from it. Yet, sensing the changes in the spiritual qi of the world and the cyclical nature of the seasons, he felt that the weather wouldn&#39;t remain clear for long.</p>
+<p>Whether it stayed sunny or turned rainy, it made little difference to him. Song You continued his leisurely pace forward.</p>
+<p>Where was he heading? To be honest, he didn&#39;t know. He just walked south.</p>
+<p>Seeing a cluster of thorny moss growing by the roadside, Song You casually broke off a few stems as he passed by. The bamboo shoots that had just sprouted in the spring were indeed tender and crisp. Avoiding the thorns, he gently snapped them off without needing to use much force.</p>
+<p>Thorny moss was similar to roses in appearance, and they also looked alike. The tender shoots that sprouted in spring and autumn were edible. They were about the thickness of chopsticks.</p>
+<p>With a gentle snap, you could peel off the outer skin, revealing a tender,...</p>
+</article>
+<article id="c66" data-label="66">
+<h2 class="chapter">Chapter 66: The Grace of the Swordsman 🔒</h2>
+<p>This was the first thunder peal of the year.</p>
+<p>“<em>Rumble</em>...”</p>
+<p>Spring thunder rolled continuously. It sounded like a giant stone roller was moving across the sky.</p>
+<p>The swordsman&#39;s brow furrowed tighter as he glanced several times at the coffin behind him, then at the Daoist standing at the doorway.</p>
+<p>The Daoist wasn&#39;t old, seemingly about the same age as him, though he appeared much younger.</p>
+<p>In front of him was a fire, kept burning small apparently to save firewood. He had a bamboo staff and a bedding bag full of belongings. A cloth bag was sewn onto the bedding bag. It contained a calico cat, which the swordsman had seen a few days ago at the Great Liujiang Gathering. The cat was pretty and poked its head out of the cloth bag at that moment, tilting its head and staring straight at him.</p>
+<p>He had known for a few days that this Daoist was no ordinary person.</p>
+<p>When he entered the door earlier, although the sky was very dark, he vaguely saw a swallow in the nest under the eaves. There had also been a swallow in the sky these few days, a rare sight for this season.</p>
+<p>At that moment, he saw the Daoist reach into his bedding bag as if to take something out.</p>
+<p>The swordsman squinted his eyes until he saw that he was just taking out two steamed buns and some wild fruits. He relaxed somewhat but then noticed a pair of shoes in the bedding...</p>
+</article>
+<article id="c67" data-label="67">
+<h2 class="chapter">Chapter 67: The Familiar Jianghu Grudges 🔒</h2>
+<p>The early morning world was so quiet.</p>
+<p>Drizzle accumulated downwards along the slope of the roof tiles and then dripped down from the eaves. It seemed as if one could hear the sound of its splashing. The bluestone slabs at the doorway have long been washed clean, with a row of shallow pits formed by the dripping water, revealing the purest original color of the bluestone slabs. If you didn&#39;t look closely, you might think the rain had stopped.</p>
+<p>Song You finally opened his eyes.</p>
+<p>The swordsman in the room was still sitting against the wall, his legs stretched out, his long sword casually placed across them, appearing to be in a very comfortable position. His eyes were still open, and looking in Song You&#39;s direction. His eyes were bloodshot with fine blood vessels visible. He seemed to have been awake all night, yet he seemed full of energy.</p>
+<p>Seeing Song You awake, he lowered his gaze, and glanced at his legs. He asked, “Sir, after sitting cross-legged all night, aren&#39;t your legs sore?”</p>
+<p>“They are.” Song You answered very straightforwardly.</p>
+<p>This somewhat surprised the swordsman.</p>
+<p>He had expected, if not a denial, at least a vague answer like “I&#39;m used to it,” but he hadn&#39;t anticipated such directness.</p>
+<p>“You often sit cross-legged, how come you haven&#39;t gotten used to it?”</p>
+<p>“I only do it occasionally.”</p>
+<p>“Occasionally?”</p>
+<p>“Yes.”</p>
+<p>“When do you sit cross-legged?”</p>
+<p>“When it&#39;s time...</p>
+</article>
+<article id="c68" data-label="68">
+<h2 class="chapter">Chapter 68: Must Have Met an Immortal 🔒</h2>
+<p>Outside Anqing County, on the Fu family’s country estate…</p>
+<p>A bamboo cottage stood right next to the fields. Its windows had been pushed open wide upwards and propped up with wooden poles, inviting the spring breeze and sunlight inside.</p>
+<p>Outside, countless mountain peaks overlapped like a painting.</p>
+<p>Inside, a scholar sat lazily, with all the necessities such as brushes, ink, books and ink-stone on the table. There was also a pile of rough straw paper. Some papers were held down by paperweights, while others lay scattered casually on the table. All were covered in small writing. The spring breeze carried the scent of ink throughout the room which was intoxicating when sniffed.</p>
+<p>A bamboo basket at the side was filled with crumpled paper balls.</p>
+<p>The scholar picked up a few recently-written sheets, scrutinizing them closely, occasionally making corrections and pondering deeply.</p>
+<p>There were rumors in Nianping County about mantises that could eat people’s shadows. Locals avoided mantises, especially on bright sunny days. It was said that a newly-appointed county magistrate didn’t believe the tales. One day, while out on an inspection tour, he sat briefly in the fields and a mantis truly began eating his shadow.</p>
+<p>By the time he discovered it, half of his shadow had already been eaten. Now, no matter what time the county magistrate went...</p>
+</article>
+<article id="c69" data-label="69">
+<h2 class="chapter">Chapter 69: Mountains Beyond Mountains, Immortals Beyond Humans 🔒</h2>
+<p>Song You plucked a few newly-sprouted spring blades of Pacific island silvergrass[1], which were still short, fine, and tender, and casually wove them into a hollow ball. After examining it from all angles and finding it unsatisfactory, he discarded it and wove two more as he felt bored walking. Only then did he select one he liked and put it into his bedding bag.</p>
+<p>Leisurely picking fruits and grasses like this didn&#39;t actually delay his journey. Instead, it added much enjoyment to walking. While distracted, it felt as if he had returned to his childhood. Back then, no matter where he went, no matter how long the road was, there was endless joy to be found in the fields beside the road and up the trees in the forest. At that time, walking was never just for walking.</p>
+<p>Gradually, he found himself ascending higher and higher until he reached the mountain peak. The calico cat stopped, turned her head, and gazed into the distance. Song You also stopped. He didn&#39;t know where this place was, only that from this vantage point, the mountains and rivers lay beneath his feet, and the scenery was splendid.</p>
+<p>This place was planted with a great deal of sugarcane. The land between the hillsides was flat and orderly, dyed densely green by the sugarcane forest. Small paths in between led to places he would never go, and large trees quietly grew beside the paths, their age unknown.</p>
+<p>At the end of his line of sight, a village and houses could vaguely be seen. No one knew how long they had existed. Everything was clear, quiet, and beautiful.</p>
+<p>Song You couldn&#39;t help but wonder if the scenery had been like this hundreds of years ago. Perhaps it would remain the same hundreds of years in the future. But whose hometown was this? What kind of people lived here? What kind of lives did they lead?</p>
+<p>Song You...</p>
+</article>
+<article id="c70" data-label="70">
+<h2 class="chapter">Chapter 70: Poor Commoners Do Not Keep Idle Gods 🔒</h2>
+<p>In the mountains, the evening light was dusky yellow. Dim and yellow.</p>
+<p>In front of the host’s doorway was a pond where they raised fish. That day, they caught some fish, fetched some sausages and cured meat, and borrowed some vegetables from neighbors. The women then busied themselves in the kitchen.</p>
+<p>The man of the house entertained the guests in the main hall.</p>
+<p>These included the old Daoist invited from the neighboring village, relatives and neighbors who had voluntarily come to help, and the young Daoist priest who had brought back the child&#39;s soul on his way.</p>
+<p>The focus was on the two Daoists.</p>
+<p>“My child went through this ordeal and I wonder if it will affect him in the future,” the host looked at Song You and the old Daoist.</p>
+<p>Everyone else listened intently.</p>
+<p>Amusingly, some neighbors’ children had also come, silently leaning against the doorway, and secretly staring inside. Such mystical matters concerning gods and ghosts seemed to naturally hold great fascination for them.</p>
+<p>However, the old Daoist glanced at Song You, hesitant to speak first. Song You also glanced at the old Daoist.</p>
+<p>There was a moment of silence in the room.</p>
+<p>“To be honest,” Song You spoke first in a very humble manner, “I have been cultivating quietly on the mountain and only descended the mountain last year to travel. Besides, I&#39;m young and haven&#39;t really seen much of these things. Today, it was just luck that I encountered your...</p>
+</article>
+<article id="c71" data-label="71">
+<h2 class="chapter">Chapter 71: What’s the Harm in Walking a Little Further? 🔒</h2>
+<p>After breakfast, Song You had already gone to stand at the door, draping the saddlebag over the horse&#39;s back. He then turned around to bid farewell to the host and old Daoist priest behind him. “Thank you for your warm hospitality, sir. And thanks for informing me about the road ahead, old Mister. I must take my leave now.”</p>
+<p>“Don’t mention it! Thanks to you, sir, my child was saved. Our family is poor, and we don’t have much, with only a few wen to spare. It’s a small token of appreciation—please take it and buy yourself some water for the journey.” The host took out a small string of copper coins and handed them to Song You, following him with an embarrassed and reluctant look. “I hope you don’t think it’s too little, sir.”</p>
+<p>“You already treated me and old Mister to a meal. I was just passing through and happened to encounter you, so I did a small favor. How can I accept more money from you?” Song You naturally saw the reluctance on the host&#39;s face. At this moment, he was different from the Song You who had eaten heartily the day before.</p>
+<p>He declined firmly and calmly, without explaining anything more. “Please take it back.”</p>
+<p>“Please accept it, sir.”</p>
+<p>“...”</p>
+<p>As Song You was refusing, the old Daoist priest’s voice came at just the right moment. “I must also thank you for your guida...</p>
+</article>
+<article id="c72" data-label="72">
+<h2 class="chapter">Chapter 72: Spring Equinox in the Second Year of Mingde—Arriving at Pingzhou 🔒</h2>
+<p>In the bank, the clerk was busy cutting silver. Meanwhile, the calico cat was playing, spinning around on the floor.</p>
+<p>The road to Pingzhou stretched for several hundred li, mostly through mountainous areas with few inhabitants. Although there were people, there were no large cities, making it difficult to buy supplies or find lodging. Song You felt that using silver coins might be inconvenient, as he had very few copper coins left. Therefore, he specifically visited a bank today to exchange some.</p>
+<p>The official silver of Great Yan was thin and flat, with wide ends and a narrow middle, making it easy to cut.</p>
+<p>The clerk, being quite skilled at the task, swiftly snipped out a small corner with just a few precise cuts. He then weighed it with a scale and immediately smiled, showing it to Song You.</p>
+<p>“Sir, it’s exactly one tael.”</p>
+<p>“You have great craftsmanship!”</p>
+<p>“I was lucky.” The clerk grinned as he took the cut corner and returned the remaining piece to Song You. He then proceeded to pull out a large string of copper coins, followed by a smaller string, and finally took out a few more coins.</p>
+<p>“Don&#39;t worry, we always give the full string of coins here for convenience, unlike some other places. You can trust us.”</p>
+<p>“I’ll count them.”</p>
+<p>“Please do!”</p>
+<p>“Alright.” Song You sat down with a smile and began counting.</p>
+<p>Recently, the copper to silver exchange rate in Xiangle County was 1,200 to 1. Song You had inquired about this rate at an inn, and the innkeeper had confirmed it...</p>
+</article>
+<article id="c73" data-label="73">
+<h2 class="chapter">Chapter 73: The Market of Demons and Ghosts in the Mountains 🔒</h2>
+<p>Two days had passed since Song You arrived in Pingzhou.</p>
+<p>Song You sat cross-legged among the great mountains, feeling a deep sense of wonder. “Such rich spiritual qi!”</p>
+<p>However, having abundant spiritual qi did not necessarily speed up one&#39;s cultivation; it merely made cultivation easier and more pleasant. One would feel more comfortable and at peace. Even without cultivation, living here would be serene and joyful, contributing to longevity. Common plants and animals that lingered in such environments might also more easily attain enlightenment and transformation.</p>
+<p>Sitting here felt quite comfortable. Especially with the clouds in the distance shifting slowly, clearly visible to the naked eye, and with no rush, no concern about sunset, no tasks to do, and a little cat demon picking mushrooms for you in the forest.</p>
+<p>In this peaceful scene and moment, with the sky as it was, Song You felt like he was some deity with ample free time in the heavens.</p>
+<p>“Ah...” Song You let out a sigh.</p>
+<p>He turned around and saw the little girl carrying a pouch, diligently collecting mushrooms. But it wasn’t Song You who had asked her to collect them.</p>
+<p>She had seen Song You picking mushrooms yesterday and noticed that he liked to eat them. Perhaps she found it amusing as well, so upon arriving here today, she volunteered enthusiastically to gather mushrooms.</p>
+<p>“Daoist priest!” The little...</p>
+</article>
+<article id="c74" data-label="74">
+<h2 class="chapter">Chapter 74: The Diversity of Beings 🔒</h2>
+<p>Song You walked slowly, observing carefully.</p>
+<p>He could feel the varied reactions of these demons and spirits toward him, the unexpected visitor. Some were indifferent, some cautious, some curious, some hostile, and even some fearful.</p>
+<p>Thus, he kept silent and continued to observe.</p>
+<p>These demons and ghosts used human copper coins, but they used coins from all dynasties; coins from any era were accepted. He didn’t see any silver coins being used.</p>
+<p>The prices of goods were quite different from those in the towns below the mountain.</p>
+<p>Cooking pots, pans, and various ironware were sold at high prices and were very popular. Clothing and fabric were also noticeably more expensive than in the towns below, while meat prices were slightly lower. Some mountain delicacies, which seemed rare and exotic to the people from the towns below, appeared quite ordinary here and were both plentiful and cheap.</p>
+<p>There were also some rare items not commonly seen elsewhere, with varying prices. Surprisingly, there were even books for sale. In addition to works by famous authors and Daoist and Buddhist scriptures, there were also collections of strange tales written by humans.</p>
+<p>An idea began to form in Song You’s mind…</p>
+<p>If a merchant came here and engaged in trade, it would surely be very profitable. It could even be likened to a small Silk Road.</p>
+<p>“…” Song You silently chuckled...</p>
+</article>
+<article id="c75" data-label="75">
+<h2 class="chapter">Chapter 75: Casual Conversation with a Ghost 🔒</h2>
+<p>Song You tore the slice of ham into small pieces and placed it in his mouth. He didn’t rush to chew; instead, he let it linger in his mouth and savored the salty, aromatic flavor it released. Once it softened a bit, he began to chew, appreciating the texture of the meat fibers.</p>
+<p>The ham was dry and fragrant, and he didn’t grow tired of it no matter how much he ate.</p>
+<p>He slowed his pace and tore off another piece, then he bent down and lowered his hand to allow the calico cat to stand on its hind legs and take the meat from his hand. The demons, ghosts, monsters and spirits passing by watched them but no longer caused trouble or gathered around.</p>
+<p>As he strolled, he eventually reached the large bonfire in the center of the marketplace.</p>
+<p>The market was clustered around the fire. This fire was unusual, possessing some strange properties, though it wasn’t a divine or infernal fire capable of burning the heavens or scorching one’s soul. Instead, it guided the mountain demons and spirits and kept away other malevolent beings.</p>
+<p>Near the fire, Song You saw several demons and spirits dressed in official uniforms. Even the ghosts showed no fear of the fire.</p>
+<p>When the distant bear-like and buffalo-headed officials saw Song You, they cupped their hands. Song You returned the gesture.</p>
+<p>The existence of this marketplace was quite extraordinary. Since there had...</p>
+</article>
+<article id="c76" data-label="76">
+<h2 class="chapter">Chapter 76: An Unremarkable Way of Reformation 🔒</h2>
+<p>“Please lend me a fire to ward off evil and extend the day.” The little ghost, holding an unlit lantern, stood respectfully in front of the fire as he spoke and bowed.</p>
+<p>Silently, the lantern lit up. Song You also found this quite wonderful as he watched.</p>
+<p>“Thank you, Mountain God.” The little ghost bowed again, then turned to Song You and smiled, “It&#39;s done. Please follow me, I&#39;ll send you out of the market.”</p>
+<p>“Alright.” Song You followed him, chatting as they walked.</p>
+<p>“Are you from the previous dynasty?”</p>
+<p>“How did you know, Daoist Master?”</p>
+<p>“The way you address people is different.”</p>
+<p>“What do you mean?”</p>
+<p>“Since the Great Yan Dynasty was established, common people prefer to call Daoist priests and Daoists among the people ‘Mister’.”</p>
+<p>“I see. Then I&#39;ll call you ‘Mister’ too.”</p>
+<p>“Whatever you prefer is fine.”</p>
+<p>“Then I&#39;ll go with ‘Daoist Master’.”</p>
+<p>The little ghost walked ahead with the lantern, casting a patch of firelight on the ground that resembled the color of dusk. “I am indeed from the previous dynasty, but I was born during its final years. At that time, the world was in chaos. Demons and ghosts frequently appeared. My parents and I were eaten by a fierce tiger while traveling through these mountains, turning me into a ghost of a devoured victim.</p>
+<p>“However, spring came quickly, and with <em>Jingzhe</em>, thunder...</p>
+</article>
+<article id="c77" data-label="77">
+<h2 class="chapter">Chapter 77: Are You All Humans or Demons? 🔒</h2>
+<p>The firelight extinguished, and darkness returned to the mountains. The mountain wind blew, and the sound was pure and untainted.</p>
+<p>Song You stood still, still holding his lantern. He raised it, tilted his head and blew at it again. Immediately, the lantern&#39;s light rekindled, just as before. However, after taking a step, he stopped, and thought for a moment. He shook his head, and then extinguished the lantern again. He carefully put it away, hung it on the horse&#39;s back, and proceeded slowly by the light of the stars.</p>
+<p>The horse knew the way and led him back along the same path. Without him noticing it, the road had turned back into a mountain path. When he looked back and saw the same mountain scenery and lights as at the beginning, it meant they had already walked out.</p>
+<p>Song You did not return to his original resting place but found another flat spot at the same place. He spread out his felt blanket again, and sat down cross-legged. He covered his legs with another blanket, and stared at the distant lights in a trance. Those evil spirits did not stay in his mind. Only the rare sights on the road and the experiences in the market were worth pondering over.</p>
+<p>This was undoubtedly a wonderful journey. Cultivating on Yin-Yang Mountain, no matter how deep his cultivation skills were, how could he witness such wondrous things? The most wonderful part was unexpectedly the encounter with the...</p>
+</article>
+<article id="c78" data-label="78">
+<h2 class="chapter">Chapter 78: They Could All Be Regarded as Immortals 🔒</h2>
+<p>“If you are a mountain ghost or demon and want something, just tell us. We’ve been traveling this road for decades and will continue for decades more. Whatever you want, we can bring it for you. Perhaps in the future, every time when we pass through here again, we might even sit down and have a cup of tea with you,” said the merchant to Song You.</p>
+<p>“But if you intend to cause trouble… It&#39;s broad daylight and there are many of us here. We’re not easily deceived or foolish enough to fall for tricks. I advise you to give up such thoughts and look for someone else.”</p>
+<p>“You misunderstand. I am truly human.”</p>
+<p>“How can you prove that?”</p>
+<p>“I’m telling the absolute truth, no need for proof.”</p>
+<p>“Are you brave enough to swear by the Thunder God?”</p>
+<p>“This mountain has a Mountain God. Why should I swear by the Thunder God?”</p>
+<p>“Which Mountain God? I am not aware...”</p>
+<p>“Well, which Thunder God do you want?”</p>
+<p>“How about Duke of Thunder Zhou?”</p>
+<p>Song You smiled and casually replied, “If I am not human, may Duke of Thunder Zhou strike me with lightning.”</p>
+<p>“…” The merchants exchanged glances. They knew such oaths might not have much real power, but Song You had a friendly appearance, and spoke gently and politely. Even if he...</p>
+</article>
+<article id="c79" data-label="79">
+<h2 class="chapter">Chapter 79: The Mountain God by the Roadside 🔒</h2>
+<p>“How interesting…“ Song You shook his head, finding it all rather intriguing. After tidying up, he set off again.</p>
+<p>In high spirits, his steps were lighter, though not faster. Time seemed to pass more quickly, and the plants, trees, mountains and clouds by the roadside looked much more pleasant.</p>
+<p>The little girl walked ahead, holding her small bamboo staff. She was not using it as a walking aid but swinging it around, tapping at the grass by the road. Occasionally, she would jump up to swat at butterflies whenever she encountered one.</p>
+<p>Song You watched her, amused.</p>
+<p>He couldn’t help but wonder, how dull would this journey have been without her?</p>
+<p>“Are you sleepy, Lady Calico?”</p>
+<p>“I’m not sleepy!”</p>
+<p>“Are you exhausted?”</p>
+<p>“Not at all!”</p>
+<p>“Is it fun?”</p>
+<p>“Very fun!”</p>
+<p>The little girl, without looking back, strode ahead in large steps while swinging the bamboo staff in her hand. Her voice sounded, “If only I had a knife, it would be even more fun!”</p>
+<p>“Oh…“ It finally dawned on Song You that she had learned from that swordswoman .</p>
+<p>By mid-afternoon, the little girl finally grew tired. Rubbing her eyes, she turned to Song You, asking if she could take a nap on the back of the horse. Of course, she could. She then transformed into a cat and returned to the cloth bag on the horse’s back to sleep.</p>
+<p>The journey became considerably less...</p>
+</article>
+<article id="c80" data-label="80">
+<h2 class="chapter">Chapter 80: Toasting to the East Wind at Dusk 🔒</h2>
+<p>The Mountain God’s expression gradually darkened.</p>
+<p>It seemed as if he was increasingly uncomfortable, feeling a greater insult than before. His pretense of suave demeanor began to fade, replaced by visible anger.</p>
+<p>“<em>Rumble…</em>” The great mountain suddenly started to shake.</p>
+<p>“Hmph!” His voice changed, becoming as deep as the mountain itself, seeming to come from in front and from all directions.</p>
+<p>Indeed, the Mountain God had a bad temper.</p>
+<p>From afar, big rocks tumbled down from the mountain peak, carving a startling trail through the dense forest amidst the thunderous rumbling. On the mountainside, soil flowed downhill, and the road was severed.</p>
+<p>This kind of spirit, naturally born from the great mountains, was truly incomparable to the Mountain God appointed by the imperial court or the Heavenly Palace. It embodied the very essence of these mountains, possessing an unparalleled power here.</p>
+<p>One could only imagine the grandeur of a massive mountain—its base hidden beneath the clouds, its midsection shrouded within them, and its peak towering above, trembling in the distance. An earthquake would be nothing in comparison. And similar mountains spanned hundreds of li. When the Mountain God was enraged, a great catastrophe would befall.</p>
+<p>The horse outside the pavilion were immediately startled, and the calico cat was also startled awake, poking its head out of the cloth pouch. She extended her claws and dug deeply into the fabric as she tried to steady herself amidst her trembling and fear, then she quickly jumped out...</p>
+</article>
+<article id="c81" data-label="81">
+<h2 class="chapter">Chapter 81: Night Rain in Southern Art County 🔒</h2>
+<p>The first light of dawn emerged from the edge of the sky, cutting through the thin mountain mist. It began to descend from the mountain peak, gradually spreading across the entire mountaintop. Thus, the lily magnolias covering the mountain were bathed in the morning light, making their pink and white hues particularly vivid and pristine.</p>
+<p>Along with the spring flowers bathing in the morning light was a swallow.</p>
+<p>A black-and-white swallow, though not entirely black but a bluish-black with a metallic sheen under the sunlight, flew freely through the sky. It darted up and down, left and right. From a high vantage point, the morning mist in the mountains became a collection of wisps.</p>
+<p>In this view, the lily magnolias were partially obscured by the mist, appearing both magnificent and ethereal. Each tree looked like a blossom, and together they formed a blanket of color, covering the mountain peak.</p>
+<p>This was a beauty beyond the grasp of ordinary mortals’ eyes.</p>
+<p>“<em>Whoosh</em>...”</p>
+<p>The swallow flew through a patch of mountain mist. The scene before it quickly shifted from a blur to clarity. It then folded its wings and dived headfirst into the sea of pink flowers.</p>
+<p>Navigating over the treetops and through the branches, the swallow moved skillfully as if gliding through a world of flowers, its view...</p>
+</article>
+<article id="c82" data-label="82">
+<h2 class="chapter">Chapter 82: Lord Li and the Clever Immortal 🔒</h2>
+<p>“<em>Knock knock</em>…” There was a knock on the door. Song You opened it to find the nun from earlier.</p>
+<p>“What is it, Master?”</p>
+<p>“Have you had dinner?”</p>
+<p>“I’m not hungry, Master. There’s no need to trouble yourself.”</p>
+<p>“There’s some thin porridge left in the pot. If you don’t mind, I can bring you a bowl to make do.”</p>
+<p>“I&#39;m already very grateful for the shelter you’ve provided. I couldn’t possibly ask you to go to the trouble of preparing a meal,” Song You replied respectfully.</p>
+<p>“Just don’t mind if it’s not too tasty.” The nun glanced into his room and saw that he had taken out his wet clothes, blankets, and mats and spread them on the floor. She made no move to help him further and turned to walk back into the darkness.</p>
+<p>After a while, she returned with a large bowl and a small coarse bowl. “Just leave them when you’re done.”</p>
+<p>“Thank you, Master.” Song You accepted the bowls with both hands, still maintaining his respectful demeanor.</p>
+<p>The large bowl contained thin porridge. Though it was in a large bowl, it was very watery, almost sloshing about. The small coarse bowl held pickled vegetables. To his surprise, it was pickled cauliflower—small golden yellow florets of cauliflower plucked out from the plant, faintly visible in the darkness. It seemed this was their dinner for the night.</p>
+<p>As the light continued to fade, Song You ate in the darkness.</p>
+<p>This was the first time he had eaten pickled cauliflower. He found...</p>
+</article>
+<article id="c83" data-label="83">
+<h2 class="chapter">Chapter 83: The Charm of Money 🔒</h2>
+<p>The road was muddy as they walked barefoot. The calico cat trailed beside Song You, stepping in the mud with tiny, delicate steps. It left behind little holes and tiny flower-like paw prints. The mud had effectively become a pair of shoes for her feet.</p>
+<p>“Ah!” The calico cat blinked when Song You lifted his foot and splashed mud onto her face. So she started trotting with small, quick steps at an angle to distance herself a bit from Song You, but they continued to move forward together.</p>
+<p>Ahead, there were signs of habitation. Through the morning mist after the rain, the city came into view.</p>
+<p>Song You suddenly stopped in his tracks. The calico cat followed suit, looking up at him. Following his gaze, it glanced curiously toward the distant houses.</p>
+<p>There were a few thatched cottages, fields in front and back, and cherry trees nearby.</p>
+<p>A few children were stealing cherries. Cherries were often called “the first of all fruits,” and even though it was only March, they were already ripe. Strings of red pearls hang among the green leaves, filling the branches. Two of the children had climbed the tree, two more were standing under the tree holding out their clothes to catch the cherries, and another child was keeping watch.</p>
+<p>As Song You watched, they noticed him. In that moment of distraction, a...</p>
+</article>
+<article id="c84" data-label="84">
+<h2 class="chapter">Chapter 84: Catching Mice at Night 🔒</h2>
+<p>In the afternoon, Song You was washing clothes in the inn&#39;s backyard, where a small amount of foam was lathered in the wooden basin.</p>
+<p>The calico cat sat in front of him, observing attentively. Glancing behind to ensure no one was around, the cat whispered, “You don’t need to buy me meat these days. There are mice here; I’ll catch them at night and eat them.”</p>
+<p>Without looking up, Song You continued washing and asked, “Do you like to eat mice or fish better?”</p>
+<p>“Fish are in the water, so I can’t catch them.”</p>
+<p>“Then what about mice compared to bought meat?”</p>
+<p>“Bought meat costs money.”</p>
+<p>“Which one tastes better?”</p>
+<p>“I don’t know.” The cat raised and licked its paw as it said, “But it doesn’t matter if I don’t eat other meat, I need to eat mice and will crave for it if I don’t. Bought meat costs money, so we should save where we can.”</p>
+<p>“…” Song You found this amusing. For the cat, it seemed that mice were a staple food—even if it wasn’t the best, it was necessary.</p>
+<p>The calico cat kept her eyes fixed on him. Seeing that he had finished washing his long robe and started on her smaller clothes, she blinked and stared at him as she quietly...</p>
+</article>
+<article id="c85" data-label="85">
+<h2 class="chapter">Chapter 85: The Unreliable Clever Immortal 🔒</h2>
+<p>Unlike the legitimate gods of the Heavenly Palace, demonic shrines and evil cults were bound by different rules. For the requests of their followers, as long as they fell within their duty and were reasonable, they could not easily refuse.</p>
+<p>Undo the spell? He didn&#39;t even know what kind of spell it was, having never seen it before, so how could he undo it?</p>
+<p>The only option was to seek out the Daoist priest.</p>
+<p>Firstly, the practitioner of the spell would surely know how to break it. Secondly, most of these spells had a common solution: if the practitioner died, the spell was naturally undone.</p>
+<p>The Daoist priest had been exceedingly rude, attempting to sabotage his worship even though he had done nothing to provoke him. This was truly detestable.</p>
+<p>Now was the time when people were most deeply asleep, and Song You coincidentally came here to look for him.</p>
+<p>It was an opportunity to teach Song You a lesson and vent out his anger, to let this young Daoist priest understand the consequences of his actions. Additionally, it would force him to undo the spell. If he refused, then resorting to lethal means would be necessary.</p>
+<p>Of course, all of this depended on the Daoist priest’s level of skill. If the Daoist&#39;s skill were high, they would simply turn and leave.</p>
+<p>Climbing walls was a trivial task for a rat, and it would attract no attention when a rat changed back to its original form. Even if...</p>
+</article>
+<article id="c86" data-label="86">
+<h2 class="chapter">Chapter 86: Clear Conscience 🔒</h2>
+<p>A few days passed.</p>
+<p>The innkeeper remained in the hall daily, greeting guests and keeping an eye on the comings and goings. He wasn&#39;t sure if the sound he heard in the middle of the night that day was a coincidence, but ever since he had been paying more attention to the young man who claimed he would make Lord Li do good deeds.</p>
+<p>However, everything had been as usual in the past few days.</p>
+<p>Sometimes the gentleman would go out in the morning, other times in the afternoon or even at night for a stroll. Yesterday, he claimed to be tired and stayed in the inn all day.</p>
+<p>Sometimes he ordered food at the inn, sometimes he ate out. When ordering at the inn, he was never stingy with money, and the innkeeper found himself going out almost every day to buy meat for him. The gentleman explained that he had traveled through a few hundred li of the old mountain roads from Xuzhou, where good food was scarce. Now that he was in the city, he wouldn&#39;t shortchange himself.</p>
+<p>He was also kind to the cat, buying fish for it every day.</p>
+<p>The clothes in the backyard had dried, and the gentleman collected them yesterday. He had mentioned earlier that he wouldn&#39;t compensate the customers if they were lost, just to avoid having...</p>
+</article>
+<article id="c87" data-label="87">
+<h2 class="chapter">Chapter 87: Journey to Yunding Mountain 🔒</h2>
+<p>“Ah…!” Lord Li&#39;s face twisted in agony as he stumbled out of the room.</p>
+<p>The moment the “Clear Conscience” pill entered his mouth, it dissolved in the wine, releasing a taste that was sour, pungent, bitter, and spicy all at once. The sensation surged from his mouth straight to the top of his head, then sank deep into his organs, making his entire body feel as if it were being pricked by needles.</p>
+<p>Eventually, all the sourness, pungency, bitterness, and spiciness converged into one spot, resulting in a pain that felt like his heart was being twisted by a knife.</p>
+<p>The pain was so intense that he could hardly breathe and walk! It was so intense that death seemed preferable to this agony! Was this how those poor families he had bullied felt?</p>
+<p>Supporting himself on the railing, Lord Li descended the stairs. His each step accompanied by a cacophony of clattering sounds, as if something hard and sharp-edged was rolling down the steps instead of him walking down.</p>
+<p>His mind drifted back to the conversation he had with the Daoist priest before swallowing the “Clear Conscience” pill.</p>
+<p>“After taking this &#39;Clear Conscience,&#39; you must only do good and refrain from doing evil. If you find doing good difficult, it will serve...</p>
+</article>
+<article id="c88" data-label="88">
+<h2 class="chapter">Chapter 88: Changsheng County at the Foot of Yunding Mountain 🔒</h2>
+<p>If you were to ask what the people of Southern Art County had been most excitedly talking about during their tea breaks recently, it would undoubtedly be about Lord Li.</p>
+<p>It was said that not long ago, a divine immortal passed through Southern Art County. Seeing how Scoundrel Li was bullying the people and committing numerous evil deeds, the divine immortal decided to intervene and enlighten him.</p>
+<p>Now, Scoundrel Li has truly turned over a new leaf—painfully so, in fact. It was said that whenever Scoundrel Li even thought of doing something wrong, he suffered excruciating heartache, with pain so intense it made life unbearable. Every day, if he didn&#39;t do good deeds, he still felt pain. Though, it was not as severe—just enough to keep him barely alive.</p>
+<p>Could you believe it? People now dared to call him Scoundrel Li to his face!</p>
+<p>Whether you called it enlightenment or punishment might be up for debate. But whether it was enlightenment or punishment, in the end, it dealt with a major bully.</p>
+<p>Scoundrel Li was originally known throughout Southern Art County as a notorious bully and rogue, with countless victims of his abuse and harassment. In Pingzhou, where there’s a strong belief in immortals and gods, people love discussing such topics. Now that a wandering divine immortal has dealt with a local bully right in their midst, what could be a more intriguing...</p>
+</article>
+<article id="c89" data-label="89">
+<h2 class="chapter">Chapter 89: It Doesn’t Matter if There Are Gods or Immortals 🔒</h2>
+<p>“The name ‘Yunding Mountain’ means cloud’s peak mountain. It’s so high that it reaches into the clouds. Unless it&#39;s a clear day, the summit is always shrouded in mist,” the innkeeper said. “Yunding Mountain has four seasons on the mountain. Although it’s the hottest time of the year now, you might still need to wear a coat when you get up there.”</p>
+<p>“Have some tea,” Song You offered.</p>
+<p>“No thanks. How could I possibly drink the tea you bought from me?” the innkeeper replied.</p>
+<p>“Is there snow on the summit?”</p>
+<p>“Yes, there’s snow in winter.”</p>
+<p>“Is there grass?”</p>
+<p>“Yes, small grass.”</p>
+<p>“Then it’s not very high.”</p>
+<p>“How can it not be high? Is there a taller mountain in Pingzhou than Yunding Mountain?” the innkeeper said. “But if you’re talking about mountains that are snowy all year round, it might not be that high in comparison. However, Yunding Mountain isn’t a place everyone can easily climb.”</p>
+<p>“Is there a path to the summit?”</p>
+<p>“There is a path, but it depends on whether you dare to take it.”</p>
+<p>“Why’s that?”</p>
+<p>“Hmph! Just say, throughout the year, countless people come to Yunding Mountain seeking gods and immortals, but most only visit the area around Mirror Island Lake. The brave ones might...</p>
+</article>
+<article id="c90" data-label="90">
+<h2 class="chapter">Chapter 90: Visitors on Yunding Mountain 🔒</h2>
+<p>Song You sat cross-legged in the black awning boat, quietly absorbing the spiritual resonance of Mirror Island Lake and the coolness of the night.</p>
+<p>Vaguely, something else seemed to be drifting in. It was the power of the people’s prayers.</p>
+<p>Song You had no intention of pursuing the Divine Dao and had never received such power of prayer before, so he was unfamiliar with their origin. At this moment, he simply waved his hand to let them dissipate on their own.</p>
+<p>Before they knew it, the sky brightened.</p>
+<p>The lake’s surface remained as smooth as a mirror, but cold mist had formed over the water, drifting on the lake and reflecting the azure sky. It made it appear as though the boat was floating in the sky rather than on the water.</p>
+<p>The weather was clear today, and it was bright and sunny early in the morning.</p>
+<p>The ferryman’s voice from outside called out, “Sir!”</p>
+<p>The calico cat immediately opened its eyes and turned its head to look. Song You also opened his eyes, stood up, and walked outside.</p>
+<p>The voice continued, “Sir, come out and see! Today, you can see Yunding Mountain! It’s really rare to see Yunding Mountain so early in the morning!”</p>
+<p>Song You stepped outside and looked up.</p>
+<p>The weather was crystal clear. In the distance, a high mountain revealed its true form,...</p>
+</article>
+<article id="c91" data-label="91">
+<h2 class="chapter">Chapter 91: Likely Closer to the Immortals 🔒</h2>
+<p>“<em>Clink, clink, clang, clang</em>…”</p>
+<p>In the mountains, there were no other sounds, only the clear and ethereal jingling of bells echoing through the white clouds.</p>
+<p>There were three people and a donkey.</p>
+<p>A frail and thin middle-aged man wearing a large robe and a bamboo hat with a beard rode on the back of a scraggly donkey. The large robe covered his legs, and both he and the donkey looked weak and thin, creating a strangely harmonious image of mutual frailty.</p>
+<p>What a delicate and refined scholar he appeared to be.</p>
+<p>The two companions beside him were a round-faced man about eighteen or nineteen carrying a knapsack and leading the donkey, and a man in his twenties carrying a bow and a long sword with a determined look.</p>
+<p>“Sir, there’s someone ahead.”</p>
+<p>“It looks like a Daoist priest.”</p>
+<p>“Let’s go and see!”</p>
+<p>The man on the donkey squinted and tried to make out the figure ahead. After years of studying, he could no longer see clearly as his eyesight had dimmed, but he still looked excited.</p>
+<p>As they approached, he could finally see more clearly. Indeed, it was a Daoist priest.</p>
+<p>The man’s eyes immediately lit up. Since they were at Yunding Mountain, could he be an immortal?</p>
+<p>But upon catching a glimpse of the horse grazing nearby and the bag lying on the ground out of the corners of his eyes, he felt a pang of disappointment, though he didn’t show it. Instead, he rode up on a donkey, dismounted, and cupped his hands in a...</p>
+</article>
+<article id="c92" data-label="92">
+<h2 class="chapter">Chapter 92: The Distant Green Pines and Dark Hills Without Splendor 🔒</h2>
+<p>Standing at the edge of the cliff and looking down, they saw white clouds spreading like an ocean, with mist rolling in.</p>
+<p>But if you looked up, Yunding Mountain was right across the misty clouds.</p>
+<p>There was only a chain the width of a bowl leading to the other side of the cliff. Amidst the swirling mist, the view on the other side was vaguely visible, yet indistinct. It seemed neither far nor near, as if everything seen were merely an illusion.</p>
+<p>“This is the Yunding Mountain Immortal&#39;s Chain, likely built by immortals. In any case, to reach Yunding Mountain, one must climb across using this chain,” Cui Nanxi said.</p>
+<p>He continued, “The opposite mountain is too steep to climb directly. The only way up is to climb from this side to here and then use the chain to cross. Many people know they cannot cross here, so they simply turn back halfway up the mountain and do not reach this point.”</p>
+<p>“Mm...”</p>
+<p>The mountain wind swirled, and the mist flowed. The chain was faintly swaying.</p>
+<p>“This chain is very thick, so there&#39;s no need to worry about it breaking. However, the mountain wind is strong, and the chain sways more in the middle. Even if you have a rope around your waist, it is still extremely difficult to cross,” Cui Nanxi said. “Every year, some people cross safely,...</p>
+</article>
+<article id="c93" data-label="93">
+<h2 class="chapter">Chapter 93: Realizations of Dao at the Summit of Yunding Mountain 🔒</h2>
+<p>The three people and one cat reached the summit of Yunding Mountain. Looking around, there were no higher peaks to be seen. All that met the eye was a sea of rolling white clouds. Occasionally, a few high mountains would peek through with only their peaks barely visible, turning into islands within the cloud sea. Beyond that, only the blue sky and the sun were visible, with not a single cloud in sight.</p>
+<p>“This must be what an immortal&#39;s realm looks like!” Cui Nanxi said, his eyes wide as he gazed into the distance.</p>
+<p>As his vision broadened, so did his heart. He imagined that the homes of immortals must be like this—beneath a spotless blue sky, overlooking an endless sea of clouds, with the world&#39;s edge visible in a single glance.</p>
+<p>A pristine clarity, far from the mundane world.</p>
+<p>“Our journey has been smooth. I originally thought we would reach here around dusk, but we arrived before the afternoon was over,” Cui Nanxi remarked to Song You. “Indeed, when one’s mood is good, your steps naturally become lighter as well.”</p>
+<p>“Arriving early is always better,” Song You replied casually.</p>
+<p>“Unfortunately, we did not encounter any immortals on the way. It seems that I am destined to not encounter them,” Cui Nanxi said, looking around and smiling. “But meeting a master Daoist cultivator like you still made the trip worthwhile.”</p>
+<p>“You’re too kind.”</p>
+<p>“You must be hungry after climbing the mountain and overcoming obstacles. Xu Le, quickly bring the dry food and pears.”</p>
+<p>The guard by his side also carried a bundle. The bundle contained some steamed buns and a few small, unattractive pears.</p>
+<p>Cui Nanxi said cheerfully, “While traveling,...</p>
+</article>
+<article id="c94" data-label="94">
+<h2 class="chapter">Chapter 94: Deep Mountains and the Mortal Realm 🔒</h2>
+<p><em>Ding, ding, ding...</em></p>
+<p>The stone carvings gradually covered the top of Yunding Mountain.</p>
+<p>In the end, it seemed to Song You that the sculptor was not only carving but also talking to him—discussing time, the land, ancient people, and the future.</p>
+<p>Eventually, the sculptor finished the last carving but did not turn around. Instead, he asked Song You when he had arrived. When Song You told him, he didn&#39;t understand the era Song You mentioned. The sculptor inquired whether the carvings were still there at that time. Song You simply mentioned that the wind at the mountaintop was too strong.</p>
+<p>The sculptor seemed both regretful and relieved, telling Song You that he had stayed too long and should return soon. Song You then said his farewells.</p>
+<p>It was as if he had engaged in a cross-temporal conversation with someone. But Song You knew it was merely an exchange of insights with the lingering spiritual resonance of the person who had left his mark on the mountain and the carvings years ago.</p>
+<p>Who was there to talk and chat with him?</p>
+<p>Who asked about a millennium later?</p>
+<p>It was just that Song You had seen him and felt his spirit and thoughts while he was carving. It was merely Song You&#39;s own regrets and relief, and his own sense that it was time to return.</p>
+<p>He did not know what kind of practice the Daoist followed or the depth of his Daoist skills. He only knew that the Daoist was at peace,...</p>
+</article>
+<article id="c95" data-label="95">
+<h2 class="chapter">Chapter 95: There’s a Banished Immortal in the Human Realm 🔒</h2>
+<p>“Sir, please forgive me for my inadequate guard! Last night, I was stationed at the mountaintop to keep watch over you and the immortal. I even intended to remind you if it got too late. But for some reason, I suddenly felt extremely drowsy. I struggled to stay awake, but everything started spinning, and I saw illusions. Before I knew it, I had fallen asleep.”</p>
+<p>Cui Nanxi waved his hand and then said, “It&#39;s no problem; it&#39;s not your fault. It must be because the immortal was meditating, absorbing the spiritual energy of heaven and earth, and gathering the essence of the sun and moon.</p>
+<p>“We are mere mortals and cannot withstand it, which is why we felt so sleepy... The wild beasts and fierce birds in the mountains must have developed some intelligence and were drawn by the immortal master&#39;s Dao essence, coming to seek a chance to encounter the immortal.”</p>
+<p>“I see...” Xu Le quickly cupped his hands in gratitude toward Cui Nanxi.</p>
+<p>He could tell that the gentleman truly has an affinity for the Immortal Dao and eternal life. If it were someone else, they might not know so much about these matters.</p>
+<p>At this point, Cui Nanxi asked, “What do you feel after waking up?”</p>
+<p>“I feel entirely refreshed and clear-headed,” Xu Le replied honestly. “Since I&#39;ve been wandering the <em>jia...</em></p>
+</article>
+<article id="c96" data-label="96">
+<h2 class="chapter">Chapter 96: The Mirror Goddess Extends an Invitation 🔒</h2>
+<p>At the fifth watch of the night, the Milky Way was at its most dazzling. However, the starlit reflection in the water below the boat inexplicably began to ripple and churn, scattering the starlight into fragments.</p>
+<p>A figure emerged from the water.</p>
+<p>Clad in white robes, the figure was graceful and poised. Although her face was obscured, it was clear that she was a woman. The water beneath her feet seemed as firm as the ground, and she stood calmly, peering at the black awning boat.</p>
+<p>After a moment, just as she was about to blow wind toward the boat, the occupants awoke. Song You pressed his lips together, squinting as he turned to look.</p>
+<p>The woman halted her action but showed no signs of panic. Instead, she stood on the water’s surface and gracefully bowed to him.</p>
+<p>“Your Excellency, this humble servant greets you.”</p>
+<p>“Are you the Mirror Goddess?”</p>
+<p>“Indeed.”</p>
+<p>Song You then studied the woman. She was veiled in white silk, making her features unclear. Yet, divine beings had their own grace and charm. Even without seeing her face, it was evident that she was leagues above a mere mortal woman.</p>
+<p>Previously, the boatman had told him about the Mirror Goddess of this lake, a god known as the Mirror Goddess. It was said that she was a princess from...</p>
+</article>
+<article id="c97" data-label="97">
+<h2 class="chapter">Chapter 97: The Frog God by the Lake 🔒</h2>
+<p>“Mirror Goddess, please explain.”</p>
+<p>“Have you ever heard of the Frog God by the lake?”</p>
+<p>“I have heard something about it.” Song You thought for a moment. “He seems to be an illegitimate god in the mountains. The local people believe that the frogs by the lake will be reborn in the spring and bring many blessings, so they worship the Frog God and pray for good fortune.”</p>
+<p>“Have you ever investigated this, Daoist Master?”</p>
+<p>“Last time I passed by the lake, I saw many temples dedicated to the Frog God. I went in to have a look and even stayed there for a night. However, I’m not concerned with whether or not a god is legitimate or illegitimate. Seeing that he was not causing trouble, I did not intervene.” Song You paused. “But that was last year.”</p>
+<p>“I am quite familiar with this Frog God, so let me explain its background,” the Mirror Goddess said with a smile.</p>
+<p>“I’d like to hear more.”</p>
+<p>The Mirror Goddess continued, “Originally, there was no Frog God here. As you said, the locals revered the frogs by the lake, believing that their revival in spring brought fertility and prosperity. They worshiped the Frog God to pray for good fortune. At that...</p>
+</article>
+<article id="c98" data-label="98">
+<h2 class="chapter">Chapter 98: Inviting Thunder God to Come Out and Meet 🔒</h2>
+<p>“Why is there a horse here?”</p>
+<p>“Why is there also a Daoist priest?”</p>
+<p>“Hey! And a cat too!”</p>
+<p>“Just passing by and resting here, I guess?”</p>
+<p>One of the villagers approached Song You and asked, “Sir, what are you doing here?”</p>
+<p>Song You quickly stood up and moved the mat he was sitting on back in front of the statue to avoid disrupting anyone. Then, while observing the newcomers, he replied with a bow, “I was just passing by this road when I saw this temple, and I came in to rest for a while. I hope I haven&#39;t delayed or disturbed anyone?”</p>
+<p>“Not at all,” the villager said kindly. “We are about to perform a ritual to worship the Frog God here. It will be quite noisy. If you want to rest, you might want to walk another two li to the temple of Duke of Thunder Zhou. It’s not too small and is generally quite peaceful there. You can rest there.”</p>
+<p>“Temple of Duke of Thunder Zhou?”</p>
+<p>“Yes, it&#39;s related to your own temple.”</p>
+<p>“I see.” Song You found this interesting and couldn&#39;t help but smile and shake his head.</p>
+<p>He didn&#39;t leave immediately but asked politely, “I&#39;ve heard that the Frog God is quite effective. Could you tell me more about this god?”</p>
+<p>“This is a local god,” the villager...</p>
+</article>
+<article id="c99" data-label="99">
+<h2 class="chapter">Chapter 99: The Heavenly Palace and the Thunder God 🔒</h2>
+<p>Upon the altar, the statue of Thunder God began to emit a radiant glow. The previously stiff and artificial-looking paintwork gradually softened, and the once harsh, rigid angles of the statue became more natural and refined.</p>
+<p>The statue&#39;s eyes flickered with a gleam, resembling a flash of lightning in the night. It seemed as though the clay figure was slowly coming to life, its eyes fixed downward with a terrifying aura of authority.</p>
+<p>“Who dares to summon me?” The voice boomed like thunder, reverberating throughout the temple, as though multiple claps of thunder were crashing together. The calico cat had already hidden behind the Daoist priest&#39;s legs, peeking out with only half its head and one eye, observing the scene with wide eyes.</p>
+<p>The priest stood below, cupping his hands in respect towards the altar. “It is I who requests your presence.”</p>
+<p>“A Daoist priest...” Thunder God&#39;s eyes narrowed slightly, as if offended. In a deep voice, he questioned, “What lineage do you hail from? Who is your master? How dare you be so disrespectful! To seek an audience with a god without even offering incense?”</p>
+<p>“Thunder God, you misunderstand. I am traveling and did not bring incense with me. It was not my intention to be disrespectful. I am Song You, the thirtieth-generation heir of Hidden Dragon Temple on Yin-Yang Mountain, apprenticed under Daoist Duoxing,” Song You replied respectfully.</p>
+<p>After a brief pause, he added, “However, my master is still alive. If you wish to inquire further,...</p>
+</article>
+<article id="c100" data-label="100">
+<span id="last"></span>
+<h2 class="chapter">Chapter 100: Don&#39;t Think You’re the First to Rise 🔒</h2>
+<p>“Who in the world can claim to survive a clash with Shu Yifan&#39;s sword if they encounter him in the <em>jianghu</em>? Amidst disorderly troops, Cao Yan can shoot an arrow that pierces armor from dozens of zhang away with deadly accuracy—who dares say they can dodge his shot?</p>
+<p>“The people of the northern frontier grow up riding horses, and each year the King of Scimitars claims countless heads! But if he puts on armor, who in the world dares to say they can withstand a hundred moves against Chen Ziyi&#39;s spear?</p>
+<p>“Heroes abound across the land, but who truly possesses the highest skill? When they all gather, who is the best in the world? Each setting may have its own champion!</p>
+<p>“Since it&#39;s impossible to gather all the heroes together, I will determine the rankings from this stage. Today, let&#39;s discuss the heroes of the world. It’s just my humble opinion, I hope everyone enjoys it.”</p>
+<p>On stage, a frail storyteller spoke with rising and falling tones, his narration captivating the audience.</p>
+<p>However, a newly arrived spectator below was not quite satisfied. “Can we hear something else today?”</p>
+<p>“What would you like to hear, dear guest?”</p>
+<p>“I heard someone encountered an immortal on Yunding Mountain again?”</p>
+<p>At these words, the crowd&#39;s interest was piqued. Indeed,...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="101-150.html" rel="next">Next: Chs 101–150 &rarr;</a>
+    <p class="page-end-links"><a href="1-50.html" rel="prev">&larr; Chs 1–50</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Unintended Immortality · Chs 51–100</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c51">Chapter 51: Demon Exorcism in the First Month of the Second Year of Mingde 🔒</a></li>
+        <li><a href="#c52">Chapter 52: The Jianghu is Everywhere 🔒</a></li>
+        <li><a href="#c53">Chapter 53: No Need to Spell Everything Out 🔒</a></li>
+        <li><a href="#c54">Chapter 54: Immortality and Dust 🔒</a></li>
+        <li><a href="#c55">Chapter 55: Stillness and Movement 🔒</a></li>
+        <li><a href="#c56">Chapter 56: I Am No Longer Interested in Swallows 🔒</a></li>
+        <li><a href="#c57">Chapter 57: The Swallow Youth 🔒</a></li>
+        <li><a href="#c58">Chapter 58: A Wonderful Journey 🔒</a></li>
+        <li><a href="#c59">Chapter 59: Just a Night Stroll 🔒</a></li>
+        <li><a href="#c60">Chapter 60: How Could a Common Person Understand an Immortal&#39;s Intent 🔒</a></li>
+        <li><a href="#c61">Chapter 61: Jianghu Affairs Are Also Mankind’s Affairs 🔒</a></li>
+        <li><a href="#c62">Chapter 62: The Humble Learns from Everyone 🔒</a></li>
+        <li><a href="#c63">Chapter 63: Far From Ordinary 🔒</a></li>
+        <li><a href="#c64">Chapter 64: Daoist Priest Maojuzi and Cang&#39;erzi 🔒</a></li>
+        <li><a href="#c65">Chapter 65: The Mortuary and the Swordsman 🔒</a></li>
+        <li><a href="#c66">Chapter 66: The Grace of the Swordsman 🔒</a></li>
+        <li><a href="#c67">Chapter 67: The Familiar Jianghu Grudges 🔒</a></li>
+        <li><a href="#c68">Chapter 68: Must Have Met an Immortal 🔒</a></li>
+        <li><a href="#c69">Chapter 69: Mountains Beyond Mountains, Immortals Beyond Humans 🔒</a></li>
+        <li><a href="#c70">Chapter 70: Poor Commoners Do Not Keep Idle Gods 🔒</a></li>
+        <li><a href="#c71">Chapter 71: What’s the Harm in Walking a Little Further? 🔒</a></li>
+        <li><a href="#c72">Chapter 72: Spring Equinox in the Second Year of Mingde—Arriving at Pingzhou 🔒</a></li>
+        <li><a href="#c73">Chapter 73: The Market of Demons and Ghosts in the Mountains 🔒</a></li>
+        <li><a href="#c74">Chapter 74: The Diversity of Beings 🔒</a></li>
+        <li><a href="#c75">Chapter 75: Casual Conversation with a Ghost 🔒</a></li>
+        <li><a href="#c76">Chapter 76: An Unremarkable Way of Reformation 🔒</a></li>
+        <li><a href="#c77">Chapter 77: Are You All Humans or Demons? 🔒</a></li>
+        <li><a href="#c78">Chapter 78: They Could All Be Regarded as Immortals 🔒</a></li>
+        <li><a href="#c79">Chapter 79: The Mountain God by the Roadside 🔒</a></li>
+        <li><a href="#c80">Chapter 80: Toasting to the East Wind at Dusk 🔒</a></li>
+        <li><a href="#c81">Chapter 81: Night Rain in Southern Art County 🔒</a></li>
+        <li><a href="#c82">Chapter 82: Lord Li and the Clever Immortal 🔒</a></li>
+        <li><a href="#c83">Chapter 83: The Charm of Money 🔒</a></li>
+        <li><a href="#c84">Chapter 84: Catching Mice at Night 🔒</a></li>
+        <li><a href="#c85">Chapter 85: The Unreliable Clever Immortal 🔒</a></li>
+        <li><a href="#c86">Chapter 86: Clear Conscience 🔒</a></li>
+        <li><a href="#c87">Chapter 87: Journey to Yunding Mountain 🔒</a></li>
+        <li><a href="#c88">Chapter 88: Changsheng County at the Foot of Yunding Mountain 🔒</a></li>
+        <li><a href="#c89">Chapter 89: It Doesn’t Matter if There Are Gods or Immortals 🔒</a></li>
+        <li><a href="#c90">Chapter 90: Visitors on Yunding Mountain 🔒</a></li>
+        <li><a href="#c91">Chapter 91: Likely Closer to the Immortals 🔒</a></li>
+        <li><a href="#c92">Chapter 92: The Distant Green Pines and Dark Hills Without Splendor 🔒</a></li>
+        <li><a href="#c93">Chapter 93: Realizations of Dao at the Summit of Yunding Mountain 🔒</a></li>
+        <li><a href="#c94">Chapter 94: Deep Mountains and the Mortal Realm 🔒</a></li>
+        <li><a href="#c95">Chapter 95: There’s a Banished Immortal in the Human Realm 🔒</a></li>
+        <li><a href="#c96">Chapter 96: The Mirror Goddess Extends an Invitation 🔒</a></li>
+        <li><a href="#c97">Chapter 97: The Frog God by the Lake 🔒</a></li>
+        <li><a href="#c98">Chapter 98: Inviting Thunder God to Come Out and Meet 🔒</a></li>
+        <li><a href="#c99">Chapter 99: The Heavenly Palace and the Thunder God 🔒</a></li>
+        <li><a href="#c100">Chapter 100: Don&#39;t Think You’re the First to Rise 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1-50.html" rel="prev">&larr; Chs 1–50</a>    <a href="../../index.html">Library</a>
+<a href="101-150.html" rel="next">Chs 101–150 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

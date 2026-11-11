@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1751–1800</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1701-1750.html#last" data-next-page="1801-1850.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1751">Chapter 1751: The Subspace War Concludes 🔒</a></li>
+        <li><a href="#c1752">Chapter 1752: Two Avenues of Advance 🔒</a></li>
+        <li><a href="#c1753">Chapter 1753: Seizing a Slice of the Pie 🔒</a></li>
+        <li><a href="#c1754">Chapter 1754: Exceptional Performance 🔒</a></li>
+        <li><a href="#c1755">Chapter 1755: Maintenance Facilities 🔒</a></li>
+        <li><a href="#c1756">Chapter 1756: Depart for Planet Aquaria 🔒</a></li>
+        <li><a href="#c1757">Chapter 1757: Uncertain Future 🔒</a></li>
+        <li><a href="#c1758">Chapter 1758: Orric’s Growth 🔒</a></li>
+        <li><a href="#c1759">Chapter 1759: Conclusion of Battle 🔒</a></li>
+        <li><a href="#c1760">Chapter 1760: The Future of the Amenkha Empire 🔒</a></li>
+        <li><a href="#c1761">Chapter 1761: Plans to Retaliate 🔒</a></li>
+        <li><a href="#c1762">Chapter 1762: The Tenth Pharaoh 🔒</a></li>
+        <li><a href="#c1763">Chapter 1763: Allocation 🔒</a></li>
+        <li><a href="#c1764">Chapter 1764: Gifts and Negotiation  🔒</a></li>
+        <li><a href="#c1765">Chapter 1765: The Ocean King’s Ceremony 🔒</a></li>
+        <li><a href="#c1766">Chapter 1766: Suppressing the Blue Ocean 🔒</a></li>
+        <li><a href="#c1767">Chapter 1767: White Stella’s Advancement 🔒</a></li>
+        <li><a href="#c1768">Chapter 1768: Rest and Reward 🔒</a></li>
+        <li><a href="#c1769">Chapter 1769: Meeting Thor Again 🔒</a></li>
+        <li><a href="#c1770">Chapter 1770: Golden Apple with a Missing Bite 🔒</a></li>
+        <li><a href="#c1771">Chapter 1771: Sacred Fruit 🔒</a></li>
+        <li><a href="#c1772">Chapter 1772: Ruthless Cut 🔒</a></li>
+        <li><a href="#c1773">Chapter 1773: Overlord’s Saliva 🔒</a></li>
+        <li><a href="#c1774">Chapter 1774: Remote Support 🔒</a></li>
+        <li><a href="#c1775">Chapter 1775: The Federation’s Chief Scientist 🔒</a></li>
+        <li><a href="#c1776">Chapter 1776: Wealthy 🔒</a></li>
+        <li><a href="#c1777">Chapter 1777: Leena’s Ordeal 🔒</a></li>
+        <li><a href="#c1778">Chapter 1778: Atlan Interstellar Prison 🔒</a></li>
+        <li><a href="#c1779">Chapter 1779: Prison Visit 🔒</a></li>
+        <li><a href="#c1780">Chapter 1780: One Body, Two Souls 🔒</a></li>
+        <li><a href="#c1781">Chapter 1781: The Gray Zone 🔒</a></li>
+        <li><a href="#c1782">Chapter 1782: Truth 🔒</a></li>
+        <li><a href="#c1783">Chapter 1783: Longing 🔒</a></li>
+        <li><a href="#c1784">Chapter 1784: Resolution 🔒</a></li>
+        <li><a href="#c1785">Chapter 1785: Vindictive 🔒</a></li>
+        <li><a href="#c1786">Chapter 1786: Chance Encounter 🔒</a></li>
+        <li><a href="#c1787">Chapter 1787: Grandmaster’s Chiding 🔒</a></li>
+        <li><a href="#c1788">Chapter 1788: The Mystery of Souls 🔒</a></li>
+        <li><a href="#c1789">Chapter 1789: Body Tempering Torture 🔒</a></li>
+        <li><a href="#c1790">Chapter 1790: Past Grievances 🔒</a></li>
+        <li><a href="#c1791">Chapter 1791: Sponsoring 🔒</a></li>
+        <li><a href="#c1792">Chapter 1792: Deep Pockets 🔒</a></li>
+        <li><a href="#c1793">Chapter 1793: The Lord of Ashenreach 🔒</a></li>
+        <li><a href="#c1794">Chapter 1794: Seeking Protection 🔒</a></li>
+        <li><a href="#c1795">Chapter 1795: Progress 🔒</a></li>
+        <li><a href="#c1796">Chapter 1796: The Rest Period Ends 🔒</a></li>
+        <li><a href="#c1797">Chapter 1797: Golden Rock Worlds 🔒</a></li>
+        <li><a href="#c1798">Chapter 1798: Assault Mission 🔒</a></li>
+        <li><a href="#c1799">Chapter 1799: Casting Forbidden Spell 🔒</a></li>
+        <li><a href="#c1800">Chapter 1800: The Might of a Merged Fortress 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1751" data-label="1751">
+<h2 class="chapter">Chapter 1751: The Subspace War Concludes 🔒</h2>
+<p>Sein’s performance in the war at the troop transport base astonished Grandmaster Feylis.</p>
+<p>She had already received reports claiming that Sein had <em>instantly unleashed a </em>forbidden spell and gathered hundreds of thousands of angel robots into something called <em>Mechanical Space</em>.</p>
+<p>After all, with so many beings present on the battlefield and countless eyes watching, Sein’s extraordinary performance was bound to draw attention.</p>
+<p>That said, since Sein had never mentioned the Magic Cube to her, Feylis chose not to pry.</p>
+<p>Everyone had their own secrets and trump cards—Feylis included.</p>
+<p>From the moment Sein repeatedly surprised her and successfully turned a Rank Six robot to his side, Feylis had known he was someone destined for greater things.</p>
+<p>After all,...</p>
+</article>
+<article id="c1752" data-label="1752">
+<h2 class="chapter">Chapter 1752: Two Avenues of Advance 🔒</h2>
+<p>The Gallant Federation withdrew decisively from this subspace battlefield, and the Magus Civilization advanced with equal resolve.</p>
+<p>Beyond the artifacts recovered from the ruins of the Eiyurant Papillon Civilization, the vast reserves of inert crystals discovered in this subspace region stood as one of the Magus Civilization’s greatest gains from the war.</p>
+<p>After “rescuing” the angel robots, Sein joined Gregory, Bernice, and the others in the subsequent campaign.</p>
+<p>Bernice and Gregory both maintained close ties with foreign deities of the Magus Alliance, as well as several knightly orders that had been dispatched to support their respective divine towers.</p>
+<p>Their combined force numbered close to twenty million,...</p>
+</article>
+<article id="c1753" data-label="1753">
+<h2 class="chapter">Chapter 1753: Seizing a Slice of the Pie 🔒</h2>
+<p>While the Magus Civilization forces took a brief respite outside the subspace, Sein privately summoned Orric to meet with him.</p>
+<p>Gazing at the burly man with hair hanging loosely over his shoulders, Sein sighed and asked, “Do you know why I chose to advance toward the Shadowbat Civilization first, instead of returning to Marvelous Plane?”</p>
+<p>“I don’t,” Orric replied in his deep, resonant voice.</p>
+<p>Sein glanced at him. “I want you to understand the survival rules within the Magus Alliance through this matter. It’s rarely about loyalty first. More often than not, it’s about placing interests above everything else.”</p>
+<p>Sein’s words made Orric frown slightly, as if a headache were coming on.</p>
+<p>Scheming, political maneuvering, weighing pros and cons—none of these...</p>
+</article>
+<article id="c1754" data-label="1754">
+<h2 class="chapter">Chapter 1754: Exceptional Performance 🔒</h2>
+<p>The situation unfolded exactly as anticipated.</p>
+<p>When the vanguard legions of the Magus Civilization, led by Sein and his forces, launched their assault on the opposing legions in the Shadowbat Civilization’s star domain, they quickly achieved widespread breakthroughs and secured significant gains.</p>
+<p>The legions of Arid Expanse World had no desire to continue fighting on behalf of the Gallant Federation.</p>
+<p>While the federation could rely on special technological methods to control the law-wielding powerhouses from Arid Expanse World, it could not possibly subjugate all the low-tier cannon fodder in the same way.</p>
+<p>On any battlefield, the overwhelming majority were still low-ranking creatures.</p>
+<p>Once those lower-tier legions began to collapse en masse, the influence a few remaining law-wielding beings...</p>
+</article>
+<article id="c1755" data-label="1755">
+<h2 class="chapter">Chapter 1755: Maintenance Facilities 🔒</h2>
+<p>The war in the Shadowbat Star Domain lasted a full two years.</p>
+<p>In that short span, the Shadowbat Star Domain reclaimed the vast majority of its lost territory. This was an almost unthinkable pace under normal circumstances.</p>
+<p>The Gallant Federation had withdrawn all its forces from the Shadowbat Star Domain. Rumors claimed they had established new defensive lines across the Arid Expanse Worlds.</p>
+<p>Following this decisive battle, the remnant forces of the Arid Expanse Worlds were virtually wiped out.</p>
+<p>It was worth noting that not all powerhouses of Arid Expanse World were the Gallant Federation’s lackeys.</p>
+<p>Several Rank Four and Rank Five creatures on the battlefield were clearly being controlled by the federation through specialized technological devices.</p>
+<p>Had the Magus Civilization...</p>
+</article>
+<article id="c1756" data-label="1756">
+<h2 class="chapter">Chapter 1756: Depart for Planet Aquaria 🔒</h2>
+<p>Following the conclusion of the Shadowbat Star Domain conflict, Sein refrained from making any rash moves.</p>
+<p>Meanwhile, he received very little communication from Grandmaster Feylis from the subspace front.</p>
+<p>This struck him as peculiar. Sein regularly reported his operational movements with Gregory and the others to his grandmaster, and he consistently sent resources and spoils from the frontlines back to the rear.</p>
+<p>Yet, the directives coming from his Grandmaster had grown increasingly sparse.</p>
+<p>What exactly was going on?</p>
+<p>It would have been one thing for the Magus Civilization’s high command to lose interest in the subspace battlefield. But could it be that his grandmaster herself was now doing the same, delegating authority downward and stepping back?</p>
+<p>This puzzling question was soon answered by Lorianne, who had arrived at the border of the Shadowbat Civilization’s...</p>
+</article>
+<article id="c1757" data-label="1757">
+<h2 class="chapter">Chapter 1757: Uncertain Future 🔒</h2>
+<p>In the decade-long overlord-level melee, the clash between Klopp and the Evileye Tyrant Monarch stood out as the most straightforward of all.</p>
+<p>Klopp had no interest in subtlety. He traded blow for blow, injury for injury, determined to settle things head-on with the Evileye Tyrant Monarch.</p>
+<p>Whenever the Tyrant Monarch pierced Klopp’s torso or arms with its special Evileye Beams, Klopp would heal himself almost instantly through his Omnipotent Soul.</p>
+<p>Such was the nature of an overlord’s soul. As long as sufficient essence remained, it could regenerate not only severed limbs, but even a body torn to shreds, all while maintaining peak combat strength!</p>
+<p>This was the true might of an overlord.</p>
+<p>The Evileye Tyrant Monarch, however, stood in stark contrast. Its soul essence was nearly depleted, and it could no longer afford such reckless exchanges.</p>
+<p>The massive creature’s central...</p>
+</article>
+<article id="c1758" data-label="1758">
+<h2 class="chapter">Chapter 1758: Orric’s Growth 🔒</h2>
+<p>As Sein led the Magus Civilization legions toward Planet Aquaria, he first summoned Orric to his side.</p>
+<p>Under Sein’s questioning, it soon became clear that Orric had indeed reached an agreement with the sea races of the Magus World, represented by White Stella.</p>
+<p>Orric had persuaded White Stella to lead the sea race legions into this medium-sized star domain ahead of schedule, in exchange for relinquishing half of the Aquaria Star Domain’s total output for the next five thousand years.</p>
+<p>“Half the output?” Sein said, fixing Orric with a steady gaze. “Do you realize that even after the Aquaria Star Domain joins the Magus Alliance, it will still be required to pay a fixed quota of resources to the alliance every century?”</p>
+<p>“I know,” Orric replied....</p>
+</article>
+<article id="c1759" data-label="1759">
+<h2 class="chapter">Chapter 1759: Conclusion of Battle 🔒</h2>
+<p>At this moment, roughly one-third of the legions within the Aquaria Star Domain were made up of the Gallant Federation’s fleet.</p>
+<p>In truth, the Aquaria Star Domain’s overall combat strength was still quite formidable.</p>
+<p>Beyond Orven himself, there was a Gallant Federation fleet with combat power rivalling that of a Rank Six entity, though it lacked apocalyptical weaponry.</p>
+<p>Moreover, the marine environment greatly enhanced Orven’s legions, boosting their combat strength by at least thirty percent compared to fighting in subspace!</p>
+<p>The arid desert environments they had previously fought in had severely limited many aquatic creatures, preventing them from performing at their peak.</p>
+<p>Here, saturated with moisture, the law-wielding Aquarian powerhouses could unleash far greater law power.</p>
+<p>Even setting everything else aside, the fact that these Aquarians were entrenched on their homeplane alone was enough to pose a serious problem for the...</p>
+</article>
+<article id="c1760" data-label="1760">
+<h2 class="chapter">Chapter 1760: The Future of the Amenkha Empire 🔒</h2>
+<p>The foremost governing body of the Amenkha Empire had always been the <em>Pharaohs’ Temple.</em></p>
+<p>Throughout its long history, only the top three Pharaohs in rank possessed the authority to convene a council of the temple.</p>
+<p>With the First Pharaoh secluding himself for tens of thousands of years, and the Third Pharaoh campaigning along the border of the Luminara Civilization, all affairs within and beyond the Pharaohs’ Temple now fell under the supervision of the Second Pharaoh—a master of divination with the ability to glimpse future destinies.</p>
+<p>Strictly speaking, the Amenkha Empire had not entered a full-scale war with the Luminara Civilization. The Third Pharaoh merely stirred up conflict along the border on a regular basis.</p>
+<p>He was truly a war maniac....</p>
+</article>
+<article id="c1761" data-label="1761">
+<h2 class="chapter">Chapter 1761: Plans to Retaliate 🔒</h2>
+<p>Other than the Fourth Pharaoh, who could truly stand as the pillar of the Amenkha Empire?</p>
+<p>The Second Pharaoh slowly swept his gaze across the chamber before it finally settled on the Tenth Pharaoh.</p>
+<p>Nicknamed <em>Little Tenth</em> by the Ninth Pharaoh, the Tenth Pharaoh was widely regarded as the most outstanding prodigy of the Amenkha Empire’s younger generation.</p>
+<p>In less than a hundred thousand years, she had advanced all the way to Rank Eight.</p>
+<p>Such speed was exceedingly rare in the long history of the Amenkha Empire.</p>
+<p>However, many believed the Tenth Pharaoh’s rise had relied on shortcuts.</p>
+<p>Her advancement was considered too rapid, with foundations that were thought to be comparatively shallow.</p>
+<p>Moreover, she was infamous throughout...</p>
+</article>
+<article id="c1762" data-label="1762">
+<h2 class="chapter">Chapter 1762: The Tenth Pharaoh 🔒</h2>
+<p>Both proposals put forward by the Fourth Pharaoh had their flaws.</p>
+<p>Launching an offensive against the Grand Cosmic World would involve countless complications.</p>
+<p>As a large-sized world civilization, the Grand Cosmic World did not possess overwhelming military strength, but it was an exceptionally prosperous economic powerhouse. It maintained close ties with many large and medium-sized world civilizations across nearby star domains, as well as with several top-tier civilizations in the depths of starry skies.</p>
+<p>It also provided the Amenkha Empire with vast amounts of resources in the form of tributes every century—figures that could only be described as astronomical.</p>
+<p>The Amenkha Empire had long refrained from delivering a decisive blow to the Grand Cosmic World largely for this reason....</p>
+</article>
+<article id="c1763" data-label="1763">
+<h2 class="chapter">Chapter 1763: Allocation 🔒</h2>
+<p>The council of the Pharaohs’ Temple was, on the surface, an internal decision-making assembly where the top ten Pharaohs could speak freely. In reality, however, true authority rested with only the top three.</p>
+<p>The Third Pharaoh’s right to make decisions came directly from the First Pharaoh’s deliberate delegation of power.</p>
+<p>If one were to rewind history another hundred or two hundred thousand years, the Amenkha Empire would have known only a single voice—the divine will of the First Pharaoh.</p>
+<p>Whether it was the Monster Legion or the imperial royal family, all awaited his command.</p>
+<p>The Tenth Pharaoh’s proposal drew immediate opposition from the Fifth and Seventh Pharaohs.</p>
+<p>The Fourth and Ninth Pharaohs remained neutral, offering neither support nor dissent.</p>
+<p>In the end, all eyes turned...</p>
+</article>
+<article id="c1764" data-label="1764">
+<h2 class="chapter">Chapter 1764: Gifts and Negotiation  🔒</h2>
+<p>Baxia had five children.</p>
+<p>The eldest stood as immovable as a mountain within Magus World, while the second was off on assignment for the Magus Alliance in another star domain.</p>
+<p>The “children” Baxia mentioned this time were actually referring to White Stella, Black Oblivion, and Tourmaline.</p>
+<p>Bev also knew that Baxia and his family still maintained contact with the Immortal Realm.</p>
+<p>Ever since conflicts among the Buddhists, Daoists, Yaos, humans, righteous, and evil within the Immortal Realm Civilization had intensified, the Magus Civilization’s communication with the Qingyang World[1] had been interrupted multiple times.</p>
+<p>As fellow top-tier civilizations, the Immortal Realm Civilization, though lacking the vast and complex structure of the Magus Alliance, surpassed Magus World in sheer stre...</p>
+</article>
+<article id="c1765" data-label="1765">
+<h2 class="chapter">Chapter 1765: The Ocean King’s Ceremony 🔒</h2>
+<p>Harmonic Waters World…</p>
+<p>That was a hydro-attribute plane where black dominated the landscape.</p>
+<p>Endless oceans and sprawling marshlands formed its most common scenery.</p>
+<p>With only a faintly warm, pyro elemental broken plane providing illumination, Harmonic Waters World felt perpetually dim with bitterly cold atmosphere.</p>
+<p>Creatures accustomed to the temperate climate of Magus World and its four seasons found it difficult to adapt to the frigid conditions here.</p>
+<p>For the vast majority of aquatic life, however, this realm was a nurturing cradle of existence.</p>
+<p>Within the Aquaria Star Domain, Harmonic Waters World ranked among the top five planes in both size and resource abundance.</p>
+<p>It also served as the final gateway for Sein and his group before arriving at Planet Aquaria.</p>
+<p>A curtain of pitch-black seawater slowly parted before Sein and the advancing forces of the Magus Civilizat...</p>
+</article>
+<article id="c1766" data-label="1766">
+<h2 class="chapter">Chapter 1766: Suppressing the Blue Ocean 🔒</h2>
+<p>As a medium-sized plane, Aquaria was theoretically capable of withstanding the descent of an overlord-level being.</p>
+<p>However, it was clear that Aquaria had never truly welcomed the descent of an overlord before.</p>
+<p>As a result, even the mere approach of such a being placed immense strain on its planar will and its environment.</p>
+<p>A green-scaled fish with two long white whiskers circled nervously around the newly crowned Ocean King.</p>
+<p>Orric now wore the Ocean King’s Crown—undoubtedly a counterfeit.</p>
+<p>In appearance, it was indistinguishable from the real thing, yet it emitted not the slightest ripple of law energy.</p>
+<p>The true world-class crown remained in the hands of the fugitive Orven.</p>
+<p>As a result, Orric became the only Ocean...</p>
+</article>
+<article id="c1767" data-label="1767">
+<h2 class="chapter">Chapter 1767: White Stella’s Advancement 🔒</h2>
+<p>The flash of white was none other than White Stella.</p>
+<p>Sein had heard that in recent years, White Stella had rarely shown herself in public, even during the campaign against the Aquaria Star Domain.</p>
+<p>The frontlines had been held mainly by the sea king and the law-wielding sea race powerhouses, while White Stella never personally intervened.</p>
+<p>Even now, after arriving at Aquaria, where Orric was about to inherit the Ocean King’s throne, Sein still had not seen her.</p>
+<p>Obviously, White Stella had been going through something extremely critical.</p>
+<p>Yet her father’s arrival drew her out of it.</p>
+<p>After all, it had been years since she last saw him.</p>
+<p>The members of Tourmaline’s family all shared a similar ...</p>
+</article>
+<article id="c1768" data-label="1768">
+<h2 class="chapter">Chapter 1768: Rest and Reward 🔒</h2>
+<p>That day, while wrapping up a body-tempering experiment in his laboratory, Sein received a report from the fox maiden.</p>
+<p>The new Ocean King, Orric, had just left the Ashen Fortress. Unsurprisingly, he had once again failed to secure an audience with Sein.</p>
+<p>Sein knew exactly why he had come.</p>
+<p>That was precisely why he chose not to see him.</p>
+<p>It was not that Sein refused to lead an expedition into the Arid Expanse Worlds. Rather, his grandmaster had no such intention for the time being.</p>
+<p>Since the subspace war ended, Sein had not seen Feylis for quite a while.</p>
+<p>She was likely still pushing toward the peak of Rank Six.</p>
+<p>Unlike White Stella, who had a powerful father, Feylis’ ascent was not something that could be accomplished in the blink of an eye.</p>
+<p>It could take a decade—perhaps several.</p>
+<p>Fortunately, the wars in subspace and the surrounding star...</p>
+</article>
+<article id="c1769" data-label="1769">
+<h2 class="chapter">Chapter 1769: Meeting Thor Again 🔒</h2>
+<p>After withdrawing from the frontlines to rest and recuperate in the rear, Sein still had plenty of matters to settle before departing.</p>
+<p>Not everyone from the Divine Tower of Ashes Army would follow him back to Magus World.</p>
+<p>The Magus Civilization’s rotation system for knights and mages below Rank Four was very different from that of law-wielding powerhouses like Sein.</p>
+<p>While he could secure leave that lasted centuries, such privileges were far beyond the reach of Rank One or Rank Two mages.</p>
+<p>At the same time, Sein’s missions and responsibilities often stretched far longer than those low-ranking mages.</p>
+<p>Aside from making the necessary arrangements for the Divine Tower of Ashes, he also had to settle...</p>
+</article>
+<article id="c1770" data-label="1770">
+<h2 class="chapter">Chapter 1770: Golden Apple with a Missing Bite 🔒</h2>
+<p>Money was not the issue—the real question was whether they could actually secure a Golden Apple.</p>
+<p>Before the outbreak of the Clash of Civilizations, the market price of a Golden Apple within the Magus Alliance had been one hundred million magicoins.</p>
+<p>That was only the listed price. In reality, Golden Apples were almost impossible to obtain.</p>
+<p>The moment one appeared on the market, it was snapped up instantly.</p>
+<p>One hundred million magicoins sounded astronomical, but only to beings below Rank Six.</p>
+<p>For overlord-level entities, no one ever complained about possessing too many treasures of this caliber.</p>
+<p>Since the Clash of Civilizations began, the price of Golden...</p>
+</article>
+<article id="c1771" data-label="1771">
+<h2 class="chapter">Chapter 1771: Sacred Fruit 🔒</h2>
+<p>“Thank you for your generosity, Sir Klopp!” Sein said sincerely to the knight overlord before him.</p>
+<p>Moments earlier, he had received not only commendation from Klopp but also an astronomical allocation of resources routed through him from the Magus Alliance.</p>
+<p>Combined with what he had gained during the Clash of Civilizations, Sein likely would not have to worry about cultivation resources or rare magic ingredients for thousands of years.</p>
+<p>“Heh. You earned every bit of it,” Klopp replied. “In fact, I think the reward may still be insufficient. The technological advancements from the Eiyurant Papillon Civilization, as well as the...</p>
+</article>
+<article id="c1772" data-label="1772">
+<h2 class="chapter">Chapter 1772: Ruthless Cut 🔒</h2>
+<p><em>“What if sis finds out?!”</em> Loki snapped.</p>
+<p>Within the divine royal family of Titan World, Loki had always been the most doted upon.</p>
+<p>Still, he was also afraid of his sister.</p>
+<p>Hela cared for him, yes—but she did not indulge him the way their mother, Andaelle, did.</p>
+<p>If this were exposed, not even Loki would escape without facing any consequences.</p>
+<p>At best, he would be sent back to Titan World and forced to spend five hundred years staring at a wall in reflection.</p>
+<p>Seeing Loki so flustered, Thor chuckled inwardly.</p>
+<p>He did not tease his younger brother. Instead, he reassured him, <em>“Relax. Before I left, I saw the Sky God go to find her. They’re likely discussing the Titan Legion’s...</em></p>
+</article>
+<article id="c1773" data-label="1773">
+<h2 class="chapter">Chapter 1773: Overlord’s Saliva 🔒</h2>
+<p>Hide? Where in this world could he possibly hide?</p>
+<p>Sein knew Thor and Loki were the sons of Titan World’s Divine King, so he held little suspicion about the deal itself—especially since they had conducted successful transactions in the past.</p>
+<p>And what kind of trouble could it possibly bring? If even the Divine King’s sons were that frightened, what chance did Sein have of resisting it?</p>
+<p>After leaving Portman World, Sein made no effort to hide. He returned to Magus World just as planned.</p>
+<p>If trouble truly came, he would not hesitate to name Thor and Loki.</p>
+<p>After all, he had bought the Golden Apple from them. If trouble arose, it should fall on the sellers. Sein was a victim as well.</p>
+<p>It was not as if he had stolen or robbed anyone. He had <em>paid </em>for the...</p>
+</article>
+<article id="c1774" data-label="1774">
+<h2 class="chapter">Chapter 1774: Remote Support 🔒</h2>
+<p>Sein’s assessment of the substance at the bite mark on the Golden Apple came from the fruit’s life essence depletion rate, which was far slower than normal.</p>
+<p>At first, Sein had assumed his protective measures were exceptionally thorough.</p>
+<p>But after bringing the Golden Apple back to the lab for analysis, he realized that was not the case.</p>
+<p>This peculiar liquid had significantly slowed the depletion of the fruit’s life essence.</p>
+<p>Sein’s further research suggested that this scarce fluid might possess other remarkable properties…</p>
+<p>That was absolutely beyond the capabilities of a Rank Six being!</p>
+<p>Recalling that fleeting sense of being watched before returning to Magus World, Sein wondered who it could have been.</p>
+<p>His first...</p>
+</article>
+<article id="c1775" data-label="1775">
+<h2 class="chapter">Chapter 1775: The Federation’s Chief Scientist 🔒</h2>
+<p>After completing the production of the Golden Apple Essences, Sein could finally let out a breath of relief.</p>
+<p>At last, he could return to his original plan and continue his various magic research projects.</p>
+<p>Life in Magus World was calm, peaceful, unhurried, and relaxed.</p>
+<p>After enduring the smoke and flames of the frontlines, he appreciated the beauty and preciousness of life on the homeplane even more.</p>
+<p>Over the past few years, the rewards Klopp had promised him had gradually begun to arrive.</p>
+<p>A portion of the vast war spoils seized by the Divine Tower of Ashes Army had also been transported back from the frontlines to the divine tower.</p>
+<p>The Magus Alliance and Magus World could feel the impact of the Clash of Civilizations firsthand in many aspects.</p>
+<p>Take the academic mages of the Divine Tower of Ashes as an example. Even...</p>
+</article>
+<article id="c1776" data-label="1776">
+<h2 class="chapter">Chapter 1776: Wealthy 🔒</h2>
+<p>Bond spent a considerable amount of time with Samaret.</p>
+<p>Before he left, Matthew—the federation’s renowned geneticist—personally led his team in upgrading Bond’s Genetic Bangle to the level of a low-grade mid-tier world-class secret treasure.[1]</p>
+<p>Within the Gallant Federation, Matthew was unquestionably an expert in the field of genetics. Many of the federation’s most respected genetic scholars considered themselves his students.</p>
+<p>Among ordinary federal citizens, however, Matthew was widely believed to have died long ago. Official library records listed his final publication as a paper from seventy thousand years ago, with nothing recorded after that.</p>
+<p>The federation’s secrecy regarding Matthew was, of course, for his protection.</p>
+<p>And he was not the only one....</p>
+</article>
+<article id="c1777" data-label="1777">
+<h2 class="chapter">Chapter 1777: Leena’s Ordeal 🔒</h2>
+<p>Those two space fortresses were naturally meant for Sia and Reina.</p>
+<p>Neither of them had returned to Magus World yet. Once they did, Sein planned to take them to either the Capiche Business Alliance or Steel City to commission their custom-built fortresses.</p>
+<p>Tourmaline had not returned either. During his last communication with Lorianne, Sein learned that their father, Baxia, had left Aquaria with Tourmaline, Black Oblivion, and several others.</p>
+<p>No one knew where they had wandered off to.</p>
+<p>The Goddess of Wealth then mentioned that if necessary, she could raise additional magicoins.</p>
+<p>The 120 million magicoins currently on hand were merely liquid funds available for immediate use. Given enough time to prepare, she could mobilize over 200...</p>
+</article>
+<article id="c1778" data-label="1778">
+<h2 class="chapter">Chapter 1778: Atlan Interstellar Prison 🔒</h2>
+<p>Lorthisra was not entirely sure how Leena had landed herself in the Atlan Interstellar Prison.</p>
+<p>The missions Lorthisra carried out were completely different in nature from those undertaken by black mages like Leena.</p>
+<p>The wars fought by Lorthisra’s legion were, at their core, direct confrontations with the Gallant Federation on the frontlines.</p>
+<p>Leena and the others, however, had primarily been assigned to operations behind enemy lines.</p>
+<p>In terms of risk, it was obvious that the black mages—lacking powerful backing—were the ones undertaking far more dangerous missions.</p>
+<p>That was unavoidable. The reputation of black mages within Magus World had never been good.</p>
+<p>During the Clash of Civilizations, only brutal and high-risk missions like these had the potential to shift the traditional power blocs’ view of them.</p>
+<p>Moreover, black mages were naturally...</p>
+</article>
+<article id="c1779" data-label="1779">
+<h2 class="chapter">Chapter 1779: Prison Visit 🔒</h2>
+<p>The Atlan Interstellar Prison was located in an empty star domain within the Magus Civilization, quite far from Magus World.</p>
+<p>Thanks to the well-established spatial teleportation channels, it did not take Sein long to arrive.</p>
+<p>As the most notorious interstellar prison in the Magus Civilization, it was understandably built within a subspace.</p>
+<p>After all, a conventional interstellar prison would never be able to prevent powerful Rank Four, Rank Five, or even Rank Six beings from breaking out.</p>
+<p>Only by placing it within a subspace could the Magus Civilization enforce truly restrictive measures.</p>
+<p>Sein could not help but wonder whether Atlan Interstellar Prison held prisoners beyond Rank Six.</p>
+<p>The arrival of a Rank Five mage caused little...</p>
+</article>
+<article id="c1780" data-label="1780">
+<h2 class="chapter">Chapter 1780: One Body, Two Souls 🔒</h2>
+<p>Guided by Byron, Sein arrived at the fourteenth level of the subspace prison.</p>
+<p>Within the Atlan Interstellar Prison, the level of confinement directly reflected a detainee’s strength and threat rating.</p>
+<p>Law-wielding beings were confined from the seventh level onward.</p>
+<p>The level where Leena was being held primarily housed Rank Five entities and a handful of peak Rank Four beings.</p>
+<p>Her placement here clearly indicated the prison’s evaluation of her strength and danger.</p>
+<p>Thanks to the rapport he had built with Byron earlier, Sein learned that Jerry, the mage whom Leena had severely injured, was a peak Rank Four mage.</p>
+<p>It was Jerry’s formal accusation that had led to Leena’s imprisonment in the...</p>
+</article>
+<article id="c1781" data-label="1781">
+<h2 class="chapter">Chapter 1781: The Gray Zone 🔒</h2>
+<p>The Magus Civilization was reasonable.</p>
+<p>Although Kigard the Phantom Thief had caused massive destruction within the Magus Alliance’s territory, the Magus Civilization did not execute him outright or reduce him to a slave.</p>
+<p>Instead, they locked him away in the Atlan Interstellar Prison.</p>
+<p>On the surface, it suggested that Magus World was not some bloodthirsty civilization. That it held a certain goodwill toward powerful beings of the Astral Realm and hoped to reform them through guidance…</p>
+<p>Of course, that was complete nonsense.</p>
+<p>Most law-wielding beings already understood the Magus Civilization’s true nature very well.</p>
+<p>The existence of the Atlan Interstellar Prison served...</p>
+</article>
+<article id="c1782" data-label="1782">
+<h2 class="chapter">Chapter 1782: Truth 🔒</h2>
+<p>After Norton and Kigard had roughly finalized the terms of his entry into the Magus Civilization’s ranks, Sein’s visitation time with Leena also came to an end. He was escorted back to the central hall of Atlan Interstellar Prison.</p>
+<p>According to prison regulations, he could visit her again in three months for one hundred sandglasses.</p>
+<p>Three months… That was barely enough time for a round-trip back to Magus World.</p>
+<p>In the end, Sein chose to stay near the Atlan Interstellar Prison.</p>
+<p>Visitors like him were not uncommon.</p>
+<p>Magus World had its share of knights and mages who had committed offenses. Unwilling to fall into the ranks of black knights or black mages, some chose to serve time in the Atlan Interstellar Prison voluntarily.</p>
+<p>During...</p>
+</article>
+<article id="c1783" data-label="1783">
+<h2 class="chapter">Chapter 1783: Longing 🔒</h2>
+<p>The first reply Sein received came from his mentor.</p>
+<p>In truth, Lorianne’s response had been remarkably swift. Sein’s earlier sense of a long delay had simply been the result of his own impatience.</p>
+<p>In her message, Lorianne told him that she was already aware of the situation and had reported it to Grandmaster Feylis.</p>
+<p>She knew about the relationship between Sein and Leena. Back then, she had even arranged for Leena to receive an identity badge from the Divine Tower of Verdant Spring.</p>
+<p>How could Lorianne and Mikaeli be so different?</p>
+<p>Both were mentors, yet one would sacrifice everything for her apprentice, while the other had tried to destroy the very apprentice who saved her life.</p>
+<p>Lorianne’s message also...</p>
+</article>
+<article id="c1784" data-label="1784">
+<h2 class="chapter">Chapter 1784: Resolution 🔒</h2>
+<p>Three months later…</p>
+<p>Just before the next visitation was due, Grandmaster Feylis arrived.</p>
+<p>She did not come alone. In addition to Sein’s mentor, Lorianne, two other male mages accompanied them.</p>
+<p>The arrival of a peak Rank Six mage prompted Bahrami, the deputy warden of the Atlan Interstellar Prison, to appear in person.</p>
+<p>As soon as he arrived, he smiled at Feylis and said, “It’s been nearly a thousand years since we last met. I never imagined you had already reached the peak of Rank Six. Congratulations!”</p>
+<p>“Warden Norton is away on business, so I’ll be handling your affairs this time,” the deputy warden explained.</p>
+<p>He was a rather lean Rank Six mage with piercingly sharp eyes....</p>
+</article>
+<article id="c1785" data-label="1785">
+<h2 class="chapter">Chapter 1785: Vindictive 🔒</h2>
+<p>No matter how complicated a matter was, once someone had connections at the top, it could be resolved quickly.</p>
+<p>This held true in many worlds, including the Magus Civilization.</p>
+<p>With Klopp’s intervention, Leena’s release proceeded smoothly.</p>
+<p>Sein could finally hold Leena’s hand again. Though it felt cool in his palm, an unprecedented warmth rose in his heart.</p>
+<p>He was so focused on his wife that he completely forgot his mentor was standing right beside them.</p>
+<p>In her current form, Leena was roughly the same height as Lorianne.</p>
+<p>One had black hair, the other green.</p>
+<p>One gave off an icy air, while the other radiated gentle warmth.</p>
+<p>When Sein and Leena held hands, Lorianne unconsciously pouted, even though she should have felt relieved.</p>
+<p>Even she did not notice the subtle change herself...</p>
+</article>
+<article id="c1786" data-label="1786">
+<h2 class="chapter">Chapter 1786: Chance Encounter 🔒</h2>
+<p>Norton did not elaborate to Bahrami about the Faceless Mask incident.</p>
+<p>The deputy warden did not press the matter either. Instead, he asked about Kigard, the Phantom Thief.</p>
+<p>“I’ve already released him. We secured the coordinates of his homeplane, and all the relevant law contracts have been signed,” Norton replied, puffing on his pipe.</p>
+<p>“Hopefully he’ll complete the mission entrusted to him by our Magus Civilization. Truth be honest, this fellow excels beyond even some of our most powerful Magus Civilization mages in certain fields.”</p>
+<hr class="separator">
+<p>When he was leaving the interstellar prison, Sein ran into the demigod-level mage named Gina.</p>
+<p>Her big...</p>
+</article>
+<article id="c1787" data-label="1787">
+<h2 class="chapter">Chapter 1787: Grandmaster’s Chiding 🔒</h2>
+<p>After returning to Magus World, Sein temporarily set aside all his experimental projects and focused entirely on resolving Leena’s problem.</p>
+<p>Soul magic… it seemed this was a field he would inevitably have to delve into more deeply.</p>
+<p>First Natalya’s soul had been damaged, and now Leena’s body had been invaded. Incidents like these left Sein with no choice but to take the study of soul magic more seriously.</p>
+<p>Although it would be tiring, broadening the scope of his knowledge a little was not a bad thing.</p>
+<p>During the primordial era and middle ages, the “Magus” profession flourished tremendously within the Magus Civilization. Magi of that time studied everything and dabbled in nearly every field.</p>
+<p>If those ancient magi could do it, why couldn’t...</p>
+</article>
+<article id="c1788" data-label="1788">
+<h2 class="chapter">Chapter 1788: The Mystery of Souls 🔒</h2>
+<p>A single soul experiment was enough to leave three generations of the faction drained and weary.</p>
+<p>Feylis had begun the process full of enthusiasm, but by the end, there was scarcely a trace of a smile left on her face.</p>
+<p>Mikaeli, the Rank Five black mage, was extremely cunning.</p>
+<p>After learning that Sein and the others intended to strip away and destroy her soul, the old hag desperately tried to merge completely with Leena’s soul.</p>
+<p>She even sacrificed large portions of her own soul essence for Leena to devour, using it to strengthen her own existence.</p>
+<p>From Leena’s perspective, it meant she gained the soul energy that a Rank Five mage accumulated over tens of thousands of years without lifting a finger.</p>
+<p>During the experiment, Feylis shared many profound truths and insights with Sein—knowledge...</p>
+</article>
+<article id="c1789" data-label="1789">
+<h2 class="chapter">Chapter 1789: Body Tempering Torture 🔒</h2>
+<p>In the laboratory, Sein had secured Leena to the experimental table and was looking down at her with cold disdain.</p>
+<p>To ensure the experiment proceeded smoothly, Leena had been stripped completely bare.</p>
+<p>Intricate chains of runes restrained her wrists, thighs, shoulder blades, and back.</p>
+<p>Against her pale skin, the black runes gave her an almost decadent, unsettling allure.</p>
+<p>Yet the one bound to the experimental table was not truly “Leena”, but Mikaeli.</p>
+<p>This old hag had just refused to cooperate with Sein and chosen stubborn resistance instead.</p>
+<p>“Hmph! When I was making my name in Blackhaven, you were probably still wandering through some backwater magic academy, boy. You think your petty tricks can fool me?” Mikaeli...</p>
+</article>
+<article id="c1790" data-label="1790">
+<h2 class="chapter">Chapter 1790: Past Grievances 🔒</h2>
+<p>“What do you think I’m going to do?” Sein countered as he stepped forward.</p>
+<p>At the sight of him approaching, Mikaeli struggled even harder.</p>
+<p>But the more she fought against the restraints, the tighter the magic chains bound her to the experiment table.</p>
+<p>Provoking Sein had been her greatest mistake.</p>
+<p>Having once been a black magic initiate himself, Sein was far more extreme and ruthless than ordinary divine tower mages.</p>
+<p>As he moved closer, Sein said, “If you leave Leena’s body of your own accord, I can sign a mutual non-aggression contract with you on equal terms. My grandmaster, a peak Rank Six mage, can even serve as a witness.”</p>
+<p>Mikaeli merely sneered at his repeated attempts...</p>
+</article>
+<article id="c1791" data-label="1791">
+<h2 class="chapter">Chapter 1791: Sponsoring 🔒</h2>
+<p>After an intense but passionate session, Leena drifted off to sleep on the experiment table.</p>
+<p>Even with a Rank Four body, Leena was spent after undergoing a series of high-intensity body-tempering experiments, followed immediately by an equally intense encounter with Sein.</p>
+<p>Her cells and bodily functions had been pushed to the brink and now demanded rest.</p>
+<p>After applying several restorative body-tempering potions all over Leena’s skin, Sein turned away from the experiment table.</p>
+<p>The moment he reached the laboratory door, he stopped and asked, “Why are you still here?”</p>
+<p>Reina was still standing there, her cheeks flushed bright red. She had clearly watched everything that had just happened.</p>
+<p>Of course, Reina was no stranger to body-tempering experiments. In fact,...</p>
+</article>
+<article id="c1792" data-label="1792">
+<h2 class="chapter">Chapter 1792: Deep Pockets 🔒</h2>
+<p>The sky above Steel City was gloomy.</p>
+<p>As he looked at the rolling columns of pitch-black smoke rising from the enormous metal smokestacks both inside and outside Steel City, realization dawned upon Sein.</p>
+<p>No wonder planar will did not exist in technological civilizations.</p>
+<p>The environmental damage surrounding Steel City was the result of the relentless wartime demand for magitech and alchemy products needed to support the frontlines during the Clash of Civilizations.</p>
+<p>In the end, Steel City still leaned heavily toward the mechanical and technological side, so it had inevitably picked up some of the “bad habits” common to technological civilizations.</p>
+<p>For the time being, the Magus Civilization could still tolerate this level of pollution.</p>
+<p>Purification-type creatures relocated by the guardians...</p>
+</article>
+<article id="c1793" data-label="1793">
+<h2 class="chapter">Chapter 1793: The Lord of Ashenreach 🔒</h2>
+<p>For a newly established knightly order to attract lower-ranking knights, it first had to offer benefits appealing enough to draw them in.</p>
+<p>Anyone who joined the Order of the Flame Demon would receive a set of magitech armor worth nearly one thousand magicoins. While that kind of benefit might not mean much to a Rank Three Sky Knight, it was highly attractive to Rank One and Rank Two knights.</p>
+<p>This was especially true for ordinary knights who had only recently advanced to Rank One. In the midst of the Clash of Civilizations, their lives were constantly at risk, and receiving magitech armor this early could greatly improve their chances of survival.</p>
+<p>It was Sein who had originally suggested using this kind of armor as a recruitment incentive.</p>
+<p>Only someone as wealthy as he could support something...</p>
+</article>
+<article id="c1794" data-label="1794">
+<h2 class="chapter">Chapter 1794: Seeking Protection 🔒</h2>
+<p>“Are you certain you want to join us in Ashenreach?” Sein asked the brother and sister standing before him in the tower master’s chamber at the top of the divine tower.</p>
+<p>Gin was a red-haired Rank Four knight who stood only about 1.7 meters tall. He looked so much like Gina that no one could doubt they were siblings.</p>
+<p>Though rather short by a knight’s standards, Gin gave off a fierce and imposing presence.</p>
+<p>From the moment Sein laid eyes on him, Sein knew he was the kind of knight who would never bow his head or accept defeat.</p>
+<p>“Yes. If Master Sein is willing to take me in and help me through my current difficulties, I’m willing to bind myself to your service for ten thousand years through a magic contract,” Gin replied respectfully.</p>
+<p>To serve the Divine Tower of Ashes for ten...</p>
+</article>
+<article id="c1795" data-label="1795">
+<h2 class="chapter">Chapter 1795: Progress 🔒</h2>
+<p>After settling the matter of joining Ashenreach, Gin hurried back to his territory to gather his men and pack up his belongings.</p>
+<p>This pyro-attribute knight was clearly an impatient man.</p>
+<p>He had not even properly surveyed possible locations for his knightly order’s future main hall in Ashenreach, let alone made any plans for where the branch halls would be built.</p>
+<p>His sister Gina, on the other hand, remained remarkably calm.</p>
+<p>After meeting with Sein, Gina took the initiative to seek out Marie, the dean of his divine tower academy.</p>
+<p>Although the Divine Tower of Ashes had several demigod-level vice deans, most of them were little more than figureheads. In practice, nearly all matters, great and small, were handled by Marie alone.</p>
+<p>Tower Master...</p>
+</article>
+<article id="c1796" data-label="1796">
+<h2 class="chapter">Chapter 1796: The Rest Period Ends 🔒</h2>
+<p>In addition to making a breakthrough in body tempering, Sein also achieved major progress in apothecary.</p>
+<p>Over the thirty years since returning to Magus World, Lorianne had finally succeeded in refining a hybrid potion that combined Golden Apple and Sacred Fruit.</p>
+<p>The formula used a large number of strange and rare ingredients, some of which had been generously provided from Feylis’ collection.</p>
+<p>According to Lorianne, the new potion was more than three times as effective as her previous Golden Apple Potion.</p>
+<p>Of course, such potent effects also meant the quantity she could produce was limited. After all, balance was always preserved within the Astral Realm.</p>
+<p>In the end, Lorianne managed to refine only six vials of this new potion.</p>
+<p>Because its two main ingredients were Golden Apple and Sacred Fruit, and because...</p>
+</article>
+<article id="c1797" data-label="1797">
+<h2 class="chapter">Chapter 1797: Golden Rock Worlds 🔒</h2>
+<p>Before his vacation ended, Sein made another trip to Portman World to meet Klopp.</p>
+<p>The last time Sein had visited, this medium-sized plane had been bustling with activity both within and beyond its borders.</p>
+<p>Numerous Magus Civilization combat groups had gathered in this star domain. Many were legions from Titan World.</p>
+<p>Still, Portman World was noticeably quieter now.</p>
+<p>Although Magus World space fortresses and war airships of various types still occasionally passed through this star domain, the scale was nowhere near what it had been more than two centuries ago.</p>
+<p>“The last time I came here, I had even considered extending my vacation. But with everything that happened to Leena, I suppose it’s better to forget that.” Sein sighed...</p>
+</article>
+<article id="c1798" data-label="1798">
+<h2 class="chapter">Chapter 1798: Assault Mission 🔒</h2>
+<p>Once Sein’s deployment to that star domain was confirmed, the destinations for Reina, Sia, and Gin—who had only recently joined his forces—were quickly decided as well.</p>
+<p>All three would follow Sein to the Golden Rock Worlds to receive their combat assignments.</p>
+<p>After a period of rest, the relocated knightly order gradually resumed normal operations. Gin, in particular, had long been itching to return to the battlefield.</p>
+<p>He was still carrying tens of millions of magicoins in debt, and the pressure to repay it was far more urgent for him than it was for Reina or Sia.</p>
+<p>Sein had also arranged for Sia to provide further support to Gin’s Order of Crimson Knights in the form of two thousand sets of magitech armor. Naturally, Gin would have to repay both the favor and the mag...</p>
+</article>
+<article id="c1799" data-label="1799">
+<h2 class="chapter">Chapter 1799: Casting Forbidden Spell 🔒</h2>
+<p>Feylis certainly did not go easy on her grand apprentice.</p>
+<p>Cadillac was an unusually difficult battlefield to break through.</p>
+<p>The Magus Civilization legions had launched several offensives against this demiplane before, and every one of them had ended in failure.</p>
+<p>Even Gregory had suffered repeated setbacks there.</p>
+<p>In terms of size, Cadillac was larger than most low-level planes.</p>
+<p>However, as a demiplane, it was governed by incomplete rules and lacked a planar barrier. As a result, the entire plane appeared far more desolate, with vast stretches of metal ruins scattered both inside and around it.</p>
+<p>The Gallant Federation had thoroughly transformed this demiplane into a metallic frontline. At present, the Magus Civilization’s advance across the demiplane had only reached about forty-seven p...</p>
+</article>
+<article id="c1800" data-label="1800">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1800: The Might of a Merged Fortress 🔒</h2>
+<p>Terrifying crimson pillars of molten flame tore across the main battlefield of Cadillac, carving out a seemingly endless chasm thousands of meters deep.</p>
+<p>Countless Gallant Federation combat units and metal forts were destroyed.</p>
+<p>Under the elemental pressure unleashed by the forbidden spell, even several giant mobile suits and low-altitude fleet formations suffered heavy damage.</p>
+<p>The Gallant Federation had failed to stop Sein from unleashing the forbidden spell.</p>
+<p>Sein had named it <em>Scarlet Flame Pillar</em>, and it was especially devastating against the federation’s tightly packed metal defenses.</p>
+<p>At the same time, it was also one of the newest spell models Sein had developed over the past two centuries.</p>
+<p>After so many clashes with the Gallant Federation, Sein had already begun researching and...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1801-1850.html" rel="next">Next: Chs 1801–1850 &rarr;</a>
+    <p class="page-end-links"><a href="1701-1750.html" rel="prev">&larr; Chs 1701–1750</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1751–1800</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1751">Chapter 1751: The Subspace War Concludes 🔒</a></li>
+        <li><a href="#c1752">Chapter 1752: Two Avenues of Advance 🔒</a></li>
+        <li><a href="#c1753">Chapter 1753: Seizing a Slice of the Pie 🔒</a></li>
+        <li><a href="#c1754">Chapter 1754: Exceptional Performance 🔒</a></li>
+        <li><a href="#c1755">Chapter 1755: Maintenance Facilities 🔒</a></li>
+        <li><a href="#c1756">Chapter 1756: Depart for Planet Aquaria 🔒</a></li>
+        <li><a href="#c1757">Chapter 1757: Uncertain Future 🔒</a></li>
+        <li><a href="#c1758">Chapter 1758: Orric’s Growth 🔒</a></li>
+        <li><a href="#c1759">Chapter 1759: Conclusion of Battle 🔒</a></li>
+        <li><a href="#c1760">Chapter 1760: The Future of the Amenkha Empire 🔒</a></li>
+        <li><a href="#c1761">Chapter 1761: Plans to Retaliate 🔒</a></li>
+        <li><a href="#c1762">Chapter 1762: The Tenth Pharaoh 🔒</a></li>
+        <li><a href="#c1763">Chapter 1763: Allocation 🔒</a></li>
+        <li><a href="#c1764">Chapter 1764: Gifts and Negotiation  🔒</a></li>
+        <li><a href="#c1765">Chapter 1765: The Ocean King’s Ceremony 🔒</a></li>
+        <li><a href="#c1766">Chapter 1766: Suppressing the Blue Ocean 🔒</a></li>
+        <li><a href="#c1767">Chapter 1767: White Stella’s Advancement 🔒</a></li>
+        <li><a href="#c1768">Chapter 1768: Rest and Reward 🔒</a></li>
+        <li><a href="#c1769">Chapter 1769: Meeting Thor Again 🔒</a></li>
+        <li><a href="#c1770">Chapter 1770: Golden Apple with a Missing Bite 🔒</a></li>
+        <li><a href="#c1771">Chapter 1771: Sacred Fruit 🔒</a></li>
+        <li><a href="#c1772">Chapter 1772: Ruthless Cut 🔒</a></li>
+        <li><a href="#c1773">Chapter 1773: Overlord’s Saliva 🔒</a></li>
+        <li><a href="#c1774">Chapter 1774: Remote Support 🔒</a></li>
+        <li><a href="#c1775">Chapter 1775: The Federation’s Chief Scientist 🔒</a></li>
+        <li><a href="#c1776">Chapter 1776: Wealthy 🔒</a></li>
+        <li><a href="#c1777">Chapter 1777: Leena’s Ordeal 🔒</a></li>
+        <li><a href="#c1778">Chapter 1778: Atlan Interstellar Prison 🔒</a></li>
+        <li><a href="#c1779">Chapter 1779: Prison Visit 🔒</a></li>
+        <li><a href="#c1780">Chapter 1780: One Body, Two Souls 🔒</a></li>
+        <li><a href="#c1781">Chapter 1781: The Gray Zone 🔒</a></li>
+        <li><a href="#c1782">Chapter 1782: Truth 🔒</a></li>
+        <li><a href="#c1783">Chapter 1783: Longing 🔒</a></li>
+        <li><a href="#c1784">Chapter 1784: Resolution 🔒</a></li>
+        <li><a href="#c1785">Chapter 1785: Vindictive 🔒</a></li>
+        <li><a href="#c1786">Chapter 1786: Chance Encounter 🔒</a></li>
+        <li><a href="#c1787">Chapter 1787: Grandmaster’s Chiding 🔒</a></li>
+        <li><a href="#c1788">Chapter 1788: The Mystery of Souls 🔒</a></li>
+        <li><a href="#c1789">Chapter 1789: Body Tempering Torture 🔒</a></li>
+        <li><a href="#c1790">Chapter 1790: Past Grievances 🔒</a></li>
+        <li><a href="#c1791">Chapter 1791: Sponsoring 🔒</a></li>
+        <li><a href="#c1792">Chapter 1792: Deep Pockets 🔒</a></li>
+        <li><a href="#c1793">Chapter 1793: The Lord of Ashenreach 🔒</a></li>
+        <li><a href="#c1794">Chapter 1794: Seeking Protection 🔒</a></li>
+        <li><a href="#c1795">Chapter 1795: Progress 🔒</a></li>
+        <li><a href="#c1796">Chapter 1796: The Rest Period Ends 🔒</a></li>
+        <li><a href="#c1797">Chapter 1797: Golden Rock Worlds 🔒</a></li>
+        <li><a href="#c1798">Chapter 1798: Assault Mission 🔒</a></li>
+        <li><a href="#c1799">Chapter 1799: Casting Forbidden Spell 🔒</a></li>
+        <li><a href="#c1800">Chapter 1800: The Might of a Merged Fortress 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1701-1750.html" rel="prev">&larr; Chs 1701–1750</a>    <a href="../../index.html">Library</a>
+<a href="1801-1850.html" rel="next">Chs 1801–1850 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unintended Immortality Chs 301–350</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="251-300.html#last" data-next-page="351-400.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c301">Chapter 301: A Letter From the Temple Arrives 🔒</a></li>
+        <li><a href="#c302">Chapter 302: Fate Need Not Be Forced 🔒</a></li>
+        <li><a href="#c303">Chapter 303: Truly Lucky 🔒</a></li>
+        <li><a href="#c304">Chapter 304: Within a Story 🔒</a></li>
+        <li><a href="#c305">Chapter 305: A Genuine Tale of an Extraordinary Encounter 🔒</a></li>
+        <li><a href="#c306">Chapter 306: Mozhu County of Zhaozhou 🔒</a></li>
+        <li><a href="#c307">Chapter 307: Hearing His Own Story in the Teahouse 🔒</a></li>
+        <li><a href="#c308">Chapter 308: Changes Brought to the World 🔒</a></li>
+        <li><a href="#c309">Chapter 309: Lady Calico Doesn’t Eat Sparrows 🔒</a></li>
+        <li><a href="#c310">Chapter 310: A Historical Drama by the Roadside 🔒</a></li>
+        <li><a href="#c311">Chapter 311: The Ghostly Tale of the Small Town: Fragrance at Midnight 🔒</a></li>
+        <li><a href="#c312">Chapter 312: A New Year’s Fishing Tale 🔒</a></li>
+        <li><a href="#c313">Chapter 313: The Wondrous Nature of Fate 🔒</a></li>
+        <li><a href="#c314">Chapter 314: Continuing the Journey 🔒</a></li>
+        <li><a href="#c315">Chapter 315: The Divine Among Us 🔒</a></li>
+        <li><a href="#c316">Chapter 316: In Guangzhou, Searching for Shu Yifan 🔒</a></li>
+        <li><a href="#c317">Chapter 317: The Thunderstrike Sword Sect 🔒</a></li>
+        <li><a href="#c318">Chapter 318: The Limited Edition Senior Sister Lady Calico 🔒</a></li>
+        <li><a href="#c319">Chapter 319: Jiyan County 🔒</a></li>
+        <li><a href="#c320">Chapter 320: The Swallow Displays Its Power 🔒</a></li>
+        <li><a href="#c321">Chapter 321: Subduing the Locust Plague 🔒</a></li>
+        <li><a href="#c322">Chapter 322: Heading Toward the Tiger’s Mountain 🔒</a></li>
+        <li><a href="#c323">Chapter 323: Requesting Lady Calico’s Protection 🔒</a></li>
+        <li><a href="#c324">Chapter 324: The Daoist Attendant Continues to Strengthen 🔒</a></li>
+        <li><a href="#c325">Chapter 325: Missed Each Other by Accident 🔒</a></li>
+        <li><a href="#c326">Chapter 326: Returning to the Capital in Winter 🔒</a></li>
+        <li><a href="#c327">Chapter 327: The General&#39;s Welcoming Banquet 🔒</a></li>
+        <li><a href="#c328">Chapter 328: The Old House Remains 🔒</a></li>
+        <li><a href="#c329">Chapter 329: A Room With Bright Windows and Clean Furnishings Truly Feels Like Home 🔒</a></li>
+        <li><a href="#c330">Chapter 330: Joyful Reunion of Old Friends 🔒</a></li>
+        <li><a href="#c331">Chapter 331: A Day for Reading 🔒</a></li>
+        <li><a href="#c332">Chapter 332: Lady Calico, Don&#39;t Be Too Diligent! 🔒</a></li>
+        <li><a href="#c333">Chapter 333: The Fox and the Tail 🔒</a></li>
+        <li><a href="#c334">Chapter 334: Returning the Courtesy 🔒</a></li>
+        <li><a href="#c335">Chapter 335: A Polite Teacher 🔒</a></li>
+        <li><a href="#c336">Chapter 336: Don’t Be Suspicious 🔒</a></li>
+        <li><a href="#c337">Chapter 337: Lady Calico Can Also Exorcize Demons 🔒</a></li>
+        <li><a href="#c338">Chapter 338: Why Don’t You Rent a Cat to Take Care of for a Few Days? 🔒</a></li>
+        <li><a href="#c339">Chapter 339: The Tale of Lady Calico’s Exorcism 🔒</a></li>
+        <li><a href="#c340">Chapter 340: Night Battle with the Evil Creature 🔒</a></li>
+        <li><a href="#c341">Chapter 341: So It’s You, Little One 🔒</a></li>
+        <li><a href="#c342">Chapter 342: Why Are You Here? 🔒</a></li>
+        <li><a href="#c343">Chapter 343: A Chance Encounter on the Street 🔒</a></li>
+        <li><a href="#c344">Chapter 344: Saving the Trouble of Performing Telekinesis 🔒</a></li>
+        <li><a href="#c345">Chapter 345: Fate Already Sealed 🔒</a></li>
+        <li><a href="#c346">Chapter 346: Persuade the Emperor to Make an Early Decision 🔒</a></li>
+        <li><a href="#c347">Chapter 347: The Copycat and Copyman 🔒</a></li>
+        <li><a href="#c348">Chapter 348: A Visit from an Old Acquaintance 🔒</a></li>
+        <li><a href="#c349">Chapter 349: The Fox Knows How to Have Fun 🔒</a></li>
+        <li><a href="#c350">Chapter 350: The Fox Plays the Rabbit 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="the-unintentional-path-to-immortality">
+<article id="c301" data-label="301">
+<h2 class="chapter">Chapter 301: A Letter From the Temple Arrives 🔒</h2>
+<p>“Sir…” The swallow perched on a nearby branch.</p>
+<p>“What is it?”</p>
+<p>“When I found this Qingtong Forest earlier, I thought I saw a figure in the mist and clouds. I’m not sure if it was just the movement of the miasma or if I was dizzy from inhaling it,” the swallow said, its bright black eyes darting left and right, uncertainty etched into its tone. “I didn’t see it clearly.”</p>
+<p>“Did it look like the divine bird?”</p>
+<p>“Probably... not.”</p>
+<p>“I see.”</p>
+<p>Song You, seated cross-legged on a felt mat, glanced toward the distant forest and finally said, “This place is rich in spiritual energy, with a mysterious spiritual resonance and undisturbed by humans. It’s natural for living beings here to gain sentience and become demons.”</p>
+<p>He cast a brief look at the swallow, suspecting that whatever it had seen might not have been a minor demon or monster.</p>
+<p>“Even the presence of a great demon would be unsurprising.”</p>
+<p>“Yes…”</p>
+<p>The swallow fell silent, lifting its gaze toward the distant horizon.</p>
+<p>By now, the sky was growing darker.</p>
+<p>True to its nature, the swallow chose the tallest tree it could find, one unobstructed by other foliage, and perched on a branch. Tucking in its neck, it gazed out over the vast Qingtong Fores...</p>
+</article>
+<article id="c302" data-label="302">
+<h2 class="chapter">Chapter 302: Fate Need Not Be Forced 🔒</h2>
+<p>In the early spring of the second year of Mingde, within the Yin-Yang Mountain of Lingquan County...</p>
+<p>An old Daoist sat by the window. On the table lay a letter delivered two days prior, which she had read over and over during that time. Yet she hesitated over how to reply.</p>
+<p>After much deliberation, she finally reached for paper and brush.</p>
+<p>Lowering her head, she began to write:</p>
+<p>“…I know you come from another world.</p>
+<p>“I don’t know what kind of world it is, but I imagine it must be far more exciting to you than this one. Or perhaps, in that world, there are things you can’t let go of, a place where your heart feels at ease—that’s why you find it so hard to part with.</p>
+<p>“…You find this world dull. You see the suffering in the land. You see the ignorance of the people. It’s true that this world is filled with much darkness and folly. But by the time you receive this letter, it will likely be several years later. The mountain paths and waterways are not easy to traverse. By then, you will have seen countless breathtaking landscapes, won’t you?</p>
+<p>“Perhaps you will already have realized that this seemingly dim world is no less vibrant than the one you came from. The suffering of the world may be real, the ignorance of the people may be real, and the darkness of life may also...</p>
+</article>
+<article id="c303" data-label="303">
+<h2 class="chapter">Chapter 303: Truly Lucky 🔒</h2>
+<p>The journey to Yuezhou’s Qingtong Forest, though spanning thousands of li and fraught with challenges, had been undertaken solely to glimpse the divine bird.</p>
+<p>Now that he had seen it, Song You felt content.</p>
+<p>Though there had been no conversation with the bird, nor any tangible benefit gained from it, he had already obtained what he sought.</p>
+<p>If anyone, like Lady Calico, were to ask him what the divine bird of the Qingtong Forest in northern Yuezhou looked like, Song You would now be able to answer confidently, painting a vivid picture of the bird’s splendor.</p>
+<p>That alone was enough.</p>
+<p>What’s more, he had also gained a newfound sense of openness and clarity.</p>
+<p>And so, he continued eastward.</p>
+<p>Yuezhou stretched over a thousand li from east to west, but by the time Song You reached the Qingtong Forest, he had already traveled several hundred li from the west. It was said that the Qingtong Forest itself spanned several hundred li in width, meaning that once he exited the forest, it wouldn’t be far before he exited Yuezhou and crossed into Zhaozhou.</p>
+<p>Conveniently, the legendary Mount Tianzhu wasn’t far from there either.</p>
+<p>Daybreak came quickly.</p>
+<p>Initially, Song You thought the weather would remain clear, free from the clouds and miasma that had plagued the area. However, as...</p>
+</article>
+<article id="c304" data-label="304">
+<h2 class="chapter">Chapter 304: Within a Story 🔒</h2>
+<p>Beneath the towering parasol trees that reached into the clouds, the small fire appeared especially insignificant. Surrounded by thick miasma, its glow barely reached far. The Daoist sat on a wool mat, sharing a thin blanket with the middle-aged man, sitting across from him.</p>
+<p>The water in the pot had long since boiled, bubbling steadily.</p>
+<p>The Daoist ladled out a bowl and handed it to the man.</p>
+<p>“Careful, it’s hot.”</p>
+<p>“Thank you.”</p>
+<p>“I am Song You, from Lingquan County in Yizhou. May I ask for your name?”</p>
+<p>“Oh, pardon my rudeness. I am Dong Zhi. My ancestral home is in Yuezhou, but I’ve come here from Hanzhou this time around.”</p>
+<p>Dong Zhi accepted the bowl, feeling the comforting warmth emanating from it. The steam rose, damp and hot against his face, bringing an unusual sense of reassurance.</p>
+<p>His eyes discreetly wandered to the scene before him.</p>
+<p>The young Daoist and the little girl, both sitting calmly in the miasma that could make most people sick. The Daoist exuded composure, and the little girl’s complexion was pristine, her appearance fair and pure.</p>
+<p>There was also a jujube-red horse, lean but clearly a Beiyuan breed. It bore neither reins nor saddle, with a well-stocked saddlebag resting nearby.</p>
+<p>What stood out most, however—</p>
+<p>Perched on the jujube-red horse’s back was a swallow. Forget...</p>
+</article>
+<article id="c305" data-label="305">
+<h2 class="chapter">Chapter 305: A Genuine Tale of an Extraordinary Encounter 🔒</h2>
+<p>Dong Zhi sipped from the edge of his bowl, slurping the paste.</p>
+<p>The military ration—millet paste—had an utterly mediocre taste. It was not as good as rice porridge, nor even millet porridge. However, Dong Zhi hadn’t eaten a proper hot meal in a long time. To his surprise, the paste included shredded rabbit meat, wild vegetables from the forest, and even salt. As he ate, he couldn&#39;t help but feel touched, as if he had just tasted some kind of top-tier delicacy.</p>
+<p>And again, he began to suspect it might all be an illusion.</p>
+<p>“Sir... Since you are from Yizhou, what brings you here?” Dong Zhi cautiously glanced at Song You.</p>
+<p>“I descended the mountain to wander and explore, traveling wherever my feet take me, with no fixed abode,” Song You replied with a gentle smile. “As for why I came here... it’s much the same as you. I sought to witness the majesty of the famed Yuezhou divine bird.”</p>
+<p>“And when do you plan to leave, sir?”</p>
+<p>“IWe’ll rest for the night, and we’ll leave at dawn,” Song You said to him. “From here, it’s only a matter of a few dozen li to exit this Qingtong Forest. By late morning, you’ll be out.”</p>
+<p>“A few dozen li…” Dong Zhi couldn’t help but feel dazed.</p>
+<p>Dozens of li might not seem far, yet he almost died here.</p>
+<p>“Since you came through Guangzhou, I presume you’ll head back the same way. Once you’re out of here, you should go south. As for us, we’ll...</p>
+</article>
+<article id="c306" data-label="306">
+<h2 class="chapter">Chapter 306: Mozhu County of Zhaozhou 🔒</h2>
+<p>“Fascinating things…” Song You stood still, frowning as he muttered to himself.</p>
+<p>Then, he withdrew his gaze, leaning on his staff as he continued on his way.</p>
+<p>Ahead, the vast expanse of mountains was blanketed in snow, the sky above forming a massive, unbroken dome of azure. The snow-covered ridges curved gently, devoid of any sign of human habitation.</p>
+<p>Across the snowy terrain, a trail of footprints led southward, descending the mountain. Another set of messier tracks followed the ridgeline eastward.</p>
+<p>Although Song You didn’t fully understand what the minor demon was hinting at, whether it was trying to subtly suggest something or had its own motives for wanting him to linger longer in Yuezhou or the northern lands, he was someone who often heeded advice. Besides, his journey was meant to explore the world; taking a bit more time to thoroughly traverse Yuezhou wasn’t a bad idea. Thus, he truly intended to retrace his steps and explore Yuezhou more thoroughly.</p>
+<p>Initially, he had planned to leave the Qingtong Forest, visit Mount Tianzhu, and then head to Zhaozhou for the winter. Now, he decided to take a detour and spend more time exploring Yuezhou in detail.</p>
+<p>Yuezhou was nearly devoid of human habitation, making travel exceptionally arduous.</p>
+<p>Skeletons frequently dotted the landscape. Most had been exposed to the elements for over a decade, long overdue for burial. Song You made a point to give them a proper resting place whenever he encountered them.</p>
+<p>On his...</p>
+</article>
+<article id="c307" data-label="307">
+<h2 class="chapter">Chapter 307: Hearing His Own Story in the Teahouse 🔒</h2>
+<p>In a teahouse next to the inn…</p>
+<p>Thanks to the upcoming New Year, most farmers had no work in the fields and could afford a rare break. This was one of the few times of the year when people were willing to spend a little extra, and the teahouse&#39;s business was thriving.</p>
+<p>Some patrons chatted and laughed, others listened attentively to the storyteller. Some people came here to play board games because the gambling dens were too crowded to accommodate them.</p>
+<p>When Song You and Lady Calico arrived, only one table remained vacant. They took their seats and ordered a pot of ordinary tea to enjoy as they slowly listened to the storyteller. Meanwhile, the swallow perched itself on a beam overhead, wary of the crowded room and hesitant to descend.</p>
+<p>“Continuing from last time—</p>
+<p>“The northern frontier army’s demons summoned their divine immortal to descend to the mortal realm, unleashing torrential floods! Aye, the flood was vast as an ocean, drowning the entire grasslands! As mentioned earlier, the green ox under that immortal master not only possessed the ability to transform into a flood dragon, breathing fire and spouting water, but it could also roam the seas with ease. However, in the distant Yuanzhi City behind them, there were hundreds of thousands of soldiers in the army—and these armored warriors all feared floods!”</p>
+<p>The Daoist couldn’t help but lower his head when he heard this.</p>
+<p>The calico cat sitting...</p>
+</article>
+<article id="c308" data-label="308">
+<h2 class="chapter">Chapter 308: Changes Brought to the World 🔒</h2>
+<p>The narrow, old alleyway was too tight for carts to pass through. The peeling paint on the walls and the moss-covered corners bore the marks of time on this small town. A young boy, no older than ten or twelve, dressed in tattered clothing, led a young Daoist priest wearing a well-worn robe through the passage.</p>
+<p>The scene was not entirely out of place. However, with a calico cat trotting behind the Daoist, her little paws padding quickly, and a bird perched on his head, the oddity of the procession became subjective to the observer&#39;s perspective.</p>
+<p>The boy occasionally lowered his gaze to the cat and then glanced up at the bird, cautious but refraining from asking questions.</p>
+<p>The Daoist spoke, his voice calm. “Judging by your demeanor and the way you carry yourself, you seem like someone from the <em>jianghu</em>.”</p>
+<p>“I just wander around trying to make a living.”</p>
+<p>“May I ask how I should address you?”</p>
+<p>“…” The boy hesitated briefly before looking up at the Daoist. “Shouldn’t you first introduce yourself, Daoist Master?”</p>
+<p>“My apologies,” the Daoist replied with a polite smile. “I am Song You. The cat accompanying me is called Lady Calico. She has traveled the world with me since the late summer of the first year of the Mingde era. It has now been five and a half years.”</p>
+<p>“…” The boy fell silent again before slightly...</p>
+</article>
+<article id="c309" data-label="309">
+<h2 class="chapter">Chapter 309: Lady Calico Doesn’t Eat Sparrows 🔒</h2>
+<p>“Well, you…” Lady Calico craned her neck, staring at the spices laid out on the table. She glanced at them again and again. “You’ve bought all these fruits, grains, wheat, tree bark, and leaves again—is it for making that powder?”</p>
+<p>“Some of it is for powder-making.”</p>
+<p>“Some of it...”</p>
+<p>“And some of it…”</p>
+<p>“And some of it!”</p>
+<p>The Daoist smiled in reminiscence and said to her, “With the New Year approaching, it’s proper to prepare a pot of braised meat.”</p>
+<p>“Braised meat!”</p>
+<p>“It’s customary to eat braised meat during the New Year.”</p>
+<p>“Have I eaten braised meat before?”</p>
+<p>“How would I know?”</p>
+<p>“Why don’t you know?”</p>
+<p>“I&#39;m not smart.”</p>
+<p>“You’re not…” Lady Calico was halfway through her sentence before pausing in surprise.</p>
+<p>Then, she tilted her head back and stared at him blankly.</p>
+<p>Then she heard the Daoist say, “Whether you’ve eaten it before or not, surely you should know best.”</p>
+<p>“I don&#39;t know either.”</p>
+<p>“And why is that?”</p>
+<p>“Because…” Lady Calico paused mid-sentence, suddenly at a loss. She continued to tilt her head up, staring blankly at him.</p>
+<p>“<em>Swish</em>!”</p>
+<p>Lady Calico quickly shook her head, swaying it in a circular motion until her facial features distorted. Then, as if shaking off her earlier thoughts, she sat upright. She began licking her paw, pretending as though nothing had happened. She calmly responded to the Daoist, “I remember that I haven’t eaten it before.”</p>
+<p>“I suppose you haven...</p>
+</article>
+<article id="c310" data-label="310">
+<h2 class="chapter">Chapter 310: A Historical Drama by the Roadside 🔒</h2>
+<p>Today&#39;s story was one Song You was eager to hear.</p>
+<p>When he and Lady Calico left the military camp, it had been mid-September, deep into autumn. Now, it was already the end of December, just a few days before the New Year. More than three months had passed. During this time, the entirety of Yuezhou had been practically deserted, making this leg of the journey the loneliest since descending the mountain, with no news to be heard anywhere.</p>
+<p>Song You wanted to know what had happened in the army after he left. That was something that occurred after his departure.</p>
+<p>However, the storyteller, clearly well-versed in his craft, didn’t immediately reveal the answer Song You sought. Instead, he raised his voice and began, “They travelled 800 li a day! Over three thousand li, through clouds and moonlight, the courier took less than four days to deliver the message from the army to Changjing!</p>
+<p>“The capital was shaken, and the court was overjoyed! But joy aside, the matter of General Chen’s proposal to continue leading the troops north sparked heated debate in court!</p>
+<p>“Of course, it had to be discussed! This is no small matter!</p>
+<p>“There were those in favor, but naturally, there were also those opposed!</p>
+<p>“Last year, the northern frontier people invaded with the support of demons, even breaching the border at one point. The five northern strongholds all fell. It was only after General...</p>
+</article>
+<article id="c311" data-label="311">
+<h2 class="chapter">Chapter 311: The Ghostly Tale of the Small Town: Fragrance at Midnight 🔒</h2>
+<p>Princess Changping had stepped down from the stage of history.</p>
+<p>He wondered whether Heroine Wu, who had relied on the princess’s support to secretly investigate her father’s murderer, had found the answers she sought. He also wondered whether the fox demon who had gone to Changjing to repay a debt of gratitude had gained her freedom.</p>
+<p>Had Prefect Yu, recalled to the capital for an important role, become entangled in the chaos? Had Magistrate Liu been swept up in the storm?</p>
+<p>It must have been a tremendous upheaval.</p>
+<p>Thinking about it this way, there were so many familiar faces.</p>
+<p>While Song You was far from the capital, unable to witness the court&#39;s political machinations and hidden currents, he felt no regret. At that time, he might have been climbing the Five-Colored Pool in Yuezhou, listening to the sound of snow falling before the Yuelong Waterfall, or waiting for a divine bird to appear in an ancient Qingtong Forest. The sights before him were wonders that most people could never dream of seeing in a lifetime.</p>
+<p>General Chen was destined to be remembered as a legendary figure for the ages.</p>
+<p>Even if he were later betrayed by the Emperor or court officials, even if time altered his legacy, even if he failed to preserve his honor in the end, none of that could change this truth.</p>
+<p>As for the Daoist, he was far away, in one of the most remote counties of a prefecture located at the farthest eastern...</p>
+</article>
+<article id="c312" data-label="312">
+<h2 class="chapter">Chapter 312: A New Year’s Fishing Tale 🔒</h2>
+<p>Song You was woken by the sound of drums outside.</p>
+<p>Groggily opening his eyes, he realized it was already the morning of the first day of the New Year in the seventh year of Mingde.</p>
+<p>The clamor outside continued unabated.</p>
+<p>Song You took a deep breath and slowly exhaled. The air was cold and crisp, the temperature biting. On a day like this, one ought to stay nestled in the warm embrace of their blankets a while longer.</p>
+<p>But he still threw off the covers.</p>
+<p>Lady Calico was curled up by his thigh, lying on her belly with her head buried deeply. Her ears twitched slightly in rhythm with the pounding outside, especially at the sharp clangs of cymbals and gongs. It was clear she had also been woken by the noise but stubbornly refused to get up, likely exhausted from her escapades the night before.</p>
+<p>“…”</p>
+<p>Song You couldn’t help but lean down, pressing his face close to the cat’s side, and took a deep, indulgent breath of her scent.</p>
+<p>As expected, the warm aroma of braised sauce lingered in the air.</p>
+<p>Turning his head, Song You glanced around the room and noticed that the portable stove had shifted slightly. It seemed to have been moved somewhere and then returned to its original spot. On the table sat a small pot, scrubbed clean. As long as he didn’t imagine what the pot had gone through the previous night, it was as if none of it had happened.</p>
+<p>At...</p>
+</article>
+<article id="c313" data-label="313">
+<h2 class="chapter">Chapter 313: The Wondrous Nature of Fate 🔒</h2>
+<p>“That’s enough…”</p>
+<p>“Really?”</p>
+<p>The little girl turned her head to look and indeed saw that they had caught quite a lot of fish.</p>
+<p>But fish, being such a good thing—edible for both cats and humans, and even sellable—meant the more, the better.</p>
+<p>She glanced at the Daoist, her eyes filled with curiosity.</p>
+<p>Raising her crouched body slightly, she craned her neck to follow the Daoist’s line of sight. In the distance, she saw another person—a young adolescent who looked somewhat familiar.</p>
+<p>That person was also fishing in a way similar to theirs, though not from the middle of the river. Instead, they were near the riverbank, where they had cut a hole in the ice—not with their hands but with a sharpened wooden stick. The youth was focused intently, staring down at the hole in the ice, occasionally thrusting the stick downward with force.</p>
+<p>Naturally, they weren’t nearly as skilled as Lady Calico.</p>
+<p>Since arriving on the grasslands, Lady Calico had gradually honed her exceptional fishing skills, effortlessly pulling fish from the water with her bare hands—one after another, with ease.</p>
+<p>The young adolescent, on the other hand, had jabbed the stick several times without managing to catch a single fish.</p>
+<p>At that moment, the youth seemed to notice them as well. Turning to look, they...</p>
+</article>
+<article id="c314" data-label="314">
+<h2 class="chapter">Chapter 314: Continuing the Journey 🔒</h2>
+<p>In Mozhu City…</p>
+<p>A Daoist strolled leisurely down the street, followed by a young girl in tricolored clothing and a handsome youth dressed in black and white. Both carried strings of fish in their hands, drawing the attention of passersby.</p>
+<p>The two, however, had very different demeanors.</p>
+<p>The little girl was brimming with pride, clutching her grass ropes tightly, her head held high, and her expression serious. She walked with a bold and imposing air, like a small general returning victorious from battle.</p>
+<p>The youth, on the other hand, was the complete opposite. Shrinking his neck and avoiding eye contact, he skulked along with his back to the wall, visibly uncomfortable under the gaze of so many onlookers.</p>
+<p>The little girl frequently turned to glare at him, her eyes accusing him of sticking too close to the wall and failing to properly show off their haul to the townsfolk.</p>
+<p>The group made their way to the city’s vegetable market, where they set up a stall to sell the fish in exchange for money.</p>
+<p>Keeping two fish for themselves, they carried the rest of their earnings back to the inn.</p>
+<p>The innkeeper was still sitting at the entrance, looking conflicted. The moment he saw Song You return, he raised his head and fixed his gaze on him.</p>
+<p>“You’re back, sir?“</p>
+<p>“Yes,” Song You replied with...</p>
+</article>
+<article id="c315" data-label="315">
+<h2 class="chapter">Chapter 315: The Divine Among Us 🔒</h2>
+<p>As they left Mozhu County, there was still snow on the ground.</p>
+<p>However, it no longer carried the heavy, endless whiteness of midwinter. Patches of earth and remnants of last year’s wild grass began to emerge, while snow lingered only in the shaded, low-lying parts of the official roads.</p>
+<p>The Daoist traveled for half a day, covering dozens of li.</p>
+<p>Finding a suitable spot, he sat down to rest.</p>
+<p>The old hen gifted by the innkeeper had already been slaughtered and cleaned, and the honey fungi soaked and prepared. After fussing over it for half the afternoon, everything had come together in a pot of stewed chicken, now bubbling away with a rich aroma rising into the air.</p>
+<p>Lady Calico had transformed into her human form, crouching into a small bundle while holding a stick of firewood. She carefully tended the flames, occasionally leaning forward to peer into the pot, sniffing the aroma, and pondering whether the main ingredient for this dish could be swapped out for something else.</p>
+<p>The Daoist sat cross-legged nearby, holding a copy of <em>Yudi Jisheng</em>, contemplating the next leg of their journey.</p>
+<p>Zhaozhou was vast, its expanse evident even on the map.</p>
+<p>If it were merely a cartographic error, one might dismiss it as the mapmaker’s oversight. However, the text in the chapter on Zhaozhou made it clear: although the number of counties and commanderies in Zhaozhou was comparable to other prefectures, historical...</p>
+</article>
+<article id="c316" data-label="316">
+<h2 class="chapter">Chapter 316: In Guangzhou, Searching for Shu Yifan 🔒</h2>
+<p>Meanwhile, in the capital of Hanzhou, there was another tavern where a storyteller was recounting tales.</p>
+<p>However, this storyteller was speaking about matters of the <em>jianghu</em>.</p>
+<p>If you were to ask what the biggest news in the <em>jianghu </em>was recently, it wasn’t the new Great Liujiang Gathering but rather the emergence of the unparalleled swordsman, Shu Yifan, who had achieved enlightenment through martial arts.</p>
+<p>The last time anyone in the <em>jianghu </em>had achieved enlightenment through martial arts was over a hundred years ago.</p>
+<p>And how long ago was a hundred years?</p>
+<p>Haha!</p>
+<p>For the common folk of the <em>jianghu</em>, a hundred years, five hundred years, or even a thousand years—there wasn’t much difference. After a few generations, while the legends of those grandmasters who achieved enlightenment through martial arts continued to circulate—stories of their incredible power, their ability to slay gods and demons alike—few truly knew what such a martial artist was really like.</p>
+<p>Now, a new grandmaster of martial arts had appeared. And with him, a new legend of the <em>jianghu </em>was born.</p>
+<p>“One year!</p>
+<p>“In just one year, Shu Yifan traversed all of Guangzhou. As for the demons and monsters causing chaos there, it’s impossible to say they were completely eradicated, but at least eight out of ten fell beneath Shu Yifan’s Thunderstrike Sword!</p>
+<p>“And why, you ask, would Shu Yifan undertake such a feat?</p>
+<p>“If you knew where this Thunderstrike Swordmaster...</p>
+</article>
+<article id="c317" data-label="317">
+<h2 class="chapter">Chapter 317: The Thunderstrike Sword Sect 🔒</h2>
+<p>At the turn of summer into autumn came the hottest time of the year.</p>
+<p>When Song You had previously passed through Zhaozhou and Hanzhou, the temperatures had been pleasant. Even in the height of summer, most areas there were not particularly hot, making the journey quite comfortable. But now, entering Guangzhou, the heat grew more intense.</p>
+<p>The upside was the increasing density of settlements and signs of prosperity. Traveling had become much easier; food and lodging were more convenient than ever.</p>
+<p>Sometimes, he didn’t even need to cook or search for water himself. Along the official roads, tea stands appeared every few dozen li. These stands not only sold tea but often offered simple food like buns and flatbreads, enough to fill one’s stomach. On occasion, he’d come across vendors selling dumplings or noodle soup, which felt like a stroke of luck that could brighten the whole day.</p>
+<p>The weather was so warm that, as long as it didn’t rain, any flat spot was sufficient for a good night’s rest. No blankets or thin covers were needed—just a woolen mat spread out on the ground would suffice.</p>
+<p>Under the unique clarity and brilliance of the stars of this era, one could sleep peacefully. Often, though, there were temples along the way, where one could find shelter and exchange tales with wandering martial artists for the night.</p>
+<p>The experience brought back memories of his early days traveling through Yizhou after...</p>
+</article>
+<article id="c318" data-label="318">
+<h2 class="chapter">Chapter 318: The Limited Edition Senior Sister Lady Calico 🔒</h2>
+<p>“Do you have any idea when Sir Shu might return?”</p>
+<p>“I dare not deceive you, immortal master...” Steward Luo’s expression grew even more apologetic. “It’s hard to say. Master’s divine steed can travel a thousand li in a day, and as demon-slaying is a serious matter, Master surely won’t delay along the way.</p>
+<p>“However, slaying demons isn’t an easy task, and Master also has a habit of sitting crossed-legged and meditating afterward to reflect and deepen his understanding. If all goes smoothly, he might return in a few days, but if things don’t go well, it could take a month—or even longer. Before he left, the sect leader made arrangements for disciple recruitment in his absence.”</p>
+<p>“I see,” Song You replied, nodding in understanding.</p>
+<p>Demons were different from humans—they were cunning and unpredictable. Whether it was a mountain hiding a tiger or fields concealing insects, the vastness made them difficult to search. How long it took to exorcize a demon was hard to estimate.</p>
+<p>Shu Yifan, who cultivated the Heavenly Thunder Sword Dao and had only recently achieved enlightenment through martial arts, naturally needed to meditate and refine his insights of Sword Dao after each battle.</p>
+<p>Still, Song You had his own journey to continue. Waiting here for a few days, or even ten, was manageable, but waiting...</p>
+</article>
+<article id="c319" data-label="319">
+<h2 class="chapter">Chapter 319: Jiyan County 🔒</h2>
+<p>Song You glanced at the young girl with a slight smile and added, “But you know, being called &#39;sister&#39; by others doesn’t come for free.”</p>
+<p>“Huh?” The little girl tilted her head, looking puzzled.</p>
+<p>“&#39;Brother&#39; and &#39;sister&#39; are terms of respect for elders. Being addressed that way doesn’t just signify higher status—it also comes with responsibility. If the relationship isn’t one of equals, then there must be some form of balance,” Song You said, leaning down slightly to explain.</p>
+<p>“Lady Calico, you value etiquette. Since others respectfully address you as &#34;Senior Sister,&#34; which delights you greatly, you must also offer something in return as an equivalent gesture of reciprocity.”</p>
+<p>“What should I do?” The little girl looked up at him with her bright, inquisitive eyes, eager to learn.</p>
+<p>“I’ve heard that most of the children coming here to apprentice, even if not from wealthy families, are from well-off households, so they probably aren’t lacking much. However, since Sir Shu has only recently established his sect, the conditions in the mountains aren’t great. These children are living hard lives while they train here,” Song You said.</p>
+<p>He added, “Now that summer is ending and autumn is beginning, many wild fruits are ripening in the mountains. They are flavorful and refreshing. Lady Calico, you could pick some and give them...</p>
+</article>
+<article id="c320" data-label="320">
+<h2 class="chapter">Chapter 320: The Swallow Displays Its Power 🔒</h2>
+<p>Cries of despair filled the roads, and sorrowful faces were everywhere.</p>
+<p>The Daoist passed through the fields, entering the town to inquire with the local officials about the situation. The officials had come up with some measures and were organizing a response. However, their efforts were sufficient only for smaller disasters; in the face of a catastrophe of this scale, they were powerless.</p>
+<p>To the officials and wealthy residents, this might feel like a flood, a drought, or an earthquake—disastrous, but manageable enough to warrant a sigh. For the poorest commoners, however, natural calamities like these left them utterly helpless. They could do little but weep, wail, and endure silently until they no longer had the strength to cry.</p>
+<p>One could easily imagine that after the locust plague, unless the government provided disaster relief, the land would be littered with corpses from starvation, and resentment would run rampant.</p>
+<p>North of Jiyan County’s town, the locust plague was at its worst. The Daoist, having entered the town from the south, made his way through it and continued north toward the areas most severely affected.</p>
+<p>The jingling of the horse’s bells accompanied their journey.</p>
+<p>By this time, it was afternoon.</p>
+<p>Lady Calico was nestled inside a saddlebag on the horse’s back, swaying gently with the rhythm of its steps. She poked her head out and looked ahead.</p>
+<p>Suddenly, a locust flew toward her.</p>
+<p><em>Swish!</em></p>
+<p>Lady Calico’s paw darted out like lightning, snatching the locust...</p>
+</article>
+<article id="c321" data-label="321">
+<h2 class="chapter">Chapter 321: Subduing the Locust Plague 🔒</h2>
+<p>The old locusts had been swept away by the Daoist’s gust of wind, but new swarms continued to arrive. The farmer in the field was so exhausted that he could barely catch his breath. Forced to rest for the time being, he resolved to follow the government’s advice later in the evening: to light fires in the fields to ward off the locusts once night fell.</p>
+<p>These cursed bugs were truly tormenting.</p>
+<p>Could it be that the locust deity had somehow been resurrected?</p>
+<p>The old man, clutching his aching back, emerged from the fields and looked up at the sky full of locusts, letting out a deep sigh.</p>
+<p>At that moment, he suddenly heard a commotion in the distance.</p>
+<p>Raising his head, he saw what appeared to be a dense, inky blot spreading across the dim sky. This blot seemed to dissolve into countless black shadows, scattering in all directions. Some of the shadows flew overhead, accompanied by the whooshing sound of the wind and a chorus of bird calls. The noise, though individually faint, gathered into a rushing torrent, leaving the old man stunned.</p>
+<p>Some of the birds lowered their altitude and flew down toward the ground.</p>
+<p>Steadying himself and summoning his courage, the old man moved closer for a better look. Only then did he realize that the birds were swallows. They had black and white feathers, and were lively and graceful in appearance.</p>
+<p>Looking back up...</p>
+</article>
+<article id="c322" data-label="322">
+<h2 class="chapter">Chapter 322: Heading Toward the Tiger’s Mountain 🔒</h2>
+<p>Jinhe County had long been infamous for its abundance of tigers. The land teemed with them.</p>
+<p>This was, in part, a consequence of war.</p>
+<p>After warfare, the population dwindled. With fewer people, vegetation flourished unchecked, and the beasts—tigers, leopards, wolves, and the like—returned to reclaim the lands they had been driven from. Even demons and monsters became more prevalent.</p>
+<p>After peace was restored to the Great Yan, many parts of Guangzhou saw their tiger and leopard infestations eradicated. Yet in Jinhe County, with its abundant mountains and forests, the problem persisted.</p>
+<p>At its peak, it was said that tigers and leopards roamed in packs through towns and villages, day and night, undeterred by human presence. Some accounts claimed the animals had become so numerous that they abandoned their solitary habits, forming groups that boldly wandered the streets during daylight, unfazed by humans.</p>
+<p>Whether this was exaggeration or truth, the sheer scale of the problem was undeniable. At the very least, there must have been bold tigers that ventured into the town from time to time.</p>
+<p>Eventually, a tiger achieved sentience and proclaimed itself king of the mountains. It no longer descended to hunt humans personally but sent other tigers to capture and deliver its prey.</p>
+<p>Several attempts...</p>
+</article>
+<article id="c323" data-label="323">
+<h2 class="chapter">Chapter 323: Requesting Lady Calico’s Protection 🔒</h2>
+<p>The mountain was tall and heavily forested, a vast expanse of lush greenery.</p>
+<p>The Daoist raised his head, his eyes filled with the sight of the thick woodland.</p>
+<p>A mountain like this—whether or not there were tales of wolves, leopards, or tigers—was not one an ordinary person would dare to climb.</p>
+<p>It was unknown whether there was a proper path to ascend or not. Song You, as a traveler from outside the region, saw no such trail.</p>
+<p>Forget about a proper mountain trail, even reaching the forest above from the roadside would require climbing over an earthen ledge that stood nearly as high as one and a half people.</p>
+<p>Upon closer inspection, he noticed some signs of disturbance on the ledge.</p>
+<p>Two people and a horse paused by the roadside. The young girl gazed into the distance, while the Daoist focused on examining the traces left behind.</p>
+<p>The road had been carved into the mountainside, with the slope and earthen ledge rising to the left. The ledge showed signs of collapse, as if some heavy animal unaccustomed to climbing had stepped on it. Upon careful inspection, faint hoofprints could be seen at the top, and the vegetation ahead had been trampled and pushed aside.</p>
+<p>It seemed that someone, accompanied by a horse, had leapt up the ledge to ascend the mountain.</p>
+<p>Such a feat was far beyond the capabilities of an ordinary horse.</p>
+<p>The Daoist raised his head slightly again.</p>
+<p>The forest was dense, and the overhead branches were tangled and chaotic. Such conditions would greatly hinder...</p>
+</article>
+<article id="c324" data-label="324">
+<h2 class="chapter">Chapter 324: The Daoist Attendant Continues to Strengthen 🔒</h2>
+<p>“<em>Roar</em>!”</p>
+<p>A thunderous roar shook the heavens.</p>
+<p>Suddenly, the sound of rustling leaves emerged from the forest. A massive tiger, still not fully healed from its wounds, leapt out from the dense jungle, charging toward the group.</p>
+<p>Although it seemed far away at first, the tiger’s speed was astonishingly fast, almost beyond imagination. By the time its striped pattern could be discerned in the undergrowth, it had already closed the distance. In the blink of an eye, it was upon them.</p>
+<p>A few wolves, fortunate to have been chosen by Lady Calico as pathfinders, stood in front of the group, serving as their shield.</p>
+<p>Yet, despite the tiger’s relatively low cultivation level, it had already gained sentience. Even these wolves, who were subordinates of the grasslands’ Wolf King, were shaken to their core by the tiger’s earth-shaking roar. They froze in place, paralyzed with fear.</p>
+<p>Only one particularly bold and foolhardy wolf dared to lunge at the massive tiger, but with a casual swipe of its paw, the tiger sent the wolf flying. The wolf landed heavily, barely able to move. After a few futile attempts to struggle, it dissolved into black smoke, drifting up into the air and returning to the banner.</p>
+<p>Lady Calico’s eyes widened.</p>
+<p>She should have felt fear in the face of the tiger’s ferocity, or been intimidated by the soul-stirring roar that echoed through the forest. Yet, at that moment, she simply took a deep breath, steadying herself. Her expression sharpened as she gathered her strength. Then, she opened...</p>
+</article>
+<article id="c325" data-label="325">
+<h2 class="chapter">Chapter 325: Missed Each Other by Accident 🔒</h2>
+<p>“What a huge tiger!”</p>
+<p>“Indeed...”</p>
+<p>“It’s so much bigger than the others!”</p>
+<p>“Indeed...”</p>
+<p>“Can we…?”</p>
+<p>“No, we can’t.”</p>
+<p>Song You looked down at the massive tiger.</p>
+<p>Lady Calico stood by his side.</p>
+<p>It seemed likely that this was the true form of the “Mountain Lord” that the villagers at the foot of the mountain spoke of. Compared to this gigantic tiger, the two of them appeared small and insignificant.</p>
+<p>This tiger, larger than an ox, presented a formidable challenge. If one were to strike it with a sword, missing the precise point would mean plunging the blade to the hilt on one side without piercing through the other. Its claws were longer than short swords and broader than axe blades.</p>
+<p>While skilled <em>jianghu </em>martial artists might be capable of slaying ordinary demons or ghosts, this “Mountain Lord” was far beyond what any common <em>jianghu </em>mortal could handle.</p>
+<p>Yet, the massive tiger’s body was now covered in countless sword wounds of varying sizes, densely packed across its flesh—too many to count.</p>
+<p>It was hard to imagine how much effort the swordsman had expended to bring it down. From the tiger’s den to this location, the entire area was left in utter disarray, evidence of an intense and ferocious battle. How grievously injured the swordsman must have been after slaying this beast, and how long the fight must have lasted.</p>
+<p>Based on the...</p>
+</article>
+<article id="c326" data-label="326">
+<h2 class="chapter">Chapter 326: Returning to the Capital in Winter 🔒</h2>
+<p>This time, there was no need to traverse all of Hezhou again, nor even to pass through the entirety of the region. They merely cut through a small corner of Hezhou, taking a shortcut into Angzhou.</p>
+<p>From there, they followed the familiar path back toward Changjing.</p>
+<p>On the last day of autumn, the group arrived once more at the Yuqu River and the plank road along the cliffs.</p>
+<p>The last time they had passed this way was in the early spring of the fifth year of the Mingde era.</p>
+<p>Now, it was late autumn in the seventh year of Mingde.</p>
+<p>Nearly three years had passed, missing by just one season.</p>
+<p>During their previous journey, the river was full of spring water, and the light spring rain fell like fine silk, covering the water’s surface with delicate ripples. This time, the autumn waters were tranquil and jade-green, reflecting the blue sky and white clouds. The river ran alongside a nearly vertical cliff face, where humans had carved out a plank road.</p>
+<p>The Daoist walked ahead, leaning on his staff. The jujube-red horse followed behind, while the calico cat darted freely, sometimes running ahead, sometimes lagging behind. The swallow skimmed along the river’s surface, its wingtips grazing the water and leaving a fine trail across the emerald expanse like a ribbon being gently parted.</p>
+<p>Suddenly, the crisp sound of <em>clank clank clank</em> echoed through the air.</p>
+<p>The Daoist listened as he walked forward, looking ahead.</p>
+<p>The sound was...</p>
+</article>
+<article id="c327" data-label="327">
+<h2 class="chapter">Chapter 327: The General&#39;s Welcoming Banquet 🔒</h2>
+<p>The cold wind on the mountain showed no signs of relenting, ruffling the cat’s fur as she walked. At first, she wrinkled her face and shrank her head back against the chill, but the wind atop the mountain was everywhere. Walking through it, there was no way to avoid it.</p>
+<p>Eventually, seeing the Daoist and the jujube-red horse continuing ahead and moving farther away, she hurried to catch up. Once she adjusted to the wind, her face relaxed, as though the biting chill no longer bothered her.</p>
+<p>“Daoist priest!”</p>
+<p>Her soft, light voice carried through the wind. Without careful listening, it was almost impossible to hear.</p>
+<p>“What is it?” the Daoist replied.</p>
+<p>“We’ve arrived in Changjing!”</p>
+<p>“Yes, we have.”</p>
+<p>“This seems like the place where you called the thunder!”</p>
+<p>“Yes, it is.”</p>
+<p>“And the place where the fox gave us a gift!”</p>
+<p>“Yes, that too.”</p>
+<p>“I have an amazing memory!”</p>
+<p>“Indeed.”</p>
+<p>The Daoist kept walking as he looked down toward the valley below.</p>
+<p>The winding dirt path along the mountainside remained as it had always been, with a few scattered merchant caravans making their way down toward the city. The small pavilion on the hill still looked the same, though now there was no one playing the zither or pouring wine.</p>
+<p>“We’ve traveled so far...”</p>
+<p>The calico cat stretched her neck to peer down at the scene below.</p>
+<p>Her fur moved with the wind, giving her a bold and spirited appearance.</p>
+<p>The cat’s understanding of the world was unlike that of humans. Being young,...</p>
+</article>
+<article id="c328" data-label="328">
+<h2 class="chapter">Chapter 328: The Old House Remains 🔒</h2>
+<p>“There is something I must tell you, sir.”</p>
+<p>“What is it?”</p>
+<p>“Since your departure, the small building where you once stayed has remained untouched. No one has moved in, and everything inside seems to have been left exactly as it was.”</p>
+<p>“Oh?”</p>
+<p>“This is not my doing, so please don’t credit me,” General Chen said with a smile. “If you must know who ensured it was left that way, the only ones who might have the answer are the officials in charge of the western Housing Bureau.”</p>
+<p>“I see...” Song You immediately understood.</p>
+<p>“If you wish to return to your old place, you’re welcome to. You may just need to do a little cleaning. However, if you’d prefer somewhere new, I still have some vacant space in the residence His Majesty granted me previously.”</p>
+<p>“Thank you for your kind offer, General. But Lady Calico and I have grown accustomed to that house, especially Lady Calico. She even mentioned on the way here how much she likes it.”</p>
+<p>Hearing this, General Chen simply smiled and raised his cup. “After the banquet, I’ll escort you back.”</p>
+<p>“Alright.”</p>
+<p>The two continued to eat and chat casually.</p>
+<p>After finishing the banquet, there were plenty of leftovers. The Daoist, feeling it a shame to waste them, asked the restaurant staff to pack up two of Lady Calico’s...</p>
+</article>
+<article id="c329" data-label="329">
+<h2 class="chapter">Chapter 329: A Room With Bright Windows and Clean Furnishings Truly Feels Like Home 🔒</h2>
+<p>Night deepened.</p>
+<p>The people of Changjing had retreated to their homes, and the shops had closed one by one. The streets quickly grew deserted. On this first night of winter, the sky was starless and moonless, and a cold mist blanketed the streets.</p>
+<p>Lady Calico continued playing with her ball.</p>
+<p>She no longer bothered to restrain her movements, running freely upstairs. Sometimes, she deliberately stomped hard, causing the aging floorboards to creak and shift, making a distinct <em>thump-thump</em> sound as they flexed under her weight.</p>
+<p>As she played, she suddenly shifted direction mid-pounce, veering away from the cloth ball without hesitation. Instead, she ran straight to the window, leaping onto the windowsill and peering down.</p>
+<p>Then she turned her head and called out to the Daoist, “The City God is here!”</p>
+<p>“Thank you, Lady Calico.”</p>
+<p>“Do you want me to go down and open the door?”</p>
+<p>“That would be much appreciated.”</p>
+<p>“You&#39;re welcome!” Lady Calico twisted her body and leapt off the windowsill. With a quick dash, she bounded downstairs.</p>
+<p>The floorboards creaked with a series of sounds.</p>
+<p>It seemed Lady Calico had boundless energy.</p>
+<p>By the time she lit the oil lamp downstairs and opened the door, the City God and his two assistants were already standing outside. The Daoist, leaning on the wooden railing, descended the stairs.</p>
+<p>“Greetings to you, sir, and to Lady Calico,” the City God said, bowing first. “Upon learning of your return, I came at once to pay my respects.”</p>
+<p>“There’s no need for such formality, City God,” Song You replied. “Please,...</p>
+</article>
+<article id="c330" data-label="330">
+<h2 class="chapter">Chapter 330: Joyful Reunion of Old Friends 🔒</h2>
+<p>“Daoist priest, you woke up really late today.”</p>
+<p>“Rarely do I feel so at ease.”</p>
+<p>“Rarely do you feel so at ease!”</p>
+<p>“You little copycat.”</p>
+<p>“Little copycat!” Lady Calico echoed again before adding, “Do you need to wash your face? I want to fetch water for you, but there’s no water at home. We’ll need to buy it or draw some from the well over there.”</p>
+<p>“It’s no rush.”</p>
+<p>“Then do you want breakfast? I can go buy you some steamed buns.”</p>
+<p>“No rush for that either.”</p>
+<p>“No rush either!”</p>
+<p>“Then, Lady Calico, please transform into your human form.”</p>
+<p>“Transform into human form...” The cat repeated as she tilted her head curiously at him. Then, with a leap from the table to the floor, she transformed into a little girl.</p>
+<p>“Now, please remove your shoes and stand over here.”</p>
+<p>“Mm!”</p>
+<p>Lady Calico followed his gesture and looked toward the wooden wall separating their home from the neighbor&#39;s. She immediately noticed the old hooks for hanging paintings and the marks the Daoist had carved there before.</p>
+<p>Understanding instantly, the little girl kicked her shoes off with a flick of her feet, sending them scurrying away. Barefoot, she stepped onto the cool wooden floor and walked over to stand with her back against the wall.</p>
+<p>She straightened her posture instantly,...</p>
+</article>
+<article id="c331" data-label="331">
+<h2 class="chapter">Chapter 331: A Day for Reading 🔒</h2>
+<p>“Your congee is here, dear customers!”</p>
+<p>The shopkeeper placed the bowls of congee on the table. Heroine Wu glanced up at him and thanked him politely. When the shopkeeper also brought over the boiled eggs and meat buns, she turned to Song You and said, “You ordered so much, you’re really being extravagant.”</p>
+<p>“We’ve reunited after such a long time. Offering only congee would be far too rude,” Song You replied.</p>
+<p>“I quite like the century egg congee here. Back before I left the city, I used to come here often after they started serving it,” Heroine Wu said as she picked up her chopsticks, scooped up a bowl of congee, and began eating.</p>
+<p>Her movements were brisk, almost as if she hadn’t eaten in ages—or perhaps she simply didn’t feel the heat of the steaming congee. “Still, it’s not as good as what you cook. Mostly because you use more meat.”</p>
+<p>“Where have you been these days?”</p>
+<p>“I traveled far, and I had some loose ends to tie up.”</p>
+<p>“I thought you might have been caught up in the aftermath,” Song You said, his tone probing.</p>
+<p>“Not that easily.” Heroine Wu straightened up, looked around casually, and then set her chopsticks down.</p>
+<p>Picking up a boiled egg, she cracked it against the table, peeling it as she spoke nonchalantly, “We were careful. My work for her was always done in secret....</p>
+</article>
+<article id="c332" data-label="332">
+<h2 class="chapter">Chapter 332: Lady Calico, Don&#39;t Be Too Diligent! 🔒</h2>
+<p>Sunlight streamed in through the doorway, forming patches of light on the wooden floor as dust motes danced in the air.</p>
+<p>Inside, a wooden table separated the Daoist and the young girl, each sitting at one end, absorbed in their respective books.</p>
+<p><em>“Lights lit in the east, the west shines bright,</em></p>
+<p><em>In every home, young ladies weave through the night.</em></p>
+<p><em>Small looms and large clatter with song,</em></p>
+<p><em>By dawn, three zhang and eight are spun strong...”</em></p>
+<p>The little girl read aloud, her voice clear and deliberate. Compared to the students in school, she only lacked the habit of nodding her head as she read.</p>
+<p>The Daoist rubbed his ears, glancing at her with mild exasperation. He shifted his posture slightly but chose to pretend he hadn’t heard anything, sinking back into his own book.</p>
+<p>It had been nearly six years since that chance meeting on a boat along the Liujiang River. They had spent a few days together, exchanging stories and ideas. The scholar, fascinated by tales of spirits and the supernatural, had shared his interests, ambitions, and questions about the world of immortals and demons. He had also captivated everyone on the boat with his storytelling.</p>
+<p>Even back then, Song You had known it was only a matter of time before that scholar’s stories would be bound into a ...</p>
+</article>
+<article id="c333" data-label="333">
+<h2 class="chapter">Chapter 333: The Fox and the Tail 🔒</h2>
+<p><em>Pillow propped, and books in hand,</em></p>
+<p><em>Idleness sweet, a moment grand.</em></p>
+<p><em>Before the door, rain&#39;s gentle gleam,</em></p>
+<p><em>A soaked view paints a tranquil dream.</em></p>
+<p>The weather grew colder still. The Daoist lit the fire in the small stove, bringing his hands closer to warm them. He rubbed them together, then exhaled softly over his fingers before picking up a book beside him.</p>
+<p>Suddenly, the door creaked, and a small girl slipped in. She hunched her shoulders and lowered her head, her twin buns puffed and round, with enough hair to rival a full ponytail. The rain had left countless tiny droplets clinging to her hair, glimmering like white pearls. In her hands, she clutched two steamed buns, her expression as serious as could be as she handed them to the Daoist.</p>
+<p>“Eat these!” she declared.</p>
+<p>“You always have to go buy breakfast for me. How can that be right?” The Daoist put down his book and accepted the buns, glancing at the droplets clinging to her hair. “And it’s still raining outside.”</p>
+<p>“Thank me.”</p>
+<p>“Thank you, Lady Calico.”</p>
+<p>“You’re welcome.”</p>
+<p>The little girl sat down beside him and raised her hands to pat her forehead a few times. With casual ease, she brushed off all the water droplets. Then, as though it were nothing at all, she said, “It’s just rain.”</p>
+<p>“You’re not eating?”</p>
+<p>“I already ate last...</p>
+</article>
+<article id="c334" data-label="334">
+<h2 class="chapter">Chapter 334: Returning the Courtesy 🔒</h2>
+<p>“Daoist Master, are you worried that we’re staying in Changjing with ulterior motives?” Miss Wanjiang asked helplessly.</p>
+<p>“We thought we had become old friends with you. Even after your three-year absence, Mistress often thought about you. Yet, we didn’t expect you to be so guarded against us. How disappointing,” the maid said, her tone almost turning into a soft sob.</p>
+<p>“Enough with the nonsense.”</p>
+<p>“It’s not nonsense.”</p>
+<p>“It seems like you two are enjoying yourselves,” the Daoist commented as he brewed tea at a slow pace by the stove. “I wonder, do you act like this only in front of others, or are you the same when you’re alone?”</p>
+<p>“We have no choice,” Miss Wanjiang replied.</p>
+<p>“The world is vast, but there are few like us. Though human society is bustling, no matter how much a demon learns to emulate humans, we are not human. Our thoughts can never align completely with theirs, nor can they fully understand us. In this world, there are likely very few people apart from you who can truly understand the differences between humans and demons,” the maid explained.</p>
+<p>Holding her cup of tea, she added, “So naturally, when we’re alone, we can only talk to ourselves and find our own amusement.”</p>
+<p>“Have some tea,” the Daoist said, pouring tea into three cups.</p>
+<p>The maid untied her cloak and looked around. Spotting a wooden...</p>
+</article>
+<article id="c335" data-label="335">
+<h2 class="chapter">Chapter 335: A Polite Teacher 🔒</h2>
+<p>“Ms. Calico, I’ve come to seek your guidance again.”</p>
+<p>A voice from outside suddenly called out, and then a figure stepped through the doorway.</p>
+<p>The little girl, who had been flipping through a book while eating candied hawthorn, froze for a moment. She lifted her head to look outside, and immediately her small face turned serious. She stared at the approaching visitor like an enemy about to invade her territory.</p>
+<p>“Well, well! You’re eating candied hawthorn?”</p>
+<p>“Yes!” Lady Calico replied firmly.</p>
+<p>“Where’d you get candied hawthorn on a rainy day?”</p>
+<p>“Someone gave it to me!”</p>
+<p>“Oh...”</p>
+<p>“Do you want some? Here, have some!” Ms. Calico immediately extended her hand, offering the skewer of candied hawthorn to her student.</p>
+<p>“Alright, I’ll try one,” the martial heroine Heroine Wu replied.</p>
+<p>Lady Calico froze for a second, then suddenly withdrew her hand. She looked at Heroine Wu with the utmost seriousness and declared, “On second thought, no. I just remembered that I already licked it...”</p>
+<p>“How stingy...”</p>
+<p>“I’m not stingy! I just remembered that humans don’t eat things someone else has licked—it has saliva on it!”</p>
+<p>“Then I’ll eat one from lower down.”</p>
+<p>“I’ve already licked the entire thing.”</p>
+<p>“Fine, never mind then.”</p>
+<p>“What do you want to ask? Go ahead and ask.”</p>
+<p>The student walked over, squatted...</p>
+</article>
+<article id="c336" data-label="336">
+<h2 class="chapter">Chapter 336: Don’t Be Suspicious 🔒</h2>
+<p>Unknowingly, several days had passed since their return to the capital.</p>
+<p>During this time, the lessons between Ms. Calico and her neighbor-student had progressed from the <em>Hundred Family Surnames</em> to <em>A Collection of Nursery Rhymes</em>. They had also expanded from recognizing individual words to understanding sentences, word choice, and rhyming patterns.</p>
+<p>For several nights, Ms. Calico had hidden herself on the rooftop, staying up late by lamplight to study. Each night, she accumulated a heap of questions to ask the Daoist. Eventually, she fully grasped <em>A Collection of Nursery Rhymes</em>, ensuring she wouldn’t lose face in front of her student. She maintained her image as a genius cat and received plenty of awed and admiring looks from her student.</p>
+<p>Meanwhile, realizing that every day in Changjing drained their funds further, Ms. Calico became increasingly eager to earn money. Each day, she pestered her student for news, only to receive unsatisfactory answers time and again.</p>
+<p>Under the City God’s governance, the city was indeed much more peaceful than before.</p>
+<p>However, the City God’s jurisdiction only extended within the city walls.</p>
+<p>Outside the walls, the responsibility mainly fell to the legitimate gods of the Thunder Division.</p>
+<p>Of the northern demon kings, the most stubborn had been suppressed by Song You. The others, such as the Yellow Sand King at the border and the White Bull King of Yuezhou,...</p>
+</article>
+<article id="c337" data-label="337">
+<h2 class="chapter">Chapter 337: Lady Calico Can Also Exorcize Demons 🔒</h2>
+<p>“The guest has left?”</p>
+<p>Heroine Wu poked half her body out from the doorway.</p>
+<p>Inside, the Daoist had just finished washing the dishes and emerged from the back room. The little girl was wiping the table with a cloth. Being short, with small hands and a wide table, she had to lean her entire little body across the table, one hand holding the cloth and the other propping herself up, to cover the entire surface.</p>
+<p>Hearing Heroine Wu&#39;s voice, both the Daoist and the little girl paused their actions and turned to look at the half-visible figure at the doorway.</p>
+<p>Only then did Heroine Wu step out from behind the wall.</p>
+<p>The little girl froze in her table-wiping pose, her head turned and staring intently at Heroine Wu. Her gaze dropped to Heroine Wu&#39;s hands, noting she wasn’t holding a book, and she breathed a sigh of relief. But her expression quickly shifted to one of anticipation as she asked eagerly, “Are you here to ask me for guidance?”</p>
+<p>“Nope.”</p>
+<p>“Then is someone requesting for me to exorcise demons and vanquish evil!?”</p>
+<p>“How’d you know? I was just coming to tell you, but I saw you were entertaining a guest and decided to come back later.”</p>
+<p>“...!”</p>
+<p>The little girl’s expression immediately became serious, her grip on the cloth tightening as she turned...</p>
+</article>
+<article id="c338" data-label="338">
+<h2 class="chapter">Chapter 338: Why Don’t You Rent a Cat to Take Care of for a Few Days? 🔒</h2>
+<p>Late at night, the upper floor was warmed with a charcoal brazier. The Daoist lay stiffly on the bed, covered with a quilt, while the cat curled up next to the brazier for warmth.</p>
+<p>“Lady Calico, are you heading out to banish evil and exorcize demons? Should I accompany you?”</p>
+<p>“Hm?” The cat, curled into a ball near the fire, turned her head to look at him.“You’re coming too?”</p>
+<p>“To keep you company, of course.”</p>
+<p>“But you’ve been quite lazy recently,” the cat pointed out, recalling his earlier words.</p>
+<p>“True,” Song You admitted after a brief pause, “but on second thought, since you’ve accompanied me on my travels across the world, how can I not go with you when you’re heading out to drive away evil?”</p>
+<p>“Are you worried about me?” The cat turned her head again, staring straight at him with an expression of contemplation.</p>
+<p>“Obviously not. You possess vast divine powers and immense magical strength. You’re also smart, vigilant, and independent—why would you ever need my concern?”</p>
+<p>“Exactly. Back when I was the Cat God and helped people catch mice, I always went alone.”</p>
+<p>“Exactly. I thought so too.” The Daoist remained lying flat on the bed, his eyes open.</p>
+<p>Darkness surrounded him, but with a slight turn of his head, he could see the faint crimson glow emanating from the brazier. He could...</p>
+</article>
+<article id="c339" data-label="339">
+<h2 class="chapter">Chapter 339: The Tale of Lady Calico’s Exorcism 🔒</h2>
+<p>“This here is Daoist Master Muyunzi, a high master we villagers have pooled funds to invite from Qingxiao Temple in Donghe County. Daoist Master Muyunzi, we didn’t know the government had also invited an expert today…”</p>
+<p>“Daoist Master Muyunzi?” Lady Calico immediately turned her head to look.</p>
+<p>What she saw was a lean, bearded old Daoist wearing a pristine eight trigrams robe. Beside him stood two young disciples, also dressed in Daoist robes, carrying large packs. From one of the bundles, a finely crafted peachwood sword protruded at an angle. Muyunzi himself was sizing her up as well.</p>
+<p>Lady Calico grew wary.</p>
+<p>It couldn’t be helped. Ever since she began traveling with the Daoist, most of the Daoists they encountered were remarkable in some way. Combined with the exceptional abilities of her own Daoist, it was hard not to develop the impression that all Daoists were formidable figures.</p>
+<p>“I am Muyunzi,” the old Daoist said. “I practice at Qingxiao Temple in Donghe County. May I ask, young fellow Daoist, where you studied and what skills you possess?”</p>
+<p>“I am Lady Calico.” Lady Calico’s face remained blank, even as a flurry of thoughts raced through her mind. She fixed her bright eyes on him and replied firmly, “I learned my craft under a Daoist priest from Yin-Yang Mountain in Lingquan County, Yizhou.”</p>
+<p>“Well, you’re truly a young Daoist…”</p>
+<p>“I’m the Daoist priest’s attendant.”</p>
+<p>“I see…”</p>
+<p>Muyunzi carefully studied the little girl, not daring to underestimate her.</p>
+<p>While it was true that scams were rampant in Changjing, with countless swindlers employing ever-changing tricks—sometimes even fooling high-ranking officials—who had ever heard of a scammer as young as this girl using exorcism as a means to swindle money?</p>
+<p>Moreover,...</p>
+</article>
+<article id="c340" data-label="340">
+<h2 class="chapter">Chapter 340: Night Battle with the Evil Creature 🔒</h2>
+<p>One of the disciples in the room couldn’t help but lower his voice and ask, “Master, what kind of technique was that?”</p>
+<p>“…” Muyunzi shook his head.</p>
+<p>Truthfully, he wasn’t particularly knowledgeable or well-traveled. Whatever technique that little girl had used, even in his half a lifetime of experience, he had never heard of it. The sight of the little flag releasing black smoke struck him as distinctly unorthodox—certainly not a standard Daoist technique.</p>
+<p>Still, their temple wasn’t known for having profound magical traditions. As an orthodox Daoist temple, it relied on the goodwill of divine spirits, invoked through honest, devout practitioners who earned divine favor through their sincerity. Rituals recorded in their scriptures to commune with or summon gods were effective largely due to this relationship.</p>
+<p>Although Muyunzi had discerned that the little girl likely wasn’t human, he couldn’t determine whether she was good or evil. He simply thought that if she managed to eliminate the malevolent entity plaguing Peach Blossom Village, it would be a blessing. He resolved to feign ignorance.</p>
+<p>If her strength proved insufficient, he could call upon the Duke of Thunder, whose divine insight would undoubtedly distinguish right from wrong. That way, he wouldn’t have to concern himself further.</p>
+<p>One way or another, there was no need for him to overthink it.</p>
+<p>“Master…”</p>
+<p>“Shh!”</p>
+<p>One of his disciples, still...</p>
+</article>
+<article id="c341" data-label="341">
+<h2 class="chapter">Chapter 341: So It’s You, Little One 🔒</h2>
+<p><em>“Boom, boom…”</em></p>
+<p><em>“Roar!”</em></p>
+<p>The commotion in Peach Blossom Village that night was extraordinary.</p>
+<p>By this stage, the creature had grown significantly in intelligence compared to before, though it still fell short of human reasoning.</p>
+<p>Faced with the relentless strikes and collisions of the two stone giants, it appeared somewhat bewildered. When it realized that its black water was ineffective against the stone figures and that it couldn’t overpower them in direct clashes, it seemed unsure of what to do. Instead of attempting to dodge or strategize, it either froze in place, attacked wildly, or stubbornly continued to spew black water.</p>
+<p>Although the creature was just as strong as the stone giants, its lighter weight put it at a disadvantage in physical confrontations. Whenever the two collided, the creature was typically the one sent tumbling.</p>
+<p>While its body wasn’t as hard as stone, it was still impervious to blades and weapons and was even more resilient in some ways. The stone giants struggled to inflict serious damage. Even when one of them smashed its head, leaving a noticeable dent, the creature seemed unaffected, as if such an injury meant nothing to it.</p>
+<p>The tiger circled the battle, launching attacks opportunistically. Though its chances to strike were limited, each attack was well-timed and precise.</p>
+<p>Moreover, the tiger’s incredible speed made it almost impossible for the creature’s black water to...</p>
+</article>
+<article id="c342" data-label="342">
+<h2 class="chapter">Chapter 342: Why Are You Here? 🔒</h2>
+<p><em>“Flap, flap, flap…”</em></p>
+<p>A swallow flew down from a nearby rooftop and landed on a tree branch not far from the group.</p>
+<p>“Why is there a bird here?”</p>
+<p>“Looks like a swallow!”</p>
+<p>“In the dead of winter? How could there be a swallow?”</p>
+<p>“Could it be a demon?”</p>
+<p>“This bird has been following us since daylight, from Changjing all the way here,” Muyunzi remarked, pausing as he turned to the little girl. “Do you know this swallow?”</p>
+<p>“This is my swallow!” Lady Calico replied crisply.</p>
+<p>“I am an Anqing swallow, not a demon. Do not be alarmed,” the swallow on the branch said.</p>
+<p>Hearing the bird speak, and at such a late hour, the group was startled. Muyunzi, however, only hesitated briefly before asking, “Anqing swallow? Are you of the Swallow Clan under the Anqing Swallow Immortal?”</p>
+<p>“Indeed,” the bird replied.</p>
+<p>“So, a descendant of the Swallow Immortal…” Muyunzi murmured, his eyes widening.</p>
+<p>The Salvation True Lord of Anqing was a newly consecrated deity, having only been officially canonized within the past couple of years. Elevated to divinity due to his immense merit, he was widely revered across the Daoist temples. Countless Daoists, upon receiving the news, had brought him up in conversation during their leisure time over tea and meals.</p>
+<p>It is said that before becoming a deity, he already possessed a millennium of Daoist cultivation. As soon as...</p>
+</article>
+<article id="c343" data-label="343">
+<h2 class="chapter">Chapter 343: A Chance Encounter on the Street 🔒</h2>
+<p>The moonlight was so bright it illuminated even the colors of the grass and trees around them. On the primitive dirt road winding through the valley, there were no tall buildings, no neon lights—only the luminous moon above casting its glow. With no other light sources, the scene was serene and dreamlike.</p>
+<p>Two figures walked along, the old hen now carried in the Daoist&#39;s hands, while the little girl transformed into a calico cat, padding alongside him in small steps. They walked on the main road, flanked by swaying reeds in full bloom, as if traversing a dreamscape.</p>
+<p>The calico cat couldn’t help but ask, “Daoist priest, why did you come all the way out here?”</p>
+<p>“I just walked here,” Song You replied.</p>
+<p>“Why are you following me?”</p>
+<p>“You know I love to witness lively events. Since this was your first time exorcizing an evil creature and battling a zombie at night, I couldn’t resist coming to see it for myself.”</p>
+<p>“Daoist priests aren’t allowed to lie!”</p>
+<p>“Of course.”</p>
+<p>“Did you see anything?”</p>
+<p>“I saw some of it. Not as clearly as those five who were closer, but I saw enough,” Song You said. “They must have enjoyed the spectacle thoroug...</p>
+</article>
+<article id="c344" data-label="344">
+<h2 class="chapter">Chapter 344: Saving the Trouble of Performing Telekinesis 🔒</h2>
+<p>The Daoist and the cat returned home, climbed upstairs, and slept until the afternoon.</p>
+<p>With the windows closed and the curtains drawn, only a little light seeped in, creating a dim, subdued atmosphere. Thin beams of light slipped through the gaps where the curtains didn’t meet the edges, casting broken streaks of light across the floor. The setting was so conducive to sleep that it seemed even better than nighttime.</p>
+<p>Several times Song You stirred awake, glanced at the hazy scene, and couldn’t tell whether it was a dream or reality. Each time, he simply drifted back to sleep.</p>
+<p>By the time they woke in the afternoon and had barely finished washing up, people from the government office arrived.</p>
+<p>It was the same official as before, along with the elderly man and the constable. This time, they brought the village chief of Peach Blossom Village and a few villagers with them. Their attitude, already respectful the last time, was now even more deferential.</p>
+<p>Song You explained that all the effort had been Lady Calico’s doing and had nothing to do with him. He directed them to speak with her instead.</p>
+<p>He then went to prepare tea for the guests—an essential part of hospitality.</p>
+<p>Meanwhile, Lady Calico sat primly in the main seat. Despite her small frame, she carried herself...</p>
+</article>
+<article id="c345" data-label="345">
+<h2 class="chapter">Chapter 345: Fate Already Sealed 🔒</h2>
+<p>The chief eunuch in the hall kept his gaze lowered, trailing the slow, meandering movements of the calico cat on the floor. Her tail swayed as she leisurely crawled forward, pausing briefly to glance up at a high-ranking eunuch before continuing.</p>
+<p>As she passed by the eunuch’s feet, her body brushed against his robe, causing its hem to sway. Instantly captivated by the movement, she raised a paw and swiped at it twice with lightning speed.</p>
+<p>She then circled a nearby pillar, her curiosity leading her in loops before she wandered aimlessly across the center of the grand hall. Her gait wobbled slightly, as if she were drunk.</p>
+<p>When she encountered a palace maid carrying a tray of dishes, she instinctively crouched low in a cautious posture, observing the maid with upturned eyes. After a moment, she dashed away, sprinting out of their path like a streak of lightning.</p>
+<p>The empress loved cats and kept several of her own. But she had never seen one as intelligent or striking as this.</p>
+<p>Few people knew about tonight’s banquet hosted by the emperor. Yet, if word of the discussions within Changle Palace were to spread, countless people would be willing to pay fortunes for even a fragment of the information.</p>
+<p>However, there were few present to hear it.</p>
+<p>The prime minister of the current dynasty wielded little power. Previously, much of the authority had been in the hands...</p>
+</article>
+<article id="c346" data-label="346">
+<h2 class="chapter">Chapter 346: Persuade the Emperor to Make an Early Decision 🔒</h2>
+<p>The palace’s square and corridors were brightly illuminated.</p>
+<p>Lanterns were hung beneath the corridors and eaves, strung together in a line that cast light on the red pillars. In the square ahead, short stone lantern pillars, carved in the style of pavilions, also glowed with light, resembling stars scattered across the ground. Occasionally, palace maids and guards carrying lanterns passed by, their footsteps soft and light.</p>
+<p>This was how the palace appeared in the cat’s eyes.</p>
+<p>Perched on the threshold, she turned her head back—</p>
+<p>The people behind her had more or less finished eating, setting down their chopsticks and refraining from touching their wine cups. They were now seated, chatting.</p>
+<p>“I still have one matter troubling me.” The emperor, seated in the seat of honor, leaned forward again, his eyes slightly narrowed as he looked at the Daoist with an air of seeking advice.</p>
+<p>“What else troubles Your Majesty?” The Daoist turned his head to look at him, pausing briefly. “Is it something I might be able to help Your Majesty with?”</p>
+<p>“This matter has been troubling me for quite some time.”</p>
+<p>“The matter of appointing an heir.”</p>
+<p>“Precisely.” The emperor was not surprised by the Daoist’s accurate guess, only sighed and said, “It is lamentable that, despite being surrounded by countless capable individuals, in this matter they are all mere participants, each with their own positions and interests, constantly arguing. The moment they speak,...</p>
+</article>
+<article id="c347" data-label="347">
+<h2 class="chapter">Chapter 347: The Copycat and Copyman 🔒</h2>
+<p>“What is that?”</p>
+<p>“A cat?”</p>
+<p>“Why is Her Majesty&#39;s cat wandering over here again?”</p>
+<p>“Those cats are quite skilled, you know—scaling walls and rooftops is nothing for them.”</p>
+<p>“Should we catch it and return it to Her Majesty? Otherwise, if she finds one of her cats missing, she’ll have us scouring the entire palace again in the middle of the night.”</p>
+<p>A group of guards chatted among themselves as they brought their lanterns closer, illuminating the cat on the ground.</p>
+<p>The calico cat sat upright, tilting her head as she gazed at them.</p>
+<p>Her fur was pristine, her posture elegant, her features delicate, and her eyes sparkled with intelligence. The way she tilted her head made it seem as if she could speak, as though she were asking them what they were muttering about.</p>
+<p>“A calico cat? I don’t remember Her Majesty ever keeping a calico cat!”</p>
+<p>“This cat is stunning!”</p>
+<p>“And clever too—looks like she climbed up onto the lantern post to stay warm in the cold.”</p>
+<p>“I heard His Majesty entertained a guest today at Changle Palace—an immortal master of some sort who brought a cat along. That guest is said to be quite esteemed by His Majesty. Could this be the one?”</p>
+<p>“A cat? An esteemed guest?”</p>
+<p>As the group whispered among themselves, the calico cat tilted her head even further in response to their conversation, her expressive eyes locked on them, as if growing...</p>
+</article>
+<article id="c348" data-label="348">
+<h2 class="chapter">Chapter 348: A Visit from an Old Acquaintance 🔒</h2>
+<p>“Please, have some tea.”</p>
+<p>“Thank you, sir.”</p>
+<p>The two men picked up their tea cups, first examining the color, then savoring the aroma. After drinking, they lingered on the aftertaste.</p>
+<p>“Excellent tea,” said Liu Changfeng, formerly the magistrate of the county.</p>
+<p>“This tea... it bears a striking resemblance to the imperial tribute <em>Longtuan Gongcha</em> served in the palace, about seventy to eighty percent similar,” Yu Jianbai remarked uncertainly.</p>
+<p>“As expected of a true tea connoisseur, Mr. Yu. Even with my crude tea-making skills, you could discern its quality,” Song You said with a smile. “This was a gift from General Chen Ziyi. Thanks to his generosity, even a Daoist like me, who lives simply in the mountains, has the chance to taste tea reserved for the emperor.”</p>
+<p>“You jest, sir. If you wish to drink tea, what tea could you not have?” Yu Jianbai shook his head, set down the cup, and said with some embarrassment, “It’s shameful to admit, but I’ve been so busy with official duties that I wasn’t even aware of your return to the capital until recently. To come visit only now, despite being old acquaintances, is truly negligent of me.”</p>
+<p>“Mr. Yu speaks the truth,” Liu Changfeng said with a laugh. “Mr. Yu often speaks of you, sir. If he had missed the chance to meet you again this time, he would surely regret it deeply.”</p>
+<p>“You both flatter me.”</p>
+<p>“What Mr. Liu said is true,” Yu Jianbai continued. “It was...</p>
+</article>
+<article id="c349" data-label="349">
+<h2 class="chapter">Chapter 349: The Fox Knows How to Have Fun 🔒</h2>
+<p>“Daoist priest, when will spring begin?”</p>
+<p>The cat’s voice broke the Daoist’s reverie. He looked down and met her amber-like eyes, clear and bright.</p>
+<p>“In a little over a month.”</p>
+<p>“A little over a month!”</p>
+<p>“What’s wrong?”</p>
+<p>“We’ll be leaving Changjing again, won’t we?”</p>
+<p>“Yes.”</p>
+<p>“That means we won’t see her anymore, will we?” The calico cat turned her head to glance outside, clearly referring to the departing Heroine Wu. “Just like Sir Shu from before.”</p>
+<p>“Perhaps it will be many years before we meet again.”</p>
+<p>“I see…”</p>
+<p>“Do you find it hard to part with her?”</p>
+<p>“Hmm…” The cat tilted her head up to stare at him. Her eyes were stunning, filled with curiosity and thought, yet still pure.</p>
+<p>After a moment, she said, “I just think she isn’t too bright. Without me, it might take her a long time to learn her letters properly. But I also think she’s impressive—she might learn very quickly.”</p>
+<p>“Are you worried she might unknowingly surpass you?”</p>
+<p>“…”</p>
+<p>The cat stared blankly at him. She wanted to refute him, but the words wouldn’t come. Instead, she just kept staring at him, dazed.</p>
+<p>“This,” the Daoist said to her, “is what we call ‘becoming attached.’”</p>
+<p>“Is this what ‘becoming attached’ means?”</p>
+<p>“It’s one form of it, called ‘missing someone.’”</p>
+<p>“Hmm?”</p>
+<p>“Lady Calico, you might not know this, but there are countless forms of becoming attached. Some are easy to notice—we...</p>
+</article>
+<article id="c350" data-label="350">
+<span id="last"></span>
+<h2 class="chapter">Chapter 350: The Fox Plays the Rabbit 🔒</h2>
+<p>Lady Calico, her head brimming with questions, glanced at the Daoist.</p>
+<p>The Daoist, however, was looking elsewhere—</p>
+<p>Normally, the space outside Hexian Pavilion would be bustling with people, even on rainy days. There were always those who loved the guqin or sought excitement. However, after the princess’s downfall, Lady Wanjiang rarely played the <em>guqin </em>at Hexian Pavilion. Naturally, fewer people gathered below to listen to the <em>guqin</em>, seek excitement, or use the opportunity to connect with influential officials and nobles.</p>
+<p>Diminished, but not disappeared.</p>
+<p>Song You’s gaze landed on a somewhat familiar figure among the remaining onlookers.</p>
+<p>It was a young man dressed in a simple blue robe. Compared to his appearance in Song You&#39;s memory, he now carried the marks of a few more difficult years, but his face was still recognizable—</p>
+<p>Back when Song You first came to Hexian Pavilion, seeking a meeting with the great demoness upstairs, he had been both drawn by her reputation and following someone’s request. While drinking downstairs, this very man had approached him for a chat.</p>
+<p>Thanks to him, Song You learned the process for getting to the second floor. In return, Song You gave him some wine. When Song You went upstairs, this man had even watched over his umbrella.</p>
+<p>It was a wanderer who scammed for wine and seating. But he was also a music lover obsessed with the <em>guqin</em> yet couldn’t afford wine or the steep costs of Hexian Pavi...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="351-400.html" rel="next">Next: Chs 351–400 &rarr;</a>
+    <p class="page-end-links"><a href="251-300.html" rel="prev">&larr; Chs 251–300</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Unintended Immortality · Chs 301–350</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c301">Chapter 301: A Letter From the Temple Arrives 🔒</a></li>
+        <li><a href="#c302">Chapter 302: Fate Need Not Be Forced 🔒</a></li>
+        <li><a href="#c303">Chapter 303: Truly Lucky 🔒</a></li>
+        <li><a href="#c304">Chapter 304: Within a Story 🔒</a></li>
+        <li><a href="#c305">Chapter 305: A Genuine Tale of an Extraordinary Encounter 🔒</a></li>
+        <li><a href="#c306">Chapter 306: Mozhu County of Zhaozhou 🔒</a></li>
+        <li><a href="#c307">Chapter 307: Hearing His Own Story in the Teahouse 🔒</a></li>
+        <li><a href="#c308">Chapter 308: Changes Brought to the World 🔒</a></li>
+        <li><a href="#c309">Chapter 309: Lady Calico Doesn’t Eat Sparrows 🔒</a></li>
+        <li><a href="#c310">Chapter 310: A Historical Drama by the Roadside 🔒</a></li>
+        <li><a href="#c311">Chapter 311: The Ghostly Tale of the Small Town: Fragrance at Midnight 🔒</a></li>
+        <li><a href="#c312">Chapter 312: A New Year’s Fishing Tale 🔒</a></li>
+        <li><a href="#c313">Chapter 313: The Wondrous Nature of Fate 🔒</a></li>
+        <li><a href="#c314">Chapter 314: Continuing the Journey 🔒</a></li>
+        <li><a href="#c315">Chapter 315: The Divine Among Us 🔒</a></li>
+        <li><a href="#c316">Chapter 316: In Guangzhou, Searching for Shu Yifan 🔒</a></li>
+        <li><a href="#c317">Chapter 317: The Thunderstrike Sword Sect 🔒</a></li>
+        <li><a href="#c318">Chapter 318: The Limited Edition Senior Sister Lady Calico 🔒</a></li>
+        <li><a href="#c319">Chapter 319: Jiyan County 🔒</a></li>
+        <li><a href="#c320">Chapter 320: The Swallow Displays Its Power 🔒</a></li>
+        <li><a href="#c321">Chapter 321: Subduing the Locust Plague 🔒</a></li>
+        <li><a href="#c322">Chapter 322: Heading Toward the Tiger’s Mountain 🔒</a></li>
+        <li><a href="#c323">Chapter 323: Requesting Lady Calico’s Protection 🔒</a></li>
+        <li><a href="#c324">Chapter 324: The Daoist Attendant Continues to Strengthen 🔒</a></li>
+        <li><a href="#c325">Chapter 325: Missed Each Other by Accident 🔒</a></li>
+        <li><a href="#c326">Chapter 326: Returning to the Capital in Winter 🔒</a></li>
+        <li><a href="#c327">Chapter 327: The General&#39;s Welcoming Banquet 🔒</a></li>
+        <li><a href="#c328">Chapter 328: The Old House Remains 🔒</a></li>
+        <li><a href="#c329">Chapter 329: A Room With Bright Windows and Clean Furnishings Truly Feels Like Home 🔒</a></li>
+        <li><a href="#c330">Chapter 330: Joyful Reunion of Old Friends 🔒</a></li>
+        <li><a href="#c331">Chapter 331: A Day for Reading 🔒</a></li>
+        <li><a href="#c332">Chapter 332: Lady Calico, Don&#39;t Be Too Diligent! 🔒</a></li>
+        <li><a href="#c333">Chapter 333: The Fox and the Tail 🔒</a></li>
+        <li><a href="#c334">Chapter 334: Returning the Courtesy 🔒</a></li>
+        <li><a href="#c335">Chapter 335: A Polite Teacher 🔒</a></li>
+        <li><a href="#c336">Chapter 336: Don’t Be Suspicious 🔒</a></li>
+        <li><a href="#c337">Chapter 337: Lady Calico Can Also Exorcize Demons 🔒</a></li>
+        <li><a href="#c338">Chapter 338: Why Don’t You Rent a Cat to Take Care of for a Few Days? 🔒</a></li>
+        <li><a href="#c339">Chapter 339: The Tale of Lady Calico’s Exorcism 🔒</a></li>
+        <li><a href="#c340">Chapter 340: Night Battle with the Evil Creature 🔒</a></li>
+        <li><a href="#c341">Chapter 341: So It’s You, Little One 🔒</a></li>
+        <li><a href="#c342">Chapter 342: Why Are You Here? 🔒</a></li>
+        <li><a href="#c343">Chapter 343: A Chance Encounter on the Street 🔒</a></li>
+        <li><a href="#c344">Chapter 344: Saving the Trouble of Performing Telekinesis 🔒</a></li>
+        <li><a href="#c345">Chapter 345: Fate Already Sealed 🔒</a></li>
+        <li><a href="#c346">Chapter 346: Persuade the Emperor to Make an Early Decision 🔒</a></li>
+        <li><a href="#c347">Chapter 347: The Copycat and Copyman 🔒</a></li>
+        <li><a href="#c348">Chapter 348: A Visit from an Old Acquaintance 🔒</a></li>
+        <li><a href="#c349">Chapter 349: The Fox Knows How to Have Fun 🔒</a></li>
+        <li><a href="#c350">Chapter 350: The Fox Plays the Rabbit 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="251-300.html" rel="prev">&larr; Chs 251–300</a>    <a href="../../index.html">Library</a>
+<a href="351-400.html" rel="next">Chs 351–400 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

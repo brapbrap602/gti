@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1351–1400</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1301-1350.html#last" data-next-page="1401-1450.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1351">Chapter 1351: Identification 🔒</a></li>
+        <li><a href="#c1352">Chapter 1352: High Society 🔒</a></li>
+        <li><a href="#c1353">Chapter 1353: Female Angel Robot 🔒</a></li>
+        <li><a href="#c1354">Chapter 1354: Network of Interests 🔒</a></li>
+        <li><a href="#c1355">Chapter 1355: New Friendship 🔒</a></li>
+        <li><a href="#c1356">Chapter 1356: Captured Knight 🔒</a></li>
+        <li><a href="#c1357">Chapter 1357: Sign of Crisis 🔒</a></li>
+        <li><a href="#c1358">Chapter 1358: Senior Colonel Harius 🔒</a></li>
+        <li><a href="#c1359">Chapter 1359: Titanfangs 🔒</a></li>
+        <li><a href="#c1360">Chapter 1360: Nexon 🔒</a></li>
+        <li><a href="#c1361">Chapter 1361: Titanfang 🔒</a></li>
+        <li><a href="#c1362">Chapter 1362: Freedom 🔒</a></li>
+        <li><a href="#c1363">Chapter 1363: The Federal Fleet 🔒</a></li>
+        <li><a href="#c1364">Chapter 1364: Unexpected Turn of Events 🔒</a></li>
+        <li><a href="#c1365">Chapter 1365: The Clash of Civilizations Begins! 🔒</a></li>
+        <li><a href="#c1366">Chapter 1366: Uninvited 🔒</a></li>
+        <li><a href="#c1367">Chapter 1367: Internal Clash 🔒</a></li>
+        <li><a href="#c1368">Chapter 1368: For Freedom! 🔒</a></li>
+        <li><a href="#c1369">Chapter 1369: Assault 🔒</a></li>
+        <li><a href="#c1370">Chapter 1370: Azure Flame 🔒</a></li>
+        <li><a href="#c1371">Chapter 1371: Rising to the Challenge 🔒</a></li>
+        <li><a href="#c1372">Chapter 1372: Temporary Withdrawal 🔒</a></li>
+        <li><a href="#c1373">Chapter 1373: Breakout Route 🔒</a></li>
+        <li><a href="#c1374">Chapter 1374: BHR678 Space Station 🔒</a></li>
+        <li><a href="#c1375">Chapter 1375: The Magic Cube 🔒</a></li>
+        <li><a href="#c1376">Chapter 1376: Unfinished World-Class Secret Treasure 🔒</a></li>
+        <li><a href="#c1377">Chapter 1377: Erased! 🔒</a></li>
+        <li><a href="#c1378">Chapter 1378: Apocalyptic Weapon 🔒</a></li>
+        <li><a href="#c1379">Chapter 1379: Shattered 🔒</a></li>
+        <li><a href="#c1380">Chapter 1380: Lifesaving Elixir 🔒</a></li>
+        <li><a href="#c1381">Chapter 1381: Leading the Charge 🔒</a></li>
+        <li><a href="#c1382">Chapter 1382: Two Pieces of News 🔒</a></li>
+        <li><a href="#c1383">Chapter 1383: Body Reconstruction 🔒</a></li>
+        <li><a href="#c1384">Chapter 1384: Good Person 🔒</a></li>
+        <li><a href="#c1385">Chapter 1385: Chaos Behind Enemy Lines 🔒</a></li>
+        <li><a href="#c1386">Chapter 1386: Forced Advance 🔒</a></li>
+        <li><a href="#c1387">Chapter 1387: Luck and Ability 🔒</a></li>
+        <li><a href="#c1388">Chapter 1388: Pressing On 🔒</a></li>
+        <li><a href="#c1389">Chapter 1389: Breaking Through 🔒</a></li>
+        <li><a href="#c1390">Chapter 1390: The Azure Flame’s Might 🔒</a></li>
+        <li><a href="#c1391">Chapter 1391: Decisive Decision 🔒</a></li>
+        <li><a href="#c1392">Chapter 1392: Technological Advancement 🔒</a></li>
+        <li><a href="#c1393">Chapter 1393: Secret Weapons 🔒</a></li>
+        <li><a href="#c1394">Chapter 1394: The Variables 🔒</a></li>
+        <li><a href="#c1395">Chapter 1395: Escape 🔒</a></li>
+        <li><a href="#c1396">Chapter 1396: Meeting Again 🔒</a></li>
+        <li><a href="#c1397">Chapter 1397: Cannon Fodder 🔒</a></li>
+        <li><a href="#c1398">Chapter 1398: Shelter and Gratitude 🔒</a></li>
+        <li><a href="#c1399">Chapter 1399: Fortune and Misfortune 🔒</a></li>
+        <li><a href="#c1400">Chapter 1400: Inspection 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1351" data-label="1351">
+<h2 class="chapter">Chapter 1351: Identification 🔒</h2>
+<p>While passing through the Tris Civilization, Sein had the chance to observe a small federal patrol fleet from a distance.</p>
+<p>The Gallant Federation’s military management was still as strict as ever.</p>
+<p>Sein’s spacecraft was only a standard commercial tourist vessel, so it could not get anywhere near the federation’s military bases.</p>
+<p>It was also difficult for him to accurately assess the combat strength of this small patrol fleet.</p>
+<p>After all, the federation’s fleets operated as a coordinated whole during warfare, so there was no straightforward way to measure its power.</p>
+<p>From what Sein knew, even a small patrol fleet included destroyers, patrollers, frigates, support frigates, haulers,...</p>
+</article>
+<article id="c1352" data-label="1352">
+<h2 class="chapter">Chapter 1352: High Society 🔒</h2>
+<p>Upon entering the territory of the Gallant Federation, Sein no longer needed to rely on his spacecraft.</p>
+<p>The Gallant Federation’s development in space technology was no less advanced than that of the Magus Civilization.</p>
+<p>The Magus Civilization often relied on long-distance spatial magic arrays for interstellar teleportation.</p>
+<p>The federation, however, had developed wormholes and coordinate positioning technology.</p>
+<p>Sein traveled through wormholes, which appeared to be accessible even to ordinary civilians.</p>
+<p>By paying enough Federal dollars, anyone could reach designated stellar coordinates through them.</p>
+<p>Coordinate positioning technology, on the other hand, was far more advanced.</p>
+<p>Though it could also be used for a fee, the price was shockingly high.</p>
+<p>Coordinate positioning...</p>
+</article>
+<article id="c1353" data-label="1353">
+<h2 class="chapter">Chapter 1353: Female Angel Robot 🔒</h2>
+<p>Sein turned and saw a young man with gray hair.</p>
+<p>This was a relatively pure-blooded Federation human. Not everyone at the auction was; in fact, the crowd was made up of all sorts of creatures.</p>
+<p>Besides Sein, a native of the Zeak Empire, there were plenty of other exotic beings.</p>
+<p>He even spotted an elemental being that was like a brown, slime-like creature.</p>
+<p>Creatures of the Zeak Empire had birdlike heads on human bodies. From the perspective of either federal citizens or Magus World humans, they were not exactly appealing to look at.</p>
+<p>Even so, the gray-haired young man did not seem the least bit bothered by Sein’s “ugliness”.</p>
+<p>He greeted him warmly and introduced himself as Jeremy Doescher, a businessman in the logistics...</p>
+</article>
+<article id="c1354" data-label="1354">
+<h2 class="chapter">Chapter 1354: Network of Interests 🔒</h2>
+<p>Life is like a play, and it all comes down to acting skills.</p>
+<p>At this moment, Sein’s behavior perfectly matched that of a wealthy imperial noble’s son.</p>
+<p>The lower-class citizens of the Gallant Federation often despised alien creatures from weaker world civilizations.</p>
+<p>The Federation humans carried an innate sense of superiority, instinctively rejecting those born of inferior and ignorant worlds, dismissing them as crude and unrefined.</p>
+<p>They were also amazed that so many planes in the Astral Realm still clung to primitive imperial systems and other feudal institutions.</p>
+<p>The Federation elite, however, were more open-minded. The upper class...</p>
+</article>
+<article id="c1355" data-label="1355">
+<h2 class="chapter">Chapter 1355: New Friendship 🔒</h2>
+<p>Not long after the charity auction for the construction of the garbage disposal planet wrapped up, Jeremy invited Sein to a private banquet he had arranged.</p>
+<p>Compared to the auction, this gathering was on a much smaller scale and far more discreet. Jeremy did not invite many guests either.</p>
+<p>Those who did attend, however, had something in common: most were bird-headed, human-bodied creatures from the Zeak Empire.</p>
+<p>Jeremy hoped his “friends” could help him settle his trouble in the Golet Province.</p>
+<p>Every Zeak noble present, including Sein, was happy to lend their support.</p>
+<p>As a large-sized world civilization, the Zeak Empire divided its star domain into provinces.</p>
+<p>This was tied...</p>
+</article>
+<article id="c1356" data-label="1356">
+<h2 class="chapter">Chapter 1356: Captured Knight 🔒</h2>
+<p>The Doeschers primarily worked in the logistics industry, though they also had some limited dealings with the federation’s military.</p>
+<p>After all, they were not a bona fide military-industrial enterprise. Their operations leaned more toward the civilian side, which might explain why they only ranked 97th in the federation.</p>
+<p>Sein’s question surprised Jeremy, but he did not object right away. Instead, he asked why Sein wanted to get involved with the military.</p>
+<p>“My father told me that sometime within the next few hundred to a few thousand years, there will definitely be major changes around our civilization. It could be a catastrophe or an opportunity, if we managed to seize it,” Sein said.</p>
+<p>“Are you talking about... the Magus Civilization?” Jeremy asked, his brow furrowed.</p>
+<p>“Yes,” Sein replied with a nod.</p>
+<p>The...</p>
+</article>
+<article id="c1357" data-label="1357">
+<h2 class="chapter">Chapter 1357: Sign of Crisis 🔒</h2>
+<p>With Jeremy’s help, Sein was able to approach Nexon more easily and discreetly.</p>
+<p>Nexon was one of the most heavily guarded military zones under the Gallant Federation’s jurisdiction.</p>
+<p>Given Jeremy’s limited influence through the Doeschers, even approaching the star domain surrounding Nexon would have been nearly impossible, let alone getting close to Nexon itself.</p>
+<p>However, if Sein could leverage Jeremy’s connections to reach an outer federal military base near the Nexon Star Domain, that alone would count as a successful step in his mission.</p>
+<p>The fact that the Titanfangs were able to initiate contact with Magus World meant they possessed extraordinary abilities.</p>
+<p>As long as...</p>
+</article>
+<article id="c1358" data-label="1358">
+<h2 class="chapter">Chapter 1358: Senior Colonel Harius 🔒</h2>
+<p>After leaving Featheris II, and at Sein’s urging, the group continued on toward their next target.</p>
+<p>In truth, they were already getting very close to Sein’s final destination.</p>
+<p>According to the original plan, they would visit two more locations before arriving at the Mayhach-F Logistics Base, located on the outskirts of the Nexon Star Domain.</p>
+<p>That base was also the designated rendezvous point for the Titanfangs to meet with Sein.</p>
+<p>But the lingering sense of unease pushed him to alter the plan.</p>
+<p>He manually adjusted the spaceship’s flight path, setting their next destination as the Mayhach-F Logistics Base instead.</p>
+<p>Jeremy looked a bit confused, so he explained, “I suddenly realized this route would save us a lot of time. Besides, I’m quite interested...</p>
+</article>
+<article id="c1359" data-label="1359">
+<h2 class="chapter">Chapter 1359: Titanfangs 🔒</h2>
+<p>After hearing his subordinates’ report, Harius leaned his plump body back against the chair with a trace of regret, then waved his hand, signaling for them to leave.</p>
+<p>The Mayhach-F Logistics Base had never been a major military facility, so it naturally lacked the high-tech elite robots that could be shipped out in large quantities.</p>
+<p>Even when the base did occasionally receive higher-end models, the numbers were always limited.</p>
+<p>If the order had been smaller, Harius might have managed to secure a few units, maybe even a dozen, but the other side was clearly looking to place a large purchase, and neither he nor his team could meet that demand.</p>
+<p>Once the lieutenant colonel had left, Harius sighed again.</p>
+<p>He found himself thinking back to a gathering of old comrades last year, where...</p>
+</article>
+<article id="c1360" data-label="1360">
+<h2 class="chapter">Chapter 1360: Nexon 🔒</h2>
+<p>The red beam from the intelligent robot’s eyes scanned Sein from head to toe. After a moment, it stepped forward and led him toward the back of the warehouse.</p>
+<p>During his time in the Gallant Federation, Sein had come into contact with plenty of their robots, including the angel-type model currently tucked away in his spatial storage.</p>
+<p>No matter how beautiful or lifelike these robots looked, Sein still saw them as inanimate objects or just tools.</p>
+<p>The gray robot leading the way had a dull, metallic exterior. Visually, it did not even come close to the angelic robot. But strangely enough, while the angel robot felt lifeless to Sein, this gray...</p>
+</article>
+<article id="c1361" data-label="1361">
+<h2 class="chapter">Chapter 1361: Titanfang 🔒</h2>
+<p>“Welcome to the Nexon Star Domain, Sein of the Magus Civilization,” Titanfang said as it stepped forward and spread its arms, addressing Sein, who was still aboard the spacecraft.</p>
+<p>Sein finally exited the ship, took a quick look at the dozen or so intelligent robots standing before him, then smiled and said, “I thought the leader of the Titanfangs would send me straight to Nexon for negotiations. Why are we meeting here instead?”</p>
+<p>Titanfang replied calmly, “Nexon is a heavily monitored mechanical planet under the Gallant Federation’s watch. Meeting you there would be way too risky. It’d endanger both you and the awakened intelligent...</p>
+</article>
+<article id="c1362" data-label="1362">
+<h2 class="chapter">Chapter 1362: Freedom 🔒</h2>
+<p>“You actually need to unlock three layers of command locks just to gain your freedom?” Sein frowned, sounding a little exasperated.</p>
+<p>The Gallant Federation had created these intelligent robots, so of course they had built in countless backup measures and firewalls.</p>
+<p>Their scientists had surely considered from the start the possibility of the robots being taken over by enemies.</p>
+<p>The Magus Civilization was already impressive for having the means to break through the federation’s command locks. There was simply no way to make the process any easier.</p>
+<p>According to Titanfang, even if Sein unlocked all three layers, it would only “liberate” the robots in the Nexon...</p>
+</article>
+<article id="c1363" data-label="1363">
+<h2 class="chapter">Chapter 1363: The Federal Fleet 🔒</h2>
+<p>This azure light orb was probably the creation of a Magus World soul overmage.</p>
+<p>Even with Sein’s knowledge and the Faceless Mask’s analytical power, he could not make out the true nature of the sphere, let alone the deeper mysteries hidden inside it.</p>
+<p>As the glow faded from the artificial satellite, the orb in Sein’s hand lost some of its brilliance. Titanfang and the other robots before him showed no visible change in appearance.</p>
+<p>The only real difference could best be described as… a shift in demeanor, like someone who had just broken free from chains and now carried a spark of confidence and growing ambition.</p>
+<p>Sein even guessed that Titanfang and the others might have gained a small boost in strength because of ...</p>
+</article>
+<article id="c1364" data-label="1364">
+<h2 class="chapter">Chapter 1364: Unexpected Turn of Events 🔒</h2>
+<p>For a simple spy-hunt mission, a fleet led by a four-star general should have been more than enough to get the job done.</p>
+<p>The power of a Gallant Federation’s fleet could not be directly compared to the strength of an individual lifeform, making it hard to gauge just how strong it really was.</p>
+<p>Even fleets of the same size could differ wildly in power. It depended on its composition, the commanders’ rank, and the flow of real-time battlefield data.</p>
+<p>Regardless, the R7 Fleet currently deployed to Nexon was no ordinary force!</p>
+<p>It was a specialized fleet under General Lambros’ command, fully capable of going head-to-head with a peak Rank Six lifeform.</p>
+<p>As mentioned, it was hard to quantify the true...</p>
+</article>
+<article id="c1365" data-label="1365">
+<h2 class="chapter">Chapter 1365: The Clash of Civilizations Begins! 🔒</h2>
+<p>The old man’s question felt out of character. It was not the kind of thing he would normally ask, given his usual self.</p>
+<p>Even the hunched old man, who had known him for nearly thirty thousand years, had never seen him show this kind of doubt before.</p>
+<p>He looked at his old friend in surprise, then tapped the pristine white ground with the end of his metal cane.</p>
+<p>“If we don’t act, our chances of winning will only get slimmer. But if we strike first, we might actually stand a chance!</p>
+<p>“Back when our mentor, General Trich van Baesa, was still alive, he identified the Magus Civilization as the greatest threat to the Gallant Federation’s rise. For hundreds of thousands of years now, we have treated that once-<em>friendly </em>civilization as a future enemy.</p>
+<p>“After all this preparation… what else are we supposed to do if not fight?...</p>
+</article>
+<article id="c1366" data-label="1366">
+<h2 class="chapter">Chapter 1366: Uninvited 🔒</h2>
+<p>Nexon was an azure-colored mechanical planet.</p>
+<p>From space, it appeared blue not because of oceans or any special terrain, but simply due to the sheer number of pale blue lighthouses scattered across its surface.</p>
+<p>On top of that, the planet was packed with specialized factories that operated year-round.</p>
+<p>The atmosphere of this artificial, metallic world, saturated with advanced technology, was not exactly friendly to most creatures of flesh and blood.</p>
+<p>But for intelligent robots like Titanfang and Skyhold, Nexon was home.</p>
+<p>Nearly every robot that had gained self-awareness held a special fondness for it.</p>
+<p>After spending more time working with the Titanfangs, Sein learned that while Nexon and...</p>
+</article>
+<article id="c1367" data-label="1367">
+<h2 class="chapter">Chapter 1367: Internal Clash 🔒</h2>
+<p>A group of intelligent robots gathered around Skyhold.</p>
+<p>There were only a few high-tier units, and most of those present were Rank Four. This group was clearly a level below the Titanfangs in overall strength.</p>
+<p>Among the Skyholders, Sein noticed a Rank Four advanced intelligent robot shaped like a chariot.</p>
+<p>Titanfang had introduced it to him not long ago, and Sein had even helped it unlock one layer of its internal restrictions. He had not expected to see it now standing beside Skyhold.</p>
+<p>It was not exactly a betrayal. Nexon’s robots were generally divided into two factions, but they still remained largely united.</p>
+<p>After all, both sides were fighting for the same thing: independence and freedom for their...</p>
+</article>
+<article id="c1368" data-label="1368">
+<h2 class="chapter">Chapter 1368: For Freedom! 🔒</h2>
+<p>“Have the orders been issued?” General Lambros asked his aide.</p>
+<p>“They have, sir. But strangely, we have yet to receive a response from the two Rank Six robots codenamed Titanfang and Skyhold,” the aide replied with a salute.</p>
+<p>At that, General Lambros’ brow furrowed slightly.</p>
+<p>A moment later, the aide seemed to realize something, then added uncertainly, “Not only have we received no reply from Titanfang and Skyhold, but several of Nexon’s registered high-level robots appear to be experiencing issues with their command centers.”</p>
+<p>“Oh? What kind of issues?” General Lambros pressed. His battle-hardened instincts stirred with a sense of unease as he looked down at the azure mechanical planet below.</p>
+<p>“Look, seventy-two advanced robots have exhibited breaches in their outer firewalls, including...</p>
+</article>
+<article id="c1369" data-label="1369">
+<h2 class="chapter">Chapter 1369: Assault 🔒</h2>
+<p>General Lambros of the R7 Fleet knew nothing of the chaos unfolding beneath Nexon’s surface.</p>
+<p>Although the federation’s surveillance systems could track the locations and general statuses of robots like Titanfang, much of Nexon still lay beyond their monitoring range.</p>
+<p>As luck would have it, the location where Sein and the others were happened to fall within one of those blind spots.</p>
+<p>To make matters worse, the complete loss of communication with many high-tier robots had already worn General Lambros’ patience thin.</p>
+<p>So when reports confirmed that another forty-one units, including Skyhold, had suffered breaches in their outer firewall, he gave the attack order without a second thought!</p>
+<p>“The robots on this mechanical...</p>
+</article>
+<article id="c1370" data-label="1370">
+<h2 class="chapter">Chapter 1370: Azure Flame 🔒</h2>
+<p>Sein had finally reached the deepest part of Nexon.</p>
+<p>The complex metal passageways impressed him even more than what he had seen in Steel City years ago.</p>
+<p>At first, his progress was smooth.</p>
+<p>Guided by a precise map, he simply pressed forward.</p>
+<p>But once he entered the last stretch of his journey, the R7 Fleet outside Nexon locked onto his position.</p>
+<p>They began firing ground-piercing energy beams at him and tapped into Nexon’s existing defensive systems.</p>
+<p>Luckily, Nexon was only a robot manufacturing base, not a dedicated military stronghold. Its defenses, while troublesome, were far from overwhelming.</p>
+<p>Outside, intelligent robots like Titanfang were still holding the line, buying Sein precious time.</p>
+<p>Empowered by the storm-flaming wings born of his Rank Four elemental body and magic artifact, he pushed onward until he finally arrived at his d...</p>
+</article>
+<article id="c1371" data-label="1371">
+<h2 class="chapter">Chapter 1371: Rising to the Challenge 🔒</h2>
+<p>It was not just Titanfang that rose to the challenge on the battlefield. The other combat-capable intelligent robots did as well.</p>
+<p>Sein’s actions deep within Nexon’s core had helped these advanced robots break free from yet another layer of restraints!</p>
+<p>Now, every high-level intelligent robot could unleash seventy to eighty percent of its full combat strength.</p>
+<p>That alone was a massive boost.</p>
+<p>For more powerful robots like Titanfang, its combat strength surged to nearly ninety percent of full power!</p>
+<p>With only one final restraint remaining, the Gallant Federation would no longer have any hold over him.</p>
+<p>Even at this stage, Titanfang had enough freedom to lead its kind to independence in another star domain if it wished.</p>
+<p>With two layers of firewalls...</p>
+</article>
+<article id="c1372" data-label="1372">
+<h2 class="chapter">Chapter 1372: Temporary Withdrawal 🔒</h2>
+<p>The Azure Flame turned out to be surprisingly far more devastating against the Gallant Federation’s mobile suits and warship fleet than any of the specialized flames Sein had collected, like Death Flame, Annihilating Flame, Void Flame, and the rest[1].</p>
+<p>This proved that within the Astral Realm, there was no such thing as the strongest flame; only the one best suited to the situation.</p>
+<p>Everything came down to the user’s skill and ability to adapt.</p>
+<p>Wreathed in azure flames, Sein found himself holding a real advantage against the federation’s colossal mobile suit.</p>
+<p>His combat form was much smaller than the towering enemy, which gave him far greater speed and agility.</p>
+<p>Even so, the mobile suit’s arsenal of high-tech weaponry and its impressive close-quarters...</p>
+</article>
+<article id="c1373" data-label="1373">
+<h2 class="chapter">Chapter 1373: Breakout Route 🔒</h2>
+<p>The two federal mobile suit pilots were soldiers who had undergone physical enhancements.</p>
+<p>Their life levels were not exceptionally high, but they still surpassed the vast majority of Federation humans.</p>
+<p>Unlike typical genetically enhanced soldiers, these two seemed to have received their primary modifications in their brains.</p>
+<p>Around them, numerous federal soldiers lay either gravely wounded or already dead, while others had been captured by the intelligent robots.</p>
+<p>Sein now had more than enough research material.</p>
+<p>Through its relentless push for planetary colonization, the Gallant Federation possessed a population base more than ten thousand times larger than that of all humanity in the Magus Civilization.</p>
+<p>Because of that, the Gallant Federation never lacked cannon...</p>
+</article>
+<article id="c1374" data-label="1374">
+<h2 class="chapter">Chapter 1374: BHR678 Space Station 🔒</h2>
+<p>After deciding on the breakout direction, neither Titanfang nor Skyhold said a word.</p>
+<p>These intelligent robots were creatures of few words. They spoke bluntly, and only when it was necessary.</p>
+<p>Their nature likely had something to do with the Gallant Federation’s commands etched deep into their code.</p>
+<p>Sein did not have the luxury of staying silent or wasting time.</p>
+<p>With Titanfang and Skyhold dependent on the Magus Civilization’s power for any hope of survival, it fell to him to shoulder the responsibility of leading them.</p>
+<p>The sudden eruption of the Clash of Civilizations had already exceeded...</p>
+</article>
+<article id="c1375" data-label="1375">
+<h2 class="chapter">Chapter 1375: The Magic Cube 🔒</h2>
+<p>“Strange. Why didn’t you leave with the other federal scientists?” Sein asked bluntly. His tone carried respect, for the man before him was a learned sage in his own right.</p>
+<p>In certain areas of truth-seeking, Dr. Bell had ventured further than Sein himself.</p>
+<p>At least, Sein could not yet create a robot capable of gaining self-awareness, much less one reaching Rank Six.</p>
+<p>As the chief scientist of this station, Dr. Bell had been the federal scholar who contributed most to the creation of Titanfang and Skyhold.</p>
+<p>“Because I wish to preserve the experimental records here. I don’t want them destroyed. Blake and his team took some data when they left, but in their haste,...</p>
+</article>
+<article id="c1376" data-label="1376">
+<h2 class="chapter">Chapter 1376: Unfinished World-Class Secret Treasure 🔒</h2>
+<p>Since this so-called “Magic Cube” was the source of intelligence for Titanfang and the other advanced robots, it could be counted as one of Sein’s mission objectives.</p>
+<p>Faced with Sein’s demand, Dr. Bell frowned, clearly reluctant to comply.</p>
+<p>The two Magic Cubes represented the pinnacle of his life’s work. Handing one over to Sein felt like “selling his own child”.</p>
+<p>Just as Sein was unwilling to share his Ashen Flame or body tempering techniques casually, the mages of Magus World and the scholars of the Gallant Federation were alike in how fiercely they guarded their knowledge.</p>
+<p>But Dr. Bell was still only a “powerless” federal scientist. Against Magus World mages who could wield immense destructive power...</p>
+</article>
+<article id="c1377" data-label="1377">
+<h2 class="chapter">Chapter 1377: Erased! 🔒</h2>
+<p>During their visit to BHR678 Space Station, Titanfang and Skyhold were not the only ones to receive gifts from Dr. Bell.</p>
+<p>Redweaver, Stormclaw, and Stratosurge, who had also come to the station, each received their own upgrade parts as well.</p>
+<p>Redweaver received a spider-type exoskeleton armor, perfectly suited to its combat style. Eight sharp metallic legs extended from its back, greatly boosting both its agility and offensive power.</p>
+<p>Stormclaw obtained four gauntlets that locked onto the metal joints of its limbs. With them, its movements became even quicker than before.</p>
+<p>Without the Faceless Mask, Sein would have struggled to track Stormclaw’s full-speed assaults with the naked eye.</p>
+<p>Stratosurge...</p>
+</article>
+<article id="c1378" data-label="1378">
+<h2 class="chapter">Chapter 1378: Apocalyptic Weapon 🔒</h2>
+<p>“Do not fire! Dr. Bell and the others are still on BHR678! Most of our academic achievements from the past ten thousand years are there too!” Dr. Blake shouted with urgency inside the R7 Fleet’s capital ship.</p>
+<p>If two federal soldiers had not restrained him, the emotionally charged scientist might have lunged forward and grabbed General Lambros by the collar.</p>
+<p>Too bad Dr. Blake was only an elderly scholar with little physical strength.</p>
+<p>In peaceful times, scholars like him commanded respect and high standing in the Gallant Federation, enjoying generous research stipends and funding.</p>
+<p>In wartime, however, their influence waned significantly.</p>
+<p>After all, this was a battlefield—a domain overseen by the military.</p>
+<p>Dr. Blake’s words carried no weight when it came to...</p>
+</article>
+<article id="c1379" data-label="1379">
+<h2 class="chapter">Chapter 1379: Shattered 🔒</h2>
+<p>While General Lambros thought the federal military’s orders and reinforcements from other fleets were arriving too slowly, Sein and his group felt the Gallant Federation’s response was too fast!</p>
+<p>It was nearly impossible to prepare in time!</p>
+<p>Though Sein and the others still did not know that the Gallant Federation’s apocalyptic weapon had already locked onto their location, the constant fleet movements outside the Nexon Star Domain made it clear that surveillance satellites on the periphery were still tracking Titanfang and the other intelligent robots.</p>
+<p>“We can’t stay here any longer. We must leave Nexon immediately! Abandon any bulky materials or heavy machinery. Once we reach the Magus Civilization’s star domain, the Magus...</p>
+</article>
+<article id="c1380" data-label="1380">
+<h2 class="chapter">Chapter 1380: Lifesaving Elixir 🔒</h2>
+<p>The excruciating pain jolted Sein back to consciousness after drifting through the starry void.</p>
+<p>He could not have been out for long, for he still found himself amidst the battlefield close to Nexon.</p>
+<p>The war continued to rage on.</p>
+<p>Nexon was now in the throes of destruction. A terrifying energy beam from the depths of space had pierced its core, triggering a full collapse.</p>
+<p>Though artificial, Nexon’s sheer size and complexity rivaled that of a medium-sized plane.</p>
+<p>To think the Gallant Federation possessed a superweapon capable of wiping out such a world of such caliber!</p>
+<p>Sein had witnessed clashes between Rank Six beings before, but the blinding white...</p>
+</article>
+<article id="c1381" data-label="1381">
+<h2 class="chapter">Chapter 1381: Leading the Charge 🔒</h2>
+<p>The effects of the Golden Apple Potion were undeniably potent!</p>
+<p>It was no wonder this top-tier treasure of the Magus Alliance was coveted even by Rank Six beings.</p>
+<p>The Golden Apple proved its worth through tangible healing power.</p>
+<p>As Lorianne had once said, the potion also carried hidden benefits for Rank Four mages like him who were taking it for the first time.</p>
+<p>But at this critical moment, Sein had no time to wonder what enhancements the Golden Apple Potion might be weaving into his body.</p>
+<p>Feeling his vitality surge back and his strength return to peak condition, he immediately plunged back into the fray.</p>
+<p>“On a battlefield like this, a potion of this caliber is practically...</p>
+</article>
+<article id="c1382" data-label="1382">
+<h2 class="chapter">Chapter 1382: Two Pieces of News 🔒</h2>
+<p>As Nexon’s number one intelligent robot, Titanfang possessed formidable combat power.</p>
+<p>Under its lead, more and more robots gathered together.</p>
+<p>The federal fleet under General Lambros now found itself slightly outnumbered.</p>
+<p>After two consecutive battles against Nexon’s intelligent robots, the fleet was already reeling from heavy losses.</p>
+<p>Facing Titanfang and the others’ full-scale breakout stretched it thin.</p>
+<p>Even so, the fleet had secured gains that proved its worth.</p>
+<p>Many heavily damaged intelligent robots were captured.</p>
+<p>As their leader, Titanfang could do nothing for them; it could not possibly turn back to rescue...</p>
+</article>
+<article id="c1383" data-label="1383">
+<h2 class="chapter">Chapter 1383: Body Reconstruction 🔒</h2>
+<p>Skyhold had not yet lost consciousness.</p>
+<p>When Sein arrived, its two glowing eyes flickered to life.</p>
+<p>After learning that Titanfang had sent him to treat it, Skyhold fell silent for a long moment.</p>
+<p>The destruction of Nexon and the death of their father had profoundly shaken both war machines, leaving lasting changes in them.</p>
+<p>“I don’t know exactly how to use this Magic Cube, or how it can help with your recovery,” Sein admitted, frowning slightly as he pulled out a faintly glowing cube from his robe.</p>
+<p>This unfinished world-class secret treasure clearly held real significance for Nexon’s intelligent robots.</p>
+<p>The...</p>
+</article>
+<article id="c1384" data-label="1384">
+<h2 class="chapter">Chapter 1384: Good Person 🔒</h2>
+<p>In a breakout battle like this, it was not necessary for Sein to personally lead the charge or keep throwing himself onto the front lines.</p>
+<p>He was only Rank Four. Seventy-two high-tier intelligent robots remained operational, with fifty-six of them combat-ready.</p>
+<p>There were more than enough Rank Four or higher combatants at the front.</p>
+<p>Sein’s primary duty now was to heal the severely damaged high-tier robots with the cube in his possession.</p>
+<p>Skyhold’s body had largely been restored.</p>
+<p>It was not “fully” restored yet because the current functions of the cube were not enough to return Skyhold to perfect form or full performance in every aspect.</p>
+<p>The Magic Cube itself was still an unfinished world-class...</p>
+</article>
+<article id="c1385" data-label="1385">
+<h2 class="chapter">Chapter 1385: Chaos Behind Enemy Lines 🔒</h2>
+<p>Before long, Sein reached the vanguard of the Nexon’s breakout force outside the hauler.</p>
+<p>Titanfang was already there, but no fighting was taking place.</p>
+<p>The source of the disturbance lay in a star domain far beyond their position.</p>
+<p>“That should be the Bokman Star Domain,” Sein commented.</p>
+<p>Even without a star map, he knew the federation’s star domains along their escape route by heart.</p>
+<p>Titanfang nodded at his words.</p>
+<p>The Bokman Star Domain was small but densely populated by federal immigrants. Though it seemed to lack a permanent heavy fleet presence, venturing there was certain to provoke strong resistance from the Gallant Federation.</p>
+<p>More importantly, it was a detour from...</p>
+</article>
+<article id="c1386" data-label="1386">
+<h2 class="chapter">Chapter 1386: Forced Advance 🔒</h2>
+<p>Sein did not know if his mentor and the others were safe, but he knew trouble was closing in on him.</p>
+<p>Just before reaching the Alpha-007 Star Domain, Sein and his group finally ran into a federal fleet large enough to pose a real threat.</p>
+<p>It was an exceptionally massive mixed formation, made up of various federal warship models and the giant mobile suits Sein had seen before.</p>
+<p>At the same time, Sein learned that the enemy had set up extensive defensive lines and massive mechanical fortifications along the fleet’s outer perimeter.</p>
+<p>Defensive warfare had always been the technological civilization’s specialty.</p>
+<p>Back in his early days on the Wild Gorilla World’s battlefield, Sein had experienced the Gallant Federation’s tactics firsthand...</p>
+</article>
+<article id="c1387" data-label="1387">
+<h2 class="chapter">Chapter 1387: Luck and Ability 🔒</h2>
+<p>Nexon’s intelligent robots all carried distinctive names.</p>
+<p>More than names, they were actually codenames—identities forged into them from the moment of their creation.</p>
+<p>When the robotic forces around Sein launched their charge, the intelligent robots advanced without a hint of hesitation.</p>
+<p>The ordinary robots, bound strictly to commands, naturally showed no sign of emotion.</p>
+<p>Sein moved with them too, but did not release Yuri right away.</p>
+<p>Instead, he positioned himself behind a vast legion of standard units.</p>
+<p>The Gallant Federation’s energy barrage seemed endless, but Nexon’s intelligent robots pressed forward with fierce determination.</p>
+<p>By the time Sein reached the front lines, the...</p>
+</article>
+<article id="c1388" data-label="1388">
+<h2 class="chapter">Chapter 1388: Pressing On 🔒</h2>
+<p>The magic shields before Sein had shattered countless times.</p>
+<p>Each time, he managed to conjure a new one just before the old one broke.</p>
+<p>For now, this breakout battle was testing the strength of his defenses more than anything else.</p>
+<p>Only by sustaining enough shields could Sein withstand the relentless barrage of energy beams long enough to push through.</p>
+<p>Even so, he did not miss the chance to showcase his signature magic spell to the Gallant Federation’s sniper fleet straight ahead.</p>
+<p>Rank Four mages were considered high-tier combatants on any battlefield, especially in the eyes of lesser beings.</p>
+<p>And in the Clash of Civilizations, the largest share of combat...</p>
+</article>
+<article id="c1389" data-label="1389">
+<h2 class="chapter">Chapter 1389: Breaking Through 🔒</h2>
+<p>While Sein took two direct hits from long-range focused energy strikes, the robot legion led by Gilded Beast nearby was not faring much better.</p>
+<p>Gilded Beast appeared to be a Rank Five robot that clearly placed immense value on its subordinates and on unity.</p>
+<p>The reason its forces could keep up such a rapid charge was not because of its overwhelming strength alone, but because of the discipline and effectiveness of its battle formation.</p>
+<p>Though the sudden barrage had struck Gilded Beast, the surrounding robots absorbed part of the impact, lessening the damage to their leader.</p>
+<p>Still, that sudden attack caused them to falter.</p>
+<p>At a time like this, the most practical move for...</p>
+</article>
+<article id="c1390" data-label="1390">
+<h2 class="chapter">Chapter 1390: The Azure Flame’s Might 🔒</h2>
+<p>Everfire Hellscape was a standard forbidden spell.</p>
+<p>Sein had created it after leaving Faeloria, blending his own knowledge with his understanding of that world’s laws. He had first unleashed it during the Bouldrak World War, sparked by the half-beastmen.</p>
+<p>The version Sein was preparing, of course, fell short of the true might of a forbidden spell.</p>
+<p>Yet its quick casting speed, combined with the unique properties of the Azure Flame, still filled him with anticipation.</p>
+<hr class="separator">
+<p>Pale-blue flames slowly appeared in the starlit void.</p>
+<p>A peculiar pyro elemental halo spread outward, tinting vast swathes of the surrounding star domain in a special hue.</p>
+<p>The federal fleets might have noticed the anomaly in the elemental flow, but they had little attention to spare for such details while locked in an...</p>
+</article>
+<article id="c1391" data-label="1391">
+<h2 class="chapter">Chapter 1391: Decisive Decision 🔒</h2>
+<p>The Everfire Hellscape spell, recast with the “Decomposing Azure Flame” in place of its original pyro element, proved even more effective than Sein had expected.</p>
+<p>Vast swathes of the federation fleets and drones dissolved and melted under the overwhelming firepower of his assault.</p>
+<p>Though the flame only had a peculiar effect on metallic particles, the Gallant Federation’s biological units were known to have frail constitutions.</p>
+<p>Once their sturdy warships and mobile suits were gone, how long could their bodies really last?</p>
+<p>With Titanfang leading the charge aggressively and Sein’s Everfire Hellscape burning close behind,...</p>
+</article>
+<article id="c1392" data-label="1392">
+<h2 class="chapter">Chapter 1392: Technological Advancement 🔒</h2>
+<p>After Sein and the others departed, the battles across the starry sky dragged on for nearly another month.</p>
+<p>The federal fleets had been ordered to completely wipe out every robot still on this battlefield.</p>
+<p>In the end, even the unawakened ordinary robots were destroyed.</p>
+<p>Four-star General Mareo arrived aboard a Stellar-class federal war fortress.</p>
+<p>Unlike the standard planetary fortresses sold to friendly vassal civilizations, the Gallant Federation understood the value of technological superiority and monopolistic control, potentially more than the Magus Civilization in that regard.</p>
+<p>The fortress under General Mareo’s command was as powerful as a peak Rank Six biological entity...</p>
+</article>
+<article id="c1393" data-label="1393">
+<h2 class="chapter">Chapter 1393: Secret Weapons 🔒</h2>
+<p>Upon arriving at the Alpha-007 Star Domain, Sein and his companions were far from high spirits.</p>
+<p>The total number of robots following Titanfang and the others had dropped to fewer than two million.</p>
+<p>Recalling the massive robot legions of over a hundred million strong assembled when they first left Nexon, the scale of their losses became painfully clear.</p>
+<p>Even worse, the number of intelligent robots, their most valuable assets, had fallen sharply.</p>
+<p>The contrast between their dream of freedom and the grim reality before them silenced many of the intelligent robots.</p>
+<p>What weighed even heavier on Sein and his companions...</p>
+</article>
+<article id="c1394" data-label="1394">
+<h2 class="chapter">Chapter 1394: The Variables 🔒</h2>
+<p>The sudden turn of events left Sein stunned.</p>
+<p>His emotions surged, but the particle shock grenades had drained both his physical strength and mental focus.</p>
+<p>In contrast, the massive federal mobile suits closing in around him and the fleets still firing furiously nearby remained mostly unaffected. They had clearly come prepared.</p>
+<p>A specialized graphene coating shielded the federal ships and mobile suits, allowing them to shrug off the effects of the particle shock grenades.</p>
+<p>As Sein plunged downward, he noticed that while most of Nexon’s robots were also tumbling out of the sky, a small number...</p>
+</article>
+<article id="c1395" data-label="1395">
+<h2 class="chapter">Chapter 1395: Escape 🔒</h2>
+<p>In the midst of the breakout attempt, Titanfang had not forgotten about Sein.</p>
+<p>But Sein’s body was falling farther and farther away.</p>
+<p>The gaping wound in his chest was so conspicuous that anyone seeing him drifting unconscious in the void would have instinctively assumed he was already dead.</p>
+<p>The situation was grim. With Sein too far to rescue and assumed dead, Titanfang sighed heavily and led the others away.</p>
+<p>As it broke out in another direction, Sein’s condition, against all odds, improved slightly.</p>
+<p>His mind cleared, though his limbs were still limp, and his wounds were very real.</p>
+<p>Titanfang did not know the source...</p>
+</article>
+<article id="c1396" data-label="1396">
+<h2 class="chapter">Chapter 1396: Meeting Again 🔒</h2>
+<p>Sure enough, Sein ran into several federal patrollers not long after he entered this star domain.</p>
+<p>These fleets had limited combat strength, but Sein still chose to avoid them rather than engage.</p>
+<p>The Golden Apple Potion was rapidly restoring his health, but one major problem remained.</p>
+<p>After bringing him out of Alpha-007, the Faceless Mask was nearly drained of energy, greatly weakening its aura suppression and concealment abilities.</p>
+<p>As a result, Sein was forced to rely on his own skills to avoid detection.</p>
+<p>However, this was extremely risky as he had never been especially skilled in concealment or stealth...</p>
+</article>
+<article id="c1397" data-label="1397">
+<h2 class="chapter">Chapter 1397: Cannon Fodder 🔒</h2>
+<p>Gwyneira was definitely not seeing things. She and her sister were stunned to see the familiar Bokrian man appear before their eyes once more.</p>
+<p>Sein was not even in a spaceship; he had simply flown straight toward them.</p>
+<p>Everything happened so suddenly and so unexpectedly. For a brief moment, Gwyneira even thought of this reunion as a “miracle”.</p>
+<p><em>Could thinking about someone every night really make them suddenly appear?</em></p>
+<p><em>Is this the power of ancestral spirits?</em></p>
+<p>The Huusians placed more faith in their ancestors than in any gods.</p>
+<p>In fact, the hexagonal divination box passed down through their tribe was a product of their ancestors’ wisdom.</p>
+<p>Sein looked battered and seemed as though he was being pursued.</p>
+<p>His injuries were enough to stir anyone’s...</p>
+</article>
+<article id="c1398" data-label="1398">
+<h2 class="chapter">Chapter 1398: Shelter and Gratitude 🔒</h2>
+<p>The warning from the federal frigate quickly drew the attention of the vessel’s commander.</p>
+<p>But when he saw the princess at the stern, he immediately reported the situation to their king, who was on another capital ship closer to the center.</p>
+<p>“I didn’t deliberately deactivate the shields, nor did I intend to venture out unattended. Our vessels are outdated, with energy circuits prone to malfunction. The temporary shield failure was likely just an accident. I have already dispatched personnel to inspect and repair the system,” Gwyneira explained at once.</p>
+<p>True to her royal bearing, Gwyneira skillfully handled the situation.</p>
+<p>Had it not been for Sein’s soul magic...</p>
+</article>
+<article id="c1399" data-label="1399">
+<h2 class="chapter">Chapter 1399: Fortune and Misfortune 🔒</h2>
+<p>Not long after Gwyneira took Sein in, she was summoned for an audience with her father.</p>
+<p>The Huusian King had already heard about the recent incident. He found out from his subordinates that the starship Gwyneira had been aboard was actually functioning normally, and that it was the princess herself who had deactivated the shield.</p>
+<p>When her father questioned her, Gwyneira explained that she had simply felt stifled, so she deactivated the shield to see the scenery outside.</p>
+<p>But the moment she did, a federal vessel approached, and she immediately reactivated the shield.</p>
+<p>The Huusian King had no idea what the Gallant Federation was doing in the nearby star domains. All he had received were stern warnings from the federation to stay on course and be ready...</p>
+</article>
+<article id="c1400" data-label="1400">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1400: Inspection 🔒</h2>
+<p>The Gallant Federation’s fleets typically operated with decisive efficiency due to strict adherence to orders during missions.</p>
+<p>Both fleets moved in exceptionally cohesive combat formations.</p>
+<p>In terms of raw strength, they could directly confront two Rank Five entities, and that did not even take into account their ability to quickly summon reinforcements.</p>
+<p>The Huusians’ collective power was not much weaker than that of these two federal fleets.</p>
+<p>Yet faced with the Gallant Federation’s forceful demand for an inspection, the Huusian King and his direct subordinates did not dare to voice a single word of protest.</p>
+<hr class="separator">
+<p>More than twenty ships detached from the two federal fleets and advanced...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1401-1450.html" rel="next">Next: Chs 1401–1450 &rarr;</a>
+    <p class="page-end-links"><a href="1301-1350.html" rel="prev">&larr; Chs 1301–1350</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1351–1400</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1351">Chapter 1351: Identification 🔒</a></li>
+        <li><a href="#c1352">Chapter 1352: High Society 🔒</a></li>
+        <li><a href="#c1353">Chapter 1353: Female Angel Robot 🔒</a></li>
+        <li><a href="#c1354">Chapter 1354: Network of Interests 🔒</a></li>
+        <li><a href="#c1355">Chapter 1355: New Friendship 🔒</a></li>
+        <li><a href="#c1356">Chapter 1356: Captured Knight 🔒</a></li>
+        <li><a href="#c1357">Chapter 1357: Sign of Crisis 🔒</a></li>
+        <li><a href="#c1358">Chapter 1358: Senior Colonel Harius 🔒</a></li>
+        <li><a href="#c1359">Chapter 1359: Titanfangs 🔒</a></li>
+        <li><a href="#c1360">Chapter 1360: Nexon 🔒</a></li>
+        <li><a href="#c1361">Chapter 1361: Titanfang 🔒</a></li>
+        <li><a href="#c1362">Chapter 1362: Freedom 🔒</a></li>
+        <li><a href="#c1363">Chapter 1363: The Federal Fleet 🔒</a></li>
+        <li><a href="#c1364">Chapter 1364: Unexpected Turn of Events 🔒</a></li>
+        <li><a href="#c1365">Chapter 1365: The Clash of Civilizations Begins! 🔒</a></li>
+        <li><a href="#c1366">Chapter 1366: Uninvited 🔒</a></li>
+        <li><a href="#c1367">Chapter 1367: Internal Clash 🔒</a></li>
+        <li><a href="#c1368">Chapter 1368: For Freedom! 🔒</a></li>
+        <li><a href="#c1369">Chapter 1369: Assault 🔒</a></li>
+        <li><a href="#c1370">Chapter 1370: Azure Flame 🔒</a></li>
+        <li><a href="#c1371">Chapter 1371: Rising to the Challenge 🔒</a></li>
+        <li><a href="#c1372">Chapter 1372: Temporary Withdrawal 🔒</a></li>
+        <li><a href="#c1373">Chapter 1373: Breakout Route 🔒</a></li>
+        <li><a href="#c1374">Chapter 1374: BHR678 Space Station 🔒</a></li>
+        <li><a href="#c1375">Chapter 1375: The Magic Cube 🔒</a></li>
+        <li><a href="#c1376">Chapter 1376: Unfinished World-Class Secret Treasure 🔒</a></li>
+        <li><a href="#c1377">Chapter 1377: Erased! 🔒</a></li>
+        <li><a href="#c1378">Chapter 1378: Apocalyptic Weapon 🔒</a></li>
+        <li><a href="#c1379">Chapter 1379: Shattered 🔒</a></li>
+        <li><a href="#c1380">Chapter 1380: Lifesaving Elixir 🔒</a></li>
+        <li><a href="#c1381">Chapter 1381: Leading the Charge 🔒</a></li>
+        <li><a href="#c1382">Chapter 1382: Two Pieces of News 🔒</a></li>
+        <li><a href="#c1383">Chapter 1383: Body Reconstruction 🔒</a></li>
+        <li><a href="#c1384">Chapter 1384: Good Person 🔒</a></li>
+        <li><a href="#c1385">Chapter 1385: Chaos Behind Enemy Lines 🔒</a></li>
+        <li><a href="#c1386">Chapter 1386: Forced Advance 🔒</a></li>
+        <li><a href="#c1387">Chapter 1387: Luck and Ability 🔒</a></li>
+        <li><a href="#c1388">Chapter 1388: Pressing On 🔒</a></li>
+        <li><a href="#c1389">Chapter 1389: Breaking Through 🔒</a></li>
+        <li><a href="#c1390">Chapter 1390: The Azure Flame’s Might 🔒</a></li>
+        <li><a href="#c1391">Chapter 1391: Decisive Decision 🔒</a></li>
+        <li><a href="#c1392">Chapter 1392: Technological Advancement 🔒</a></li>
+        <li><a href="#c1393">Chapter 1393: Secret Weapons 🔒</a></li>
+        <li><a href="#c1394">Chapter 1394: The Variables 🔒</a></li>
+        <li><a href="#c1395">Chapter 1395: Escape 🔒</a></li>
+        <li><a href="#c1396">Chapter 1396: Meeting Again 🔒</a></li>
+        <li><a href="#c1397">Chapter 1397: Cannon Fodder 🔒</a></li>
+        <li><a href="#c1398">Chapter 1398: Shelter and Gratitude 🔒</a></li>
+        <li><a href="#c1399">Chapter 1399: Fortune and Misfortune 🔒</a></li>
+        <li><a href="#c1400">Chapter 1400: Inspection 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1301-1350.html" rel="prev">&larr; Chs 1301–1350</a>    <a href="../../index.html">Library</a>
+<a href="1401-1450.html" rel="next">Chs 1401–1450 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

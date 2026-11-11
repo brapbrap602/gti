@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 851–900</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="801-850.html#last" data-next-page="901-950.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c851">Chapter 851: Eileen’s Retort 🔒</a></li>
+        <li><a href="#c852">Chapter 852: Lost Allure? 🔒</a></li>
+        <li><a href="#c853">Chapter 853: Experimental Research 🔒</a></li>
+        <li><a href="#c854">Chapter 854: Thrifty Lorianne 🔒</a></li>
+        <li><a href="#c855">Chapter 855: Legacy of Knowledge 🔒</a></li>
+        <li><a href="#c856">Chapter 856: Public Starport 🔒</a></li>
+        <li><a href="#c857">Chapter 857: Steep Entry Fee 🔒</a></li>
+        <li><a href="#c858">Chapter 858: Crystal Heart 🔒</a></li>
+        <li><a href="#c859">Chapter 859: Line-Up of Treasures 🔒</a></li>
+        <li><a href="#c860">Chapter 860: Grand Finales 🔒</a></li>
+        <li><a href="#c861">Chapter 861: Four Treasures 🔒</a></li>
+        <li><a href="#c862">Chapter 862: Development Value 🔒</a></li>
+        <li><a href="#c863">Chapter 863: Overcoming Bottleneck 🔒</a></li>
+        <li><a href="#c864">Chapter 864: Another Journey 🔒</a></li>
+        <li><a href="#c865">Chapter 865: Reina’s Depression 🔒</a></li>
+        <li><a href="#c866">Chapter 866: The Dean’s Departure 🔒</a></li>
+        <li><a href="#c867">Chapter 867: Mentor’s Gifts 🔒</a></li>
+        <li><a href="#c868">Chapter 868: Reina’s Parents 🔒</a></li>
+        <li><a href="#c869">Chapter 869: Exploring A Foreign Plane 🔒</a></li>
+        <li><a href="#c870">Chapter 870: Twelve Years 🔒</a></li>
+        <li><a href="#c871">Chapter 871: Snow Spirit World 🔒</a></li>
+        <li><a href="#c872">Chapter 872: Marylou 🔒</a></li>
+        <li><a href="#c873">Chapter 873: The Secret of Astrology 🔒</a></li>
+        <li><a href="#c874">Chapter 874: Strength Insights 🔒</a></li>
+        <li><a href="#c875">Chapter 875: Athena Plane 🔒</a></li>
+        <li><a href="#c876">Chapter 876: Formidable But Sacrificed 🔒</a></li>
+        <li><a href="#c877">Chapter 877: Divine Tower of Dark Flame 🔒</a></li>
+        <li><a href="#c878">Chapter 878: Gumo Plane 🔒</a></li>
+        <li><a href="#c879">Chapter 879: Joining The Fray 🔒</a></li>
+        <li><a href="#c880">Chapter 880: The Decisive Battle 🔒</a></li>
+        <li><a href="#c881">Chapter 881: Goul Groundworms 🔒</a></li>
+        <li><a href="#c882">Chapter 882: The Clash 🔒</a></li>
+        <li><a href="#c883">Chapter 883: Close-Quarters Combat 🔒</a></li>
+        <li><a href="#c884">Chapter 884: Lumen Elemental Body 🔒</a></li>
+        <li><a href="#c885">Chapter 885: Solar Eye 🔒</a></li>
+        <li><a href="#c886">Chapter 886: Mowing Through 🔒</a></li>
+        <li><a href="#c887">Chapter 887: Rank Four’s Power 🔒</a></li>
+        <li><a href="#c888">Chapter 888: Dark Flame 🔒</a></li>
+        <li><a href="#c889">Chapter 889: Ideal and Regret 🔒</a></li>
+        <li><a href="#c890">Chapter 890: Underground World 🔒</a></li>
+        <li><a href="#c891">Chapter 891: The Mysterious Place 🔒</a></li>
+        <li><a href="#c892">Chapter 892: Silver Runes 🔒</a></li>
+        <li><a href="#c893">Chapter 893: Explosive Power 🔒</a></li>
+        <li><a href="#c894">Chapter 894: Fat-Burning Secret Technique 🔒</a></li>
+        <li><a href="#c895">Chapter 895: Fight 🔒</a></li>
+        <li><a href="#c896">Chapter 896: Law Array 🔒</a></li>
+        <li><a href="#c897">Chapter 897: A Series Of Unexpected Twists And Turns 🔒</a></li>
+        <li><a href="#c898">Chapter 898: All-Out Attack 🔒</a></li>
+        <li><a href="#c899">Chapter 899: Moment of Crisis 🔒</a></li>
+        <li><a href="#c900">Chapter 900: The End of the War 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c851" data-label="851">
+<h2 class="chapter">Chapter 851: Eileen’s Retort 🔒</h2>
+<p>Despite Sein’s tightly packed experimental schedule, he did not urge Eileen to show him the rare Black Jade Bamboo as soon as they arrived at her quarters.</p>
+<p>He continued chatting with the Rank One female mage but their conversation eventually led them to her bed.</p>
+<p>Mages were generally known for their weak constitutions. Even though Eileen had consumed numerous constitution-enhancing potions provided by Sein over the years, she still found herself pleading for mercy after two hours.</p>
+<p>For mages, physical pleasures were merely a fleeting distraction, a spice of life.</p>
+<p>Their true pursuits lay in the quest for knowledge and truth.</p>
+<p>After the passionate session, Sein sat topless at the experimental table, studying intently at the Black Jade Bamboo with a small scalpel in his hand.</p>
+<p>Sein’s physique was very different from...</p>
+</article>
+<article id="c852" data-label="852">
+<h2 class="chapter">Chapter 852: Lost Allure? 🔒</h2>
+<p>Sein returned to his laboratory on the top floor of the divine tower with a third of the Black Jade Bamboo he got from Eileen’s specimen.</p>
+<p>As he arrived, he saw Natalya exiting the training room.</p>
+<p>At home, Natalya often dressed casually, and today was no exception.</p>
+<p>Having just completed her physical training, she wore a set of black, tight-fitting workout clothes that accentuated her toned and shapely figure.</p>
+<p>Unlike Sein’s slender frame, Natalya possessed significant muscle mass.</p>
+<p>Without these muscles, her body would be unable to sustain her formidable physical prowess. After all, she was a knight whose strength depended heavily on her muscle power.</p>
+<p>Nevertheless, her muscles did nothing...</p>
+</article>
+<article id="c853" data-label="853">
+<h2 class="chapter">Chapter 853: Experimental Research 🔒</h2>
+<p>The three small experiments that Sein had initially planned to finish in one afternoon ended up being extended well into the next morning.</p>
+<p>Instead of focusing on the pair of Ice Gorillas, who possessed unique divine powers, most of Sein’s time was consumed by his research on the vial of devil blood.</p>
+<p>The divine power wielded by Rank Four creatures was not something that could be easily deciphered.</p>
+<p>If the mysteries of the Ice Gorillas’ divine power could have been unraveled so simply, Sein would have solved them long ago during the Wild Gorilla World War. He would not have returned to the Magus World still puzzled.</p>
+<p>Rather than aggressively pursuing answers to the enigma of divine power within the Ice Gorillas, Sein set a daily routine to observe and document...</p>
+</article>
+<article id="c854" data-label="854">
+<h2 class="chapter">Chapter 854: Thrifty Lorianne 🔒</h2>
+<p>Sein found himself once again visiting Lorianne’s residence on the top floor of the divine tower.</p>
+<p>While this was not his first visit, he could not help but notice that something seemed to change every time he came by.</p>
+<p>This time, it was two magical flowers sitting in one corner of Lorianne’s laboratory that Sein had never seen before.</p>
+<p>Compared to the Black Jade Bamboo Eileen had purchased for a hundred magicoins, these magic flowers radiated far stronger elemental waves.</p>
+<p>They were likely Lorianne’s recent acquisitions.</p>
+<p>Sein had been here just a week ago, and he was pretty sure the flowers had not been there then.</p>
+<p>In addition to the magic flowers, a mysterious alloy the diameter of a small bowl now occupied a prime spot inside a crystal cabinet in Lorianne’s...</p>
+</article>
+<article id="c855" data-label="855">
+<h2 class="chapter">Chapter 855: Legacy of Knowledge 🔒</h2>
+<p>After leaving Lorianne’s place, Sein began preparing for his trip to the public starport beyond the plane.</p>
+<p>This time, he would be traveling with Rank Three mage Lonas, who had recently been appointed the head of the divine tower academy.</p>
+<p>Sein was well-acquainted with Lonas, having collaborated with him on several missions in the past.</p>
+<p>The war in the Wild Gorilla Star Domain had inflicted significant losses on the Divine Tower of Verdant Spring, leading to many changes in academy dean and cohort leader roles in recent years.</p>
+<p>Lonas was not considered powerful among the Rank Three grand mages. In fact, he was not even eligible to be an academy dean as he had only recently been promoted to Rank Three.</p>
+<p>However,...</p>
+</article>
+<article id="c856" data-label="856">
+<h2 class="chapter">Chapter 856: Public Starport 🔒</h2>
+<p>After spending some time occupied with tasks at the divine tower, Sein and Lonas boarded an airship headed for the public starport beyond the plane.</p>
+<p>In general, large implements such as space fortresses, prism forts, and war airships were not permitted within the Magus World.</p>
+<p>This restriction was likely due to their potential to disrupt the balance of the world’s environment and underlying laws.</p>
+<p>Sein understood why the Magus Civilization had implemented this regulation, having witnessed the devastating consequences of such disruption during his travels in the Verdant Wilderness World.</p>
+<p>This also showed just how much the knights and mages of the Magus World cared about their homeplane’s rules and environment.</p>
+<p>On top of that, the Magus World only permitted the use of low-pollution...</p>
+</article>
+<article id="c857" data-label="857">
+<h2 class="chapter">Chapter 857: Steep Entry Fee 🔒</h2>
+<p>True to her word, Eileen dragged Sein straight to the largest auction at the public starport.</p>
+<p>Sein had attended a black market auction on Magus World’s southern coast during his days as a Rank One mage, but that event paled in comparison to the grandeur of this auction.</p>
+<p>The auction, named “Kristy’s Auction”, was part of a prestigious chain within the Magus Alliance.</p>
+<p>Kristy’s had branches across the Magus World, numerous starports, and important allied planes.</p>
+<p>This auction house ranked among the top ten auction houses in the Magus World, boasting immense influence, a rich history, and a vast network of sales channels.</p>
+<p>The goods they offered were unrivaled—items considered most ordinary here would be...</p>
+</article>
+<article id="c858" data-label="858">
+<h2 class="chapter">Chapter 858: Crystal Heart 🔒</h2>
+<p>With a gentle yellow glow enveloping them, Sein and Eileen were guided by their flower elf attendant into a spacious, oval-shaped auction hall.</p>
+<p>This was just one of the three venues currently operating within Kristy’s Auction House.</p>
+<p>If Sein and Eileen did not find anything that piqued their interest here, they could move to the other two venues.</p>
+<p>Being an auction house that operated year-round, Kristy’s was well-equipped to handle large crowds.</p>
+<p>At peak times, the starport’s branch could simultaneously host auctions in five separate venues, ensuring that the wealthiest of clientele had ample opportunities to splurge.</p>
+<p>The yellow glow surrounding Sein and Eileen was produced by the elemental light of their auction...</p>
+</article>
+<article id="c859" data-label="859">
+<h2 class="chapter">Chapter 859: Line-Up of Treasures 🔒</h2>
+<p>The Crystal Heart’s function was undeniably unique, though it should not be overestimated.</p>
+<p>Manipulating the mind was a high-caliber skill in the Astral Realm.</p>
+<p>Even devils adept at influencing people’s thoughts could not guarantee success every time—let alone a Crystal Heart, which was essentially an inanimate object.</p>
+<p>The higher ranking the creature, the stronger its focus, and the more fortified its mental defenses.</p>
+<p>Using the Crystal Heart did not always guarantee success.</p>
+<p>Even with the support of a specialized magic array, the success rate of a Rank Three Crystal Heart in influencing Rank Three extraplanar creatures was no higher than sixty percent.</p>
+<p>For demigod-level beings, the odds were drastically lower, perhaps only ten or twenty percent.</p>
+<p>However, if used on a weaker being—such as employing a Rank Three Crystal Heart to influence...</p>
+</article>
+<article id="c860" data-label="860">
+<h2 class="chapter">Chapter 860: Grand Finales 🔒</h2>
+<p>The divine artifact was ultimately sold for an astonishing 780,000 magicoins.</p>
+<p>Judging by its craftsmanship, it did not appear to be the work of Magus World alchemists. Instead, it seemed to originate from one of the allied planes.</p>
+<p>Sein speculated that the buyer might even be a foreign god, as the Rank Four and above knights and mages of the Magus World likely would not show much interest in such roughly crafted equipment.</p>
+<p>Those who favored heavy hammers as weapons were typically knights, and those of Rank Four usually had connections with mages of a similar rank.</p>
+<p>It was standard practice for most knights in the Magus World to commission their equipment from mages.</p>
+<p>Of course, exceptions to this norm did exist.</p>
+<p>For instance, Thunder, who once collaborated with the Divine...</p>
+</article>
+<article id="c861" data-label="861">
+<h2 class="chapter">Chapter 861: Four Treasures 🔒</h2>
+<p>With a swirl of mixed emotions, including lingering awe, Sein and Eileen finally stepped out of Kristy’s Auction House.</p>
+<p>In addition to acquiring the Dissolved Fire Blood Vine, Sein, caught up in the atmosphere of the auction, had ended up purchasing three more items—ten cubic meters of Ten-Thousand-Year Ice Soul Crystal, Body-Tempering Stalactite Liquid, and Life Spring.</p>
+<p>These purchases came to a hefty total of approximately thirteen thousand magicoins, a figure that left Sein slightly regretful as the thrill of the auction faded and his composure returned.</p>
+<p>Still, Sein hadn’t completely lost control during the auction. At least he had not recklessly spent all the gains he had made from the Wild Gorilla War.</p>
+<p>The treasures he acquired...</p>
+</article>
+<article id="c862" data-label="862">
+<h2 class="chapter">Chapter 862: Development Value 🔒</h2>
+<p>By the time Sein and Eileen returned to the eastern zone three of the starport where the space fortress was docked, Lonas had just arrived as well.</p>
+<p>Sein was not sure where the Rank Three grand mage had wandered off to, but judging by his satisfied expression, it was clear he had stumbled upon something worthwhile.</p>
+<p>It was not just Sein and Lonas who had taken advantage of their time at the starport.</p>
+<p>The more than two hundred mages registered under the Divine Tower of Verdant Spring, sent to the public starport on official business, had also been granted a certain degree of autonomy during their stay.</p>
+<p>However, most of these mages, generally only Rank One or Two, did not have the purchasing power of Sein and Lonas.</p>
+<p>Some of the recently promoted full-fledged mages had never even left the Magus World before, making this “business trip” an exciting journey for them.</p>
+<p>Once their tasks were completed, Sein and Lonas led the group...</p>
+</article>
+<article id="c863" data-label="863">
+<h2 class="chapter">Chapter 863: Overcoming Bottleneck 🔒</h2>
+<p>Aside from getting in touch with Leena, Sein also completed his work with the Ten-Thousand-Year Ice Soul Crystal and the Body-Tempering Stalactite Liquid.</p>
+<p>The bed crafted from the Ice Soul Crystal exceeded Sein’s expectations, significantly enhancing his concentration.</p>
+<p>Likewise, the portable alchemy table he fashioned from the same material proved to be an invaluable tool, leaving him thoroughly satisfied with its performance.</p>
+<p>As for the Body-Tempering Stalactite Liquid, which was only enough for two uses, Sein consumed one portion himself. However, Natalya declined the remaining portion.</p>
+<p>Unlike Sein, whose body-tempering progress had plateaued, Natalya believed that her body still had room to grow naturally.</p>
+<p>She felt that using the liquid prematurely, in her current state, would not only be wasteful but could also make her eventual bottleneck even...</p>
+</article>
+<article id="c864" data-label="864">
+<h2 class="chapter">Chapter 864: Another Journey 🔒</h2>
+<p>Despite possessing the strange grayish-white flame gifted by his grandmaster, Sein remained uncertain about his ability to advance to Rank Three in the near future.</p>
+<p>Each attempt at a breakthrough carried significant risks. Success promised progress, but failure could result in painful backlash and a regression of a mage’s elemental power.</p>
+<p>Knowing this, Sein proceeded with caution, making every possible preparation for his advancement, including collecting Tourmaline’s dragon blood.</p>
+<p>At the same time, Sein had also begun planning his next adventure.</p>
+<p>Having stayed in Viridescent Land for over fifty years, it was time for him to step out into the world once more.</p>
+<p>The Divine Tower...</p>
+</article>
+<article id="c865" data-label="865">
+<h2 class="chapter">Chapter 865: Reina’s Depression 🔒</h2>
+<p>Decades had passed, and the Divine Tower of Verdant Spring had undergone profound transformations.</p>
+<p>The increasing number of initiates signaled the rising strength and reputation of the Divine Tower of Verdant Spring Academy.</p>
+<p>Over the years, the number of full-fledged mages had also grown significantly, with more than two hundred joining.</p>
+<p>Some were hedge mages who joined of their own accord, but the vast majority were talents cultivated by the divine tower itself.</p>
+<p>In the Magus World, full-fledged mages were considered highly valuable assets.</p>
+<p>Even the major knightly orders sought to recruit mages for their ranks, and the divine towers were no different.</p>
+<p>The number of hedge mages in any given region was limited. In Viridescent Land, the Divine Tower of Verdant Spring had spent the past century steadily...</p>
+</article>
+<article id="c866" data-label="866">
+<h2 class="chapter">Chapter 866: The Dean’s Departure 🔒</h2>
+<p>Reina came to see Sein today, not only to express her gratitude but also to discuss another matter.</p>
+<p>“I heard you’re planning to start traveling soon,” Reina began, a hint of embarrassment in her voice. “I’d like to come with you.”</p>
+<p>“Honestly, I have never ventured out of the area around the Order of the Steel Fist before,” she admitted.</p>
+<p>Reina, who had once struggled with a deeply hidden inferiority complex due to her obesity, was an unusual recluse among the knights.</p>
+<p>Even Natalya occasionally ventured out for fresh air or visited a certain magic beast forest to spar with a super-ranked magic beast.</p>
+<p>Reina, however, holed herself up in her house for extended periods, much like a mage.</p>
+<p>Aside from cooking, she spent most of her time in the training...</p>
+</article>
+<article id="c867" data-label="867">
+<h2 class="chapter">Chapter 867: Mentor’s Gifts 🔒</h2>
+<p>“Who knows how long it’ll be until we meet again. Until then, take care!” Sein said to Grimm as they stood at the floating port.</p>
+<p>Grimm wore a striking magic mask, half red with fiery flames and half blue with icy patterns, perfectly symbolizing the dual elemental energy he had mastered.</p>
+<p>In Sein’s eyes, it was an exceptional piece of equipment for a Rank Two mage.</p>
+<p>Perched on Grimm’s shoulder was his ever-foul-mouthed green parrot, its shifty gaze constantly darting about.</p>
+<p>The parrot’s boisterous and unruly nature stood in stark contrast to Grimm’s typically calm and composed demeanor, leaving one to wonder how such polar opposites had come to coexist as companions.</p>
+<p>On Sein’s shoulder was Sev,...</p>
+</article>
+<article id="c868" data-label="868">
+<h2 class="chapter">Chapter 868: Reina’s Parents 🔒</h2>
+<p>The airship cruised gracefully through the skies, offering Sein and the others a stunning view of the Magus World from the deck.</p>
+<p>Unlike large merchant vessels that traversed vast distances, the airship they were aboard was a smaller craft, operating exclusively within the Viridescent Land.</p>
+<p>Sein and Reina had boarded this particular airship because he would first accompany the knight to visit her family.</p>
+<p>For Reina, this would be her first journey “away from home”, so she felt it necessary to inform her family.</p>
+<p>Reina’s family lived in the most prosperous part of the Order of the Steel Fist’s territory, located northwest of the Divine Tower of Verdant Spring.</p>
+<p>Stopping by Reina’s home was hardly an inconvenience; the detour would delay their journey by no more than two days.</p>
+<p>Once they had completed their visit, Sein...</p>
+</article>
+<article id="c869" data-label="869">
+<h2 class="chapter">Chapter 869: Exploring A Foreign Plane 🔒</h2>
+<p>Sein and Reina continued north until they reached a region known as the “Adrift Land”, situated on the border of the Ylli Knight Alliance but not officially part of it.</p>
+<p>The area, approximately half the size of the Divine Tower of Verdant Spring, was home to a two-thousand-year-old divine tower, surrounded by several knightly orders, including the Order of the Steel Fist.</p>
+<p>The divine tower had a peculiar name—the Divine Tower of Wooden Rhino.</p>
+<p>After the airship landed, Sein and Reina explored the surrounding area of this oddly named divine tower.</p>
+<p>Through conversations with locals, he learned that the tower’s name originated from its master’s rare abilities.</p>
+<p>Like Lorianne, the tower master was also a powerful Rank Four mage specializing...</p>
+</article>
+<article id="c870" data-label="870">
+<h2 class="chapter">Chapter 870: Twelve Years 🔒</h2>
+<p>On an ancient road where yellow sand danced in the wind, Sein stood with a dry, thorned wooden vine in hand, gazing into the distance.</p>
+<p>A shimmering blue oasis lake stretched before him and Reina, its shores teeming with a dozen or so black-skinned rhinos, quietly drinking from the waters.</p>
+<p>“I didn’t expect to find a desert in a low-level hydro elemental plane,” Sein remarked, pointing toward the oasis with the wooden vine.</p>
+<p>“And those rhinos seem to have undergone adaptive evolution. They’re quite different from the other rhinoceros-like creatures we’ve seen,” he added.</p>
+<p>Unbeknownst to them, twelve years had passed since Sein and Reina first set foot in...</p>
+</article>
+<article id="c871" data-label="871">
+<h2 class="chapter">Chapter 871: Snow Spirit World 🔒</h2>
+<p>After spending another quiet night in Aqua Rhino World, Sein and Reina set off early the next morning on their journey back to Magus World.</p>
+<p>Unlike their initial arrival, the return trip was way faster. Within ten days, they reached the spatial passage that led them out of the low-level plane.</p>
+<p>Upon returning to the Magus World, the familiar laws of their home plane sparked a realization for both Sein and Reina.</p>
+<p>“The will of that low-level plane seemed aligned with the Magus Civilization. We hardly felt any suppression from its planar laws during our time there,” Sein remarked.</p>
+<p>Reina nodded in agreement.</p>
+<p>Sein found his time in Aqua Rhino World to be deeply rewarding.</p>
+<p>While Reina did not experience the same...</p>
+</article>
+<article id="c872" data-label="872">
+<h2 class="chapter">Chapter 872: Marylou 🔒</h2>
+<p>The bone-chilling coldness of Snow Spirit World forced beings from the Magus World to don thick cotton coats or cast magic shields on themselves to endure the harsh environment.</p>
+<p>Knights and mages alike were dressed warmly upon arriving in this world.</p>
+<p>The witch approaching Sein and Reina was no exception. The dark blue robe she wore was extremely thick.</p>
+<p>In contrast, Sein and Reina stuck out like sore thumbs among the Magus World travelers in Snow Spirit World.</p>
+<p>Reina, insulated by her impressive layer of body fat, remained bare-armed despite the frigid air.</p>
+<p>She disliked wearing tight or heavy clothing outside of battle. Even during combat, she wore only the lightweight shoulder armor gifted to her by Sein long ago.</p>
+<p>Although Sein was not bare-armed, his magic...</p>
+</article>
+<article id="c873" data-label="873">
+<h2 class="chapter">Chapter 873: The Secret of Astrology 🔒</h2>
+<p>With a Rank Two witch familiar with the Snow Spirit World leading the way, Sein and Reina’s journey became far more efficient than it would have been if they were traveling alone.</p>
+<p>Many of the unique natural landmarks and energy-gathering sites in the Snow Spirit World were in locations that would have been nearly impossible for Sein and Reina to discover without a knowledgeable guide.</p>
+<p>As Sein and Marylou spent more time together, they began talking more frequently.</p>
+<p>It was always easy for mages to find common topics in conversations.</p>
+<p>Sein was intrigued by the cryo elemental magic and the unique body-tempering technique that Marylou had mastered.</p>
+<p>Meanwhile, after spending time with Sein, Marylou was astonished to realize he was an even more special research subject than Reina.</p>
+<p>“You don’t have even a trace of battle qi in your body, yet your physical resilience exceeds that of some Rank Two knights. What’s going on?” Marylou asked in surprise.</p>
+<p>The Verdant Flame Body Tempering technique that Sein had mastered was an exclusive secret of the Verdant Flame Faction.</p>
+<p>As the faction’s most advanced...</p>
+</article>
+<article id="c874" data-label="874">
+<h2 class="chapter">Chapter 874: Strength Insights 🔒</h2>
+<p>After parting ways with Marylou, Sein and Reina spent another two years walking around Snow Spirit World before finally deciding to leave the medium-sized plane.</p>
+<p>Marylou had been right—after visiting the greatest mountain range in Snow Spirit World, there was little point in exploring the other regions.</p>
+<p>Snow Spirit World was a unique plane, blanketed in perpetual snow and devoid of both sun and moon.</p>
+<p>Thick cumulus clouds shrouded the sky, blocking the light of nearby stars from reaching this world’s inhabitants.</p>
+<p>Through the dense gray snow clouds, Sein and Reina could only catch the faint, hazy outline of a star above.</p>
+<p>Without this layer of cumulus clouds, it would become apparent that this medium-sized world had only a single sun, much like the Magus World.</p>
+<p>Only during the polar night phenomenon at the poles of Snow Spirit World did the gravitational forces of the plane spread the clouds apart, creating gaps that revealed the vast brilliance of the Astral Realm...</p>
+</article>
+<article id="c875" data-label="875">
+<h2 class="chapter">Chapter 875: Athena Plane 🔒</h2>
+<p>During his travels northward through the Ylli Knight Alliance, Sein spent over a total of a hundred years journeying through ten or so foreign planes.</p>
+<p>Unlike his initial twelve-year stay in the Aqua Rhino World, Sein’s time in each subsequent foreign plane grew progressively shorter as he ventured through more and more worlds.</p>
+<p>The primary reason for this change was the sheer number of member planes under the Magus Alliance—a staggering tens of thousands.</p>
+<p>Even if Sein limited his stay to a single year per plane, it would still take tens of thousands of years to visit them all.</p>
+<p>This did not even account for the time lost while traveling through teleportation arrays.</p>
+<p>On certain planes that particularly piqued his interest, such as Fire Trapa World,...</p>
+</article>
+<article id="c876" data-label="876">
+<h2 class="chapter">Chapter 876: Formidable But Sacrificed 🔒</h2>
+<p>If the failure of the first expedition to Athena World could be attributed to the Magus Civilization’s overconfidence and the enemy’s luck, then the failure of the second expedition required a better explanation.</p>
+<p>When faced with a medium-sized planar civilization that had successfully repelled two invasions, the Magus World had two options.</p>
+<p>The first was diplomacy—to attempt to make the Athena Plane an ally.</p>
+<p>After all, a civilization capable of defeating the Magus Civilization twice, even if left heavily damaged and on the brink of collapse, was undeniably formidable.</p>
+<p>Such strength made Athena World worthy of friendship and inclusion in the Magus Alliance.</p>
+<p>The second option was annihilation—to send overlords or overmages to obliterate this medium-sized plane.</p>
+<p>Critics might call this bullying or an unfair use of overwhelming power, but the Magus Civilization’s perspective was pragmatic.</p>
+<p>If a plane...</p>
+</article>
+<article id="c877" data-label="877">
+<h2 class="chapter">Chapter 877: Divine Tower of Dark Flame 🔒</h2>
+<p>The passive evolutionary mysteries uncovered by Sein in the Athenians were more abundant than he had initially expected.</p>
+<p>The discovery of numerous cellular-level mysteries hinted at a potential breakthrough in Sein’s constitution growth, which had long been stagnant.</p>
+<p>However, these passive evolutionary mysteries unraveled from the Athenian woman were far better suited for Reina and Natalya than Sein, as they shared the same physiology as women.</p>
+<p>It was no wonder the female creatures of Athena World were significantly stronger than their male counterparts.</p>
+<p>In addition to their training techniques, the women of Athena World possessed a special organ capable of secreting a type of microparticles under conditions of heightened nervous tension.</p>
+<p>These microparticles stimulated the muscle cells of Athenian women, enabling...</p>
+</article>
+<article id="c878" data-label="878">
+<h2 class="chapter">Chapter 878: Gumo Plane 🔒</h2>
+<p>The Divine Tower of Dark Flame was a structure dominated by black and gray tones, starkly contrasting with the vibrant and lively Divine Tower of Verdant Spring, which also had the beautiful Jewel Sea nearby.</p>
+<p>The Divine Tower of Dark Flame gave off a far more somber impression, reflecting the Tower Master’s apparent lack of interest in decorating his divine tower.</p>
+<p>Knights and mages hurriedly moved in and out of the tower.</p>
+<p>The Divine Tower of Dark Flame’s interplanar war had already raged for twelve years.</p>
+<p>In addition to its own registered mages, numerous external mages and knights had joined the conflict.</p>
+<p>This region, still part of the Ylli Knight Alliance’s territory, boasted an abundance of knightly manpower.</p>
+<p>Although no knightly orders...</p>
+</article>
+<article id="c879" data-label="879">
+<h2 class="chapter">Chapter 879: Joining The Fray 🔒</h2>
+<p>After receiving an answer from the young Rank One mage in front of him, Sein turned to the two female knights standing behind him.</p>
+<p>Having spent hundreds of years traveling within the Ylli Knight Alliance, along with the time he had taken to rest following the Wild Gorilla World War, Sein realized it had been quite a while since he had put his muscles to work.</p>
+<p>Reina and Natalya, having known him for so long, understood the meaning behind Sein’s questioning glance without the need for words.</p>
+<p>The Divine Tower of Dark Flame’s specialty pyro elemental resources were undeniably hard for Sein to resist acquiring.</p>
+<p>Moreover, the foreign plane this divine tower was attacking happened to be a low-level world abundant in rare magic metals.</p>
+<p>For an alchemist, the value of special magic metals was...</p>
+</article>
+<article id="c880" data-label="880">
+<h2 class="chapter">Chapter 880: The Decisive Battle 🔒</h2>
+<p>The three divine tower badges, black and shaped like a ball of flame, served as temporary proof of Sein and the others’ participation in the Gumo Plane War.</p>
+<p>These badges allowed the Divine Tower of Dark Flame to track Sein and his companions on the battlefield and functioned as communication devices, enabling them to contact nearby allies.</p>
+<p>Additionally, the badges allowed the Divine Tower of Dark Flame to issue combat missions and receive reports on mission outcomes from Sein and the others.</p>
+<p>In short, these fingernail-sized devices were small in size but offered impressive functionality.</p>
+<p>Sein had previously disassembled and studied similar badges during his initiate period, and he could attest to their convenience during the war.</p>
+<p>After briefing Sein and his group about the situation in the surrounding area, the...</p>
+</article>
+<article id="c881" data-label="881">
+<h2 class="chapter">Chapter 881: Goul Groundworms 🔒</h2>
+<p>“They say volcanic dust covers the entire plane, but it’s really only partial,” Sein remarked, gazing into the hazy sky above.</p>
+<p>At the fortress base, it had been harder to discern, but now, standing on the Akre Plains, Sein could see faint traces of light filtering through the dark clouds of volcanic dust.</p>
+<p>The varying thickness of the clouds allowed occasional rays of sunlight to pierce through and reach the ground, bringing a faint glimmer of brightness back into the world.</p>
+<p>Still, the overall atmosphere of Gumo Plane remained oppressive and gray.</p>
+<p>Only a small portion of the world’s light and heat now came from the sun. Most of them emanated from the active volcanoes scattered across the...</p>
+</article>
+<article id="c882" data-label="882">
+<h2 class="chapter">Chapter 882: The Clash 🔒</h2>
+<p>The veterans of the Gumo Plane War, battle-hardened from years of conflict, recognized the violent tremors in the ground as the telltale signs of Goul Groundworms moving en masse deep below the surface, shifting the ley lines as they burrowed.</p>
+<p>If not for the significant presence of Geomancers within the Magus World Army, these Goul Groundworms could have caused massive ground subsidence, creating chaos and devastating losses for the Magus Civilization forces.</p>
+<p>An ear-splitting elemental alarm blared, signaling that the Magus Civilization Army had detected the movement of the native creatures.</p>
+<p>Stepping out of his alchemy tent, Sein looked up at the gloomy, oppressive sky.</p>
+<p>High above the Akre Plains, the space fortress of the Divine Tower of Dark Flame hovered in pla...</p>
+</article>
+<article id="c883" data-label="883">
+<h2 class="chapter">Chapter 883: Close-Quarters Combat 🔒</h2>
+<p>As one of the more prosperous low-level planes, the three major legions of the Gumo World each had their own long-range capabilities.</p>
+<p>The burly Guran Lizardmen could spit fireballs from their mouths.</p>
+<p>Individuals of Rank Two or higher could even sprout a pair of fleshy wings from their backs and launch even more explosive fireball attacks.</p>
+<p>As for the Moknu, they had developed a unique manufacturing process, showcasing their impressive creativity.</p>
+<p>Their primary long-range weapon was a crossbow compressed in a metal gas cylinder.</p>
+<p>By increasing the air pressure, they could generate significant kinetic energy.</p>
+<p>As for the Goul Groundworms—blind creatures extremely sensitive to sunlight, these massive, earthworm-like beings could release thin red rays from the small, bristle-like structures on their bodies.</p>
+<p>These red rays were...</p>
+</article>
+<article id="c884" data-label="884">
+<h2 class="chapter">Chapter 884: Lumen Elemental Body 🔒</h2>
+<p>Whether it was Sein, Reina, Natalya, or Yuri, they were all seasoned partners who had fought together for centuries.</p>
+<p>Their experiences, especially in the brutal intensity of the Sandstorm World War, had forged an incredible level of synergy.</p>
+<p>Sein’s offensive prowess was unmatched, while Natalya excelled in defense, making their alternating strategies on the battlefield highly effective. Together, they could handle even a Rank Three creature in battle.</p>
+<p>Reina, on the other hand, was a powerhouse of both offense and defense with extraordinary stamina. However, her lack of long-range attacks remained one of her few shortcomings.</p>
+<p>Yuri might have appeared ordinary compared to the three exceptional Rank Two Magus World knights and a mage, but she possessed decent long-range combat skills and mobility.</p>
+<p>In fact, Yuri had more than one mecha...</p>
+</article>
+<article id="c885" data-label="885">
+<h2 class="chapter">Chapter 885: Solar Eye 🔒</h2>
+<p>Without uttering an incantation, Sein raised his hand and unleashed a shower of lumen elemental rays.</p>
+<p>The defining distinction between a Rank Two mage and a Rank One mage lay in their complete mastery of elementalization.</p>
+<p>For Rank Two mages, their bodies were fully elementalized, allowing them to cast basic spells instantly, without the need for lengthy incantations or the use of magic spices.</p>
+<p>Sein’s pyro elemental power was extraordinarily powerful due to the fusion of Verdant Flame, Everburning Violet Flame, Decomposing Azure Flame, and the special white flame.</p>
+<p>Even a basic Pyro Ray unleashed by him carried immense destructive power and unique secondary effects.</p>
+<p>In contrast, Sein’s lumen elemental body was less developed. After advancing to Rank Two, his...</p>
+</article>
+<article id="c886" data-label="886">
+<h2 class="chapter">Chapter 886: Mowing Through 🔒</h2>
+<p>The Solar Eye, a magic spell Sein had relied on heavily during his initiate years, had withstood the test of time.</p>
+<p>Even after centuries, it remained one of his signature spells, known for its devastating power and lightning-fast speed.</p>
+<p>The Solar Eye spell’s concentrated light beams left the Moknu no chance to evade, striking him relentlessly.</p>
+<p>Stray lumen elemental rays even seared nearby Goul Groundworms, leaving them writhing in pain.</p>
+<p>In the chaos of interplanar war, the lives of such low-level creatures were insignificant.</p>
+<p>The Moknu’s pitch-black armor proved little defense against Sein’s relentless barrage.</p>
+<p>The dense Solar Eye beams left countless wounds in its body, its silver blood gleamed under the harsh luminescence of Sein’s lumen elemental magic.</p>
+<p>In terms of individual strength, the native creatures of Gumo Plane were a far cry from the...</p>
+</article>
+<article id="c887" data-label="887">
+<h2 class="chapter">Chapter 887: Rank Four’s Power 🔒</h2>
+<p>The three native gods of Gumo Plane each possessed their own distinct strengths and powers.</p>
+<p>The Guran Lizard God, the totem deity of all Guran Lizardmen, was the oldest Rank Four creature in the Gumo World.</p>
+<p>Beyond its colossal size, it was renowned for its exceptional resilience.</p>
+<p>The Guran Lizard God was nothing more than a massive green-scaled lizardman with wings.</p>
+<p>Yet when it emerged from the clouds and appeared on the battlefield, it bore a striking resemblance to the dragons of the Magus World.</p>
+<p>Guran Lizardmen would gain an additional pair of fleshy wings upon advancing to Rank Two. Upon reaching Rank Three, they could transform into a giant lizard.</p>
+<p>The giant dragons in the Magus World’s Byrne Empire were often...</p>
+</article>
+<article id="c888" data-label="888">
+<h2 class="chapter">Chapter 888: Dark Flame 🔒</h2>
+<p>From the moment the Guran Lizard God struck, to the space fortress intercepting the attack, and then to the Moknu High Priest making its move, everything unfolded within mere moments.</p>
+<p>When the silver meteor shower unleashed by the High Priest descended upon the mage formation on the right flank of the battlefield, a cold snort reverberated across the sky.</p>
+<p>A massive black elemental shield materialized from above, protecting the mage legion below like a dark eggshell.</p>
+<p>Sparse black flames danced along the surface of the barrier.</p>
+<p>It was no surprise why the Tower Master of Dark Flame had chosen such a name for his divine tower.</p>
+<p>Perhaps “Dark Flame” was also his title within the Magus World.</p>
+<p>The mastery displayed...</p>
+</article>
+<article id="c889" data-label="889">
+<h2 class="chapter">Chapter 889: Ideal and Regret 🔒</h2>
+<p>In a way, Sein and his group were lucky.</p>
+<p>As they advanced closer to Moknu High Priest’s location, the High Priest had already cut its way to the very center of the Akre Plains battlefield at an even faster pace.</p>
+<p>Their objective was to collect the embers of Dark Flame scattered across the battlefield, as they might hold the key to Sein’s long-awaited promotion to Rank Three.</p>
+<p>Long before leaving the Divine Tower of Verdant Spring, Sein had begun fusing various elemental flames he had collected, attempting to trigger a transformation effect.</p>
+<p>He knew he was very close to success.</p>
+<p>Now, with the remnants of the Dark Flame found on this battlefield, he saw an opportunity to bridge that gap.</p>
+<p>Still, he needed to conduct thorough research on these specimens to understand their true potential.</p>
+<p>Despite...</p>
+</article>
+<article id="c890" data-label="890">
+<h2 class="chapter">Chapter 890: Underground World 🔒</h2>
+<p>Regardless of the world, the deep, dark underground remained synonymous with “mystery” for surface creatures.</p>
+<p>Beyond the physical obstruction of sight, the psychological pressure of the unknown darkness left most creatures accustomed to the surface environment hesitant—if not outright resistant—to delve beneath the surface.</p>
+<p>This unease even extended to the two fearless female t-rexes known as Reina and Natalya.</p>
+<p>Sein, however, was different. He had spent his initiate years in the dark, underground world.</p>
+<p>Even during his time studying magic at the Divine Tower of Verdant Spring, he gravitated toward quiet, dim research spaces. Perhaps it was an unconscious remnant of...</p>
+</article>
+<article id="c891" data-label="891">
+<h2 class="chapter">Chapter 891: The Mysterious Place 🔒</h2>
+<p>With the discovery of countless resource materials and rare specimens, it was no surprise that Sein was thoroughly indulging himself.</p>
+<p>Initially, he had planned to spend only five years on the Gumo Plane battlefield, with his primary goal being the acquisition of pyro elemental resources produced by the Divine Tower of Dark Flame.</p>
+<p>However, the allure and unique attributes of Gumo Plane far surpassed Sein’s expectations before participating in the war.</p>
+<p>Of course, Sein’s extended absence from the main battle and his unauthorized “slacking off” underground could partially be attributed to a technical issue.</p>
+<p>His temporary divine tower badge had lost contact with the command center after he descended ten thousand meters below...</p>
+</article>
+<article id="c892" data-label="892">
+<h2 class="chapter">Chapter 892: Silver Runes 🔒</h2>
+<p>With Natalya and Reina’s prominent family backgrounds and the experience they had gained traveling with Sein in recent years, their perception and judgment had sharpened considerably over time.</p>
+<p>For something to catch their attention so strongly that they felt compelled to pull Sein away from his experiments to investigate, it had to be significant.</p>
+<p>Leaving his temporary laboratory behind, Sein followed the two women as they flew eastward.</p>
+<p>After more than six months in the underground world, Natalya and Reina had grown accustomed to its perpetual darkness.</p>
+<p>In fact, their frequent excursions for combat and exploration had far surpassed Sein’s, giving them a deeper familiarity with the surrounding areas compared to Sein, who had spent most of his time confined to his laboratory.</p>
+<p>The two female knights...</p>
+</article>
+<article id="c893" data-label="893">
+<h2 class="chapter">Chapter 893: Explosive Power 🔒</h2>
+<p>The trio shot upward through the magma river like arrows.</p>
+<p>Sein made sure to record every detail of the vast, silver-rune-covered river they had just discovered with his crystal ball.</p>
+<p>This crucial information must reach the operations command center as soon as possible.</p>
+<p>Sein and his group moved stealthily since the silver runes were obviously the work of a Rank Four creature.</p>
+<p>It was unclear what they might have disturbed, but as they neared the surface, the entire riverbed began to shake faintly.</p>
+<p>At the same time, the vibrations also alerted the sluggish Ground Dragon.</p>
+<p>The magma river, vast and fiery, had remained eerily devoid of life due to the oppressive aura of the Ground Dragon itself.</p>
+<p>Though Sein had initially feared other Goul Groundworms might...</p>
+</article>
+<article id="c894" data-label="894">
+<h2 class="chapter">Chapter 894: Fat-Burning Secret Technique 🔒</h2>
+<p>Just as the native creatures of the Phantom Cloud Plane could unleash explosive power in times of crisis, the inhabitants of Magus World and other planes had their own methods—often even more diverse.</p>
+<p>For example, mages like Sein could temporarily boost their power by burning their internal mana and focus reserves.</p>
+<p>However, the consequences were severe—at best, they would experience mental focus shrinkage.</p>
+<p>At worst, the overexertion could lead to a demotion in rank or even death. After all, mages were known for their weak constitutions.</p>
+<p>Similarly, knights could overdraw their bloodline and cellular power to achieve short-term bursts of strength, but the...</p>
+</article>
+<article id="c895" data-label="895">
+<h2 class="chapter">Chapter 895: Fight 🔒</h2>
+<p>When a battle of unimaginable intensity erupted twenty thousand meters beneath the ground, it did not take long for significant changes to ripple across the surface battlefield as well.</p>
+<p>In a duel between high-level creatures, even a single unforeseen variable in one arena often triggered a cascading chain reaction, altering the broader situation like a line of falling dominoes.</p>
+<p>The Astral Realm, however, never lacked such unexpected variables.</p>
+<p>Every Rank Four creature with a calculating mind knew better than to be overly shaken by unforeseen events.</p>
+<p>To be an exceptional individual, one must be able to minimize the adverse effects of such disruptions.</p>
+<p>What Sein did not realize...</p>
+</article>
+<article id="c896" data-label="896">
+<h2 class="chapter">Chapter 896: Law Array 🔒</h2>
+<p>Silver-colored blood sprayed into the sky as the Moknu High Priest’s still-beating heart was wrenched viciously from his chest.</p>
+<p>In terms of environmental adaptation, the Moknu were far inferior to the Guran Lizardmen, covered in scales, or the Goul Groundworms, which thrived deep underground.</p>
+<p>As a result, over a decade of interplanar warfare had struck the Moknu hardest, claiming the lives of hundreds of millions.</p>
+<p>With such a monumental grudge to bear, it was no surprise that the High Priest would sacrifice his own life in a desperate attempt to seal his enemy away forever.</p>
+<p>But one had to wonder—what would become of the surviving Moknu, leaderless and deprived of the High Priest’s protection after the war?</p>
+<p>The Moknu High...</p>
+</article>
+<article id="c897" data-label="897">
+<h2 class="chapter">Chapter 897: A Series Of Unexpected Twists And Turns 🔒</h2>
+<p>As the Moknu High Priest drew his final breath, Rank Five Tower Master of Dark Flame felt a sudden stirring in his mind.</p>
+<p>Meanwhile, Natalya, who had reported their discovery to the command center, gazed into the distance in surprise.</p>
+<p>She had returned to the surface not long ago, using the very same route her group had used to venture into the depths of the underground world half a year ago.</p>
+<p>Located on the flank of the Akre Plains battlefield, this passageway lay relatively close to the central area. However, it was still some distance from the zone covered by the silver rune array.</p>
+<p>The molten river with flowing silver runes under it was definitely right below that law array.</p>
+<p>This meant that the underground passageway Natalya used was not directly below that law array.</p>
+<p>While they were exploring the underground...</p>
+</article>
+<article id="c898" data-label="898">
+<h2 class="chapter">Chapter 898: All-Out Attack 🔒</h2>
+<p>Despite the intensity of the battle, Reina appeared to be handling the demigod-level Ground Dragon just fine.</p>
+<p>For most creatures, the Fat-Burning Secret Technique had its limits due to the finite fat reserves within their bodies.</p>
+<p>No matter how explosive its effects, it was designed as a short-term survival strategy, not a sustainable enhancement.</p>
+<p>However, Reina was an anomaly. Her body contained an astonishing amount of fat compared to most creatures.</p>
+<p>In her current state, her Fat-Burning Secret Technique could be sustained for far longer than expected.</p>
+<p>Sein could not help but wonder: if Reina burned through all her body fat, what would become of her?</p>
+<p>His curiosity, however, was not focused on her final appearance. What intrigued him was the potential to unravel new mysteries of truth.</p>
+<p>With Reina’s constitution,...</p>
+</article>
+<article id="c899" data-label="899">
+<h2 class="chapter">Chapter 899: Moment of Crisis 🔒</h2>
+<p>Every being with a penchant for breaking laws or committing crimes made an effort to understand the rules governing their world.</p>
+<p>The Tower Master of Dark Flame was no exception.</p>
+<p>In the Magus World, every knight and mage was a valuable asset of the Magus Civilization, and their rights were safeguarded under its laws.</p>
+<p>Even the black knights and black mages exiled to Blackhaven retained a degree of protection—after all, they were still considered native members of the Magus World.</p>
+<p>Under such a framework, the notion of harming or sacrificing Magus World’s knights and mages seemed unthinkable.</p>
+<p>But the Tower Master of Dark Flame, well-versed in the legal intricacies of the divine towers, knew of a particular...</p>
+</article>
+<article id="c900" data-label="900">
+<span id="last"></span>
+<h2 class="chapter">Chapter 900: The End of the War 🔒</h2>
+<p>Sein and Reina plunged into the heart of the crater, deftly navigating through the scorching torrents of molten magma.</p>
+<p>Behind them, the enraged demigod-level Ground Dragon, who had received a good beating from Reina, charged after them without a moment’s hesitation.</p>
+<p>Its massive form, stretching nearly a thousand meters in length, made the Ground Dragon a perfect living cork as it burrowed headlong into the volcanic crater’s narrow opening.</p>
+<p>Halfway through their descent, the dense energy beams began raining down from the sky. Sensing an overwhelming crisis, the Ground Dragon pressed onward, not just to pursue Sein and Reina but also driven by its primal instinct to survive.</p>
+<p>The less intelligent a creature, the sharper its instincts and sense of impending danger.</p>
+<p>Conversely,...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="901-950.html" rel="next">Next: Chs 901–950 &rarr;</a>
+    <p class="page-end-links"><a href="801-850.html" rel="prev">&larr; Chs 801–850</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 851–900</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c851">Chapter 851: Eileen’s Retort 🔒</a></li>
+        <li><a href="#c852">Chapter 852: Lost Allure? 🔒</a></li>
+        <li><a href="#c853">Chapter 853: Experimental Research 🔒</a></li>
+        <li><a href="#c854">Chapter 854: Thrifty Lorianne 🔒</a></li>
+        <li><a href="#c855">Chapter 855: Legacy of Knowledge 🔒</a></li>
+        <li><a href="#c856">Chapter 856: Public Starport 🔒</a></li>
+        <li><a href="#c857">Chapter 857: Steep Entry Fee 🔒</a></li>
+        <li><a href="#c858">Chapter 858: Crystal Heart 🔒</a></li>
+        <li><a href="#c859">Chapter 859: Line-Up of Treasures 🔒</a></li>
+        <li><a href="#c860">Chapter 860: Grand Finales 🔒</a></li>
+        <li><a href="#c861">Chapter 861: Four Treasures 🔒</a></li>
+        <li><a href="#c862">Chapter 862: Development Value 🔒</a></li>
+        <li><a href="#c863">Chapter 863: Overcoming Bottleneck 🔒</a></li>
+        <li><a href="#c864">Chapter 864: Another Journey 🔒</a></li>
+        <li><a href="#c865">Chapter 865: Reina’s Depression 🔒</a></li>
+        <li><a href="#c866">Chapter 866: The Dean’s Departure 🔒</a></li>
+        <li><a href="#c867">Chapter 867: Mentor’s Gifts 🔒</a></li>
+        <li><a href="#c868">Chapter 868: Reina’s Parents 🔒</a></li>
+        <li><a href="#c869">Chapter 869: Exploring A Foreign Plane 🔒</a></li>
+        <li><a href="#c870">Chapter 870: Twelve Years 🔒</a></li>
+        <li><a href="#c871">Chapter 871: Snow Spirit World 🔒</a></li>
+        <li><a href="#c872">Chapter 872: Marylou 🔒</a></li>
+        <li><a href="#c873">Chapter 873: The Secret of Astrology 🔒</a></li>
+        <li><a href="#c874">Chapter 874: Strength Insights 🔒</a></li>
+        <li><a href="#c875">Chapter 875: Athena Plane 🔒</a></li>
+        <li><a href="#c876">Chapter 876: Formidable But Sacrificed 🔒</a></li>
+        <li><a href="#c877">Chapter 877: Divine Tower of Dark Flame 🔒</a></li>
+        <li><a href="#c878">Chapter 878: Gumo Plane 🔒</a></li>
+        <li><a href="#c879">Chapter 879: Joining The Fray 🔒</a></li>
+        <li><a href="#c880">Chapter 880: The Decisive Battle 🔒</a></li>
+        <li><a href="#c881">Chapter 881: Goul Groundworms 🔒</a></li>
+        <li><a href="#c882">Chapter 882: The Clash 🔒</a></li>
+        <li><a href="#c883">Chapter 883: Close-Quarters Combat 🔒</a></li>
+        <li><a href="#c884">Chapter 884: Lumen Elemental Body 🔒</a></li>
+        <li><a href="#c885">Chapter 885: Solar Eye 🔒</a></li>
+        <li><a href="#c886">Chapter 886: Mowing Through 🔒</a></li>
+        <li><a href="#c887">Chapter 887: Rank Four’s Power 🔒</a></li>
+        <li><a href="#c888">Chapter 888: Dark Flame 🔒</a></li>
+        <li><a href="#c889">Chapter 889: Ideal and Regret 🔒</a></li>
+        <li><a href="#c890">Chapter 890: Underground World 🔒</a></li>
+        <li><a href="#c891">Chapter 891: The Mysterious Place 🔒</a></li>
+        <li><a href="#c892">Chapter 892: Silver Runes 🔒</a></li>
+        <li><a href="#c893">Chapter 893: Explosive Power 🔒</a></li>
+        <li><a href="#c894">Chapter 894: Fat-Burning Secret Technique 🔒</a></li>
+        <li><a href="#c895">Chapter 895: Fight 🔒</a></li>
+        <li><a href="#c896">Chapter 896: Law Array 🔒</a></li>
+        <li><a href="#c897">Chapter 897: A Series Of Unexpected Twists And Turns 🔒</a></li>
+        <li><a href="#c898">Chapter 898: All-Out Attack 🔒</a></li>
+        <li><a href="#c899">Chapter 899: Moment of Crisis 🔒</a></li>
+        <li><a href="#c900">Chapter 900: The End of the War 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="801-850.html" rel="prev">&larr; Chs 801–850</a>    <a href="../../index.html">Library</a>
+<a href="901-950.html" rel="next">Chs 901–950 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1451–1500</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1401-1450.html#last" data-next-page="1501-1550.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1451">Chapter 1451: Full-Scale Advance 🔒</a></li>
+        <li><a href="#c1452">Chapter 1452: Refusing Surrender! 🔒</a></li>
+        <li><a href="#c1453">Chapter 1453: Reinforcements 🔒</a></li>
+        <li><a href="#c1454">Chapter 1454: Baffled 🔒</a></li>
+        <li><a href="#c1455">Chapter 1455: Devastating Reports 🔒</a></li>
+        <li><a href="#c1456">Chapter 1456: Establishing Defensive Line 🔒</a></li>
+        <li><a href="#c1457">Chapter 1457: Pocket 🔒</a></li>
+        <li><a href="#c1458">Chapter 1458: Federal Marshal 🔒</a></li>
+        <li><a href="#c1459">Chapter 1459: Counterattack 🔒</a></li>
+        <li><a href="#c1460">Chapter 1460: Elite Combat Legions 🔒</a></li>
+        <li><a href="#c1461">Chapter 1461: Hidden Aces Up the Sleeve 🔒</a></li>
+        <li><a href="#c1462">Chapter 1462: Holding the Defense 🔒</a></li>
+        <li><a href="#c1463">Chapter 1463: Healing 🔒</a></li>
+        <li><a href="#c1464">Chapter 1464: Persevere 🔒</a></li>
+        <li><a href="#c1465">Chapter 1465: Farke 🔒</a></li>
+        <li><a href="#c1466">Chapter 1466: Nimitz 🔒</a></li>
+        <li><a href="#c1467">Chapter 1467: Reinforcements Arrive 🔒</a></li>
+        <li><a href="#c1468">Chapter 1468: Retreat and Pursuit 🔒</a></li>
+        <li><a href="#c1469">Chapter 1469: Resource Allocation 🔒</a></li>
+        <li><a href="#c1470">Chapter 1470: A New Mission 🔒</a></li>
+        <li><a href="#c1471">Chapter 1471: True Backing 🔒</a></li>
+        <li><a href="#c1472">Chapter 1472: Double Agent 🔒</a></li>
+        <li><a href="#c1473">Chapter 1473: Changed Stance 🔒</a></li>
+        <li><a href="#c1474">Chapter 1474: Mirage Pearl 🔒</a></li>
+        <li><a href="#c1475">Chapter 1475: Rest and Recuperation 🔒</a></li>
+        <li><a href="#c1476">Chapter 1476: Reunion with Lorthisra 🔒</a></li>
+        <li><a href="#c1477">Chapter 1477: Special Mission 🔒</a></li>
+        <li><a href="#c1478">Chapter 1478: The Young Initiate 🔒</a></li>
+        <li><a href="#c1479">Chapter 1479: Opportunity to Breakthrough 🔒</a></li>
+        <li><a href="#c1480">Chapter 1480: Energy Amethyst 🔒</a></li>
+        <li><a href="#c1481">Chapter 1481: Punishment 🔒</a></li>
+        <li><a href="#c1482">Chapter 1482: Vulnerable 🔒</a></li>
+        <li><a href="#c1483">Chapter 1483: The Mysteries Behind Robot Enhancement 🔒</a></li>
+        <li><a href="#c1484">Chapter 1484: Peak of Rank Four 🔒</a></li>
+        <li><a href="#c1485">Chapter 1485: New Combat Orders 🔒</a></li>
+        <li><a href="#c1486">Chapter 1486: Once More to the Frontlines 🔒</a></li>
+        <li><a href="#c1487">Chapter 1487: Garrison Duty 🔒</a></li>
+        <li><a href="#c1488">Chapter 1488: News of the Huusians 🔒</a></li>
+        <li><a href="#c1489">Chapter 1489: Request for Transfer 🔒</a></li>
+        <li><a href="#c1490">Chapter 1490: Unforeseen Circumstances! 🔒</a></li>
+        <li><a href="#c1491">Chapter 1491: Struggle 🔒</a></li>
+        <li><a href="#c1492">Chapter 1492: Spatial Railgun 🔒</a></li>
+        <li><a href="#c1493">Chapter 1493: Encirclement Within an Encirclement 🔒</a></li>
+        <li><a href="#c1494">Chapter 1494: Survival in Desperation 🔒</a></li>
+        <li><a href="#c1495">Chapter 1495: Space-time Turbulence 🔒</a></li>
+        <li><a href="#c1496">Chapter 1496: Breaking Through to Rank Five 🔒</a></li>
+        <li><a href="#c1497">Chapter 1497: Klytherans 🔒</a></li>
+        <li><a href="#c1498">Chapter 1498: Schemes 🔒</a></li>
+        <li><a href="#c1499">Chapter 1499: Blue Star Civilization 🔒</a></li>
+        <li><a href="#c1500">Chapter 1500: Union and Coexistence 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1451" data-label="1451">
+<h2 class="chapter">Chapter 1451: Full-Scale Advance 🔒</h2>
+<p>By the time Sein reached Tychus and the others, the two Rank Four Radbow World creatures had already coordinated their escape.</p>
+<p>In his current condition, Sein could barely give chase to two Rank Fours.</p>
+<p>Tychus and the others, while powerful in their own right, were still far outmatched by Sein.</p>
+<p>He had managed to bring down a Rank Four creature in just half a year.</p>
+<p>In comparison, Tychus and his group’s battle against the Rank Four radioactive creatures had turned into a long, exhausting struggle.</p>
+<p>In truth, Sein had achieved something even more remarkable than a simple kill—a live capture.</p>
+<p>The Rank Four Crimson Eye Demon was not dead; it had merely been crippled.</p>
+<p>Every one of its flesh tendrils had been ripped off, leaving only its eyeball-body,...</p>
+</article>
+<article id="c1452" data-label="1452">
+<h2 class="chapter">Chapter 1452: Refusing Surrender! 🔒</h2>
+<p>Those two Rank Four radioactive creatures wanted to surrender.</p>
+<p>That was the first report Sein heard after meeting Tychus and the others.</p>
+<p>Another piece of intelligence followed soon after: the Grand Eye Demon World had dispatched yet another wave of reinforcements to the strategically vital Radbow World!</p>
+<p>However, that contingent of Eye Demon forces was intercepted by other Magus Civilization legions elsewhere in the star domain before it could reach Radbow’s outer regions.</p>
+<p>For the time being, there was no indication that the enemy could breach the Magus Civilization’s defensive lines.</p>
+<p>The two Rank Four creatures in Radbow World had likely caught wind of this and decided to abandon resistance, choosing instead to grovel before...</p>
+</article>
+<article id="c1453" data-label="1453">
+<h2 class="chapter">Chapter 1453: Reinforcements 🔒</h2>
+<p>The final cries of agony marked the end of the Radbow World War.</p>
+<p>A year and a half after joining the campaign himself, Sein—alongside Yuri, Tychus, and the others—finally brought down the last two Rank Four creatures native to Radbow World.</p>
+<p>Those native deities were certainly prideful.</p>
+<p>Even under the crushing pressure of the Magus Civilization’s forces, they did not abandon their homeplane in fear. They stood their ground and fought until the end.</p>
+<p>In truth, for them, escape had never been an option.</p>
+<p>Radbow World differed greatly from most planes in the Astral Realm.</p>
+<p>These native deities drew their strength directly from their radiation-rich environment. Where could they possibly find another...</p>
+</article>
+<article id="c1454" data-label="1454">
+<h2 class="chapter">Chapter 1454: Baffled 🔒</h2>
+<p>“The war on Radbow has already ended? Unbelievable. It has only been three years since Master Sein arrived at that low-level plane, right? I thought I’d have to hold out here for at least another two years,” Martini said with a smile after Sein arrived at the gray-white asteroid belt.</p>
+<p>This Rank Four knight was rather slender, a contrast to Sein’s usual impression of knights as broad-shouldered and heavily built.</p>
+<p>Martini had not had an easy time holding the line in this region.</p>
+<p>Although the alliance had reinforced his defenses with several additional prism forts and an expanded fleet of war airships, the combined strength and numbers of the Grand Eye Demon World’s legions were...</p>
+</article>
+<article id="c1455" data-label="1455">
+<h2 class="chapter">Chapter 1455: Devastating Reports 🔒</h2>
+<p>Although the Magus Alliance did not send additional law-wielding knights or mages to reinforce Sein and his allies against the Grand Eye Demon World’s growing forces, they instead dispatched a legion Sein knew all too well—the Huusian Army.</p>
+<p>On the eve of the Huusian Army’s arrival, Sein and the law-wielding powerhouses stationed across the asteroid belt received multiple devastating reports.</p>
+<p>The Magus Civilization’s legions, which had been advancing deep into the Netherworld Star Domain, had suffered a crushing defeat!</p>
+<p>The Gallant Federation’s vanguard fleet had pursued the retreating Magus Civilization forces all the way to the borders of the Sanoras Star Domain, utterly routing them!</p>
+<p>If not for Odin, the Divine...</p>
+</article>
+<article id="c1456" data-label="1456">
+<h2 class="chapter">Chapter 1456: Establishing Defensive Line 🔒</h2>
+<p>“That battle in the Netherworld Star Domain nearly killed me! Shit! Was that Naeverynk really faking betrayal? It seemed to me he was going all out! And what’s the deal with those two overlord-class mobile suits developed by the Gallant Federation? I’d say they were far stronger than the overlord-class unit the Rosen Dynasty brought here with them!”</p>
+<p>In the heart of the Magus Civilization’s territory, deep within the rear lines of the Sanoras Star Domain, Regalis could not help but curse in frustration. The Mother of Dragons had just returned, covered in wounds.</p>
+<p>She was one of the earliest overlords born in Magus World.</p>
+<p>Among beings of her level, she was not old. Yet, she was ancient enough to have witnessed the Magus Civilization’s rise from a medium-sized plane to a large one, and finally to its current spot at the pinnacle of...</p>
+</article>
+<article id="c1457" data-label="1457">
+<h2 class="chapter">Chapter 1457: Pocket 🔒</h2>
+<p>The assault from the Gallant Federation and the Grand Eye Demon World came swiftly.</p>
+<p>They were not about to let Sein and his allies establish defensive lines around Radbow World unchallenged.</p>
+<p>More than four million Eye Demons, backed by an even larger fleet of federal warships, appeared beyond Radbow Plane, blotting out the sky.</p>
+<p>With the Gallant Federation’s technology enhancing their forces, the Eye Demons—already formidable at long range—now possessed even greater firepower and range.</p>
+<p>This would not be an easy war. Even with the Magus Civilization’s strength gathered here, it was destined to drag into a long, grueling conflict.</p>
+<p>“What kind of resources does the...</p>
+</article>
+<article id="c1458" data-label="1458">
+<h2 class="chapter">Chapter 1458: Federal Marshal 🔒</h2>
+<p>The aide had served Seedolf for many years and knew well that the marshal likely had other concerns on his mind.</p>
+<p>Still, he did not press the issue, only nodding in agreement. “Indeed. Lumiere is far warmer and brighter than the Netherworld Star Domain. This place really is nothing more than a backward, barbaric region.”</p>
+<p>“Besides, during the last war, many planets were destroyed. That’s why it feels so desolate, with so few stars and habitable worlds left,” he added.</p>
+<p>No matter who won, wars fought on home ground always brought immense destruction to its native lifeforms.</p>
+<p>The Netherworld Star Domain had shown its loyalty to the Gallant Federation early on, yet the fighting still wiped out...</p>
+</article>
+<article id="c1459" data-label="1459">
+<h2 class="chapter">Chapter 1459: Counterattack 🔒</h2>
+<p>“Finally here, huh…?”</p>
+<p>In the starry sky, Naeverynk watched silently through his narrow, blood-red eyes as the vast federal fleet flew past in the distance.</p>
+<p>Annihilating an entire fleet on his own would be no easy task.</p>
+<p>But his mission was not to destroy the fleet outright. It was to delay them and guard the entrance to the Netherworld Star Domain at all costs.</p>
+<p>Countless hidden cross-space teleportation nodes had already been set up throughout the Netherworld Star Domain.</p>
+<p>They were not fixed points but embedded within the bodies of massive Nether Beasts.</p>
+<p>Every victory came at the cost of lives and blood.</p>
+<p>Netherworld had long been one of the Magus Alliance’s planes that was infamous for...</p>
+</article>
+<article id="c1460" data-label="1460">
+<h2 class="chapter">Chapter 1460: Elite Combat Legions 🔒</h2>
+<p>A swarm of dragons blotted out the skies, roaring at the Gallant Federation’s fleets ahead.</p>
+<p>Scorching dragon breath swept across the void, turning the battlefield into a blazing sea of fire.</p>
+<p>The size of Rank Two and higher dragons easily rivaled the size of middle-class federal ships.</p>
+<p>Their hardened claws tore through the metal hulls that the Gallant Federation took such pride in.</p>
+<p>Most dragon riders wielded dragon lances, diving headlong into the fray as the spearpoint of the Magus Civilization’s assault.</p>
+<p>When the Dragon Knights charged into the federal fleets, the enemy was already descending into chaos due to the Netherworld creatures.</p>
+<p>Only a handful of high-ranking Netherworld beings knew...</p>
+</article>
+<article id="c1461" data-label="1461">
+<h2 class="chapter">Chapter 1461: Hidden Aces Up the Sleeve 🔒</h2>
+<p>Behind the Magus Civilization’s main forces, Bev watched the battlefield intently, draped in a pristine white robe.</p>
+<p>The peak Rank Seven soul overmage radiated gentle yet powerful waves of lumen elemental energy.</p>
+<p>She was not the only overlord-level being from the Magus Civilization present.</p>
+<p>After the legions launched their all-out assault, other overlords from both the Magus Civilization and allied planes appeared one after another.</p>
+<p>At the same time, elite Magus World legions bypassed the Gallant Federation’s main vanguard fleet, flanking it from the sides and rear through the teleportation nodes Commander Blood River had created from blood mist.</p>
+<p>“Looks like this war will take a heavy toll on the Byrne...</p>
+</article>
+<article id="c1462" data-label="1462">
+<h2 class="chapter">Chapter 1462: Holding the Defense 🔒</h2>
+<p>With a graceful lift of Lady Bev’s finger, the twelve Radiant Jades burst into light, fusing into twelve Elemental Angels overflowing with power.</p>
+<p>Each of them bore eight pairs of brilliant white wings, except for the two leading them, who each possessed ten!</p>
+<p>“Go forth and let your former enemies taste your power. I permit you to fight in your ultimate form,” Lady Bev commanded.</p>
+<p>All twelve angels kneeled on one knee and answered in unison, “Aye!”</p>
+<p>Then, led by the two ten-winged angels, they shot forward in an arrow formation toward the Gallant Federation fleet.</p>
+<p>The Angels of the Radiant Celestials, long thought to have disappeared from history, returned to the stars once again.</p>
+<p>The more ignorant...</p>
+</article>
+<article id="c1463" data-label="1463">
+<h2 class="chapter">Chapter 1463: Healing 🔒</h2>
+<p>Inside the infirmary of a black iron space fortress, Sein saw Martini.</p>
+<p>The Rank Four knight had shed his heavy black armor and now lay inside a treatment pod filled with thick, green fluid.</p>
+<p>Compared to the man Sein had first met more than twenty years ago, he looked much thinner now, and his complexion was paler.</p>
+<p>Crimson blood kept seeping from below his chest.</p>
+<p>To be exact, only one-third of Martini’s body remained. Some unknown force had completely obliterated everything from the chest down!</p>
+<p>The fact that he was still clinging to life spoke volumes about his extraordinary endurance.</p>
+<p>But Martini would not last much longer. He was not the only Rank Four knight to fall on the Magus Civilization’s...</p>
+</article>
+<article id="c1464" data-label="1464">
+<h2 class="chapter">Chapter 1464: Persevere 🔒</h2>
+<p>Martini was far older than Sein. In fact, he appeared to be around forty or fifty thousand years old, a whole generation older than Lorianne.</p>
+<p>The lifespan of a Rank Four being was hard to define.</p>
+<p>Tens of thousands of years was normal, and for the rare few who devoted themselves to preserving their vitality, even a hundred thousand, or two hundred thousand, years was not impossible.</p>
+<p>With that kind of age came an extensive web of connections across Magus World.</p>
+<p>Tychus, though also a Rank Four Knight, was far younger and did not have as many “friends” and “brethren” as Martini.</p>
+<p>After the Radbow World campaign, Martini clearly saw Sein as not just his savior, but a brother-in-arms...</p>
+</article>
+<article id="c1465" data-label="1465">
+<h2 class="chapter">Chapter 1465: Farke 🔒</h2>
+<p>Farke was a Rank One mage from the Divine Tower of Ashes.</p>
+<p>He hailed from the Alveroth Empire—not as some unfortunate child abducted by black mages, but as an exchange student sent to the Divine Tower of Ashes since his initiate days.</p>
+<p>Still, his background was far from privileged. He was the son of commoners from the Magic Empire, admitted into one of the empire’s public magic academies only because his magical aptitude met the requirements.</p>
+<p>Children from noble families typically attended private academies or prestigious divine tower academies.</p>
+<p>Only those without status or connections, like Farke, were sent to public academies.</p>
+<p>Farke happened to enroll at the right time. Just a year later,...</p>
+</article>
+<article id="c1466" data-label="1466">
+<h2 class="chapter">Chapter 1466: Nimitz 🔒</h2>
+<p>Woodleaf Grass was a low-grade magic herb that could absorb trace amounts of radiation from living beings.</p>
+<p>What made it especially valuable was that it only grew in certain fissures along Radbow World’s ley lines—and even then, in abysmally small quantities.</p>
+<p>Since Farke and the other mages stationed here were bound by garrison duty, they could not venture too far to harvest it.</p>
+<p>The few Farke had left were all that remained in his stock.</p>
+<p>Nimitz had always looked out for him, so he did not mind sharing them with the old Rank One mage.</p>
+<p>When he made the offer, though, Nimitz simply glanced...</p>
+</article>
+<article id="c1467" data-label="1467">
+<h2 class="chapter">Chapter 1467: Reinforcements Arrive 🔒</h2>
+<p>On the Radbow World battlefield, the most unfortunate legion from Magus World was not Sein’s Divine Tower of Ashes, nor the knights under the two Rank Four knights.</p>
+<p>It was the Deep Blue Summoning Divine Tower that had been trapped on the Radbow battlefield since the start!</p>
+<p>Even Barron, the Rank Four Summoner, could never have imagined that the war here would descend into such a nightmare after he left this world.</p>
+<p>It was not that Sein and his allies had neglected the Divine Tower of Deep Blue; the battle was simply too brutal.</p>
+<p>Even Sein’s own Divine Tower of Ashes Army had suffered...</p>
+</article>
+<article id="c1468" data-label="1468">
+<h2 class="chapter">Chapter 1468: Retreat and Pursuit 🔒</h2>
+<p>Reinforcements had finally arrived. Not only did Sein let out a long breath of relief, but the morale of the remaining Magus Civilization Army in Radbow World also soared!</p>
+<p>Five space fortresses led the incoming forces, carrying at least ten million Magus Civilization troops!</p>
+<p>And even then, this was only a portion of the reinforcements the Magus Civilization had committed to this warfront.</p>
+<p>Beyond Radbow World, more forces were already sweeping through nearby star domains and even the Grand Eye Demon World.</p>
+<p>Sein downed the last of his Amethyst Potion, spread the demonic wings on his back, and took to the skies...</p>
+</article>
+<article id="c1469" data-label="1469">
+<h2 class="chapter">Chapter 1469: Resource Allocation 🔒</h2>
+<p>When Sein returned to Radbow World, the low-level plane had transformed completely while he was away.</p>
+<p>Having stayed securely under the Magus Civilization’s control ever since his arrival, the world had gradually developed into a key resource hub, serving as a vital transit point for Magus World’s supply lines to the Grand Eye Demon World front as the Magus Civilization pressed its massive offensive.</p>
+<p>Back when Sein and his allies had fought here, resources had been scarce.</p>
+<p>Wounded mages and knights sometimes could not even afford to finish a potion in one go. They had to drink half and save the rest for later.</p>
+<p>Now, the knights and mages of the Divine Tower of Ashes stationed...</p>
+</article>
+<article id="c1470" data-label="1470">
+<h2 class="chapter">Chapter 1470: A New Mission 🔒</h2>
+<p>Back in his private meditation room within the Ashen Fortress, Sein steadied his breath and began meditating.</p>
+<p>With Radbow World at peace and no signs of conflict stirring in the nearby regions, he could finally enter a deep meditative state without anyone disturbing him.</p>
+<hr class="separator">
+<p>Time was always fleeting when one trained.</p>
+<p>The higher a mage’s rank, the more easily days, months, and even years blurred together during meditation or research.</p>
+<p>Even Sein had not expected his deep meditation this time to last three full years before he opened his eyes again.</p>
+<p>As soon as Sein awoke in the room thick with elemental energy, he could already feel mana flowing steadily in his body.</p>
+<p>His mental focus had almost completely recovered, though...</p>
+</article>
+<article id="c1471" data-label="1471">
+<h2 class="chapter">Chapter 1471: True Backing 🔒</h2>
+<p>Jimmy’s last name revealed his affiliation with the renowned House Donald of the Alveroth Empire.</p>
+<p>Sein had first heard of them from Aurelia, the Goddess of Wealth.</p>
+<p>Magus World was home to several illustrious, top-tier financial conglomerates.</p>
+<p>Examples included House Morgan of Western Archipelago, the Blackstone Chamber of Commerce of the Byrne Empire, and House Donald of the Alveroth Empire.</p>
+<p>In this civilization of magic and battle qi, personal and familial strength largely determined one’s power and status.</p>
+<p>Wealth did not hold the same prominence it did in the Gallant Federation.</p>
+<p>The influence of the families Aurelia had mentioned likely came not only from their vast wealth but also from their connections to powerful mages...</p>
+</article>
+<article id="c1472" data-label="1472">
+<h2 class="chapter">Chapter 1472: Double Agent 🔒</h2>
+<p>“Eighth Pharaoh, I implore you to save me! I joined the Gallant Federation solely under your orders. Now the Magus Civilization’s legions are sweeping toward the Grand Eye Demon World, and two—perhaps even three—overlords have locked onto me! The Gallant Federation likely has no forces to spare. I beg the Amenkha Empire to send troops to rescue me!” The Evileye Tyrant Monarch pleaded desperately to the dark mist before it.</p>
+<p>Every plane within the star domains surrounding these two top-tier civilizations, whether directly at war or not, viewed this vast, multi-star domain conflict as a clash between those two supreme powers.</p>
+<p>Few could have imagined that the tendrils of yet another top-tier civilization were already entangled in this great clash!</p>
+<p>The Rank Seven Evileye Tyrant...</p>
+</article>
+<article id="c1473" data-label="1473">
+<h2 class="chapter">Chapter 1473: Changed Stance 🔒</h2>
+<p>When contacting the Eighth Pharaoh of the Amenkha Empire, the Evileye Tyrant Monarch had completely enveloped the Evileye Temple within its own domain, sealing off all external probing.</p>
+<p>Although numerous Gallant Federation legions were stationed within the Grand Eye Demon World, no overlord-class fleets had arrived so far.</p>
+<p>The federation’s forces were still focused mainly on the Magus Civilization, which was pushing deeper into the Eye Demon Star Domain.</p>
+<p>They had not anticipated that the Evileye Tyrant Monarch would attempt to reach out to others.</p>
+<p>After concluding the communication, the Evileye Tyrant Monarch left the Grand Eye Demon World to inspect its defenses.</p>
+<p>Countless legions remained stationed...</p>
+</article>
+<article id="c1474" data-label="1474">
+<h2 class="chapter">Chapter 1474: Mirage Pearl 🔒</h2>
+<p>As a low-level plane, the Mirage Wurm World possessed unique characteristics in its planar laws and the domains wielded by its Rank Five native creatures.</p>
+<p>However, this plane was not known for its defensive strength.</p>
+<p>In that regard, it could not compare to Radbow World, which was protected by three planar rings.</p>
+<p>Sein had spent a total of five years in the Mirage Wurm World.</p>
+<p>With his Faceless Mask, he was able to shatter the Mirage Wurm King&#39;s illusions and assist the others in gravely wounding the king.</p>
+<p>After securing victory for the Magus Civilization on this front, he was nearly ready to depart.</p>
+<p>Jimmy and the others seemed especially interested in the origin laws wielded by the Mirage Wurm King...</p>
+</article>
+<article id="c1475" data-label="1475">
+<h2 class="chapter">Chapter 1475: Rest and Recuperation 🔒</h2>
+<p>Not long after Sein returned to Radbow World, new instructions arrived from the Magus Civilization.</p>
+<p>He was given two choices: return to Magus World for rest and recuperation, or prepare to join the upcoming campaign against the Sapphire Scorpionfly Plane.</p>
+<p>After a moment of thought, Sein chose the former.</p>
+<p>He had never been a war maniac, and most mages in Magus World shared that same aversion to battle.</p>
+<p>His decision to join the Grand Eye Demon World’s border conflict had been driven purely by his intention to avenge his wife, Natalya.</p>
+<p>Nearly thirty years of conquests in that star domain had been enough to bring peace to her. It was time for him to return and continue his research.</p>
+<p>He could...</p>
+</article>
+<article id="c1476" data-label="1476">
+<h2 class="chapter">Chapter 1476: Reunion with Lorthisra 🔒</h2>
+<p>Before the special magic altar deep beneath the Divine Tower of Ashes, Sein met Lorthisra, who had manifested her form through divine power.</p>
+<p>The Spider Queen appeared to be in excellent health. From the moment they met, Sein could tell she was in a great mood.</p>
+<p>“So, you’ve been to the frontlines too. How was it?” the Spider Queen asked.</p>
+<p>She was still wearing her favorite crystal stiletto heels.</p>
+<p>As Sein’s gaze fell upon her delicate toes at the end of those long, slender legs, he was reminded of the first time they met back in the Divine Tower of Dark Flame’s underground territory.</p>
+<p>“It was far more dangerous than any interplanar wars I’ve ever experienced. I almost couldn’t make it back alive,” Sein admitted.</p>
+<p>Whether he was referring to his infiltration...</p>
+</article>
+<article id="c1477" data-label="1477">
+<h2 class="chapter">Chapter 1477: Special Mission 🔒</h2>
+<p>Sein did not immediately accept the Spider Queen’s invitation.</p>
+<p>Since he was part of the Verdant Flame Faction, he preferred to stay with his mentor and the others when given the choice.</p>
+<p>Grandmaster Feylis and the others were more than capable of protecting him.</p>
+<p>In Magus World, respecting and honoring one’s mentor was more than just lip service.</p>
+<p>Sein had been devoted enough to Lorianne, but when it came to the Verdant Flame Faction, he realized he had not contributed much beyond obtaining a single Golden Apple.</p>
+<p>He still remembered how Grandmaster Feylis had gone to great lengths to explain the deeper mysteries of the pyro element to him when he was about to break through...</p>
+</article>
+<article id="c1478" data-label="1478">
+<h2 class="chapter">Chapter 1478: The Young Initiate 🔒</h2>
+<p>As the Clash of Civilizations raged on, major divine towers and knightly orders threw their full strength into the frontlines. The demand for low-ranking knights and mages only continued to grow.</p>
+<p>Mages, by nature, valued the pursuit of truth above all else. War and destruction were never what these erudite spellcasters sought.</p>
+<p>Yet with the reality of the Clash of Civilizations pressing down on them, even the wisest minds of Magus World and mid-tier divine tower masters like Sein understood the importance of nurturing new talent for the future.</p>
+<p>The introduction of special courses like the Fundamentals of Interplanar Warfare was meant to train a new generation of mages specifically suited...</p>
+</article>
+<article id="c1479" data-label="1479">
+<h2 class="chapter">Chapter 1479: Opportunity to Breakthrough 🔒</h2>
+<p>The incident at the divine tower academy was a trivial one, yet word of it eventually reached many ears, including the tower master.</p>
+<p>Sein heard about it from Dean Marie.</p>
+<p>After Marie finished reporting on the academy’s quarterly progress and training programs, she casually brought up the incident.</p>
+<p>“Initiates have weaker abilities and poor tolerance for the conditions of foreign planes. If they were sent to those battlefields, even interplanar suppression alone would crush them,” Sein said.</p>
+<p>“Magus World’s initiates aren’t like the enslaved or extraplanar creatures we use as cannon fodder. It’s unlikely the divine towers and the Magus Alliance would ever send them to the frontlines. Only those who’ve advanced...</p>
+</article>
+<article id="c1480" data-label="1480">
+<h2 class="chapter">Chapter 1480: Energy Amethyst 🔒</h2>
+<p>Tossing aside the sweat-soaked towel, Sia stepped into the shower in her room at the divine tower.</p>
+<p>Cool water flowed from the hydro elemental array, gradually calming her restless mind.</p>
+<p>As she washed herself, she thought about reaching out to Reina.</p>
+<p>As fellow demigod-level knights, they had plenty in common to talk about. However, the laws they wielded and their bloodline transformation paths were completely different.</p>
+<p>So when it came to breaking through to Rank Four, Reina probably could not offer much advice.</p>
+<p>Sia would be better off consulting a law-wielding expert well-versed in pyro elemental laws.</p>
+<p>“Should I ask the Order of the Steel Fist? Or maybe turn to my family for help? I wonder if there’s anyone else...</p>
+</article>
+<article id="c1481" data-label="1481">
+<h2 class="chapter">Chapter 1481: Punishment 🔒</h2>
+<p>Inside the Divine Tower of Ashes, a rare duel between knights was happening.</p>
+<p>The tower had its own battle arena, originally built to promote healthy competition among initiates and give full-fledged mages a place to settle their personal disputes.</p>
+<p>After all, mages were still human, so disagreements and clashes of interest were bound to happen.</p>
+<p>The arena was durable enough to handle battles between Rank Three mages at full power, but few ever had reason to use it.</p>
+<p>However, the fight today did not take place in the reinforced arena. It broke out right inside the divine tower itself!</p>
+<p>Two battle qi barriers, one crimson and one gold, appeared around the battlefield.</p>
+<p>To avoid...</p>
+</article>
+<article id="c1482" data-label="1482">
+<h2 class="chapter">Chapter 1482: Vulnerable 🔒</h2>
+<p>Back in the top-level laboratory of the Divine Tower of Ashes, Sein’s first thought was that he needed to recruit more high-ranking mages.</p>
+<p>His divine tower had been around for quite some time now and was finally on the right track. Both initiates and full-fledged mages were steadily increasing in number.</p>
+<p>Aside from Marie, several new Rank Three mages had joined their ranks.</p>
+<p>At her recommendation, Sein had appointed two of them as vice deans of his divine tower academy.</p>
+<p>Still, the lack of demigod-level mages in the Divine Tower of Ashes remained a critical gap.</p>
+<p>Although Sein had plenty of demigod-level subordinates under his command, most of them were enslaved creatures or individuals he preferred not...</p>
+</article>
+<article id="c1483" data-label="1483">
+<h2 class="chapter">Chapter 1483: The Mysteries Behind Robot Enhancement 🔒</h2>
+<p>After a rather intense session, Sein’s mind finally cooled down. He walked over to the bedside and finished the rest of the green juice that Azelia had brought earlier.</p>
+<p>On the bed, the fox maiden was fast asleep. She was curled up and hugging her fiery red tail.</p>
+<p>Lying beside her was Yuri.</p>
+<p>As a Rank Four being who had gone through countless body-tempering experiments with Sein, Yuri was far less exhausted than the fox maiden.</p>
+<p>When Sein got up, Yuri instinctively tried to rise as well, but he gestured for her to stay put.</p>
+<p>“Rest a bit longer. I’ll check on the experiment.” His gaze drifted toward the purple crystal resting on the nearby table.</p>
+<p>“You mentioned earlier...</p>
+</article>
+<article id="c1484" data-label="1484">
+<h2 class="chapter">Chapter 1484: Peak of Rank Four 🔒</h2>
+<p>“What truly profound laws of truth,” Sein murmured, his brow furrowing in thought.</p>
+<p>“Perhaps I should apply to the Magus Alliance to have Aetherend, Skyhold, and the others assigned to the legions near my battlefield once I return to the Clash of Civilizations. I wonder which fronts those intelligent robots are stationed on now,” he mused aloud.</p>
+<p>“With the war raging so fiercely, and the Netherworld Star Domain still locked in brutal combat, they must have been deployed on their own missions long ago.”</p>
+<hr class="separator">
+<p>Sein entrusted Yuri with overseeing the Magic Cube’s ability to produce Energy Amethyst.</p>
+<p>During this period, vast quantities of elemental crystals of every type, along with the neutral energy blocks he had seized on the...</p>
+</article>
+<article id="c1485" data-label="1485">
+<h2 class="chapter">Chapter 1485: New Combat Orders 🔒</h2>
+<p>Master Medich appeared remarkably youthful, almost as young as Sein himself.</p>
+<p>Among Rank Four mages, the two of them were still considered “youngsters”.</p>
+<p>Even so, Medich was still Sein’s senior, and the help he had given during Sein’s vulnerable years was something Sein would never forget.</p>
+<p>Master Medich had likely learned through certain channels about Sein’s recent campaign on the frontlines as commander of the Divine Tower of Ashes legion.</p>
+<p>This would be the Divine Tower of Luminaris’ first deployment in the Clash of Civilizations.</p>
+<p>Being a cautious man by nature, Medich had come not only to bid farewell but also to seek insight, hoping to learn from Sein’s firsthand experience on the frontlines.</p>
+<p>Sensing his intent, Sein freely shared everything he knew.</p>
+<p>He spoke in depth about...</p>
+</article>
+<article id="c1486" data-label="1486">
+<h2 class="chapter">Chapter 1486: Once More to the Frontlines 🔒</h2>
+<p>When it came to Sein’s uncertain stance on rejoining the war, the Rank Four mage who had come to deliver his combat orders simply smiled.</p>
+<p>“The Magus Civilization will take into account the personal circumstances of all participating law-wielding mages, as well as their preferred assignments,” he said. “Transferring you to the Netherworld Star Domain battlefield will not be difficult, especially since they are currently in dire need of elite forces like yourself, Master Sein.”</p>
+<p>“However,” he continued, stroking his curled goatee, “the Grand Eye Demon World is in even greater need right now. Besides, it’s only a garrison duty. The alliance isn’t forcing you to take it. From my experience, once you have completed a period of garrison service there, it should be fairly easy to apply...</p>
+</article>
+<article id="c1487" data-label="1487">
+<h2 class="chapter">Chapter 1487: Garrison Duty 🔒</h2>
+<p>Silvashade World.[1]</p>
+<p>This was the first resource transit plane Sein was assigned to guard upon arriving in the star domain where the Grand Eye Demon World was located.</p>
+<p>The deployment situation of the Magus Civilization’s legions in this region appeared genuinely strained.</p>
+<p>A large number of war legions had been redeployed to other battlefields within the Netherworld Star Domain, where the fighting was especially fierce. Perhaps that was why even the defensive forces stationed here were stretched so thin.</p>
+<p>After Sein’s Divine Tower of Ashes legion arrived outside Silvashade World and completed a brief defense handover, the Magus World knight legion originally stationed on this low-level plane immediately set out for the frontlines of the Grand Eye Demon...</p>
+</article>
+<article id="c1488" data-label="1488">
+<h2 class="chapter">Chapter 1488: News of the Huusians 🔒</h2>
+<p>Watching another Magus Alliance combat legion depart for the frontlines, Sein gazed into the depths of the starry void.</p>
+<p>Endless waves of war legions were being sent to the battlefield of this large-sized star domain.</p>
+<p>The transit plane guarded by Sein was just one of many logistical hubs scattered across the Grand Eye Demon World’s star domain.</p>
+<p>“According to Magus Alliance estimates, the Grand Eye Demon World has around three hundred Eye Demons of Rank Four or higher. Even factoring in the smaller vassal planes swept up in their rebellion, the true resistance within this large star domain should not exceed five hundred law-wielding creatures,” Sein murmured.</p>
+<p>“But we still have no accurate count of the legions the Gallant Federation dispatched to support them. The war has been raging...</p>
+</article>
+<article id="c1489" data-label="1489">
+<h2 class="chapter">Chapter 1489: Request for Transfer 🔒</h2>
+<p>To the Magus Civilization’s leaders, Sein should have been a Rank Four mage who could perform exceptionally well under pressure.</p>
+<p>His past battle records showed that his individual strength was already on par with that of a Rank Five.</p>
+<p>Yet for some reason, ever since returning to the Grand Eye Demon World Star Domain battlefield, Sein kept receiving orders to garrison various resource and logistics bases.</p>
+<p>What puzzled him even more was that the Magus Civilization had deliberately ignored his repeated requests for a transfer to the Netherworld Star Domain front.</p>
+<p>In the fifty-sixth year of his deployment in the Grand Eye Demon World Star Domain, just as he was about to begin his seventh logistics assignment, Sein finally came to his senses.</p>
+<p>“Could I have offended...</p>
+</article>
+<article id="c1490" data-label="1490">
+<h2 class="chapter">Chapter 1490: Unforeseen Circumstances! 🔒</h2>
+<p>“All of you can head to the teleportation array at the border of the Grand Eye Demon World Star Domain and stand by. I’ll catch up shortly.” Sein said to Sia, Reina, Marie, and the others gathered before him.</p>
+<p>“Benjamin, the Rank Four Knight from the Alveroth Empire who’s taking over my post here, will be arriving a bit later than expected. I still need to finish handing over a few tasks.”</p>
+<p>Marie and the others had no objections to his orders.</p>
+<p>The fully prepared Divine Tower of Ashes Army boarded the space fortress and set off into the depths of the starry sky.</p>
+<p>By Sein’s side, only Yuri remained, with her Burning Flame Unit.</p>
+<p><em>Seriously, what the hell is Benjamin doing?</em></p>
+<p>The Rank Four knight’s main legion has already arrived at the logistics base right on sc...</p>
+</article>
+<article id="c1491" data-label="1491">
+<h2 class="chapter">Chapter 1491: Struggle 🔒</h2>
+<p>The battle erupted in an instant, and once it began, it quickly reached a fever pitch.</p>
+<p>The Gallant Federation had not deployed so many stealth-capable warships here for “sightseeing”...</p>
+<p>Given the Magus Civilization’s dominance in the Grand Eye Demon World Star Domain battlefield and the massive gap in strength between the two sides, the federation’s special fleet clearly aimed to strike fast and retreat just as quickly!</p>
+<p><em>Whoosh!</em></p>
+<p>A blue energy beam was fired from the federal fleet’s flank.</p>
+<p>A prism fort hovering near the logistics base’s right wing failed to dodge in time. The beam struck it, triggering a series of violent explosions.</p>
+<p>Rolling...</p>
+</article>
+<article id="c1492" data-label="1492">
+<h2 class="chapter">Chapter 1492: Spatial Railgun 🔒</h2>
+<p>As Sein and Yuri darted between the flanks of the federal fleet, the Magus Civilization legions stationed at the logistics base launched a full-scale counterattack.</p>
+<p>When Sein saw the sheer difference in strength between both sides, he knew this logistics base could not be defended by simply holding the line.</p>
+<p>Aside from ordering a small contingent of mages and knights to hold the fortifications around the base at all costs, he quickly instructed several demigod-level combatants from the knight legion to lead their troops out and join him in waging “<em>mobile battle”</em>.</p>
+<p>“If this logistics base were inside a complete plane, we might’ve been able to hold it by relying...</p>
+</article>
+<article id="c1493" data-label="1493">
+<h2 class="chapter">Chapter 1493: Encirclement Within an Encirclement 🔒</h2>
+<p>This was an easy battle, well, for the Gallant Federation.</p>
+<p>The sheer imbalance in power made it almost impossible for the Magus Civilization’s forces stationed at the logistics base to mount any real counterattack.</p>
+<p>By the time Sein and Yuri fought their way to the heart of the federal fleet, the defenses of the base behind them had already crumbled.</p>
+<p>Inside, the enslaved creature legions hastily conscripted for defense were slaughtered in droves.</p>
+<p>The few Magus Civilization units still holding the perimeter were wiped out one after another under the fleet’s overwhelming firepower.</p>
+<p>The knight legions under Benjamin met the same fate. At the very least, they died...</p>
+</article>
+<article id="c1494" data-label="1494">
+<h2 class="chapter">Chapter 1494: Survival in Desperation 🔒</h2>
+<p>The sudden arrival of reinforcements from the Magus Civilization did not bring relief to Sein and Yuri.</p>
+<p>Their safety was far from guaranteed.</p>
+<p>Sure enough, a surge of oppressive spatial forces rippled not far from Sein’s field of vision.</p>
+<p>Feeling the terrifying pressure of the power contained within, and with the Faceless Mask’s analysis confirming it, Sein smiled bitterly.</p>
+<p>“Guess it’s over for us.”</p>
+<p>No way to resist, nowhere to run. They were as good as dead!</p>
+<p>Sein had always been confident in his own strength. For even him to utter such words of despair meant this was certain death.</p>
+<p>The newly arrived Rank Six mage on the battlefield...</p>
+</article>
+<article id="c1495" data-label="1495">
+<h2 class="chapter">Chapter 1495: Space-time Turbulence 🔒</h2>
+<p>The dense barrage of Gallant Federation energy beams quickly swallowed the spot where Sein and the Burning Flame Unit had just been.</p>
+<p>The sheer intensity of the concentrated strikes, the rapid firing rate, and the power of those elemental rays showed how much this Shadow Fleet hated Sein and Yuri.</p>
+<p>The Rank Six knight from the Alveroth Empire arrived a little too late, delayed by the heavy resistance from the Black Ops.</p>
+<p>Now that the Magus Civilization had resealed the outer perimeter of the battlefield, the Black Ops was trapped—like fish in a barrel.</p>
+<p>Realizing their main fleet could not escape, the Shadow Fleet had chosen to unleash a brutal and desperate resistance.</p>
+<p>By the time the Rank Six knight reached Sein’s location, the entire...</p>
+</article>
+<article id="c1496" data-label="1496">
+<h2 class="chapter">Chapter 1496: Breaking Through to Rank Five 🔒</h2>
+<p>A blinding white pillar of elemental energy tore through the endless stillness of the starry sky.</p>
+<p>Moments later, two figures—one red, one white—burst out of a portal.</p>
+<p>It was Sein, battered and bloodied, and the heavily damaged Burning Flame Unit.</p>
+<p>Both their bodies bore clear signs of space-time erosion, the result of being trapped too long inside the unstable space-time corridor.</p>
+<p>Furthermore, time flowed differently within that portal compared to the Astral Realm, and Sein could not tell how much time had truly passed outside.</p>
+<p>But none of that mattered. What mattered was that they had made it out.</p>
+<p>“The elemental concentration in this star domain feels pretty low,” Sein said through...</p>
+</article>
+<article id="c1497" data-label="1497">
+<h2 class="chapter">Chapter 1497: Klytherans 🔒</h2>
+<p>Advancing to a higher life level was never an easy feat.</p>
+<p>It had not been long since Sein’s ascension to Rank Four, yet his progress toward Rank Five was already within reach.</p>
+<p>Such rapid advancement came from several factors, not the least of which was his consumption of several Golden Apple Potions.</p>
+<p>Following Sein’s orders, Yuri piloted the Burning Flame Unit, patrolling the surrounding star domain with utmost caution while keeping watch over him.</p>
+<p>Sein had built up a sizable stockpile of resources and items to support his breakthrough.</p>
+<p>After all, he had long sensed that his advancement to Rank Five was near. Even before leaving Magus World, he had gathered numerous items specifically for that purpose.</p>
+<p>Later, during his years of garrison duty at the logistics bases in the rear of the Grand Eye Demon World, his resources had only...</p>
+</article>
+<article id="c1498" data-label="1498">
+<h2 class="chapter">Chapter 1498: Schemes 🔒</h2>
+<p>Klytherans’ homeworld should not have been far from the Magus Civilization. Otherwise, they would not have known devils and demons.</p>
+<p>But it seemed that after leaving their homeland for too long, these Klytherans could no longer tell the difference between the two.</p>
+<p>Sein had no devil blood in him, but he had indeed absorbed and mastered an immense amount of demonic power.</p>
+<p>“I’m a Rank Five mage of the Magus Civilization, honored fighter of Planet Klythera. It’s a pleasure to meet you,” Sein said after suppressing the turbulent Ashen Flame swirling around him.</p>
+<p>That strange and potent flame had kept the Klytheran powerhouse on edge ever since he stepped out of his warship, but Sein’s identity as...</p>
+</article>
+<article id="c1499" data-label="1499">
+<h2 class="chapter">Chapter 1499: Blue Star Civilization 🔒</h2>
+<p>“Both the Gallant Federation and the Magus Civilization have already reached the status of top-tier civilizations, huh?” Karazo murmured thoughtfully.</p>
+<p>It seemed the Klytherans had been away from the star domains controlled by the Magus Civilization and the Gallant Federation for far too long.</p>
+<p>They did not even know that both worlds had already risen to the level of top-tier civilizations.</p>
+<p>Sein had no idea how outdated the Klytherans were.</p>
+<p>Was it from the time when Magus World was still a medium-sized planar civilization, or after it had already grown into a large one?</p>
+<p>According to the information Sein had gathered from Sky City, Planet Klythera had only been a medium-sized world civilization...</p>
+</article>
+<article id="c1500" data-label="1500">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1500: Union and Coexistence 🔒</h2>
+<p>Blue Star—an azure world teeming with life.</p>
+<p>Unlike most technological civilizations that pursued heavy industry, harmed their homeplane’s will, and endlessly extracted its resources, the Blue Star Civilization had taken a different path.</p>
+<p>The unique evolution of Blue Star’s lifeforms allowed their civilization to coexist in harmony with their world’s will.</p>
+<p>They never overexploited their planet. Instead, they deliberately preserved its ecological balance.</p>
+<p>Because of this, and beyond their remarkable technological prowess, Blue Star’s surface was protected by a powerful planar barrier.</p>
+<p>The arrival of Klytherans had long been foreseen.</p>
+<p>In truth, Karl had first arrived at Blue Star as an invader, leading a small force of Klytheran soldiers.</p>
+<p>At that time, Karl...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1501-1550.html" rel="next">Next: Chs 1501–1550 &rarr;</a>
+    <p class="page-end-links"><a href="1401-1450.html" rel="prev">&larr; Chs 1401–1450</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1451–1500</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1451">Chapter 1451: Full-Scale Advance 🔒</a></li>
+        <li><a href="#c1452">Chapter 1452: Refusing Surrender! 🔒</a></li>
+        <li><a href="#c1453">Chapter 1453: Reinforcements 🔒</a></li>
+        <li><a href="#c1454">Chapter 1454: Baffled 🔒</a></li>
+        <li><a href="#c1455">Chapter 1455: Devastating Reports 🔒</a></li>
+        <li><a href="#c1456">Chapter 1456: Establishing Defensive Line 🔒</a></li>
+        <li><a href="#c1457">Chapter 1457: Pocket 🔒</a></li>
+        <li><a href="#c1458">Chapter 1458: Federal Marshal 🔒</a></li>
+        <li><a href="#c1459">Chapter 1459: Counterattack 🔒</a></li>
+        <li><a href="#c1460">Chapter 1460: Elite Combat Legions 🔒</a></li>
+        <li><a href="#c1461">Chapter 1461: Hidden Aces Up the Sleeve 🔒</a></li>
+        <li><a href="#c1462">Chapter 1462: Holding the Defense 🔒</a></li>
+        <li><a href="#c1463">Chapter 1463: Healing 🔒</a></li>
+        <li><a href="#c1464">Chapter 1464: Persevere 🔒</a></li>
+        <li><a href="#c1465">Chapter 1465: Farke 🔒</a></li>
+        <li><a href="#c1466">Chapter 1466: Nimitz 🔒</a></li>
+        <li><a href="#c1467">Chapter 1467: Reinforcements Arrive 🔒</a></li>
+        <li><a href="#c1468">Chapter 1468: Retreat and Pursuit 🔒</a></li>
+        <li><a href="#c1469">Chapter 1469: Resource Allocation 🔒</a></li>
+        <li><a href="#c1470">Chapter 1470: A New Mission 🔒</a></li>
+        <li><a href="#c1471">Chapter 1471: True Backing 🔒</a></li>
+        <li><a href="#c1472">Chapter 1472: Double Agent 🔒</a></li>
+        <li><a href="#c1473">Chapter 1473: Changed Stance 🔒</a></li>
+        <li><a href="#c1474">Chapter 1474: Mirage Pearl 🔒</a></li>
+        <li><a href="#c1475">Chapter 1475: Rest and Recuperation 🔒</a></li>
+        <li><a href="#c1476">Chapter 1476: Reunion with Lorthisra 🔒</a></li>
+        <li><a href="#c1477">Chapter 1477: Special Mission 🔒</a></li>
+        <li><a href="#c1478">Chapter 1478: The Young Initiate 🔒</a></li>
+        <li><a href="#c1479">Chapter 1479: Opportunity to Breakthrough 🔒</a></li>
+        <li><a href="#c1480">Chapter 1480: Energy Amethyst 🔒</a></li>
+        <li><a href="#c1481">Chapter 1481: Punishment 🔒</a></li>
+        <li><a href="#c1482">Chapter 1482: Vulnerable 🔒</a></li>
+        <li><a href="#c1483">Chapter 1483: The Mysteries Behind Robot Enhancement 🔒</a></li>
+        <li><a href="#c1484">Chapter 1484: Peak of Rank Four 🔒</a></li>
+        <li><a href="#c1485">Chapter 1485: New Combat Orders 🔒</a></li>
+        <li><a href="#c1486">Chapter 1486: Once More to the Frontlines 🔒</a></li>
+        <li><a href="#c1487">Chapter 1487: Garrison Duty 🔒</a></li>
+        <li><a href="#c1488">Chapter 1488: News of the Huusians 🔒</a></li>
+        <li><a href="#c1489">Chapter 1489: Request for Transfer 🔒</a></li>
+        <li><a href="#c1490">Chapter 1490: Unforeseen Circumstances! 🔒</a></li>
+        <li><a href="#c1491">Chapter 1491: Struggle 🔒</a></li>
+        <li><a href="#c1492">Chapter 1492: Spatial Railgun 🔒</a></li>
+        <li><a href="#c1493">Chapter 1493: Encirclement Within an Encirclement 🔒</a></li>
+        <li><a href="#c1494">Chapter 1494: Survival in Desperation 🔒</a></li>
+        <li><a href="#c1495">Chapter 1495: Space-time Turbulence 🔒</a></li>
+        <li><a href="#c1496">Chapter 1496: Breaking Through to Rank Five 🔒</a></li>
+        <li><a href="#c1497">Chapter 1497: Klytherans 🔒</a></li>
+        <li><a href="#c1498">Chapter 1498: Schemes 🔒</a></li>
+        <li><a href="#c1499">Chapter 1499: Blue Star Civilization 🔒</a></li>
+        <li><a href="#c1500">Chapter 1500: Union and Coexistence 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1401-1450.html" rel="prev">&larr; Chs 1401–1450</a>    <a href="../../index.html">Library</a>
+<a href="1501-1550.html" rel="next">Chs 1501–1550 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

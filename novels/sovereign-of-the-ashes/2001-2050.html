@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 2001–2050</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1951-2000.html#last" data-next-page="2051-2100.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c2001">Chapter 2001: Building a Good Relationship 🔒</a></li>
+        <li><a href="#c2002">Chapter 2002: Cobalt Flame 🔒</a></li>
+        <li><a href="#c2003">Chapter 2003: Making Amends 🔒</a></li>
+        <li><a href="#c2004">Chapter 2004: Misjudged 🔒</a></li>
+        <li><a href="#c2005">Chapter 2005: The Heart of the Swarm 🔒</a></li>
+        <li><a href="#c2006">Chapter 2006: Magic Package 🔒</a></li>
+        <li><a href="#c2007">Chapter 2007: Haven’t Paid 🔒</a></li>
+        <li><a href="#c2008">Chapter 2008: It’s Over 🔒</a></li>
+        <li><a href="#c2009">Chapter 2009: What Is Going On?! 🔒</a></li>
+        <li><a href="#c2010">Chapter 2010: Phantom 🔒</a></li>
+        <li><a href="#c2011">Chapter 2011: Peak Rank Eight 🔒</a></li>
+        <li><a href="#c2012">Chapter 2012: Who Do You Think You Are? 🔒</a></li>
+        <li><a href="#c2013">Chapter 2013: The Blood of an Overlord 🔒</a></li>
+        <li><a href="#c2014">Chapter 2014: Palm Print 🔒</a></li>
+        <li><a href="#c2015">Chapter 2015: Rank Eight Melee 🔒</a></li>
+        <li><a href="#c2016">Chapter 2016: Mosquito Daoist 🔒</a></li>
+        <li><a href="#c2017">Chapter 2017: Both Sides Severely Wounded 🔒</a></li>
+        <li><a href="#c2018">Chapter 2018: Reinforcements Arrive 🔒</a></li>
+        <li><a href="#c2019">Chapter 2019: Too Tough a Nut to Crack 🔒</a></li>
+        <li><a href="#c2020">Chapter 2020: Calling for Reinforcements 🔒</a></li>
+        <li><a href="#c2021">Chapter 2021: Buddhist Faction Steps In 🔒</a></li>
+        <li><a href="#c2022">Chapter 2022: Lamp-Bearing Buddha 🔒</a></li>
+        <li><a href="#c2023">Chapter 2023: Tongtian Reincarnated 🔒</a></li>
+        <li><a href="#c2024">Chapter 2024: Immortal Slayer 🔒</a></li>
+        <li><a href="#c2025">Chapter 2025: Separated Siblings 🔒</a></li>
+        <li><a href="#c2026">Chapter 2026: Relationship As Mentor and Disciple 🔒</a></li>
+        <li><a href="#c2027">Chapter 2027: Immortal Versus Amenkha (I) 🔒</a></li>
+        <li><a href="#c2028">Chapter 2028: Immortal Versus Amenkha (II) 🔒</a></li>
+        <li><a href="#c2029">Chapter 2029: Immortal Versus Amenkha (III) 🔒</a></li>
+        <li><a href="#c2030">Chapter 2030: Immortal Versus Amenkha (IV) 🔒</a></li>
+        <li><a href="#c2031">Chapter 2031: Immortal Versus Amenkha (V) 🔒</a></li>
+        <li><a href="#c2032">Chapter 2032: Immortal Versus Amenkha (VI) 🔒</a></li>
+        <li><a href="#c2033">Chapter 2033: Immortal Versus Amenkha (VII) 🔒</a></li>
+        <li><a href="#c2034">Chapter 2034: The Hunt 🔒</a></li>
+        <li><a href="#c2035">Chapter 2035: Daily Experiments 🔒</a></li>
+        <li><a href="#c2036">Chapter 2036: Desperate Resistance 🔒</a></li>
+        <li><a href="#c2037">Chapter 2037: The Final Battle of the Divine Descendants 🔒</a></li>
+        <li><a href="#c2038">Chapter 2038: Countless Divine Relics 🔒</a></li>
+        <li><a href="#c2039">Chapter 2039: Compete for Divine Relics 🔒</a></li>
+        <li><a href="#c2040">Chapter 2040: One-on-One Between Fused Beings 🔒</a></li>
+        <li><a href="#c2041">Chapter 2041: Strand of Divine Consciousness 🔒</a></li>
+        <li><a href="#c2042">Chapter 2042: Inert Energy 🔒</a></li>
+        <li><a href="#c2043">Chapter 2043: The Ark Strikes 🔒</a></li>
+        <li><a href="#c2044">Chapter 2044: The Battle of Overlords 🔒</a></li>
+        <li><a href="#c2045">Chapter 2045: Facing Death 🔒</a></li>
+        <li><a href="#c2046">Chapter 2046: Life Mucus 🔒</a></li>
+        <li><a href="#c2047">Chapter 2047: Imperial Palace 🔒</a></li>
+        <li><a href="#c2048">Chapter 2048: The End of the Divine Descendants Star Domain War 🔒</a></li>
+        <li><a href="#c2049">Chapter 2049: Good Guy 🔒</a></li>
+        <li><a href="#c2050">Chapter 2050: Ashen Scepter Design Notes 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c2001" data-label="2001">
+<h2 class="chapter">Chapter 2001: Building a Good Relationship 🔒</h2>
+<p>“You idiot! All you ever do is give the Young Master useless advice. That’s clearly a mage of considerable standing,” the Flame Demon snapped at the big-headed Rank Five demon who had just made that ridiculous suggestion.</p>
+<p>“With two world-class secret treasures at his disposal, he’s definitely not someone to be taken lightly in Magus World. If you provoke someone you shouldn’t, even Lord Gustavo won’t be able to save you!”</p>
+<p>Although demons were known for their bravery and combat prowess, some of them did, in fact, use their brains.</p>
+<p>This particular Flame Demon was one of the more level-headed ones.</p>
+<p>Most Rank Six mages might not even possess a single world-class secret treasure, yet that Rank Five mage had two!</p>
+<p>When something looked...</p>
+</article>
+<article id="c2002" data-label="2002">
+<h2 class="chapter">Chapter 2002: Cobalt Flame 🔒</h2>
+<p>After returning to the army, Melgen Sethem went straight to pay his respects to Enrique Gustavo.</p>
+<p>Although both of them were Rank Six lifeforms, Sethem’s deference toward Enrique did not come from the other party’s peak Rank Six strength.</p>
+<p>Rather, it came from Enrique’s bloodline, his last name, and the throne he sat upon.</p>
+<p>“Who was that mage who saved you just now?” Enrique asked.</p>
+<p>Faced with the young master’s question, Sethem seemed to sense the slightly unusual atmosphere among the surrounding demons. After a brief hesitation, he replied, “He’s Sein, from the Divine Tower of Ashes.”</p>
+<p>Enrique nodded, then turned to the Flame Demon who had come forward.</p>
+<p>“Go investigate the Divine Tower of Ashes, and this mage named Sein.”</p>
+<p>As Enrique’s right-hand man, the Flame Demon clearly did not approve of certain thoughts forming in his young master’s mind.</p>
+<p>Still, investigating the...</p>
+</article>
+<article id="c2003" data-label="2003">
+<h2 class="chapter">Chapter 2003: Making Amends 🔒</h2>
+<p>Having a good father could truly save one from many unnecessary detours over the years.</p>
+<p>The law properties contained within this Cobalt Flame far surpassed those of the Dark Flame, Cinderbone Flame, and Decomposing Azure Flame that Sein had encountered before.</p>
+<p>More importantly, this was a completely natural law flame.</p>
+<p>Some of the law properties it possessed held even greater research value to Sein than other law flames!</p>
+<p>Sein had merely mentioned the details of the recent battle to Gongsun Wudi. He had not expected her to take the initiative and ask the demon king to show his flame.</p>
+<p>However, that was as far as she could go. Given Gongsun Wudi’s status, there were limits to what she could do openly.</p>
+<p>If Sein wanted to obtain a fire seed of the Cobalt Flame, he would have to rely on his own efforts from here on out.</p>
+<p>After all, if Gongsun Wudi directly asked Enrique for it, what could she possibly offer in exchange? The Dawn Empire’s war interests were obviously off the table...</p>
+</article>
+<article id="c2004" data-label="2004">
+<h2 class="chapter">Chapter 2004: Misjudged 🔒</h2>
+<p>After the battle on the icy plains ended, Sein led his legions through several more battles within Divine Descendants World, fighting numerous native deities and achieving impressive victories each time.</p>
+<p>One day, while Sein was resting inside the planetary fortress, he suddenly received a request for an audience from Sethem, the Rank Six demon king.</p>
+<p>“Huh? He has recovered from his injuries already?” Sein asked in surprise, feeling as though not much time had passed.</p>
+<p>Sein had a fairly good impression of Sethem, and he intended to use this Rank Six demon king as a way to obtain some top-grade Blood Crystals produced by the Demon Clan.</p>
+<p>As for Kigard, Sein had not been able to get in touch with him for some time since the war in Divine Descendants World began. He did...</p>
+</article>
+<article id="c2005" data-label="2005">
+<h2 class="chapter">Chapter 2005: The Heart of the Swarm 🔒</h2>
+<p>After seeing Sethem off, Sein could hardly wait to begin his experiments on the Cobalt Flame.</p>
+<p>He even turned down his upcoming combat assignments and handed command directly to Belphane and Mel.</p>
+<p>Doing this during wartime carried a certain degree of risk, but Sein simply could not resist.</p>
+<p>Few beings from other worlds could understand the obsessive pursuit of truth that drove the mages of Magus World.</p>
+<p>Fortunately, the war in Divine Descendants World was an overwhelming, full-scale campaign. Even without Sein’s direct involvement, there would be no major issues.</p>
+<p>The Rank Six knight and Rank Four warlock were more than capable of leading the forces under him, including the God of Black Mist.</p>
+<p>As Sein’s most trusted laboratory assistant, Yuri naturally remained in the planetary fortress’ laboratory to assist him with his experiments.</p>
+<p>Fermera could no longer go out to fight either. As the strongest combatant at Sein’s side, she had to guard his immediate surroundings and prevent any outside disturbance...</p>
+</article>
+<article id="c2006" data-label="2006">
+<h2 class="chapter">Chapter 2006: Magic Package 🔒</h2>
+<p>“Those Insectoids are moving far too fast!” Belphane’s booming voice rang through Sein’s planetary fortress the moment she arrived.</p>
+<p>The Rank Six knight had recently taken command of Sein’s legions. Sein had even placed several angels and lower-tier robot cannon-fodder legions under her command.</p>
+<p>According to the intelligence she had gathered, the Insectoids of Divine Descendants World were not only sweeping across the Eastern Continent at an astonishing pace, but had also begun spreading throughout the Western Continent.</p>
+<p>They were truly a terrifying race.</p>
+<p>Although the Insectoids were allies of the Magus Civilization, Belphane had never encountered such an extraordinary species in her nearly one hundred thousand years of life.</p>
+<p>Her thunderous arrival interrupted Sein’s experiment.</p>
+<p>Fortunately, the current phase was already...</p>
+</article>
+<article id="c2007" data-label="2007">
+<h2 class="chapter">Chapter 2007: Haven’t Paid 🔒</h2>
+<p>In the third year of the war, a major upheaval shook Divine Descendants World.</p>
+<p>Rumor had it that one of the overgod’s arms had fallen from the sky.</p>
+<p>When it struck the ground, the severed arm smashed through the Overgod Temple and caused the tallest peak in Divine Descendants World to collapse.</p>
+<p>By then, the heart of this large-sized world had already become a forbidden zone. No one knew what had truly happened there.</p>
+<p>A few daring souls had considered sneaking in to search for precious materials, such as overlord blood.</p>
+<p>However, most knew their limits and had no intention of recklessly wading into that deadly quagmire.</p>
+<p>Getting in might have been possible. Getting out alive was another matter entirely.</p>
+<p>Even the lingering waves of overlord power spilling from the central battlefield...</p>
+</article>
+<article id="c2008" data-label="2008">
+<h2 class="chapter">Chapter 2008: It’s Over 🔒</h2>
+<p>As the war in Divine Descendants World continued, many creatures on the battlefield caught sight of a demonic figure wreathed in deep blue flames, roaming multiple battlefields west of the Western Continent.</p>
+<p>Wherever he appeared, resistance crumbled before him.</p>
+<p>The weaker creatures fighting across the Divine Descendants World began calling this mighty demon king the <em>Dark Blue Demon</em>, a title inspired by the deep blue law flames surrounding him.</p>
+<p>That demon was none other than Sein, who had activated his elemental and lawful form.</p>
+<p>He was putting his newfound strength to the test.</p>
+<p>After years of war, the resistance of Divine Descendants World had grown increasingly feeble.</p>
+<p>No one knew how much longer Overgod Marduk could hold out, but his minions were clearly reaching their limit.</p>
+<p>Sein had grown considerably wealthier from...</p>
+</article>
+<article id="c2009" data-label="2009">
+<h2 class="chapter">Chapter 2009: What Is Going On?! 🔒</h2>
+<p>A blazing sun suddenly appeared in the skies above Divine Descendants World, its radiance dazzling beyond compare!</p>
+<p>Yet this was actually Venerable Tianyang, fighting beyond the plane.</p>
+<p>Several years had passed, and the number of overlords besieging him had grown from three to five!</p>
+<p>They were the Bladeist, the Thunder Beast King, Gustavo, the Holy Dragon King, and Gongsun Wuji.</p>
+<p>Gongsun Wuji had not originally been part of the group attacking Venerable Tianyang. However, as the war in Divine Descendants World progressed, the Dawn Emperor realized that Venerable Tianyang was actually the easiest of their enemies to bring down, despite appearing to be the strongest.</p>
+<p>Venerable Tianyang had truly been unlucky. From the very beginning, the Bladeist, the Thunder Beast King, and the demon overlord...</p>
+</article>
+<article id="c2010" data-label="2010">
+<h2 class="chapter">Chapter 2010: Phantom 🔒</h2>
+<p>While the Thunder Beast King moved toward Gongsun Wuji, the Bladeist charged forward.</p>
+<p>As the most aggressive fighter among those present, he was the first overlord to launch an attack against Venerable Tianyang while the latter’s power was still surging violently.</p>
+<p>A sharp bone spear appeared in the Bladeist’s hand.</p>
+<p>In terms of quality, it had already reached the level of a world-class secret treasure.</p>
+<p>What was truly astonishing was that the spear had not been forged through any special refining technique. It had formed naturally from bones “shed” by the Bladeist’s own body.</p>
+<p>The same was true of the enormous crescent-shaped blades protruding from the Thunder Beast King. If removed, each one could be considered a world-class secret treasure in its own right.</p>
+<p>The fact that their bodies had...</p>
+</article>
+<article id="c2011" data-label="2011">
+<h2 class="chapter">Chapter 2011: Peak Rank Eight 🔒</h2>
+<p>Yes, the phantom figure that appeared in the starry sky beyond Divine Descendants World was Venerable Weiwu, the strongest being in Myriad Manifestations World.</p>
+<p>He was also the central figure behind Myriad Manifestations World’s alliance with the Gallant Federation against the Magus Civilization.</p>
+<p>Venerable Weiwu appeared to be a dignified middle-aged man who naturally exuded the righteous bearing of a supreme powerhouse.</p>
+<p>He wore a lavish black robe and a golden crown.</p>
+<p>Though only a phantom, he still radiated the terrifying aura of a peak Rank Eight being throughout the surrounding starry sky.</p>
+<p>Even within a top-tier civilization, a being of Venerable Weiwu’s caliber would be considered a pillar capable of safeguarding its very foundation.</p>
+<p>It was no wonder that he dreamed of breaking through to Rank Nine and leading Myriad Manifestations World into the ranks of top-tier civilizations!</p>
+<p>The immense pressure radiating from...</p>
+</article>
+<article id="c2012" data-label="2012">
+<h2 class="chapter">Chapter 2012: Who Do You Think You Are? 🔒</h2>
+<p>Led by the Empress of Blades, the overlords aligned with the Magus Civilization refused to yield.</p>
+<p>Venerable Weiwu narrowed his eyes at them.</p>
+<p>As the Empress of Blades slowly approached him, the overlords behind her moved without being told. They spread out into a semicircle, surrounding Venerable Weiwu and Venerable Tianyang at the center of the battlefield.</p>
+<p>The Rank Eight venerable remained outwardly calm. Venerable Tianyang, however, was another matter.</p>
+<p>Still held in Venerable Weiwu’s grasp, his pale and weakened face gradually filled with disbelief and panic.</p>
+<p>He could not understand it. Venerable Weiwu had already appeared, yet these overlords of the Magus Civilization still had no intention of backing down?!</p>
+<p>Battle intent depended heavily on momentum. The first surge was the strongest. The second...</p>
+</article>
+<article id="c2013" data-label="2013">
+<h2 class="chapter">Chapter 2013: The Blood of an Overlord 🔒</h2>
+<p>Sein reacted quickly.</p>
+<p>When the golden star shattered and scattered across the world, he managed to seize several fragments.</p>
+<p>But that was all.</p>
+<p>Most of the fragments were pulled toward Fermont the Deathspawn at the heart of the plane and swallowed by its enormous body.</p>
+<p>It was like a bottomless black hole.</p>
+<p>Even the sunlight of Divine Descendants World seemed to vanish into it, let alone the scattered remains of a fallen star.</p>
+<p>Moreover, this world was simply too vast. No matter how fast Sein flew, he could only search the region around him.</p>
+<p>He could not claim everything for himself either. Belphane, Ximen Feixiao, and the others fighting in the same region had also joined the scramble.</p>
+<p>Each of them managed to seize a few fragments.</p>
+<p>The larger pieces were roughly the size of a fingernail.</p>
+<p>The smaller ones were barely larger than a grain of rice.</p>
+<p>With the Faceless Mask enhancing his senses, Sein had been the first to notice the falling fragments and immediately rushed into action.</p>
+<p>Following the mask’s calculations, he took...</p>
+</article>
+<article id="c2014" data-label="2014">
+<h2 class="chapter">Chapter 2014: Palm Print 🔒</h2>
+<p>At the heart of the overlord-level battlefield, the Empress of Blades’ bone spines and blades had pierced deep into Venerable Weiwu’s body.</p>
+<p>Under normal circumstances, a battle between two Rank Eight overlords would never have ended so quickly—especially when one of them was Venerable Weiwu, a peak Rank Eight powerhouse.</p>
+<p>However, the figure standing on this interstellar battlefield was not his true body. It was merely a phantom condensed from his law power.</p>
+<p>Projecting overlord-level strength across distant star domains was no simple feat!</p>
+<p>The Gallant Federation had already paid an enormous price just to persuade the Amenkha Empire to intervene.</p>
+<p>After sensing the danger facing Venerable Tianyang and Venerable Muge, Venerable Weiwu had hastily sent a projection of his power across the distant star domains.</p>
+<p>According to Myriad Manifestations World’s original war plans, he was not supposed to enter this...</p>
+</article>
+<article id="c2015" data-label="2015">
+<h2 class="chapter">Chapter 2015: Rank Eight Melee 🔒</h2>
+<p>Not long after Venerable Weiwu issued his orders, Venerable Jinyan returned with troubling news.</p>
+<p>They could not reach Venerable Yunqi.</p>
+<p>Just like Venerable Tianyang and Venerable Muge, Venerable Yunqi was fighting on a battlefield sealed by a mysterious force that made communication with Myriad Manifestations World impossible.</p>
+<p>Previously, Venerable Tianyang had fought Gongsun Wuji and the others without regard for his own survival. Their violent clash shattered the space-time barrier set up by the Empress of Blades, allowing Venerable Weiwu to sense them and send aid.</p>
+<p>But what was happening this time?</p>
+<p>Upon hearing Venerable Jinyan’s report, Venerable Weiwu stood motionless for a long moment.</p>
+<p>For the first time in his life, he felt a trace of regret for provoking an enemy as powerful as the Magus Civilization.</p>
+<p>However, the thought vanished almost as soon as it appeared.</p>
+<p>For the leader of an entire civilization, changing major policies on a whim was one of the greatest...</p>
+</article>
+<article id="c2016" data-label="2016">
+<h2 class="chapter">Chapter 2016: Mosquito Daoist 🔒</h2>
+<p>“DIE!”</p>
+<p>“DIE!”</p>
+<p>“DIE!”</p>
+<p>The giant ape’s roars shook the surrounding starry sky.</p>
+<p>Wave after wave of law power swept across the battlefield, while a raging tide of destructive energy spread outward from the overlord-level clash.</p>
+<p>Countless lower-ranking creatures were caught in its path, battered by one wave of destruction after another.</p>
+<p>Judging by the Great Monkey of Destruction’s current momentum, no one would have guessed that he had already suffered two rounds of grievous injuries.</p>
+<p>If anything, he only seemed to grow fiercer with every passing moment. Even Venerable Yunqi could not help feeling a deep respect for the Great Monkey of Destruction’s savage fighting style.</p>
+<p><em>BOOM!</em></p>
+<p>The massive shadow of the great monkey’s staff came crashing down once again.</p>
+<p>Although Venerable Yunqi was outside the attack range, he still felt painfully powerless and insignificant at that moment.</p>
+<p><em>CLANG!</em></p>
+<p>Violent law power fluctuation erupted once again.</p>
+<p>The Blood Mosquito swarm had only...</p>
+</article>
+<article id="c2017" data-label="2017">
+<h2 class="chapter">Chapter 2017: Both Sides Severely Wounded 🔒</h2>
+<p>Mosquito Daoist’s true body had only just reformed when the Great Monkey of Destruction smashed it apart once again with his massive staff, reducing it to countless motes of blood and flesh.</p>
+<p><em>Crack…!</em></p>
+<p>The force behind the blow was so immense that cracks spread rapidly across the Gallant Federation’s containment barrier.</p>
+<p>A raging storm of destructive power erupted from the center of the impact.</p>
+<p>Caught in its wake, both the Gallant Federation’s Conqueror-class fleet and the Great Sage of Demonic Heaven were forced to halt their attacks.</p>
+<p>Li Qingshan stood unmoving amidst the violent winds. His hair whipped wildly around him, while the two sharp horns on his head stood like spears piercing the heavens.</p>
+<p>He turned his gaze toward Wukong’s battlefield.</p>
+<p>With Li Qingshan’s strength, he could have helped relieve some of the pressure...</p>
+</article>
+<article id="c2018" data-label="2018">
+<h2 class="chapter">Chapter 2018: Reinforcements Arrive 🔒</h2>
+<p>“Go fuck yourself!”</p>
+<p>Watching the swarm of Blood Mosquitoes rush toward him while Mosquito Daoist continued muttering like a madman, Venerable Yunqi could not help cursing aloud.</p>
+<p>He was merely watching from the sidelines, yet trouble had come looking for him.</p>
+<p>He had already retreated to the very edge of this overlord-level battlefield, yet he was still dragged into it.</p>
+<p>Worse still, it was not the Great Monkey of Destruction or the Great Sage of Demonic Heaven—his supposed enemies—who had targeted him.</p>
+<p>It was the Blood Mosquito Overlord, whose origins remained a mystery and whose very presence sent a chill down Venerable Yunqi’s spine.</p>
+<p>After being targeted by someone supposedly on his own side, Venerable Yunqi once again began questioning his decision to join the Gallant Federation’s war, even...</p>
+</article>
+<article id="c2019" data-label="2019">
+<h2 class="chapter">Chapter 2019: Too Tough a Nut to Crack 🔒</h2>
+<p>The Magus Civilization legions arriving on Planet Teyran belonged to two major members of the Magus Alliance—the Grand Elven World and the Beastmen World.</p>
+<p>The moment Lady Bev sensed the shockwaves from the Infinity Light, she dispatched both legions to support the Great Monkey of Destruction and his allies.</p>
+<p>The Elven World and Beastmen World legions, along with their respective overlords, had previously been active on the frontlines.</p>
+<p>The fact that they could now spare enough strength to provide support on this large-sized mechanical planet deep within the Gallant Federation’s heartland made one thing clear… The Magus Civilization had already gained the upper hand across the various battlefronts, giving it far more freedom to redeploy its forces.</p>
+<p>With elven archers clearing the way and beastmen shaman priests chanting prayers of praise, the God of Elves and the God of Beastmen descended upon the overlord-level battlefield one after another.</p>
+<p>Both were among the most powerful figures in the entire Magus Alliance.</p>
+<p>Aeluna, the God of Elves, had already...</p>
+</article>
+<article id="c2020" data-label="2020">
+<h2 class="chapter">Chapter 2020: Calling for Reinforcements 🔒</h2>
+<p>Before Mosquito Daoist stood a massive army radiating the power of destruction. Beside him, the Myriad Manifestations World legions had already switched sides. In the distance, the elite forces of the Magus Alliance were closing in without pause.</p>
+<p>What was even the point of fighting anymore?!</p>
+<p>The Gallant Federation legions were already showing signs of retreat under the relentless attacks of the elven and beastmen armies.</p>
+<p>Seeing this, Mosquito Daoist once again considered running away.</p>
+<p>It was not that the Gallant Federation legions were weak. Their opponents were simply too powerful. The fact that they had held out this long was already impressive!</p>
+<p>The Grand Elven World and Beastmen World legions were among the main forces of the Magus Alliance. Both had performed exceptionally well since the very beginning of the Clash of Civilizations.</p>
+<p>Moreover, the troops Aeluna and Kampas had brought here were the finest elite legions their...</p>
+</article>
+<article id="c2021" data-label="2021">
+<h2 class="chapter">Chapter 2021: Buddhist Faction Steps In 🔒</h2>
+<p>Within the Buddhist Realm of the Immortal Realm Civilization...</p>
+<p>Just as the Great Monkey of Destruction’s golden circlet transmitted its message across the distant starry skies, Thus-Come Buddha, who was preaching the Dharma at the central hall of the Great Thunderclap Monastery, suddenly fell silent.</p>
+<p>His abrupt silence drew the curious gazes of the many Arhats, Buddhas, and Bodhisattvas gathered within the hall.</p>
+<p>The Buddhist Realm wielded tremendous influence within the Immortal Realm Civilization.</p>
+<p>Buddhism had originally branched off from the Daoist faction.</p>
+<p>Through the arduous efforts of its founding sages, Jieyin and Zhunti, followed by the development led by the Thus-Come Buddha, the Bodhisattva of Mercy, and others, it had finally grown into a force capable of rivaling the Daoist faction itself.</p>
+<p>At present, the greatest hidden danger facing the Immortal Realm Civilization was neither the schism among the three teachings nor the conflict between humans and Yaos. It was the struggle between Buddhism and Daoism!</p>
+<p>The three teachings had originated from the same...</p>
+</article>
+<article id="c2022" data-label="2022">
+<h2 class="chapter">Chapter 2022: Lamp-Bearing Buddha 🔒</h2>
+<p>When the Lamp-Bearing Buddha announced his intention to head to the Magus Civilization’s battlefield, the thousands of Buddhas and Bodhisattvas gathered within the Great Thunderclap Monastery reacted in different ways.</p>
+<p>Some were surprised. Some immediately understood. Others approved, while a few remained completely indifferent.</p>
+<p>The Lamp-Bearing Buddha held an exceptionally high status within the Buddhist faction.</p>
+<p>In fact, in terms of seniority, he stood half a step above even the Thus-Come Buddha before him.</p>
+<p>As far back as the Great Investiture of the Gods, which took place several hundred thousand years ago in the Immortal Realm Civilization, the Lamp-Bearing Buddha had already served as the deputy leader of the Western Sect.</p>
+<p>Second only to its two founding sages, Jieyin and Zhunti, he had been renowned as one of the top powerhouses of Primordial World.</p>
+<p>After the Western Sect was renamed and became the current Buddhist faction, the Lamp-Bearing Buddha became its famous “<em>Past Buddha”</em>, while the Thus-Come...</p>
+</article>
+<article id="c2023" data-label="2023">
+<h2 class="chapter">Chapter 2023: Tongtian Reincarnated 🔒</h2>
+<p>The Buddhist faction moved quickly.</p>
+<p>Even while exchanging formal greetings with the Magus Civilization, its massive army of billions of Buddhist cultivators had already finished preparing for battle.</p>
+<p>Unlike the Daoist faction of the Immortal Realm, which was divided into several major factions and numerous celestial courts, the Buddhist faction had remained united from beginning to end.</p>
+<p>Hundreds of millions of Buddhist cultivators poured out from the Buddha Realm and its subordinate planes.</p>
+<p>By the time they reached the interplanar teleportation array leading to the Magus Civilization’s battlefield, many of the factions both from the Magus Civilization and the Immortal Realm involved in the war had not even had time to react.</p>
+<p>The Buddhist faction did not care. Their stated purpose was to rescue their fellow disciples, eradicate evil, and settle old grudges.</p>
+<p>Mosquito Daoist had a deep and longstanding feud with the Buddhist faction. Although he had most likely vanished without a trace long before they arrived, that did not stop the Buddhist cultivators from hunting him.</p>
+<p>Moreover, if the opportunity presented itself, the Buddhist faction fully intended to eradicate this Rank Eight overlord once and for...</p>
+</article>
+<article id="c2024" data-label="2024">
+<h2 class="chapter">Chapter 2024: Immortal Slayer 🔒</h2>
+<p>The way of fate was ever-changing and impossible to predict. Its patterns were difficult for anyone to grasp fully.</p>
+<p>Celestial Venerable Yuanshi believed that what he had seen was happening in the present.</p>
+<p>In reality, however, the vision he had divined came from five hundred years ago.</p>
+<p>Five hundred years earlier...</p>
+<p>The once-poor but warm-hearted Duan Family Fortress was engulfed in raging flames.</p>
+<p>Amidst the ruined houses and pitch-black, charred debris, a boy barely into his teens struggled out from beneath the rubble, a machete clutched in his hand and a younger girl strapped to his back.</p>
+<p>His parents’ corpses had shielded them from the flames.</p>
+<p>“Oy! Someone actually survived, huh?” A loud, brazen laugh rang out from beyond the burning village.</p>
+<p>Several bandits who had yet to leave turned back. Whistling mockingly, they approached the brother and sister with curved blades in their hands.</p>
+<p>“Kid, call me Grandpa,” said an unusually young but burly man. “Crawl between my legs, and I might spare your life!”</p>
+<p>His coarse blue garment was soaked in blood, but none of it belonged to him.</p>
+<p>His words immediately...</p>
+</article>
+<article id="c2025" data-label="2025">
+<h2 class="chapter">Chapter 2025: Separated Siblings 🔒</h2>
+<p>Three years later, the youth had become a constable in Conglan County. Armed with only his machete, he single-handedly wiped out the Black Cloud Stronghold.</p>
+<p>He personally killed 117 of his enemies. The remaining three had not been at the stronghold.</p>
+<p>Thirteen years later, the young man received a basic Qi Cultivation manual from the imperial court and mastered it in an astonishingly short time.</p>
+<p>He then stormed the Tianyu Sect’s outer sect, defeating countless disciples and killing many before finally beheading the three men who had murdered his father.</p>
+<p>His machete stained half of the Tianyu Sect’s outer mountain gate red with blood.</p>
+<p>A Foundation Establishment cultivator overseeing the outer sect personally stepped in to subdue him, only to have one arm severed by the young man’s blade.</p>
+<p>As a cultivation sect with Golden Core cultivators among its ranks, the Tianyu Sect immediately launched a manhunt to track down and eliminate him.</p>
+<p>The young man escaped to a distant land with his younger sister.</p>
+<p>It was through this battle that he earned the title <em>God of Slaughter</em>.</p>
+<p>Forty-one years later, the God of Slaughter returned!</p>
+<p>Both...</p>
+</article>
+<article id="c2026" data-label="2026">
+<h2 class="chapter">Chapter 2026: Relationship As Mentor and Disciple 🔒</h2>
+<p>“Is this really my junior brother?”</p>
+<p>Inside Jade Void Palace on Mount Kunlun, Celestial Venerable Yuanshi stared at the little girl standing before him, her hair still tied into pigtails.</p>
+<p>His usually dignified and unreadable face could not hide his astonishment and confusion.</p>
+<p>The Reincarnation Underworld was a civilizational treasure. Its mysteries were so profound that even a peak Rank Eight sage like Celestial Venerable Yuanshi could not fully see through them.</p>
+<p>He had never imagined that it would alter Sect Master Tongtian’s gender either.</p>
+<p>Relying on his instinctive understanding of the Dao, Celestial Venerable Yuanshi confirmed that the little girl before him did indeed carry a faint trace of his junior brother’s aura.</p>
+<p>However, the image of Sect Master Tongtian as a sword cultivator had long been carved too deeply into everyone’s minds.</p>
+<p>Ah, how majestic he had been when he wielded the Four Immortal-Slaying Swords and fought fiercely against a Rank Eight overlord from a foreign realm.</p>
+<p>Yet now, he had somehow become a little girl clutching an alchemy gourd. No matter how one looked at it, the sight was deeply unsettling.</p>
+<p>Duan Ning also stared blankly at the hazy figure of the sage before her.</p>
+<p>She could not clearly make out Celestial Venerable Yuanshi’s face or even the outline of his body. However, her natural intelligence and sharp instincts told her that the being before her was far beyond anything she could imagine.</p>
+<p>Indeed, throughout the entire Immortal Realm Civilization, Celestial Venerable Yuanshi stood among its highest existences.</p>
+<p>Although he was not the leader of the civilization, the Chan Sect and most of the powers connected to it looked to him for guidance.</p>
+<p>With Sage Laozi in seclusion and Sect Master Tongtian having perished, Celestial Venerable Yuanshi had practically become the embodiment of the Immortal Realm’s “<em>Dao”</em>!</p>
+<p>As he studied the little girl before him, Celestial...</p>
+</article>
+<article id="c2027" data-label="2027">
+<h2 class="chapter">Chapter 2027: Immortal Versus Amenkha (I) 🔒</h2>
+<p>The battlefield of the Grand Cosmic World…</p>
+<p>The overwhelming might of Third Pharaoh Makhast had completely shattered the planar barrier.</p>
+<p>The billions-strong legions of the Amenkha Empire had also brought death and despair to countless beings throughout this large-sized world.</p>
+<p>Just as Celestial Venerable Tianyang had fallen on the battlefield of Divine Descendants World, an overlord had perished here as well.</p>
+<p>The one who fell was none other than the Rank Eight Cosmic King.</p>
+<p>Aeberton, the Dark Knight Overlord of the Magus Civilization, had already withdrawn from the battlefield.</p>
+<p>With his Omnipotent Soul depleted, his constitution weakened, and his unwillingness to abandon his wealth, the unfortunate Cosmic King was left behind to cover their retreat.</p>
+<p>The powerhouses of the Magus Civilization had actually prepared a plan for the Cosmic King. They had never expected him to fall so easily.</p>
+<p>Unfortunately, the world-class secret treasure known as the Scales of Conservation was bound...</p>
+</article>
+<article id="c2028" data-label="2028">
+<h2 class="chapter">Chapter 2028: Immortal Versus Amenkha (II) 🔒</h2>
+<p>The powerful figures of the Immortal Realm had sensed the overlords falling one after another at the heart of the Grand Cosmic World.</p>
+<p>Naturally, Vivian and the other Magus Civilization powerhouses sensed it as well.</p>
+<p>“How much longer before the Scales of Conservation can be activated again? I think it would be nice to conserve an overlord from the Grand Cosmic World,” Regalis asked.</p>
+<p>Vivian glanced down and replied, “Right away.”</p>
+<p>The Scales of Conservation were a treasured artifact belonging to the Capiche Business Alliance, a commercial alliance within the Magus Civilization.</p>
+<p>Their primary function was to measure and maintain balance.</p>
+<p>Many major transactions, both within and outside the Magus Alliance, required the Scales of Conservation to ensure fairness.</p>
+<p>Even the members throughout the Magus Alliance had gradually come to recognize their impartiality.</p>
+<p>These scales represented a beam of light symbolizing balance within...</p>
+</article>
+<article id="c2029" data-label="2029">
+<h2 class="chapter">Chapter 2029: Immortal Versus Amenkha (III) 🔒</h2>
+<p>Whispering Plume had never imagined that he would one day meet his end on a foreign battlefield!</p>
+<p>His feathers had nearly been burned away, leaving him on the verge of becoming a featherless giant bird.</p>
+<p>With terror filling his eyes, Whispering Plume shouted at the overlords of the Amenkha Empire standing before him.</p>
+<p>“I’m an overlord from a top-tier civilization! Do you really dare to kill me? Aren’t you afraid Sky Plume World will retaliate?!”</p>
+<p>Sure enough, those who ventured into the wider world without enough strength were bound to pay the price.</p>
+<p>And sometimes, that price was their life.</p>
+<p>Not even an overlord-level being could escape such a fate.</p>
+<p>Whispering Plume’s desperate cries were met with cackling laughter from the two Pharaohs and three imperial generals standing before him.</p>
+<p>Beside them, five overlord-level...</p>
+</article>
+<article id="c2030" data-label="2030">
+<h2 class="chapter">Chapter 2030: Immortal Versus Amenkha (IV) 🔒</h2>
+<p>When it came to pursuing the fleeing forces of the Grand Cosmic World, the Pharaohs of the Amenkha Empire reached a decision almost immediately.</p>
+<p>There was hardly anything to discuss.</p>
+<p>No prey had ever escaped the Amenkha Empire before.</p>
+<p>The Grand Cosmic World had already fallen, and not even the smallest scrap of its wealth would be allowed to slip through their fingers!</p>
+<p>A small portion of the Amenkha Empire’s forces split off to pursue the fugitives fleeing toward other star domains.</p>
+<p>Meanwhile, after crushing nearly all remaining resistance on the Grand Cosmic World’s main plane, the empire’s main legions charged straight toward the edge of the star domain.</p>
+<p>Countless blood-soaked corpses littered the plane behind them. Their bodies lay twisted and broken, with large patches of skin flayed away.</p>
+<p>Such a gruesome...</p>
+</article>
+<article id="c2031" data-label="2031">
+<h2 class="chapter">Chapter 2031: Immortal Versus Amenkha (V) 🔒</h2>
+<p>Cultivators of the Jie Sect excelled in formations.</p>
+<p>In addition to the battle formations arranged beforehand by the Magus Civilization on the battlefield at the border of the Grand Cosmic World’s star domain, the cultivators of the Jie Sect had directly deployed their sect’s greatest formation, the Myriad Immortals Formation!</p>
+<p>Against the Amenkha Empire, the Jie Sect had brought everything it had.</p>
+<p>The Three Poles Formation formed by Celestial Venerable Duobao and the others was essentially a smaller formation operating within the Myriad Immortals Formation.</p>
+<p>In truth, the Jie Sect’s most powerful battle formation was created by combining the Myriad Immortals Formation with the Immortal-Slaying Sword Formation.</p>
+<p>Hailed as the deadliest formation in the Immortal Realm, it stood alongside the Yao Clan’s Heavenly Star Grand Formation and the Wu Tribe’s Twelve Capitals Gods Grand Formation as one of the Immortal Realm’s three greatest formations.[3]</p>
+<p>Unfortunately, after the fall of Sect Master Tongtian,...</p>
+</article>
+<article id="c2032" data-label="2032">
+<h2 class="chapter">Chapter 2032: Immortal Versus Amenkha (VI) 🔒</h2>
+<p>Vivian and the other Magus Civilization overlords were also watching the fierce battle unfold.</p>
+<p>“The fact that Celestial Venerable Duobao and the others can hold back Makhast in his burst state is largely thanks to the Myriad Immortals Formation. Without it, the Three Poles Formation alone would never be enough to stop him,” Vivian said solemnly.</p>
+<p>Having personally clashed with Makhast before, she understood his strength better than most.</p>
+<p>Regalis, meanwhile, had turned her attention to another part of the battlefield.</p>
+<p>There, Youjiu of the Phoenix Clan was locked in combat with a Rank Seven Pharaoh.</p>
+<p>The unique laws of the Poison Dao intrigued even a soul overmage like the Mother of Dragons.</p>
+<p>As she watched Youjiu fight, the idea of developing a “Poison Dragon Bloodline” suddenly crossed her mind.</p>
+<p>Perhaps once the war was over, she could begin conducting experiments...</p>
+</article>
+<article id="c2033" data-label="2033">
+<h2 class="chapter">Chapter 2033: Immortal Versus Amenkha (VII) 🔒</h2>
+<p>While Vivian and the others fought, Aeberton stood nearby with the Imperial Blade in hand.</p>
+<p>However, much like the Gluttonous Snake Overlord who had narrowly escaped with his life, the Dark Knight Overlord was in no condition to join such an intense battle.</p>
+<p>Even if he did enter, it would be wiser to seek out an opponent weaker than himself.</p>
+<p>Although the Magus Civilization had developed relatively mature methods for restoring an overlord’s Omnipotent Soul, even an overlord would die if they squandered too much of it.</p>
+<p>As the most mysterious and exalted form of energy in the Astral Realm, the fact that an overlord’s soul was called “Omnipotent Soul” already spoke volumes about its extraordinary nature.</p>
+<p>“What a madman. He’s just as insane as that person. If I weren’t saving some strength to fight that man to the death, what difference would it make if I burned through all my soul energy here?”</p>
+<p>A low, rumbling growl came from the Amenkha Scorpion within Aeberton’s...</p>
+</article>
+<article id="c2034" data-label="2034">
+<h2 class="chapter">Chapter 2034: The Hunt 🔒</h2>
+<p>The battlefield of Divine Descendants World…</p>
+<p>Mount Oligum, also known as the “Mountains of Origin, was where the navel of this large-sized plane was.</p>
+<p>Sein had arrived here two years ago.</p>
+<p>The navel of a plane manifested differently from world to world.</p>
+<p>In Magus World, it took the form of an ocean. In Divine Descendants World, it was a vast mountain range.</p>
+<p>Every hundred years, Mount Oligum naturally expanded outward, spreading across an ever-greater area.</p>
+<p>After several hundred thousand years of continuous growth, the mountain range had become vast enough to rival an entire low-level plane.</p>
+<p>The navel of Magus World, the Boundless South Sea, was even larger. Its territory alone could easily rival that of a medium-sized hydro elemental plane.</p>
+<p>In fact, the oceans of Magus World were as vast as a large and prosperous plane.</p>
+<p>And this was despite the Magus Civilization being dominated by terrestrial creatures.</p>
+<p>Such astonishing growth was made possible by the Magus Civilization’s advanced alliance expansion system, along with the countless victories...</p>
+</article>
+<article id="c2035" data-label="2035">
+<h2 class="chapter">Chapter 2035: Daily Experiments 🔒</h2>
+<p>Upon returning to the planetary fortress, Sein found the entire area bustling with activity.</p>
+<p>Those coming and going were no longer limited to the creatures of the Kales Pantheon he had subdued.</p>
+<p>There were also martial warriors from the Dawn Empire, Insectoids, and even a few native beings of Divine Descendants World.</p>
+<p>Sein’s subordinate, the God of Dusk Desire, was indeed quite capable.</p>
+<p>After Sein entrusted him with managing parts of his commercial operations, the guy had actually managed to turn them into a thriving business.</p>
+<p>He had even established stable trade channels with the Insectoids.</p>
+<p>The Insectoids were not nearly as ferocious or mindless as they appeared. In fact, many of them possessed a high degree of intelligence.</p>
+<p>However,...</p>
+</article>
+<article id="c2036" data-label="2036">
+<h2 class="chapter">Chapter 2036: Desperate Resistance 🔒</h2>
+<p>Sein’s experiment was interrupted by a disturbance from outside.</p>
+<p>The source was none other than the Divine Descendant Overgod, Marduk.</p>
+<p>Few would have expected Marduk to be the first to falter. After all, he was a peak Rank Seven overgod fighting within his homeplane.</p>
+<p>The reason was actually simple—his opponent was the Empress of Blades.</p>
+<p>The moment Marduk showed signs of imminent defeat, the entire Divine Descendants World trembled.</p>
+<p>When Sein stepped out of the laboratory, the laws and energies of the world were already in turmoil. Far in the distance, an endless sea of fiery clouds gathered across the sky.</p>
+<p>Even the enormous, magnificent jet-black figure of Fermont the Deathspawn was partly obscured by the apocalyptical scene.</p>
+<p>Throughout Divine Descendants World, countless living beings wailed without end.</p>
+<p>Some weaker native creatures had already abandoned their faith out of fear of death...</p>
+</article>
+<article id="c2037" data-label="2037">
+<h2 class="chapter">Chapter 2037: The Final Battle of the Divine Descendants 🔒</h2>
+<p>High above the Divine Descendants World battlefield, the Empress of Blades gazed nonchalantly at Marduk standing before her.</p>
+<p>Far below, the remaining Divine Descendant deities had already launched their final desperate counterattack.</p>
+<p>Only around a hundred law-wielding native deities remained, and every one of them was wounded.</p>
+<p>Yet perhaps because they had been pushed into a corner with no path of retreat, their momentum was surprisingly fierce.</p>
+<p>They had actually managed to break through the encirclement formed by the combined forces of the Insectoids and the Dawn Empire outside the Land of Trapped Gods.</p>
+<p>Those with the strongest fighting spirit were already closing in on the overlord-level battlefield.</p>
+<p>Meanwhile, large numbers of high-ranking Insectoid powerhouses were converging on the area, while the Dawn Empire had dispatched one of its generals specifically to intercept them.</p>
+<p>The demons were also doing what they did best.</p>
+<p>These remaining...</p>
+</article>
+<article id="c2038" data-label="2038">
+<h2 class="chapter">Chapter 2038: Countless Divine Relics 🔒</h2>
+<p>“I’ll leave this guy to you.”</p>
+<p>Seeing that the native deity below was growing increasingly weak, Sein spoke to Yuri, who had just arrived on the battlefield piloting the Burning Flame Unit.</p>
+<p>A peak Rank Five native deity was no ordinary trial opponent. Even in his weakened state, he would still pose quite a challenge for Yuri.</p>
+<p>Of course, several powerful allies were nearby, including the God of Black Mist and others. Even if Yuri made a mistake, she would not be in any real danger.</p>
+<p>When the disparity between the two sides reached ten to one, or even greater, it became extremely difficult for the enemy to inflict fatal damage on the Magus Civilization’s powerhouses, even if they were prepared to die.</p>
+<p>Unless, of course, that person was dumb.</p>
+<p>Sein paid no further attention...</p>
+</article>
+<article id="c2039" data-label="2039">
+<h2 class="chapter">Chapter 2039: Compete for Divine Relics 🔒</h2>
+<p>Marduk’s move was somewhat similar to splitting his divine consciousness into over a thousand separate branches. As long as even one managed to escape the encirclement, he could still be considered “alive”.</p>
+<p>As for the primary divine relic at his core, it was clearly going nowhere. The Empress of Blades would never allow it to escape.</p>
+<p>Over a thousand divine relics burst outward in every direction, scattering across Divine Descendants World like a dazzling multicolored meteor shower.</p>
+<p>Fermont the Deathspawn, beneath the Empress of Blades’ feet, was the first to react. A vast tide of death energy surged from its body, intercepting a large number of the fleeing divine relics.</p>
+<p>Even so, many more carrying faint traces of Marduk’s lingering consciousness...</p>
+</article>
+<article id="c2040" data-label="2040">
+<h2 class="chapter">Chapter 2040: One-on-One Between Fused Beings 🔒</h2>
+<p>The eruption of Marduk’s divine relics sent another wave of chaos through the central battlefield of Divine Descendants World.</p>
+<p>This was likely the swan song of the world’s native deities.</p>
+<p>A divine relic possessed no combat ability on its own. Even with a trace of Marduk’s divine consciousness inside, it could not unleash power matching the law fluctuations it carried.</p>
+<p>To unleash their true power, these divine relics needed to merge with suitable native beings and use their bodies as vessels.</p>
+<p>However, only around a hundred native deities remained near the central battlefield, and many had already fallen in the earlier fighting.</p>
+<p>Suitable “hosts” were therefore extremely limited.</p>
+<p>Most of the divine relics had no choice but to seek out low-level beings below Rank Four or continue flying under their own power.</p>
+<p>The peak Rank Six divine relic Sein had set his sights on possessed a much larger energy reserve and carried a greater portion of Marduk’s divine consciousness.</p>
+<p>Unsurprisingly, after flying only a short distance, it chose the God of Blazing Fire, one of the few surviving...</p>
+</article>
+<article id="c2041" data-label="2041">
+<h2 class="chapter">Chapter 2041: Strand of Divine Consciousness 🔒</h2>
+<p>“So this is what made my Ark sense the possibility of advancing? I thought it came from the weapons wielded by those two Rank Seven overlords...” the God of Blazing Fire murmured, his deep crimson eyes fixed on the Magic Cube radiating a breathtaking blue-violet glow.</p>
+<p>At that moment, Marduk’s divine consciousness had taken control of the God of Blazing Fire’s body.</p>
+<p>Although it represented only a tiny fraction of Marduk’s will, this strand of divine consciousness had inherited some of his memories and possessed a certain degree of independent thought.</p>
+<p>The instant Marduk saw the Magic Cube before him, radiating the aura of unique technology and magitech laws, everything became clear!</p>
+<p>An expression of pain and regret immediately flashed across the God of Blazing Fire’s face.</p>
+<p>If only he had discovered it sooner and found a way to seize the Magic Cube from this insignificant Rank...</p>
+</article>
+<article id="c2042" data-label="2042">
+<h2 class="chapter">Chapter 2042: Inert Energy 🔒</h2>
+<p>At that moment, the God of Blazing Fire had two divine relics within his body.</p>
+<p>The one Marduk had just struck was the God of Blazing Fire’s own divine relic.</p>
+<p>It was already difficult for two wills to coexist within the same body, especially when one had effectively taken possession of it, as Marduk had done to the God of Blazing Fire.</p>
+<p>Although the God of Blazing Fire was one of Marduk’s subordinate deities and had initially been willing to sacrifice himself for his homeplane, his true consciousness was now filled with nothing but terror and confusion.</p>
+<p>Since Marduk’s divine consciousness now held the dominant position, the fragment of the God of Blazing Fire’s true consciousness that had been blasted out by the explosion quickly fell silent and dissipated.</p>
+<p>The...</p>
+</article>
+<article id="c2043" data-label="2043">
+<h2 class="chapter">Chapter 2043: The Ark Strikes 🔒</h2>
+<p>Sein had no idea that the Insectoids had already taken notice of him.</p>
+<p>He was even less aware that Marduk himself was preparing one final, desperate move within Divine Descendants World.</p>
+<p>After Sein released another round of magic bombs to halt the relentless advance of Marduk’s divine consciousness, the restless will of the God of Blazing Fire began struggling once more.</p>
+<p>Marduk quickly suppressed it and charged toward Sein again.</p>
+<p>But before he could reach him, a pitch-black shadow appeared directly above the battlefield.</p>
+<p>The planetary-class fortress had arrived!</p>
+<p>Sein had already carried out extensive mechanical modifications to the fortress. The moment it appeared, he raised his right hand toward the sky.</p>
+<p>Distinctive blue-purple light and law fluctuations spread from his body.</p>
+<p>Still fused with Fermera, Sein immediately flew toward the planetary fortress.</p>
+<p>As he approached, the constantly shifting metal structure opened...</p>
+</article>
+<article id="c2044" data-label="2044">
+<h2 class="chapter">Chapter 2044: The Battle of Overlords 🔒</h2>
+<p>To the mid and lower-tier creatures watching from the outskirts of the overlord-level battlefield in Divine Descendants World, it looked as though an enormous crystal-blue warship was plummeting straight toward the ground.</p>
+<p>In reality, however, Marduk’s primary target was not Sein, who had temporarily transformed into a massive “lump of metal” below.</p>
+<p>It was the Empress of Blades.</p>
+<p>High above Sein, there was a tiny black figure no larger than a grain of rice. It was none other than the Empress of Blades.</p>
+<p>With her terrifying speed and ability to teleport through space, it would have been extremely difficult for Marduk to strike her with the Ark, even with this desperate final charge.</p>
+<p>However, since Sein was directly beneath them, and the Empress of Blades wanted neither the Ark destroyed nor Divine Descendants World plunged into an age of catastrophe, she chose to intercept...</p>
+</article>
+<article id="c2045" data-label="2045">
+<h2 class="chapter">Chapter 2045: Facing Death 🔒</h2>
+<p><em>“Why are you spacing out, boy?” </em>A pleasant female voice echoed in Sein’s mind.</p>
+<p>By the time Sein emerged from that strange state of clarity, the Empress of Blades and Marduk’s Ark had already drawn dangerously close.</p>
+<p>An unprecedented surge of power unleashed wave after wave of shockwaves that tore across the surrounding battlefield.</p>
+<p>The two concentric rings of devastation Sein had inflicted upon the God of Blazing Fire earlier had already been vast enough.</p>
+<p>Yet compared to the enormous sinkholes now being carved into the earth by the overlords’ clash, they seemed almost insignificant.</p>
+<p>As Sein fully returned to his senses, he realized that the voice belonged to the Empress of Blades.</p>
+<p>She still had her back to him. Countless sharp, bone-like appendages protruding from her body were firmly embedded in the Ark, leaving Sein with little more than the sight of a slender silhouette bristling with jagged spines and razor-sharp blades.</p>
+<p>Even so, he recognized her at a glance.</p>
+<p>Then the pain struck.</p>
+<p>A crushing, tearing pressure also descended upon every inch of Sein’s body,...</p>
+</article>
+<article id="c2046" data-label="2046">
+<h2 class="chapter">Chapter 2046: Life Mucus 🔒</h2>
+<p>The terrifying upheaval caused by the overlord’s fall dealt a devastating blow to Divine Descendants World.</p>
+<p>The entire world trembled as Marduk fell.</p>
+<p>From the center of the overlord-level battlefield, shockwaves swept outward across nearly one-third of the world.</p>
+<p>In the face of such destruction, only the law-wielding beings stationed along the edges of the battlefield had any hope of escaping.</p>
+<p>As for creatures below Rank Four, they were obliterated without exception, reduced to fundamental particles by the energy tide accompanying the overlord’s fall.</p>
+<p>Fortunately, the Magus Civilization had issued strict orders long ago, forbidding its legions of lower-tier creatures from approaching the overlord-level battlefield.</p>
+<p>After all, the main participants fighting along...</p>
+</article>
+<article id="c2047" data-label="2047">
+<h2 class="chapter">Chapter 2047: Imperial Palace 🔒</h2>
+<p>The interior of the Insectoid base was vast.</p>
+<p>Sein wandered through its passages for quite some time before finally finding his way out.</p>
+<p>Only after emerging from the labyrinthine base did he realize that an even stranger sight awaited him beyond it.</p>
+<p>Outside was an endless expanse of pitch-black space.</p>
+<p>Sein was already familiar with the Insectoids and knew how their legions had arrived in Divine Descendants World.</p>
+<p><em>Could I be inside the body of that pitch-black colossus of death…?</em></p>
+<p>His suspicion was soon confirmed.</p>
+<p>As Sein looked around the area surrounding the base, Insectoid creatures of every shape and size filled his vision.</p>
+<p>Some of the winged ones flying overhead were completely unfamiliar to him.</p>
+<p>These creatures had clearly...</p>
+</article>
+<article id="c2048" data-label="2048">
+<h2 class="chapter">Chapter 2048: The End of the Divine Descendants Star Domain War 🔒</h2>
+<p>Sein spent quite some time roaming through Fermont’s interior and touring the many structures built by the Insectoids.</p>
+<p>Along the way, the Rank Five Bladeist accompanying him presented Sein with numerous specimens of Insectoid egg embryos. Sein also collected a large number of the special death crystals found within Fermont’s body.</p>
+<p>The purity of these crystals that had formed inside a Rank Eight creature far surpassed that of any other energy crystal Sein had encountered before.</p>
+<p>Sein had never delved deeply into death laws, but his wife, Leena, had.</p>
+<p>These death crystals would undoubtedly please her.</p>
+<p>During his exploration, Sein also discovered that the Insectoids were directly mining these crystalline ores from Fermont’s body and using them to construct...</p>
+</article>
+<article id="c2049" data-label="2049">
+<h2 class="chapter">Chapter 2049: Good Guy 🔒</h2>
+<p>Although the war in the Divine Descendants Star Domain had pretty much come to an end, there were still many matters to be settled across this large-sized star domain.</p>
+<p>The legions of the Insectoids, the Dawn Empire, and the demon clans all needed time to rest and recover. Resources had to be distributed, and development plans for the future had to be arranged.</p>
+<p>Aside from personal or emotional reasons, the main reason everyone had come to participate in the Clash of Civilizations launched by the Magus Civilization was simple—“profit”.</p>
+<p>Endless warfare was not something ordinary beings enjoyed.</p>
+<p>Even the demon kings, known for their fiery tempers and love of battle, were eager for a chance to catch their breath after such a prolonged war.</p>
+<p>With all resistance now wiped out, the Divine Descendants...</p>
+</article>
+<article id="c2050" data-label="2050">
+<span id="last"></span>
+<h2 class="chapter">Chapter 2050: Ashen Scepter Design Notes 🔒</h2>
+<p>Aside from unexpectedly recovering an overgod’s peak Rank Six secondary divine relic, Sein also struck a deal with Sethem, who represented the demon clan, for a supply of blood crystals.</p>
+<p>Sein already had plenty of blood crystals on hand, but there was no such thing as having too many.</p>
+<p>Not only could Sein and the members of the Verdant Flame faction use them, but so could the countless knights and bloodline warlocks of Magus World. Even the martial warriors of the Dawn Empire could benefit from absorbing them.</p>
+<p>In the past, top-grade blood crystals like these had been consumed entirely within the demon clan.</p>
+<p>The demon kings themselves also greatly enjoyed devouring such concentrated essence of flesh and blood.</p>
+<p>Now that Sein had opened a new trade route, however, the demons were willing...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="2051-2100.html" rel="next">Next: Chs 2051–2100 &rarr;</a>
+    <p class="page-end-links"><a href="1951-2000.html" rel="prev">&larr; Chs 1951–2000</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 2001–2050</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c2001">Chapter 2001: Building a Good Relationship 🔒</a></li>
+        <li><a href="#c2002">Chapter 2002: Cobalt Flame 🔒</a></li>
+        <li><a href="#c2003">Chapter 2003: Making Amends 🔒</a></li>
+        <li><a href="#c2004">Chapter 2004: Misjudged 🔒</a></li>
+        <li><a href="#c2005">Chapter 2005: The Heart of the Swarm 🔒</a></li>
+        <li><a href="#c2006">Chapter 2006: Magic Package 🔒</a></li>
+        <li><a href="#c2007">Chapter 2007: Haven’t Paid 🔒</a></li>
+        <li><a href="#c2008">Chapter 2008: It’s Over 🔒</a></li>
+        <li><a href="#c2009">Chapter 2009: What Is Going On?! 🔒</a></li>
+        <li><a href="#c2010">Chapter 2010: Phantom 🔒</a></li>
+        <li><a href="#c2011">Chapter 2011: Peak Rank Eight 🔒</a></li>
+        <li><a href="#c2012">Chapter 2012: Who Do You Think You Are? 🔒</a></li>
+        <li><a href="#c2013">Chapter 2013: The Blood of an Overlord 🔒</a></li>
+        <li><a href="#c2014">Chapter 2014: Palm Print 🔒</a></li>
+        <li><a href="#c2015">Chapter 2015: Rank Eight Melee 🔒</a></li>
+        <li><a href="#c2016">Chapter 2016: Mosquito Daoist 🔒</a></li>
+        <li><a href="#c2017">Chapter 2017: Both Sides Severely Wounded 🔒</a></li>
+        <li><a href="#c2018">Chapter 2018: Reinforcements Arrive 🔒</a></li>
+        <li><a href="#c2019">Chapter 2019: Too Tough a Nut to Crack 🔒</a></li>
+        <li><a href="#c2020">Chapter 2020: Calling for Reinforcements 🔒</a></li>
+        <li><a href="#c2021">Chapter 2021: Buddhist Faction Steps In 🔒</a></li>
+        <li><a href="#c2022">Chapter 2022: Lamp-Bearing Buddha 🔒</a></li>
+        <li><a href="#c2023">Chapter 2023: Tongtian Reincarnated 🔒</a></li>
+        <li><a href="#c2024">Chapter 2024: Immortal Slayer 🔒</a></li>
+        <li><a href="#c2025">Chapter 2025: Separated Siblings 🔒</a></li>
+        <li><a href="#c2026">Chapter 2026: Relationship As Mentor and Disciple 🔒</a></li>
+        <li><a href="#c2027">Chapter 2027: Immortal Versus Amenkha (I) 🔒</a></li>
+        <li><a href="#c2028">Chapter 2028: Immortal Versus Amenkha (II) 🔒</a></li>
+        <li><a href="#c2029">Chapter 2029: Immortal Versus Amenkha (III) 🔒</a></li>
+        <li><a href="#c2030">Chapter 2030: Immortal Versus Amenkha (IV) 🔒</a></li>
+        <li><a href="#c2031">Chapter 2031: Immortal Versus Amenkha (V) 🔒</a></li>
+        <li><a href="#c2032">Chapter 2032: Immortal Versus Amenkha (VI) 🔒</a></li>
+        <li><a href="#c2033">Chapter 2033: Immortal Versus Amenkha (VII) 🔒</a></li>
+        <li><a href="#c2034">Chapter 2034: The Hunt 🔒</a></li>
+        <li><a href="#c2035">Chapter 2035: Daily Experiments 🔒</a></li>
+        <li><a href="#c2036">Chapter 2036: Desperate Resistance 🔒</a></li>
+        <li><a href="#c2037">Chapter 2037: The Final Battle of the Divine Descendants 🔒</a></li>
+        <li><a href="#c2038">Chapter 2038: Countless Divine Relics 🔒</a></li>
+        <li><a href="#c2039">Chapter 2039: Compete for Divine Relics 🔒</a></li>
+        <li><a href="#c2040">Chapter 2040: One-on-One Between Fused Beings 🔒</a></li>
+        <li><a href="#c2041">Chapter 2041: Strand of Divine Consciousness 🔒</a></li>
+        <li><a href="#c2042">Chapter 2042: Inert Energy 🔒</a></li>
+        <li><a href="#c2043">Chapter 2043: The Ark Strikes 🔒</a></li>
+        <li><a href="#c2044">Chapter 2044: The Battle of Overlords 🔒</a></li>
+        <li><a href="#c2045">Chapter 2045: Facing Death 🔒</a></li>
+        <li><a href="#c2046">Chapter 2046: Life Mucus 🔒</a></li>
+        <li><a href="#c2047">Chapter 2047: Imperial Palace 🔒</a></li>
+        <li><a href="#c2048">Chapter 2048: The End of the Divine Descendants Star Domain War 🔒</a></li>
+        <li><a href="#c2049">Chapter 2049: Good Guy 🔒</a></li>
+        <li><a href="#c2050">Chapter 2050: Ashen Scepter Design Notes 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1951-2000.html" rel="prev">&larr; Chs 1951–2000</a>    <a href="../../index.html">Library</a>
+<a href="2051-2100.html" rel="next">Chs 2051–2100 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

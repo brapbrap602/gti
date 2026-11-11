@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unintended Immortality Chs 551–600</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="501-550.html#last" data-next-page="601-650.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c551">Chapter 551: Where to Rest Tonight? 🔒</a></li>
+        <li><a href="#c552">Chapter 552: Seeking Shelter in the Storm 🔒</a></li>
+        <li><a href="#c553">Chapter 553: A Treasure That Lady Calico Likes 🔒</a></li>
+        <li><a href="#c554">Chapter 554: I Also Have a Supreme Treasure 🔒</a></li>
+        <li><a href="#c555">Chapter 555: Refusal to Trade 🔒</a></li>
+        <li><a href="#c556">Chapter 556: The World of the Western Regions 🔒</a></li>
+        <li><a href="#c557">Chapter 557: Naturally, It’s Up to Lady Calico 🔒</a></li>
+        <li><a href="#c558">Chapter 558: The Midnight Aroma Returns to the Western Regions 🔒</a></li>
+        <li><a href="#c559">Chapter 559: Traveling Merchants and the Western Regions 🔒</a></li>
+        <li><a href="#c560">Chapter 560: Resolving Karma 🔒</a></li>
+        <li><a href="#c561">Chapter 561: Lady Calico&#39;s Impressive Ability to Learn 🔒</a></li>
+        <li><a href="#c562">Chapter 562: Naturally, It’s All Thanks to Lady Calico 🔒</a></li>
+        <li><a href="#c563">Chapter 563: Teaching Thunder Magic 🔒</a></li>
+        <li><a href="#c564">Chapter 564: Finally Here 🔒</a></li>
+        <li><a href="#c565">Chapter 565: Just Let Them Hold Onto It for Now 🔒</a></li>
+        <li><a href="#c566">Chapter 566: The Daoist Has Arrived 🔒</a></li>
+        <li><a href="#c567">Chapter 567: The Demons Have Quite a Few Treasures 🔒</a></li>
+        <li><a href="#c568">Chapter 568: One Last Look at the Treasures Before Death 🔒</a></li>
+        <li><a href="#c569">Chapter 569: All Treasures Have Their Place 🔒</a></li>
+        <li><a href="#c570">Chapter 570: Gifts for the Worthy 🔒</a></li>
+        <li><a href="#c571">Chapter 571: I Shouldn’t Have Woken You Up 🔒</a></li>
+        <li><a href="#c572">Chapter 572: The Day Before Departure 🔒</a></li>
+        <li><a href="#c573">Chapter 573: I Have a Good Idea 🔒</a></li>
+        <li><a href="#c574">Chapter 574: Divine Mountain Snowstorm 🔒</a></li>
+        <li><a href="#c575">Chapter 575: An Ancient Voice 🔒</a></li>
+        <li><a href="#c576">Chapter 576: A Landscape Far from the Mortal World 🔒</a></li>
+        <li><a href="#c577">Chapter 577: The Divine Glacial Lake 🔒</a></li>
+        <li><a href="#c578">Chapter 578: Descending the Mountain 🔒</a></li>
+        <li><a href="#c579">Chapter 579: Returning to Yizhou 🔒</a></li>
+        <li><a href="#c580">Chapter 580: Return to Yidu Once More 🔒</a></li>
+        <li><a href="#c581">Chapter 581: Returning to Familiar Ground 🔒</a></li>
+        <li><a href="#c582">Chapter 582: Lady Calico, Do You Still Remember? 🔒</a></li>
+        <li><a href="#c583">Chapter 583: Seeking Old Friends 🔒</a></li>
+        <li><a href="#c584">Chapter 584: Time 🔒</a></li>
+        <li><a href="#c585">Chapter 585: It Had Long Since Changed 🔒</a></li>
+        <li><a href="#c586">Chapter 586: As If an Old Friend Passed By 🔒</a></li>
+        <li><a href="#c587">Chapter 587: The Greatest Gain of These Thirteen Years 🔒</a></li>
+        <li><a href="#c588">Chapter 588: Hidden Dragon Temple, as Spoken by Passersby 🔒</a></li>
+        <li><a href="#c589">Chapter 589: The Cat God and the Small Temple 🔒</a></li>
+        <li><a href="#c590">Chapter 590: Even Cats Had Their Glory Days 🔒</a></li>
+        <li><a href="#c591">Chapter 591: Sweeping Away the Filth and Miasma 🔒</a></li>
+        <li><a href="#c592">Chapter 592: Return to Yin-Yang Mountain 🔒</a></li>
+        <li><a href="#c593">Chapter 593: The Daoist and the Temple 🔒</a></li>
+        <li><a href="#c594">Chapter 594: In the Third Year of Da’an, an Autumn Journey to Yunzhou 🔒</a></li>
+        <li><a href="#c595">Chapter 595: Financial Crisis 🔒</a></li>
+        <li><a href="#c596">Chapter 596: Do I Look Like a Rat or a Human? 🔒</a></li>
+        <li><a href="#c597">Chapter 597: Please Lead the Way for Us Again 🔒</a></li>
+        <li><a href="#c598">Chapter 598: Mortals and the City God Temple 🔒</a></li>
+        <li><a href="#c599">Chapter 599: Learning a New Spell 🔒</a></li>
+        <li><a href="#c600">Chapter 600: The Daoist and the Cat’s Reward 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="the-unintentional-path-to-immortality">
+<article id="c551" data-label="551">
+<h2 class="chapter">Chapter 551: Where to Rest Tonight? 🔒</h2>
+<p>Song You did not retrace his steps but continued forward.</p>
+<p>From the tail end of the marching army, he walked all the way to its front. Ahead lay a hillside.</p>
+<p>As the Daoist led his horse up the slope at a slow, steady pace, the gloom that had once shrouded this land had completely vanished. The drifting snowflakes were gone, and the temperature had risen noticeably. The warmth of midsummer sunlight could now be distinctly felt.</p>
+<p>Turning back, he saw a world of ice and snow rapidly melting and collapsing. The ice and snow had turned into torrents of water, surging wildly, restoring the land to its original state.</p>
+<p>The cat followed him and also stopped, turning to look back.</p>
+<p>“So much gold and silver!!”</p>
+<p>“They’re nothing but dirt and stone.”</p>
+<p>Wasn’t that the fate of all things? In the end, all must return to the earth.</p>
+<p>Once the last traces of ice and snow had melted away, the Daoist merely stood atop the hill and waved his bamboo staff. In an instant, a flash of spiritual light erupted. Mountains trembled, the earth cracked, and a landslide of mud and rocks surged forward like a roaring tide.</p>
+<p>“<em>Rumble</em>...”</p>
+<p>The sound was like an earthquake shaking the mountains.</p>
+<p>The cat’s eyes widened, its pupils reflecting the chaotic destruction...</p>
+</article>
+<article id="c552" data-label="552">
+<h2 class="chapter">Chapter 552: Seeking Shelter in the Storm 🔒</h2>
+<p>“<em>Swish</em>...”</p>
+<p>The swallow finally dove down, like an arrow cutting through the storm. Just before reaching the ground, it spread its wings, gracefully gliding forward in a smooth arc before landing precisely on the horse’s back.</p>
+<p>“Sir, there&#39;s a large city ahead, about forty li away. It should be Jade City,” the swallow said, speaking against the pounding rain. However, it also understood that with night falling and the storm raging, reaching Jade City tonight was unrealistic. So, it added, “But there&#39;s a temple up ahead. It looks grand—perhaps we could take shelter there.”</p>
+<p>“Alright.” Song You nodded in agreement.</p>
+<p>Jade City[1] was the capital of the Jadeite Kingdom Kingdom, a well-known place—like a gleaming jewel in the vast Western Regions. It was the largest and most prosperous city they would encounter after entering the west, rivaling the desert stronghold of Shazhou.</p>
+<p>Since leaving Shazhou early last spring, over a year and a half had passed. Along the way, they had rarely stopped to rest. Even when they did enter cities, their stays were brief—three, five, or at most seven days.</p>
+<p>The language barrier made it difficult to understand local customs, and many places...</p>
+</article>
+<article id="c553" data-label="553">
+<h2 class="chapter">Chapter 553: A Treasure That Lady Calico Likes 🔒</h2>
+<p>The calico cat turned its head, scanning the grand hall of the temple and the many monks illuminated by candlelight. There was a vague sense of doubt creeping into its mind, though it couldn&#39;t quite pinpoint the reason.</p>
+<p>If only Yan An were here…</p>
+<p>Yan An was often foolish, but sometimes, he could be surprisingly clever—especially when Lady Calico didn’t recognize something. In those moments, he would suddenly become very knowledgeable.</p>
+<p>If Yan An were here, he would definitely know why this felt strange.</p>
+<p>For now, the calico cat could only turn its gaze toward the Daoist behind it, staring at him without blinking.</p>
+<p>The Daoist merely lowered his head and smiled at her.</p>
+<p>“Just watch and see...” His voice was so soft that only she could hear it.</p>
+<p>The cat&#39;s unsettled heart immediately calmed.</p>
+<p>At that moment, the sound of footsteps echoed from outside.</p>
+<p>Two figures entered. The first was the young monk who had left earlier, now carrying a tray covered with a red cloth. It was impossible to tell what lay beneath. Closely following him was an older monk, walking in step with him, his protective stance revealing just how valuable the object must be.</p>
+<p>The two monks quickly approached the higher platform of the hall, setting the tray before the head...</p>
+</article>
+<article id="c554" data-label="554">
+<h2 class="chapter">Chapter 554: I Also Have a Supreme Treasure 🔒</h2>
+<p>“You monks must be joking. I am just a penniless Daoist, wandering the world with nothing to my name. I don’t even have much money, let alone a collection of rare treasures. What treasure could I possibly have?”</p>
+<p>Song You spoke with a smile, patting his worn-out Daoist robe.</p>
+<p>It had been over ten years since he first put it on, and its age was obvious at a glance.</p>
+<p>However, the monks were not convinced. Speaking in their strange accents, they continued to persuade him.</p>
+<p>“Come on, friend, don&#39;t be so modest! We’ve already shown you our treasure—why don’t you show us yours?”</p>
+<p>“You passed through that demon-infested mountain, clearly capable of taking riches, yet you only took a single gold coin. That means you must not care for those mundane treasures. There’s no need to hide!”</p>
+<p>“Why deceive us, Daoist Master? If nothing else, even that bamboo staff of yours is quite a fine treasure! Surely, you must have something even more powerful—bring it out and let us admire it!”</p>
+<p>“That’s right! Daoist Master, you come from Changjing of Great Yan. How could you not have at least one or two treasures? Besides, traveling through mountains and rivers, encountering countless demons along the way—surely you must have some magical artifact to protect yourself?”</p>
+<hr class="separator">
+<p>Song You lowered his gaze and exchanged a glance with his cat.</p>
+<p>Then he sighed, a look of helplessness appearing on his face.</p>
+<p>These monks were rather perceptive.</p>
+<p>They had provided him shelter from the rain, treated him with food and drink, and even generously demonstrated their own magical treasure. It would be rude to keep everything hidden from them.</p>
+<p>“If you ask about treasures, I’m not sure if it qualifies as one, but as a magical artifact, it certainly counts,” Song You said, lifting his bamboo staff....</p>
+</article>
+<article id="c555" data-label="555">
+<h2 class="chapter">Chapter 555: Refusal to Trade 🔒</h2>
+<p>“You’ve taken four of the spiritual resonances in total, so where are the remaining three?” The great monk seated at the highest position widened his eyes in excitement, displaying an unusual obsession with worldly treasures. “Why not take them all out for us to admire? It would be an eye-opening experience.”</p>
+<p>“Yes, let us see them.”</p>
+<p>“Bring them out quickly.”</p>
+<p>“Buddy, don’t keep them hidden...”</p>
+<p>The grand hall of the temple, which was supposed to be a place of serenity, suddenly became rather noisy.</p>
+<p>“...”</p>
+<p>Song You revealed a helpless expression. He placed the fire-element spiritual resonance on the table, then reached into his bulging bag again.</p>
+<p>All the monks’ eyes followed his hand, locking onto the red glow infused with boundless mystique and spiritual resonance. They couldn’t bear to look away until the Daoist withdrew his hand once more.</p>
+<p>At that moment, in the dim candlelit hall, an additional touch of colorless radiance appeared. Instantly, the monks shifted their gazes from the fire-element spiritual resonance and fixated on the newly revealed water-element spiritual resonance.</p>
+<p>The whole process happened incredibly fast—so fast it was as if their gazes had been flung in that direction. Even Lady Calico was left staring in astonishment.</p>
+<p>The spiritual resonance in the Daoist’s hand resembled water. Floating in his palm, it constantly changed shapes yet never dissipated. A faint mist rose from it, shimmering with a gentle luster.</p>
+<p>In that moment, water-like reflections illuminated the floor and walls of the grand hall.</p>
+<p>The monks’ gazes became even more entranced.</p>
+<p>The great monk at the highest seat asked, “This is…?”</p>
+<p>“This...</p>
+</article>
+<article id="c556" data-label="556">
+<h2 class="chapter">Chapter 556: The World of the Western Regions 🔒</h2>
+<p>A single lonely lamp bathed the guest room in warm light.</p>
+<p>As was her habit in a new place, the cat circled the room, sniffing here and there before finally hopping onto the bed to investigate the scent of the blankets.</p>
+<p>The swallow perched on the table, its head tucked in, eyes half-closed—clearly exhausted from catching demons earlier.</p>
+<p>All of their belongings were placed beside the table.</p>
+<p>After a while, the cat finally turned her head and said, “This place is weird.”</p>
+<p>“So you sensed it too, Lady Calico?”</p>
+<p>“Even the mice here don’t move!”</p>
+<p>“I see.”</p>
+<p>Song You leisurely went to wash up.</p>
+<p>The cat followed him closely, shadowing his every step like a loyal watchdog. Throughout the process, she kept stretching her neck to peer outside the doors and windows, as if determined to guard the Daoist in this strange and unsettling place.</p>
+<p>Just then, the Daoist finished washing up and bent down to pick her up.</p>
+<p>At that moment, the bodyguard cat, who had been dutifully carrying out its security task with meticulous seriousness, suddenly went limp. Its entire body turned soft like cloth, easily lifted into a long, dangling strip, even swaying slightly without meaning to.</p>
+<p>“Lady Calico,...</p>
+</article>
+<article id="c557" data-label="557">
+<h2 class="chapter">Chapter 557: Naturally, It’s Up to Lady Calico 🔒</h2>
+<p>The earth-toned stone buildings looked as if they had been covered in a thick layer of windblown sand. Yet, intricate decorative patterns adorned their surfaces.</p>
+<p>Rows of windows lined the structures, and most window sills held potted plants—some lush and overgrown, with vines spilling over arched doorways or trailing all the way down to the ground. Some plants were in full bloom in this season, while others, neglected, were on the brink of wilting.</p>
+<p>At the city gate, musicians played lively tunes, their instruments and melodies vastly different from those of the Great Yan dynasty. The music carried a strange yet fascinating quality.</p>
+<p>People—men and women, elders with graying beards, and even young children—danced freely to the rhythm. When tired, they would step aside to rest, while new dancers eagerly joined in.</p>
+<p>There were no veiled Western Region dancers draped in nothing but a few strands of silk, as Song You had once imagined. Instead, the dancing was casual, unrestrained, and spontaneous.</p>
+<p>No one tossed coins to the performers, confirming that this was not some professional act but a natural form of entertainment, an expression of the local culture. Precisely because of that, it gave off a different kind of natural, effortless vibe.</p>
+<p>This was Song You’s first striking impression of Jade City.</p>
+<p>He lingered for a while, taking in the scene before shifting his gaze to the bustling street behind him.</p>
+<p>The streets of Jade City were not particularly wide—comparable to those of some prefectural and county capitals in Great Yan but nowhere near the grandeur of Changjing’s...</p>
+</article>
+<article id="c558" data-label="558">
+<h2 class="chapter">Chapter 558: The Midnight Aroma Returns to the Western Regions 🔒</h2>
+<p>The scent of ink filled the room.</p>
+<p>On the long table were the brush, ink, paper, and inkstone, everything neatly arranged.</p>
+<p>The brush was an imperial tribute of fine wolf-hair from Luozhou, purchased during their travels. The ink was Congealed Fragrance from Yangdu, and the inkstone was a Duan inkstone[1] gifted by Yu Jianbai during their last return to Changjing. Even the paper was of the highest quality. Under the flickering lamplight, the young girl sat on the carpet with her legs folded, leaning forward against the table as she carefully held the brush, writing neat, small characters as delicate as herself.</p>
+<p>With a <em>creak </em>of the door…</p>
+<p>She already knew from the sound of footsteps it was her Daoist returning, yet she couldn’t help turning her head to confirm.</p>
+<p>“You’re writing your travel journal,” Song You said, stepping into the room.</p>
+<p>“I’m writing my travel journal!” the little girl echoed him cheerfully, continuing to write. Only after a moment did she lower her head and ask, “Where did you go to play?”</p>
+<p>“I just took a stroll in the courtyard.”</p>
+<p>“Was it fun?”</p>
+<p>“Not particularly fun, but the evening was cool. Walking and chatting with Mr. Xie was quite enjoyable. There’s also a grapevine in the courtyard, which is rather interesting,” Song You replied casually. Suddenly, he inexplicably felt as if she was the adult...</p>
+</article>
+<article id="c559" data-label="559">
+<h2 class="chapter">Chapter 559: Traveling Merchants and the Western Regions 🔒</h2>
+<p>After breakfast, Merchant Xie kept his promise and invited Song You for a stroll, accompanied by a few other merchants.</p>
+<p>This was their destination.</p>
+<p>Merchant Xie made this journey once every year. Starting from his grandfather’s time, his family had been traveling this stretch of the Silk Road, which was also known as the Golden Trade Route.</p>
+<p>Setting out from Changjing, it was a journey of nine thousand li to reach this place. Without stopping along the way, even with their endurance and pace, it would still take three to four months to get here. A round trip would take seven to eight months in total.</p>
+<p>They had to avoid the coldest and hottest periods of the year, so they could manage only one round trip annually.</p>
+<p>Merchant Xie had spent half his life walking this road.</p>
+<p>The year before last had been the hardest journey. Last year, a spring mysteriously appeared in the desert, making the trip slightly easier than the year before. This year, with the drought easing somewhat, the road became a little more manageable again.</p>
+<p>It was merchants like them who sustained the prosperity of the Silk Road. It was also they who built the bridge that connected Eastern and Western civilizations. Take something as simple as the watermelon Song You ate along the way—those, too, were carried from a far-off land by them, transported all that distance just to provide water during the journey.</p>
+<p>Perhaps in this era, they were just unremarkable merchants—but in the annals of history, they are destined to be grains of stardust in a brilliant galaxy.</p>
+<p>At the same time, they knew Jade City very well.</p>
+<p>“Daoist Master, you’re a traveler...</p>
+</article>
+<article id="c560" data-label="560">
+<h2 class="chapter">Chapter 560: Resolving Karma 🔒</h2>
+<p>Lady Calico tilted her head upward, staring fixedly at him, her expression solemn. She appeared to be persuaded by his words, imagining the pleasant scene he described.</p>
+<p>After a long pause, she finally opened her mouth to ask, “What was that place back there?”</p>
+<p>“...”</p>
+<p>Apparently, his earlier impression had been mistaken.</p>
+<p>Song You fell silent briefly, then answered truthfully, “It&#39;s a place where people indulge in pleasure and sensual desires.”</p>
+<p>“What’s indulging in pleasure and sensual desires?”</p>
+<p>“That’s something children shouldn’t know.”</p>
+<p>“It sounds fun!”</p>
+<p>“It&#39;s something ordinary mortals do.”</p>
+<p>“It sounds really fun!”</p>
+<p>“Cultivators should not involve themselves in such things.”</p>
+<p>“What exactly is it, then?”</p>
+<p>“You’ll understand when you grow up, Lady Calico.”</p>
+<p>“Hmm...”</p>
+<p>Lady Calico stared at him skeptically. It wasn’t the first time she had been brushed off this way, so she decided not to press further. Instead, she proclaimed, “Then I will ask the swallow later!”</p>
+<p>“The swallow won&#39;t tell you either.”</p>
+<p>“How do you know?”</p>
+<p>“I guessed.”</p>
+<p>“Then I will sneak back tonight to see for myself!”</p>
+<p>“That won’t help your cultivation.”</p>
+<p>“...!”</p>
+<p>“Lady Calico, you should learn to restrain your curiosity,” Song You gently shook...</p>
+</article>
+<article id="c561" data-label="561">
+<h2 class="chapter">Chapter 561: Lady Calico&#39;s Impressive Ability to Learn 🔒</h2>
+<p>The royal palace of Jade City was not far from here, so the warrior sent to deliver the message, even without a horse, returned quickly.</p>
+<p>The warrior whispered a few words to the official.</p>
+<p>The official immediately placed his hand over his chest and bowed to Song You. “Our king invites you to the palace as his guest.”</p>
+<p>“…”</p>
+<p>Song You thought for a moment, then did not refuse. Instead, he turned to the woman beside him.</p>
+<p>&#34;And what about her?&#34;</p>
+<p>“She will not be executed today. For now, she&#39;ll be sent back. If we find the jug, her life will be spared.”</p>
+<p>“I have a child who must accompany me.”</p>
+<p>“That’s fine.”</p>
+<p>“Please lead the way.”</p>
+<p>“This way, please.”</p>
+<p>With a wave of his hand, the official signaled, and the warrior began escorting the woman back. The official then turned and gestured for Song You to follow.</p>
+<p>The group set off toward the royal palace.</p>
+<p>As they walked together toward the palace, the official explained, “Two nights ago, our king was hosting a banquet in honor of guests from Great Yan—generals stationed nearby. Our king took out the wine jug personally gifted by the emperor of Great Yan, filled it with the finest wine from the Jadeite Kingdom. However, as soon as the flask and cups were brought out, they mysteriously vanished. This matter has already become known to the guests, and our king is deeply concerned.”</p>
+<p>Song You nodded silently as he listened.</p>
+<p>An imperial gift couldn’t be casually lost, especially not in a politically sensitive region like this.</p>
+<p>The Great Yan army had stationed elite soldiers and strong generals here. The Western Regions were inhabited by foreign tribes, and there were countless generals eager to achieve...</p>
+</article>
+<article id="c562" data-label="562">
+<h2 class="chapter">Chapter 562: Naturally, It’s All Thanks to Lady Calico 🔒</h2>
+<p>“Sir! Sir!”</p>
+<p>“What can I do for you, dear guest?”</p>
+<p>“You have a lot of mice here!”</p>
+<p>“Mice?”</p>
+<p>“Yes, mice!”</p>
+<p>“Have they disturbed you? I can arrange another room for you where there are fewer of them!”</p>
+<p>“No...”</p>
+<p>The little girl’s voice paused for a moment, as if she were thinking. Even the Daoist who hadn’t witnessed this scene could easily imagine her serious expression, her small face stern as she pondered. Then, she finally spoke, “I’m not blaming you. It’s just that I have a special skill—I’m good at catching mice. I can help you.”</p>
+<p>She actually sounded quite proper and formal.</p>
+<p>However, her deliberate imitation of a Daoist’s tone, paired with her soft and delicate childlike voice, made it hard for anyone to keep a straight face.</p>
+<p>“Huh?”</p>
+<p>“My Daoist priest and I really like your place. If I catch all the mice here—inside the building, at the front, and at the back—will you let us stay for a few more days?”</p>
+<p>She didn’t even wait for his response.</p>
+<p>But knowing his little “cat“ well, the Daoist could already picture her tilting her head up, staring at the shopkeeper with wide,...</p>
+</article>
+<article id="c563" data-label="563">
+<h2 class="chapter">Chapter 563: Teaching Thunder Magic 🔒</h2>
+<p>Song You placed the clothes rack by the bedside, then went to the doorway to carry in the wooden storage shelf. He set it against the wall while Lady Calico gathered all the miscellaneous items from the table and neatly arranged them on the shelf. The once-empty, cold-looking room instantly felt fuller—more comfortable and livable.</p>
+<p>“Are we going out today as well?”</p>
+<p>“Of course.”</p>
+<p>“Where are we going this time?” Lady Calico followed beside him, asking, “Are we just going to wander around again?”</p>
+<p>“The city is lively in the morning. Today, we’ll follow Mr. Xie’s suggestion and visit the east gate.” Song You thought for a moment before continuing, “By noon, when the bustle dies down, we’ll buy some food, bring water, and head outside the city to explore the surroundings of Jade City. If we find a secluded place, you can try subduing more powerful demons from the flag. Or, I could teach you a new spell.”</p>
+<p>“A new spell?”</p>
+<p>“How about thunder magic?”</p>
+<p>“Thunder magic!”</p>
+<p>“Let’s go.”</p>
+<p>Song You picked up his bamboo staff.</p>
+<p>Lady Calico slung her pouch over her shoulder, packing the small flag and Water-Splitting Blade inside. Mimicking him, she also picked up her small bamboo staff. After glancing around the room, she decided to bring along the swallow’s magical artifact, Skybinder,...</p>
+</article>
+<article id="c564" data-label="564">
+<h2 class="chapter">Chapter 564: Finally Here 🔒</h2>
+<p>This bolt of lightning was thin, its power weak, and its sound far from deafening. Instead, it was crisp, resembling the sharp crack of a bamboo tube bursting. In the glaring daylight, its brilliance was barely visible unless one looked closely. Yet, it was a true celestial thunderbolt—descending from the heavens, carrying divine might that could make demons and spirits tremble.</p>
+<p>Even the cat deity couldn&#39;t help but pause for a moment.</p>
+<p>“<em>Whoosh</em>!”</p>
+<p>The black lightning streaked across the sky, shifting directions at sharp angles, showcasing its agility and speed. More bolts continued to fall, further emphasizing the swallows’ brilliance.</p>
+<p>“<em>Crackle</em>!”</p>
+<p>“<em>Snap</em>!”</p>
+<p>“...”</p>
+<p>Some bolts came with longer intervals, others shorter.</p>
+<p>There were instances of failed spellcasting—sometimes, only a faint glimmer of spiritual light appeared, failing to connect with the heavens and earth. If one wasn’t watching the swallow intently, they might assume no spell had been cast at all. Occasionally, even the faint glow was absent—no sound, no movement, nothing at all.</p>
+<p>Some lightning bolts struck the ground, some hit tree branches, while others vanished mid-air before they could land.</p>
+<p>Mastering control required practice.</p>
+<p>“<em>Whoosh</em>...”</p>
+<p>A streak of black lightning flew over, landing on a tree branch in front of the Daoist. Whether from excitement or exhaustion, the swallow’s feet wobbled slightly, causing the apricot branch beneath it to shake as well.</p>
+<p>The Daoist looked up at him. The cat also looked up at him.</p>
+<p>“Master, my magic power is exhausted,” the swallow perched on the tree branch said.</p>
+<p>The Daoist knew he...</p>
+</article>
+<article id="c565" data-label="565">
+<h2 class="chapter">Chapter 565: Just Let Them Hold Onto It for Now 🔒</h2>
+<p>“Daoist priest! Your water is gone!”</p>
+<p>“I know.”</p>
+<p>“Where did it go?”</p>
+<p>“Somewhere far away.”</p>
+<p>“Do you know where exactly?”</p>
+<p>“Of course I do.”</p>
+<p>“When are you going to get it back?”</p>
+<p>“There&#39;s no rush.”</p>
+<p>There was no reason to travel at night.</p>
+<p>The water-element spiritual resonance wouldn’t disappear or be lost. If anything, whoever took it was probably storing it even better than Song You had. So what was the rush?</p>
+<p>Leisurely, he walked into the room, took out a freshly purchased sheet of paper, and picked up a brush dipped in cinnabar. He began drawing talismans.</p>
+<p>That water-element spiritual resonance had always been the most fluid, the most vibrant, and the one he understood best. At times, it even felt alive. He had found it years ago, in the offshore waters of Langzhou, where it had been battered by the wind and rain ever since. Perhaps it deserved a break—being enshrined somewhere for a few days wouldn’t hurt.</p>
+<p>Calmly, Song You continued his work, unhurried.</p>
+<p>Meanwhile, Lady Calico was practically spinning in circles—literally.</p>
+<p>At first, she just paced back and forth. Then, she started circling around the Daoist and his desk while he worked. Eventually, she expanded to pacing around the entire room, occasionally stopping...</p>
+</article>
+<article id="c566" data-label="566">
+<h2 class="chapter">Chapter 566: The Daoist Has Arrived 🔒</h2>
+<p>“<em>Rumble</em>...”</p>
+<p>Suddenly, a deafening clap of thunder rolled outside.</p>
+<p>Through the wide-open doors of the great hall, one could see the sky outside, covered in dense, churning clouds. A violent wind howled through the air, and in the distance, flashes of lightning flickered ominously. It seemed that this place, too, was welcoming the final thunderstorm of the season as summer turned to autumn.</p>
+<p>Yet, within the hall, among the three hundred sixty-eight monks, not a single pair of eyes turned to witness the storm.</p>
+<p>Every monk—regardless of height or weight, whether seated at the front or the back, whether near or far—had their necks stretched out, staring at the seven-colored glazed platform and the shimmering spiritual resonance upon it. None of them seemed to care about the strain on their necks.</p>
+<p>“<em>Boom</em>!”</p>
+<p>A bolt of Heavenly Thunder exploded directly overhead.</p>
+<p>Among the monks, some were highly accomplished, their faith unshaken, their gazes fixed unwaveringly on the water-like spiritual resonance atop the platform. Others, though still devoted, retained a lingering fear of divine wrath, and their bodies trembled instinctively at the thunder. Yet, even as they quivered, not a single one was willing to shift their gaze away.</p>
+<p>Some monks were even murmuring scriptures under their breath, but it had become nothing more than an unconscious habit. Their full attention remained locked onto the treasure before them.</p>
+<p>As if merely looking at it was already the greatest joy, the highest fulfillment—true bliss beyond anything in the mortal world.</p>
+<p>All of them moved in perfect unison. For a moment, the scene felt eerily unnatural.</p>
+<p>The sound of rain grew clearer.</p>
+<p>Until—</p>
+<p>A sudden <em>thud </em>echoed from the temple entranc...</p>
+</article>
+<article id="c567" data-label="567">
+<h2 class="chapter">Chapter 567: The Demons Have Quite a Few Treasures 🔒</h2>
+<p>The chanting of scriptures echoed endlessly.</p>
+<p>All the monks sat unmoving, eyes closed.</p>
+<p>Only at the very front sat a fat, pot-bellied monk in a golden robe upon a magnificent throne made entirely of pure gold, his gaze fixed upon the newcomers outside.</p>
+<p>The Daoist stepped into the main hall, leaning on his bamboo staff.</p>
+<p>The jujube-red horse stopped behind him, standing quietly in the rain. Meanwhile, the tiger-riding little girl followed him inside.</p>
+<p>Just as the Daoist’s foot touched the stone floor of the hall, the pot-bellied monk at the front spoke loudly, “Who dares enter here?”</p>
+<p>His voice rumbled like thunder, echoing with solemn authority, carrying a gravity that compelled those who heard it to empty their minds involuntarily.</p>
+<p>The monks within the hall continued chanting scriptures with closed eyes.</p>
+<p>After this thunderous voice, their chanting seemed even clearer and more distinct, reverberating throughout the hall. Each syllable felt tangible, as though drilling into the listeners’ ears.</p>
+<p>“...”</p>
+<p>Song You scratched his ear, unable to understand their chanting, and simply responded,...</p>
+</article>
+<article id="c568" data-label="568">
+<h2 class="chapter">Chapter 568: One Last Look at the Treasures Before Death 🔒</h2>
+<p>Song You smiled faintly and halted his movements.</p>
+<p>The swirling spiritual resonance on the glass platform immediately stopped. Then, he simply stood still, letting the yellow wind blow past him.</p>
+<p>“<em>Whoosh</em>...”</p>
+<p>Within the wind, countless razor-sharp blades seemed to be hidden. Wherever it passed, the grand hall’s pillars crumbled into dust, bricks and tiles disintegrated, and even the stone beneath his feet—indeed, the entire mountain—began to erode. This wind could reduce all things in the world to the finest specks of dust, as if it carried the weight of endless ages, using time itself to weather everything away.</p>
+<p>“<em>Buzz</em>!”</p>
+<p>A streak of spiritual light flared up, shielding against the yellow wind.</p>
+<p>Song You turned his gaze toward the distant sky, where a swallow flitted through the clouds, then to the horse that had retreated to the foot of the mountain, and finally to the young girl atop the tiger’s back, clutching her flag as she commanded her army of demons.</p>
+<p>He exhaled a breath of pure air, meeting the yellow wind head-on.</p>
+<p>The two forces collided, nullifying each other. The clear breath and the yellow wind—both vanished into nothingness.</p>
+<p>Only mist and rain remained between heaven and earth.</p>
+<p>“.....”</p>
+<p>The big-bellied monk furrowed his brows, his eyes filled with caution.</p>
+<p>This was clearly not an even match.</p>
+<p>From the corner of his eye, he caught sight of the water-element spiritual resonance still resting on the multicolored glass platform.</p>
+<p>He made his decision.</p>
+<p>A heavy weight settled in his heart, yet his face remained plastered with a beaming smile.</p>
+<p>Taking a deep breath, he pressed his palms together.</p>
+<p>Suddenly, a brilliant burst of Buddhist light radiated from him, illuminating the skies with divine majesty. His smiling face seemed...</p>
+</article>
+<article id="c569" data-label="569">
+<h2 class="chapter">Chapter 569: All Treasures Have Their Place 🔒</h2>
+<p>Holding the crystal vial, Song You murmured to himself, “Beyond Mount Tian, there lies another Mount Tian, divine glacial lake, imbued with millennia of chilling ice spiritual resonance…”</p>
+<p>The icy qi and spiritual resonance sealed within this crystal vial were truly extraordinary. Compared to the True Fire spiritual resonance at the mouth of Flame Mountain wielded by Flaming Sun True Lord, it was not inferior. In fact, it surpassed Song You’s own fire techniques.</p>
+<p>Though this chill had been borrowed by that pot-bellied monk—perhaps for the purpose of collecting rare treasures—when he unleashed it, Song You had been caught off guard.</p>
+<p>But even if he had been fully prepared, using only fire-based techniques alone would not have been enough to resist it. Even if Flaming Sun True Lord had come in person, he would have struggled to suppress it immediately. The only way to overcome it would have been through attrition, exhausting the vial’s supply of icy qi until it was spent.</p>
+<p>Fortunately, the myriad techniques of this world are endlessly varied and marvelously profound. One need not always meet force with force in a clash of magic. Sometimes, a clever detour, a subtle trick, or an approach that targets a weakness can suffice. Even the most formidable power can be undone by a seemingly insignificant method.</p>
+<p>Just like what Song You had done earlier.</p>
+<p>With nothing more than a simple illusion and a decoy, he had fooled the inexperienced great demon of the Western Regions and tricked him into expending the vial’s icy qi entirely.</p>
+<p>Still, the crystal vial wasn’t without...</p>
+</article>
+<article id="c570" data-label="570">
+<h2 class="chapter">Chapter 570: Gifts for the Worthy 🔒</h2>
+<p>“There are still so many magical artifacts here!”</p>
+<p>“Most of them are just little trinkets—not all that useful, and a hassle to carry around. You’ve already received a powerful treasure, Lady Calico, so there’s no need to be greedy for more,” Song You said to her. “Besides, while magical tools and treasures are certainly powerful and convenient, you’re still at the beginning of your cultivation journey. It wouldn’t do to rely on them too much.”</p>
+<p>“The beginning of my cultivation journey!”</p>
+<p>“That’s right…”</p>
+<p>“Then we can sell them for money!”</p>
+<p>“You really are a clever little rascal.” Song You couldn’t help but chuckle. “Better to just leave them here.”</p>
+<p>“Huh?” The little girl jumped in shock.</p>
+<p>“What is it?”</p>
+<p>“There are <em>so many</em> magical treasures…”</p>
+<p>She looked down again at the ground.</p>
+<p>A dazzling array of magical tools and rare treasures lay scattered in the mud. Many had once been beautiful, glowing with golden light—but now they were all dirtied with grime. Just looking at them made her heart ache.</p>
+<p>“What a waste…” she murmured to herself, clearly pained.</p>
+<p>“It’s not like they’re being destroyed,” Song You said to her. “They’re just being left here. If fate allows it, they’ll eventually see the light of day again. Don’t let greed get the better of you, Lady Calico.”</p>
+<p>“Mm…”</p>
+<p>The little girl hesitated, still reluctant. But then her gaze shifted—she looked toward the crevice ahead, and her attention immediately changed direction. “There’s still a lot of valuable stuff in there!”</p>
+<p>“If...</p>
+</article>
+<article id="c571" data-label="571">
+<h2 class="chapter">Chapter 571: I Shouldn’t Have Woken You Up 🔒</h2>
+<p>“<em>Gasp</em>—!”</p>
+<p>Merchant Xie couldn’t help but draw in a sharp breath.</p>
+<p>Merchants, by nature, slept lightly, always worried that something might happen to their goods. The sudden sound quieted the scattered voices in the room. Some opened their eyes slightly and sat up, looking over to see Merchant Xie leaning against the wall, eyes wide in surprise. His startled expression gave them a bit of a shock.</p>
+<p>“What’s wrong?” A voice rang out, waking even more people.</p>
+<p>In an instant, all the merchants in the room were awake.</p>
+<p>Familiar with Song You, Merchant Xie finally asked, “Did any of you hear someone speaking just now?”</p>
+<p>“What speaking?”</p>
+<p>“Who was talking to who?”</p>
+<p>“There wasn’t any talking. If someone had been talking, we’d have all woken up.”</p>
+<p>“Yeah, I haven’t even fallen asleep yet.”</p>
+<p>“What kind of voice did you hear?”</p>
+<p>“Are we missing any goods?”</p>
+<p>“Maybe you just dozed off and dreamed it!”</p>
+<p>The room erupted with chatter. Some merchants discussed it, others grumbled, and a few got up to check their cargo.</p>
+<p>“I suppose I <em>might</em> have dozed off—maybe I really was dreaming,” said Merchant Xie, frowning. With his usual temperament, he wasn’t the type to fall asleep while on watch. “But I dreamed...</p>
+</article>
+<article id="c572" data-label="572">
+<h2 class="chapter">Chapter 572: The Day Before Departure 🔒</h2>
+<p>Life in Jade City was peaceful, yet never dull.</p>
+<p>Though the city was much smaller than the capital of Great Yan, it was still lively enough. The mingling of Eastern and Western cultures and economies made everything here feel strange and wondrous—on the streets, one could see all sorts of people and things.</p>
+<p>The <em>chema </em>inn bustled with the daily comings and goings of travelers and the clatter of hooves and wheels, but to the Daoist, it simply delivered glimpses of the world’s many facets and stories from faraway places. By nightfall, all was calm again.</p>
+<p>Even under Jade City’s blazing sun, hiding in the shade kept the heat at bay, and more often than not, a pleasant breeze would come, accompanied by the soft jingling of bells—those tied to camels’ necks or worn around the ankles of young women.</p>
+<p>Before one knew it, several more days had passed.</p>
+<p>The one-month mark was approaching fast.</p>
+<p>If he finished the things he wanted and needed to do, and he was still young by then, perhaps he’d return here to live for a year or two.</p>
+<p>But he mustn’t stay too long, because there were still so many places he wished to live in. Everything deserved a fair share of his presence.</p>
+<p>These were the thoughts running through Song You’s mind as he sat at a dining table in the inn.</p>
+<p>Voices buzzed around him.</p>
+<p>Two merchants shared his table—both with Great Yan features. When he asked about the towering mountain in the southeast, they eagerly answered his questions.</p>
+<p>A few other merchants seated at nearby tables overheard and turned their heads to join in. They, too, had either heard of or passed by that mountain...</p>
+</article>
+<article id="c573" data-label="573">
+<h2 class="chapter">Chapter 573: I Have a Good Idea 🔒</h2>
+<p>Morning in Jade City was just like any other day. The ones who rose early were mostly the locals, with their deep-set features, thick beards, wearing the region’s loose robes and head wraps. The aroma of baked buns and flatbread filled the air, mingling with the rhythmic clang of hammer against iron echoing from some unknown alley, all coming together to form the vibrant bustle of this foreign city.</p>
+<p>The Daoist, however, was already packed and ready to leave the city.</p>
+<p>He was the same old Daoist in his worn robes, leaning on a bamboo staff, leading a jujube-red horse laden with baggage. Behind him, at the entrance of a quiet alley, the little girl transformed back into a cat, turning her head this way and that as they walked.</p>
+<p>Before long, they passed through the city gates.</p>
+<p>Some camel caravans were heading out of the city alongside the Daoist, while others approached from afar, having clearly been on the road since much earlier. The camels on both sides stretched in long lines, and the world was filled with the rhythmic jingle of bells and the creaking of gear.</p>
+<p>This was, perhaps, the echo of the Silk Road.</p>
+<p>The Daoist paused and looked back.</p>
+<p>Jade City’s walls were a dusty yellow,...</p>
+</article>
+<article id="c574" data-label="574">
+<h2 class="chapter">Chapter 574: Divine Mountain Snowstorm 🔒</h2>
+<p>Underfoot were dark stones, most of them crushed into small pieces. Rarely was there one bigger than a palm, and the smallest had already turned to sand. Their dark gray hue didn’t reflect light, making the mountain appear black from afar.</p>
+<p>The stones that made up the snowy peaks were likely of similar texture.</p>
+<p>There wasn’t snow here—yet—but the air was already filled with biting cold. The vegetation had grown sparse and low to the ground, mostly a single kind of shrub. A few trees that resembled pines managed to grow here, though they were far shorter than usual.</p>
+<p>Some had even bent low, sprawling along the ground, as if even the steadfast pine had to bow in the face of this deep mountain. Green, fuzzy mosses clung to the branches—this parasitic plant seemed to suggest that the air here was damp and misty.</p>
+<p>The swallow stood atop one of those pines, which wasn’t even as tall as a person, gazing up at the snow-covered peaks. The little cat, standing on the gravelly ground, looked up at Song You.</p>
+<p>All around was silent and still, not even birdsong. Only their voices could be heard.</p>
+<p>“Yan An, did your leg get sand in it?”</p>
+<p>“L-Leg? How would my leg get sand in it?”</p>
+<p>“It’s when there are lots of tiny little specks.”</p>
+<p>“W-What...?”</p>
+<p>“I mean, is your leg numb?”</p>
+<p>“Lady Calico, my leg isn’t numb.”</p>
+<p>“Oh…”</p>
+<p>The cat paused, then said, “Well if it ever does go numb, remember to tell me! I have a good method!”</p>
+<p>“Birds rarely get numb legs.”</p>
+<p>“Then wait ‘til you turn into a person and get numb!”</p>
+<p>“U-Understood...”</p>
+<p>Song You paid no mind to their chatter. After watching the snow-covered mountain for a while,...</p>
+</article>
+<article id="c575" data-label="575">
+<h2 class="chapter">Chapter 575: An Ancient Voice 🔒</h2>
+<p>The cave entrance wasn’t large, but the horse wasn’t tall—lowering its head, it just barely managed to squeeze inside.</p>
+<p>Outside, the wind and snow were dark and heavy; inside, the cave was even dimmer.</p>
+<p>“You’ve done well.”</p>
+<p>Song You removed the pack from the horse’s back, then pulled out a small cloth mat. He touched it—it was icy cold—so he began to rub it hard with both hands until it warmed slightly. Only then did he place it in front of the calico cat. “The ground is cold. Come lie on the mat.”</p>
+<p>The cat stared blankly at him, then lowered her head. After thinking for a moment, her expression still dull, she finally crawled up, took two steps forward, and lay down on the mat.</p>
+<p>Then she turned her head to look at him again.</p>
+<p>“...”</p>
+<p>Seeing her like that, the Daoist simply smiled and went on with his work.</p>
+<p>He took out wool blankets and mats one by one and laid them on the ground.</p>
+<p>The swallow didn’t dare share a small mat with Lady Calico, but it could still burrow into the wool mats and blankets, which offered some protection from the cold.</p>
+<p>Knowing there would be no firewood on the mountain, they had brought a bundle of wood on the horse. And since it was also difficult to use spells freely up here, Song You had come well prepared—he had fire-starting materials and tinder all ready.</p>
+<p><em>Snap…</em></p>
+<p>The sound of flint striking echoed in the cave.</p>
+<p>Interestingly enough, after all these years, this was the first time Song You had ever used such...</p>
+</article>
+<article id="c576" data-label="576">
+<h2 class="chapter">Chapter 576: A Landscape Far from the Mortal World 🔒</h2>
+<p>“What was that sound?”</p>
+<p>The calico cat turned her head, looking around the cave thoroughly, and finally set her gaze on the Daoist. For the first time in nearly half a day, she spoke up on her own initiative.</p>
+<p>Her voice was still soft and delicate.</p>
+<p>Outside the cave, the thunder gradually faded. Within the cave, the echoes of thunder also began to die down. The many different languages and whispers became more and more faint, increasingly muddled and indistinct, until they could barely be heard at all.</p>
+<p>“...”</p>
+<p>Only then did Song You withdraw his gaze. He lowered his head slightly and met the cat’s eyes, shining with firelight, and replied gently, “They were just voices from the past.”</p>
+<p>“Whose voices?”</p>
+<p>There was less wariness in the cat’s tone now, and more confusion.</p>
+<p>“People from long ago,” Song You finally took a bite of his flatbread. “People like us, who once came to climb this mountain and once took shelter in this very cave.”</p>
+<p>“Where are they now?”</p>
+<p>“In the past.”</p>
+<p>“The past?” The cat looked serious, tilting her head slightly, glancing left and right. “Then where did the voices come from?”</p>
+<p>“From this cave,” Song You answered patiently. “Some places in the world have strange abilities. If there’s a thunderstorm, they can somehow record the sounds, even images, from that time. And when the next storm comes, they might replay them. If someone happens to be there at that moment, they can experience a conversation across time...</p>
+</article>
+<article id="c577" data-label="577">
+<h2 class="chapter">Chapter 577: The Divine Glacial Lake 🔒</h2>
+<p>This truly was a landscape far removed from the mortal world.</p>
+<p>Beneath his feet was a mountain peak sharp as a halberd, covered in thick snow. The sky above was an expanse of deep blue, and aside from the solitary white sun, no other color could be seen. Looking down, all that was visible was a sea of clouds, rolling like waves or pouring like waterfalls.</p>
+<p>Within that vast ocean of clouds, only a few distant peaks barely managed to peek through—those rare mountains qualified to meet the gaze of this sacred summit.</p>
+<p>There was no trace of the mundane world, nor a speck of dust from mortal life. Only immortals, perhaps, could linger long in such a place.</p>
+<p>At this moment, what the Daoist felt most was exhaustion and weakness. A deep, bone-deep fatigue.</p>
+<p>It was as if all strength in his body had been drained away, every muscle and bone filled with weariness, leaving him unable to summon even the slightest energy.</p>
+<p>At the same time, his willpower had been mostly spent in the final push—when he’d picked up the two little spirit beasts and climbed to the peak without pause. The thin air at the summit further dulled his mind, filling him with a strange laziness, a desire to do nothing, to think of nothing. His thoughts emptied...</p>
+</article>
+<article id="c578" data-label="578">
+<h2 class="chapter">Chapter 578: Descending the Mountain 🔒</h2>
+<p>The snow reflected the sunlight so brilliantly it almost felt unreal. Up ahead, the cold mist churned and surged, creating a scene that looked equally illusory. The two little spirit beasts waited quietly in the snow.</p>
+<p>The Daoist walked farther and farther, drawing ever closer to the freezing mist.</p>
+<p>“...”</p>
+<p>It was as if there was a breeze—or perhaps not.</p>
+<p>The mist ahead suddenly surged more violently, and the area where it intensified happened to be directly in front of the Daoist. The snowy-white chill seemed to be welcoming his arrival, even parting to open a path for him.</p>
+<p>With his staff in hand, the Daoist stepped forward, entering the freezing mist.</p>
+<p>“...”</p>
+<p>The mist rolled back in an instant, swiftly swallowing his figure.</p>
+<p>Lady Calico stared at that direction, then looked at the swallow beside her. “That white mist looks pretty intense. Last time in those other mountains, a Daoist got frozen solid. What if Daoist priest freezes to death in there?”</p>
+<p>“Don’t worry, Lady Calico. Since Master dares to walk in, he must be confident,” the swallow replied, shuffling a few steps farther away from the cat. “Besides, I’ve heard a saying.”</p>
+<p>“What kind of saying?”</p>
+<p>The cat stared at him, unblinking.</p>
+<p>“A cultivator like our master—already a great practitioner with heaven-reaching skill—has a natural affinity with the world. Wherever they go, they’re rarely rejected by the spiritual resonance of the land,” said the swallow.</p>
+<p>He added, “And someone of his cultivation—calm in temperament, easygoing by nature, never one to stir...</p>
+</article>
+<article id="c579" data-label="579">
+<h2 class="chapter">Chapter 579: Returning to Yizhou 🔒</h2>
+<p>It was the late autumn of the second year of Da’an, and it was the season when the poplar forests turned gold.</p>
+<p>In the southern basins of the Western Regions, a rare sight appeared: desert and lake coexisting side by side. Amidst the pale yellow sands grew towering poplars in golden hues, each one shaped with ancient dignity, becoming the finest accent to the desert’s autumn scenery.</p>
+<p>A jujube-red horse stood by the desert lake, its head lowered to drink. Nearby, a giant poplar tree bent gracefully overhead, its golden leaves dazzling. Beneath the tree sat a pile of travel packs—and a reclining Daoist.</p>
+<p>Leaves had already fallen onto the packs, and onto the Daoist himself.</p>
+<p>Having reached this spot, the Daoist found he truly didn’t want to move anymore.</p>
+<p>After twelve years wandering the world, he had seen many kinds of autumn.</p>
+<p>The bleak forests outside Yidu, veiled in white clouds; the reed paths by Mirror Island Lake, their white plumes swaying like carpets in the wind; the blood-red maple groves atop Yunding Mountain; the endless fields of rice and wheat across Hezhou and Guangzhou; the golden prairies of Yanzhou; and now, the fall foliage and quaint wooden cottages of the Western Regions, like a realm apart from the mortal...</p>
+</article>
+<article id="c580" data-label="580">
+<h2 class="chapter">Chapter 580: Return to Yidu Once More 🔒</h2>
+<p>It was the third year of the Da&#39;an era, the height of summer.</p>
+<p>The scenery along the roadside had changed greatly.</p>
+<p>The vast, clean expanses of the Western Regions and Xingzhou had given way to narrower, more cluttered terrain. Small hills dotted the landscape in every direction, each one uniquely shaped. Unlike in the Western Regions and Xingzhou, where one could see the distant horizon at a glance, here, such a view was rare. And yet, there were few truly large mountains.</p>
+<p>The roadside vegetation was lush and overgrown. Unlike the bald highland grasslands common in Xingzhou, or the orderly alpine forests of the Western Regions, this area was wild and diverse. All manner of weeds and trees tangled together in unrestrained profusion, all in full summer bloom. Occasionally, small flowers blossomed among them, or wild fruits ripened on the branches.</p>
+<p>The official roads, however, were clearly in better repair than those in the Western Regions, and noticeably more bustling than in Xingzhou. In Xingzhou, there were times when no roads could be found at all, and even when there were, one might walk for days without seeing another soul—just endless grasslands and open skies.</p>
+<p>But here, camels were nowhere to be seen.</p>
+<p>Transport was mainly handled by the short-statured southwestern horses, donkeys, and mules, with...</p>
+</article>
+<article id="c581" data-label="581">
+<h2 class="chapter">Chapter 581: Returning to Familiar Ground 🔒</h2>
+<p>“Where have you come from, sir?”</p>
+<p>“Officer, I am a Daoist from Yizhou returning from my travels.”</p>
+<p>“Returning from your travels? And where did you cultivate?”</p>
+<p>“On Yin-Yang Mountain in Lingquan County.”</p>
+<p>“Yin-Yang Mountain in Lingquan County…” The city gate guard furrowed his brow and repeated, “Never encountered a Daoist from there before…”</p>
+<p>“It’s just a small temple. There are not many people around.” The Daoist was very polite. As he spoke, he reached into his robe and took out an ordination<em> certificate </em>holding it out with both hands. “I have official documentation to prove it.”</p>
+<p>“Oh…” The guard gave a low exclamation of surprise.</p>
+<p>The folded-style ordination certificate was an official credential issued by the government, given specifically to those with genuine cultivation ability, real skills, or to the main inheritors of well-known temples and monasteries. It signified their special status, abilities, and entitlements.</p>
+<p>In recent years these documents had become a bit more common, as they were sometimes passed down through generations, thus slightly diminishing their prestige. Still, it was still...</p>
+</article>
+<article id="c582" data-label="582">
+<h2 class="chapter">Chapter 582: Lady Calico, Do You Still Remember? 🔒</h2>
+<p>“Are you sure that I’m not intruding?” Song You hesitated as he looked at the man.</p>
+<p>“Why would you be intruding? You’ve come from afar, so you’re a guest. And more importantly, sir, you&#39;re a cultivator. Is there anywhere you&#39;re not welcome?”</p>
+<p>“Indeed, my child and I wanted to come back and take a look. We were just worrying that someone else lives here now and we wouldn’t be able to get in.” Hearing the man’s words, the Daoist no longer hesitated. “Then I shall respectfully accept your hospitality.”</p>
+<p>“Haha! Come in, come in!”</p>
+<p>“Many thanks.”</p>
+<p>“I’d heard before that a Daoist once lived here for half a year. They all said he was highly skilled in the Daoist arts. I’d always wanted to meet you, but never knew where you’d gone. I even wanted to visit and offer incense, but there was no way to reach you,” the man said happily. “I never thought I’d meet you today.”</p>
+<p>“It must be fate.”</p>
+<p>“Right, may I ask your Daoist title?”</p>
+<p>“My surname is Song, given name You, style name Menglai. I don’t currently have a Daoist title.”</p>
+<p>As he replied, Song You stepped through the gate and into the courtyard. He turned his head and his gaze immediately fell on the center of the yard, where a wax plum tree was growing. It was now the season when the branches were...</p>
+</article>
+<article id="c583" data-label="583">
+<h2 class="chapter">Chapter 583: Seeking Old Friends 🔒</h2>
+<p>“Ah, right, sir...”</p>
+<p>“What is it?”</p>
+<p>“It’s already dark. If you&#39;re looking for an inn to stay a few days, exit this alley and head to the right, there’s one just across the way. It’s not fancy, but it&#39;s decent enough,” Butcher Gao said, his face flushed from drink.</p>
+<p>He continued, “I happen to know the innkeeper. Just mention my name and you’ll get a bit of a discount. No need to go out of your way to praise me. Just tell them you were referred by Butcher Gao. I’ve got some friends in the <em>jianghu </em>who often lodge there, and the inn regularly gets their meat from me. When they hear that, they’ll understand.”</p>
+<p>“That would be a great help.” Song You smiled slightly and cupped his hands in thanks before finally taking his leave.</p>
+<p>That inn had been around for many years. If ownership hadn’t changed hands, it should still be the same one. Song You had already planned to stay there.</p>
+<p>After taking a few steps forward, he walked into the darkness.</p>
+<p>These days, Yidu’s nights seemed quieter than before. Perhaps it was because of the increased rumors about ghosts and demons; people naturally avoided going out alone after dark. Thus, the already quiet alleys became even more silent. The sound of hooves echoed clearly, as did the tap of the Daoist’s and the girl’s staffs against...</p>
+</article>
+<article id="c584" data-label="584">
+<h2 class="chapter">Chapter 584: Time 🔒</h2>
+<p>“With just a single bolt of lightning, that arrogant, domineering demon was instantly struck down and left paralyzed! If you ask me, no one compares to the immortals of Great Yan! As the saying goes, ‘in the North, evil spirits have always run wild, but a single thought from an immortal subdues the demons!’“</p>
+<p>On stage, Old Old Mr. Zhang’s voice rang out clear and forceful, full of passion. It painted vivid images in the hearts of the audience, echoing the flair of the storyteller from years past.</p>
+<p>After delivering the final line, he immediately paused and gave a respectful bow to the listeners below, “Ladies and gentlemen, that’s all for today. My throat is dry from all the talking. If you’ve enjoyed it, come back tomorrow and we’ll continue.”</p>
+<p>He then raised his teacup and took a long drink to moisten his throat. But the audience didn’t disperse. Instead, they grew more relaxed and lively, murmuring among themselves, chatting with familiar faces, discussing the story’s events, current affairs, and strange happenings from nearby regions.</p>
+<p>This scene hadn’t changed much from the past.</p>
+<p>After the storyteller finished, the crowd didn’t rush off. The pavilion naturally became a gathering place for common folk who enjoyed tales and sought a bit of leisure. In fact, it seemed even more lively than before....</p>
+</article>
+<article id="c585" data-label="585">
+<h2 class="chapter">Chapter 585: It Had Long Since Changed 🔒</h2>
+<p>The two of them conversed for who knows how long before finally parting in satisfaction.</p>
+<p>“My father spent his whole life telling stories. Those tales of fantasy and the supernatural, and the strange wonders of the world, he told them so many times, yet had only seen a handful for himself.”</p>
+<p>Old Mr. Zhang sighed with some regret, “As storytellers, the more we talk, the more we wonder if the stories are true. We long to meet the characters we speak of, to visit the places we describe. But few of us ever get the chance. If my father were still alive and standing here today, able to have such a conversation with you, sir, I imagine he would be deeply comforted.”</p>
+<p>“I was indeed gone for far too long,” Song You said softly.</p>
+<p>“Indeed…”</p>
+<p>Old Mr. Zhang thought about himself. He didn’t know how many years he had left, and looking at the man before him, he couldn’t help but sigh, “How many people can truly live as long as the immortals?”</p>
+<p>Song You only shook his head, saying nothing. Then he raised a hand and gave Old Mr. Zhang a respectful bow. “Mr. Zhang…”</p>
+<p>Old Mr. Zhang immediately understood and returned the salute with equal courtesy. “Take care on your journey, sir…”</p>
+<p>“Mr. Zhang, your skill and presence are not inferior to your father’s,” Song You said sincerely. “I only hope that seven years from now, when...</p>
+</article>
+<article id="c586" data-label="586">
+<h2 class="chapter">Chapter 586: As If an Old Friend Passed By 🔒</h2>
+<p>Outside Taian Temple, in a fly-ridden street of roadside eateries…</p>
+<p>Perhaps it was the recent sweltering weather, or maybe the afternoon hours didn’t draw many worshippers. It could also be that the livelihoods and economy of Yidu had clearly declined.</p>
+<p>But whatever the reason, the eateries on this street were all rather quiet. Few people sat inside to eat, while the entire street buzzed with flies. Some shopkeepers waved around their fans to drive them off, while others simply ignored them, too lazy even to glance at them.</p>
+<p>Song You picked a shop that at least made an effort to swat the flies and sat down. He wanted to eat meat, but didn’t dare order fresh cuts, fearing what he’d be served might not be all that fresh. So, he ordered a plate of cold-dressed fish mint and asked the shopkeeper to boil some cured meat to slice.</p>
+<p>Naturally, he also asked for a bowl of <em>mao’ertou</em>[1].</p>
+<p>“You got it!” The shopkeeper beamed.</p>
+<p>This street’s usual clientele consisted mostly of worshippers, small vendors catering to them, and common townsfolk drawn in by the vendors. Wealthier worshippers, after paying respects, would head to restaurants. The ones who stayed to eat here were just the everyday folk.</p>
+<p><em>Mao’ertou </em>was the best-selling item here. Many laborers and vendors, or parents bringing their...</p>
+</article>
+<article id="c587" data-label="587">
+<h2 class="chapter">Chapter 587: The Greatest Gain of These Thirteen Years 🔒</h2>
+<p>“Sir, you’re checking out?”</p>
+<p>“I am.”</p>
+<p>“Heading somewhere else now?”</p>
+<p>“I’ll be going west.”</p>
+<p>“Then I wish you a smooth journey.”</p>
+<p>“Thank you, sir.”</p>
+<p>Song You packed his belongings and checked out of the inn. The shopkeeper had always treated him with courtesy, and naturally, he returned the gesture with equal respect.</p>
+<p>However, he did not leave immediately. Instead, he took Lady Calico and the jujube-red horse and walked into the Tianshui Alley across the street once more. Perhaps this would be the last time he saw it. He walked all the way to the little courtyard where he had once lived and knocked on the door, quietly waiting for someone to answer.</p>
+<p>“Who is it?”</p>
+<p>“The Daoist staying at the inn across the street.”</p>
+<p><em>Creak!</em></p>
+<p>The door opened at once.</p>
+<p>But it wasn’t Butcher Gao who answered; it was a little boy, with a woman standing behind him.</p>
+<p>“Mr. Gao isn’t home?”</p>
+<p>“He went out early this morning.”</p>
+<p>“No matter.” Song You smiled. “It’s nothing urgent. I’ve been back in Yidu for a few days now, and today I’m leaving again. I just wanted to express my gratitude for the hospitality you’ve shown these past few days. I’m very thankful, and I came to say goodbye in person.”</p>
+<p>He stood at the door and didn’t step inside. As he spoke, he took two talismans from his robe.</p>
+<p>“I have nothing...</p>
+</article>
+<article id="c588" data-label="588">
+<h2 class="chapter">Chapter 588: Hidden Dragon Temple, as Spoken by Passersby 🔒</h2>
+<p>“Are we sleeping up here again tonight?”</p>
+<p>“I’d like to. What do you think?”</p>
+<p>“I think it’s a wonderful idea.”</p>
+<p>“Then it’s settled.”</p>
+<p>“It feels hotter than last time, though.”</p>
+<p>“Last time it was the beginning of autumn; this time it&#39;s midsummer.”</p>
+<p>“Nights will still get chilly.”</p>
+<p>“Lady Calico, you make a good point…”</p>
+<p>The Daoist was still sitting at the cliff’s edge with his back to the encroaching darkness. Facing the fading glow of sunset, he watched the dreamlike colors at the horizon and the silhouette of the land below.</p>
+<p>Behind him, Lady Calico had transformed back into her human form. She pulled out a wool mat and a light blanket from the embroidered bag and laid them neatly on the ground. Then, she took out a lantern.</p>
+<p>While the Daoist was still quietly admiring the afterglow, the little girl had already laid out his bed and now held up the wooden staff with the lantern raised in front of him.</p>
+<p>“…”</p>
+<p>The Daoist paused for a moment before it finally dawned on him, and he couldn’t help but smile. Clearly, his cat still remembered that night well.</p>
+<p>He raised his hand, just like he did back then, and made a pinch gesture toward the distant horizon. He pinched at the air, as if plucking a fragment of the sky, and dropped it gently into the plain, old lantern before him.</p>
+<p>In an instant, the lantern lit up with the same dreamlike radiance as the colors still lingering at the edge of the sky. He borrowed a trace of the sunset&#39;s glow...</p>
+<p>The heavens gradually darkened, and the colors faded. Soon, the last light of dusk vanished. Yet the lantern still glowed, gently casting its lingering light back into the long night ahead.</p>
+<p>The Daoist was now seated...</p>
+</article>
+<article id="c589" data-label="589">
+<h2 class="chapter">Chapter 589: The Cat God and the Small Temple 🔒</h2>
+<p>“Oh? Daoist priest, you mean to exorcise demons and subdue monsters?”</p>
+<p>Everyone turned to look at the Daoist; some gazes were filled with curiosity, others with surprise. They’d all heard countless stories about demon-slaying, but rarely did one encounter such a person in the flesh.</p>
+<p>“We’ll take a look first, and decide then…”</p>
+<p>“Cattle Village isn’t far,” the bodyguard said. “About thirty li ahead, you’ll come to a long steep hill. Cross over that, and you’ll be there. There’s a tea stand set up just before the village, and past that is an earthen watchtower, that’s where the family lives. They built a pigpen outside, with a pond beside it. If you set out now, you should reach it in about half a day.”</p>
+<p>He paused, then added, “As for the mountain demon Mr. Wang mentioned earlier, the one who makes people carry it across a bridge, you’ll have to go another twenty li past the village. There’s a broken, low bridge with a fast current. That’s the place.”</p>
+<p>He then turned to look at the Daoist. “So, will you be going, Daoist Master?”</p>
+<p>“I am a traveling Daoist priest,” Song You replied with a polite bow. “I was heading that way already. Having heard of such a strange affair, naturally I must go and see it for myself. Many thanks to you for pointing the...</p>
+</article>
+<article id="c590" data-label="590">
+<h2 class="chapter">Chapter 590: Even Cats Had Their Glory Days 🔒</h2>
+<p>“Since that’s the case,” the Daoist asked, “why didn’t you only bury food in the winter?”</p>
+<p>“...?”</p>
+<p>The cat on the altar froze for a moment, clearly caught off guard. This question seemed to stump her, and she quickly fell into deep thought...</p>
+<p>“I didn’t mean anything by it,” Song You said mildly. “It’s just that, since food buried in winter is less likely to spoil, while in summer it spoils quickly, and winter has fewer offerings and less prey, whereas summer is the opposite, then wouldn’t it make more sense for you to only bury prey in winter?”</p>
+<p>He paused, then added, “It’s just a passing thought.”</p>
+<p>“…That’s true…” The cat’s amber eyes shimmered as she resumed pondering the idea.</p>
+<p>After a moment of reflection, however, she frowned with an unconvinced look. “That wouldn’t work…” she muttered under her breath but couldn’t quite explain why.</p>
+<p>She just felt instinctively that it wouldn’t do. Of course the meat had to be buried, and it had to be buried all year round. As long as there was extra prey, it had to be stored. How could it be okay not to store it?</p>
+<p>The calico cat shook her head. But then, as another thought struck her, she immediately brightened up. “Humans are the best. Humans are amazing. Humans...</p>
+</article>
+<article id="c591" data-label="591">
+<h2 class="chapter">Chapter 591: Sweeping Away the Filth and Miasma 🔒</h2>
+<p>The ancient cypresses along Jinyang Dao still stood tall and lush.</p>
+<p>By the roadside was another clearing, still shaded by the dense canopy of the cypress trees. But now, a stone statue stood in the clearing, and its rough form vaguely discernible as that of a Daoist, though the features had long since worn away.</p>
+<p>A jujube-red-red horse stood nearby, lazily nibbling at the grass by the road.</p>
+<p>At this time, Lady Calico had taken on human form. She had gathered dry twigs and started a small fire on the ground, skewering a whole string of bamboo shoot grubs freshly caught from a nearby bamboo grove on the way. Each one was plump and fat. She was roasting them intently over the flames with a focused gaze, carefully turning them over and over.</p>
+<p>That distinctive savory aroma, unique to roasted shelled insects, began to waft through the air, triggering cravings.</p>
+<p>Meanwhile, the Daoist stood off to the side, silently gazing at the stone statue. Truly, there was not even a trace of resemblance.</p>
+<p><em>Ding ding ding…</em></p>
+<p>In the distance came the jingle of bells, and the young girl instinctively looked up.</p>
+<p>A few traveling merchants were approaching, leading horses and mules. Behind them were several common folk, either carrying shoulder poles or leading...</p>
+</article>
+<article id="c592" data-label="592">
+<h2 class="chapter">Chapter 592: Return to Yin-Yang Mountain 🔒</h2>
+<p>“I’ll soon be leaving the Jinyang Road myself,” Virtuous Duke Wang continued. “In recent years, for reasons unknown, this road has seen a surge in demonic activity. Some are newly spawned, others have reappeared after years of absence. I’ve always lacked the ability to deal with such things, and I’ve long been ashamed. But now that your two disciples are ridding the road of evil, I can finally leave with peace of mind.”</p>
+<p>“Oh?” Song You asked curiously, “Where are you heading?”</p>
+<p>“It’s not that I’ve chosen to go anywhere. Rather, I was summoned. A higher deity has ordered me to take up a new post elsewhere.”</p>
+<p>“What’s prompted this sudden reassignment?”</p>
+<p>“Mister, have you heard of the underworld and the nether realm?”</p>
+<p>“I’ve heard a little.”</p>
+<p>“And what about City Gods?”</p>
+<p>“I know a thing or two.”</p>
+<p>At that, Song You began to understand.</p>
+<p>“Three years ago,” said Virtuous Duke Wang, “the Ministry of Rites ordered a City God Temple to be built in Yidu. They appointed the highly respected Mr. Luo from just outside the city as Yidu’s City God. Half a year ago, a City God Temple was also built in Nanhua County. I received two official orders, one from the Ghost City Palace Lord of Fengzhou and the other from the City God of Changjing, summoning me to take office at the...</p>
+</article>
+<article id="c593" data-label="593">
+<h2 class="chapter">Chapter 593: The Daoist and the Temple 🔒</h2>
+<p>“Why haven’t those grains been harvested?”</p>
+<p>“Lady Calico, you may not know,” the Daoist explained to the cat as they walked, “the villagers left them there on purpose.”</p>
+<p>“On purpose? Left for whom?”</p>
+<p>“For the Daoist temple in the mountain, of course.”</p>
+<p>“The Daoist temple in the mountain?”</p>
+<p>The cat immediately looked up. When it saw the temple half-revealed in the mist atop the distant hill, its expression froze.</p>
+<p>“That’s your temple!”</p>
+<p>“Indeed.”</p>
+<p>“They left it for you?”</p>
+<p>“Exactly.”</p>
+<p>“Why would they do that?”</p>
+<p>“It’s an old and simple tradition,” Song You said, pausing briefly. “Daoists with true cultivation protect the peace of the land, as it should be. The villagers are poor and have little money, but simple, honest people who receive protection naturally seek ways to repay the kindness. Otherwise, their hearts would feel uneasy.</p>
+<p>“So, after each harvest, they leave a small cluster of rice behind to be taken by those cultivating in the mountains. It counts as an offering. If a Daoist accepts the villagers’ offering, then he is bound to ensure peace in the region, just like a deity who, upon receiving incense, must fulfill his divine duties.”</p>
+<p>“Do you actually come down to harvest it?”</p>
+<p>“Of course.” A trace of nostalgia colored Song You’s...</p>
+</article>
+<article id="c594" data-label="594">
+<h2 class="chapter">Chapter 594: In the Third Year of Da’an, an Autumn Journey to Yunzhou 🔒</h2>
+<p>In the height of summer, as dusk settled in, the sky was filled with the flurry of wings. Swallows or bats were flitting to and fro, and there were buzzing insects all around. The air was full of life, and it was lively and vibrant.</p>
+<p>At the horizon, the sun was setting, painting the clouds in a fiery red. Beneath the sunset lay a peaceful, picturesque mountain village.</p>
+<p>At the gates of the Daoist temple atop Yin-Yang Mountain, the Daoist had brought out a reclining chair and sat quietly in it, enjoying the mountain breeze, the coolness of evening, and the abundance of life. He gazed at the distant scenery, letting time slip gently by.</p>
+<p>By his side sat a cat, prim and proper, tail swaying lazily from side to side.</p>
+<p>Faint sounds of roosters crowing and dogs barking drifted up from the village below, echoing once through the mountains before reaching the temple. These were gentle echoes that calmed the heart.</p>
+<p>The Daoist wasn’t thinking of anything just then. He wasn’t thinking of the road he had taken, nor of the path ahead, nor of the old Daoists buried behind the temple. He only let his eyes take in the view, quietly lost in thought.</p>
+<p>The mountain breeze was perfectly soothing; the ancient pines rustled softly in the wind. The Daoist was, at that moment, completely at peace.</p>
+<p>Back when he still lived at the temple, during summer evenings like this with good weather and brilliant sunsets, he and the old Daoist would sit here together. Sometimes they’d exchange idle, wandering chatter; other times, they’d say nothing at all, simply enjoying the ultimate freedom that came from letting time...</p>
+</article>
+<article id="c595" data-label="595">
+<h2 class="chapter">Chapter 595: Financial Crisis 🔒</h2>
+<p>Outside Yundu City, by the roadside tea stall, a jujube-red horse stood obediently by the road and grazed on the grass.</p>
+<p>The tea sold here was a local blend made from handmade black tea grown in the nearby mountains, brewed together with plums and green tangerines. A bit of salt and sugar was added, though if you didn’t taste it carefully, you could barely tell whether it was salty or sweet.</p>
+<p>The salt seemed to serve only to accentuate the fruity tartness of the plums and tangerines in the tea, just like how some regions sprinkle salt on fruit. The sugar, on the other hand, softened the sharp sourness, giving the tea a more mellow flavor.</p>
+<p>It cost only three wen for a large bowl.</p>
+<p>The Daoist already had a bowl in front of him.</p>
+<p>“Huff…” He picked it up and took a sip.</p>
+<p>The tea leaves hadn’t been processed with much finesse, so the tea was not particularly clear in color. But since it was served in a coarse bowl with a dark brown interior, clarity didn’t matter, even the clearest tea would look muddy in it.</p>
+<p>Nonetheless, the fragrance was remarkably strong. The fruity and honeyed aromas inherent to the tea blended perfectly with the scent of plums and tangerines. A touch of sweetness from the sugar made the taste match the smell almost exactly. Even someone like Song You, who was...</p>
+</article>
+<article id="c596" data-label="596">
+<h2 class="chapter">Chapter 596: Do I Look Like a Rat or a Human? 🔒</h2>
+<p>“Sir, are you looking to rent a house?”</p>
+<p>“Need a place to stay? An inn, perhaps?”</p>
+<p>“Where are you headed, sir? Visiting someone or looking for someone? Do you know the way? Need a guide? I know every alley and street in Yundu City like the back of my hand! I can lead the way and teach you how to get there. Five wen for close spots, never more than ten wen even for the farthest places. I charge fair prices!”</p>
+<p>“Same here!!”</p>
+<p>Just like in Yidu, the gates of Yundu City were crowded with people trying to make a living. All sorts of folks gathered there, and though they didn’t completely swarm the Daoist, five or six of them did approach when they saw him.</p>
+<p>Clearly, business was tough, so tough they wouldn’t even spare a poor Daoist. But how many poor Daoists would be willing to spend money like this?</p>
+<p>Song You gave them a polite nod and a friendly smile, but didn’t speak. That alone was enough to make most of them back off on their own.</p>
+<p>Only one scrawny young man, with a bruised and swollen face, stubbornly kept following him and wouldn’t give up.</p>
+<p>“Sir, you clearly aren’t local. You’re bound to be unfamiliar with the city. No matter where you’re headed, I’ll take you there for just five wen, and I’ll show you the route too, so you’ll remember it next time. I guarantee you’ll get it in one go!”</p>
+<p>“…” Song You could only sigh in resignation. He glanced back at the fair, clean little face of his child follower, then turned to the young man and said, “I’m just a poor wandering Daoist. I’ve barely a few coins left in my pouch, and I still need them to get to Zhao Commandery, and...</p>
+</article>
+<article id="c597" data-label="597">
+<h2 class="chapter">Chapter 597: Please Lead the Way for Us Again 🔒</h2>
+<p>The big gray rat stood up, reaching above a person’s knee in height. It walked upright like a human, its body swaying slightly as it approached Lady Calico, grinning as it asked, “Little girl, do I look like a rat, a human, or an immortal?”</p>
+<p>“You look like a rat to me!” The little girl stared at it with a serious expression.</p>
+<p>“What did you say?” Upon hearing this, the big gray rat instantly flew into a rage, baring its teeth fiercely. “Say that again, what do I look like?!”</p>
+<p>The little girl wore a tri-colored outfit, her face fair and delicate. She continued to stare straight at it, unafraid of its anger. Instead, she asked, “Then do you think I look more like a human or a cat?”</p>
+<p>At the same time, she no longer concealed her scent. “What?”</p>
+<p>The big gray rat froze for a moment and sniffed. Only now did it catch the feline scent coming from the little girl.</p>
+<p>“...!”</p>
+<p>The rat was instantly alarmed, and it looked up quickly to see that the girl was still staring directly at it.</p>
+<p>In that split second, the expressionless little girl in its eyes had completely changed. She was no longer a serious child, but a cat intently focused in the midst of a hunt. A cat that was fully concentrated wouldn’t show much emotion, after all.</p>
+<p>At this time, terror gripped the rat, and its legs turned...</p>
+</article>
+<article id="c598" data-label="598">
+<h2 class="chapter">Chapter 598: Mortals and the City God Temple 🔒</h2>
+<p>The City God Temple of Yundu was shrouded in curling smoke.</p>
+<p>By the time Song You arrived, night had already fallen. There was only the faintest bit of light left between heaven and earth, with the last of the evening glow painting the background and making the outlines of the buildings stand out just enough to discern that this was a newly constructed temple.</p>
+<p>Someone had clearly come to offer incense earlier in the evening; the sticks had not yet burned out, and their crimson tips were still glowing in the darkness. Whether they had come to pray for peace and blessings or to seek protection from evil spirits and monsters, it was unknown.</p>
+<p>At this hour, there wasn’t a single soul on the mountain. Only the Daoist, the little girl, and a single guide made their way up the stone steps.</p>
+<p>The Daoist paused at the entrance. As usual, he lifted his head and carefully examined the temple plaque in the dim light.</p>
+<p>Inscribed above were three words, “<em>City God Temple.</em>”</p>
+<p>On either side, there were couplets.</p>
+<p>The couplet on the right read, “Come in and feel your heart, why not repent and mend your ways?”</p>
+<p>Meanwhile, the couplet on the left read, “Go out and do good deeds, what need is there to light candles and burn incense?”</p>
+<p>“...” The Daoist smiled faintly and stepped through the temple gate.</p>
+<p>Though it was a City God Temple, it...</p>
+</article>
+<article id="c599" data-label="599">
+<h2 class="chapter">Chapter 599: Learning a New Spell 🔒</h2>
+<p>“Daoist priest...”</p>
+<p>“What do you wish to ask of me, Lady Calico?”</p>
+<p>“Why did that rat ask whether it looked more like a rat, a human, or an immortal?”</p>
+<p>“That comes from a folk legend.”</p>
+<p>“A legend?”</p>
+<p>“Yes. That is, some demos, when they’re just about to take human form and attain the Dao, find themselves falling just a little short. They don’t know what they’re missing, and in their anxiety, they want to find out what they’re lacking. So they come down from the mountains to seek out humans, since humans are said to be the most intelligent of all beings. Some demons ask people what they should do. Others ask directly what they look like, hoping to get an answer from a human.”</p>
+<p>As Song You walked through the dark alleyway, he explained while walking, “In the legends, if a person says the demon looks like a human, then the demon can successfully take human form. If not, it must return to cultivate further.”</p>
+<p>“Is that true?”</p>
+<p>“There are cases where it’s happened,” Song You explained patiently. “When something works often enough and the stories spread long enough, not just humans believe it, even demons come to believe it too.”</p>
+<p>The guide behind them listened with wide eyes. Then, Lady Calico immediately followed up with another question, “Then what if someone says the monster looks like an im...</p>
+</article>
+<article id="c600" data-label="600">
+<span id="last"></span>
+<h2 class="chapter">Chapter 600: The Daoist and the Cat’s Reward 🔒</h2>
+<p>At the foot of the mountain, an official road wound its way into the distance.</p>
+<p>The guide sat alone by the roadside, waiting. The sun was far too harsh, so he had to hide under the trees. If not, he’d be scorched all over in no time. But even under the trees, the sunlight filtering through the leaves made his eyes dizzy. In such sweltering weather, drowsiness quickly crept in.</p>
+<p>The gentleman had said he would come down the mountain to find him.</p>
+<p>The guide had wanted to follow the gentleman up the mountain to witness what it was like when an immortal exorcised demons, but he also feared that, as a mere mortal, he might get caught up and lose his life by accident. So in the end, he stayed behind.</p>
+<p>At first, he felt this job was truly a heavenly task. There was no need to hustle at the city gates for passengers, no worrying about bad luck and making no money, nor about envy from fellow guides when business was good. He had steady income each day and even got to enjoy a fine meal at the Zhu family estate.</p>
+<p>But after waiting too long at the foot of the mountain, he began to feel that being alone with no one to talk to left him oddly uncomfortable, not knowing how to pass the time.</p>
+<p>He had heard people say that everyone had their fate, and maybe his was just a laborious one.</p>
+<p>These thoughts swirled endlessly in the guide’s mind.</p>
+<p>Suddenly, a loud rumble echoed from the...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="601-650.html" rel="next">Next: Chs 601–650 &rarr;</a>
+    <p class="page-end-links"><a href="501-550.html" rel="prev">&larr; Chs 501–550</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Unintended Immortality · Chs 551–600</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c551">Chapter 551: Where to Rest Tonight? 🔒</a></li>
+        <li><a href="#c552">Chapter 552: Seeking Shelter in the Storm 🔒</a></li>
+        <li><a href="#c553">Chapter 553: A Treasure That Lady Calico Likes 🔒</a></li>
+        <li><a href="#c554">Chapter 554: I Also Have a Supreme Treasure 🔒</a></li>
+        <li><a href="#c555">Chapter 555: Refusal to Trade 🔒</a></li>
+        <li><a href="#c556">Chapter 556: The World of the Western Regions 🔒</a></li>
+        <li><a href="#c557">Chapter 557: Naturally, It’s Up to Lady Calico 🔒</a></li>
+        <li><a href="#c558">Chapter 558: The Midnight Aroma Returns to the Western Regions 🔒</a></li>
+        <li><a href="#c559">Chapter 559: Traveling Merchants and the Western Regions 🔒</a></li>
+        <li><a href="#c560">Chapter 560: Resolving Karma 🔒</a></li>
+        <li><a href="#c561">Chapter 561: Lady Calico&#39;s Impressive Ability to Learn 🔒</a></li>
+        <li><a href="#c562">Chapter 562: Naturally, It’s All Thanks to Lady Calico 🔒</a></li>
+        <li><a href="#c563">Chapter 563: Teaching Thunder Magic 🔒</a></li>
+        <li><a href="#c564">Chapter 564: Finally Here 🔒</a></li>
+        <li><a href="#c565">Chapter 565: Just Let Them Hold Onto It for Now 🔒</a></li>
+        <li><a href="#c566">Chapter 566: The Daoist Has Arrived 🔒</a></li>
+        <li><a href="#c567">Chapter 567: The Demons Have Quite a Few Treasures 🔒</a></li>
+        <li><a href="#c568">Chapter 568: One Last Look at the Treasures Before Death 🔒</a></li>
+        <li><a href="#c569">Chapter 569: All Treasures Have Their Place 🔒</a></li>
+        <li><a href="#c570">Chapter 570: Gifts for the Worthy 🔒</a></li>
+        <li><a href="#c571">Chapter 571: I Shouldn’t Have Woken You Up 🔒</a></li>
+        <li><a href="#c572">Chapter 572: The Day Before Departure 🔒</a></li>
+        <li><a href="#c573">Chapter 573: I Have a Good Idea 🔒</a></li>
+        <li><a href="#c574">Chapter 574: Divine Mountain Snowstorm 🔒</a></li>
+        <li><a href="#c575">Chapter 575: An Ancient Voice 🔒</a></li>
+        <li><a href="#c576">Chapter 576: A Landscape Far from the Mortal World 🔒</a></li>
+        <li><a href="#c577">Chapter 577: The Divine Glacial Lake 🔒</a></li>
+        <li><a href="#c578">Chapter 578: Descending the Mountain 🔒</a></li>
+        <li><a href="#c579">Chapter 579: Returning to Yizhou 🔒</a></li>
+        <li><a href="#c580">Chapter 580: Return to Yidu Once More 🔒</a></li>
+        <li><a href="#c581">Chapter 581: Returning to Familiar Ground 🔒</a></li>
+        <li><a href="#c582">Chapter 582: Lady Calico, Do You Still Remember? 🔒</a></li>
+        <li><a href="#c583">Chapter 583: Seeking Old Friends 🔒</a></li>
+        <li><a href="#c584">Chapter 584: Time 🔒</a></li>
+        <li><a href="#c585">Chapter 585: It Had Long Since Changed 🔒</a></li>
+        <li><a href="#c586">Chapter 586: As If an Old Friend Passed By 🔒</a></li>
+        <li><a href="#c587">Chapter 587: The Greatest Gain of These Thirteen Years 🔒</a></li>
+        <li><a href="#c588">Chapter 588: Hidden Dragon Temple, as Spoken by Passersby 🔒</a></li>
+        <li><a href="#c589">Chapter 589: The Cat God and the Small Temple 🔒</a></li>
+        <li><a href="#c590">Chapter 590: Even Cats Had Their Glory Days 🔒</a></li>
+        <li><a href="#c591">Chapter 591: Sweeping Away the Filth and Miasma 🔒</a></li>
+        <li><a href="#c592">Chapter 592: Return to Yin-Yang Mountain 🔒</a></li>
+        <li><a href="#c593">Chapter 593: The Daoist and the Temple 🔒</a></li>
+        <li><a href="#c594">Chapter 594: In the Third Year of Da’an, an Autumn Journey to Yunzhou 🔒</a></li>
+        <li><a href="#c595">Chapter 595: Financial Crisis 🔒</a></li>
+        <li><a href="#c596">Chapter 596: Do I Look Like a Rat or a Human? 🔒</a></li>
+        <li><a href="#c597">Chapter 597: Please Lead the Way for Us Again 🔒</a></li>
+        <li><a href="#c598">Chapter 598: Mortals and the City God Temple 🔒</a></li>
+        <li><a href="#c599">Chapter 599: Learning a New Spell 🔒</a></li>
+        <li><a href="#c600">Chapter 600: The Daoist and the Cat’s Reward 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="501-550.html" rel="prev">&larr; Chs 501–550</a>    <a href="../../index.html">Library</a>
+<a href="601-650.html" rel="next">Chs 601–650 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

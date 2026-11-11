@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 401–450</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="351-400.html#last" data-next-page="451-500.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c401">Chapter 401: Withdraw 🔒</a></li>
+        <li><a href="#c402">Chapter 402: Desperate Fight 🔒</a></li>
+        <li><a href="#c403">Chapter 403: Black Mage’s Greed 🔒</a></li>
+        <li><a href="#c404">Chapter 404: Pursuit 🔒</a></li>
+        <li><a href="#c405">Chapter 405: Erupted From the Soil 🔒</a></li>
+        <li><a href="#c406">Chapter 406: Verdant Cage 🔒</a></li>
+        <li><a href="#c407">Chapter 407: Giant tortoise 🔒</a></li>
+        <li><a href="#c408">Chapter 408: Sense of Familiarity 🔒</a></li>
+        <li><a href="#c409">Chapter 409: Kinship 🔒</a></li>
+        <li><a href="#c410">Chapter 410: Mistaken 🔒</a></li>
+        <li><a href="#c411">Chapter 411: Mermaid 🔒</a></li>
+        <li><a href="#c412">Chapter 412: New Companion 🔒</a></li>
+        <li><a href="#c413">Chapter 413: Young 🔒</a></li>
+        <li><a href="#c414">Chapter 414: Early Arrival 🔒</a></li>
+        <li><a href="#c415">Chapter 415: Marmett Union Alliance’s Interest 🔒</a></li>
+        <li><a href="#c416">Chapter 416: Growth In Constitution 🔒</a></li>
+        <li><a href="#c417">Chapter 417: Strength Gained From Sleeping 🔒</a></li>
+        <li><a href="#c418">Chapter 418: Special Magnetic Field 🔒</a></li>
+        <li><a href="#c419">Chapter 419: Shopping 🔒</a></li>
+        <li><a href="#c420">Chapter 420: Buying Books 🔒</a></li>
+        <li><a href="#c421">Chapter 421: Soul Tower 🔒</a></li>
+        <li><a href="#c422">Chapter 422: Breathing Rate 🔒</a></li>
+        <li><a href="#c423">Chapter 423: Temporary Separation 🔒</a></li>
+        <li><a href="#c424">Chapter 424: Flood Dragon 🔒</a></li>
+        <li><a href="#c425">Chapter 425: Magic Beast Kings 🔒</a></li>
+        <li><a href="#c426">Chapter 426: Black Iron Fortress 🔒</a></li>
+        <li><a href="#c427">Chapter 427: Mechanic’s Hammer 🔒</a></li>
+        <li><a href="#c428">Chapter 428: Change In Perception 🔒</a></li>
+        <li><a href="#c429">Chapter 429: Experiments 🔒</a></li>
+        <li><a href="#c430">Chapter 430: Collar 🔒</a></li>
+        <li><a href="#c431">Chapter 431: Steel City 🔒</a></li>
+        <li><a href="#c432">Chapter 432: Mechanical Hornet 🔒</a></li>
+        <li><a href="#c433">Chapter 433: Reunion 🔒</a></li>
+        <li><a href="#c434">Chapter 434: Nagas of West Sea 🔒</a></li>
+        <li><a href="#c435">Chapter 435: Western Archipelago 🔒</a></li>
+        <li><a href="#c436">Chapter 436: Tourmaline’s Gift 🔒</a></li>
+        <li><a href="#c437">Chapter 437: White Stella 🔒</a></li>
+        <li><a href="#c438">Chapter 438: Sea Kings 🔒</a></li>
+        <li><a href="#c439">Chapter 439: Two Shields 🔒</a></li>
+        <li><a href="#c440">Chapter 440: Geyzes City 🔒</a></li>
+        <li><a href="#c441">Chapter 441: Located 🔒</a></li>
+        <li><a href="#c442">Chapter 442: House Sneller 🔒</a></li>
+        <li><a href="#c443">Chapter 443: Presenting Gifts 🔒</a></li>
+        <li><a href="#c444">Chapter 444: Human Nature 🔒</a></li>
+        <li><a href="#c445">Chapter 445: Blackhaven 🔒</a></li>
+        <li><a href="#c446">Chapter 446: Basic Information 🔒</a></li>
+        <li><a href="#c447">Chapter 447: Gazes From The Shadow 🔒</a></li>
+        <li><a href="#c448">Chapter 448: Meeting Faye Again 🔒</a></li>
+        <li><a href="#c449">Chapter 449: Catching Up 🔒</a></li>
+        <li><a href="#c450">Chapter 450: Sponsor 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c401" data-label="401">
+<h2 class="chapter">Chapter 401: Withdraw 🔒</h2>
+<p>Sein had significantly modified his Verdant Flame Eye spell following the end of the Viridian Venom Flame World war.</p>
+<p>At that time, his primary research focus was on integrating the power of Verdant Flame into the spell, rather than increasing the number of Solar Eye beams per round.</p>
+<p>However, more than ten Verdant Flame Eyes had materialized in front of Sein at this moment, nearly doubling their previous count.</p>
+<p>This dramatic increase was not only due to the Verdant Flame Heart Rod, which significantly amplified the power of the Verdant Flame elemental power but also because of a temporary doubling in Sein’s mental focus.</p>
+<p>Mental focus was crucial for mages, as it enabled them to draw elemental energies from the surrounding space, thereby enhancing their magic prowess.</p>
+<p>For example, a Minor Fireball spell cast by a junior...</p>
+</article>
+<article id="c402" data-label="402">
+<h2 class="chapter">Chapter 402: Desperate Fight 🔒</h2>
+<p>A mournful howl echoed above the sea just as Sein and Yuri turned around.</p>
+<p>The only remaining Rank One knight was impaled by the black mage’s magic rod, which was a unique bone rod tipped with a white bone claw.</p>
+<p>Sein suspected that this claw was not crafted through alchemy but was instead fashioned from the palm of a formidable otherworldly creature.</p>
+<p>The potent magic fluctuations emanating from the rod suggested that, while it might not rival Sein’s Verdant Flame Heart Rod, it was far from ordinary.</p>
+<p>As the Rank One knight lay grievously wounded, a gust of wind swept across the sea’s surface.</p>
+<p>Thatch had gathered a raging aero elemental power, not for battle but for escape.</p>
+<p>Both he and Sein had quickly recognized the futility of resistance.</p>
+<p>The sensible and calm qualities typically exhibited by mages enabled these two...</p>
+</article>
+<article id="c403" data-label="403">
+<h2 class="chapter">Chapter 403: Black Mage’s Greed 🔒</h2>
+<p>Instead of dampening Sein’s resolve, the raging storm spurred him to move faster toward it.</p>
+<p>The convergence point of the storm that Yuri had discovered was larger and more perilous than anticipated.</p>
+<p>Initially, when Sein was at a distance, he had not fully grasped its magnitude.</p>
+<p>As he drew closer to the storm’s eye, the ferocious storm force nearly swept even a Rank One mage like him away.</p>
+<p>Beneath the tumultuous sky, the sea roiled with swirling currents and whirlpools that mirrored the overhead chaos, compounding the danger of the area!</p>
+<p>In addition to Yuri, Sein was accompanied by two gray-white mecha units on the verge of being scrapped.</p>
+<p>These grayish-white mechas had shielded Sein from harm...</p>
+</article>
+<article id="c404" data-label="404">
+<h2 class="chapter">Chapter 404: Pursuit 🔒</h2>
+<p>After casting a menacing glance at the giant ship below and instilling fear in those on board, the Rank Two black mage let out a cold chuckle and prepared to continue his pursuit of Sein.</p>
+<p>However, before he could depart, a tiny beam of energy shot from the deck below and struck him squarely.</p>
+<p>Van Basten’s body faltered slightly in the sky, but he sustained no significant damage.</p>
+<p>Looking down, he spotted a red-haired intermediate initiate near a magic cannon at the corner of the cargo area.</p>
+<p>The two main magic cannons of this alchemy ship had been destroyed by Van Basten early in the battle.</p>
+<p>The cannon that the intermediate initiate had just fired...</p>
+</article>
+<article id="c405" data-label="405">
+<h2 class="chapter">Chapter 405: Erupted From the Soil 🔒</h2>
+<p>Sein had finally reached the island at the center of the storm.</p>
+<p>It was a small, circular island with a diameter of a thousand meters. Despite its size, the island was lush with vegetation.</p>
+<p>There were trees resembling coconut palms, but they bore peculiar fruits that emitted an aura distinct from typical magic ingredients.</p>
+<p>These appeared to be rare and special fruits, unlike any Sein had seen in the field guide prepared by Frank.</p>
+<p>Under normal circumstances, Sein would have been thrilled and eager to study these unique plants as he did along the southern coast.</p>
+<p>However,...</p>
+</article>
+<article id="c406" data-label="406">
+<h2 class="chapter">Chapter 406: Verdant Cage 🔒</h2>
+<p>The sudden emergence of a dozen plant creatures abruptly silenced the raspy laughter of the Rank Two black mage, who hovered at a low altitude.</p>
+<p>Although these creatures, bred in Lorianne’s world laboratory were typically used as cannon fodder, the appearance of over a dozen Rank One and Two beings entities startled even a black mage of Van Basten’s mental fortitude.</p>
+<p>The most shocking were the four massive plants, towering over twenty meters high and exuding the aura of Rank Two creatures. As their verdant vines lashed out, Van Basten’s first instinct was to flee!</p>
+<p>However, he was already trapped. There was no way Sein would allow him the chance to escape!</p>
+<p>The greatest...</p>
+</article>
+<article id="c407" data-label="407">
+<h2 class="chapter">Chapter 407: Giant tortoise 🔒</h2>
+<p>Van Basten, the Rank Two black mage, proved to be a formidable opponent.</p>
+<p>This was a fact Sein had come to realize back on the alchemy ship.</p>
+<p><em>Hoot, hoot!</em></p>
+<p>Amidst the turmoil, a mournful cry pierced the air. Sev plummeted from the sky, leaving behind a shower of blood and a scattering of brownish-gray feathers.</p>
+<p>Close combat always carried inherent risks.</p>
+<p>Despite its impressive constitution as a magic beast, Sev suffered the loss of one of its wings in the fierce confrontation.</p>
+<p>Meanwhile, Yuri was still fighting on the frontline in her Burning Flame Unit.</p>
+<p>Sein rejoiced in his decision to invest heavily in Yuri.</p>
+<p>With Sein’s unwavering financial support, the Burning Flame Unit underwent extensive restoration efforts. While it had not yet returned to its peak state, the mecha had regained approximately eighty percent of its former strength.</p>
+<p>Its sturdy metal shell and ample energy reserves enabled the towering steel construct,...</p>
+</article>
+<article id="c408" data-label="408">
+<h2 class="chapter">Chapter 408: Sense of Familiarity 🔒</h2>
+<p>Everything happened so fast that Sein found himself frozen in shock atop the tortoise’s massive back as the Rank Two black mage, Van Basten, was violently swatted into the depths of the sea.</p>
+<p>The sheer terror of the giant tortoise’s strength could be discerned through the Rank Two black mage’s desperate scream.</p>
+<p>Previously, Van Basten had withstood attacks from Sein and his plant allies, even successfully escaping their vine cage.</p>
+<p>Yet against this giant tortoise, he could not mount any meaningful resistance and plunged into the sea, along with the ominous black shadow.</p>
+<p>It was unmistakably clear that the dark shadow was none other than the tail of the...</p>
+</article>
+<article id="c409" data-label="409">
+<h2 class="chapter">Chapter 409: Kinship 🔒</h2>
+<p>“May I ask where you’re headed?” Sein asked since the giant tortoise had just saved his life and was friendly to him.</p>
+<p>On top of that, a casual conversation could build a friendship between them.</p>
+<p>“I’m returning to the Western Archipelago. Why do you ask?” the giant tortoise replied honestly, leaving Sein to wonder whether it was simply naive or viewed humans as too insignificant to be cautious around.</p>
+<p>Sein was pleasantly surprised by the revelation. With a smile, he asked, “I’m also bound for the Western Archipelago. May I travel with you?”</p>
+<p>The giant tortoise looked at him with its large, round eyes before replying, “Of course, and no need to speak formally—you’re making...</p>
+</article>
+<article id="c410" data-label="410">
+<h2 class="chapter">Chapter 410: Mistaken 🔒</h2>
+<p>Had it not been for Sein’s reminder, Tourmaline might have forgotten about the Rank Two black mage and his remains might have been lost to the depths of the sea.</p>
+<p>For Tourmaline, the corpse of a Rank Two black mage might be worthless, but that was not the case for Sein!</p>
+<p>However, it was not the mage’s magicoins or material wealth that drew Sein’s attention; it was the wealth of knowledge that the mage possessed.</p>
+<p>Sein was keenly interested in the mage’s expertise in soul magic, alchemy, or any magic notes he had left behind!</p>
+<p>When Tourmaline retrieved the Rank Two black mage’s body from the sea, his corpse had already reverted to human...</p>
+</article>
+<article id="c411" data-label="411">
+<h2 class="chapter">Chapter 411: Mermaid 🔒</h2>
+<p>Sein was perplexed by the concept of “youth” among the giant tortoises.</p>
+<p>He found it difficult to call a nearly five-thousand-year-old tortoise, with a shell spanning nearly a kilometer wide, a “baby tortoise”.</p>
+<p>In the Magus World, dragons matured within about a thousand years, evolving into beings of Rank Two or higher.</p>
+<p>It seemed like tortoises had a longer growth cycle compared to dragons…</p>
+<p>If they were already so formidable in their youth, Sein could hardly imagine how terrifying they would become upon reaching adulthood.</p>
+<p>Sein was unsure how much longer it would take for the tortoise to reach maturity, but he was deeply curious about its...</p>
+</article>
+<article id="c412" data-label="412">
+<h2 class="chapter">Chapter 412: New Companion 🔒</h2>
+<p>Although irritated by the mermaid’s threat, Sein did not outright reject her request.</p>
+<p>Instead, he probed, “As a member of the imperial family in the Magus World’s ocean, surely your kind possess secret techniques to undo soul control. Why seek help from a mage like me instead of returning to your family?”</p>
+<p>This question showed Sein’s wariness toward the mermaid.</p>
+<p>He had numerous secrets, especially now, as his journey to the Blackhaven was far from a mere vacation.</p>
+<p>Having a mermaid as a companion proved to be more of a burden than a benefit.</p>
+<p>The mermaid did not directly answer Sein’s question.</p>
+<p>The reason behind her decision was tied to specific...</p>
+</article>
+<article id="c413" data-label="413">
+<h2 class="chapter">Chapter 413: Young 🔒</h2>
+<p>Above the vast turquoise sea, a battered alchemy ship sailed forward at an agonizingly slow pace, contradicting its massive build.</p>
+<p>Despite its sluggish speed, it continued its northward journey steadily.</p>
+<p>Sein marveled upon spotting it; it was remarkable that the vessel was still operational.</p>
+<p>Tourmaline, with only its back visible above the water, was comparable in size to the giant alchemy ship.</p>
+<p>Yet, if one considered the entirety of Tourmaline’s submerged body, it clearly dwarfed the ship.</p>
+<p>The sudden emergence of a colossal dragon turtle stirred panic among the remaining magic initiates and sailors aboard the alchemy ship.</p>
+<p>The memory of the black...</p>
+</article>
+<article id="c414" data-label="414">
+<h2 class="chapter">Chapter 414: Early Arrival 🔒</h2>
+<p>After Sein repaired the Guilleman Chamber of Commerce’s alchemy ship, it sailed significantly faster than before.</p>
+<p>After all, his expertise in alchemy far surpassed that of the few magic initiates on board.</p>
+<p>With a dragon turtle leading the way, the giant ship sailed even faster than before when two humpback whales pulled it.</p>
+<p>Sein discovered that Tourmaline held a high reputation across the Boundless South Sea of the Magus World.</p>
+<p>It seemed that not only did Elisa, the pink-tailed mermaid, regard it as Sea God, but all aquatic races they encountered on their voyage revered Tourmaline similarly.</p>
+<p>During their journey to the Marmett Union Alliance, Sein...</p>
+</article>
+<article id="c415" data-label="415">
+<h2 class="chapter">Chapter 415: Marmett Union Alliance’s Interest 🔒</h2>
+<p>House Guilleman had its own office and chamber of commerce in Cannes Sea City.</p>
+<p>When the giant alchemy ship, escorted by numerous aquatic races, approached the nearby seas of Cannes Sea City within the Marmett Union Alliance, news of its arrival had already been circulated.</p>
+<p>The Marmett Union Alliance had swiftly mobilized dozens of ranked knights and full-fledged mages to escort the ship.</p>
+<p>It was clear that neither Sein nor the Guilleman Chamber of Commerce’s ship he was aboard was influential enough to warrant such an escort.</p>
+<p>Instead, it was Tourmaline, the immense dragon turtle leading the ship and resembling a small moving island, that drew the Marmett Union Alliance’s ...</p>
+</article>
+<article id="c416" data-label="416">
+<h2 class="chapter">Chapter 416: Growth In Constitution 🔒</h2>
+<p>The Marmett Union Alliance arranged for the dragon turtle Tourmaline to rest on a shoal on the eastern side of Cannes Sea City.</p>
+<p>It was a sunny and serene spot, scarcely disturbed by wildlife.</p>
+<p>To the south, a large river, over seven kilometers wide, flowed into the South Sea.</p>
+<p>Clauser, the Rank Two knight of Cannes Sea City, had carefully considered the situation. He anticipated that Sein and his companions would likely journey northward across the Marmett Union Alliance.</p>
+<p>This foresight led him to position Sein and Tourmaline at this strategic sea inlet.</p>
+<p>Rows of opulent white castles could be seen near the shoal. They were the properties of Cannes Sea City’s elite.</p>
+<p>Among these, a...</p>
+</article>
+<article id="c417" data-label="417">
+<h2 class="chapter">Chapter 417: Strength Gained From Sleeping 🔒</h2>
+<p>“You’re a Rank One mage from the Divine Tower of Verdant Spring in Viridescent Land, and an apprentice of Lorianne?” the green-robed mage asked calmly after Sein approached him.</p>
+<p>His presence was different from that of ordinary Rank Two or Three spellcasters. It was powerful and dignified, yet also soothing.</p>
+<p>Although Sein’s elemental power was not being suppressed at this moment, he still sensed an imaginary overwhelming aura from the green-robed mage before him.</p>
+<p>No, it was not imaginary but real!</p>
+<p>Among the many mages and high-ranking beings Sein had encountered, only a few radiated such an aura.</p>
+<p>These included Master Gregory and the Grandmaster Feylis, whom he had met while attending their faction’s gathering with Lorianne.</p>
+<p>Even Lorianne herself...</p>
+</article>
+<article id="c418" data-label="418">
+<h2 class="chapter">Chapter 418: Special Magnetic Field 🔒</h2>
+<p>Navigating upstream along the river, Sein and Tourmaline made their way to the heart of the Marmett Union Alliance.</p>
+<p>Despite traveling by water, Tourmaline’s pace significantly outstripped Sein’s earlier travels along the southern coast.</p>
+<p>However, the Marmett Union Alliance’s territory was much bigger than the southern coast, and Sein’s journey had only covered some riverine areas in the eastern part of the alliance.</p>
+<p>Nevertheless, this journey proved immensely beneficial for Sein.</p>
+<p>His bond with Tourmaline deepened, and he spent much of the trip atop the dragon turtle’s massive back, which was covered in a layer of soil and lush vegetation.</p>
+<p>With Tourmaline’s permission, Sein harnessed his magic...</p>
+</article>
+<article id="c419" data-label="419">
+<h2 class="chapter">Chapter 419: Shopping 🔒</h2>
+<p>“How strong is your fourth brother?” Sein asked, unable to contain his curiosity as he lay on Tourmaline’s back.</p>
+<p>He had learned that subtlety was lost on Tourmaline. Rather than tiptoe around a subject, direct questions yielded better results.</p>
+<p>As expected, Tourmaline responded honestly without hesitation, “Fourth Brother isn’t as strong as Third Sister. I remember seeing it getting beaten up by Third Sister when we were young.”</p>
+<p>“But Fourth Brother is all grown-up now, and Third Sister once mentioned that it’s a handful,” Tourmaline added, tilting its head slightly as if trying to decipher its sister’s exact meaning of “handful”.</p>
+<p>Sein nodded thoughtfully,...</p>
+</article>
+<article id="c420" data-label="420">
+<h2 class="chapter">Chapter 420: Buying Books 🔒</h2>
+<p>Sein sensed that the bald old man before him, clearly in the twilight of his years, was likely a senior initiate.</p>
+<p>Surprisingly, when a full-fledged mage like Sein entered his modest shop, the old man made no attempt to rise and welcome him.</p>
+<p>Instead, he remained seated on a bamboo chair, fixing his cloudy eyes with barely visible black pupils on Sein as he entered.</p>
+<p>Sein found the old man’s indifference intriguing and did not mind it. He simply began to explore the shop on his own.</p>
+<p>Tucked away in a poor location in the southwestern part of Dimos Port, the small, rundown shop appeared seldom visited, with every corner covered by dust and dirt.</p>
+<p>It was unclear...</p>
+</article>
+<article id="c421" data-label="421">
+<h2 class="chapter">Chapter 421: Soul Tower 🔒</h2>
+<p>After returning to the riverbank, Sein resumed his journey northward with Tourmaline.</p>
+<p>Tourmaline was hardly even aware of Sein’s two-day absence. It felt as though Sein had already returned literally in the blink of an eye.</p>
+<p>On top of that, Sein had brought it some new trinkets from the Marmett Union Alliance.</p>
+<p>Looking into Tourmaline’s big eyes, Sein said, “I heard that some exceptionally gifted creatures in the Magus World can assume human or other forms even at Rank Two or Three. Can you do that too, Tourmaline…?”</p>
+<p>Tourmaline shook its large head and replied, “Not yet, but my Third Sister and Fourth Brother can. I suppose I’ll need to wait until I’m an adult...</p>
+</article>
+<article id="c422" data-label="422">
+<h2 class="chapter">Chapter 422: Breathing Rate 🔒</h2>
+<p>After a brief incantation, two black samurais and an undead knight riding on a white skeleton warhorse slowly emerged from a pitch-black summoning vortex on the grassland atop Tourmaline’s back.</p>
+<p>There were two types of undead summoning.</p>
+<p>The first involved local summoning, which used less mana but required the presence of sufficient skeletons or blood sacrifices in the area.</p>
+<p>The second type summoned entities directly from the otherworld, consuming more focus and mana but placing fewer requirements on the surrounding environment.</p>
+<p>Regardless of the method, necromancy and summoning magic were deeply related.</p>
+<p>Sein was currently testing out the undead summoning spell he had recently master...</p>
+</article>
+<article id="c423" data-label="423">
+<h2 class="chapter">Chapter 423: Temporary Separation 🔒</h2>
+<p>It had taken Sein nearly half a month to finally ascertain the normal breathing rate of Tourmaline, as well as its muscle vibration frequency when it entered a light sleep state.</p>
+<p>Sein dared not let Tourmaline fall into a “deep sleep”. Once it was fully asleep, waking it up would be challenging.</p>
+<p>And even if he managed to wake it, Tourmaline might be in a foul mood afterward—what happened to the Rank Two black mage was a stark reminder of such consequences.</p>
+<p>After collecting all the necessary data, Sein, guided by his keen intuition as both a mage and a truth seeker, discovered that Tourmaline&#39;s sleep respiratory rate and muscle vibration frequency conformed to some sort of esoteric law.</p>
+<p>This...</p>
+</article>
+<article id="c424" data-label="424">
+<h2 class="chapter">Chapter 424: Flood Dragon 🔒</h2>
+<p>Sein felt more at ease with Sev accompanying Tourmaline, though he was still a little worried that the dragon turtle might not return for him.</p>
+<p>It was not that Sein did not trust Tourmaline, but he was aware that accidents could happen. For instance, what if Tourmaline’s brother decided not to let Tourmaline leave?</p>
+<p>With other surprises and variables in play, having Sev by Tourmaline’s side was reassuring.</p>
+<p>He knew that Sev’s loyalty to him was unwavering, which alleviated any worries about potentially losing Tourmaline.</p>
+<p>As they prepared to part, a dark shadow gradually descended from the distant sky, accompanied by a mighty and oppressive...</p>
+</article>
+<article id="c425" data-label="425">
+<h2 class="chapter">Chapter 425: Magic Beast Kings 🔒</h2>
+<p>The first to emerge from the clouds was a large bird with a pure white body.</p>
+<p>While slightly smaller than Tourmaline’s brother, its wingspan easily exceeded a thousand meters.</p>
+<p>Following closely was a massive yellow crab, measuring over two thousand meters in width. Despite its vast width, the crab was notably flat and flew horizontally as it descended from the sky.</p>
+<p>The third to appear was a white tiger, with a crescent moon mark on its forehead. Comparable in size to the large bird, it carried an air of majesty that surpassed the others.</p>
+<p>The white tiger gracefully stepped the air as it descended from the sky, exuding a noble presence.</p>
+<p>The last to emerge from the dark clouds was a two-headed giant gray wolf.</p>
+<p>The sheer size of...</p>
+</article>
+<article id="c426" data-label="426">
+<h2 class="chapter">Chapter 426: Black Iron Fortress 🔒</h2>
+<p>Sein had no intention of getting to know the magic beast kings either—the gap between their life levels was simply too vast.</p>
+<p>Besides, Sein was not the type to shamelessly make his presence known to the others.</p>
+<p>Surprisingly, one of the magic beast kings took the initiative to speak with him instead. It was the white tiger, bearing the mark of a silver-colored crescent moon on its forehead.</p>
+<p>Instead of departing with Black Oblivion and the others, it turned its head toward Sein and said, “By the way, my name is Milena. Good day to you.”</p>
+<p>The white tiger’s initiative stunned Sein, but he quickly recovered and then bowed respectfully to it.</p>
+<p>“I’m Sein, from the Divine Tower...</p>
+</article>
+<article id="c427" data-label="427">
+<h2 class="chapter">Chapter 427: Mechanic’s Hammer 🔒</h2>
+<p>In the heart of Black Iron Fortress, there was an alchemy store known as the Mechanic’s Hammer. Here, Sein saw one-seater flight pods in the shape of an egg.</p>
+<p>Priced at five hundred magicoins each, these pods came with a maintenance plan.</p>
+<p>Although the cost of these flight pods might seem steep, it was reasonably priced.</p>
+<p>Most full-fledged mages could afford one after saving up for some time or after participating in an interplanar war.</p>
+<p>However, in the Magus World, only a few mages who were not mechanics utilized these gear-operated alchemy creations.</p>
+<p>Even mechanics rarely purchase the pods directly from the shop. Instead, they would buy the...</p>
+</article>
+<article id="c428" data-label="428">
+<h2 class="chapter">Chapter 428: Change In Perception 🔒</h2>
+<p>Sein had spent less than a week at Black Iron Fortress.</p>
+<p>In addition to purchasing numerous alchemy materials and various trinkets that he fancied, Sein’s most significant acquisitions were spare parts for mechas from the Neisse Civilization for Yuri.</p>
+<p>As one of the primary beneficiaries of the Neisse Star Domain War, Steel City had plundered a large amount of resources from the Neisse Civilization.</p>
+<p>These assets included both material wealth and intellectual property.</p>
+<p>The development path of engineers in the Neisse civilization shared many similarities with the mechanics of the Magus World, offering valuable lessons for both.</p>
+<p>Yuri’s mecha units had already suffered damage previously....</p>
+</article>
+<article id="c429" data-label="429">
+<h2 class="chapter">Chapter 429: Experiments 🔒</h2>
+<p>The experiment Sein was about to conduct on the mermaid named Elisa was soul modification, instead of the soul seal removal she had expected.</p>
+<p>Sein, it turned out, was not as benevolent as Elisa had hoped.</p>
+<p>Before the experiment began, Elisa finally remembered that she should sign a magic contract with Sein, but he rejected her request.</p>
+<p>“I need to focus all my energy on removing the soul seal on your forehead, and I can’t waste any of it to create a magic contract right now. You wouldn’t want to end up as a retard due to my experimental errors, would you?” he said.</p>
+<p>Elisa, not well-versed...</p>
+</article>
+<article id="c430" data-label="430">
+<h2 class="chapter">Chapter 430: Collar 🔒</h2>
+<p>Sein spent six months in Esca Underground Metal City.</p>
+<p>During this time, he had conducted a myriad of experiments—not only on Elisa, the mermaid, and Yuri, the female engineer but also on himself.</p>
+<p>After this intensive half-year of experimentation and enhancements, Sein observed significant changes in his capabilities.</p>
+<p><em>Focus: 180.1</em></p>
+<p><em>Mana: 191.3</em></p>
+<p><em>Constitution: 129.4</em></p>
+<p>The notable increase in his focus stemmed from Sein’s relentless pursuit of knowledge over the past six months.</p>
+<p>His mana had grown at a moderate rate.</p>
+<p>However, Sein was somewhat dissatisfied with the progress of his constitution.</p>
+<p>It had reached a plateau even though he had been diligently...</p>
+</article>
+<article id="c431" data-label="431">
+<h2 class="chapter">Chapter 431: Steel City 🔒</h2>
+<p>After completing the majority of his important experiments, Sein left Esca Underground City along with Yuri and Elisa.</p>
+<p>Esca Underground City was connected to the rest of the places in Steel City’s territory by a teleportation array.</p>
+<p>As Sein spent more time in Steel City’s territory, he noticed a significant difference between it and the southern coast of the Magus World—the cost of using the teleportation arrays was remarkably low.</p>
+<p>For just two magicoins, one could travel between cities within Steel City’s territory using the teleportation array.</p>
+<p>The affordable fare of the teleportation service in Steel City was truly commendable.</p>
+<p>It suggested that Steel City’s alchemy craftsmanship had managed to reduce the operating cost of a...</p>
+</article>
+<article id="c432" data-label="432">
+<h2 class="chapter">Chapter 432: Mechanical Hornet 🔒</h2>
+<p>Steel City struck Sein with profound awe.</p>
+<p>It represented a unique civilization distinctly separate from the rest of the Magus World.</p>
+<p>Over the past two years, Sein had journeyed through the southern coast and numerous territories within the Marmett Union Alliance. Yet, this was his first time visiting the heart of a leading major force in the Magus World.[1]</p>
+<p>Steel City was considered a sacred city by the mechanics, holding an influence comparable to that of Sky City among the mages in the Magus World.</p>
+<p>The city’s advancements in magitech were unparalleled. Upon approaching the outskirts of Steel City, Sein repeatedly observed a variety of flying machines—each different in shape and function—soaring and hovering throughout the area.</p>
+<p>He also encountered numerous...</p>
+</article>
+<article id="c433" data-label="433">
+<h2 class="chapter">Chapter 433: Reunion 🔒</h2>
+<p>Sein spent his time exploring the middle and outer areas of Steel City to enrich his knowledge.</p>
+<p>Although Sein wished to explore the heart of Steel City, he lacked the necessary permission to do so.</p>
+<p>Entry to the deeper central area was restricted to mechanics of Rank two and above, with authorization from the relevant mechanical divine towers.</p>
+<p>The Magus World was never overly exclusionary. Although elementalists could gain access to those parts, Sein, unfortunately, did not qualify for this privilege.</p>
+<p>Sein speculated that he would need to become at least a Rank Three grand mage before he could gain access...</p>
+</article>
+<article id="c434" data-label="434">
+<h2 class="chapter">Chapter 434: Nagas of West Sea 🔒</h2>
+<p>After a year and a half apart, both Tourmaline and Sein were overjoyed to see each other again.</p>
+<p>Even so, a year and a half was not long enough to dilute the friendship between the mage and the dragon turtle.</p>
+<p>Tourmaline recounted its experiences since arriving at Sage’s Forest, while Sein shared his updates from the past eighteen months.</p>
+<p>It turned out that Tourmaline had already arrived at this sea inlet nearly a year ago.</p>
+<p>In total, Tourmaline had only spent less than two months at Sage’s Forest.</p>
+<p>With its brother, Black Oblivion, leaving the Magus World, Tourmaline found little reason to remain in Sage’s Forest alone and decided to leave.</p>
+<p>It spent four months traveling to an inlet...</p>
+</article>
+<article id="c435" data-label="435">
+<h2 class="chapter">Chapter 435: Western Archipelago 🔒</h2>
+<p>These changes in Sev could be classified as a benign biological evolution.</p>
+<p>Sein was uncertain about the exact changes that the blood of a Rank Four creature had induced in Sev, but recent tests revealed that Sev’s stats had improved markedly compared to two years ago.</p>
+<p>Such enhancement was beyond what could be achieved through mere diet, sleep, or rigorous training.</p>
+<p>During these two years, Sein had diligently continued with the Verdant Flame body tempering experiment.</p>
+<p>Yet, his growth in constitution was still slower than Sev, who had benefited from the blood of a Rank Four creature.</p>
+<p>Naturally, Sein was pleased with this outcome, so much so that upon learning of...</p>
+</article>
+<article id="c436" data-label="436">
+<h2 class="chapter">Chapter 436: Tourmaline’s Gift 🔒</h2>
+<p>Sea God Bay was surrounded by five medium-sized islands.</p>
+<p>These “islands”, bigger than the main continent in an average low-level plane, were prepared by the knights and mages from the Western Archipelago to accommodate Tourmaline’s family.</p>
+<p>Beyond these five medium-sized islands, the bay was surrounded by about twenty-one smaller islands and over three hundred micro-sized islands and islets.</p>
+<p>Overall, the total area of this region alone rivaled that of a medium-sized realm—perhaps even surpassing it.</p>
+<p>This special area, which Sein might not fully explore even within a hundred years, was Tourmaline’s home.</p>
+<p>The fact that this region was named the “Sea God Bay” highlighted...</p>
+</article>
+<article id="c437" data-label="437">
+<h2 class="chapter">Chapter 437: White Stella 🔒</h2>
+<p>Sein had met Tourmaline’s fourth brother, Black Oblivion.</p>
+<p>After several years together, Sein learned that Tourmaline was closest to its third sister, who had practically raised it, and its fourth brother.</p>
+<p>Between the two, Tourmaline cherished its third sister the most. Their bond surpassed even those with their parents and other elder brothers.</p>
+<p>After his experience with Black Oblivion, Sein mentally prepared himself to meet Tourmaline’s third sister.</p>
+<p>Yet, when he finally saw her, she defied all his expectations!</p>
+<p>As white waves surged, a pure white fishtail emerged within Sein’s view.</p>
+<p>However, what astonished...</p>
+</article>
+<article id="c438" data-label="438">
+<h2 class="chapter">Chapter 438: Sea Kings 🔒</h2>
+<p>Tourmaline’s sister, White Stella, should technically be classified as a dragon fish[1]—a distinct subgenre of dragon.</p>
+<p>Although the amount of her dragon blood in her might be slightly less than that of Black Oblivion, there was no denying that White Stella was the more formidable of the two!</p>
+<p>This was not merely because she was older than Black Oblivion and had cultivated her powers for a longer period but because White Stella also possessed significant influence over the Sea Kings within the Magus World!</p>
+<p>The Sea Kings were exceedingly rare and special creatures that resided in the deeper parts of the vast ocean in the Magus World.</p>
+<p>It was almost impossible...</p>
+</article>
+<article id="c439" data-label="439">
+<h2 class="chapter">Chapter 439: Two Shields 🔒</h2>
+<p>Sein stayed in the undersea crystal palace at Sea God Bay for about a week.</p>
+<p>For beings like Tourmaline and White Stella, who boasted extensive lifespans, a week was merely the beginning of the party.</p>
+<p>However, driven by mounting anxiety, Sein felt compelled to leave. He apologized to the noble draconic creatures for his early departure, especially since White Stella had been a great host during his stay.</p>
+<p>While Tourmaline understood his reasons, there was a trace of sadness in its dark, round eyes.</p>
+<p>Before departing, Sein checked his stats:</p>
+<p><em>Focus: 220.7</em></p>
+<p><em>Mana: 230.1</em></p>
+<p><em>Constitution: 201</em></p>
+<p>The figures for Sein’s mana and constitution had not only met but vastly exceeded his expectations from over a year ago. His...</p>
+</article>
+<article id="c440" data-label="440">
+<h2 class="chapter">Chapter 440: Geyzes City 🔒</h2>
+<p>Located in the east-central region of the Western Archipelago, Thousand Leaf Coral Island was relatively small, spanning only a fifth the size of the Viridescent Land.</p>
+<p>This compact island was home to three human nations, under the governance of the nearby Order of Star Knights.</p>
+<p>When Sein emerged from White Stella’s water gate, he found himself in the outer waters of Thousand Leaf Coral Island.</p>
+<p>Sein gathered various information on the island and pieced them together.</p>
+<p>Since Thousand Leaf Coral Island was not part of Blackhaven, the security in this region was decent.</p>
+<p>Under the protection of an order of the knights, the black mages and black knights to the north were deterred from causing significant trouble in the area.</p>
+<p>Despite this, the influence of...</p>
+</article>
+<article id="c441" data-label="441">
+<h2 class="chapter">Chapter 441: Located 🔒</h2>
+<p><em>The conflict here on Thousand Leaf Coral Island surpasses even the war between the Lysian Alliance of the Viridescent Land and its two adjacent human nations in both intensity and chaos.</em></p>
+<p><em>The scale of this is on another level compared to the “Nation War Plan” orchestrated by the orders of the knights.</em></p>
+<p><em>Unlike the war between the Lysian Alliance and its two neighboring human nations, where civilian massacres and plagues are virtually unheard of, the situation here is distinctly more brutal.</em></p>
+<p><em>This may be because the orders of the knights charged with managing this area are failing in their duties, or perhaps due to the proximity to Blackhaven.</em></p>
+<p>Sein pondered atop his horse.</p>
+<p>A burly, bearded man approached...</p>
+</article>
+<article id="c442" data-label="442">
+<h2 class="chapter">Chapter 442: House Sneller 🔒</h2>
+<p>Sein did not knock. Instead, he vanished in a flash.</p>
+<p>With his formidable constitution, Sein had complete control over his muscles.</p>
+<p>For instance, he did not even need to fly into Geyzes City. He simply leaped over the city walls to get in.</p>
+<p>His constitution of over two hundred points allowed him to match knights who had recently advanced to Rank One in arm wrestling.</p>
+<p>As Sein&#39;s constitution grew, his fighting style evolved too.</p>
+<p>However, Sein did not fully capitalize on his superior constitution during the confrontation with a Rank Two black mage a few years earlier because he was uncomfortable with engaging enemies at close range.</p>
+<p>Yet, his...</p>
+</article>
+<article id="c443" data-label="443">
+<h2 class="chapter">Chapter 443: Presenting Gifts 🔒</h2>
+<p>One might question if House Sneller still possessed any “treasures” or “heirlooms” after all that.</p>
+<p>Decades ago, House Sneller was barely scraping by, relying on just one or two remaining heirlooms.</p>
+<p>But this changed thirty years ago when House Sneller received two mysterious guests, a man and a woman.</p>
+<p>Although they did not reveal their identities, they left House Sneller several rare magic items before departing.</p>
+<p>These artifacts represented new opportunities for the family’s resurgence!</p>
+<p>Seventeen years later, the male guest returned with even greater generosity, bestowing upon House Sneller...</p>
+</article>
+<article id="c444" data-label="444">
+<h2 class="chapter">Chapter 444: Human Nature 🔒</h2>
+<p>The parchment scroll Sein received was a magic map.</p>
+<p>When Sein touched the parchment with his elemental power, it emitted a faint glow.</p>
+<p>Baron Sneller probably did not find the map useful.</p>
+<p>House Sneller had been entrenched in Geyzes City on Thousand Leaf Coral Island for over a millennium and was extremely familiar with the area surrounding it.</p>
+<p>There was no way they would consider using this map and fleeing north, where the future was uncertain.</p>
+<p>Nevertheless, the map was treasured by House Sneller. Only Baron Sneller and his eldest son were privy to its existence.</p>
+<p>Examining the map, Sein realized that it detailed...</p>
+</article>
+<article id="c445" data-label="445">
+<h2 class="chapter">Chapter 445: Blackhaven 🔒</h2>
+<p>Leaving Thousand Leaf Coral Island on his journey north to Blackhaven, Sein had to navigate through several blockades.</p>
+<p>Although the northern black mages had heavily infiltrated Thousand Leaf Coral Island and other nearby islands, the Western Archipelago still maintained stronger defenses thanks to its knights and mages.</p>
+<p>The major divine towers and orders of the knights in the Western Archipelago had also established outposts and observation stations in a few strategic locations.</p>
+<p>Sein’s task was to skillfully avoid these checkpoints by passing through their blind spots.</p>
+<p>Fortunately, the magic map left by Zorro detailed the safe paths...</p>
+</article>
+<article id="c446" data-label="446">
+<h2 class="chapter">Chapter 446: Basic Information 🔒</h2>
+<p>Sein’s heart swelled with joy at the sight of the Quasi Mage before him.</p>
+<p>He urgently needed someone to acquaint him with the situation on Mordoron Island, and the timely arrival of this Quasi Mage was fortuitous.</p>
+<p>A Fiery Hand spell materialized in front of Sein, reaching toward the Quasi Mage in front of the wooden cabin below.</p>
+<p>In the Western Archipelago, particularly in Blackhaven, both mages and knights possessed an acute sense of danger and awareness of their enemies.</p>
+<p>The black-robed Quasi Mage had mistaken Sein for a mere senior initiate and was planning to mug him.</p>
+<p>However, Quasi Mage’s expression shifted dramatically when he sensed the intense pyro elemental power...</p>
+</article>
+<article id="c447" data-label="447">
+<h2 class="chapter">Chapter 447: Gazes From The Shadow 🔒</h2>
+<p>Although Sein was indifferent to the Quasi black mage’s wooden house and the experimental materials inside it, that did not mean they held no value to others.</p>
+<p>He had long been aware that more than one intermediate or junior initiate had been lurking in the shadows around the area where he had murdered the black magic initiate with brute force.</p>
+<p>Sein had no interest in discovering the exact connection between these initiates and the Quasi Mage.</p>
+<p>Since these weaker initiates had chosen not to confront him directly, Sein saw no reason to harm them.</p>
+<p>On Mordoron Island alone, Sein had gleaned from the Quasi Mage’s memories that there were at least thirty full-fledged black ma...</p>
+</article>
+<article id="c448" data-label="448">
+<h2 class="chapter">Chapter 448: Meeting Faye Again 🔒</h2>
+<p>On a green plain stood a ten-meter-tall magic tower with only three floors. It featured a black and gray exterior that matched the somber atmosphere of Blackhaven.</p>
+<p>A small river about ten meters wide, meandered across the plains outside the tower, creating a picturesque scene with the lush green grass stretching into the distance.</p>
+<p>This tower was one of two locations on Mordoron Island marked on the magic map Sein had acquired from House Sneller.</p>
+<p>It was highly probable that either Zorro or Faye resided here.</p>
+<p>Despite the idyllic surroundings, Sein found it difficult to associate this setting with Zorro, whose nature he remembered as dull and pragmatic.</p>
+<p>If Zorro...</p>
+</article>
+<article id="c449" data-label="449">
+<h2 class="chapter">Chapter 449: Catching Up 🔒</h2>
+<p>In the living room on the second floor of the magic tower, Sein and Faye shared stories of their experiences over the years.</p>
+<p>Sein had known since his days as an initiate that Faye was not one to tidy up because he often had to visit her dormitory back then.</p>
+<p>During the twenty sandglasses of waiting just now, Faye likely focused most of her energy on her appearance and skin care, which might explain why the magic tower was still messy.</p>
+<p>Yet, the mess made him feel at ease because it reminded him of the old days.</p>
+<p>It appeared that Faye had been living alone all these years.</p>
+<p>Without Master Morsidor’s presence as their connector, it was unlikely that Faye and...</p>
+</article>
+<article id="c450" data-label="450">
+<span id="last"></span>
+<h2 class="chapter">Chapter 450: Sponsor 🔒</h2>
+<p>In his conversation with Faye, Sein did not reveal that he was now apprenticed to a Rank Four tower master. Instead, he simply mentioned that he had joined the Divine Tower of Verdant Spring.</p>
+<p>Despite his new allegiance, Sein would always see himself as Morsidor’s apprentice when in the company of Zorro and Faye. This would never change.</p>
+<p>Faye’s cheeks were tinged pink under Sein’s intense gaze.</p>
+<p>To be frank, Faye was no longer a young woman. She might even be considered an old woman to the ordinary humans in the Magus World.</p>
+<p>Over the past few decades, she had not involved herself with any other men.</p>
+<p>Faye lived alone in her magic tower. As for the humans living at its base, they were...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="451-500.html" rel="next">Next: Chs 451–500 &rarr;</a>
+    <p class="page-end-links"><a href="351-400.html" rel="prev">&larr; Chs 351–400</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 401–450</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c401">Chapter 401: Withdraw 🔒</a></li>
+        <li><a href="#c402">Chapter 402: Desperate Fight 🔒</a></li>
+        <li><a href="#c403">Chapter 403: Black Mage’s Greed 🔒</a></li>
+        <li><a href="#c404">Chapter 404: Pursuit 🔒</a></li>
+        <li><a href="#c405">Chapter 405: Erupted From the Soil 🔒</a></li>
+        <li><a href="#c406">Chapter 406: Verdant Cage 🔒</a></li>
+        <li><a href="#c407">Chapter 407: Giant tortoise 🔒</a></li>
+        <li><a href="#c408">Chapter 408: Sense of Familiarity 🔒</a></li>
+        <li><a href="#c409">Chapter 409: Kinship 🔒</a></li>
+        <li><a href="#c410">Chapter 410: Mistaken 🔒</a></li>
+        <li><a href="#c411">Chapter 411: Mermaid 🔒</a></li>
+        <li><a href="#c412">Chapter 412: New Companion 🔒</a></li>
+        <li><a href="#c413">Chapter 413: Young 🔒</a></li>
+        <li><a href="#c414">Chapter 414: Early Arrival 🔒</a></li>
+        <li><a href="#c415">Chapter 415: Marmett Union Alliance’s Interest 🔒</a></li>
+        <li><a href="#c416">Chapter 416: Growth In Constitution 🔒</a></li>
+        <li><a href="#c417">Chapter 417: Strength Gained From Sleeping 🔒</a></li>
+        <li><a href="#c418">Chapter 418: Special Magnetic Field 🔒</a></li>
+        <li><a href="#c419">Chapter 419: Shopping 🔒</a></li>
+        <li><a href="#c420">Chapter 420: Buying Books 🔒</a></li>
+        <li><a href="#c421">Chapter 421: Soul Tower 🔒</a></li>
+        <li><a href="#c422">Chapter 422: Breathing Rate 🔒</a></li>
+        <li><a href="#c423">Chapter 423: Temporary Separation 🔒</a></li>
+        <li><a href="#c424">Chapter 424: Flood Dragon 🔒</a></li>
+        <li><a href="#c425">Chapter 425: Magic Beast Kings 🔒</a></li>
+        <li><a href="#c426">Chapter 426: Black Iron Fortress 🔒</a></li>
+        <li><a href="#c427">Chapter 427: Mechanic’s Hammer 🔒</a></li>
+        <li><a href="#c428">Chapter 428: Change In Perception 🔒</a></li>
+        <li><a href="#c429">Chapter 429: Experiments 🔒</a></li>
+        <li><a href="#c430">Chapter 430: Collar 🔒</a></li>
+        <li><a href="#c431">Chapter 431: Steel City 🔒</a></li>
+        <li><a href="#c432">Chapter 432: Mechanical Hornet 🔒</a></li>
+        <li><a href="#c433">Chapter 433: Reunion 🔒</a></li>
+        <li><a href="#c434">Chapter 434: Nagas of West Sea 🔒</a></li>
+        <li><a href="#c435">Chapter 435: Western Archipelago 🔒</a></li>
+        <li><a href="#c436">Chapter 436: Tourmaline’s Gift 🔒</a></li>
+        <li><a href="#c437">Chapter 437: White Stella 🔒</a></li>
+        <li><a href="#c438">Chapter 438: Sea Kings 🔒</a></li>
+        <li><a href="#c439">Chapter 439: Two Shields 🔒</a></li>
+        <li><a href="#c440">Chapter 440: Geyzes City 🔒</a></li>
+        <li><a href="#c441">Chapter 441: Located 🔒</a></li>
+        <li><a href="#c442">Chapter 442: House Sneller 🔒</a></li>
+        <li><a href="#c443">Chapter 443: Presenting Gifts 🔒</a></li>
+        <li><a href="#c444">Chapter 444: Human Nature 🔒</a></li>
+        <li><a href="#c445">Chapter 445: Blackhaven 🔒</a></li>
+        <li><a href="#c446">Chapter 446: Basic Information 🔒</a></li>
+        <li><a href="#c447">Chapter 447: Gazes From The Shadow 🔒</a></li>
+        <li><a href="#c448">Chapter 448: Meeting Faye Again 🔒</a></li>
+        <li><a href="#c449">Chapter 449: Catching Up 🔒</a></li>
+        <li><a href="#c450">Chapter 450: Sponsor 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="351-400.html" rel="prev">&larr; Chs 351–400</a>    <a href="../../index.html">Library</a>
+<a href="451-500.html" rel="next">Chs 451–500 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

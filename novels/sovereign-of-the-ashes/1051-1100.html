@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1051–1100</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1001-1050.html#last" data-next-page="1101-1150.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1051">Chapter 1051: God of First Light 🔒</a></li>
+        <li><a href="#c1052">Chapter 1052: Intense Battle 🔒</a></li>
+        <li><a href="#c1053">Chapter 1053: Burning Mana 🔒</a></li>
+        <li><a href="#c1054">Chapter 1054: Human Heart 🔒</a></li>
+        <li><a href="#c1055">Chapter 1055: Succeed 🔒</a></li>
+        <li><a href="#c1056">Chapter 1056: Shocking Gains 🔒</a></li>
+        <li><a href="#c1057">Chapter 1057: Well-Behaved Demons 🔒</a></li>
+        <li><a href="#c1058">Chapter 1058: Proper Worldview 🔒</a></li>
+        <li><a href="#c1059">Chapter 1059: Next Target 🔒</a></li>
+        <li><a href="#c1060">Chapter 1060: God of Fire Crickets 🔒</a></li>
+        <li><a href="#c1061">Chapter 1061: Further Complicating 🔒</a></li>
+        <li><a href="#c1062">Chapter 1062: Demigod-Level Mage 🔒</a></li>
+        <li><a href="#c1063">Chapter 1063: The Battle Between Good and Evil 🔒</a></li>
+        <li><a href="#c1064">Chapter 1064: Opportunity Arrives 🔒</a></li>
+        <li><a href="#c1065">Chapter 1065: The Ones Favored by the Planar Will 🔒</a></li>
+        <li><a href="#c1066">Chapter 1066: Messy Relationships Between Deities 🔒</a></li>
+        <li><a href="#c1067">Chapter 1067: Move 🔒</a></li>
+        <li><a href="#c1068">Chapter 1068: Competition of Divine Artifacts 🔒</a></li>
+        <li><a href="#c1069">Chapter 1069: The Mantis Stalks the Cicada 🔒</a></li>
+        <li><a href="#c1070">Chapter 1070: Unaware of the Oriole Behind 🔒</a></li>
+        <li><a href="#c1071">Chapter 1071: God of Smithing 🔒</a></li>
+        <li><a href="#c1072">Chapter 1072: Fighting Side by Side 🔒</a></li>
+        <li><a href="#c1073">Chapter 1073: Forbidden Spell! 🔒</a></li>
+        <li><a href="#c1074">Chapter 1074: Intervening 🔒</a></li>
+        <li><a href="#c1075">Chapter 1075: Getting Out 🔒</a></li>
+        <li><a href="#c1076">Chapter 1076: The Melee of Deities 🔒</a></li>
+        <li><a href="#c1077">Chapter 1077: Self-Destruct 🔒</a></li>
+        <li><a href="#c1078">Chapter 1078: Success 🔒</a></li>
+        <li><a href="#c1079">Chapter 1079: Arriving One After Another 🔒</a></li>
+        <li><a href="#c1080">Chapter 1080: Starting the Fight 🔒</a></li>
+        <li><a href="#c1081">Chapter 1081: Pure Chaos 🔒</a></li>
+        <li><a href="#c1082">Chapter 1082: Goddess of Music 🔒</a></li>
+        <li><a href="#c1083">Chapter 1083: The Seven Divine Relics 🔒</a></li>
+        <li><a href="#c1084">Chapter 1084: Mission of the Civilization 🔒</a></li>
+        <li><a href="#c1085">Chapter 1085: The End of the Crisis 🔒</a></li>
+        <li><a href="#c1086">Chapter 1086: Spider Queen’s Schemes 🔒</a></li>
+        <li><a href="#c1087">Chapter 1087: Impending Departure 🔒</a></li>
+        <li><a href="#c1088">Chapter 1088: The Perplexing Forest 🔒</a></li>
+        <li><a href="#c1089">Chapter 1089: Moonlit Cat Goddess 🔒</a></li>
+        <li><a href="#c1090">Chapter 1090: Tug-of-War 🔒</a></li>
+        <li><a href="#c1091">Chapter 1091: Capturing and Leaving 🔒</a></li>
+        <li><a href="#c1092">Chapter 1092: Gifts from the Demons 🔒</a></li>
+        <li><a href="#c1093">Chapter 1093: Goddess of Wealth 🔒</a></li>
+        <li><a href="#c1094">Chapter 1094: Not Much Time Left 🔒</a></li>
+        <li><a href="#c1095">Chapter 1095: Return 🔒</a></li>
+        <li><a href="#c1096">Chapter 1096: Trading Divine Abilities 🔒</a></li>
+        <li><a href="#c1097">Chapter 1097: Massive Wealth 🔒</a></li>
+        <li><a href="#c1098">Chapter 1098: The Legend of Blackhaven 🔒</a></li>
+        <li><a href="#c1099">Chapter 1099: Sudden Battle 🔒</a></li>
+        <li><a href="#c1100">Chapter 1100: Tough Opponent 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1051" data-label="1051">
+<h2 class="chapter">Chapter 1051: God of First Light 🔒</h2>
+<p>Sein’s Flame Demon shapeshifting ability had evolved significantly over the centuries.</p>
+<p>His in-depth study of Purgatory demon bloodlines had allowed him to continuously refine and strengthen the Flame Demon bloodline within him.</p>
+<p>Moreover, by incorporating the Purgatory Flame, a fire imbued with special laws, Sein’s Flame Demon form had grown even more powerful.</p>
+<p>The Purgatory Flame was perfectly attuned to demonic attributes.</p>
+<p>Anyone observing the flaming wings on Sein’s back would immediately notice the overwhelming pyro elemental energy coursing through them.</p>
+<p>Though Sein’s focus and mana levels had not yet reached demigod level by the Magus World’s standards, the sheer burst potential of his power—combined with his understanding of laws—allowed him to temporarily wield the...</p>
+</article>
+<article id="c1052" data-label="1052">
+<h2 class="chapter">Chapter 1052: Intense Battle 🔒</h2>
+<p>“Two hundred years ago, I deployed my templars to hunt you down. The God of Radiance also once mentioned you, so I’ve known about you for quite some time,” the God of First Light said plainly, his voice carrying neither hostility nor warmth.</p>
+<p>However, Sein had not come here for conversation and the God of First Light could sense his malicious intent.</p>
+<p>Maintaining his composure, the god reached for his divine artifact as he continued speaking confidently.</p>
+<p>It was a golden clarinet, a weapon befitting a deity of handsome features and refined elegance—far removed from the crude, brutish axe wielded by the God of Brute Force.</p>
+<p>Under the glow of his radiant aura, the clarinet’s pale gold frame shimmered,...</p>
+</article>
+<article id="c1053" data-label="1053">
+<h2 class="chapter">Chapter 1053: Burning Mana 🔒</h2>
+<p>The Demon Mask was, without question, Sein’s most prized alchemical achievement in recent centuries.</p>
+<p>Even though the magic robe he wore had been woven from the divine spider silk left behind by the Spider Queen, its superiority came solely from its exceptional material.</p>
+<p>In terms of condensed knowledge and elemental mysteries, it was no match for Sein’s Demon Mask.</p>
+<p>This scarlet magic mask radiated a strange, unsettling power.</p>
+<p>Infused with the power of a Succubus, the mask’s form constantly shifted, making it seem as though it had no fixed shape.</p>
+<p>Its powerful disorientation ability, combined with penetrating sonic attacks, caught the God of First Light completely off guard.</p>
+<p>The moment Sein unveiled his trump card, the god suffered two major blows in rapid succession.</p>
+<p>The first came...</p>
+</article>
+<article id="c1054" data-label="1054">
+<h2 class="chapter">Chapter 1054: Human Heart 🔒</h2>
+<p>The battle at the God of First Light’s estate lasted a total of two days.</p>
+<p>Sein had determined this duration in advance and marked it as the optimal timeframe for the confrontation.</p>
+<p>Any longer, and the battle would have entered a zone of unpredictable risks.</p>
+<p>Five days was the upper limit of Sein’s original plan.</p>
+<p>If he failed to defeat his opponent within that time, retreat would be the only option.</p>
+<p>Fortunately, the battle concluded before reaching that threshold.</p>
+<p>In fact, the actual duration was two and a half days.</p>
+<p>By the time the morning sun reappeared on the horizon, the God of First Light—battered, burned, and bloodied—was already struggling to draw strength from its rays.</p>
+<p>The fiery rain had turned the surrounding area into a sea of flames.</p>
+<p>Amidst the...</p>
+</article>
+<article id="c1055" data-label="1055">
+<h2 class="chapter">Chapter 1055: Succeed 🔒</h2>
+<p>A violent explosion marked the end of this god hunt.</p>
+<p>Sein was surprised that a Rank One creature had dared to consume the core of a Rank Four being.</p>
+<p>The corner of his mouth twitched slightly as he looked up at the blood and flesh still drifting through the air, at a loss for words.</p>
+<p>With the Avatar Crisis underway, more and more of Faeloria’s lesser beings had come to know that they could ascend to godhood by slaying deities.</p>
+<p>But the question was… how exactly could one ascend to godhood after slaying a deity?</p>
+<p>Was it really as simple as swallowing a divine relic, like Arnold had just done?</p>
+<p>Of course not!</p>
+<p>The heart of a Rank Four being held immense power, far beyond what ordinary creatures could comprehend, let alone withstand.</p>
+<p>Even now, during the Avatar Crisis, when special laws...</p>
+</article>
+<article id="c1056" data-label="1056">
+<h2 class="chapter">Chapter 1056: Shocking Gains 🔒</h2>
+<p>As the Succubus Queen watched Sein depart, the Goddess of Doom, Morvanya, stood silently behind her.</p>
+<p>It was thanks to Morvanya’s unique divine power that they had managed to so quickly learn of Sein’s success and even caught a vague glimpse of him slaying a god.</p>
+<p>Morvanya seemed like she was about to say something about Sein, but before she could, a chilling laugh escaped her lips instead.</p>
+<p>“Hmm… why is that pretentious sister of mine in Purgatory? Her aura seems really weak… She must have taken quite the hit. Hehehe, it’s finally my turn to strike back,” Morvanya remarked with a smirk.</p>
+<p>With a whoosh, she turned into a black shadow and vanished.</p>
+<p>The Succubus Queen turned toward the outskirts...</p>
+</article>
+<article id="c1057" data-label="1057">
+<h2 class="chapter">Chapter 1057: Well-Behaved Demons 🔒</h2>
+<p>The Goddess of Luck, Tyvera…</p>
+<p>From her appearance and aura which closely resembled Morvanya’s, Sein was able to determine her identity.</p>
+<p>By all rights, the Goddess of Luck should have been Sein’s enemy.</p>
+<p>Because of her, he had been hunted by multiple temples and churches across Faeloria not long ago.</p>
+<p>To put it plainly, she was partly responsible for why he was now stranded here.</p>
+<p>If this Goddess of Luck had not used her divine power to probe the Spider Queen, triggering a violent counterattack from a Magus World overlord, the God of Justice and the others would not have panicked and prematurely activated the Tablets of Fate—commencing the Avatar Crisis ahead of schedule.</p>
+<p>The grudge between Tyvera and Morvanya was well-known across Faeloria.</p>
+<p>Standing in Sein’s castle, Tyvera bore a...</p>
+</article>
+<article id="c1058" data-label="1058">
+<h2 class="chapter">Chapter 1058: Proper Worldview 🔒</h2>
+<p>While the Purgatory demons kept a low profile in this iteration of the Avatar Crisis, it was the Godslayers, the dragons, and the rival deities of various factions whose clashes stirred the greatest commotion.</p>
+<p>This was quite unexpected.</p>
+<p>The God of Justice remained in seclusion, and the Dark Lady had long vanished from the world.</p>
+<p>Though the Elemental God appeared intent on restoring order to the chaotic continent, its efforts had proven largely ineffective.</p>
+<p>As a result, this Avatar Crisis, triggered by the three Tablets of Fate, had instead become a playground for opportunists.</p>
+<p>Sein, however, did not concern himself with the turmoil in Faeloria. His time was far too valuable.</p>
+<p>Inside the laboratory…</p>
+<p>Sein, having already extracted the God of First Light’s divine relic, was now using his microscope...</p>
+</article>
+<article id="c1059" data-label="1059">
+<h2 class="chapter">Chapter 1059: Next Target 🔒</h2>
+<p>The reform of the many academies within Purgatory was now Ronaldo and the others’ responsibility.</p>
+<p>Ever since resolving the confusion clouding Ronaldo’s mind, Sein had paid them little attention.</p>
+<p>He had reaped significant gains from slaying the God of First Light—and had dealt fairly with Ronaldo and the others in turn.</p>
+<p>After the peak Rank Two white dragon was finally skinned, deboned, and drained of its blood, Sein kept only a small portion as specimen materials. The rest was handed over to them.</p>
+<p>At the very least, when the younger generation produced individuals with the potential to ascend to the Legendary Realm, they would not lack the dragon resources needed to inherit its bloodline.</p>
+<p>In addition, the dragon’s blood, meat, tendons, and other...</p>
+</article>
+<article id="c1060" data-label="1060">
+<h2 class="chapter">Chapter 1060: God of Fire Crickets 🔒</h2>
+<p>Battling a god-level entity had always proven immensely beneficial to Sein.</p>
+<p>Even in his Flame Demon form, Sein still felt the overwhelming impact of the intense flame elemental law power wielded by the God of Fire Crickets.</p>
+<p>Unlike the God of First Light, the God of Fire Crickets had only a few high-quality followers to support it and very few temples to manage.</p>
+<p>Moltendeep Vale basically served as its stronghold.</p>
+<p>To reach the god in its depths and bring it down, Sein had to first deal with a swarming defense of hundreds of thousands, possibly even millions, of Fire Crickets and other pyro elemental creatures.</p>
+<p>An army of roughly two hundred thousand Purgatory demons took part in the operation alongside Sein.</p>
+<p>These demons infiltrated the outskirts...</p>
+</article>
+<article id="c1061" data-label="1061">
+<h2 class="chapter">Chapter 1061: Further Complicating 🔒</h2>
+<p>After slaying the God of Fire Crickets, Sein remained in seclusion even longer than he had following his battle with the God of First Light.</p>
+<p>This time, he shut himself away in his laboratory within Purgatory for a full one hundred years!</p>
+<p>Throughout that century, Sein was utterly consumed by his experimental research, while outside, all sorts of monumental events unfolded across Faeloria.</p>
+<p>More than sixty years ago, a greater deity was seen walking openly on the Prime Materia Plane. She was none other than Eluvira, the Goddess of Magic.</p>
+<p>As the deity who harvested faith through the Weave, Eluvira had never aligned herself with any factions after ascending to godhood.</p>
+<p>She remained one of the rare few with the strength to...</p>
+</article>
+<article id="c1062" data-label="1062">
+<h2 class="chapter">Chapter 1062: Demigod-Level Mage 🔒</h2>
+<p>Faeloria stood divided over who brought down the Goddess of Wealth.</p>
+<p>Some believed it was the Purgatory demons due to the lingering sulfur and flame aura in the ruined temples.</p>
+<p>Others insisted the overseas dragons were responsible, given their well-known obsession with wealth.</p>
+<p>After all, who could be richer than the Goddess of Wealth herself?</p>
+<p>There were also whispers that the Dark Alliance orchestrated her demise.</p>
+<p>The Goddess of Wealth had long been at odds with several of their deities, including Zorvax, the God of Tyranny—one of the Dark Alliance’s three greater deities.</p>
+<p>He was often hailed as the most formidable of the trio in the absence...</p>
+</article>
+<article id="c1063" data-label="1063">
+<h2 class="chapter">Chapter 1063: The Battle Between Good and Evil 🔒</h2>
+<p>Of course, Faeloria had not forgotten Sein; the three distinct forces attempting to probe into him were proof enough that hidden powers were still keeping tabs on him.</p>
+<p>Inside Purgatory, at least, Sein enjoyed relative security.</p>
+<p>Beyond its borders, however, the demons would be hard-pressed to shield him from danger.</p>
+<p>Undaunted by the Succubus Queen’s cautionary words, Sein pressed her for details about the God of Craft.</p>
+<p>“The God of Craft was sighted eighty-three years ago. A ragtag group of unknown origin tried to ambush him, hoping to slay him. Instead, they were completely obliterated. He dispatched them with a wooden giant that looked like those alchemy puppets you made,” the...</p>
+</article>
+<article id="c1064" data-label="1064">
+<h2 class="chapter">Chapter 1064: Opportunity Arrives 🔒</h2>
+<p>Sein wavered under the Succubus Queen’s counsel, torn between ambition and caution.</p>
+<p>After a moment of silence, he lifted his gaze and declared, “I still want to try.”</p>
+<p>Anyone who had not experienced Sein’s rapid progress over the past four centuries could never truly grasp the exhilaration of immersing oneself so deeply in the mysteries of truth.</p>
+<p>Ever since obtaining the God of First Light and the God of Fire Crickets’ remains and divine relics, each of his experiments had advanced with remarkable speed.</p>
+<p>Had he stayed in the Magus World, he could never have reached such heights in so short a time.</p>
+<p>Demigod—that was once an unthinkable title to Sein.</p>
+<p>Sein was eleven hundred years old this year.</p>
+<p>If he could maintain his current...</p>
+</article>
+<article id="c1065" data-label="1065">
+<h2 class="chapter">Chapter 1065: The Ones Favored by the Planar Will 🔒</h2>
+<p>The recent actions of the sea gods, particularly the three greater sea gods leading a direct confrontation against other deities along the coastline, had become the biggest news across Faeloria.</p>
+<p>Another major talking point in all this chaos was the controversy surrounding the private life of Tidas, the God of Waves.</p>
+<p>As one of Faeloria’s most renowned greater deities, who had ascended to godhood for many years, Tidas’ private affairs had shocked many, especially the rumor that his harem included ordinary sea beasts.</p>
+<p>Tidas might be powerful, but the exposure of his indulgences with low-level creatures had led many to associate him with terms like “degenerate”,...</p>
+</article>
+<article id="c1066" data-label="1066">
+<h2 class="chapter">Chapter 1066: Messy Relationships Between Deities 🔒</h2>
+<p>Sein had no idea just how much he had impacted Faeloria.</p>
+<p>With more than thirty Rank One and Rank Two followers in tow, he had already passed through several human nations and arrived at the San Fravence Empire, located in the western part of central Faeloria.</p>
+<p>It was the continent’s largest grain-producing region, with vast plains, a mild climate, and the highest population density in all of Faeloria.</p>
+<p>The word “San” placed before the name of this vast empire of billions made it clear that it was the Justice League’s territory.</p>
+<p>From there, Sein and his group continued east toward their destination: the San Jose Kingdom.</p>
+<p>Compared to the San Fravence Empire, the San Jose Kingdom...</p>
+</article>
+<article id="c1067" data-label="1067">
+<h2 class="chapter">Chapter 1067: Move 🔒</h2>
+<p>Two thousand dragons ransacking the City of Wealth together was probably the biggest news of the year.</p>
+<p>The sheer might of such a force was overwhelming. With wingspans stretching tens of meters, the dragons darkened the skies as they passed, spreading panic across even the farthest corners of eastern Faeloria.</p>
+<p>If a single dragon appeared in the wild, tales of some brave hero slaying it would probably circulate soon.</p>
+<p>But two thousand dragons acting in unison? Even the deities would think twice before getting in their way.</p>
+<p>The dragons of Faeloria were getting smarter.</p>
+<p>Most of the time, they kept to themselves on Dragon Island in the outer sea, rarely bothering with affairs on the mainland.</p>
+<p>But whenever the Avatar Crisis...</p>
+</article>
+<article id="c1068" data-label="1068">
+<h2 class="chapter">Chapter 1068: Competition of Divine Artifacts 🔒</h2>
+<p>“Strange crafting styles that I have never seen before. Definitely different from those of the ancient era… You must be the heretic who has invaded our Prime Materia Plane, right?”</p>
+<p>Not long after the explosions and the blood-red curtain lit up the sky, Gondrath, the God of Craft, emerged from beneath the lake’s surface.</p>
+<p>The weak deity, whom Sein had marked as his next target, looked surprisingly calm. He even had the mood to raise his head and study the crimson metal sphere hanging in the sky, speaking to Sein like they were having a casual chat.</p>
+<p>“Oh? So you know me?” Sein replied, sounding mildly surprised.</p>
+<p>Though he had not activated his Flame Demon transformation, flames imbued with the distinct power of ashes were...</p>
+</article>
+<article id="c1069" data-label="1069">
+<h2 class="chapter">Chapter 1069: The Mantis Stalks the Cicada 🔒</h2>
+<p>Sein’s five Penetrating Eye spells tore through the three diamond-shaped fireballs Gondrath had launched.</p>
+<p>This was a clear sign that Sein’s magic was stronger than Gondrath’s divine artifact.</p>
+<p>However, by the time the spells reached their target, their momentum had faded. They only managed to shatter two of the shields protecting Gondrath.</p>
+<p>The ruby ring on his finger shimmered again, and in the next instant, the broken shields regenerated.</p>
+<p>At the same time, three more diamond-shaped fireballs materialized in response.</p>
+<p>This was the first opponent Sein had ever faced who fought almost entirely by relying on equipment.</p>
+<p>And he had to admit—when pushed to the extreme, any...</p>
+</article>
+<article id="c1070" data-label="1070">
+<h2 class="chapter">Chapter 1070: Unaware of the Oriole Behind 🔒</h2>
+<p>The battle between Sein and Gondrath lasted a total of four days.</p>
+<p>In just those four days, two-thirds of Mysirral City was completely destroyed.</p>
+<p>Fortunately, most of the city’s residents had already fled with the wave of refugees, so the actual number of casualties among the lesser creatures was not as catastrophic as it could have been.</p>
+<p>Four days were more than enough time for both Sein and Gondrath to burn through most of their trump cards.</p>
+<p>The once-majestic giant golem was now mostly submerged in the lake.</p>
+<p>Attacked relentlessly by Yuri’s mecha and scorched by Sein’s Ashen Flame, the golem could no longer keep fighting once its core was destroyed.</p>
+<p>After all, functional gods just were not built...</p>
+</article>
+<article id="c1071" data-label="1071">
+<h2 class="chapter">Chapter 1071: God of Smithing 🔒</h2>
+<p>The cause of the conflict between the intermediate deity and the lesser deity was actually pretty straightforward.</p>
+<p>The world was constantly moving forward.</p>
+<p>Old, rigid, outdated ways inevitably got left behind while the fresh and innovative rose to define a new era.</p>
+<p>The ancient Faelorian deities, once the creators of a glorious age, were fading away one by one. If that could happen to them, it could happen to anyone.</p>
+<p>Since the two deities wielded similar divine abilities, tension between them was inevitable.</p>
+<p>Gondrath might be younger and less experienced than Furey, but he had something the older god lacked—youth and innovation.</p>
+<p>Since his rise to fame around thirty thousand...</p>
+</article>
+<article id="c1072" data-label="1072">
+<h2 class="chapter">Chapter 1072: Fighting Side by Side 🔒</h2>
+<p>Just like Gondrath earlier, Furey’s interest was clearly piqued the moment he laid eyes on Sein and Yuri—though he hid it well.</p>
+<p>After a brief glance at the two of them, his focus quickly shifted back to Gondrath.</p>
+<p>This time, Furey had moved entirely on his own, without the backing of any external forces or the knowledge of other deities.</p>
+<p>It was clear he had come to settle things with Gondrath once and for all.</p>
+<p>Facing Gondrath, who was still roaring in anger, and Sein, who silently had his magic rod trained on him, Furey remained calm.</p>
+<p>As an intermediate deity wielding two powerful divine artifacts, he was more than capable of dealing with the two pests before...</p>
+</article>
+<article id="c1073" data-label="1073">
+<h2 class="chapter">Chapter 1073: Forbidden Spell! 🔒</h2>
+<p>“Any way you can break through this crystal barrier?” Sein asked Gondrath as they continued fleeing south.</p>
+<p>Gondrath’s attack power did not quite match Sein’s, but as a native Faelorian deity, he knew more about Furey, so Sein wanted to hear his suggestion.</p>
+<p>“That cubic crystal must be his more recent creation… probably crafted within the last ten thousand years. I’ve never heard of it before,” Gondrath replied. “As for how to break it… I’ll just have to give it a shot.”</p>
+<p>From a distance, Gondrath extended the right arm of his giant golem.</p>
+<p>A massive burst of flame shot from his hand, accompanied by a violent surge of aero elemental energy and a powerful wave of repulsive force.</p>
+<p>It was clear Gondrath had unleashed the combined might...</p>
+</article>
+<article id="c1074" data-label="1074">
+<h2 class="chapter">Chapter 1074: Intervening 🔒</h2>
+<p>The Penetrating Eye forbidden spell was finally about to take shape!</p>
+<p>One could say Sein had succeeded—but also that he had failed because this version of the forbidden spell was not fully mature.</p>
+<p>Its destructive power had yet to reach the level of a true single-target forbidden spell.</p>
+<p>Still, it far surpassed the limits of most demigod-level spells.</p>
+<p>A big part of what made it “immature” was that Sein could not fully control it.</p>
+<p>This kind of spell was supposed to be Sein’s major research focus for the next few hundred years of his life.</p>
+<p>He never expected to be forced into using it so soon.</p>
+<p>Without perfecting the spell, even locking it onto the God of Smithing was nearly...</p>
+</article>
+<article id="c1075" data-label="1075">
+<h2 class="chapter">Chapter 1075: Getting Out 🔒</h2>
+<p>Not long after the God of Craft burst free from the dusty ruins, Yuri emerged as well, still inside her battered but intact Burning Flame Unit, much to Sein’s relief.</p>
+<p>He had warned her ahead of time, but seeing his subordinate make it out alive still lifted a heavy weight from his chest.</p>
+<p>That said, while Yuri had escaped, none of the support mechas she had deployed during the battle made it out with her.</p>
+<p>Those auxiliary units were all that remained of Sein’s stock since arriving in Faeloria.</p>
+<p>Originally custom-built in Sky City, they were nearly impossible to replicate with the resources available here.</p>
+<p>Even with Sein’s growing knowledge of mecha crafting and upgrades, Faeloria...</p>
+</article>
+<article id="c1076" data-label="1076">
+<h2 class="chapter">Chapter 1076: The Melee of Deities 🔒</h2>
+<p>Sein’s escape route and the decisions he made under pressure had been flawless.</p>
+<p>However, if he had known that Furey would not continue pursuing him, there was no way he would have headed into that chaotic mess in the south.</p>
+<p>At this point, the chaos erupting in the southern part of the San Jose Kingdom was even worse than what had just unfolded in Mysirral City.</p>
+<p>Furey, the God of Smithing, had been targeting the God of Craft in secret this time. Now that his attempt had failed, with his typically composed nature, he was unlikely to make another reckless move.</p>
+<p>Although he had not managed to kill the God of Craft, he had pretty much accomplished what he came for.</p>
+<p>Given the losses Gondrath suffered in this battle, he would...</p>
+</article>
+<article id="c1077" data-label="1077">
+<h2 class="chapter">Chapter 1077: Self-Destruct 🔒</h2>
+<p>Sein, who had just reached the edge of the Battlefield of Gods, was lucky enough to witness a true clash between the deities of Faeloria.</p>
+<p>Right now, the one shining the brightest was Ysor, the God of Storms. As the last to arrive, he was also in peak condition.</p>
+<p>Storms and thick water vapor swirled around him.</p>
+<p>At the center of several massive tornadoes, Ysor stood like the ruler of this space.</p>
+<p>In contrast, the God of the Hunt and the God of Suffering kept a much lower profile.</p>
+<p>Neither of their divine powers matched Ysor’s, and their battlefield style was not suited for direct confrontation.</p>
+<p>In Sein’s field of vision, the God of Suffering had taken the form of a dark, flowing ink cloud.</p>
+<p>Seeing it reminded Sein of Master Dark...</p>
+</article>
+<article id="c1078" data-label="1078">
+<h2 class="chapter">Chapter 1078: Success 🔒</h2>
+<p>Although the Burning Flame Unit was badly damaged, its core power system was still intact, and a few of its weapons were barely operational.</p>
+<p>At full strength, the Burning Flame Unit was already comparable to a demigod. If it self-destructed, the resulting explosion would be even more terrifying.</p>
+<p>Following Sein’s order, Yuri jumped out of the cockpit without a second thought.</p>
+<p>In the distance, divine power had already begun to surge like a storm.</p>
+<p>As that chaos unfolded, the Burning Flame Unit turned into a streak of red light, flying straight toward the God of Craft.</p>
+<hr class="separator">
+<p>The God of Craft was currently surrounded by a crowd of Justice League believers.</p>
+<p>They were not particularly strong, but their sheer numbers offered a sliver...</p>
+</article>
+<article id="c1079" data-label="1079">
+<h2 class="chapter">Chapter 1079: Arriving One After Another 🔒</h2>
+<p>“The flame you used just now is quite special. I’m surprised it could even burn through the body of a god,” the woman in the purple dress commented casually.</p>
+<p>“This isn’t one of those new flame laws from Purgatory, is it? I see signs of artificial refinement... and your bloodline is rather interesting too.”</p>
+<p>Under normal circumstances, Sein would have grabbed the God of Craft’s loot and vanished from the battlefield without hesitation.</p>
+<p>However, the moment this woman appeared, he found himself frozen in place, even though she had not used any kind of spatial magic to immobilize or restrain him.</p>
+<p>It was the overwhelming disparity between them that made him stop cold.</p>
+<p>Among...</p>
+</article>
+<article id="c1080" data-label="1080">
+<h2 class="chapter">Chapter 1080: Starting the Fight 🔒</h2>
+<p>This time, the one who appeared in the skies above the battlefield was an old acquaintance of Sein—Anastasia Karerina, the Succubus Queen.</p>
+<p>However, she had not come alone.</p>
+<p>The tear in space behind her revealed a blood-red landscape, with demon armies surging within it.</p>
+<p>Flanking the Succubus Queen were more than a dozen demon kings—each powerful enough to qualify as a deity.</p>
+<p>Yet none of them were in command.</p>
+<p>Their true leader sat high on a bloody throne—Levon Thorstein, the Bloodwar Monarch.</p>
+<p>The Blood Throne was a high-grade divine artifact that could be considered a world-class treasure.</p>
+<p>It was this throne that had allowed Thorstein to rip open space itself and bring his demon kings straight to the Battlefield of Gods.</p>
+<p>Of course, the Bloodwar Monarch’s...</p>
+</article>
+<article id="c1081" data-label="1081">
+<h2 class="chapter">Chapter 1081: Pure Chaos 🔒</h2>
+<p>The stalemate instantly erupted into a full-blown bloodbath.</p>
+<p>Not even the Dark Alliance deities on the field had expected things to escalate this far, let alone Sein.</p>
+<p>And come to think of it, they were the ones who had arrived here first.</p>
+<p>The Purgatory demons descended with overwhelming force, and the sight of more than ten demon kings diving into battle was enough to make even the formidable God of Storms pause.</p>
+<p>After a brief moment of consideration, he took half a step back.</p>
+<p>No one could say for sure whether the Purgatory demons might turn on the Dark Alliance next.</p>
+<p>Being labeled “chaotic” meant the demons did not have true allies. To them, anyone outside their...</p>
+</article>
+<article id="c1082" data-label="1082">
+<h2 class="chapter">Chapter 1082: Goddess of Music 🔒</h2>
+<p>By the time the situation on the battlefield spiraled further out of control, Sein had already been pulled to the rear of the demonic legion by the Succubus Queen.</p>
+<p>The space around them was a blood-red realm that seemed to be created by the Blood Throne beneath the Bloodwar Monarch.</p>
+<p>Even its atmosphere felt similar to Purgatory.</p>
+<p>Sein had not expected the throne Thorstein sat upon to possess the power to warp and shift space.[1]</p>
+<p>Of course, everyone had noticed Sein retreating from the battlefield with the Succubus Queen.</p>
+<p>The Justice League deities had wanted to intercept them, but they simply could not.</p>
+<p>Ysor, the God of Storms, who had already pulled back from the front lines, continued...</p>
+</article>
+<article id="c1083" data-label="1083">
+<h2 class="chapter">Chapter 1083: The Seven Divine Relics 🔒</h2>
+<p>The melee in the southern part of the San Jose Kingdom lasted over a week in total.</p>
+<p>The Bloodwar Monarch clearly did not want to launch a full-scale war against the Justice League just yet.</p>
+<p>It looked more like he was trying to send a message—the Purgatory demons might have kept a low profile in recent years, rarely stepping out to stir up trouble, but the demon clan was still not a force Faeloria could afford to provoke.</p>
+<p>As the melee dragged on, it stopped being just a one-sided show by the demons. Even the Dark Alliance, who had initially left, returned and jumped into the fray at the last minute.</p>
+<p>Of course, it was not the God of Storms or others like him; they were...</p>
+</article>
+<article id="c1084" data-label="1084">
+<h2 class="chapter">Chapter 1084: Mission of the Civilization 🔒</h2>
+<p>While Sein was immersed in his experimental research, he had not forgotten about Flynn, Ronaldo, and others.</p>
+<p>Even though they had only provided limited help during the melee in the San Jose Kingdom, they had still been there for him.</p>
+<p>After spending so much time together, Sein had come to see them as his juniors.</p>
+<p>Ronaldo, who had been gravely injured, was ultimately saved by Sein, thanks to the Goddess of Waters.</p>
+<p>If Sein had not discovered a space pendant packed with hydro elemental materials among her remains, he never would have been able to concoct such a variety of high-grade, precious potions to heal Ronaldo.</p>
+<p>After much thought, Sein finally decided to pass on some...</p>
+</article>
+<article id="c1085" data-label="1085">
+<h2 class="chapter">Chapter 1085: The End of the Crisis 🔒</h2>
+<p>The Goddess of Magic’s reaction said everything about how she felt regarding Sein’s words.</p>
+<p>Exploring a single field was already quite a challenge, let alone every mystery in the entire Astral Realm.</p>
+<p>Still, a lot of what Sein said had genuinely broadened Eluvira’s perspective, especially when he brought up other fields of study like alchemy and body tempering techniques.</p>
+<p>Until now, her focus had been entirely on elemental theory; she had never seriously considered branching out.</p>
+<p>Body tempering techniques held no appeal for Eluvira as she had no interest in boosting her physical strength like the God of Brute Force.</p>
+<p>Alchemy, though... That was a different story.</p>
+<p>During her stay at Sein’s castle, she came across the low-level...</p>
+</article>
+<article id="c1086" data-label="1086">
+<h2 class="chapter">Chapter 1086: Spider Queen’s Schemes 🔒</h2>
+<p>Eluvira’s departure could be seen as an act of self-preservation.</p>
+<p>She had no desire to get tangled in whatever chaos might soon erupt in Faeloria.</p>
+<p>The Purgatory demons had stirred up plenty during the Avatar Crisis, and no one could say for sure whether the Justice League deities would regroup and retaliate.</p>
+<p>In contrast, the end of the Avatar Crisis came as a blessing to the billions of ordinary beings and lesser creatures living across Faeloria.</p>
+<p>With the deities returning to their divine nations, large-scale conflicts that might affect the lives of common folk were expected to dwindle.</p>
+<p>As a large world with a highly developed system of faith, Faeloria had always been efficient...</p>
+</article>
+<article id="c1087" data-label="1087">
+<h2 class="chapter">Chapter 1087: Impending Departure 🔒</h2>
+<p>During the years she lost contact with Sein, the Spider Queen had been busy preparing to capture the Moonlit Cat Goddess alive.</p>
+<p>Capturing a late-stage Rank Five goddess was no simple task.</p>
+<p>It was difficult to even estimate how many rare materials she would need just to construct the confinement array.</p>
+<p>On top of that, devouring the Moonlit Cat Goddess and taking her place was not something that could be accomplished with a few commands.</p>
+<p>If it were not for the Spider Queen’s unique divine powers, her mastery over specific laws, and the fact that she was operating from within a black tower, where resources were virtually unlimited, this entire endeavor would have been impossible.</p>
+<p>After all, the Spider Queen did not belong to the “Brain Eater”...</p>
+</article>
+<article id="c1088" data-label="1088">
+<h2 class="chapter">Chapter 1088: The Perplexing Forest 🔒</h2>
+<p>While Sein had gradually stepped away from his experiments to prepare for his next hunt and eventual departure, Faeloria had grown increasingly lively in recent decades.</p>
+<p>More and more deities had left the Prime Materia Plane, returning to their divine nation that hovered high above the skies.</p>
+<p>At the same time, divine battles had become increasingly frequent and more intense.</p>
+<p>Most of these clashes now took place high above the main continent, just beneath the crystal wall of laws, where deities could unleash their full power without restraint.</p>
+<p>With their strength restored, the deities wasted no time in flaunting their full might. Even the wielders of weak power had become significantly stronger.</p>
+<p>If Sein attempted to hunt a god now, even targeting...</p>
+</article>
+<article id="c1089" data-label="1089">
+<h2 class="chapter">Chapter 1089: Moonlit Cat Goddess 🔒</h2>
+<p>The cat monsters Sein pulled from his spatial storage were all Rank One or higher, with the strongest among them reaching Epic level.</p>
+<p>With the concealment provided by the Spider Queen’s divine power—paired with Sein’s own magic—the Epic-level cat monster leader never even had a chance to call upon the goddess it worshipped before Sein finished them off.</p>
+<p>Having hunted multiple gods in Faeloria, these weaker creatures were no trouble to him.</p>
+<p>Due to the absence of a fully developed, self-sustaining body-tempering system, most of Faeloria’s lower-level beings remained under-evolved.</p>
+<p>As a result, their combat capabilities were limited.</p>
+<p>Faeloria did have its strengths—its...</p>
+</article>
+<article id="c1090" data-label="1090">
+<h2 class="chapter">Chapter 1090: Tug-of-War 🔒</h2>
+<p>The sudden emergence of silver spiderwebs made it clear that whoever set this trap now held the upper hand in this divine clash.</p>
+<p>At least when it came to combat, Sein could trust Lorthisra most of the time.</p>
+<p>So far, the Spider Queen had never let him down in this regard.</p>
+<p>Still, the Moonlit Cat Goddess was no helpless kitten waiting to be hunted.</p>
+<p>The feral swipes of her sharp claws and the shadowy trails she left behind told Sein she had no intention of surrendering.</p>
+<p>He had no idea what the Spider Queen had prepared back in the Magus World. All he could do now was hold his breath and hope for the best.</p>
+<p>It was then that he felt a numbing sting on his cheek.</p>
+<p>Reaching up to touch it, he discovered three thin...</p>
+</article>
+<article id="c1091" data-label="1091">
+<h2 class="chapter">Chapter 1091: Capturing and Leaving 🔒</h2>
+<p>At first, only a few monsters responded to Lorthisra’s call.</p>
+<p>But within moments, that number surged—over a dozen had gathered!</p>
+<p>Among them were several chimeras that radiated an aura as powerful as the Moonlit Cat Goddess, who was still struggling inside the spider web.</p>
+<p>Lorthisra claimed she would not rely on her adoptive father, but in reality, she had borrowed more of his resources than she realized.</p>
+<p>From the rare materials available in the black tower to the dozen or so chimeras rushing in to help her, all of them were Nergal’s.</p>
+<p>With the assistance of these Rank Four and above chimeras, Lorthisra received an immediate boost in power.</p>
+<p>In the blink of an eye, the speed at which she dragged the divine spider web across...</p>
+</article>
+<article id="c1092" data-label="1092">
+<h2 class="chapter">Chapter 1092: Gifts from the Demons 🔒</h2>
+<p>Five years later…</p>
+<p>As the day of his departure drew closer, Sein, who had already packed all his belongings, was less eager to keep up with his daily experiments.</p>
+<p>That day, while he was in the middle of a lesson with Flynn and the others, he got an unexpected visit from the Succubus Queen.</p>
+<p>The topic of today’s lesson was the creation and application of magic artifacts.</p>
+<p>Resting on his shoulder was none other than the portable magic cannon that had once played a key role in god-hunting battles.</p>
+<p>Flynn and the other Arcanist trainees looked especially eager to learn about how the cannon worked.</p>
+<p>Although Sein could not build anything on the scale of the Magus World space fortress’ main cannons,...</p>
+</article>
+<article id="c1093" data-label="1093">
+<h2 class="chapter">Chapter 1093: Goddess of Wealth 🔒</h2>
+<p>A living Goddess of Wealth was worth far more than a corpse, especially one whose divine abilities and domains granted her such immense divine power.</p>
+<p>Killing her would be like slaughtering a goose that could lay golden eggs.</p>
+<p>Across the Astral Realm, most Rank Four and above beings traded using energy crystals, souls, or rare materials. Some deities used divine energy crystals as currency as well.</p>
+<p>According to research by mages of the Magus Civilization, divine energy crystals were essentially high-grade energy constructs created by Rank Four or higher deities through fusing the power of faith with their own divine energy.</p>
+<p>Mages from Magus World at Rank Four and above could also...</p>
+</article>
+<article id="c1094" data-label="1094">
+<h2 class="chapter">Chapter 1094: Not Much Time Left 🔒</h2>
+<p>Trying to control a Rank Five creature was no simple feat.</p>
+<p>Although there had been cases of Rank Four or higher enslaved beings being traded within the Magus Alliance, it always took insanely advanced Soul Enslavement techniques and a full suite of control measures to keep them in check.</p>
+<p>Although the Spider Queen was well-versed in soulology, controlling a Rank Five entity was still a challenge for her.</p>
+<p>If it were that easy, she would not have gone to such extreme lengths just to deal with the Moonlit Cat Goddess.</p>
+<p>As for the Goddess of Wealth, the plan was to keep her sealed away at the very bottom of Purgatory for now.</p>
+<p>Only the chains at that level were strong enough to restrain an intermediate deity...</p>
+</article>
+<article id="c1095" data-label="1095">
+<h2 class="chapter">Chapter 1095: Return 🔒</h2>
+<p>A bright star rose at the edge of Sein’s vision.</p>
+<p>It marked the southeastern reaches of Faeloria—a part of this large-sized plane he had never set foot in since his arrival.</p>
+<p>In truth, Sein’s time in Faeloria had covered only a fraction of the plane.</p>
+<p>He had explored perhaps less than a tenth of its lands, spending most of his centuries in the depths of Purgatory.</p>
+<p>Under the veil of night, that star on the horizon glowed with extraordinary brilliance.</p>
+<p>If one listened closely, they might catch the whisper of prayers—a soft, collective chorus born from the prayers of countless beings.</p>
+<p>Though Sein had long walked the path of truth, the more...</p>
+</article>
+<article id="c1096" data-label="1096">
+<h2 class="chapter">Chapter 1096: Trading Divine Abilities 🔒</h2>
+<p>When Sein opened his eyes again, he found himself standing at the heart of a massive space-time altar.</p>
+<p>The turbulent currents of space-time energy during transit had knocked him out cold before he could stay conscious for long.</p>
+<p>Thanks to the Spider Queen’s precise control and the altar’s pull, Sein’s return to the Magus World had gone smoothly, without any issues.</p>
+<p>Traveling such immense spans of space and time was beyond what most low-ranking beings could withstand.</p>
+<p>Even those at Rank Four and higher seldom dared to cross such long passages.</p>
+<p>One of the greatest risks of such journeys was the physical strain.</p>
+<p>If the journey was too long, it could cause lingering discomfort or even bring...</p>
+</article>
+<article id="c1097" data-label="1097">
+<h2 class="chapter">Chapter 1097: Massive Wealth 🔒</h2>
+<p>While the divine abilities were gifts for Lorthisra’s subordinates, the power of faith stripped from the six divine relics was something she could actually use herself.</p>
+<p>Faith power, like divine energy crystals, was one of the most common currencies in transactions between Rank Four and above beings.</p>
+<p>Since producing divine energy crystals was a tedious process, some deities, especially the lazier or more impatient ones, preferred to deal in faith power instead.</p>
+<p>The white mist swirling around the laboratory was faith power, and Lorthisra stored it in translucent crystal spheres.</p>
+<p>By the time the six divine relics had been completely drained, twenty-three of Lorthisra’s crystal spheres...</p>
+</article>
+<article id="c1098" data-label="1098">
+<h2 class="chapter">Chapter 1098: The Legend of Blackhaven 🔒</h2>
+<p>After leaving Lorthisra’s laboratory, Sein had no idea where to go next.</p>
+<p>The Spider Queen was obviously a busy woman. As a Rank Six being, she had plenty on her plate—from training to managing her followers.</p>
+<p>On top of that, she still had the Moonlit Cat Goddess’s soul to digest, the Goddess of Wealth to deal with, and more importantly, spreading her faith back in Faeloria.</p>
+<p>With so many things piling up, she was bound to be swamped for the next few centuries. There was no way she was going to waste too much time on Sein.</p>
+<p>After Sein handed over the Tablet of Fate fragment from the Silver Spider Ring, the Spider Queen gave him a wave—basically...</p>
+</article>
+<article id="c1099" data-label="1099">
+<h2 class="chapter">Chapter 1099: Sudden Battle 🔒</h2>
+<p>Inside the Magus World, battles between Rank Four and above were strictly forbidden.</p>
+<p>This was one of the supreme laws, written into the codes governing the guardians, the divine towers, the knightly orders, and the Magus Alliance itself.</p>
+<p>Clashes of that caliber were simply too destructive—those who had grasped the power of law could unleash devastation far beyond what ordinary beings could survive. Even a small misstep could shatter the balance of the entire plane.</p>
+<p>That was why such strict regulations existed throughout the Magus World.</p>
+<p>And this did not just apply to the main continent.</p>
+<p>It held across the seas, deep within the magic beast forests,...</p>
+</article>
+<article id="c1100" data-label="1100">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1100: Tough Opponent 🔒</h2>
+<p>Sein did not come to Blackhaven looking for trouble.</p>
+<p>He understood all too well just how deep the waters ran in this world, especially after meeting so many powerful figures.</p>
+<p>Unfortunately, keeping a low profile was not helping him this time.</p>
+<p>His patience was wearing thin. And with the risk that this drawn-out battle might attract other demigod-level black mages—or worse, someone even stronger—all he could think about was ending it fast.</p>
+<p>The raging Ashen Flame surged once more across his body.</p>
+<p>At this point, Sein barely resembled a Flame Demon.</p>
+<p>During his centuries in Faeloria’s Infernal Purgatory, Sein had studied over two hundred different...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1101-1150.html" rel="next">Next: Chs 1101–1150 &rarr;</a>
+    <p class="page-end-links"><a href="1001-1050.html" rel="prev">&larr; Chs 1001–1050</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1051–1100</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1051">Chapter 1051: God of First Light 🔒</a></li>
+        <li><a href="#c1052">Chapter 1052: Intense Battle 🔒</a></li>
+        <li><a href="#c1053">Chapter 1053: Burning Mana 🔒</a></li>
+        <li><a href="#c1054">Chapter 1054: Human Heart 🔒</a></li>
+        <li><a href="#c1055">Chapter 1055: Succeed 🔒</a></li>
+        <li><a href="#c1056">Chapter 1056: Shocking Gains 🔒</a></li>
+        <li><a href="#c1057">Chapter 1057: Well-Behaved Demons 🔒</a></li>
+        <li><a href="#c1058">Chapter 1058: Proper Worldview 🔒</a></li>
+        <li><a href="#c1059">Chapter 1059: Next Target 🔒</a></li>
+        <li><a href="#c1060">Chapter 1060: God of Fire Crickets 🔒</a></li>
+        <li><a href="#c1061">Chapter 1061: Further Complicating 🔒</a></li>
+        <li><a href="#c1062">Chapter 1062: Demigod-Level Mage 🔒</a></li>
+        <li><a href="#c1063">Chapter 1063: The Battle Between Good and Evil 🔒</a></li>
+        <li><a href="#c1064">Chapter 1064: Opportunity Arrives 🔒</a></li>
+        <li><a href="#c1065">Chapter 1065: The Ones Favored by the Planar Will 🔒</a></li>
+        <li><a href="#c1066">Chapter 1066: Messy Relationships Between Deities 🔒</a></li>
+        <li><a href="#c1067">Chapter 1067: Move 🔒</a></li>
+        <li><a href="#c1068">Chapter 1068: Competition of Divine Artifacts 🔒</a></li>
+        <li><a href="#c1069">Chapter 1069: The Mantis Stalks the Cicada 🔒</a></li>
+        <li><a href="#c1070">Chapter 1070: Unaware of the Oriole Behind 🔒</a></li>
+        <li><a href="#c1071">Chapter 1071: God of Smithing 🔒</a></li>
+        <li><a href="#c1072">Chapter 1072: Fighting Side by Side 🔒</a></li>
+        <li><a href="#c1073">Chapter 1073: Forbidden Spell! 🔒</a></li>
+        <li><a href="#c1074">Chapter 1074: Intervening 🔒</a></li>
+        <li><a href="#c1075">Chapter 1075: Getting Out 🔒</a></li>
+        <li><a href="#c1076">Chapter 1076: The Melee of Deities 🔒</a></li>
+        <li><a href="#c1077">Chapter 1077: Self-Destruct 🔒</a></li>
+        <li><a href="#c1078">Chapter 1078: Success 🔒</a></li>
+        <li><a href="#c1079">Chapter 1079: Arriving One After Another 🔒</a></li>
+        <li><a href="#c1080">Chapter 1080: Starting the Fight 🔒</a></li>
+        <li><a href="#c1081">Chapter 1081: Pure Chaos 🔒</a></li>
+        <li><a href="#c1082">Chapter 1082: Goddess of Music 🔒</a></li>
+        <li><a href="#c1083">Chapter 1083: The Seven Divine Relics 🔒</a></li>
+        <li><a href="#c1084">Chapter 1084: Mission of the Civilization 🔒</a></li>
+        <li><a href="#c1085">Chapter 1085: The End of the Crisis 🔒</a></li>
+        <li><a href="#c1086">Chapter 1086: Spider Queen’s Schemes 🔒</a></li>
+        <li><a href="#c1087">Chapter 1087: Impending Departure 🔒</a></li>
+        <li><a href="#c1088">Chapter 1088: The Perplexing Forest 🔒</a></li>
+        <li><a href="#c1089">Chapter 1089: Moonlit Cat Goddess 🔒</a></li>
+        <li><a href="#c1090">Chapter 1090: Tug-of-War 🔒</a></li>
+        <li><a href="#c1091">Chapter 1091: Capturing and Leaving 🔒</a></li>
+        <li><a href="#c1092">Chapter 1092: Gifts from the Demons 🔒</a></li>
+        <li><a href="#c1093">Chapter 1093: Goddess of Wealth 🔒</a></li>
+        <li><a href="#c1094">Chapter 1094: Not Much Time Left 🔒</a></li>
+        <li><a href="#c1095">Chapter 1095: Return 🔒</a></li>
+        <li><a href="#c1096">Chapter 1096: Trading Divine Abilities 🔒</a></li>
+        <li><a href="#c1097">Chapter 1097: Massive Wealth 🔒</a></li>
+        <li><a href="#c1098">Chapter 1098: The Legend of Blackhaven 🔒</a></li>
+        <li><a href="#c1099">Chapter 1099: Sudden Battle 🔒</a></li>
+        <li><a href="#c1100">Chapter 1100: Tough Opponent 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1001-1050.html" rel="prev">&larr; Chs 1001–1050</a>    <a href="../../index.html">Library</a>
+<a href="1101-1150.html" rel="next">Chs 1101–1150 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

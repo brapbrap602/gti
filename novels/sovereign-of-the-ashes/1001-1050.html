@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1001–1050</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="951-1000.html#last" data-next-page="1051-1100.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1001">Chapter 1001: Body Modification Experiment 🔒</a></li>
+        <li><a href="#c1002">Chapter 1002: Weakened Deities 🔒</a></li>
+        <li><a href="#c1003">Chapter 1003: God-Slaying Plan 🔒</a></li>
+        <li><a href="#c1004">Chapter 1004: Shaking Off Pursuers 🔒</a></li>
+        <li><a href="#c1005">Chapter 1005: God of Brute Force 🔒</a></li>
+        <li><a href="#c1006">Chapter 1006: Blood Essence 🔒</a></li>
+        <li><a href="#c1007">Chapter 1007: Knox 🔒</a></li>
+        <li><a href="#c1008">Chapter 1008: A God’s Wrath 🔒</a></li>
+        <li><a href="#c1009">Chapter 1009: Making Moves 🔒</a></li>
+        <li><a href="#c1010">Chapter 1010: Come Help 🔒</a></li>
+        <li><a href="#c1011">Chapter 1011: A Hollow Victory 🔒</a></li>
+        <li><a href="#c1012">Chapter 1012: Immense Gains 🔒</a></li>
+        <li><a href="#c1013">Chapter 1013: Ugly and Beautiful 🔒</a></li>
+        <li><a href="#c1014">Chapter 1014: The Unfathomable Faeloria 🔒</a></li>
+        <li><a href="#c1015">Chapter 1015: The Godslayers 🔒</a></li>
+        <li><a href="#c1016">Chapter 1016: God of Justice 🔒</a></li>
+        <li><a href="#c1017">Chapter 1017: The Truth of the World 🔒</a></li>
+        <li><a href="#c1018">Chapter 1018: Heretical Forces 🔒</a></li>
+        <li><a href="#c1019">Chapter 1019: The Power of Fate 🔒</a></li>
+        <li><a href="#c1020">Chapter 1020: Quatar Star Pirates 🔒</a></li>
+        <li><a href="#c1021">Chapter 1021: Shocked Deities 🔒</a></li>
+        <li><a href="#c1022">Chapter 1022: Ahead of Schedule! 🔒</a></li>
+        <li><a href="#c1023">Chapter 1023: Lorthisra’s Disappointment 🔒</a></li>
+        <li><a href="#c1024">Chapter 1024: A Terrifying Powerhouse 🔒</a></li>
+        <li><a href="#c1025">Chapter 1025: The Land of Purgatory 🔒</a></li>
+        <li><a href="#c1026">Chapter 1026: Bloodwar Monarch 🔒</a></li>
+        <li><a href="#c1027">Chapter 1027: Ruthless Hero 🔒</a></li>
+        <li><a href="#c1028">Chapter 1028: Subjugate 🔒</a></li>
+        <li><a href="#c1029">Chapter 1029: Abyssan 🔒</a></li>
+        <li><a href="#c1030">Chapter 1030: Negotiation 🔒</a></li>
+        <li><a href="#c1031">Chapter 1031: Bloodwar Hall 🔒</a></li>
+        <li><a href="#c1032">Chapter 1032: Joint Development 🔒</a></li>
+        <li><a href="#c1033">Chapter 1033: Lord of Ashes 🔒</a></li>
+        <li><a href="#c1034">Chapter 1034: Succubus Queen’s Gifts 🔒</a></li>
+        <li><a href="#c1035">Chapter 1035: Demon Mask 🔒</a></li>
+        <li><a href="#c1036">Chapter 1036: Spreading the Truth 🔒</a></li>
+        <li><a href="#c1037">Chapter 1037: Divine Descent 🔒</a></li>
+        <li><a href="#c1038">Chapter 1038: New Arrivals 🔒</a></li>
+        <li><a href="#c1039">Chapter 1039: Three Little Ones 🔒</a></li>
+        <li><a href="#c1040">Chapter 1040: Flynn 🔒</a></li>
+        <li><a href="#c1041">Chapter 1041: Demigodhood 🔒</a></li>
+        <li><a href="#c1042">Chapter 1042: Goddess of Doom 🔒</a></li>
+        <li><a href="#c1043">Chapter 1043: Relocation 🔒</a></li>
+        <li><a href="#c1044">Chapter 1044: The Academies 🔒</a></li>
+        <li><a href="#c1045">Chapter 1045: Deeper Into Chaos 🔒</a></li>
+        <li><a href="#c1046">Chapter 1046: The God Hunt Begins 🔒</a></li>
+        <li><a href="#c1047">Chapter 1047: Target 🔒</a></li>
+        <li><a href="#c1048">Chapter 1048: A Different Stance 🔒</a></li>
+        <li><a href="#c1049">Chapter 1049: Caught the Trail 🔒</a></li>
+        <li><a href="#c1050">Chapter 1050: Portable Magic Cannon 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1001" data-label="1001">
+<h2 class="chapter">Chapter 1001: Body Modification Experiment 🔒</h2>
+<p>Beyond continuing his journey westward and marking the planar nodes, Sein remained committed to observing and studying everything about this world.</p>
+<p>Faeloria was a large world, far more biologically diverse and ecologically advanced than the foreign planes he had visited in the past.</p>
+<p>His spatial storage equipment had accumulated yet another vast collection of materials and biological specimens, all unique to this plane.</p>
+<p>His strength had also fully recovered after a month of being in Faeloria.</p>
+<p>With his power restored, Sein also regained full access to his arsenal of equipment.</p>
+<p>More importantly, his most valuable companion, Yuri, could now be summoned.</p>
+<p>After the upgrade in Sky City, Yuri’s strength was comparable to that of any Rank Three creature.</p>
+<p>Together, the two...</p>
+</article>
+<article id="c1002" data-label="1002">
+<h2 class="chapter">Chapter 1002: Weakened Deities 🔒</h2>
+<p>After completing the body modification experiment, Lou’s mental state noticeably improved.</p>
+<p>While she continued to repeat “Big Brother… Big Brother…” like a mantra, she had begun to formulate other simple phrases.</p>
+<p>The only thing that remained unchanged was her clinginess to Sein.</p>
+<p>Of course, the improvement of her intelligence and the stabilization of her mental state could not be achieved overnight.</p>
+<p>The fact that her condition had already significantly improved after a single experiment was remarkable in itself.</p>
+<p>The rest would require time.</p>
+<p>Besides, Sein still planned to conduct more experiments on her in the future.</p>
+<p>As a half-undead, Lou possessed an extraordinarily high degree of elemental adaptability and inclusiveness.</p>
+<p>However, Sein’s interest in experimenting on her was not driven...</p>
+</article>
+<article id="c1003" data-label="1003">
+<h2 class="chapter">Chapter 1003: God-Slaying Plan 🔒</h2>
+<p>“There’s no doubt that these native deities have already mastered the basic use of divine power and laws. It seems they even possess their own divine abilities and could technically be considered Rank Four creatures.</p>
+<p>“But why is their power and aura so underwhelming? …I suppose it might be related to their small number of believers, or perhaps something is fundamentally flawed in their evolution,” the Spider Queen mused.</p>
+<p>Even she could not quite discern what these entities truly were.</p>
+<p>Faeloria was just too peculiar, and if the plane’s unique laws had given birth to weakened Rank Four gods, it would not be entirely unreasonable.</p>
+<p>After all, in Astral Realm, the birth of a Rank Four deity was a once-in-a-million...</p>
+</article>
+<article id="c1004" data-label="1004">
+<h2 class="chapter">Chapter 1004: Shaking Off Pursuers 🔒</h2>
+<p>After the two “evil entities” from the Magus World had roughly discussed their god-slaying plan, the Spider Queen cleared her throat and addressed Sein, who was still lost in thought.</p>
+<p>&#34;Since you’re not a native of this world, the will of this plane is actively rejecting you. On top of that, you’ve been stalked by different native creatures since leaving Blackwater City. If you intend to carry out the god-slaying plan, you’ll need to get rid of them first.”</p>
+<p>Faeloria had been developing for countless years, perfecting its defenses and systems to an unprecedented degree.</p>
+<p>After causing such a significant disturbance at the Church of Bones in Blackwater City, there was no way Sein could have escaped unnoticed by the native forces.</p>
+<p>Not only were the clerics and followers of the Church of Bones in pursuit, but the Temple of Storms, the Temple of Stealth,...</p>
+</article>
+<article id="c1005" data-label="1005">
+<h2 class="chapter">Chapter 1005: God of Brute Force 🔒</h2>
+<p>After spending a week in St. Pilantes City, familiarizing himself with its unique atmosphere, Sein continued westward.</p>
+<p>The dominant species in Faeloria were humanoid creatures, much like in the Magus World.</p>
+<p>At first glance, the Faelorian humans closely resembled those of the Magus World.</p>
+<p>However, their body structure and fundamental essence differed significantly.</p>
+<p>This was entirely natural—different planes and civilizations inevitably gave rise to distinct evolutionary paths.</p>
+<p>It was impossible for two planes within the Astral Realm to produce identical beings.</p>
+<p>For example, humans in the Magus World had four tail vertebrae arranged in an inverted triangular shape beneath the spine.</p>
+<p>Faelorian humans, on the other hand, lacked this feature and instead possessed two trapezoidal hip bon...</p>
+</article>
+<article id="c1006" data-label="1006">
+<h2 class="chapter">Chapter 1006: Blood Essence 🔒</h2>
+<p>Any creature that sought godhood through faith placed immense importance on their followers.</p>
+<p>To them, their believers were the foundation of their existence.</p>
+<p>In Feymous Canyon, there were hundreds of thousands of Gray-headed Apes.</p>
+<p>To a powerful deity like Spider Queen, this number was insignificant.</p>
+<p>However, to the God of Brute Force, an obscure and weak deity, these creatures likely made up nearly one-tenth of its total followers in Faeloria.</p>
+<p>During Sein’s years in Faeloria, he had not been studying the world’s structure and composition alone. Even from afar, in the Magus World, the Spider Queen had been meticulously analyzing this plane.</p>
+<p>Faeloria’s planar rules were distinctly unique. Unlike the Magus World, this civilization...</p>
+</article>
+<article id="c1007" data-label="1007">
+<h2 class="chapter">Chapter 1007: Knox 🔒</h2>
+<p>From the moment Sein struck, Feymous Canyon plunged into a land of death and carnage.</p>
+<p>For far too long, the Gray-Headed Apes had lived in isolated peace, never once imagining that disaster could descend upon them so suddenly.</p>
+<p>But then again, was it not the same for all of Faeloria?</p>
+<p>A civilization with an elite combat legion was one tempered by countless battles, hardened by hardship and bloodshed.</p>
+<p>Yet, Faeloria had enjoyed centuries of peace.</p>
+<p>Perhaps its powerful deities could still wield divine might, but the lesser beings of this world were far from prepared for battle.</p>
+<p>Compared to the hardened combat legions of a truly professional civilization, the...</p>
+</article>
+<article id="c1008" data-label="1008">
+<h2 class="chapter">Chapter 1008: A God’s Wrath 🔒</h2>
+<p>The once-in-ten-millennia Avatar Crisis was a cataclysmic event that reshuffled the power of Faeloria.</p>
+<p>Though those cast down from their divine nations were mostly deities of weak and lesser power, the ripple effects of their downfall would inevitably shift the grand game of the gods at the upper echelons.</p>
+<p>Who could say how many temples would crumble into dust—or rise anew—in the wake of such a catastrophe?</p>
+<p>The last Avatar Crisis had been relatively minor in scale and intensity.</p>
+<p>Only about ten deities fell during the chaos. Most were weak deities, and only one unfortunate lesser deity met the same fate.</p>
+<p>But in Faeloria’s long history, the most devastating Avatar Crises were those where even intermediate deities were dragged from their altars.</p>
+<p>Even after the Avatar Crisis had ended, the gods continued to battle in their divine nations and on the Battlefield of the Gods, driven by resentment and power struggles.</p>
+<p>One such...</p>
+</article>
+<article id="c1009" data-label="1009">
+<h2 class="chapter">Chapter 1009: Making Moves 🔒</h2>
+<p>The God of Brute Force had some doubts about a demon appearing to massacre its followers within its territory, but not enough to immediately suspect a greater scheme.</p>
+<p>After all, in Faeloria’s long history, the demons of the three-level Purgatory had, on more than one occasion, stormed out to wreak havoc on the Prime Materia Plane.</p>
+<p>The word “demon” carried such infamy in Faeloria because many gods had suffered beneath their claws, and these highly destructive beings had left deep scars upon the world itself.</p>
+<p>It was even rumored that the demons were responsible for the unprecedented magnitude of the last Avatar Crisis, one hundred thousand years ago.</p>
+<p>It was not unfathomable for a Rank Three demon to storm out of Purgatory and wreak havoc in Knox’s...</p>
+</article>
+<article id="c1010" data-label="1010">
+<h2 class="chapter">Chapter 1010: Come Help 🔒</h2>
+<p>“A greater deity’s divine clone?!” the God of Brute Force exclaimed in shock.</p>
+<p>Lesser deities who wielded weak divine power were far inferior to those who wielded lesser divine power.</p>
+<p>There was no way a divine clone of a greater deity could be weaker than a lesser deity.</p>
+<p>In Faeloria, deities rarely sent their clone into battle —if a clone perished, it could severely impact the deity’s main body.</p>
+<p>Now, with a strange greater deity’s clone appearing here, the God of Brute Force was certain that this being was not here for a friendly chat.</p>
+<p>Without hesitation, it turned and bolted toward the exit of Feymous Canyon.</p>
+<p>Sein and Lorthisra had gone to great lengths to trap this god—there was no way they would let it escape so easily.</p>
+<p>The special arrays Sein had set up outside the canyon had been...</p>
+</article>
+<article id="c1011" data-label="1011">
+<h2 class="chapter">Chapter 1011: A Hollow Victory 🔒</h2>
+<p>Sein had never imagined that one day, he would take part in a siege against a god.</p>
+<p>Even if the God of Brute Force was a “weakened deity”, it was still a god!</p>
+<p>The mages of the Magus World had always been known for their overwhelming offensive power.</p>
+<p>By harnessing elemental energy—sometimes at magnitudes of several times, ten times, or even hundreds of times—mages could wield far greater power than their natural limits would normally allow.</p>
+<p>This was precisely why, despite their fragile constitutions, mages possessed terrifying combat strength.</p>
+<p>In every interplanar war, the kill count of Magus World mages was often five to ten times higher than that of knights of the same rank—sometimes even more.</p>
+<p>Area-of-effect magic was inherently more destructive than single-target...</p>
+</article>
+<article id="c1012" data-label="1012">
+<h2 class="chapter">Chapter 1012: Immense Gains 🔒</h2>
+<p>Yuri’s condition was no better than Sein’s.</p>
+<p>In this battle alone, five of her standard-model mechas had been destroyed, with several others severely damaged.</p>
+<p>Even the mecha piloted by Yuri herself had sustained as much damage as Sein.</p>
+<p>Her Burning Flame Unit had absorbed the brunt of many attacks in his place.</p>
+<p>Even the magic alloy crafted in Sky City had failed to fully withstand the God of Brute Force’s final, frenzied assault.</p>
+<p>Fortunately, luck had been on their side—the shockwaves from the rampaging god’s strikes had missed the critical components and weapon systems on Yuri’s mecha.</p>
+<p>Had those been hit, it was uncertain whether Sein and Yuri would have made it out alive.</p>
+<p>This battle had given Sein a harsh reality check—the sheer gap between himself...</p>
+</article>
+<article id="c1013" data-label="1013">
+<h2 class="chapter">Chapter 1013: Ugly and Beautiful 🔒</h2>
+<p>Half a month later, the Spider Queen turned to Sein and asked, “You’re sure there aren’t any traces left, right?”</p>
+<p>Her level of vigilance was not far from Sein’s own.</p>
+<p>By now, the divine cocoon beneath her legs had stopped moving.</p>
+<p>With the Spider Queen injecting venom into it every other day, the God of Brute Force had ceased all movement five days ago.</p>
+<p>“I think so,” Sein replied. “I have no way of checking what’s buried deep beneath the canyon’s ruins, but I’ve cleared out any remaining arrays with active energy fluctuations.”</p>
+<p>In this world, erasing all traces was impossible, especially when it involved a divine conflict of such magnitude.</p>
+<p>If not for the Spider Queen’s immense power, her advanced preparations, and her divine domain’s unique attributes, the commotion at Feymous...</p>
+</article>
+<article id="c1014" data-label="1014">
+<h2 class="chapter">Chapter 1014: The Unfathomable Faeloria 🔒</h2>
+<p>After leaving Feymous Canyon, Sein continued traveling west.</p>
+<p>In truth, there was no longer any reason for him to head in that direction—he could go anywhere in this world.</p>
+<p>As soon as the Spider Queen had recovered and the amplification array was ready, Sein would be pulled back to the Magus World.</p>
+<p>Beyond Purgatory in the far west, Faeloria was home to many other mysterious and unique regions.</p>
+<p>To the far north lay a land of snow-capped mountains and vast, untamed wilderness.</p>
+<p>Rumors spoke of ancient tribes dwelling in those frozen expanses, with some even claiming that long-forgotten deities lay in slumber in that region.</p>
+<p>Beyond the north, both the far east and the far south of Faeloria had their own distinct characteristics.</p>
+<p>The easternmost reaches of Faeloria were dotted with countless islands,...</p>
+</article>
+<article id="c1015" data-label="1015">
+<h2 class="chapter">Chapter 1015: The Godslayers 🔒</h2>
+<p>Given the Spider Queen’s foul mood, Sein dared not bring up his request for her divine spider silk again.</p>
+<p>During the battle at Feymous Canyon, he had placed Lou inside a custom-made spatial storage device he had crafted for her.</p>
+<p>Because of Lou’s half-undead nature, Sein had meticulously adjusted the internal environment of the storage space, increasing the concentration of death energy to better accommodate her condition.</p>
+<p>Judging by her improved appearance, the setup had worked—her complexion was noticeably healthier than before.</p>
+<p>However, the moment she was freed from the storage device, Lou clung to Sein more than ever, outright refusing to return to the death energy-infused space.</p>
+<p>Even though the environment inside was perfectly suited for a half-undead being like her, it was clear that nothing mattered to her more than being with her “Big Brother”.</p>
+<p>Taking advantage of...</p>
+</article>
+<article id="c1016" data-label="1016">
+<h2 class="chapter">Chapter 1016: God of Justice 🔒</h2>
+<p>With the God of Brute Force now completely dead, the Spider Queen could finally unravel her divine cocoon.</p>
+<p>The god’s lifeless corpse had taken on a grayish hue. Patches of coarse hair—a remnant of its Gray-headed Ape ancestry—began emerging on its skin.</p>
+<p>Its fingernails blackened, growing sharp like claws as it regressed into its primitive state.</p>
+<p>“Alright. Now, I can begin stripping its divine ability and divinity. I hope this one won’t disappoint me,” Spider Queen said.</p>
+<p>At that moment, the divine spider silk that had tightly bound the corpse slowly retracted into Spider Queen’s fingertips.</p>
+<p>Sein watched those silken strands with a tinge of envy.</p>
+<p>Beyond containing Spider Queen’s divine aura, they were, in his eyes, the perfect...</p>
+</article>
+<article id="c1017" data-label="1017">
+<h2 class="chapter">Chapter 1017: The Truth of the World 🔒</h2>
+<p>Unlike the Dark Lady and the Elemental God, the two renowned faction leaders, Poseidon remained an enigma.</p>
+<p>In Faeloria, its existence was scarcely known, even to lesser deities like the God of Brute Force.</p>
+<p>To be acknowledged by the God of Justice and regarded as an opponent of equal rank spoke volumes about Poseidon’s power.</p>
+<p>The title of Poseidon was not one that lesser or intermediate oceanic deities could claim lightly.</p>
+<p>Throughout history, there had only ever been one true Poseidon in Faeloria, dwelling beneath the boundless ocean to the south of the continent.</p>
+<p>Among the vast and complex pantheon of oceanic gods, only a handful of greater deities had ever heard its name.</p>
+<p>According to legend, Poseidon’s true age was even greater than that of the Elemental God.</p>
+<p>It was, in every sense,...</p>
+</article>
+<article id="c1018" data-label="1018">
+<h2 class="chapter">Chapter 1018: Heretical Forces 🔒</h2>
+<p>The God of Justice was not the only one seeking to reshape the very fabric of this world.</p>
+<p>The Dark Lady, leader of the Dark Alliance, pursued a different path.</p>
+<p>Unlike the God of Justice, she did not focus on cultivating a vast following of believers.</p>
+<p>Instead, she sought to use the body of a supreme deity to break the barrier of this world.</p>
+<p>She did not need to destroy it entirely—a single crack would be enough to glimpse what lay beyond.</p>
+<p>The Dark Lady built a strong relationship with the demons in recent years, hoping to gain their assistance in her endeavor.</p>
+<p>Moreover, she had borrowed a Tablet of Fate from the God of Justice.</p>
+<p>There were three Tablets of Fate in Faeloria, safeguarded by its most powerful beings—the Dark Lady, the God of Justice, and the...</p>
+</article>
+<article id="c1019" data-label="1019">
+<h2 class="chapter">Chapter 1019: The Power of Fate 🔒</h2>
+<p>The Goddess of Luck, Tyvera, was one of the rare few among the Faelorian deities who had mastered the art of divination.</p>
+<p>In any world or civilization, divination-based laws were considered an exceptionally rare category.</p>
+<p>Even in the Magus World, the number of Rank Four and above astrologers had never grown to an exaggerated extent.</p>
+<p>Tyvera and her sister, the Goddess of Doom, Morvanya, were blood siblings. They were intermediate Faelorian deities with notable reputations.</p>
+<p>It was said that the sisters had inherited their powers from their mother, the ancient Goddess of Fate.</p>
+<p>According to incomplete historical records, the Goddess of Fate was once a mighty greater deity.</p>
+<p>Yet even such a powerful being had fallen, vanishing into the dust of history—marking Faeloria’s vast legacy and the proud achievements of the ancient gods.</p>
+<p>At the peak of the...</p>
+</article>
+<article id="c1020" data-label="1020">
+<h2 class="chapter">Chapter 1020: Quatar Star Pirates 🔒</h2>
+<p>With a cold snort, the black-robed elder shattered the bizarre power of fate that had entangled the Spider Queen, Lorthisra.</p>
+<p>As one of the most powerful overlords in the Magus World—one who also dabbled in the laws of divination and prophecy—the black-robed elder’s strength far surpassed that of the intermediate Faelorian deity, Tyvera.</p>
+<p>Even the God of Justice, her support, could not compare to him!</p>
+<p>The moment the power of Fate Search was shattered, Tyvera violently coughed up a mouthful of blood within the Justice Theocracy.</p>
+<p>The backlash from the law of fate struck her mercilessly, instantly turning half of her hair gray!</p>
+<p>Yet, she was not the only one suffering. Behind her, the God of Justice let out a muffled grunt.</p>
+<p>Despite being a supreme deity, the God of Justice was merely a...</p>
+</article>
+<article id="c1021" data-label="1021">
+<h2 class="chapter">Chapter 1021: Shocked Deities 🔒</h2>
+<p>As the Spider Queen shivered in Magus World, far away in Faeloria, Sein suddenly felt a strange sense of unease prickled at him, though he was unsure what had just happened.</p>
+<p>Turning back, he scanned his surroundings in confusion—only for the Spider Queen to deliver unfortunate news from the distant Magus World.</p>
+<p>“The native deities of this large world seem to have discovered us. They tried to spy on us through divination just now,” she said.</p>
+<p>She paused before adding, “Those Faelorian deities shouldn’t have gotten much useful information, so I’ll be fine. In fact, they just suffered a major backlash. But your situation… is far less favorable. They may have already locked onto your trail and identified your appearance.”</p>
+<p>“Shit!” Sein cursed.</p>
+<p>Of course,...</p>
+</article>
+<article id="c1022" data-label="1022">
+<h2 class="chapter">Chapter 1022: Ahead of Schedule! 🔒</h2>
+<p>If the sky collapsed, the tall ones would bear the weight—this saying applied not only to Magus World but also to Faeloria.</p>
+<p>Just as Sein had never concerned himself with, nor fully understood, the looming war between the Magus Civilization and the Gallant Federation, the native deities of Faeloria had their own distant, untouchable matters.</p>
+<p>Sein simply had no grasp of the strategic conflicts of civilizations—and frankly, he had no need to.</p>
+<p>Likewise, for the Faelorian deities, the Overdeity or the so-called “God of Gods” realm was far beyond their reach.</p>
+<p>Only a handful of deities, such as the God of Justice and the Dark Lady, stood on the cusp of breaking through to that realm.</p>
+<p>In Faeloria, Dio was nothing short of a “Mythical” existence.</p>
+<p>In fact, he was the greatest witness to Faeloria’s history—and the very...</p>
+</article>
+<article id="c1023" data-label="1023">
+<h2 class="chapter">Chapter 1023: Lorthisra’s Disappointment 🔒</h2>
+<p>“All my believers and subjects, pursue this blasphemer and bring him to the Temple of Justice!”</p>
+<p>The God of Justice’s oracle reached every shrine across the main continent.</p>
+<p>Portraits of Sein, and even the half-undead girl by his side, were swiftly circulated among the temples.</p>
+<p>With the God of Justice commanding a vast network of subordinate deities, they immediately mobilized, fully committing to the hunt.</p>
+<p>Before long, responses arrived from both the Elemental God and the Dark Lady.</p>
+<p>Soon, nearly all of Faeloria was actively hunting Sein.</p>
+<p>Only the dragon gods in the outer seas, the chaotic demons, and the sea gods remained uninvolved—for now.</p>
+<p>Even so, it was only a matter of time before the dragon gods and sea gods joined the pursuit.</p>
+<p>Among the entire Faeloria, only the Purgatory demons remained indifferent to the native...</p>
+</article>
+<article id="c1024" data-label="1024">
+<h2 class="chapter">Chapter 1024: A Terrifying Powerhouse 🔒</h2>
+<p>Being unable to plunder Faeloria for long-term war gains did not mean Lorthisra’s investments had to go to waste.</p>
+<p>She had already poured significant resources into this endeavor—she needed something in return.</p>
+<p>With so many deities in that world and a special phenomenon like the Avatar Crisis, she was already considering her next move.</p>
+<p>“The divine abilities and divinities of this world’s deities don’t seem to be stripped from them during the Avatar Crisis. Once cast down to the mortal world, they were merely enhanced versions of demigods…”</p>
+<p>Lorthisra brushed her fingers against the altar and continued, “If I can send a Rank Four clone there…”</p>
+<p>If she could not reap the war profits of the entire world, then the next best...</p>
+</article>
+<article id="c1025" data-label="1025">
+<h2 class="chapter">Chapter 1025: The Land of Purgatory 🔒</h2>
+<p>Among the Magus World mages and knights, journeying into the Astral Realm seemed to be a common tradition upon reaching a certain rank.</p>
+<p>At present, many Magus World powerhouses were still exploring the Astral Realm.</p>
+<p>With the battle of civilizations fast approaching, some would undoubtedly return in time.</p>
+<p>However, those who had traveled too far might not make it back before war broke out.</p>
+<p>The one Nergal had just mentioned was likely one of them.</p>
+<p>Despite her absence, there was no need to worry that she had disappeared entirely.</p>
+<p>If Magus Civilization ever faced an extreme crisis—one that demanded her strength—then no matter how far she was, she would return as swiftly as she could.</p>
+<p>That said, it was unlikely that the Magus Civilization would ever need to call upon her strength.</p>
+<p>The upper...</p>
+</article>
+<article id="c1026" data-label="1026">
+<h2 class="chapter">Chapter 1026: Bloodwar Monarch 🔒</h2>
+<p>The Justice League Army’s steady advance toward Purgatory was quickly reported to all the demon kings within its borders.</p>
+<p>The demons in Faeloria were indeed a formidable force, having organized themselves into well-structured camps.</p>
+<p>Across the three levels of Purgatory, there were more than two hundred Rank Four or higher demon kings.</p>
+<p>Their warlike and bloodthirsty nature far surpassed that of the other divine factions in Faeloria.</p>
+<p>“Infernal Purgatory, endless blood wars!”</p>
+<p>Every Rank Four or above demon king had to endure countless brutal battles before ascending. Their rise was paved with corpses and blood.</p>
+<p>For years, Faeloria’s deities had been...</p>
+</article>
+<article id="c1027" data-label="1027">
+<h2 class="chapter">Chapter 1027: Ruthless Hero 🔒</h2>
+<p>Thorstein’s vision of breaking out of Faeloria was losing support among the demons of third-floor Purgatory.</p>
+<p>The new generation of demons had embraced the values of the Prime Materia Plane.</p>
+<p>They had no understanding of the Astral Realm that the older demons spoke of.</p>
+<p>To them, escaping Faeloria was not the goal. Their only desire was to storm out of Purgatory, massacre their way through the Prime Materia Plane, and revel in the bloodshed.</p>
+<p>It was unclear whether the demons had fallen—or if they had simply been assimilated.</p>
+<p>The only demons still loyal to Thorstein were his old subordinates—those who had arrived in Faeloria over two hundred thousand years ago—as...</p>
+</article>
+<article id="c1028" data-label="1028">
+<h2 class="chapter">Chapter 1028: Subjugate 🔒</h2>
+<p>The crimson three-level Purgatory appeared in Sein’s view.</p>
+<p>It was one of the defining features of Faeloria’s far west—a place that seemed like an entirely different world, forcefully merged with the Prime Materia Plane.</p>
+<p>From the blood-colored sky to the scorched land, everything about this place just felt like an unnatural presence in Faeloria.</p>
+<p>Sein felt a pang of unease as he drew closer to the Purgatory’s borders.</p>
+<p>After all, demons were notorious for their aggression and insatiable thirst for slaughter.</p>
+<p>No matter how he looked at it, the crimson realm looming ahead was the very embodiment of “evil” and “foreboding”.</p>
+<p>It was no wonder the creatures of Faeloria instinctively rejected Purgatory.</p>
+<p>This evil land was no place for ordinary be...</p>
+</article>
+<article id="c1029" data-label="1029">
+<h2 class="chapter">Chapter 1029: Abyssan 🔒</h2>
+<p>Sein had barely crossed into Purgatory’s borders when he suddenly felt something lifted from his body.</p>
+<p>The force that had propelled his rapid flight earlier had vanished.</p>
+<p>Yet, even without it, he dared not slow down.</p>
+<p>The pursuers behind him had not ceased their relentless chase—how could he afford to slow down?</p>
+<p>Yet, what truly made his scalp crawl was not just the enemies at his back.</p>
+<p>It was the roaring legions of demons marching toward him from the front.</p>
+<p>These demons had spotted the Justice League’s legions storming into Purgatory, so they began their own charge, steadily gaining momentum.</p>
+<p>They were going to strike the forces of the Order alignment with their full might!</p>
+<p>As for Sein, the demons had already identified him as their enemy—perhaps even the leader of the opposing forces.</p>
+<p>The Purgatory demons...</p>
+</article>
+<article id="c1030" data-label="1030">
+<h2 class="chapter">Chapter 1030: Negotiation 🔒</h2>
+<p>While a fierce battle raged in Purgatory, Sein was brought before one of the demon kings.</p>
+<p>It was the Razorclaw King—a formidable Rank Five demon, towering tens of meters tall, his body covered in razor-sharp spikes.</p>
+<p>In Faeloria, such a creature held power equivalent to an intermediate deity.</p>
+<p>By comparison, the Bone Lord that had attacked Sein when he first arrived in Faeloria was far weaker than the Razorclaw King before him.</p>
+<p>The sheer destructive power of this demon king was evident just from his form alone.</p>
+<p>Sein had encountered many Rank Five beings before, yet in the Razorclaw King’s presence, he did not even dare to breathe loudly.</p>
+<p>At that moment, it was obvious that the Razorclaw King was irritated.</p>
+<p>The...</p>
+</article>
+<article id="c1031" data-label="1031">
+<h2 class="chapter">Chapter 1031: Bloodwar Hall 🔒</h2>
+<p>The scenery on the lowest level of Purgatory was far more pleasant than the first.</p>
+<p>Though demons thrived on bloodshed and destruction, they were not mindless monsters driven solely by carnage.</p>
+<p>They had their own sense of aesthetics, and on this deepest level of Hell, Sein saw numerous castles, each bearing the distinct architectural style of the demons.</p>
+<p>Curiously, these structures bore a striking resemblance to those of Faeloria. It appeared that the culture of Faeloria had indeed left its mark, even on these foreign demons.</p>
+<p>Beyond the castles, Sein observed many blood-colored lakes scattered across the landscape.</p>
+<p>Their surfaces rippled with an eerie glow, resembling vast pools of blood.</p>
+<p>He lingered for a moment,...</p>
+</article>
+<article id="c1032" data-label="1032">
+<h2 class="chapter">Chapter 1032: Joint Development 🔒</h2>
+<p>“Your Majesty, I am Sein, a Rank Three mage from Magus World, and I have indeed heard of your clan before.”</p>
+<p>He spoke in the Magus World’s common tongue, the most prestigious language within the Magus Alliance’s sphere of influence.</p>
+<p>Seated upon the throne, Thorstein nodded and remarked, “Rank Three... looks like you truly hail from the realm beyond.”</p>
+<p>Faeloria’s power hierarchy had its own well-defined structure: Transcendent, Legendary, Epic, Saint, Deity…</p>
+<p>Yet in the Astral Realm, creatures preferred a simpler classification—ranks.</p>
+<p>Since different races and civilizations each had their own distinct power systems, the most primitive numerical ranking remained the most direct and universally understood measure...</p>
+</article>
+<article id="c1033" data-label="1033">
+<h2 class="chapter">Chapter 1033: Lord of Ashes 🔒</h2>
+<p>“When I was still a demon lord, Carter Gustavo was already a powerful demon king, his reputation echoing across many layers of Hell. His strength and battle records have inspired many Hell demons.</p>
+<p>I heard that this demon king once fought against the younger brother of the Abyssal Dragon King. In the end, he lost—but only by a narrow margin,” Thorstein said in a deep voice.</p>
+<p>Hearing this, the Spider Queen smiled and said, “That very same Carter Gustavo has now ascended to an overlord.”</p>
+<p>Her words instantly silenced the noises and whispers that filled the Bloodwar Hall.</p>
+<p>The wrinkly cunning demon sighed deeply and remarked, “So, another overlord has finally risen from our clan…”</p>
+<p>His words reflected the common sentiment of the demons present.</p>
+<p>A demon overlord was also known as a “demon great monarch...</p>
+</article>
+<article id="c1034" data-label="1034">
+<h2 class="chapter">Chapter 1034: Succubus Queen’s Gifts 🔒</h2>
+<p>At the heart of Sein’s territory in Purgatory, a stone castle stood tall, its architecture mirroring those in the Magus World.</p>
+<p>Constructing it had taken Sein half a month of effort.</p>
+<p>Beyond enlisting the demons in his territory as laborers, Sein had also summoned geo elemental creatures to assist in the process.</p>
+<p>The Geo Elemental Summoning spell was something he had mastered during his studies in Sky City.</p>
+<p>Back when he was at the peak of Rank Two, his mentor had urged him to expand his mastery beyond a single spectrum of magic.</p>
+<p>Now, not only had he honed his control over geo elemental magic, but he had also developed proficiency in various other elemental magic, wielding them effortlessly with both hands.</p>
+<p>This newly built castle would serve as Sein’s residence...</p>
+</article>
+<article id="c1035" data-label="1035">
+<h2 class="chapter">Chapter 1035: Demon Mask 🔒</h2>
+<p>Of course, the Succubus Queen had not bestowed such a generous gift upon Sein without any motives.</p>
+<p>Sure enough, after that, she would come to Sein’s castle whenever she was bored.</p>
+<p>At first, Sein humored her, entertaining her with polite conversation and even flattered her.</p>
+<p>But as time went on, her visits became increasingly frequent, to the point where they began disrupting his experiments.</p>
+<p>Sein eventually shut himself in his laboratory, but the Succubus Queen continued roaming the castle as if it were her own home.</p>
+<p>Though Sein no longer had the time to entertain her, there were still two people and one undead being in his castle who could do so in his stead.</p>
+<p>Yuri and Azelia had served Sein for hundreds of years.</p>
+<p>Anastasia could still pry pieces of knowledge...</p>
+</article>
+<article id="c1036" data-label="1036">
+<h2 class="chapter">Chapter 1036: Spreading the Truth 🔒</h2>
+<p>The creation of a top-tier magic artifact could never be accomplished overnight.</p>
+<p>Although Sein was satisfied with the current functions of the Demon Mask, he still felt there was room for further improvement.</p>
+<p>For this reason, he wanted to discuss it with the Succubus Queen, hoping she could give him a Rank Three or higher Bat Demon or, better yet, another Succubus.</p>
+<p>It had to be said that after hanging around Lorthisra for so long, Sein’s shamelessness had been honed to an impressive degree.</p>
+<p>In truth, Sein had been living quite comfortably since arriving in Purgatory.</p>
+<p>No, to put it more accurately—he was better off here than he ever was in the Divine Tower of Verdant Spring!</p>
+<p>Aside from the numerous demons in his territory—who occasionally disappeared, only to reappear...</p>
+</article>
+<article id="c1037" data-label="1037">
+<h2 class="chapter">Chapter 1037: Divine Descent 🔒</h2>
+<p>To Sein’s surprise, the Succubus Queen seemed to have everything planned out already.</p>
+<p>But before anything else, she first brought him to the first level of Purgatory to see a falling meteor.</p>
+<p>Yet, what streaked across the boundless sky was no ordinary shooting star…</p>
+<p>It was a deity!</p>
+<p>The Avatar Crisis had already begun the moment the three Tablets of Fate were reassembled and fully activated.</p>
+<p>The deities had remained within their divine nations, spending up to ten thousand years stabilizing their power in preparation for the crisis. That had kept them from being immediately cast down from their altars.</p>
+<p>However, two months ago, the first signs of divine descent began appearing in Faeloria!</p>
+<p>At first, it had been just two or three deities.</p>
+<p>But now, the phenomenon had erupted...</p>
+</article>
+<article id="c1038" data-label="1038">
+<h2 class="chapter">Chapter 1038: New Arrivals 🔒</h2>
+<p>A world’s elemental concentration and environmental laws were usually constant—it was unlikely for the former to rise without cause.</p>
+<p>On top of that, a 5.6% increase was a significant surge!</p>
+<p>In reality, Faeloria’s overall elemental concentration had been steadily rising for the past six months.</p>
+<p>Yet Sein, having holed himself up in the laboratory, had been so engrossed in unraveling truths that he failed to notice the gradual increase in elemental concentration around him.</p>
+<p>The Avatar Crisis, occurring once every ten thousand years, was both a calamity and a blessing in disguise.</p>
+<p>It affected not only Rank Three beings striving for godhood but also existing deities who were forcibly cast down to the mortal world.</p>
+<p>While the deities may have been...</p>
+</article>
+<article id="c1039" data-label="1039">
+<h2 class="chapter">Chapter 1039: Three Little Ones 🔒</h2>
+<p>The three little ones were Audria, Ronaldo, and Flynn.</p>
+<p>Audria was the only female among them, yet she was their leader.</p>
+<p>Dressed in leather armor, with a short sword hanging at her waist and a bow slung across her back, she was clearly a Faelorian ranger.</p>
+<p>Ronaldo was the strongest of the three—a warrior, standing nearly two and a half meters. His bare chest was covered in scars, and he wielded a heavy sword.</p>
+<p>Yet, it was Flynn who intrigued Sein the most.</p>
+<p>Unlike the others, he was a mage—and, more importantly, there was not a single trace of divine power within him.</p>
+<p>Flynn was an orphan.</p>
+<p>His parents had been killed in a siege by the Justice League, leaving him with no reason to ever believe in a deity.</p>
+<p>His harsh life had forged him into a tough little guy with defiant e...</p>
+</article>
+<article id="c1040" data-label="1040">
+<h2 class="chapter">Chapter 1040: Flynn 🔒</h2>
+<p>If Audria and Ronaldo were on the path of passive physical evolution, then Flynn, the mage, was on a path that combined wisdom with elemental power.</p>
+<p>Sein did not accept Flynn as an apprentice. At this stage, the little guy was not even qualified to be his assistant.</p>
+<p>Flynn’s Rank One life level and the spells he had mastered were insignificant in Sein’s eyes.</p>
+<p>True mages of the Magus World did not rely on fixed moves or rigid spell models.</p>
+<p>Take Sein as an example. Even a simple fireball spell model could be transformed easily through his wisdom and knowledge, manifesting in hundreds of different forms.</p>
+<p>The firebird seen in the Mass Explosion spell was merely one of them.</p>
+<p>If each variation were considered a separate spell,...</p>
+</article>
+<article id="c1041" data-label="1041">
+<h2 class="chapter">Chapter 1041: Demigodhood 🔒</h2>
+<p>The Colorful Pelican God was not a minor deity without backing.</p>
+<p>It belonged to the Wings of Nature, and behind it stood a lesser god of respectable strength.</p>
+<p>Unfortunately, the scale of this Avatar Crisis was far greater than any before.</p>
+<p>In such turmoil, perhaps even its so-called backing was likely struggling to survive.</p>
+<p>Curiously, most of the deities who had perished in previous Avatar Crises either belonged to the Wings of Nature or were entirely unaffiliated with any forces.</p>
+<p>Compared to these fragmented groups in the Wings of Nature, factions like the Justice League and the Dark Alliance were far more unified, especially the former.</p>
+<p>With the Godslayers’...</p>
+</article>
+<article id="c1042" data-label="1042">
+<h2 class="chapter">Chapter 1042: Goddess of Doom 🔒</h2>
+<p>Time was fleeting during cultivation.</p>
+<p>Thirty years later…</p>
+<p>Sein was making a strong push toward the demigod realm when an unexpected guest arrived at his castle.</p>
+<p>The visitor was none other than the Succubus Queen, Anastasia.</p>
+<p>Unlike their last encounter, the Succubus Queen before him had suffered a drastic decline in power.</p>
+<p>Once an intermediate deity, her aura and presence had weakened significantly, dropping to the level of a saint.</p>
+<p>Even so, Sein could tell that her true strength far exceeded that of an ordinary demigod. However, the undeniable fact remained—her overall power had plummeted.</p>
+<p>Along with Anastasia, a dozen or so demigod-level demon lords had also arrived.</p>
+<p>They were likely...</p>
+</article>
+<article id="c1043" data-label="1043">
+<h2 class="chapter">Chapter 1043: Relocation 🔒</h2>
+<p>None of these extraplanar deities was easy to deal with.</p>
+<p>The Goddess of Doom and the Succubus Queen were no exception.</p>
+<p>Sein had long suspected that Anastasia had been using him in some way.</p>
+<p>Yet, in the end, he had undeniably gained significant benefits from both her and the Purgatory demons.</p>
+<p>For now, at least, he felt no substantial harm from their association.</p>
+<p>Both Anastasia and Morvanya seemed to have been severely weakened by the Avatar Crisis.</p>
+<p>Otherwise, with Morvanya’s original strength as an intermediate deity, a mere Rank Three being like Sein would never have been able to perceive her actions so clearly.</p>
+<p>After their brief exchange, Anastasia suggested that Sein accompany her to the first floor of Purgatory in the...</p>
+</article>
+<article id="c1044" data-label="1044">
+<h2 class="chapter">Chapter 1044: The Academies 🔒</h2>
+<p>“Master, the hydro elemental energy construction you told me about last time—did I get it right this time?”</p>
+<p>Taking advantage of a brief break in his tests, Flynn hurried to Sein’s side, his posture respectful as he sought guidance.</p>
+<p>In his hand, a beautifully structured water elemental spell model materialized—a stable hexagonal crystalline formation.</p>
+<p>Flynn had taken a slight detour when first stepping onto the elemental path.</p>
+<p>After all, Faeloria’s magic system lacked formal methods for testing elemental affinity. Instead, it placed emphasis on a mage’s mental focus level and mana reserves.</p>
+<p>Flynn naturally had a strong affinity for the hydro element, followed closely by the geo element.</p>
+<p>Yet, when he had begun learning magic, he had chosen to study pyro and aero elemental magic instead.</p>
+<p>It was not an impossible route, but it made his progress far more difficult.</p>
+<p>Once Sein...</p>
+</article>
+<article id="c1045" data-label="1045">
+<h2 class="chapter">Chapter 1045: Deeper Into Chaos 🔒</h2>
+<p>In the laboratory…</p>
+<p>Sein, having just completed his body tempering experiments, examined the data displayed before him.</p>
+<p><em>Focus: 35,756 points</em></p>
+<p><em>Mana: 35,771 points</em></p>
+<p><em>Constitution: 27,999 points</em></p>
+<p>In the Magus World, a Rank Three being typically had numerical stats exceeding 10,000 points.</p>
+<p>Thanks to his relentless dedication to body tempering experiments since Rank One, Sein’s constitution had been the first to surpass this threshold when he was attempting his breakthrough to Rank Three.</p>
+<p>Now, however, both his focus level and mana reserves had overtaken his constitution—a clear sign that he was still a true mage.</p>
+<p>Of course, these numbers alone did not truly reflect Sein’s full capabilities.</p>
+<p>If he activated his elemental body, his mana reserves would improve.</p>
+<p>If he transformed into...</p>
+</article>
+<article id="c1046" data-label="1046">
+<h2 class="chapter">Chapter 1046: The God Hunt Begins 🔒</h2>
+<p>One hundred and fifty years later…</p>
+<p>By now, nearly two hundred years had passed since Sein first descended upon Faeloria.</p>
+<p>As expected, the scale of this Avatar Crisis far exceeded any in the past.</p>
+<p>Despite lasting nearly two centuries, the turmoil showed no signs of subsiding. If anything, it had only just reached its climax.</p>
+<p>During these years of relentless training in the depths of Purgatory, Sein’s focus, mana, and constitution levels had all surpassed 50,000 points.</p>
+<p>If he activated his special transformation state, his stats would increase even further.</p>
+<p>However, this was nearing his limit.</p>
+<p>Nearly two hundred years of exploring the truths had allowed him to exhaust nearly every avenue of research available to him.</p>
+<p>Knowledge...</p>
+</article>
+<article id="c1047" data-label="1047">
+<h2 class="chapter">Chapter 1047: Target 🔒</h2>
+<p>Before leaving Purgatory, Sein armed himself to the teeth.</p>
+<p>In addition to equipping all his original gear, he brought along his greatest research achievement of the past two centuries—the Demon Mask.</p>
+<p>After countless days and nights of research and refinement, the Demon Mask had surpassed the capabilities of most Rank Three magic artifacts.</p>
+<p>To further enhance it, the Succubus Queen had even provided a drop of divine blood from a Rank Four Bat Demon and a Rank Four Succubus.</p>
+<p>As a result, the Demon Mask had reached a level where it could threaten even demigod-level beings.</p>
+<p>Beyond the Demon Mask—Sein’s greatest trump card—he also wore a magic robe of unparalleled quality, crafted from the Spider Queen’s divine spider silk.</p>
+<p>The last few decades had seen the Avatar...</p>
+</article>
+<article id="c1048" data-label="1048">
+<h2 class="chapter">Chapter 1048: A Different Stance 🔒</h2>
+<p>“That little guy is more prideful than we think. Moreover, the principle of equivalent exchange he upholds is quite interesting, in my opinion,” Anastasia remarked.</p>
+<p>“If we demons were to directly offer him protection by providing him a divine relic, whether he would accept it or not remains uncertain. But don’t you think it would seem as if we’re flattering him—and that Spider Queen behind him—or even the Magus Civilization, too much? After all, he’s just a mere Epic-level… ah, I should say, Rank Three creature.”</p>
+<p>The Succubus Queen gazed into the distance as she spoke.</p>
+<p>Morvanya, the Goddess of Doom, remained silent.</p>
+<p>When it came to the world civilization behind Sein, Morvanya had always harbored a deep sense of fear.</p>
+<p>In fact, she believed that demons were better off avoiding...</p>
+</article>
+<article id="c1049" data-label="1049">
+<h2 class="chapter">Chapter 1049: Caught the Trail 🔒</h2>
+<p>Sein gazed at the setting sun from the border city of Bythos Kingdom.</p>
+<p>The fading light beyond the city walls was the color of blood, and with a sigh, he murmured his thoughts aloud.</p>
+<p>“Perhaps when the Magus Civilization eventually begins its invasion and conquest of this world, the war will progress more smoothly than expected.”</p>
+<p>“This world lacks a unified voice. The various factions are so entangled in their own conflicts and mutual distrust that it’s impossible for them to stand together. This is nothing like the Wild Gorilla World War I once participated in.”</p>
+<p>He had once been relentlessly hunted by the major temples and churches of Faeloria.</p>
+<p>If not for the Spider Queen and the overwhelming force that had propelled him past...</p>
+</article>
+<article id="c1050" data-label="1050">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1050: Portable Magic Cannon 🔒</h2>
+<p>The Godslayers and the deities of the various camps primarily relied on intelligence gathering to pinpoint their targets’ whereabouts.</p>
+<p>After all, deities possessed formidable abilities to conceal themselves.</p>
+<p>The targets who were determined to remain unseen during the Avatar Crisis and had concealed themselves in secret locations were exceedingly difficult to track.</p>
+<p>However, gods could never remain completely isolated. They needed to communicate with their followers and manifest their divine presence periodically to reinforce faith and belief.</p>
+<p>Thus, none of them could exist in absolute seclusion.</p>
+<p>Knowing this, the Godslayers had always relied on a network of clues to locate...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1051-1100.html" rel="next">Next: Chs 1051–1100 &rarr;</a>
+    <p class="page-end-links"><a href="951-1000.html" rel="prev">&larr; Chs 951–1000</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1001–1050</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1001">Chapter 1001: Body Modification Experiment 🔒</a></li>
+        <li><a href="#c1002">Chapter 1002: Weakened Deities 🔒</a></li>
+        <li><a href="#c1003">Chapter 1003: God-Slaying Plan 🔒</a></li>
+        <li><a href="#c1004">Chapter 1004: Shaking Off Pursuers 🔒</a></li>
+        <li><a href="#c1005">Chapter 1005: God of Brute Force 🔒</a></li>
+        <li><a href="#c1006">Chapter 1006: Blood Essence 🔒</a></li>
+        <li><a href="#c1007">Chapter 1007: Knox 🔒</a></li>
+        <li><a href="#c1008">Chapter 1008: A God’s Wrath 🔒</a></li>
+        <li><a href="#c1009">Chapter 1009: Making Moves 🔒</a></li>
+        <li><a href="#c1010">Chapter 1010: Come Help 🔒</a></li>
+        <li><a href="#c1011">Chapter 1011: A Hollow Victory 🔒</a></li>
+        <li><a href="#c1012">Chapter 1012: Immense Gains 🔒</a></li>
+        <li><a href="#c1013">Chapter 1013: Ugly and Beautiful 🔒</a></li>
+        <li><a href="#c1014">Chapter 1014: The Unfathomable Faeloria 🔒</a></li>
+        <li><a href="#c1015">Chapter 1015: The Godslayers 🔒</a></li>
+        <li><a href="#c1016">Chapter 1016: God of Justice 🔒</a></li>
+        <li><a href="#c1017">Chapter 1017: The Truth of the World 🔒</a></li>
+        <li><a href="#c1018">Chapter 1018: Heretical Forces 🔒</a></li>
+        <li><a href="#c1019">Chapter 1019: The Power of Fate 🔒</a></li>
+        <li><a href="#c1020">Chapter 1020: Quatar Star Pirates 🔒</a></li>
+        <li><a href="#c1021">Chapter 1021: Shocked Deities 🔒</a></li>
+        <li><a href="#c1022">Chapter 1022: Ahead of Schedule! 🔒</a></li>
+        <li><a href="#c1023">Chapter 1023: Lorthisra’s Disappointment 🔒</a></li>
+        <li><a href="#c1024">Chapter 1024: A Terrifying Powerhouse 🔒</a></li>
+        <li><a href="#c1025">Chapter 1025: The Land of Purgatory 🔒</a></li>
+        <li><a href="#c1026">Chapter 1026: Bloodwar Monarch 🔒</a></li>
+        <li><a href="#c1027">Chapter 1027: Ruthless Hero 🔒</a></li>
+        <li><a href="#c1028">Chapter 1028: Subjugate 🔒</a></li>
+        <li><a href="#c1029">Chapter 1029: Abyssan 🔒</a></li>
+        <li><a href="#c1030">Chapter 1030: Negotiation 🔒</a></li>
+        <li><a href="#c1031">Chapter 1031: Bloodwar Hall 🔒</a></li>
+        <li><a href="#c1032">Chapter 1032: Joint Development 🔒</a></li>
+        <li><a href="#c1033">Chapter 1033: Lord of Ashes 🔒</a></li>
+        <li><a href="#c1034">Chapter 1034: Succubus Queen’s Gifts 🔒</a></li>
+        <li><a href="#c1035">Chapter 1035: Demon Mask 🔒</a></li>
+        <li><a href="#c1036">Chapter 1036: Spreading the Truth 🔒</a></li>
+        <li><a href="#c1037">Chapter 1037: Divine Descent 🔒</a></li>
+        <li><a href="#c1038">Chapter 1038: New Arrivals 🔒</a></li>
+        <li><a href="#c1039">Chapter 1039: Three Little Ones 🔒</a></li>
+        <li><a href="#c1040">Chapter 1040: Flynn 🔒</a></li>
+        <li><a href="#c1041">Chapter 1041: Demigodhood 🔒</a></li>
+        <li><a href="#c1042">Chapter 1042: Goddess of Doom 🔒</a></li>
+        <li><a href="#c1043">Chapter 1043: Relocation 🔒</a></li>
+        <li><a href="#c1044">Chapter 1044: The Academies 🔒</a></li>
+        <li><a href="#c1045">Chapter 1045: Deeper Into Chaos 🔒</a></li>
+        <li><a href="#c1046">Chapter 1046: The God Hunt Begins 🔒</a></li>
+        <li><a href="#c1047">Chapter 1047: Target 🔒</a></li>
+        <li><a href="#c1048">Chapter 1048: A Different Stance 🔒</a></li>
+        <li><a href="#c1049">Chapter 1049: Caught the Trail 🔒</a></li>
+        <li><a href="#c1050">Chapter 1050: Portable Magic Cannon 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="951-1000.html" rel="prev">&larr; Chs 951–1000</a>    <a href="../../index.html">Library</a>
+<a href="1051-1100.html" rel="next">Chs 1051–1100 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

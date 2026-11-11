@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1151–1200</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1101-1150.html#last" data-next-page="1201-1250.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1151">Chapter 1151: Voicing Out 🔒</a></li>
+        <li><a href="#c1152">Chapter 1152: Back to the Knight Continent Again 🔒</a></li>
+        <li><a href="#c1153">Chapter 1153: Wealth 🔒</a></li>
+        <li><a href="#c1154">Chapter 1154: New Familiar 🔒</a></li>
+        <li><a href="#c1155">Chapter 1155: Trial Zone 🔒</a></li>
+        <li><a href="#c1156">Chapter 1156: Special Secret Realm 🔒</a></li>
+        <li><a href="#c1157">Chapter 1157: Cheating 🔒</a></li>
+        <li><a href="#c1158">Chapter 1158: The Tenth Level 🔒</a></li>
+        <li><a href="#c1159">Chapter 1159: Old Friend 🔒</a></li>
+        <li><a href="#c1160">Chapter 1160: The Final Trial 🔒</a></li>
+        <li><a href="#c1161">Chapter 1161: First Place 🔒</a></li>
+        <li><a href="#c1162">Chapter 1162: A Duel Between Geniuses 🔒</a></li>
+        <li><a href="#c1163">Chapter 1163: Figure of Light 🔒</a></li>
+        <li><a href="#c1164">Chapter 1164: Faceless Mask 🔒</a></li>
+        <li><a href="#c1165">Chapter 1165: Hostility 🔒</a></li>
+        <li><a href="#c1166">Chapter 1166: The Power of Rank Four 🔒</a></li>
+        <li><a href="#c1167">Chapter 1167: Traveling Together 🔒</a></li>
+        <li><a href="#c1168">Chapter 1168: Edge of a Breakthrough 🔒</a></li>
+        <li><a href="#c1169">Chapter 1169: Gifting 🔒</a></li>
+        <li><a href="#c1170">Chapter 1170: Prelim Council 🔒</a></li>
+        <li><a href="#c1171">Chapter 1171: The Awakening of Artificial Intelligence 🔒</a></li>
+        <li><a href="#c1172">Chapter 1172: Auctioned Slave 🔒</a></li>
+        <li><a href="#c1173">Chapter 1173: Deliverance 🔒</a></li>
+        <li><a href="#c1174">Chapter 1174: Consideration 🔒</a></li>
+        <li><a href="#c1175">Chapter 1175: Affairs 🔒</a></li>
+        <li><a href="#c1176">Chapter 1176: Jessica 🔒</a></li>
+        <li><a href="#c1177">Chapter 1177: Meeting Lorianne Again 🔒</a></li>
+        <li><a href="#c1178">Chapter 1178: Gifts 🔒</a></li>
+        <li><a href="#c1179">Chapter 1179: Home 🔒</a></li>
+        <li><a href="#c1180">Chapter 1180: Teaching 🔒</a></li>
+        <li><a href="#c1181">Chapter 1181: Kink 🔒</a></li>
+        <li><a href="#c1182">Chapter 1182: Faction Gathering 🔒</a></li>
+        <li><a href="#c1183">Chapter 1183: Facing Doubts 🔒</a></li>
+        <li><a href="#c1184">Chapter 1184: Storytelling 🔒</a></li>
+        <li><a href="#c1185">Chapter 1185: Taking Mask Off 🔒</a></li>
+        <li><a href="#c1186">Chapter 1186: Rank Four 🔒</a></li>
+        <li><a href="#c1187">Chapter 1187: Overseer 🔒</a></li>
+        <li><a href="#c1188">Chapter 1188: Subsidy and Reward 🔒</a></li>
+        <li><a href="#c1189">Chapter 1189: Pity and Practice 🔒</a></li>
+        <li><a href="#c1190">Chapter 1190: Help 🔒</a></li>
+        <li><a href="#c1191">Chapter 1191: Eversurge 🔒</a></li>
+        <li><a href="#c1192">Chapter 1192: Capture Alive 🔒</a></li>
+        <li><a href="#c1193">Chapter 1193: Magic Array 🔒</a></li>
+        <li><a href="#c1194">Chapter 1194: Perfect Plan 🔒</a></li>
+        <li><a href="#c1195">Chapter 1195: Potential Site 🔒</a></li>
+        <li><a href="#c1196">Chapter 1196: Decision 🔒</a></li>
+        <li><a href="#c1197">Chapter 1197: Considerations 🔒</a></li>
+        <li><a href="#c1198">Chapter 1198: Back to Sky City Again 🔒</a></li>
+        <li><a href="#c1199">Chapter 1199: Rank Four Arcanist 🔒</a></li>
+        <li><a href="#c1200">Chapter 1200: Acquaintances 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1151" data-label="1151">
+<h2 class="chapter">Chapter 1151: Voicing Out 🔒</h2>
+<p>The upcoming meeting would be the “25th Magus Alliance Conference”.</p>
+<p>Throughout the development of the Magus Civilization, the Magus Alliance had already gone through twenty-four such conferences.</p>
+<p>Each one marked a major milestone in the civilization’s growth and served as an important marker in its history.</p>
+<p>For the entire Magus Alliance—with its tens of thousands of planes, countless races, and small civilizations—their fates and future could hinge on a single, seemingly minor clause decided at these meetings.</p>
+<p>Because of that, every conference drew massive attention.</p>
+<p>No matter what speeches were given, they were bound to capture the interest of many.</p>
+<p>From overlord-level...</p>
+</article>
+<article id="c1152" data-label="1152">
+<h2 class="chapter">Chapter 1152: Back to the Knight Continent Again 🔒</h2>
+<p>Sein’s conversation with the knight overlord went smoothly and cordially.</p>
+<p>After they reached a consensus on what stance to take at the upcoming Magus Alliance Conference, the knight overlord asked Sein many questions.</p>
+<p>He seemed genuinely interested in Sein, asking about his thoughts on everyday life, values, and broader topics.</p>
+<p>Beyond the matters of the demihumans and black mages, he also wanted Sein’s opinions on the sea races, magic beasts, and the allied planes of the Magus Alliance.</p>
+<p>Sein answered candidly, sharing his honest views without much hesitation.</p>
+<p>He saw no need to pretend or hold anything back in front of someone like this knight overlord.</p>
+<p>The knight...</p>
+</article>
+<article id="c1153" data-label="1153">
+<h2 class="chapter">Chapter 1153: Wealth 🔒</h2>
+<p>The Geomancer had been barely holding on against the siege of a family of Scoragons.</p>
+<p>But with Sein and Leena joining the fight, the tide turned completely.</p>
+<p>Leena was already a Rank Three mage, and Sein was even stronger—a demigod.</p>
+<p>The elemental pressure radiating from the magic rod he had pulled out alone was enough to shock the onlookers, let alone the power he held within himself.</p>
+<p>This Arachadrake family was quite intelligent.</p>
+<p>In fact, every magic beast in Magus World possessed a certain degree of intelligence once they reached Rank One or higher.</p>
+<p>Because of this, the rules upheld by the divine towers, knightly orders, and guardians included special provisions to safeguard the basic rights and interests of these magic beasts.</p>
+<p>The...</p>
+</article>
+<article id="c1154" data-label="1154">
+<h2 class="chapter">Chapter 1154: New Familiar 🔒</h2>
+<p>The excavation of the tempered crystal vein was going smoothly.</p>
+<p>The Komodo War Beast—Azelia’s new familiar from Beastmen World—had a unique knack for eating ore and digging through the ground.</p>
+<p>In the food-scarce Beastmen World, this kind of Komodo War Beast could even survive by munching on rocks.</p>
+<p>Yuri, piloting her mecha, and the dark creatures summoned by Leena also proved incredibly useful for mining.</p>
+<p>The tempered crystal vein, which held a sizable reserve, had originally been the main nesting ground for this family of Scoragons.</p>
+<p>The special energy pulses released by tempered crystals helped accelerate the growth and evolution of Scoragons.</p>
+<p>But now that the vein had been mined, it was time for the Scoragons to find a new home.</p>
+<p>The Knight...</p>
+</article>
+<article id="c1155" data-label="1155">
+<h2 class="chapter">Chapter 1155: Trial Zone 🔒</h2>
+<p>The process of acquiring familiars for the Shaman Priests of the Beastmen World was no small matter.</p>
+<p>Summoners from the Magus World might be able to forcibly summon otherworldly creatures to fight alongside them, but not the Shaman Priests.</p>
+<p>For them, the very first requirement of acquiring their familiar was earning the creature’s approval.</p>
+<p>Only by building a strong enough bond could a Shaman Priest successfully gain a familiar.</p>
+<p>That was what made the fox maiden’s feat so incredible—summoning not just one, but two large familiars in quick succession was practically unheard of.</p>
+<p>Could her temperament really be that good?</p>
+<p>One moment, she had been standing alone; the next, she was accompanied by...</p>
+</article>
+<article id="c1156" data-label="1156">
+<h2 class="chapter">Chapter 1156: Special Secret Realm 🔒</h2>
+<p>This was a special secret realm tucked away in subspace, hidden by distorted light.</p>
+<p>If not for Sein’s time in Faeloria, where he had studied the divine nations established by the gods, he might not have even noticed the subtle spatial fluctuations before him.</p>
+<p>The distortion effect could blind the perception of most creatures, but not Elementalist with deeper knowledge of the lumen elemental magic like Sein.</p>
+<p>When Sein pulled Leena into this secret realm, she did not even realize it at first; she had sensed nothing unusual beforehand.</p>
+<p>“This legacy secret realm was specially prepared for certain individuals,” Sein explained to her.</p>
+<p>The landscape before them...</p>
+</article>
+<article id="c1157" data-label="1157">
+<h2 class="chapter">Chapter 1157: Cheating 🔒</h2>
+<p>After Sein and Leena split up, things went noticeably smoother for both of them.</p>
+<p>The Flame Python clearly intended to stop Leena, but Sein held it back.</p>
+<p>With his powerful demon form unleashed, Sein grew more energized the longer the fight went on—and with it, his movements became more fluid, more effortless.</p>
+<p>By the time Leena finally reached the vortex node, Sein was able to spar with the Flame Python on even ground.</p>
+<p>The moment she activated the special node in the lava pool, the python froze for just an instant.</p>
+<p>Sein seized the opening, thrusting his magic rod upward and driving it through the Flame Python’s lower jaw.</p>
+<p>A blinding pillar of light and fire erupted, blasting straight through the creature’s skull.</p>
+<p>The Penetrating Eye’s beam tore through everything in its path, not only slaying the python but also causing the space around Sein to warp.</p>
+<p>In a flash, Sein was whisked away...</p>
+</article>
+<article id="c1158" data-label="1158">
+<h2 class="chapter">Chapter 1158: The Tenth Level 🔒</h2>
+<p>The fourth trial space Sein entered was an illusory underground laboratory.</p>
+<p>A myriad of instruments and strange materials filled every corner of the laboratory.</p>
+<p>As he looked around, Sein realized that this underground laboratory had a distinctly ancient style.</p>
+<p>He explored the area thoroughly, but still found no sign of creatures in this secret realm.</p>
+<p>Sein chuckled wryly. “What, am I supposed to run an experiment here?”</p>
+<p>Not only was the laboratory’s design ancient, but the materials scattered throughout were also common resources from the Ancient Era.</p>
+<p>Some of them had long since gone extinct in the Magus World, while others had been replaced by better alternatives over time.</p>
+<p>If Sein had not...</p>
+</article>
+<article id="c1159" data-label="1159">
+<h2 class="chapter">Chapter 1159: Old Friend 🔒</h2>
+<p>Sein’s arrival did not immediately commence the next trial.</p>
+<p>Since a few platforms were still empty, Sein figured some of the other trialists had not arrived yet.</p>
+<p>Given the mechanisms of this special legacy secret realm, it seemed likely that the final trial would only begin once everyone had gathered.</p>
+<p>The secret realm that Sein and Leena had stumbled into was originally discovered by Sein.</p>
+<p>But this trial secret realm was likely connected to multiple entrances scattered throughout the heart of the Knight Continent.</p>
+<p>That explained why so many talents had converged here.</p>
+<p>Thankfully, Sein and the others did not have to wait too long.</p>
+<p>Over the next few days, more trialists arrived one after another, taking their places atop the towering...</p>
+</article>
+<article id="c1160" data-label="1160">
+<h2 class="chapter">Chapter 1160: The Final Trial 🔒</h2>
+<p>And so, the magic artifact crafting process began.</p>
+<p>The tenth level of the trial did not seem to impose any time limit.</p>
+<p>In other words, they could take as long as they needed to complete their refinement.</p>
+<p>As Sein and the others immersed themselves in their work, the colored light bands beneath their platforms slowly began to change.</p>
+<p>Some people’s light bands climbed rapidly; others progressed much more slowly.</p>
+<p>Sein found himself wondering what criteria this secret realm used to evaluate the quality of the magic artifacts each trialist was producing.</p>
+<p>He looked around for a long time but found no clues in the surrounding environment.</p>
+<p>For Sein, alchemical...</p>
+</article>
+<article id="c1161" data-label="1161">
+<h2 class="chapter">Chapter 1161: First Place 🔒</h2>
+<p>The mechanic was visibly dissatisfied with the outcome of this trial.</p>
+<p>Gasps suddenly rose from the side—they came from the other mages.</p>
+<p>It turned out that he had just been knocked out of third place.</p>
+<p>And the one who surpassed him was none other than the only ordinary Rank Three grand mage present—Grimm.</p>
+<p>Over the past five years, the demigod-level mages who had entered this trial secret realm had been eliminated one by one. Yet Grimm was still standing.</p>
+<p>His score had been growing exponentially; the further he progressed, the faster his points climbed.</p>
+<p>In this secret realm, simply sticking around was not enough.</p>
+<p>Some mages had already perfected their creations to the limit, but as they continued experimenting, the secret...</p>
+</article>
+<article id="c1162" data-label="1162">
+<h2 class="chapter">Chapter 1162: A Duel Between Geniuses 🔒</h2>
+<p>After Berold was sent away from the secret realm, only Sein and Grimm remained.</p>
+<p>Grimm did not seem particularly concerned about winning or losing. He showed no reaction even when Sein brought out divine relics and the divine blood of a Rank Five creature.</p>
+<p>From beginning to end, he remained humble.</p>
+<p>Watching Grimm quietly working at his table, Sein suddenly remembered the days when they were still initiates, poring over books together in the Divine Tower of Verdant Spring’s library, learning and exploring truth side by side.</p>
+<p>In a way, Grimm was the first “friend” Sein had made after joining the Divine Tower of Verdant Spring.</p>
+<p>Perhaps influenced by Grimm, Sein found...</p>
+</article>
+<article id="c1163" data-label="1163">
+<h2 class="chapter">Chapter 1163: Figure of Light 🔒</h2>
+<p>A year and a half later, Sein finally let his hands come to a gradual stop.</p>
+<p>The Demon Eye Mask before him had reached perfection. At least, he had made full use of every material he had incorporated.</p>
+<p>Like Grimm and the gold-robed mage Berold before him, Sein knew there was no point in continuing the experiment.</p>
+<p>With his current skill, it was nearly impossible to refine the mask any further.</p>
+<p>Compared to more than ten years ago, the Demon Eye Mask had grown far more demonic and enigmatic.</p>
+<p>The crimson patterns etched across its surface could make someone fall into an illusion or a disoriented state just from a glance, and that was without even activating the mask.</p>
+<p>At the center of...</p>
+</article>
+<article id="c1164" data-label="1164">
+<h2 class="chapter">Chapter 1164: Faceless Mask 🔒</h2>
+<p>If judged from a purely fair and objective perspective, Grimm—who came second to Sein—might have been even more qualified to inherit the ultimate reward of this legacy secret realm.</p>
+<p>His achievements in alchemy and his mastery of elemental magic were enough to impress even Sein.</p>
+<p>In truth, Sein suspected that without the advantage of so many high-grade materials, the Demon Eye Mask he crafted might not have been able to match Grimm’s Face of Truth.</p>
+<p>Still, a win was a win, and a loss was a loss. The outcome stood, regardless of how it came about.</p>
+<p>And if the real issue lay with the secret realm’s imperfect evaluation system, then perhaps neither he nor Grimm had been the most fitting candidate for the ultimate reward in the first place.</p>
+<p>Judging by the figure of light before him, it was clear the creator of this secret realm had specialized in lumen, pyro, and sonido elemental laws—with lumen likely being their core focus.</p>
+<p>In that case, their ideal successor should...</p>
+</article>
+<article id="c1165" data-label="1165">
+<h2 class="chapter">Chapter 1165: Hostility 🔒</h2>
+<p>The knowledge alone would benefit Sein for the rest of his life, and the treasure he received was utterly irresistible.</p>
+<p>According to Master Jorces, the Faceless Mask ranked as a mid-tier world‑class secret treasure.</p>
+<p>Jorces had touched on the art of forging such artifacts in his legacy, and this mask was the crowning achievement of his life.</p>
+<p>But crafting pieces of that caliber was far beyond what Sein could handle right now.</p>
+<p>The Rank Five and above advanced knowledge and truths sealed inside the mask were nice to own, but dangerous to try too early, as they might lead him astray.</p>
+<p>The way of truth should be walked one step at a time.</p>
+<p>A world‑class secret treasure was so rare that even a Rank Six powerhouse in the Magus World might never lay hands on one.</p>
+<p>The fact that Jorces forged one, especially a medium‑grade piece, proved his mastery beyond doubt.</p>
+<p>Sein doubted that even Master Lorianne… or...</p>
+</article>
+<article id="c1166" data-label="1166">
+<h2 class="chapter">Chapter 1166: The Power of Rank Four 🔒</h2>
+<p>Sein had never been an easygoing person.</p>
+<p>He only showed his gentle side to people he trusted, and anyone who came at him with hostility could expect the same in return.</p>
+<p>Right now, keeping his aura low was a blessing.</p>
+<p>Since he was teetering on the edge of a breakthrough, the fluctuation in his law power left him in a highly unstable state.</p>
+<p>He had no intention of rushing into Rank Four just yet; he needed time to prepare properly.</p>
+<p>Fortunately, the Faceless Mask’s enchantments kept his condition steady. At this rate, he could probably maintain this delicate stability for another hundred years.</p>
+<p>Inside the legacy...</p>
+</article>
+<article id="c1167" data-label="1167">
+<h2 class="chapter">Chapter 1167: Traveling Together 🔒</h2>
+<p>Sein and the Rank Five beast stared at each other in silence while the creature took several sniffs.</p>
+<p>Its enormous red nose granted it a sense of smell and intuition far keener than most beings.</p>
+<p>After studying Sein for what felt like forever and leaning in to sniff his robe, the beast finally spoke in a puzzled tone.</p>
+<p>“Strange… Your aura is clearly Rank Three, but what was that burst of power that went way beyond the limits here?”</p>
+<p>The Knight Continent’s trial zone was one of the Magus Civilization’s core secret realms for nurturing the next generation of talents. Naturally, there were overseers and guardians here.</p>
+<p>This huge‑nosed giant served as this region’s overseer,...</p>
+</article>
+<article id="c1168" data-label="1168">
+<h2 class="chapter">Chapter 1168: Edge of a Breakthrough 🔒</h2>
+<p>While Sein was experiencing a strong sense of fulfillment and tremendous growth, Leena and Grimm were growing just as quickly.</p>
+<p>Grimm, who had been right on the edge of a breakthrough, finally reached demigodhood in his third year of traveling with Sein.</p>
+<p>Throughout that time, Sein had offered plenty of guidance.</p>
+<p>Now that Sein stood at a higher level and possessed broader insight, and with both of them specializing in the pyro element, they had a lot of common ground to explore.</p>
+<p>While Sein could not solve every bottleneck or clear up every doubt Grimm had, their ongoing discussions helped Grimm progress far more quickly than he could have managed...</p>
+</article>
+<article id="c1169" data-label="1169">
+<h2 class="chapter">Chapter 1169: Gifting 🔒</h2>
+<p>During his final years in the Knight Continent’s trial zone, Sein was surprised to bump into another old friend—Angreas, a Rank Three Kermoine Serpent Warlock.</p>
+<p>Sein had tried visiting him on the West Coast years ago, but Angreas had been away. Shortly after, Sein was whisked off to Faeloria by the Spider Queen.</p>
+<p>Angreas was undoubtedly a genius on the same level as Grimm and Sein, and one of the few mages who truly specialized in sonido magic.</p>
+<p>The Kermoine Serpent bloodline gave a huge boost in elemental affinity across umbra, poison, and sonido elements.</p>
+<p>After fighting side by side more than once in the past, Angreas...</p>
+</article>
+<article id="c1170" data-label="1170">
+<h2 class="chapter">Chapter 1170: Prelim Council 🔒</h2>
+<p>While Sein and his group were leaving Knight Continent, a Prelim Council was already in session far away in the Sky City.</p>
+<p>The Magus Alliance Conference, held roughly once every ten thousand years, was considered the most significant event in the Magus Civilization and the guiding force behind the alliance’s direction.</p>
+<p>After all, the fate of countless planes and races might hinge on a single proposal issued during that conference.</p>
+<p>In truth, only a few at the very top of the Magus Civilization knew that a smaller, far more exclusive gathering usually took place before the Magus Alliance Conference.</p>
+<p>They called it the “Prelim Council”.</p>
+<p>It was the one that actually determined the alliance’s core direction...</p>
+</article>
+<article id="c1171" data-label="1171">
+<h2 class="chapter">Chapter 1171: The Awakening of Artificial Intelligence 🔒</h2>
+<p>Robots were one of the Gallant Federation’s greatest creations.</p>
+<p>As a technological civilization, the federation was still dominated by humans—or humanoid beings—but their naturally weak constitution was something they could never fully overcome.</p>
+<p>To compensate, they relied not just on massive warships and interstellar fortresses, but also on super soldiers—genetically enhanced soldiers—equipped with exoskeleton armor to boost frontline strength.</p>
+<p>Beyond these, the Gallant Federation’s most terrifying force in interstellar warfare had always been its robot army.</p>
+<p>Their endless waves of metal robots had spread fear across every neighboring civilization.</p>
+<p>Even though the federation controlled far fewer star...</p>
+</article>
+<article id="c1172" data-label="1172">
+<h2 class="chapter">Chapter 1172: Auctioned Slave 🔒</h2>
+<p>Lady Bev, the peak Rank Seven soul overmage, did not linger in her thoughts for long.</p>
+<p>Since the council had just finished discussing the Titanfangs of Nexon, it was only natural for everyone present to be reminded of another trap set by the Magus Civilization.</p>
+<p>To be honest, that trap was a major gamble.</p>
+<p>When dealing with that particular world civilization, even the top brass of Magus World could not fully guarantee loyalty on the other side.</p>
+<p>If things went south, it could become one of the greatest failures in the alliance’s history.</p>
+<p>Not only would the Magus Civilization be forced into a passive position, but the consequences could ripple across the future civilization war, shifting the balance in unexpected ways.</p>
+<p>Thinking along the same lines, Hudson, a steady and dependable...</p>
+</article>
+<article id="c1173" data-label="1173">
+<h2 class="chapter">Chapter 1173: Deliverance 🔒</h2>
+<p>The crystal catalog from the knightly order detailed the female centaur’s graceful figure and praised her striking features.</p>
+<p>She was listed as a “comfort slave”, despite being a Rank Two being.</p>
+<p>There was something about her long silver hair and gentle eyes that stirred a strong instinct to shield her.</p>
+<p>This female centaur was none other than an old acquaintance of Sein’s—Luna Christine Maya.</p>
+<p>He never expected that a direct descendant of a Rank Four centaur god would end up like this.</p>
+<p>Her tribe and her grandmother, Maya, had played a pivotal role during the early interplanar campaigns led by the Divine Tower of Verdant Spring.</p>
+<p>How had it come...</p>
+</article>
+<article id="c1174" data-label="1174">
+<h2 class="chapter">Chapter 1174: Consideration 🔒</h2>
+<p>The knightly orders of Magus World would not normally go as far as trading or selling their own vassals.</p>
+<p>The two orders that led the war had acted fairly. After Hephaes’ death, they compensated the remaining centaur gods with a decent amount of war resources.</p>
+<p>The centaur tribes under Hephaes suffered heavy losses, but overall, they still walked away with respectable war earnings.</p>
+<p>If that had been the end of it, the Maya Tribe would have been fine.</p>
+<p>But what truly stung was what happened next.</p>
+<p>Before the other three centaur gods who fought in the same war even returned to Centaurworld, they started carving up Hephaes’ former powers.</p>
+<p>And according to Luna, Hephaes’ death might have had something to do with those very same gods.</p>
+<p>Her grandmother,...</p>
+</article>
+<article id="c1175" data-label="1175">
+<h2 class="chapter">Chapter 1175: Affairs 🔒</h2>
+<p>Specific problems required specific solutions.</p>
+<p>If Sein had simply offered money to buy Maya, Sir Thomas probably would not have been tempted.</p>
+<p>But the moment Sein pulled out that vial of demon blood essence, Thomas’ interest was piqued.</p>
+<p>While it might not have been worth as much as a living demigod-level slave, it was special enough to make the paladin agree to the trade.</p>
+<p>“Bro, where did you even get this Moltensteel Demon Lord’s blood essence? As far as I know, demons like that are already rare in the Magus Alliance, let alone an actual demon lord.”</p>
+<p>Whatever impatience Thomas had shown before was gone. After the transaction, he shamelessly tried to sound friendly.</p>
+<p>By that time,...</p>
+</article>
+<article id="c1176" data-label="1176">
+<h2 class="chapter">Chapter 1176: Jessica 🔒</h2>
+<p>The trip back to Blackhaven from the Western Archipelago was not too far.</p>
+<p>Sein parted ways with Leena after dropping her off near the outskirts of the region.</p>
+<p>Fortunately, he had kept up his studies in spatial magic over the years, so staying in touch with her was still possible, even if it was a bit of a hassle.</p>
+<p>Besides, with the Silver Spider Ring still on his finger, he figured the Spider Queen was not about to forget him anytime soon.</p>
+<p>If the Spider Queen ever asked him for something again, he could always use that chance to drop by and see Leena.</p>
+<p>Before leaving, Sein handed her a batch of experimental materials, then officially set off on his return to the Divine Tower of Verdant Spring.</p>
+<p>Tourmaline had not contacted him yet, but Sein was not too worried since her home in Jewel Bay, just outside the Divine Tower, was still arou...</p>
+</article>
+<article id="c1177" data-label="1177">
+<h2 class="chapter">Chapter 1177: Meeting Lorianne Again 🔒</h2>
+<p>The process of renewing the divine tower badge was straightforward.</p>
+<p>With Jessica leading the way, no one doubted Sein’s identity again.</p>
+<p>To Sein’s delight, the teleportation infrastructure at the Divine Tower of Verdant Spring had reached an impressive level of advancement.</p>
+<p>If he wanted to travel to Grandmaster Feylis’s Divine Tower of Verdant Flame, all it took now was a single step through a teleportation gate.</p>
+<p>After helping Sein update his credentials, Jessica turned and left, her hips swaying slightly with each step.</p>
+<p>It was obvious she had no desire to converse with him, and as she walked away, her cheeks seemed just a little bit more flushed.</p>
+<p>Given Jessica’s strong, capable image, very few people ever paid...</p>
+</article>
+<article id="c1178" data-label="1178">
+<h2 class="chapter">Chapter 1178: Gifts 🔒</h2>
+<p>Even though Sein warned her quickly, it was still a little too late.</p>
+<p>Lorianne’s finger still got zapped by the purple electricity.</p>
+<p>At first, she did not think much of it. It was just a spark, after all.</p>
+<p>But the moment it made contact, she felt the refined quality of the energy particles inside it. They were powerful enough to break through the defenses of a Rank Four being, and her expression immediately shifted to one of disbelief.</p>
+<p>On top of that, a trace of Sein’s aura had leaked out when she touched the mask. Even so, it had been enough to catch her off guard.</p>
+<p>Since Lorianne was physically so close to him, she had clearly sensed Sein’s current state in that split second.</p>
+<p>Her apprentice had advanced far beyond what she exp...</p>
+</article>
+<article id="c1179" data-label="1179">
+<h2 class="chapter">Chapter 1179: Home 🔒</h2>
+<p>Sein told Lorianne about the origins of the Faceless Mask.</p>
+<p>Without a doubt, its creator, Jorces, could be considered Sein’s third mentor.</p>
+<p>But Jorces was long dead, and Lorianne’s role as Sein’s mentor would never change.</p>
+<p>The Magus World’s tradition of honoring one’s mentor was something Sein followed strictly.</p>
+<p>His time in the Knight Continent had been filled with one absurd encounter after another.</p>
+<p>When she heard that the mask was actually a world-class secret treasure, Lorianne was stunned once again.</p>
+<p>Stacked on top of everything else he had told her, this was nearly too much to take in. But somehow, Lorianne managed to keep her composure, resisting shock with more shock.</p>
+<p>After staring at Sein’s mask for what felt like half a day, she...</p>
+</article>
+<article id="c1180" data-label="1180">
+<h2 class="chapter">Chapter 1180: Teaching 🔒</h2>
+<p>Sein’s anger did not last long.</p>
+<p>Natalya’s reckless action had come from missing him too much.</p>
+<p>In her own words, if Sein still had not returned, she would have started believing she was a widow.</p>
+<p>The whole experience also served as a reminder for Sein to reinforce his laboratory doors, because starting today, there would be two more people living in this home.</p>
+<p>Sein frowned. “Father-in-law found another woman?”</p>
+<p>It was rare for a knight to remain loyal to just one woman. Even Sein, as a mage, had multiple women of his own.</p>
+<p>However, what Wilson should not have done was try to make that woman a legal wife.</p>
+<p>To be fair, it was not entirely Wilson’s idea—the woman herself had been making quite a fuss about it.</p>
+<p>From the conversations he had...</p>
+</article>
+<article id="c1181" data-label="1181">
+<h2 class="chapter">Chapter 1181: Kink 🔒</h2>
+<p>Although Sein had taught before, the difference between teaching as a Rank One mage and doing so as a peak demigod was like night and day.</p>
+<p>There was a time when he had disliked teaching initiates. He believed it was a waste of time—time he could have spent progressing his research.</p>
+<p>But now that many of his experimental projects had reached the limits of what his current stage allowed, returning to those foundational basics gave him a completely new perspective.</p>
+<p>“No wonder Master Lorianne insisted I take on more classes at the divine tower academy. So this is what she meant,” Sein murmured to himself.</p>
+<p>Today, he was teaching his specialty—pyro-elemental arcana. Several of his other courses...</p>
+</article>
+<article id="c1182" data-label="1182">
+<h2 class="chapter">Chapter 1182: Faction Gathering 🔒</h2>
+<p>The Reverse Winged Lion King was no longer living the single life.</p>
+<p>In the shade of its massive body were at least ten cubs of varying sizes, tumbling about and playing.</p>
+<p>All of them were its offspring.</p>
+<p>The magic beasts Sein had once released across the Viridescent Land—especially those in the Lysian Alliance—had grown considerably over the past thousand years.</p>
+<p>Back then, Sein had also left behind a family led by a lioness in a forest near House Grantt.</p>
+<p>After relentless pursuit from the Reverse Winged Lion King, the beast finally got what it wanted.</p>
+<p>Its fertility was impressive, judging by the number of cubs it had fathered.</p>
+<p>This growing population of magic beasts was actually a good thing for House Grantt.</p>
+<p>Thanks to the shared bloodline, the lions had a natural affinity with members of House Grantt.</p>
+<p>In other words, the knights...</p>
+</article>
+<article id="c1183" data-label="1183">
+<h2 class="chapter">Chapter 1183: Facing Doubts 🔒</h2>
+<p>The Divine Tower of Verdant Flame felt more imposing than Sein remembered.</p>
+<p>Its dark reddish-purple walls radiated intense flame elemental energy, giving off an oppressive aura that could overwhelm low-ranking lifeforms.</p>
+<p>The rich volcanic environment surrounding the tower made Sein feel like he had returned to Purgatory once again.</p>
+<p>The pyro elemental particles floating in the air were so active that they made his magic robe rustle.</p>
+<p>It had only been two hundred years since the last gathering of the Verdant Flame Faction.</p>
+<p>The members of this faction had already fought together in several interplanar wars, with the most recent led by the Divine Tower of the Blazing Sword.</p>
+<p>Grandmaster Feylis seemed quite pleased with her grandapprentice, Aelid of the Blazing...</p>
+</article>
+<article id="c1184" data-label="1184">
+<h2 class="chapter">Chapter 1184: Storytelling 🔒</h2>
+<p>“Bernice, are you sure Master Feylis told us to gather three months ago?”</p>
+<p>Inside the top floor hall of the Divine Tower of Verdant Flame, Gregory, who had shown up late, sidled up to ask his junior, Bernice.</p>
+<p>By now, more than three months had passed since Sein and Lorianne had arrived at the tower.</p>
+<p>Strangely enough, Feylis—the one who was supposed to lead this faction gathering—had not shown up yet.</p>
+<p>Lorianne was nowhere in sight either.</p>
+<p>Bernice had asked Lorianne over two months ago where they were and when they would arrive.</p>
+<p>Lorianne’s reply was, “<em>Soon.</em>”</p>
+<p>But two months had gone by since then, and there was still no sign of either of them. Gregory could not help feeling a little confused.</p>
+<p>The woman with strange patterns...</p>
+</article>
+<article id="c1185" data-label="1185">
+<h2 class="chapter">Chapter 1185: Taking Mask Off 🔒</h2>
+<p>Under normal circumstances, even if Sein had laughed out loud, the Faceless Mask—being a world-class secret treasure—would have perfectly concealed his reaction.</p>
+<p>But right now, all of the Faceless Mask’s power was being used to suppress the extremely active and turbulent state of the lawful body inside Sein.</p>
+<p>As a result, its concealment ability was not as strong as before.</p>
+<p>That said, it was also because Sein himself still had limited control over the artifact. He could not yet bring out the full potential of something so powerful.</p>
+<p>His laugh had not been loud, and he was in a far corner of the hall.</p>
+<p>Most people would not have noticed such a small detail, but Aelid was a Rank Four mage. His powerful mental focus allowed him to...</p>
+</article>
+<article id="c1186" data-label="1186">
+<h2 class="chapter">Chapter 1186: Rank Four 🔒</h2>
+<p>Feylis was a little too late.</p>
+<p>Sein’s elementalization reaction had already reached a tipping point back when he emerged from the Faceless Secret Realm on the Knight Continent.</p>
+<p>On top of that, Sein had spent over five hundred years inside that secret realm.</p>
+<p>During that time, he had inherited a massive amount of legacy knowledge left behind by Master Jorces and even absorbed more than half of the abundant elemental energy within the realm itself.</p>
+<p>By all accounts, absorbing that much elemental energy and enough understanding of the truth to trigger a qualitative shift, Sein should have ascended to Rank Four long ago.</p>
+<p>However, the appearance of the Faceless Mask had successfully suppressed his breakthrough.</p>
+<p>He had held himself back on purpose—wanting to build a stronger foundation so that, when the time came, he could go even farther.</p>
+<p>Like...</p>
+</article>
+<article id="c1187" data-label="1187">
+<h2 class="chapter">Chapter 1187: Overseer 🔒</h2>
+<p>The surge of elemental energy made one thing painfully clear—the divide between higher lifeforms and lower ones was vast.</p>
+<p>And judging by the raging elemental power still lingering in the sky, it was easy to guess which type of laws Sein specialized in.</p>
+<p>His main focus was the Ashen Flame and pyro elemental laws, followed closely by the lumen elemental laws.</p>
+<p>Beyond that, he had also dabbled in umbra and sonido elemental laws, necromancy, the power of bewitchment, and more.</p>
+<p>As the massive sea of elemental fire began to fade, it was replaced by the figure of an elemental giant standing tall among the clouds.</p>
+<p>Now in his new form, Sein could feel every cell in his body changing from the inside out.</p>
+<p>He wanted nothing more than to fully immerse himself in this feeling, but the current environment was far from ideal for his breakthrough.</p>
+<p>The sheer elemental chaos and apocalyptic spectacle at the Divine Tower of Verdant Flame had surely caught the attention of many powerful beings.</p>
+<p>Even though the mana light web projected from the tower had...</p>
+</article>
+<article id="c1188" data-label="1188">
+<h2 class="chapter">Chapter 1188: Subsidy and Reward 🔒</h2>
+<p>In the end, under the escort of the two overseers and the senior members of the faction, the elemental giant that was Sein slowly sank into the heart of the largest volcano in the Verdant Flame Range.</p>
+<p>An incredibly pure pyro elemental energy engulfed him almost instantly.</p>
+<p>This was, without question, the ideal place for a breakthrough, both in terms of efficiency and the strength of the laws that could be absorbed.</p>
+<p>“The Ashen Law…” Sein murmured, surrendering his body and mind to the maelstrom of pyro elemental force.</p>
+<p>Once Sein’s lawful body had fully submerged into the molten depths and his condition began to stabilize, Feylis turned to Lorianne and said, “Your apprentice’s advancement came...</p>
+</article>
+<article id="c1189" data-label="1189">
+<h2 class="chapter">Chapter 1189: Pity and Practice 🔒</h2>
+<p>“It’s a pity that Sein has only just begun his advancement to Rank Four. It’ll still be some time before he can establish his divine tower,” Feylis remarked with a hint of regret during the faction gathering.</p>
+<p>“All previous Magus Alliance Conferences have only invited the tower masters of established divine towers, along with Rank Four and above powerhouses who have made notable contributions. I guess he won’t be attending this one.”</p>
+<p>The Magus Alliance Conference was more than just a formal event—it was a symbol of status. It also offered a rare chance to meet overlord-class beings and mingle with tens of thousands of foreign gods.</p>
+<p>For powerhouses of the Magus World, this was an opportunity to...</p>
+</article>
+<article id="c1190" data-label="1190">
+<h2 class="chapter">Chapter 1190: Help 🔒</h2>
+<p>Fifty years later…</p>
+<p>Deep within the law node beneath the Verdant Flame Range, Sein opened his eyes.</p>
+<p><em>Rumble!</em></p>
+<p>After decades of silence, the volcanoes of the Verdant Flame Range suddenly erupted.</p>
+<p>Columns of molten lava blasted skyward, and the thick black smoke rolling westward made it seem like an apocalypse had descended upon the world.</p>
+<p>Sein spread his elemental wings and soared from the depths of the volcano.</p>
+<p>The wings on his back resembled a demon’s—fleshy, grotesque, and imposing.</p>
+<p>After spending decades breaking through there, Sein felt almost reluctant to leave the Verdant Flame Range</p>
+<p>The pure pyro elemental environment had made him feel like he had been curled up in his mother’s womb the entire time.</p>
+<p>The intense elemental energy had tempered his...</p>
+</article>
+<article id="c1191" data-label="1191">
+<h2 class="chapter">Chapter 1191: Eversurge 🔒</h2>
+<p>Eversurge.</p>
+<p>Over 90% of this low-level hydro-elemental plane was covered in vast oceans.</p>
+<p>The remaining landmass was scattered across the world in the form of countless islands.</p>
+<p>When Sein stepped through the teleportation array and arrived in Eversurge, the first thing he saw was the five space fortresses hovering in the sky.</p>
+<p>Four of them were familiar—he had seen those fortresses during the Wild Gorilla World War.</p>
+<p>The fifth one, smaller and crimson-colored, was unfamiliar. He figured it must belong to his senior, Aelid.</p>
+<p>He had not expected Aelid to purchase a war platform like a space fortress so soon after completing his divine tower.</p>
+<p>That realization lit a fire in Sein. A sense of urgency stirred in him, along with a quiet, growing compet...</p>
+</article>
+<article id="c1192" data-label="1192">
+<h2 class="chapter">Chapter 1192: Capture Alive 🔒</h2>
+<p>Feylis had suggested that Sein come help oversee Lorianne’s divine tower legions, but in truth, there was nothing here that really needed his attention.</p>
+<p>If a force this overwhelming still struggled to take down Eversurge, then Gregory and the others would be the laughingstock of Magus World.</p>
+<p>As Sein sensed Tourmaline’s aura rapidly closing in from below, he looked down.</p>
+<p>He was currently hovering above the southeastern region of Eversurge.</p>
+<p>Even without diving beneath the waves, he could see the vast coral city spread out beneath the water surface, now reduced to a shadow of its former self.</p>
+<p>The divine towers were all conserving the energy of their space fortresses. It was actually the relentless...</p>
+</article>
+<article id="c1193" data-label="1193">
+<h2 class="chapter">Chapter 1193: Magic Array 🔒</h2>
+<p>Sein’s arrival immediately drew the attention of every Magus World powerhouse present.</p>
+<p>To the two native Rank Four creatures of Eversurge, his overwhelming aura was a clear sign that this was a force they could not hope to withstand.</p>
+<p>It did not matter that Sein had only recently advanced to Rank Four.</p>
+<p>With the destructive potential of his Ashen Law, the deep reserves he had built up before his breakthrough, and the enhancement provided by the Faceless Mask, Sein was already a serious contender among Rank Four beings.</p>
+<p>These two native Rank Four creatures, who had never once left their homeplane, knew nothing about the vastness of the Astral Realm or the terrifying might of the stronger civilizations beyond.</p>
+<p>In that sense, this conquest...</p>
+</article>
+<article id="c1194" data-label="1194">
+<h2 class="chapter">Chapter 1194: Perfect Plan 🔒</h2>
+<p>The core knowledge behind the magic array Sein was manifesting came from the Spider Queen.</p>
+<p>Back when he helped capture the Moonlit Cat Goddess alive in Faeloria, Sein had learned much from Lorthisra’s teachings.</p>
+<p>His ability to sketch array diagrams with elemental light amidst chaotic, high-intensity battles was mainly thanks to the Faceless Mask.</p>
+<p>Sometimes, equipment was part of one’s strength, and Sein had no problem relying on it when the moment called for it.</p>
+<p>The special array forming among the large sea tornadoes was immediately apparent.</p>
+<p>By the time the Rank Four sea serpent realized something was wrong, it was already too late.</p>
+<p>Elemental energy...</p>
+</article>
+<article id="c1195" data-label="1195">
+<h2 class="chapter">Chapter 1195: Potential Site 🔒</h2>
+<p>“Sein, let’s not kill them…” Tourmaline said softly as the battle drew to a close, tugging at the sleeve of Sein’s magic robe.</p>
+<p>She had already reverted to her human form, and Sein had also dispelled his lawful form.</p>
+<p>This had been his first real battle as a Rank Four being, facing off against opponents of the same rank.</p>
+<p>While his performance had been dazzling and nearly flawless, he had still sustained a few minor injuries.</p>
+<p>After all, both the sea serpent and the marine plant creature had targeted him right from the start.</p>
+<p>Still, what mattered more were the insights he had gained while clashing with fellow Rank Fours.</p>
+<p>None of those at this rank were easy targets.</p>
+<p>Although...</p>
+</article>
+<article id="c1196" data-label="1196">
+<h2 class="chapter">Chapter 1196: Decision 🔒</h2>
+<p>Lorianne was not going to interfere with Sein’s choice.</p>
+<p>The Pyro Secret Society was the top choice for most Pyromancers in the Magus World, and even some Rank Four mages could not secure a good position there without a personal recommendation.</p>
+<p>Even so, now that Sein was a Rank Four, his future was his responsibility.</p>
+<p>So, once he made his decision, Lorianne would support him as his mentor.</p>
+<p>In truth, even Lorianne herself was not part of the Pyro Secret Society. She was only a member of the Elemental Gate council.</p>
+<p>The Elemental Gate, established by Master Ancestor Feylis, did not impose any strict geographical restrictions.</p>
+<p>Even if Sein set up his divine tower in the Alveroth Empire, he could still maintain membership...</p>
+</article>
+<article id="c1197" data-label="1197">
+<h2 class="chapter">Chapter 1197: Considerations 🔒</h2>
+<p>By the end of the Eversurge War, the senior members from the Verdant Flame Faction had already more or less calculated how much Sein would earn from his participation.</p>
+<p>Honestly, Sein had not contributed all that much.</p>
+<p>If he was being real with himself, he had only taken part in the final siege and capture of the two native Rank Four creatures. Aside from that, he had not done much else.</p>
+<p>The fact that the senior members still wanted to share some of the war profits with him was clearly a gesture of goodwill.</p>
+<p>When converted, those profits would give Sein at least two million magicoins.</p>
+<p>The exact amount could not be confirmed just yet, mostly because the two native Rank Four creatures had not been sold off.</p>
+<p>Still, aside from the one-time...</p>
+</article>
+<article id="c1198" data-label="1198">
+<h2 class="chapter">Chapter 1198: Back to Sky City Again 🔒</h2>
+<p>Sein had originally planned to head straight to the Alveroth Empire, but changed his mind the moment he stepped into the Pyro Secret Society’s teleportation array. To save money, he decided to stop by Sky City first.</p>
+<p>As the popular destination for Magus World spellcasters, Sky City heavily subsidized teleportation costs for mages.</p>
+<p>Besides, it was not far from both the Ylli Knight Alliance and the Alveroth Empire.</p>
+<p>With Sein’s current speed, it would not take him long to fly to the Alveroth Empire directly from here.</p>
+<p>And coming back to Sky City after advancing to Rank Four was a completely different experience from when he had first visited.</p>
+<p>Here, magicoin held little value.</p>
+<p>The real currency was Arcane points.</p>
+<p>Sein had burned through nearly all his Arcane...</p>
+</article>
+<article id="c1199" data-label="1199">
+<h2 class="chapter">Chapter 1199: Rank Four Arcanist 🔒</h2>
+<p>If it had been an ordinary mage watching him, Sein would have definitely sensed it. However, he did not even notice the gaze from the woman in the white dress.</p>
+<p>Sein headed straight to the library designated for Rank Four mages, then walked up to the Arcane Light.</p>
+<p>This time, he was here to upload a new batch of knowledge to advance his Arcanist rank.</p>
+<p>Compared to the last time he visited Sky City, Sein’s knowledge had reached a whole new level, especially after his experiences in Faeloria and the Faceless Mask’s secret legacy realm.</p>
+<p>Standing before the Arcane Light, the first thing Sein uploaded was the knowledge he had acquired in Faeloria.</p>
+<p>The law effects he felt during the Avatar Crisis and the profound mysteries he explored in Purgatory in particular helped his Arcane points to skyrocket.</p>
+<p>Magus World defined “knowledge”...</p>
+</article>
+<article id="c1200" data-label="1200">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1200: Acquaintances 🔒</h2>
+<p>Once again, Sein met with the Tower Master of Dark Flame in his familiar office.</p>
+<p>After listening to Bob’s report on the divine tower academy’s operations over the past few years, the Rank Five tower master waved his hand, signaling for Bob to leave.</p>
+<p>Bob might not have been an outstanding dean, but his performance over the years had been decent enough.</p>
+<p>At least, he had not wasted the generous salary the Tower Master of Dark Flame paid him every year.</p>
+<p>“Hehe, I see there’s something different about you now. I can’t even quite figure you out anymore,” the tower master said with a chuckle.</p>
+<p>Even if Dark Flame could not see through the concealment of the Faceless Mask, he could still sense that Sein was no ordinary ma...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1201-1250.html" rel="next">Next: Chs 1201–1250 &rarr;</a>
+    <p class="page-end-links"><a href="1101-1150.html" rel="prev">&larr; Chs 1101–1150</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1151–1200</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1151">Chapter 1151: Voicing Out 🔒</a></li>
+        <li><a href="#c1152">Chapter 1152: Back to the Knight Continent Again 🔒</a></li>
+        <li><a href="#c1153">Chapter 1153: Wealth 🔒</a></li>
+        <li><a href="#c1154">Chapter 1154: New Familiar 🔒</a></li>
+        <li><a href="#c1155">Chapter 1155: Trial Zone 🔒</a></li>
+        <li><a href="#c1156">Chapter 1156: Special Secret Realm 🔒</a></li>
+        <li><a href="#c1157">Chapter 1157: Cheating 🔒</a></li>
+        <li><a href="#c1158">Chapter 1158: The Tenth Level 🔒</a></li>
+        <li><a href="#c1159">Chapter 1159: Old Friend 🔒</a></li>
+        <li><a href="#c1160">Chapter 1160: The Final Trial 🔒</a></li>
+        <li><a href="#c1161">Chapter 1161: First Place 🔒</a></li>
+        <li><a href="#c1162">Chapter 1162: A Duel Between Geniuses 🔒</a></li>
+        <li><a href="#c1163">Chapter 1163: Figure of Light 🔒</a></li>
+        <li><a href="#c1164">Chapter 1164: Faceless Mask 🔒</a></li>
+        <li><a href="#c1165">Chapter 1165: Hostility 🔒</a></li>
+        <li><a href="#c1166">Chapter 1166: The Power of Rank Four 🔒</a></li>
+        <li><a href="#c1167">Chapter 1167: Traveling Together 🔒</a></li>
+        <li><a href="#c1168">Chapter 1168: Edge of a Breakthrough 🔒</a></li>
+        <li><a href="#c1169">Chapter 1169: Gifting 🔒</a></li>
+        <li><a href="#c1170">Chapter 1170: Prelim Council 🔒</a></li>
+        <li><a href="#c1171">Chapter 1171: The Awakening of Artificial Intelligence 🔒</a></li>
+        <li><a href="#c1172">Chapter 1172: Auctioned Slave 🔒</a></li>
+        <li><a href="#c1173">Chapter 1173: Deliverance 🔒</a></li>
+        <li><a href="#c1174">Chapter 1174: Consideration 🔒</a></li>
+        <li><a href="#c1175">Chapter 1175: Affairs 🔒</a></li>
+        <li><a href="#c1176">Chapter 1176: Jessica 🔒</a></li>
+        <li><a href="#c1177">Chapter 1177: Meeting Lorianne Again 🔒</a></li>
+        <li><a href="#c1178">Chapter 1178: Gifts 🔒</a></li>
+        <li><a href="#c1179">Chapter 1179: Home 🔒</a></li>
+        <li><a href="#c1180">Chapter 1180: Teaching 🔒</a></li>
+        <li><a href="#c1181">Chapter 1181: Kink 🔒</a></li>
+        <li><a href="#c1182">Chapter 1182: Faction Gathering 🔒</a></li>
+        <li><a href="#c1183">Chapter 1183: Facing Doubts 🔒</a></li>
+        <li><a href="#c1184">Chapter 1184: Storytelling 🔒</a></li>
+        <li><a href="#c1185">Chapter 1185: Taking Mask Off 🔒</a></li>
+        <li><a href="#c1186">Chapter 1186: Rank Four 🔒</a></li>
+        <li><a href="#c1187">Chapter 1187: Overseer 🔒</a></li>
+        <li><a href="#c1188">Chapter 1188: Subsidy and Reward 🔒</a></li>
+        <li><a href="#c1189">Chapter 1189: Pity and Practice 🔒</a></li>
+        <li><a href="#c1190">Chapter 1190: Help 🔒</a></li>
+        <li><a href="#c1191">Chapter 1191: Eversurge 🔒</a></li>
+        <li><a href="#c1192">Chapter 1192: Capture Alive 🔒</a></li>
+        <li><a href="#c1193">Chapter 1193: Magic Array 🔒</a></li>
+        <li><a href="#c1194">Chapter 1194: Perfect Plan 🔒</a></li>
+        <li><a href="#c1195">Chapter 1195: Potential Site 🔒</a></li>
+        <li><a href="#c1196">Chapter 1196: Decision 🔒</a></li>
+        <li><a href="#c1197">Chapter 1197: Considerations 🔒</a></li>
+        <li><a href="#c1198">Chapter 1198: Back to Sky City Again 🔒</a></li>
+        <li><a href="#c1199">Chapter 1199: Rank Four Arcanist 🔒</a></li>
+        <li><a href="#c1200">Chapter 1200: Acquaintances 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1101-1150.html" rel="prev">&larr; Chs 1101–1150</a>    <a href="../../index.html">Library</a>
+<a href="1201-1250.html" rel="next">Chs 1201–1250 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 701–750</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="651-700.html#last" data-next-page="751-800.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c701">Chapter 701: The Centaur Tribe’s Show of Favor 🔒</a></li>
+        <li><a href="#c702">Chapter 702: Verdant Flame Amethyst Magic Rod 🔒</a></li>
+        <li><a href="#c703">Chapter 703: Relax 🔒</a></li>
+        <li><a href="#c704">Chapter 704: High Expectation 🔒</a></li>
+        <li><a href="#c705">Chapter 705: Foresight 🔒</a></li>
+        <li><a href="#c706">Chapter 706: An Invitation To Reina 🔒</a></li>
+        <li><a href="#c707">Chapter 707: Body Tempering 🔒</a></li>
+        <li><a href="#c708">Chapter 708: Complementary Cooperation 🔒</a></li>
+        <li><a href="#c709">Chapter 709: Departure 🔒</a></li>
+        <li><a href="#c710">Chapter 710: Leaning Tower In The Secret Realm 🔒</a></li>
+        <li><a href="#c711">Chapter 711: Assessing 🔒</a></li>
+        <li><a href="#c712">Chapter 712: Capiche Business Alliance 🔒</a></li>
+        <li><a href="#c713">Chapter 713: Second-Hand Space Fortress Trading Market 🔒</a></li>
+        <li><a href="#c714">Chapter 714: Loan 🔒</a></li>
+        <li><a href="#c715">Chapter 715: Verdant Spring Space Fortress 🔒</a></li>
+        <li><a href="#c716">Chapter 716: Shopping And Returning 🔒</a></li>
+        <li><a href="#c717">Chapter 717: Conversations 🔒</a></li>
+        <li><a href="#c718">Chapter 718: Mutual Requests 🔒</a></li>
+        <li><a href="#c719">Chapter 719: Strange Grayish-White Flame 🔒</a></li>
+        <li><a href="#c720">Chapter 720: Seeking Guidance 🔒</a></li>
+        <li><a href="#c721">Chapter 721: Infiltration 🔒</a></li>
+        <li><a href="#c722">Chapter 722: Verdant Wilderness World 🔒</a></li>
+        <li><a href="#c723">Chapter 723: Green Spikefur King 🔒</a></li>
+        <li><a href="#c724">Chapter 724: Freedom and Beauty 🔒</a></li>
+        <li><a href="#c725">Chapter 725: Empathy 🔒</a></li>
+        <li><a href="#c726">Chapter 726: Reaching Into The Same Pocket 🔒</a></li>
+        <li><a href="#c727">Chapter 727: Wild Gorilla World 🔒</a></li>
+        <li><a href="#c728">Chapter 728: Captured 🔒</a></li>
+        <li><a href="#c729">Chapter 729: Medium-sized World? 🔒</a></li>
+        <li><a href="#c730">Chapter 730: Descent and Resistance 🔒</a></li>
+        <li><a href="#c731">Chapter 731: War Preparation Completed 🔒</a></li>
+        <li><a href="#c732">Chapter 732: Human Nature 🔒</a></li>
+        <li><a href="#c733">Chapter 733: On the Brink of War 🔒</a></li>
+        <li><a href="#c734">Chapter 734: Feylis Arrives Personally 🔒</a></li>
+        <li><a href="#c735">Chapter 735: Act Weak? 🔒</a></li>
+        <li><a href="#c736">Chapter 736: Exercising Restraint 🔒</a></li>
+        <li><a href="#c737">Chapter 737: Despair 🔒</a></li>
+        <li><a href="#c738">Chapter 738: Fully Commenced 🔒</a></li>
+        <li><a href="#c739">Chapter 739: Selphy’s Proposition 🔒</a></li>
+        <li><a href="#c740">Chapter 740: Solution For Verdant Flame Body Tempering Technique’s Side Effects 🔒</a></li>
+        <li><a href="#c741">Chapter 741: Divine Tower of Verdant Spring Army Arrives 🔒</a></li>
+        <li><a href="#c742">Chapter 742: Comparing 🔒</a></li>
+        <li><a href="#c743">Chapter 743: Leading A Legion 🔒</a></li>
+        <li><a href="#c744">Chapter 744: Sein’s Influence 🔒</a></li>
+        <li><a href="#c745">Chapter 745: Merely Tedious 🔒</a></li>
+        <li><a href="#c746">Chapter 746: Leena and Undead Army 🔒</a></li>
+        <li><a href="#c747">Chapter 747: Women’s Way Of Solving Problem 🔒</a></li>
+        <li><a href="#c748">Chapter 748: Standing In Family 🔒</a></li>
+        <li><a href="#c749">Chapter 749: Forbidden Spell Hits 🔒</a></li>
+        <li><a href="#c750">Chapter 750: Beastmen Legion 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c701" data-label="701">
+<h2 class="chapter">Chapter 701: The Centaur Tribe’s Show of Favor 🔒</h2>
+<p>The Life Tree Trunk of the Ancient Verdant Banyan was undoubtedly the most suitable material for Sein’s next magic rod upgrade.</p>
+<p>A powerful magic rod required not only a top-quality head but also a body of equal quality.</p>
+<p>However, the choice of adhesive connecting the head to the rod, as well as the engravings on various parts of the rod, would depend on Sein’s competence as an alchemist.</p>
+<p>The Maya Tribe of Centaurworld understood the value of strategic investments.</p>
+<p>Although their tribal heritage did not allow them to directly curry favor with Rank Four mages like Lorianne, getting on the good side of Sein was deemed a worthwhile endeavor.</p>
+<p>The demigod-level centaur, Maya, had gained only a few top-quality materials in Verdant...</p>
+</article>
+<article id="c702" data-label="702">
+<h2 class="chapter">Chapter 702: Verdant Flame Amethyst Magic Rod 🔒</h2>
+<p>After receiving a section of the Life Tree Trunk from Luna, Sein began working on upgrading his Verdant Flame Heart Rod.</p>
+<p>Consequently, he also temporarily suspended his classes at the divine tower academy.</p>
+<p>Sein ventured to the top floor of the Divine Tower to access his mentor’s laboratory when he had to extract the core of the Inextinguishable Meteorite.</p>
+<p>Lorianne had not yet returned from the Magus World and was presumably still settling financial matters in Verdant Leaf World.</p>
+<p>Following the war in Verdant Leaf World, its resources were swiftly plundered, with the Divine Tower of Verdant Spring channeling these assets to the Magus Alliance in exchange...</p>
+</article>
+<article id="c703" data-label="703">
+<h2 class="chapter">Chapter 703: Relax 🔒</h2>
+<p>After completing his latest alchemy experiment, Sein decided to take a brief vacation.</p>
+<p>Experiments could not be completed overnight, and Sein felt the need for a break—a desire he rarely entertained before.</p>
+<p>Ever since his memorable time with Leena in the Western Archipelago, Sein had been slowly trying to live his life a little more normally.</p>
+<p>Aside from accepting Eileen’s invitation to attend several masquerade parties hosted by other mages from the Divine Tower of Verdant Spring, he also took the time to shop in the commercial areas outside of the divine tower.</p>
+<p>Despite knowing that Sein was now a married man, Eileen continued hanging around Sein and inviting him to all sorts of parties without a care in the world.</p>
+<p>Considering that Eileen had slept with Sein and Selina once before, she probably...</p>
+</article>
+<article id="c704" data-label="704">
+<h2 class="chapter">Chapter 704: High Expectation 🔒</h2>
+<p>Marie and Angie spent a total of one week at the Divine Tower of Verdant Spring.</p>
+<p>During their stay, Sein and Marie engaged in nothing extraordinary. Rather than fleeting physical connections, Sein cherished the comfort of their long-standing friendship, reminiscent of the cozy aroma of aged wine.</p>
+<p>Both seemed to deeply value this brief period they spent together.</p>
+<p>A week later, Marie and Angie returned to the South Coast.</p>
+<p>With the Verdant Wave Canal operational, their journey back to the Divine Tower of Dawn would take no more than a month.</p>
+<p>Although the Divine Tower of Verdant Spring had yet to establish a teleportation array with other divine towers, several floating ports within the Viridescent Land were already preparing for cons...</p>
+</article>
+<article id="c705" data-label="705">
+<h2 class="chapter">Chapter 705: Foresight 🔒</h2>
+<p>It was not until the seventh year after Elisa’s breakthrough that Azelia finally broke through to Rank One.</p>
+<p>The fox maiden clearly pursued the path of a Beastmen World’s shaman priestess, evolving from a humble Wind Whisperer to a Rank One Soul Priest.</p>
+<p>Beyond her personal growth, the fox maiden had also mastered numerous War Song Haloes, all self-taught—a probable reason for her delayed breakthrough compared to the mermaid.</p>
+<p>Shaman priests in beastmen tribes emphasized tradition. Hence, many ancient war songs and haloes were passed down orally.</p>
+<p>Previously, without a senior priest to guide her, the fox maiden relied solely on the bronze codex, a gift from Sein procured...</p>
+</article>
+<article id="c706" data-label="706">
+<h2 class="chapter">Chapter 706: An Invitation To Reina 🔒</h2>
+<p>The presence of a Rank Four knight and mage to bless the union of Sein and Natalya highlighted its significant and far-reaching nature.</p>
+<p>This occasion marked one of the rare times Natalya displayed her feminine charms.</p>
+<p>Previously, she had often been perceived as a tomboy.</p>
+<p>Now, in a long white wedding dress, Natalya exuded a surprising harmony of elegance and maturity.</p>
+<p>While it might have been an act, maintaining such a facade convincingly was no small feat.</p>
+<p>It was no wonder Natalya had been known as the flower within the Order of the Steel Fist, attracting even the affection of a Rank Three Sky Knight when she was younger.</p>
+<p>On her wedding day,...</p>
+</article>
+<article id="c707" data-label="707">
+<h2 class="chapter">Chapter 707: Body Tempering 🔒</h2>
+<p>After the wedding, Sein and Natalya returned to the Lysian Alliance before heading straight to the Divine Tower of Verdant Spring.</p>
+<p>From this point forward, Natalya was truly a member of House Grantt and was recognized as Sein’s only legal wife in the Magus World.</p>
+<p>Sein no longer felt much attachment to his home in the Lysian Alliance.</p>
+<p>The generation gap with the members of House Grantt and the passage of over a century had left him feeling disconnected from the family into which he was born.</p>
+<p>Not to mention, Sein had not even been raised in House Grantt during his teenage years.</p>
+<p>Sein wondered if Kelman, Jeremy, and the others felt the same.</p>
+<p>Then again, they...</p>
+</article>
+<article id="c708" data-label="708">
+<h2 class="chapter">Chapter 708: Complementary Cooperation 🔒</h2>
+<p><em>By the standards of the Magus World, a Rank Three mage should have a focus of 10,000 points, while a Rank Three knight should have a constitution of 10,000 points.</em></p>
+<p><em>However, this standard didn’t exist in the ancient era, when the Magus World’s body tempering and magic development had not yet reached their zenith.</em></p>
+<p><em>Back then, beings with a focus level of just a few thousand points could already be classified as Rank Three.</em></p>
+<p><em>Moreover, the selection and measurement units of focus have continually evolved within the Magus Civilization.</em></p>
+<p><em>For instance, alongside the most commonly used points, Hertz is also an important unit for measuring focus.</em></p>
+<p>In his laboratory, Sein massaged the bridge of his nose while musing to himself.</p>
+<p>The pursuit of truth involved more than just experimenting. Sein also needed...</p>
+</article>
+<article id="c709" data-label="709">
+<h2 class="chapter">Chapter 709: Departure 🔒</h2>
+<p>Experimental research was tedious yet fulfilling, and it made time pass astonishingly swiftly.</p>
+<p>These descriptions, though seemingly contradictory, perfectly captured the essence of a mage’s pursuit of truth.</p>
+<p>Perception, however, varied from one individual to another.</p>
+<p>Ten years later, Sein’s stats read:</p>
+<p><em>Focus: 4,231 points Mana: 4,376 points Constitution: 5,211 points</em></p>
+<p>This rate of growth was exceptionally high and rapid. Much of this progress stemmed from Sein’s continued, relentless research experiments.</p>
+<p>Apart from that, he began to realize this could have something to do with the planar light within him.</p>
+<p>Could this be due to the planar will’s attention, even if it was just a sliver, bestowed upon the chosen ones of the Magus World?</p>
+<p>If...</p>
+</article>
+<article id="c710" data-label="710">
+<h2 class="chapter">Chapter 710: Leaning Tower In The Secret Realm 🔒</h2>
+<p>Their flight to the Cipher Secret Realm was facilitated by a massive green leaf that Lorianne summoned.</p>
+<p>It was the same leaf on which Sein had ridden during his first visit to the Divine Tower of Verdant Flame.</p>
+<p>Condensed from pure dendro elemental energy, the leaf, though unassuming in appearance, traveled faster than any conventional airship or even war airship.</p>
+<p>The Mechanical Hornet that Sein usually relied on for transportation paled in comparison to this green creation of his mentor.</p>
+<p>Such a skill or equipment undoubtedly proved invaluable in the Astral Realm.</p>
+<p>Crouching at one corner of the leaf, Sein tapped the surface thoughtfully.</p>
+<p>He...</p>
+</article>
+<article id="c711" data-label="711">
+<h2 class="chapter">Chapter 711: Assessing 🔒</h2>
+<p>Unlike Sein, who looked rather pathetic while struggling slightly to catch his breath, Lorianne maintained a calm demeanor throughout.</p>
+<p>Today, the Rank Four mage wore emerald green crystal shoes.</p>
+<p>As she ascended the floating stone steps that spiraled upward, her heels clacked along the ground, drawing Sein’s mind to them.</p>
+<p>Holding his breath, Sein hurried to keep pace with his mentor.</p>
+<p>This time, walking beside her, he found himself unaffected by the external distractions around him.</p>
+<p>He stared at the runes on the walls, suddenly intrigued by occult arts, particularly the truly cursed magic—they were far beyond the petty tricks Sein had encountered when he was still an initiate.</p>
+<p>The pinnacle...</p>
+</article>
+<article id="c712" data-label="712">
+<h2 class="chapter">Chapter 712: Capiche Business Alliance 🔒</h2>
+<p>Master Cipher was not known for a particularly gloomy or eccentric personality; had she been, it was unlikely she would have become close friends with Lorianne.</p>
+<p>As their conversation continued, Sein no longer experienced the strange, mysterious visions that had initially troubled him.</p>
+<p>In the leaning tower, the previously frozen candle flame began to sway again.</p>
+<p>Master Cipher seemed to prefer traditional lighting, as most of the illumination within the laboratory came from candles rather than magic crystal lamps.</p>
+<p>The candles were made from a special material, and the fragrance they emitted as they burned appeared to aid in meditation and focus enhancement.</p>
+<p>When Sein felt his back muscles stiffen and cold sweat seeped through his magic robe, Lorianne and Master Cipher were chatting happily, with Lorianne even bursting into laughter at times.</p>
+<p>The two Rank Four mages communicated not just...</p>
+</article>
+<article id="c713" data-label="713">
+<h2 class="chapter">Chapter 713: Second-Hand Space Fortress Trading Market 🔒</h2>
+<p>The second-hand space fortress trading market, located northwest of the Capiche Business Alliance, was more chaotic than the rest of the alliance.</p>
+<p>Space fortresses and war airships constantly drifted and flew overhead, each showing signs of wear, with scratches and dents marring their metal exterior.</p>
+<p>Below those floating giants, the ground was cluttered with vast metal platforms. From a distance, they resembled an endless metallic mountain range.</p>
+<p>According to Zaka, their guide, this second-hand space fortress trading market also boasted an expansive underground area where numerous space fortresses and large war platforms lay dormant.</p>
+<p>Some space fortresses found new owners here if they could be made operational.</p>
+<p>Others, unable to find buyers or when price negotiations...</p>
+</article>
+<article id="c714" data-label="714">
+<h2 class="chapter">Chapter 714: Loan 🔒</h2>
+<p>“Ah... haha... I didn’t expect to meet you guys here,” Thunder said somewhat awkwardly in the bustling area of the second-hand space fortress trading market.</p>
+<p>This was Sein’s first encounter with him, a figure rumored to possess Rank Five strength.</p>
+<p>To protect Sein, Lorianne had enveloped him in a light green energy shield.</p>
+<p>This was to safeguard him from the potent energies released by several high-ranking powerhouses that could inadvertently harm Sein, a mere Rank Two being.</p>
+<p>This showed that Lorianne truly cared about Sein and was a meticulous person who paid great attention to little details.</p>
+<p>Thunder had come to the Capiche Business Alliance to either rent or sell his space fortress, which was relatively new by space fortress standards—having...</p>
+</article>
+<article id="c715" data-label="715">
+<h2 class="chapter">Chapter 715: Verdant Spring Space Fortress 🔒</h2>
+<p>It took just one visit to the Capiche Business Alliance for anyone to be millions in debt.</p>
+<p>Whether it was due to fear of Master Zaka, the daunting presence of the Capiche Business Alliance itself, or simply the pressure of the loans, Lorianne felt a strong desire never to set foot in the alliance again after signing a series of loan contracts.</p>
+<p>However, that was not an option.</p>
+<p>She had to return to retrieve her space fortress.</p>
+<p>The Capiche Business Alliance also sought Lorianne’s input on whether she wanted a customized mini-port outside the Magus World, dedicated exclusively to dock her space fortress.</p>
+<p>The model Lorianne eventually selected was one of the latest three mid-tier space fortresses released by the Capiche Business Alliance in the past ten...</p>
+</article>
+<article id="c716" data-label="716">
+<h2 class="chapter">Chapter 716: Shopping And Returning 🔒</h2>
+<p>After finalizing the purchase of the space fortress at Capiche Business Alliance, the group was in no rush to depart.</p>
+<p>Lorianne and Master Cipher even seized this opportunity to acquire several high-quality materials from the Alliance that would be essential for their ongoing experiments.</p>
+<p>Sein also shopped a great deal at the alliance. He realized that the variety of magic ingredients and the plethora of magic artifacts available here far surpassed what was accessible through the divine towers.</p>
+<p>Although Sein’s wealth had yet to reach seven or eight figures like Lorianne and other Rank Four or higher beings, he was certainly well-off among newly promoted Rank Two mages.</p>
+<p>This allowed him to make purchases based on his interests...</p>
+</article>
+<article id="c717" data-label="717">
+<h2 class="chapter">Chapter 717: Conversations 🔒</h2>
+<p>Upon his return to the Divine Tower of Verdant Spring, Sein first visited the fox maiden, Yuri, and others to deliver their gifts.</p>
+<p>Yuri’s elemental cannon was not immediately usable. Sein had to work with her to study it before making certain modifications so that it could be compressed and integrated into her Burning Flame Unit.</p>
+<p>According to the seller from the Capiche Business Alliance, the elemental cannon was a product of Norman Federation’s technology combined with Magus World’s alchemy.</p>
+<p>The Norman Federation, a major technological civilization, held a prominent position in the Magus Alliance and could be considered one of the top-tier elders, just like the Beastmen World and Elven World.</p>
+<p>The Neisse Civilization, known...</p>
+</article>
+<article id="c718" data-label="718">
+<h2 class="chapter">Chapter 718: Mutual Requests 🔒</h2>
+<p>As Sein made his way to the top of the divine tower to meet his mentor, Lorianne also sent him a message requesting his presence.</p>
+<p>As soon as the mentor and her apprentice saw each other, they waited for each other to speak.</p>
+<p>After a moment, Lorianne broke the silence first by saying, “You first.”</p>
+<p>“Uh, about the Verdant Wilderness World War that’s going to take place in ten years—I’d like to take Leena with me,” Sein began.</p>
+<p>Worried that Lorianne might refuse, he quickly added, “There’s been a war among the black towers lasting over thirty years on her side, and it’s been years since I’ve seen her. I really miss her.”</p>
+<p>Lorianne was known for her sentimental nature and often indulged...</p>
+</article>
+<article id="c719" data-label="719">
+<h2 class="chapter">Chapter 719: Strange Grayish-White Flame 🔒</h2>
+<p>Although Sein had already agreed to undertake an interplanar infiltration mission to the Verdant Wilderness World, it would not happen so soon yet.</p>
+<p>After meeting his mentor, Sein returned to his quarters in the divine tower.</p>
+<p>The experiments and research that he had scheduled before continued as usual.</p>
+<p>For Sein, the special assignment from his mentor did not necessitate major changes to his routine.</p>
+<p>The only difference was that Sein had taken the time to craft several life-saving magic items.</p>
+<p>He had also prepared a number of potions to restore mana, focus, and stamina.</p>
+<hr class="separator">
+<p>In the laboratory, Sein flipped open a black leather-bound spellbook—the Magus book...</p>
+</article>
+<article id="c720" data-label="720">
+<h2 class="chapter">Chapter 720: Seeking Guidance 🔒</h2>
+<p>An intense session with Natalya helped Sein vent his pent-up frustration from days of relentless experimentation.</p>
+<p>Sein had to admit that among all the women he had encountered thus far, only Natalya could match his vigor between the sheets.</p>
+<p>This was one of the drawbacks of body tempering.</p>
+<p>While Sein’s constitution had been bolstered to an exaggerated extent, surpassing even his focus and mana levels, this enhancement brought its own set of challenges for a spellcaster like him—one of which was a heightened libido.</p>
+<p>Given this, even if the arranged marriage with Natalya never happened, Sein would still need to find a partner with an outstanding constitution.</p>
+<p>If he could...</p>
+</article>
+<article id="c721" data-label="721">
+<h2 class="chapter">Chapter 721: Infiltration 🔒</h2>
+<p>Though not versed in occult arts or sonido magic, Lorianne possessed a wealth of knowledge and a visionary outlook that proved invaluable to Sein.</p>
+<p>She also told him to explore her private library.</p>
+<p>“I remember I have an old book related to sonido magic there. You can take a look at it,” Lorianne suggested.</p>
+<p>“Will do,” Sein replied.</p>
+<p>After determining an approximate departure time with Lorianne, Sein slowed his experimental activities.</p>
+<p>The duration of his upcoming mission to Verdant Wilderness World was uncertain.</p>
+<p>Given that the Divine Tower of Verdant Spring had only just begun to issue mobilization orders, and the Verdant Spring Space Fortress had not yet been delivered to Lorianne, Sein realized...</p>
+</article>
+<article id="c722" data-label="722">
+<h2 class="chapter">Chapter 722: Verdant Wilderness World 🔒</h2>
+<p>At the end of the green elemental passage, Sein encountered a light blue curtain of water.</p>
+<p>The initial moment he passed through, he experienced extreme discomfort—the entire plane seemed to reject his presence.</p>
+<p>This discomfort was partly due to the strain of the prolonged, long-distance spatial teleportation, which exacted a heavy toll on Sein.</p>
+<p>Fortunately, Sein’s remarkable constitution, bolstered by the protective focus provided by his mentor allowed him to survive the teleportation without sustaining significant damage.</p>
+<hr class="separator">
+<p>When Sein opened his eyes again, he found himself on a golden beach.</p>
+<p>The surrounding tidal waves consistently left shallow white marks on the sand.</p>
+<p>A small creature with sixteen pointy legs and a green shell scuttled past him.</p>
+<p>It seemed to sense something unusual about Se...</p>
+</article>
+<article id="c723" data-label="723">
+<h2 class="chapter">Chapter 723: Green Spikefur King 🔒</h2>
+<p>After entering the Emerald Forest, Sein followed Lorianne’s guidance and flew directly toward the heart of the forest.</p>
+<p>As expected of a mentor, Lorianne’s observation skills and ability to spot danger proved far superior to Sein’s detection magic.</p>
+<p>Throughout the journey, Sein remained undetected by the native inhabitants of this plane, even managing to stealthily bypass an area where a Rank Three giant tree was rooted.</p>
+<p>“Not all plant creatures in the Emerald Forest are willing to align with the Green Spikefur King. Of those native plants we’ve contacted, the Green Spikefur King only holds sway over half of the species in this forest at most. It’s always wise to remain vigilant,” Lorianne advised...</p>
+</article>
+<article id="c724" data-label="724">
+<h2 class="chapter">Chapter 724: Freedom and Beauty 🔒</h2>
+<p>Each of the nine forests in Verdant Wilderness World contained a special planar node that met Lorianne’s requirements.</p>
+<p>This likely explained why these forests had developed to such a grand scale and why each had birthed demigod-level beings.</p>
+<p>Planar nodes, planar laws, and the power of laws were beyond Sein’s current understanding.</p>
+<p>In the Magus World, typically only demigod-level mages engaged in such research.</p>
+<p>Comprehending and applying these concepts was generally reserved for those who had reached Rank Four or above in life level.</p>
+<p>After departing from the Emerald Forest, Sein continued his journey eastward.</p>
+<p>“Master Lorianne, what exactly did you bury? And what is the principle behind...</p>
+</article>
+<article id="c725" data-label="725">
+<h2 class="chapter">Chapter 725: Empathy 🔒</h2>
+<p>“If possible, I hope we won’t have to hurt that Greenbeak Tree when the war breaks out,” Sein said.</p>
+<p>One could almost hear his silent sigh; it was probably the first time he had ever made such a remark.</p>
+<p>It was hard to imagine that a mage, who originated from Mystralora City and had experienced several interplanar wars, would express concern for foreign creatures.</p>
+<p>This was what it truly meant to be “human”!</p>
+<p>Sein was not merely a killing machine; the more he experienced, the more he understood and emphathized.</p>
+<p>Many demigod-level knights and mages in the Magus World would begin to travel within the Magus Alliance after reaching their breakthrough bottlenecks.</p>
+<p>The entire Magus Alliance, with its hundreds of thousands of planes or worlds, became...</p>
+</article>
+<article id="c726" data-label="726">
+<h2 class="chapter">Chapter 726: Reaching Into The Same Pocket 🔒</h2>
+<p>Verdant Wilderness World had not achieved great unification.</p>
+<p>This world boasted nine large forests, alongside numerous medium and smaller ones, scattered across the primarily plains-dominated terrain and a smattering of mountains.</p>
+<p>Despite its vast main continent, Verdant Wilderness World had fewer oceans compared to Verdant Leaf World.</p>
+<p>According to Lorianne, the Rank Four native creature of this plane was a giant tree known as the Verdant Wilderness God.</p>
+<p>It seemed that plant creatures like it often lacked expansionist tendencies, or perhaps this particular Rank Four being harbored no aspirations of dominion.</p>
+<p>The Verdant Wilderness God’s true sphere of influence was confined to only the Lush Verdant Forest, where his physical form resided, and two...</p>
+</article>
+<article id="c727" data-label="727">
+<h2 class="chapter">Chapter 727: Wild Gorilla World 🔒</h2>
+<p>These green gorillas generally stood about five meters tall.</p>
+<p>Their fur appeared dyed, and their chest and abdominal muscles were extremely developed.</p>
+<p>There were about forty of them in total.</p>
+<p>Sein had never encountered such species during his previous travels around the Verdant Wilderness World.</p>
+<p>Remarkably, each of these gorillas possessed a life level of Rank One or above, with the strongest among them being Rank Three.</p>
+<p>This particular gorilla, distinguished by a circle of white chest fur and towering over seven meters, seemed to be their leader.</p>
+<p>With Aura Restraint Spell and Lorianne’s protection, Sein remained undetected by the gorillas who were a short distance away.</p>
+<p>In the forest’s center lay a deep,...</p>
+</article>
+<article id="c728" data-label="728">
+<h2 class="chapter">Chapter 728: Captured 🔒</h2>
+<p>As Lorianne had predicted, the destruction of the planar nodes did not halt the civil war between the two large forests of Verdant Wilderness World.</p>
+<p>According to normal planar development, such an outcome was nearly impossible.</p>
+<p>Perhaps Lorianne was right; the civil war could indeed be instigated by an otherworldly force behind the scenes.</p>
+<p>The conflict was not just a duel between those among the higher echelons and the most strategically minded; it also turned countless lesser creatures into victims caught in the crossfire.</p>
+<hr class="separator">
+<p>Three months after the destruction of the Plain Forest’s planar node, a second node in Verdant Wilderness World met the same fate.</p>
+<p>This time, the target was in a medium-sized forest, northeast of the main continent.</p>
+<p>The entire forest was engulfed in fl...</p>
+</article>
+<article id="c729" data-label="729">
+<h2 class="chapter">Chapter 729: Medium-sized World? 🔒</h2>
+<p>“It could be a medium-sized world,” Lorianne suddenly commented after Sein’s interrogation ended.</p>
+<p>Medium-sized worlds were governed by an exceptionally complete set of laws and capable of spawning Rank Six creatures.</p>
+<p>These worlds were ranked among the more formidable, occupying the upper mid-tier of the Astral Realm’s hierarchy.</p>
+<p>After all, there were only a handful of large-sized realms and top-tier civilizations within the boundless expanse of the Astral Realm.</p>
+<p>These exceptional civilizations had typically undergone either an exceedingly long period of development or possessed highly refined evolutionary systems.</p>
+<p>Hence, the majority of the Astral Realm was made up of low-level planes...</p>
+</article>
+<article id="c730" data-label="730">
+<h2 class="chapter">Chapter 730: Descent and Resistance 🔒</h2>
+<p>Half a year later.</p>
+<p>Another violent explosion rocked the northern reaches of Verdant Wilderness World.</p>
+<p>The blast was powerful enough to jolt the entire world, sending a blinding red light radiating across the sky.</p>
+<p>Even creatures in the southern regions observed the scarlet hues engulfing the north.</p>
+<p>“You!” Core Birch glared at the bloodied figure of the Plain Bearowl, whose gaze was dripping with malevolence.</p>
+<p>Both were demigod-level sovereigns of Verdant Wilderness World’s large forests—Core Birch Forest and Plain Forest, respectively.</p>
+<p>Core Birch was the most powerful and intelligent being among the millions...</p>
+</article>
+<article id="c731" data-label="731">
+<h2 class="chapter">Chapter 731: War Preparation Completed 🔒</h2>
+<p>Unfortunately, the gentle green beams of light failed to seal the crack that continued to widen.</p>
+<p>Amidst the clash of green and crimson energies, a pair of enormous hands violently emerged from the rift.</p>
+<p><em>RIIIIP!</em></p>
+<p>The initially small crack was abruptly widened into a large gap by the forceful tearing and prying of these enormous hands.</p>
+<p>A giant gorilla, towering hundreds of meters tall, peered excitedly into Verdant Wilderness World.</p>
+<p>“I’m squeezing my way in, just give me a little more time, hehehe.”</p>
+<p>Its sinister chuckle sent chills down everyone’s spine.</p>
+<p>On its fingers, it wore rings of black metal spikes, which gleamed ominously under Verdant Wilderness World’s sunlight.</p>
+<p>Behind this imposing figure, three other giant gorillas...</p>
+</article>
+<article id="c732" data-label="732">
+<h2 class="chapter">Chapter 732: Human Nature 🔒</h2>
+<p>The disparity in strength between a low-level plane and a medium-sized plane often amounted to tenfold.</p>
+<p>However, this was merely a simplistic assessment.</p>
+<p>In reality, the gap spanned every conceivable aspect of civilization.</p>
+<p>Determining the exact number of Rank Four or higher creatures within the Wild Gorilla World was currently challenging.</p>
+<p>Assuming this world qualified as a medium-sized civilization, a conservative estimate would place the number of Rank Four or higher entities at no fewer than fifty.</p>
+<p>It was a misconception to think that all medium-sized planes, such as Centaurworld with its eighteen Rank Four or above deities, reflected the norm for Astral Realm civili...</p>
+</article>
+<article id="c733" data-label="733">
+<h2 class="chapter">Chapter 733: On the Brink of War 🔒</h2>
+<p>The outbreak of the Verdant Wilderness World War had compelled the forces of this low-level plane to unite against the invasion.</p>
+<p>The only exception in this global conflict was the Emerald Forest, ruled by the Green Spikefur King.</p>
+<p>It had long pledged allegiance to Lorianne, the “foreign evil god”.</p>
+<p>Despite the guardian’s call to arms, the Green Spikefur King had chosen to ignore it, focusing solely on protecting its own territory.</p>
+<p>From the perspective of Verdant Wilderness World, the Green Spikefur King’s action was undoubtedly selfish.</p>
+<p>However, the native inhabitants of the Emerald Forest believed that this conservation of power was what made this...</p>
+</article>
+<article id="c734" data-label="734">
+<h2 class="chapter">Chapter 734: Feylis Arrives Personally 🔒</h2>
+<p>Invading and conquering a medium-sized plane was a rare opportunity that few powerhouses of the Magus Civilization could only dream of encountering.</p>
+<p>Despite the boundless expanse of the Astral Realm, which had birthed countless races and civilizations, worlds governed by a complete set of laws were exceedingly rare.</p>
+<p>Among them, small and microplanes were common, but medium-sized planes and beyond were a rarity.</p>
+<p>Over hundreds of thousands of years, the Magus Civilization had expanded continuously, conquering nearly all the world civilizations within its reach.</p>
+<p>Only those worlds with extremely hidden coordinates or those situated in peculiar spaces had eluded capture and...</p>
+</article>
+<article id="c735" data-label="735">
+<h2 class="chapter">Chapter 735: Act Weak? 🔒</h2>
+<p>“Looks like the Elemental Assimilation Spell that Master Agron personally cast on me can&#39;t fully counteract this world’s rejection. They’ve probably noticed my presence, though they haven’t figured out much yet,” Feylis remarked, supported on each arm by her apprentice and grand apprentice as she gazed toward the distant north.</p>
+<p>Master Agron, a Rank Six grand mage within the Pyro Secret Society, held a status close to that of Feylis.</p>
+<p>While his combat skills might not match those of Feylis, Master Agron possessed unique expertise in other areas, such as Elemental Assimilation—a specialty of his.</p>
+<p>It allowed Feylis to enter the Verdant Wilderness World with minimal...</p>
+</article>
+<article id="c736" data-label="736">
+<h2 class="chapter">Chapter 736: Exercising Restraint 🔒</h2>
+<p>As soon as Feylis finished speaking, a verdant green-colored energy barrier radiated from her, expanding swiftly in all directions.</p>
+<p>At the heart of the forest, the vast green barrier expanded to several hundred meters in diameter within moments.</p>
+<p>Despite the Elemental Assimilation spell cast by Master Agron, there was no certainty that the two Gorilla Gods would not realize something unusual about Feylis upon their arrival.</p>
+<p>Thus, deploying an additional layer of verdant barrier was a precaution Feylis deemed necessary.</p>
+<p>Shortly, the two otherworldly Gorilla Gods descended directly above the Emerald Forest, where a battle was underway.</p>
+<p>The conflict here,...</p>
+</article>
+<article id="c737" data-label="737">
+<h2 class="chapter">Chapter 737: Despair 🔒</h2>
+<p>The two Gorilla Gods did not leave immediately after reaching a consensus with Feylis.</p>
+<p>While they scrutinized the verdant green elemental barrier below, they contacted the distant War Gorilla God.</p>
+<p>Wild Gorilla World’s special civilization system had caused them to develop a communication method that was different from that of Magus World.</p>
+<p>While the mages of Magus World used crystal balls as the main medium of transmission, these otherworldly Gorilla Gods, on the other hand, could complete the exchange of information through some kind of faith channel.</p>
+<p>However, since this was a relatively primitive way of utilizing faith, the amount of information transmitted and the transmission distance were no match for the Magus World mages’ crystal balls.</p>
+<p>The two Gorilla Gods quickly made contact with...</p>
+</article>
+<article id="c738" data-label="738">
+<h2 class="chapter">Chapter 738: Fully Commenced 🔒</h2>
+<p>“Hehe, don’t you have something to show me? Don’t go!”</p>
+<p>A cold voice, accompanied by an intensely hot and burning aura, came from the north.</p>
+<p>Sein’s grandmaster, Feylis, finally unleashed all her strength.</p>
+<p>This was the power level of a Rank Six creature, representing the elemental power capable of nurturing the peak life form that a medium-sized plane could support.</p>
+<p>“WHAT?!” The War Gorilla God looked northward in astonishment.</p>
+<p>The cries for help and pleas for mercy from the Fire Gorilla God sent chills down the War Gorilla God.</p>
+<p>The War Gorilla God had encountered Rank Six creatures before.</p>
+<p>In the mighty Wild Gorilla World, there were two life forms at this level—the pillar and backbone of the entire Wild Gorilla Clan.</p>
+<p>Yet, he was caught off guard...</p>
+</article>
+<article id="c739" data-label="739">
+<h2 class="chapter">Chapter 739: Selphy’s Proposition 🔒</h2>
+<p>“Senior, you’re really here! I was a bit skeptical when I heard you were the one assigned to the Verdant Wilderness World on a special mission this time.” Selphy exclaimed as she appeared before Sein in her scarlet magic robe.</p>
+<p>“Wow, it’s been only a few decades, and you’re already a Rank Two mage. I recall we were promoted to full-fledged mages around the same time. You really make me feel bad about myself!” Selphy teased, her tone a mix of admiration and envy.</p>
+<p>Selphy was a mage from the Divine Tower of Verdant Flame and had naturally come to the Verdant Wilderness World with their divine tower’s army.</p>
+<p>Apart from Selphy, the others from the Verdant Flame Faction also arrived in this world.</p>
+<p>Sein, who maintained...</p>
+</article>
+<article id="c740" data-label="740">
+<h2 class="chapter">Chapter 740: Solution For Verdant Flame Body Tempering Technique’s Side Effects 🔒</h2>
+<p>The immense power of magic, coupled with the labor of numerous enslaved creatures, enabled the rapid construction of a magic tower nearly thirty meters tall under Selphy’s supervision.</p>
+<p>Since she would be using this magic tower, it was built with top-tier materials.</p>
+<p>During the Thunderfall World War, Sein was also given his own magic tower.</p>
+<p>However, this current tower, with its cone-shaped tip emitting a unique elemental light, was clearly on another level.</p>
+<p>Upon completion, Sein and Selphy promptly inspected the interior of the tower.</p>
+<p>After some friendly negotiation, Selphy claimed the top three floors of the seven-story structure, while the bottom four were allocated to Sein, whose advanced experiments required more sophisticated and complex devi...</p>
+</article>
+<article id="c741" data-label="741">
+<h2 class="chapter">Chapter 741: Divine Tower of Verdant Spring Army Arrives 🔒</h2>
+<p>Sein’s discussions with his senior had been particularly fruitful.</p>
+<p>The sharing of several neutralizer formulas provided Sein, who frequently underwent the Verdant Flame Body Tempering techniques, with enlightening new insights.</p>
+<p>“These neutralizers are mostly made with hydro and cryo elemental ingredients. In addition to reducing the cellular strain from the Verdant Flame Body Tempering Technique, they can also soothe the mind,” Sein concluded after his study.</p>
+<p>He had obtained several valuable neutralizer formulas from Selphy.</p>
+<p>In exchange, Selphy received some meteorite fragments containing Everburning Violet Flame factors, along with insights into the Thunder Body Tempering technique that Sein had uncovered during his explorations in Thunderfall World.</p>
+<p>It...</p>
+</article>
+<article id="c742" data-label="742">
+<h2 class="chapter">Chapter 742: Comparing 🔒</h2>
+<p>The main cannon of a space fortress had an immense deterrent effect, but in reality, foreign gods rarely got shot down by its beam during a typical interplanar war.</p>
+<p>After all, the products of magitech and alchemy were not omnipotent.</p>
+<p>This type of metal continent was ultimately just a “tool” created by the mages of the Magus World. It could not be considered equivalent to a Rank Four or Rank Five creature.</p>
+<p>Since the cannon needed time to charge up, it was far more effective for blasting immovable targets like planar barriers.</p>
+<p>It was also a formidable mass destruction weapon against lower-ranked creatures.</p>
+<p>However, against Rank Four and above beings from the Astral Realm, the fortress’ sluggish movements were a significant disadvantage.</p>
+<p>In the Astral Realm, the warships of certain technological...</p>
+</article>
+<article id="c743" data-label="743">
+<h2 class="chapter">Chapter 743: Leading A Legion 🔒</h2>
+<p>After the Divine of Verdant Spring Army descended, Natalya and the other women moved to Sein’s residence.</p>
+<p>It was not just the women, but Sein’s servants, and the Sea Lizards also followed.</p>
+<p>The magic tower, personally overseen by Selphy during its construction, was spacious enough to accommodate this large group without any issue.</p>
+<p>Nevertheless, Tower Master Lorianne also had a room specially prepared for Sein in the Verdant Spring Space Fortress and it was likely only slightly inferior to hers.</p>
+<p>The Verdant Spring Space Fortress docked on the western side of the Emerald Forest.</p>
+<p>However, Sein did not immediately return to the fortress to check out the room his mentor had reserved for him.</p>
+<p>The discussions with Selphy had significantly inspired Sein in his recent expe...</p>
+</article>
+<article id="c744" data-label="744">
+<h2 class="chapter">Chapter 744: Sein’s Influence 🔒</h2>
+<p>The Centaur Tribe’s request for Sein concerned the war proceeds expected from the impending Wild Gorilla World War.</p>
+<p>This request came directly from the Rank Four centaur god backing them.</p>
+<p>Even many divine towers and orders of the knights within the Magus World could not resist the urge to carve up this medium-sized world civilization. Therefore, it was inevitable that the barren Centaurworld would be similarly enticed.</p>
+<p>The Maya Tribe was aware of their own standing.</p>
+<p>They knew if they were to approach Lorianne to plead their case, the Tower Master Verdant Spring likely would not even spare them a glance, including the centaur gods behind them.</p>
+<p>The natives of the Magus World had always regarded extraplanar creatures...</p>
+</article>
+<article id="c745" data-label="745">
+<h2 class="chapter">Chapter 745: Merely Tedious 🔒</h2>
+<p>Sein led his legion northward without issues until he finally encountered a difficult battle in the third month.</p>
+<p>His opponents consisted of a wild gorilla legion numbering about a hundred thousand soldiers, accompanied by nearly three hundred thousand minions.</p>
+<p>The battle unfolded in the Artemisia Forest, one of the nine forests of the Verdant Wilderness World.</p>
+<p>This forest, previously visited by Sein, was located just north of the Emerald Forest and was the largest forest nearest to it.</p>
+<p>The two were separated only by a few medium and smaller forests and several plains.</p>
+<p>The lord of the Artemisia Forest was a demigod-level Silver Fir.</p>
+<p>The resources of this low-level plane supported the emergence of demigod-level beings far surpassing those in Verdant Leaf World.</p>
+<p>Although Sein had never encountered...</p>
+</article>
+<article id="c746" data-label="746">
+<h2 class="chapter">Chapter 746: Leena and Undead Army 🔒</h2>
+<p>Sein had no prior experience commanding large legions in battle.</p>
+<p>His most extensive command during the Thunderfall World War had been over two hundred knights and several thousand native creatures from Thunderfall World.</p>
+<p>This was his first time commanding tens of thousands in a melee between legions of over a million strong.</p>
+<p>However, Sein proved to be a competent commander, seemingly born with a natural aptitude for leadership.</p>
+<p>His keen understanding of those living at the bottom of the social hierarchy and his ability to seize subtle opportunities on the battlefield made him a better candidate to lead the Divine Tower of Verdant Spring Army than even a seasoned Rank Three grand mage.</p>
+<p>For this Verdant Wilderness World War, the esteemed Dean Archimedes of the Divine Tower of Verdant...</p>
+</article>
+<article id="c747" data-label="747">
+<h2 class="chapter">Chapter 747: Women’s Way Of Solving Problem 🔒</h2>
+<p>The legion of undead creatures Leena brought with her was the most elite, directly under the command of the skeletal dragon, Sanchez.</p>
+<p>Among them was a formidable Undead Knight who rode atop a white skeletal warhorse, wielding a seven-meter lance.</p>
+<p>This knight, once summoned by Sein during the Thunderfall World War, had been promoted to Rank Two thanks to the brutal battle.</p>
+<p>Not only that, but the knight’s white skeletal warhorse, previously left with just one head, now boasted a new body brimming with the energy of a peak Rank One creature.</p>
+<p>Combined, the undead knight and its warhorse unleashed a force formidable among Rank...</p>
+</article>
+<article id="c748" data-label="748">
+<h2 class="chapter">Chapter 748: Standing In Family 🔒</h2>
+<p>Sanchez was a long-lived undead creature.</p>
+<p>It was older than even Lorianne, and as a result, it had been involved in numerous wars.</p>
+<p>In the medium-sized plane, the number of Rank Four and above creatures involved in the war could easily be counted in tens, including a Rank Six creature that stood at the pinnacle of the Astral Realm’s gods.</p>
+<p>In a war of this scale, not even the Rank Four or Rank Five gods would dare guarantee that they could retreat unscathed, let alone a demigod.</p>
+<p>The Magus Civilization’s excellent war system did not mean that the Magus World could achieve zero casualties in all of its interplanar wars.</p>
+<p>Although the vast majority of those who died in wars were cannon fodder...</p>
+</article>
+<article id="c749" data-label="749">
+<h2 class="chapter">Chapter 749: Forbidden Spell Hits 🔒</h2>
+<p>As the full-scale war in Lush Verdant Forest unfolded, the Divine Tower of Verdant Spring played a supporting role, advancing along the forest’s flanks.</p>
+<p>To date, not all native creatures of Lush Verdant Forest had been completely subdued.</p>
+<p>Inside the forest, a faction of plant creatures with trunks as tough as steel held on, while outside, millions from the Magus Civilization Army advanced in unison.</p>
+<p>The wild gorillas in the Verdant Wilderness World found themselves sandwiched between two massive forces.</p>
+<p>Among the Magus Civilization Army, the combat legion led by Sein did not particularly stand out as it was the divine towers of Verdant Flame and Whispering Flame spearheading the battle.</p>
+<p>Thus, not only was Sein’s legion well-supported, but the entire Divine Tower of...</p>
+</article>
+<article id="c750" data-label="750">
+<span id="last"></span>
+<h2 class="chapter">Chapter 750: Beastmen Legion 🔒</h2>
+<p>A dull crash soon echoed from the center of Lush Verdant Forest, followed by a wave of energy that swept through, causing countless trees to be uprooted or flung skyward.</p>
+<p>Sein and his companions were still on the outskirts of the forest.</p>
+<p>However, the relentless hurricane winds and elemental waves had already lifted numerous short plant creatures and fragile undead skeletons into the air.</p>
+<p>Not far from Sein’s legion, there was another group of Magus Civilization’s enslaved creatures.</p>
+<p>Sein knew that this group belonged to the Divine Tower of Verdant Flame and comprised about a hundred thousand units.</p>
+<p>Even a mere legion of enslaved creatures under the command of Master Feylis far surpassed those from the Divine Tower of Verdant Spring in both number...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="751-800.html" rel="next">Next: Chs 751–800 &rarr;</a>
+    <p class="page-end-links"><a href="651-700.html" rel="prev">&larr; Chs 651–700</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 701–750</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c701">Chapter 701: The Centaur Tribe’s Show of Favor 🔒</a></li>
+        <li><a href="#c702">Chapter 702: Verdant Flame Amethyst Magic Rod 🔒</a></li>
+        <li><a href="#c703">Chapter 703: Relax 🔒</a></li>
+        <li><a href="#c704">Chapter 704: High Expectation 🔒</a></li>
+        <li><a href="#c705">Chapter 705: Foresight 🔒</a></li>
+        <li><a href="#c706">Chapter 706: An Invitation To Reina 🔒</a></li>
+        <li><a href="#c707">Chapter 707: Body Tempering 🔒</a></li>
+        <li><a href="#c708">Chapter 708: Complementary Cooperation 🔒</a></li>
+        <li><a href="#c709">Chapter 709: Departure 🔒</a></li>
+        <li><a href="#c710">Chapter 710: Leaning Tower In The Secret Realm 🔒</a></li>
+        <li><a href="#c711">Chapter 711: Assessing 🔒</a></li>
+        <li><a href="#c712">Chapter 712: Capiche Business Alliance 🔒</a></li>
+        <li><a href="#c713">Chapter 713: Second-Hand Space Fortress Trading Market 🔒</a></li>
+        <li><a href="#c714">Chapter 714: Loan 🔒</a></li>
+        <li><a href="#c715">Chapter 715: Verdant Spring Space Fortress 🔒</a></li>
+        <li><a href="#c716">Chapter 716: Shopping And Returning 🔒</a></li>
+        <li><a href="#c717">Chapter 717: Conversations 🔒</a></li>
+        <li><a href="#c718">Chapter 718: Mutual Requests 🔒</a></li>
+        <li><a href="#c719">Chapter 719: Strange Grayish-White Flame 🔒</a></li>
+        <li><a href="#c720">Chapter 720: Seeking Guidance 🔒</a></li>
+        <li><a href="#c721">Chapter 721: Infiltration 🔒</a></li>
+        <li><a href="#c722">Chapter 722: Verdant Wilderness World 🔒</a></li>
+        <li><a href="#c723">Chapter 723: Green Spikefur King 🔒</a></li>
+        <li><a href="#c724">Chapter 724: Freedom and Beauty 🔒</a></li>
+        <li><a href="#c725">Chapter 725: Empathy 🔒</a></li>
+        <li><a href="#c726">Chapter 726: Reaching Into The Same Pocket 🔒</a></li>
+        <li><a href="#c727">Chapter 727: Wild Gorilla World 🔒</a></li>
+        <li><a href="#c728">Chapter 728: Captured 🔒</a></li>
+        <li><a href="#c729">Chapter 729: Medium-sized World? 🔒</a></li>
+        <li><a href="#c730">Chapter 730: Descent and Resistance 🔒</a></li>
+        <li><a href="#c731">Chapter 731: War Preparation Completed 🔒</a></li>
+        <li><a href="#c732">Chapter 732: Human Nature 🔒</a></li>
+        <li><a href="#c733">Chapter 733: On the Brink of War 🔒</a></li>
+        <li><a href="#c734">Chapter 734: Feylis Arrives Personally 🔒</a></li>
+        <li><a href="#c735">Chapter 735: Act Weak? 🔒</a></li>
+        <li><a href="#c736">Chapter 736: Exercising Restraint 🔒</a></li>
+        <li><a href="#c737">Chapter 737: Despair 🔒</a></li>
+        <li><a href="#c738">Chapter 738: Fully Commenced 🔒</a></li>
+        <li><a href="#c739">Chapter 739: Selphy’s Proposition 🔒</a></li>
+        <li><a href="#c740">Chapter 740: Solution For Verdant Flame Body Tempering Technique’s Side Effects 🔒</a></li>
+        <li><a href="#c741">Chapter 741: Divine Tower of Verdant Spring Army Arrives 🔒</a></li>
+        <li><a href="#c742">Chapter 742: Comparing 🔒</a></li>
+        <li><a href="#c743">Chapter 743: Leading A Legion 🔒</a></li>
+        <li><a href="#c744">Chapter 744: Sein’s Influence 🔒</a></li>
+        <li><a href="#c745">Chapter 745: Merely Tedious 🔒</a></li>
+        <li><a href="#c746">Chapter 746: Leena and Undead Army 🔒</a></li>
+        <li><a href="#c747">Chapter 747: Women’s Way Of Solving Problem 🔒</a></li>
+        <li><a href="#c748">Chapter 748: Standing In Family 🔒</a></li>
+        <li><a href="#c749">Chapter 749: Forbidden Spell Hits 🔒</a></li>
+        <li><a href="#c750">Chapter 750: Beastmen Legion 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="651-700.html" rel="prev">&larr; Chs 651–700</a>    <a href="../../index.html">Library</a>
+<a href="751-800.html" rel="next">Chs 751–800 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

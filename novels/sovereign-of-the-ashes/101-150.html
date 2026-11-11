@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 101–150</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="51-100.html#last" data-next-page="151-200.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c101">Chapter 101: Bandits 🔒</a></li>
+        <li><a href="#c102">Chapter 102: Simple Experiment 🔒</a></li>
+        <li><a href="#c103">Chapter 103: Berthold City 🔒</a></li>
+        <li><a href="#c104">Chapter 104: Invitation 🔒</a></li>
+        <li><a href="#c105">Chapter 105: Small Trade Fair 🔒</a></li>
+        <li><a href="#c106">Chapter 106: To the North and South 🔒</a></li>
+        <li><a href="#c107">Chapter 107: Offer 🔒</a></li>
+        <li><a href="#c108">Chapter 108: Farewell Dinner 🔒</a></li>
+        <li><a href="#c109">Chapter 109: Reagan Fruits 🔒</a></li>
+        <li><a href="#c110">Chapter 110: Mercenary Guild 🔒</a></li>
+        <li><a href="#c111">Chapter 111: Warfares 🔒</a></li>
+        <li><a href="#c112">Chapter 112: Dusken Ridge 🔒</a></li>
+        <li><a href="#c113">Chapter 113: Reaction of Bloodline Tracing Magic 🔒</a></li>
+        <li><a href="#c114">Chapter 114: Rejection 🔒</a></li>
+        <li><a href="#c115">Chapter 115: Earl of Cercis 🔒</a></li>
+        <li><a href="#c116">Chapter 116: Old John 🔒</a></li>
+        <li><a href="#c117">Chapter 117: Opposition 🔒</a></li>
+        <li><a href="#c118">Chapter 118: Confrontation 🔒</a></li>
+        <li><a href="#c119">Chapter 119: The Feisty Noblewoman 🔒</a></li>
+        <li><a href="#c120">Chapter 120: Leave 🔒</a></li>
+        <li><a href="#c121">Chapter 121: Truths about the War 🔒</a></li>
+        <li><a href="#c122">Chapter 122: Truth of the World 🔒</a></li>
+        <li><a href="#c123">Chapter 123: Father and Son 🔒</a></li>
+        <li><a href="#c124">Chapter 124: All Advantages and No Drawbacks 🔒</a></li>
+        <li><a href="#c125">Chapter 125: Accident 🔒</a></li>
+        <li><a href="#c126">Chapter 126: Welcome Banquet 🔒</a></li>
+        <li><a href="#c127">Chapter 127: Surprised Family 🔒</a></li>
+        <li><a href="#c128">Chapter 128: Studies and Experiments 🔒</a></li>
+        <li><a href="#c129">Chapter 129: Experimental Accident 🔒</a></li>
+        <li><a href="#c130">Chapter 130: House Farion 🔒</a></li>
+        <li><a href="#c131">Chapter 131: Grandfather 🔒</a></li>
+        <li><a href="#c132">Chapter 132: Solar Eye 🔒</a></li>
+        <li><a href="#c133">Chapter 133: Decision 🔒</a></li>
+        <li><a href="#c134">Chapter 134: Jewel Bay 🔒</a></li>
+        <li><a href="#c135">Chapter 135: Taking an Airship 🔒</a></li>
+        <li><a href="#c136">Chapter 136: The Divine Tower of Verdant Spring 🔒</a></li>
+        <li><a href="#c137">Chapter 137: Otherworldly Slave Familiars 🔒</a></li>
+        <li><a href="#c138">Chapter 138: Enrollment 🔒</a></li>
+        <li><a href="#c139">Chapter 139: Contract 🔒</a></li>
+        <li><a href="#c140">Chapter 140: The Divine Tower Library 🔒</a></li>
+        <li><a href="#c141">Chapter 141: Public Courses 🔒</a></li>
+        <li><a href="#c142">Chapter 142: Lance the Mage 🔒</a></li>
+        <li><a href="#c143">Chapter 143: Fundamental Knowledge on the Otherworldly Planes 🔒</a></li>
+        <li><a href="#c144">Chapter 144: Diligently Studying 🔒</a></li>
+        <li><a href="#c145">Chapter 145: Conflict 🔒</a></li>
+        <li><a href="#c146">Chapter 146: The Fruit of Eileen’s Research 🔒</a></li>
+        <li><a href="#c147">Chapter 147: Challenge Accepted 🔒</a></li>
+        <li><a href="#c148">Chapter 148: Solar Eye 🔒</a></li>
+        <li><a href="#c149">Chapter 149: Mass Explosion Spell 🔒</a></li>
+        <li><a href="#c150">Chapter 150: Victory 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c101" data-label="101">
+<h2 class="chapter">Chapter 101: Bandits 🔒</h2>
+<p>The surface world flourished in comparison to the underground world, boasting an abundance of diverse species that far exceeded the Underworld by an immeasurable degree.</p>
+<p>In the underground world’s sinister environment, the flora and fauna all shared one similar characteristic—either highly resistant to extreme cold or possessed formidable combat strength.</p>
+<p>Mild and weak living beings were virtually non-existent.</p>
+<p>The surface, however, presented a stark contrast.</p>
+<p>In the first three days after Sein departed from the Underworld, he indulged in a feast of numerous peculiar creatures.</p>
+<p>They were mostly ordinary animals, with only a few magic creatures and even fewer...</p>
+</article>
+<article id="c102" data-label="102">
+<h2 class="chapter">Chapter 102: Simple Experiment 🔒</h2>
+<p>The one who possessed battle qi was none other than the bandit leader himself.</p>
+<p>In terms of appearance, there was no noticeable difference between him and the other bandits. He merely looked more robust than the rest of them.</p>
+<p>He was the first to react to Sein’s fireballs, displaying a speed exceeding the limits of an ordinary human as he skillfully evaded the spell’s trajectory.</p>
+<p>As a senior initiate, Sein lacked the ability to envelop an area with his focus like full-fledged mage.</p>
+<p>Nevertheless, he could easily perceive changes at a close distance.</p>
+<p>On the bandit leader’s body, Sein detected a trace of power reminiscent of the knights from the surface who had participated in the destruction of Mystralora City.</p>
+<p>Of course,...</p>
+</article>
+<article id="c103" data-label="103">
+<h2 class="chapter">Chapter 103: Berthold City 🔒</h2>
+<p>Understanding the concept of battle qi, a power system that existed alongside the magic elements in the Magus World, would take more than just a simple anatomical study for a humble initiate like Sein to grasp.</p>
+<p>His experiment had barely scratched the surface. It only revealed the source of Leif’s power and granted Sein a somewhat vague insight into battle qi.</p>
+<p>The true nature of battle qi remained elusive to him.</p>
+<p><em>How does it enhance the abilities of human knights?</em></p>
+<p><em>In what ways does it differ from magic elements?</em></p>
+<p>These were two of the many questions for which Sein currently lacked answers.</p>
+<p>Improving his knowledge and insights required not only theoretical understanding...</p>
+</article>
+<article id="c104" data-label="104">
+<h2 class="chapter">Chapter 104: Invitation 🔒</h2>
+<p>“Huh? You’re a senior initiate?” The gray-robed old man could not help but express his curiosity.</p>
+<p>In the Magus World, spellcasters were collectively referred to as “mages” among ordinary humans.</p>
+<p>Due to their lack of magical insight, distinguishing between magic initiates and full-fledged mages proved impossible for them.</p>
+<p>The clear distinction between initiates and full-fledged mages was an internal matter within the mage community.</p>
+<p>Frank, the elderly mage, was an intermediate magic initiate who served as the magic advisor to the city lord of Berthold City.</p>
+<p>To the ignorant ones, he was a mysterious and powerful figure.</p>
+<p>Although he was only an intermediate initiate in reality, the friendly demeanor he exhibited...</p>
+</article>
+<article id="c105" data-label="105">
+<h2 class="chapter">Chapter 105: Small Trade Fair 🔒</h2>
+<p>Sein ended up staying at the baron’s mansion in Berthold City for three days.</p>
+<p>The baron’s overwhelming enthusiasm left Sein with little room for refusal.</p>
+<p>On that evening itself, the corpulent man, decked out with gold and precious stones, personally came over to the inn where Sein stayed with his entourage.</p>
+<p>With unwavering insistence, he invited Sein to attend a dinner banquet at his mansion.</p>
+<p>Baron Berthold was about three times the size of Kent, the vice captain of his guards.</p>
+<p>While the baron himself was an ordinary man, the vice captain of his guards was an intermediate squire.</p>
+<p>The vice captain was not the strongest man in Berthold City. According to the baron, the strongest was the captain of his guards, Williams. However, half a...</p>
+</article>
+<article id="c106" data-label="106">
+<h2 class="chapter">Chapter 106: To the North and South 🔒</h2>
+<p>The red vermilion fruit, known as a “Blood Fruit”, was a basic ingredient found only in the depths of forests.</p>
+<p>While not highly valued by mages, it held special appeal for magic creatures and beasts.</p>
+<p>Gloomhaven’s knights and squires ventured into the forests each year to search for this fruit.</p>
+<p>When consumed in its raw form, it was believed to enhance qi and blood, effectively expediting the cultivation progress of junior squires.</p>
+<p>In the end, Frank secured the Blood Fruit by trading two vials of his own blood circulation potions.</p>
+<p>Strictly speaking, a blood circulation potion was not considered a magic potion.</p>
+<p>It was slightly inferior to a basic healing potion, primarily used...</p>
+</article>
+<article id="c107" data-label="107">
+<h2 class="chapter">Chapter 107: Offer 🔒</h2>
+<p>“I’ve been thinking of heading south lately, and it all started with a chance encounter I had with a full-fledged mage passing through Hoppes City,” the gray-hooded magic initiate began.</p>
+<p>“He came from the coast of the Boundless South Sea and shared insights into the prosperity of that region. I offered considerable assistance to him, but he did not take me under his wing as his apprentice. Instead, he handed me a coin—a common currency among mages,” he continued.</p>
+<p>“Considering the journey south is long and fraught with unknown perils, thorough preparation is necessary. Therefore, I’ve decided to trade this coin in the hopes of acquiring useful items,” he explained and focused...</p>
+</article>
+<article id="c108" data-label="108">
+<h2 class="chapter">Chapter 108: Farewell Dinner 🔒</h2>
+<p>“You’ve got great stamina. I can’t bear to part with you,” Mary whispered.</p>
+<p>“You’re headed north, aren’t you? Can I accompany you? While I may not be incredibly powerful, I can still be of use to you… especially during your lonely nights...&#34;</p>
+<p>After their intense session, Sein used the Cleanse spell to freshen up, removing the sweat and perfume that clung to his body.</p>
+<p>He then leaned against the headboard, savoring the sense of contentment.</p>
+<p>Despite his satisfaction, the constant chatter from the woman beside him, ever since she regained consciousness, dampened the moment.</p>
+<p>Her name was Mary, an intermediate initiate.</p>
+<p>After she removed her mask, Sein found her appearance fairly decent...</p>
+</article>
+<article id="c109" data-label="109">
+<h2 class="chapter">Chapter 109: Reagan Fruits 🔒</h2>
+<p>Sein wasted no time in leaving Berthold City behind the next day.</p>
+<p>As he progressed further north, the well-trodden road eventually gave way to winding mountain paths and human settlements began to dwindle.</p>
+<p>Fortunately, Sein had previously procured a supply of daily necessities in Berthold City, and was well-prepared for the months ahead.</p>
+<p>Maintaining his routine of traveling by day and resting at night, Sein decided to release Seven for some fresh air this evening.</p>
+<p>A beam of divine white light shot out from the badge in Sein’s hand, enveloping Seven.</p>
+<p>Observing Seven’s improving condition, Sein smiled and commented, “The effect of the Healing Light is certainly remarkable. I think you&#39;ll be fully recovered after two more sessions.”</p>
+<p>“That is a spell...</p>
+</article>
+<article id="c110" data-label="110">
+<h2 class="chapter">Chapter 110: Mercenary Guild 🔒</h2>
+<p>Seven exceeded Sein’ expectations with its intelligence and diligence.</p>
+<p>It took Sein about a week to memorize and master the contents of the field guide prepared by Frank.</p>
+<p>In contrast, Seven needed only a slightly longer period—around a week and a half.</p>
+<p>Armed with newfound knowledge of magic ingredients and raw materials, Seven began venturing out more frequently in the evenings, and sometimes even daylight hours.</p>
+<p>With its flying ability, Seven proved to be an invaluable ally, assisting Sein in scouting the areas ahead.</p>
+<p>Over time, Seven’s efforts resulted in the accumulation of basic magic ingredients.</p>
+<p>Some of these materials were unfamiliar to Sein and were not documented in the field guide.</p>
+<p>Seven had collected...</p>
+</article>
+<article id="c111" data-label="111">
+<h2 class="chapter">Chapter 111: Warfares 🔒</h2>
+<p>Kirk City’s mercenary guild extended its welcome not only to human knights but also mages like Sein, who could undertake quests to earn rewards.</p>
+<p>However, the majority of mages who enlisted were initiates.</p>
+<p>Full-fledged mages seldom joined organizations primarily driven by reward incentives as they prioritized the pursuit of knowledge more.</p>
+<p>In fact, a small mage council boasting an extensive private library was more likely to attract even full-fledged mages above Rank Two.</p>
+<p>In their eyes, knowledge held an unparalleled value.</p>
+<p>Sein, enjoying his meal in a corner of the inn, showed little interest in the burly knights, including...</p>
+</article>
+<article id="c112" data-label="112">
+<h2 class="chapter">Chapter 112: Dusken Ridge 🔒</h2>
+<p>“Master Sein, we only have to traverse this mountain range before entering the border of the Lysian Alliance,” Hudson, the mercenary leader, mentioned while gesturing toward the Dusken Ridge in the distance as the evening settled over the camp.</p>
+<p>A month had passed since Sein and the others set out from Kirk City.</p>
+<p>Due to the burden of escorting supplies and non-combatants, their journey proceeded at a slightly slower pace than Sein’s solo expedition.</p>
+<p>Presenting himself as an intermediate magic initiate to Hudson, Sein immediately captivated the leader’s interest by showcasing his Fire Wall spell.</p>
+<p>Hudson, showing not only respect but also enthusiasm toward Sein, sought to retain this powerful mage within his mercenary group for an extended...</p>
+</article>
+<article id="c113" data-label="113">
+<h2 class="chapter">Chapter 113: Reaction of Bloodline Tracing Magic 🔒</h2>
+<p>As the imminent departure from Gloomhaven approached, Sein saw no reason to keep Seven concealed any longer.</p>
+<p>The Divine Tower of Dawn and the knights responsible for the assault on Mystralora City hailed from the south.</p>
+<p>No matter how far-reaching their influence, it was impossible for them to extend their reach to the three northern nations.</p>
+<p>Revealing Seven also served as a strategic move on Sein’s part to showcase his strength.</p>
+<p>In any region of this world, strength reigned supreme.</p>
+<p>Maintaining a low profile was not always advantageous. At times, flaunting strength was the key to avoiding unnecessary trouble and seizing opportunities.</p>
+<p>With Seven’s aura acting as a deterrent, Sein’s group traversed Dusken Ridge without...</p>
+</article>
+<article id="c114" data-label="114">
+<h2 class="chapter">Chapter 114: Rejection 🔒</h2>
+<p>The Black Fortress, situated at the eastern border of the Lysian Alliance near Dusken Ridge, was aptly named as it resembled more of a fortress than a city.</p>
+<p>Within the Black Fortress, there were two thousand Lysian soldiers, along with three thousand adventurers and mercenaries from both inside and outside the Lysian Alliance.</p>
+<p>Additionally, the fortress housed a modest population of local residents and traders, totaling no more than five thousand people.</p>
+<p>Upon reaching the Black Fortress, Sein bid his farewell to Hudson and the other members of the mercenary group.</p>
+<p>To his surprise, he was approached before he could even depart from the fortress.</p>
+<p>“Master Sein, is that correct?” An intermediate magic initiate...</p>
+</article>
+<article id="c115" data-label="115">
+<h2 class="chapter">Chapter 115: Earl of Cercis 🔒</h2>
+<p>After turning down the clown from the Ring of Thorns, Sein set his course to the west.</p>
+<p>Now within the Lysian Alliance borders, Sein was free from the burden of concealing his identity.</p>
+<p>His pockets held a considerable sum of gold coins, acquired through various means—some from the old man with the goatee who purchased the skin of Hurricane Hog from him, and others gifted by the corpulent baron of Berthold City.</p>
+<p>With a carriage and a skilled coachman at his disposal, Sein traveled along the main road of the Lysian Alliance.</p>
+<p>The situation in the Lysian Alliance was a stark contrast with the Gloomhaven.</p>
+<p>Not only was the landscape dominated by densely populated plains, but also well-constructed roads far superior to those in Gloomhaven.</p>
+<p>Nobles in the Lysian Alliance seemed to recognize...</p>
+</article>
+<article id="c116" data-label="116">
+<h2 class="chapter">Chapter 116: Old John 🔒</h2>
+<p>The leader’s voice was quite loud.</p>
+<p>Sein was taken aback when the man dropped to one knee in a gesture of respect, like a true knight. The surrounding commoners collectively gasped in surprise.</p>
+<p>In the eyes of the common folk, nobles were shrouded in mystery, carrying an air of prestige.</p>
+<p>The Earl of Cercis had earned a favorable reputation in his territory and throughout the entire Lysian Alliance.</p>
+<p>However, only a handful of commoners had ever had the privilege of encountering him.</p>
+<p>The sudden appearance of an earl in Grantt City left little room for doubt—it was likely the Earl of Cercis himself.</p>
+<p>The commoners in the vicinity promptly knelt down on both knees as a gesture of profound respect.</p>
+<p>As...</p>
+</article>
+<article id="c117" data-label="117">
+<h2 class="chapter">Chapter 117: Opposition 🔒</h2>
+<p>Old John’s choked sobs caused a memory from the most profound recesses of Sein’s mind to resurface, transporting him to a younger version of himself, toiling in a courtyard for his training.</p>
+<p>If he had not been taken to Gloomhaven, he might have become an exceptional knight.</p>
+<p>Without a doubt, Old John was a skilled soldier.</p>
+<p>Without his guidance, Sein could have starved to death on his way to Mystralora City or succumbed to bullying from fellow initiates during his early days as a fresh initiate.</p>
+<p>Sein’s remarkable constitution and strength played a pivotal role in establishing his presence at the Black Magic Academy during the initial two years before he mastered any...</p>
+</article>
+<article id="c118" data-label="118">
+<h2 class="chapter">Chapter 118: Confrontation 🔒</h2>
+<p>“I’m here on Lady Thea’s order to arrest this man for impersonating the earl! John, do you intend to defy the countess’ directive?” the red-armored knight asked, pointing his longsword at Old John with a sense of justice.</p>
+<p>The squires from the Zephyr Kingdom behind him had their longswords drawn too.</p>
+<p>“The countess’ directive? This is the Cercis Castle within the Grantt Territory! Regardless of the situation, the earl himself will be the one delivering judgment! How dare you stand in my way, you insolent brat?” Old John thundered.</p>
+<p>Despite his age, Old John retained the formidable presence reminiscent of his prime when clad in a sturdy steel chainmail.</p>
+<p>Being called...</p>
+</article>
+<article id="c119" data-label="119">
+<h2 class="chapter">Chapter 119: The Feisty Noblewoman 🔒</h2>
+<p>The Pyro Blade, radiating scorching heat, abruptly altered its trajectory mid-flight and homed in on the arm of the red-armored knight.</p>
+<p>Initially aimed at the red-armored knight’s chest, Sein’s attack was met with the skillful reflexes of the senior squire.</p>
+<p>Sensing the imminent ending danger, he swiftly withdrew and parried with his longsword, aglow with the light of his battle qi.</p>
+<p><em>CLANG!</em></p>
+<p>The metallic resonance echoed through the air, accompanied by a shower of blue sparks.</p>
+<p>While Sein’s Pyro Blade did not cleave the red-armored knight in half with a single strike, it succeeded in sending his longsword flying and inflicting a long, narrow gash on his arm.</p>
+<p>The scent...</p>
+</article>
+<article id="c120" data-label="120">
+<h2 class="chapter">Chapter 120: Leave 🔒</h2>
+<p>Sein merely shot a glance at the noblewoman, showing no signs of respect for the woman who was supposed to be his “stepmother”.</p>
+<p>His attention remained fixed on the large portrait in front of him.</p>
+<p>As his finger traced the intricate patterns of the metallic frame, it felt as though he were forging a connection with the memory of his mother.</p>
+<p>The noblewoman was infuriated by John and Regnar’s silence, as well as Sein’s disregard.</p>
+<p>What infuriated her even more was the painting that occupied the entire wall in front of her.</p>
+<p>She had lost count of the times she had expressed her wish to have that huge painting of the late countess to be removed in the past.</p>
+<p>Yet, every time she broached the subject, her...</p>
+</article>
+<article id="c121" data-label="121">
+<h2 class="chapter">Chapter 121: Truths about the War 🔒</h2>
+<p>After carefully stashing the massive painting of his mother, Sein made his way toward the exit of the castle.</p>
+<p>During his arrival here, many “welcomed” him. Some harbored goodwill, while others had less noble intentions.</p>
+<p>Surprisingly, no one attempted to hinder his departure.</p>
+<p>Old John initially tried to dissuade Sein, but after Sein said a few words to him through Voice Transmission, John fell silent and eventually gave up with a sigh.</p>
+<p>Regnar felt that he should stop Sein from leaving, but the countess’s hysterical outburst and the cold indifference in Sein’s eyes as he exited the castle sent a shiver down Regnar’s spine.</p>
+<p>It was not Sein’s power that unnerved him, but...</p>
+</article>
+<article id="c122" data-label="122">
+<h2 class="chapter">Chapter 122: Truth of the World 🔒</h2>
+<p>Earl Grantt’s voice resonated, reaching everyone in the vicinity, including Sein.</p>
+<p>Sein’s sentiments toward his father were complicated.</p>
+<p>He held Earl Grantt responsible for not searching for him after he was abducted, and equally blamed him for quickly entering a new marriage shortly after the passing of his mother.</p>
+<p>Judging from the appearance of his half-brother, he seemed around eighteen—making him six or seven years Sein’s junior.</p>
+<p>This meant Earl Grantt had promptly remarried and welcomed a son with Thea within a year or two after Sein’s disappearance and his mother’s death.</p>
+<p>That would explain why Earl Grantt had not made an effort to search for him; he already had a new...</p>
+</article>
+<article id="c123" data-label="123">
+<h2 class="chapter">Chapter 123: Father and Son 🔒</h2>
+<p>With the earl’s directive, a conflict was on the verge of unfolding.</p>
+<p>The twenty knights were seasoned retainers of the earl who had fought over a hundred battles.</p>
+<p>Among them, fourteen were intermediate squires, five were senior squires, and one was an intermediate magic initiate.</p>
+<p>The three senior squires formed an arrowhead formation, advancing toward Sein without drawing their swords or other weapons.</p>
+<p>Instead, they retrieved a shiny metallic rope from their saddles—a non-magic but exceptionally durable tool funded generously by the earl.</p>
+<p>The ropes were tough enough to even securely bind intermediate magical beasts with robust physiques.</p>
+<p>Initially, the earl had not intended to resort to force, but it was becoming evident that his son was stubborn,...</p>
+</article>
+<article id="c124" data-label="124">
+<h2 class="chapter">Chapter 124: All Advantages and No Drawbacks 🔒</h2>
+<p><em>CRACK! CRACK!</em></p>
+<p>The cracks of a horsewhip rang out from the stone bridge outside the Grantt Castle.</p>
+<p>Following release of battle qi and elemental energy, the once pristine white stone bridge soon bore the scars of battle.</p>
+<p>Earl Grantt was undeniably a seasoned noble knight.</p>
+<p>Despite wielding an unconventional weapon, the precision and control over of his battle qi during each strike showcased his remarkable skill.</p>
+<p>Not only that, Earl Grantt even provided Sein with insights into his weaknesses and areas for improvement during their battle.</p>
+<p>Sein, having spent over a decade in the Mystralora City, lacked the battlefield experience that defined his father’s background.</p>
+<p>Spellcasters like Sein spent most...</p>
+</article>
+<article id="c125" data-label="125">
+<h2 class="chapter">Chapter 125: Accident 🔒</h2>
+<p>A powerful hurricane began to swirl and howl around the earl’s castle, gathering ominous dark clouds in the once serene and azure sky.</p>
+<p>Aero Hymn, while not an offensive magic, fell under the category of a rare and ranked functional support magic.</p>
+<p>Powerful aero-type mages of Rank One and above often cast this spell at the start of the battle to increase the concentration of the aero element in the surrounding environment, thereby indirectly amplifying the potency of their magic spells.</p>
+<p>This provided an artificially induced innate advantage.</p>
+<p>Sein’s mentor had incorporated the Aero Hymn spell into his rod, recognizing the synergy between aero and pyro magic spell.</p>
+<p>Wind was known for spreading fires. Within the augmented environment...</p>
+</article>
+<article id="c126" data-label="126">
+<h2 class="chapter">Chapter 126: Welcome Banquet 🔒</h2>
+<p>Domvall, a Quasi Mage affiliated with the Pyro Emblem, had visited the Grantt Territory with the purpose of recruiting Sein in the first place.</p>
+<p>Therefore, the turn of events was not entirely caused by Sein’s ill fortune.</p>
+<p>After exchanging a few words with the elderly man in a white robe, Earl Grantt asked, “Master Domvall, you’re on the verge of becoming a full-fledged mage, aren’t you?”</p>
+<p>Domvall was significantly older than the earl. Considering his impending transition to Rank One, Earl Grantt held him in high regard.</p>
+<p>Although Earl Grantt was a Quasi Knight, he acknowledged that he still had much to learn.</p>
+<p>While he had the...</p>
+</article>
+<article id="c127" data-label="127">
+<h2 class="chapter">Chapter 127: Surprised Family 🔒</h2>
+<p>“I already have a mentor.” Sein’s simple response cut through the air</p>
+<p>The glances exchanged between Earl Grantt and Elder Domvall held no surprise or disbelief. It seemed they had anticipated this response from Sein.</p>
+<p>Without a mentor, Sein would not have been able to achieve the rank of senior initiate in his early twenties, along with possessing exceptional skills in alchemy.</p>
+<p>Besides, the black magic rod he was seen wielding during the day and the presence of a quasi-ranked magic beast as his familiar strongly hinted at a mentor who could very well be a full-fledged mage.</p>
+<p>Undeterred, Elder Domvall said, “Having a mentor doesn’t hinder your potential membership in the Pyro...</p>
+</article>
+<article id="c128" data-label="128">
+<h2 class="chapter">Chapter 128: Studies and Experiments 🔒</h2>
+<p>Initially, Sein was very unused to the lifestyle of a young master in Grantt Castle.</p>
+<p>As time passed, he gradually became accustomed to it.</p>
+<p>Every morning, a group of ten youthful female servants dressed in maid attire would enter Sein’s room to wake him up and assist him with his morning routine.</p>
+<p>Earl Grantt had specifically arranged for these beautiful maidens to attend to Sein, providing him with a treatment that set him apart from the others within the castle.</p>
+<p>In contrast, Sein’s younger brother, Solon, had only two maids catering to his needs.</p>
+<p>Sein was not a knight, he did not have to rise early for training regimen like most in the earl’s castle.</p>
+<p>Although Sein perceived Solon as an incapable boy with a pretty face, he had to admit that his younger...</p>
+</article>
+<article id="c129" data-label="129">
+<h2 class="chapter">Chapter 129: Experimental Accident 🔒</h2>
+<p><em>BOOM!</em></p>
+<p>The sound of an explosion shattered the morning silence at the earl’s castle.</p>
+<p>Plumes of smoke billowed from the tower, the very place where Sein conducted his experiments.</p>
+<p>The sudden explosion and ensuing flames plunged the entire castle into a state of disarray.</p>
+<p>Maids and squires rushed to the scene, carrying buckets of water to douse the flames.</p>
+<p>While the situation may have seemed chaotic at first glance, there was an underlying sense of order among those in the castle.</p>
+<p>After all, this was not the first occurrence of such an incident.</p>
+<p>This marked the third explosion within the month.</p>
+<p>Although mages delved into the mysteries of truth within the laboratory most of the time to advance their ranks,...</p>
+</article>
+<article id="c130" data-label="130">
+<h2 class="chapter">Chapter 130: House Farion 🔒</h2>
+<p>The injury to Earl Grantt’s arm did nothing to diminish his standing within the family.</p>
+<p>Getting used to eating with his left hand would take some time, but it did not stop him from savoring the slices of meat from a low-level magic beast known as Maned Deer, dipped in expensive caviar from the far south.</p>
+<p>The Maned Deer’s meat, roasted to a medium-rare perfection, oozed red juice when cut into.</p>
+<p>The faint metallic taste was a flavor appreciated by Earl Grantt and his youngest son, Solon.</p>
+<p>Sein tried some of it, but quickly discovered he was not a big fan of undercooked meat. Nevertheless, he did not find the dish repulsive.</p>
+<p>Although Earl Grantt typically ate a lot during his meals, he devoured his...</p>
+</article>
+<article id="c131" data-label="131">
+<h2 class="chapter">Chapter 131: Grandfather 🔒</h2>
+<p>Two days later, Earl Grantt departed from the castle with the soldiers under his command early in the morning.</p>
+<p>Accompanying him was Solon, his youngest son, while Sein and Lady Thea saw them off.</p>
+<p>For nearly two months, Lady Thea refrained from causing any trouble for Sein.</p>
+<p>Aside during meals, Sein rarely came across his stepmother.</p>
+<p>It was as though their conflicts had been resolved after Lady Thea apologized during the banquet the other day.</p>
+<p>With Earl Grantt’s departure, Sein’s life returned to normal once more.</p>
+<p>It was high time for Sein to consider the prospect of traveling to the Divine Tower of the Verdant Spring as well.</p>
+<p>Sein tentatively decided to delay the...</p>
+</article>
+<article id="c132" data-label="132">
+<h2 class="chapter">Chapter 132: Solar Eye 🔒</h2>
+<p>“How does the First Young Master manage to seclude himself in his room for such extended periods every day?”</p>
+<p>“He doesn’t host frequent banquets like the other nobles, and isn’t keen on going out for hunts, unlike the Second Young Master.”</p>
+<p>“Plus, he’s always involved in dangerous activities. That explosion last time frightened Little Lisa so much that she couldn’t sleep for days.”</p>
+<p>Outside the tower at the back of the earl’s castle, a group of maids gathered discreetly, exchanging hushed gossip.</p>
+<p>The tower, exclusively belonging to Sein, was constructed in just half a month with a significant investment from the Earl&#39;s household, irrespective of the cost.</p>
+<p>Before leaving, Earl Grantt deliberately instructed that the tower’s...</p>
+</article>
+<article id="c133" data-label="133">
+<h2 class="chapter">Chapter 133: Decision 🔒</h2>
+<p>Seven, being a magic beast, possessed certain distinctions from a human mage like Sein.</p>
+<p>Despite exhibiting a composed demeanor and being capable of assisting Sein in conducting relatively basic magic experiments, its fundamental nature remained that of a magic beast. Unlike Sein, who could seclude himself in the laboratory for several months to pursue research.</p>
+<p>Lately, Sein had taken to calling Seven “Sev”.</p>
+<p>Due to the familiarity that had developed between them through various life-and-death situations, Seven did not find this somewhat affectionate nickname repulsive. In fact, it gradually grew accustomed to it.</p>
+<p>“I went to the forest in the south for a little while. There aren’t any birds there anymore,” Sev reporte...</p>
+</article>
+<article id="c134" data-label="134">
+<h2 class="chapter">Chapter 134: Jewel Bay 🔒</h2>
+<p>Earl Grantt and Solon’s stay at the castle was brief, lasting only a week before they returned to the frontline.</p>
+<p>During this period, the Ohrque Empire launched a strong assault, even amidst the snowy winter conditions.</p>
+<p>The frontline demanded the presence of Earl Grantt and other formidable warriors. Before their departure, Sein personally saw them off outside the castle.</p>
+<p>After their departure, Sein dedicated nearly two more months to personal research and study within the castle.</p>
+<p>Despite the heavier snowfall, the overall winter temperature remained relatively mild.</p>
+<p>According to the seasoned farmers in the Grantt Territory, the coming year promised another abundant harvest.</p>
+<p>The Lysian Alliance outpaced neighboring...</p>
+</article>
+<article id="c135" data-label="135">
+<h2 class="chapter">Chapter 135: Taking an Airship 🔒</h2>
+<p>The use of magic in the Malgheria Kingdom surpassed anything Sein had encountered in other human nations.</p>
+<p>Magic carriages, flying messengers, airships, and various other marvels set this place apart from the Lysian Alliance.</p>
+<p>Even in the capital of the Malgheria Kingdom and several human cities near Jewel Bay, the main thoroughfares were illuminated at night by magic crystal street lamps infused with elemental energy.</p>
+<p>To an outsider like Sein, the scene before him was a delightful surprise and a novelty.</p>
+<p>However, for the local inhabitants, it seemed to be part of their everyday life.</p>
+<p>The body of water opposite Jewel Bay was called the “Viridescent Sea”, a local term for the vast and mysterious ocean.</p>
+<p>However, Sein’s magic map referred to it...</p>
+</article>
+<article id="c136" data-label="136">
+<h2 class="chapter">Chapter 136: The Divine Tower of Verdant Spring 🔒</h2>
+<p>The airship bound for the Divine Tower of Verdant Spring spread its “wings” and soared between the expanse of sea and sky.</p>
+<p>Sein considered himself quite lucky after learning from Tom that this was the last flight for the day.</p>
+<p>The vessel he was riding on bore a resemblance to the one Sein had previously ridden in Mystralora City, yet subtle distinctions set them apart.</p>
+<p>The airship Sein had ridden in Mystralora City paled in comparison to the aesthetic appeal of the current vessel he was on.</p>
+<p>Sein astutely identified the airship’s power sources, pinpointing three potential locations.</p>
+<p>One was the turbocharger positioned at the ship’s stern, the second was the several broad white “wings” adorning the hull, and the third were the intricate magic arrays etched deep...</p>
+</article>
+<article id="c137" data-label="137">
+<h2 class="chapter">Chapter 137: Otherworldly Slave Familiars 🔒</h2>
+<p>Sein had no plans to make any purchases on his first day at the Divine Tower of Verdant Spring.</p>
+<p>However, that did not deter him from exploring and expanding his horizons.</p>
+<p>It would not be an overstatement to say that over ninety-nine percent of the items and materials showcased in the divine tower’s outskirts were entirely unfamiliar to Sein.</p>
+<p>This diverse array of items represented the wealth of the regions within the Divine Tower of Verdant Spring’s sphere of influence, including some exotic goods from otherworldly planes.</p>
+<p>While strolling through the commercial streets on the outskirts of the divine tower, Sein observed that the primary mediums for transactions were energy crystals, magic cores, and magicoins.</p>
+<p>Conventional currencies...</p>
+</article>
+<article id="c138" data-label="138">
+<h2 class="chapter">Chapter 138: Enrollment 🔒</h2>
+<p>The Divine Light Badge drew a sidelong glance from the two full-fledged mages stationed at the entrance of the divine tower.</p>
+<p>It was a creation of a Rank Two mage, a less commonly seen lumen-attribute restorative equipment, definitely an extraordinary item for even Rank One mages like them.</p>
+<p>Sein, with something of such caliber in his possession, hinted at the possibility of a noteworthy background.</p>
+<p>“Medich? Have you heard of him?” the female mage asked her colleague.</p>
+<p>Her colleague shook his head.</p>
+<p>The female mage turned to Sein and said, “Medich of the Divine Tower of Dawn, yes? I’ll inform those inside the divine tower. If there are indeed full-fledged mages acquainted with him, you may...</p>
+</article>
+<article id="c139" data-label="139">
+<h2 class="chapter">Chapter 139: Contract 🔒</h2>
+<p>Sein then followed Jovian, the red-robed mage, and the female full-fledged mage, deeper into the Divine Tower of Verdant Spring.</p>
+<p>Only Derek, the green-haired male mage, remained behind to guard the entrance.</p>
+<p>The main path connecting the central island of the Divine Tower of Verdant Spring with the smaller islands around it was a long, verdant passage.</p>
+<p>This passage seemed to contain special gravitational elements. As Sein walked through it, his body felt a lot lighter.</p>
+<p>There was also an invisible force field on both sides, preventing the initiates from falling.</p>
+<p>Walking through the leafy passage, Jovian, the red-robed Rank Two mage, casually introduced Sein to the several chained islands around the Divine Tower of Verdant Spring.</p>
+<p>He appeared to be a talkative man and this reassuring attitude...</p>
+</article>
+<article id="c140" data-label="140">
+<h2 class="chapter">Chapter 140: The Divine Tower Library 🔒</h2>
+<p>Sein had to sign the enrollment contract. It was a non-negotiable requirement.</p>
+<p>Even with Jovian’s endorsement as a Rank Two mage, Sein was not exempt from this academy rule.</p>
+<p>Speaking of Jovian, Sein had a vague understanding of the role the mage played as a cohort leader.</p>
+<p>In the upper tiers of the Divine Tower of Verdant Spring Academy, beyond the tower master wielding the highest authority, three Rank Three grand mages served as deans.</p>
+<p>The three grand mages remained mostly unseen by initiates and were rarely encountered even by Rank One mages.</p>
+<p>It was the full-fledged mages teaching at the academy and cohort leaders like Jovian who interacted mostly with initiates like Sein.</p>
+<p>Established over...</p>
+</article>
+<article id="c141" data-label="141">
+<h2 class="chapter">Chapter 141: Public Courses 🔒</h2>
+<p>In addition to acquainting himself with the academy and identifying public courses that would benefit him, Sein also explored the quest hall situated in the western part of the academy.</p>
+<p>This hall served as a hub for initiates to undertake academy quests and also post their own quests by paying a certain commission.</p>
+<p>It had been more than half a year since Sein left the Lysian Alliance. Now that he had successfully enrolled into the Divine Tower of Verdant Spring, he felt a sense of duty to provide an update to Earl Grantt.</p>
+<p>Although Sein never explicitly expressed it, Earl Grantt held significant importance in his life as his sole remaining immediate family member.</p>
+<p>To send his update to the Lysian Alliance, Sein considered...</p>
+</article>
+<article id="c142" data-label="142">
+<h2 class="chapter">Chapter 142: Lance the Mage 🔒</h2>
+<p>Lance was a full-fledged mage with an excellent character.</p>
+<p>It could be said that almost none of the full-fledged mages teaching the public courses at the Divine Tower of Verdant Spring had a foul temper.</p>
+<p>The gentle demeanor and remarkable patience displayed by Lance completely shifted Sein’s perception of the full-fledged mages in the Magus World.</p>
+<p>Of course, Lance’s demeanor could be attributed by his role as an academy mage.</p>
+<p>Sein speculated that most mages actively participating in the interplanar wars probably lacked the patience needed to guide a group of inexperienced magic initiates.</p>
+<p>The shoulder blade of an extraplanar humanoid creature lay before Sein—a hidden perk...</p>
+</article>
+<article id="c143" data-label="143">
+<h2 class="chapter">Chapter 143: Fundamental Knowledge on the Otherworldly Planes 🔒</h2>
+<p>“Your assistance is greatly appreciated. Here’s the well-earned reward for your efforts,” Lance said with a smile as he handed Sein a goblet filled with a peculiar blue liquid after Sein completed the dissection task.</p>
+<p>The blue was a concoction from Lance’s research that could slightly boost focus level. It was made by grinding the roots of a plant collected in an otherworldly plane known as the Inferno World.</p>
+<p>While it was merely a refreshing drink that offered a pleasant taste for someone of Lance’s caliber, it held a notable effect on senior initiates like Sein.</p>
+<p>Although Sein could not precisely quantify the boost in his focus, he felt a significant surge...</p>
+</article>
+<article id="c144" data-label="144">
+<h2 class="chapter">Chapter 144: Diligently Studying 🔒</h2>
+<p>Sein acquired the fundamental knowledge of the otherworldly planes he sought from Master Lance.</p>
+<p>Following the conclusion of Lance’s private lessons, Sein resumed his regular schedule of attending courses in the academy, diligently soaking up knowledge like a sponge.</p>
+<p>To the less observant initiates, Sein seemed like just another senior initiate frequently present in various basic courses.</p>
+<p>Little did they know that Sein’s growth during this period marked his fastest personal development ever since he departed Mystralora City in the underground world.</p>
+<p>Nearly two and a half months had passed since Sein joined the Divine Tower of Verdant Spring Academy. The magic messenger dispatched to Grantt...</p>
+</article>
+<article id="c145" data-label="145">
+<h2 class="chapter">Chapter 145: Conflict 🔒</h2>
+<p>“This is my spot, please move!” a young initiate in a red magic robe confronted Sein, making his demand clear.</p>
+<p>Despite the polite inclusion of the word “please” in his statement, the young mage gave off an air of dominance.</p>
+<p>Flanking the red-robed initiate were two senior initiates, one on each side. It remained unclear whether they were his lackeys or companions.</p>
+<p>Upon their entrance, the attention of the entire room shifted toward the three senior initiates.</p>
+<p>Having studied at the Divine Tower of Verdant Spring Academy for over two years, Sein clearly knew how things worked in the academy even though he had always maintained a low profile.</p>
+<p>In Divine Tower Academy, there was no concept of assigned seating. Yet, this red-robed youth was claiming that Sein was...</p>
+</article>
+<article id="c146" data-label="146">
+<h2 class="chapter">Chapter 146: The Fruit of Eileen’s Research 🔒</h2>
+<p>The arrival of Eileen instantly defused the tension in the classroom.</p>
+<p>Mark shot Sein a fierce glare before settling into the vacant seats on the second and third rows with his two companions.</p>
+<p>The medium-sized classroom had plenty of space, and it still felt relatively empty with over forty or fifty initiates present.</p>
+<p>Mark’s insistence on the seat Sein occupied was more of a display of his status and dignity in the classroom.</p>
+<p>Sein, on the other hand, was indifferent to Mark’s theatrics.</p>
+<p>He simply preferred the central seat in the first row because it allowed him to be closer to the instructor, providing an opportunity to learn the mysteries of pyro elemental...</p>
+</article>
+<article id="c147" data-label="147">
+<h2 class="chapter">Chapter 147: Challenge Accepted 🔒</h2>
+<p>The Thousand Birds Explosion spell was an advanced magic spell that only full-fledged mages could master. Its demanding prerequisites in terms of mana and focus levels made it an unattainable goal for initiates like Sein.</p>
+<p>Nevertheless, “Mass Explosion”, the advanced spell and “Firebird”, the enhanced intermediate magic spell were within their learning capabilities.</p>
+<p>Understanding the spell models for these two magic spells extended beyond the curriculum of the Pyro Elemental Transformation course.</p>
+<p>Toward the end of the class, Eileen casually mentioned, “For those interested in the enhanced Firebird spell and Mass Explosion spell, you can acquire the knowledge of the relevant spell models from me by spending ...</p>
+</article>
+<article id="c148" data-label="148">
+<h2 class="chapter">Chapter 148: Solar Eye 🔒</h2>
+<p>Today, the arena at divine tower academy was livelier than usual.</p>
+<p>Mark the Fiery Hand, holding the 17th position on the academy’s power rankings, had challenged an unfamiliar senior initiate to a spar, drawing the attention of many curious initiates.</p>
+<p>Although the top twenty in the academy&#39;s power ranking list were senior initiates and Quasi Mages, that did not mean one could see them sparring on the arena stage on a daily basis.</p>
+<p>On regular days, the arena stages were mostly occupied by intermediate and junior initiates from the divine tower academy. This was because they constituted the majority within the academy.</p>
+<p>The number of senior initiates and Quasi Mages in the academy probably did not exceed one percent of the total initiate population.</p>
+<p>Each senior initiate was a rare...</p>
+</article>
+<article id="c149" data-label="149">
+<h2 class="chapter">Chapter 149: Mass Explosion Spell 🔒</h2>
+<p>Eileen chose to remain silent, offering no response to the yellow-robed mage’s question.</p>
+<p>Sein, who hailed from a mysterious background and held a certain connection with the cohort leader, piqued her interest.</p>
+<p>When she assisted Sein with his enrollment into the divine tower academy, she learned that Sein had gained recognition from Master Medich, a peak Rank Two mage from the Divine Tower of Dawn, and nearly became his apprentice.</p>
+<p>It made her wonder what was so special about Sein.</p>
+<p>The battle on the arena stage unfolded at a very high pace.</p>
+<p>Although Mark&#39;s Fiery Hand spell proved formidable, it failed to breach Sein’s geo elemental shield.</p>
+<p>By the time Mark realized something was amiss and hurriedly began chanting his next spell, Sein had already unleashed his decisive move.</p>
+<p>The pyro and lumen elemental particles gathered...</p>
+</article>
+<article id="c150" data-label="150">
+<span id="last"></span>
+<h2 class="chapter">Chapter 150: Victory 🔒</h2>
+<p>“NO!” Mark’s cry of frustration reverberated within and beyond the arena stage.</p>
+<p><em>CLANG!</em></p>
+<p>A distinct metallic noise rang out.</p>
+<p>The elemental chaos Mark’s Mass Explosion spell created left most of the intermediate and junior initiates outside the arena struggling to discern the situation on the stage.</p>
+<p>In contrast, a few senior initiates displayed expressions of astonishment and shock, recognizing the rarity of battles between initiates of such caliber.</p>
+<p>They empathized with those on the arena stage, understanding that both the Mass Explosion and the Solar Eye spells were formidable moves that were difficult to withstand.</p>
+<p>The Fiery Hand spell Mark had previously unleashed was anything but ordinary, let alone the two advanced magic spells.</p>
+<p>As the fiery waves dissipated,...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="151-200.html" rel="next">Next: Chs 151–200 &rarr;</a>
+    <p class="page-end-links"><a href="51-100.html" rel="prev">&larr; Chs 51–100</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 101–150</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c101">Chapter 101: Bandits 🔒</a></li>
+        <li><a href="#c102">Chapter 102: Simple Experiment 🔒</a></li>
+        <li><a href="#c103">Chapter 103: Berthold City 🔒</a></li>
+        <li><a href="#c104">Chapter 104: Invitation 🔒</a></li>
+        <li><a href="#c105">Chapter 105: Small Trade Fair 🔒</a></li>
+        <li><a href="#c106">Chapter 106: To the North and South 🔒</a></li>
+        <li><a href="#c107">Chapter 107: Offer 🔒</a></li>
+        <li><a href="#c108">Chapter 108: Farewell Dinner 🔒</a></li>
+        <li><a href="#c109">Chapter 109: Reagan Fruits 🔒</a></li>
+        <li><a href="#c110">Chapter 110: Mercenary Guild 🔒</a></li>
+        <li><a href="#c111">Chapter 111: Warfares 🔒</a></li>
+        <li><a href="#c112">Chapter 112: Dusken Ridge 🔒</a></li>
+        <li><a href="#c113">Chapter 113: Reaction of Bloodline Tracing Magic 🔒</a></li>
+        <li><a href="#c114">Chapter 114: Rejection 🔒</a></li>
+        <li><a href="#c115">Chapter 115: Earl of Cercis 🔒</a></li>
+        <li><a href="#c116">Chapter 116: Old John 🔒</a></li>
+        <li><a href="#c117">Chapter 117: Opposition 🔒</a></li>
+        <li><a href="#c118">Chapter 118: Confrontation 🔒</a></li>
+        <li><a href="#c119">Chapter 119: The Feisty Noblewoman 🔒</a></li>
+        <li><a href="#c120">Chapter 120: Leave 🔒</a></li>
+        <li><a href="#c121">Chapter 121: Truths about the War 🔒</a></li>
+        <li><a href="#c122">Chapter 122: Truth of the World 🔒</a></li>
+        <li><a href="#c123">Chapter 123: Father and Son 🔒</a></li>
+        <li><a href="#c124">Chapter 124: All Advantages and No Drawbacks 🔒</a></li>
+        <li><a href="#c125">Chapter 125: Accident 🔒</a></li>
+        <li><a href="#c126">Chapter 126: Welcome Banquet 🔒</a></li>
+        <li><a href="#c127">Chapter 127: Surprised Family 🔒</a></li>
+        <li><a href="#c128">Chapter 128: Studies and Experiments 🔒</a></li>
+        <li><a href="#c129">Chapter 129: Experimental Accident 🔒</a></li>
+        <li><a href="#c130">Chapter 130: House Farion 🔒</a></li>
+        <li><a href="#c131">Chapter 131: Grandfather 🔒</a></li>
+        <li><a href="#c132">Chapter 132: Solar Eye 🔒</a></li>
+        <li><a href="#c133">Chapter 133: Decision 🔒</a></li>
+        <li><a href="#c134">Chapter 134: Jewel Bay 🔒</a></li>
+        <li><a href="#c135">Chapter 135: Taking an Airship 🔒</a></li>
+        <li><a href="#c136">Chapter 136: The Divine Tower of Verdant Spring 🔒</a></li>
+        <li><a href="#c137">Chapter 137: Otherworldly Slave Familiars 🔒</a></li>
+        <li><a href="#c138">Chapter 138: Enrollment 🔒</a></li>
+        <li><a href="#c139">Chapter 139: Contract 🔒</a></li>
+        <li><a href="#c140">Chapter 140: The Divine Tower Library 🔒</a></li>
+        <li><a href="#c141">Chapter 141: Public Courses 🔒</a></li>
+        <li><a href="#c142">Chapter 142: Lance the Mage 🔒</a></li>
+        <li><a href="#c143">Chapter 143: Fundamental Knowledge on the Otherworldly Planes 🔒</a></li>
+        <li><a href="#c144">Chapter 144: Diligently Studying 🔒</a></li>
+        <li><a href="#c145">Chapter 145: Conflict 🔒</a></li>
+        <li><a href="#c146">Chapter 146: The Fruit of Eileen’s Research 🔒</a></li>
+        <li><a href="#c147">Chapter 147: Challenge Accepted 🔒</a></li>
+        <li><a href="#c148">Chapter 148: Solar Eye 🔒</a></li>
+        <li><a href="#c149">Chapter 149: Mass Explosion Spell 🔒</a></li>
+        <li><a href="#c150">Chapter 150: Victory 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="51-100.html" rel="prev">&larr; Chs 51–100</a>    <a href="../../index.html">Library</a>
+<a href="151-200.html" rel="next">Chs 151–200 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

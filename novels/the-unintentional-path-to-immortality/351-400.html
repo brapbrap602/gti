@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unintended Immortality Chs 351–400</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="301-350.html#last" data-next-page="401-450.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c351">Chapter 351: The Legacy of the Demons in Yuezhou 🔒</a></li>
+        <li><a href="#c352">Chapter 352: There Would No Longer Be a Wanjiang in Changjing 🔒</a></li>
+        <li><a href="#c353">Chapter 353: A Coincidence 🔒</a></li>
+        <li><a href="#c354">Chapter 354: The Water-Splitting Blade and the Divine Being 🔒</a></li>
+        <li><a href="#c355">Chapter 355: Love Nothing More Than Challenging the Gods 🔒</a></li>
+        <li><a href="#c356">Chapter 356: Not Only the Court Deceives the People 🔒</a></li>
+        <li><a href="#c357">Chapter 357: The Snake Immortal’s Aid 🔒</a></li>
+        <li><a href="#c358">Chapter 358: The Physician Writes Doctor Cai’s Medical Canon 🔒</a></li>
+        <li><a href="#c359">Chapter 359: Plum Blossoms Bloom in the Capital 🔒</a></li>
+        <li><a href="#c360">Chapter 360: A Sleight of Hand 🔒</a></li>
+        <li><a href="#c361">Chapter 361: May Good News Abound, and Don’t Forget This Wanderer of the Jianghu 🔒</a></li>
+        <li><a href="#c362">Chapter 362: You Aren’t Heading to Mount Ye Too, Are You? 🔒</a></li>
+        <li><a href="#c363">Chapter 363: Traveling Together to Fengzhou 🔒</a></li>
+        <li><a href="#c364">Chapter 364: Visiting the Divine at Qingxiao Temple 🔒</a></li>
+        <li><a href="#c365">Chapter 365: May the Gods Bless Me to Become a Nine-Tailed Fox 🔒</a></li>
+        <li><a href="#c366">Chapter 366: The Fox&#39;s True Nature 🔒</a></li>
+        <li><a href="#c367">Chapter 367: Payment to Be the Scapegoat 🔒</a></li>
+        <li><a href="#c368">Chapter 368: The Marsh Dragon Beneath the Waters 🔒</a></li>
+        <li><a href="#c369">Chapter 369: Heading Straight for Mount Ye 🔒</a></li>
+        <li><a href="#c370">Chapter 370: A Matter of Fate 🔒</a></li>
+        <li><a href="#c371">Chapter 371: Lady Calico’s Ghost City Adventure 🔒</a></li>
+        <li><a href="#c372">Chapter 372: Flawless 🔒</a></li>
+        <li><a href="#c373">Chapter 373: 🔒</a></li>
+        <li><a href="#c374">Chapter 374: Observations in Ghost City 🔒</a></li>
+        <li><a href="#c375">Chapter 375: Lady Calico&#39;s Wise Guidance 🔒</a></li>
+        <li><a href="#c376">Chapter 376: Farewell to Zhengxi 🔒</a></li>
+        <li><a href="#c377">Chapter 377: Tales from Zhengxi 🔒</a></li>
+        <li><a href="#c378">Chapter 378: An Encounter with Armed Guards 🔒</a></li>
+        <li><a href="#c379">Chapter 379: Lady Calico Hunts Again 🔒</a></li>
+        <li><a href="#c380">Chapter 380: The State Preceptor&#39;s Scheme 🔒</a></li>
+        <li><a href="#c381">Chapter 381: A Shocking Truth 🔒</a></li>
+        <li><a href="#c382">Chapter 382: I Request Your Help for the Journey Back 🔒</a></li>
+        <li><a href="#c383">Chapter 383: Clash of Great Demons, Arrival of the Daoist 🔒</a></li>
+        <li><a href="#c384">Chapter 384: Giving You Time to Run 🔒</a></li>
+        <li><a href="#c385">Chapter 385: Are You Worthy to Compare to My Master? 🔒</a></li>
+        <li><a href="#c386">Chapter 386: The Might of Ancient Great Demons 🔒</a></li>
+        <li><a href="#c387">Chapter 387: Marsh Dragon&#39;s Domain and the Divine Prison Calamity 🔒</a></li>
+        <li><a href="#c388">Chapter 388: Gods Shall Fall, Buddhas Shall Shatter 🔒</a></li>
+        <li><a href="#c389">Chapter 389: The Dust Settles 🔒</a></li>
+        <li><a href="#c390">Chapter 390: Changyuanzi 🔒</a></li>
+        <li><a href="#c391">Chapter 391: The Heavenly Dao and the Fox Demon 🔒</a></li>
+        <li><a href="#c392">Chapter 392: Daoist Priest, Do You Have Some Powerful Skills You Haven’t Taught Lady Calico? 🔒</a></li>
+        <li><a href="#c393">Chapter 393: Lady Calico Takes Charge of the Daoist&#39;s Meals 🔒</a></li>
+        <li><a href="#c394">Chapter 394: A Small World of Its Own 🔒</a></li>
+        <li><a href="#c395">Chapter 395: The Swallow is as Clever as Lady Calico 🔒</a></li>
+        <li><a href="#c396">Chapter 396: A Visit from Heavenly Palace Deities 🔒</a></li>
+        <li><a href="#c397">Chapter 397: Divine Lord Yuewang 🔒</a></li>
+        <li><a href="#c398">Chapter 398: Meeting the Divine Lord in a Dream 🔒</a></li>
+        <li><a href="#c399">Chapter 399: Lady Calico, the Most Diligent 🔒</a></li>
+        <li><a href="#c400">Chapter 400: A Bright Mid-Autumn Moon 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="the-unintentional-path-to-immortality">
+<article id="c351" data-label="351">
+<h2 class="chapter">Chapter 351: The Legacy of the Demons in Yuezhou 🔒</h2>
+<p>“Today is a good day, perfect for drinking,” said the woman sitting across from the Daoist. Her voice was calm and gentle. “What would you like to drink, Daoist Master?”</p>
+<p>“What makes it a good day?”</p>
+<p>“Firstly, it’s the winter solstice, a holiday for officials, and the city is lively,” she replied with a slight, restrained smile, her tone remaining composed. “Secondly, from today onward, there will no longer be a Lady Wanjiang playing the guqin and selling wine in Changjing—only a free fox demon roaming the heavens and earth, emulating you, seeking the world and encountering nature.”</p>
+<p>“Mistress originally planned to &#39;die&#39; in a few days,” the maid interjected with a grin. “But since you happened to visit today, it works out perfectly. We can tell them you came to help arrange her &#39;funeral.&#39; How convenient!”</p>
+<p>“Indeed.” The woman nodded.</p>
+<p>“And lastly, you brought delicious dishes today,” the maid said cheerfully. “A gesture from a friend in the human world is naturally something to be happy about. A friend brings food, so we must prepare good wine.”</p>
+<p>“In that case, what wines do you have?” the Daoist asked, his tone calm and steady.</p>
+<p>“Hexian Pavilion is renowned for its <em>guqin </em>and wines, gathering the finest from across the land,” the maid replied. “There’s top-grade <em>Huadiao </em>yellow wine[1], perfect for warming up on a cold winter’s day; Angzhou’s finest locally brewed rice wine, said to be Marquis of Wuan’s favorite; ruby-red grape wine imported from the Western Regions; as...</p>
+</article>
+<article id="c352" data-label="352">
+<h2 class="chapter">Chapter 352: There Would No Longer Be a Wanjiang in Changjing 🔒</h2>
+<p>“<em>Glug... Glug...”</em></p>
+<p>A little girl held a bowl of rice wine, tilting her head back to take the last sip into her mouth. Yet, instead of swallowing, she let it sit there, puffing up her cheeks. Her lips were pursed into a tiny pout, glistening and red from the drink.</p>
+<p>She leaned against the Daoist seated behind her, sitting idly on the floorboards. Her wide eyes darted around the room, her legs sprawling aimlessly. She had long since abandoned her meal, succumbing to a bored daze.</p>
+<p>After a while, she finally swallowed the rice wine. Her lips smacked as she savored the taste.</p>
+<p>The coarse-brewed rice wine soup was nothing like the rice wine sent by General Chen. It had no sharp alcoholic kick, only the rich fragrance of rice, with a chilled sweetness that she loved.</p>
+<p>Without hesitation, she scooped herself another bowl from the pot.</p>
+<p>Yet, instead of drinking it right away, she left it sitting in front of her. Turning her head, she stared blankly at her Daoist, who was deep in conversation with a woman.</p>
+<p>Soon enough, she found it boring.</p>
+<p>Why would anyone waste their time talking instead of savoring this delicious rice wine soup, this flavorful fish-and-lamb soup, or the tender lamb and chicken? Why focus so much on chatting?</p>
+<p>Were grown-ups always this dull? Or only sometimes?</p>
+<p>The little girl’s thoughts flitted wildly.</p>
+<p>“Lady Calico.” The voice of a maid came from the...</p>
+</article>
+<article id="c353" data-label="353">
+<h2 class="chapter">Chapter 353: A Coincidence 🔒</h2>
+<p>The <em>guqin </em>melody from Hexian Pavilion today was unlike anything the literati and elites of Changjing had ever heard before.</p>
+<p>Not just the tune, but the style itself was unique.</p>
+<p>Many had gathered here to visit the <em>guqin</em> fairy, who was rumored to be gravely ill. They had come with worry and sorrow in their hearts. Yet, as the music flowed, they found themselves unexpectedly uplifted. It was the winter solstice, and the streets of Changjing had been pelted with icy rain and snow, chilling to the bone. Yet, the listeners now felt as though they were basking in the gentle sunlight of early spring.</p>
+<p>For the literati, prone to melancholy over fleeting spring or autumn, and for those in Changjing burdened by unfulfilled aspirations and frustration, the music brought an inexplicable sense of ease.</p>
+<p>Miss Wanjiang rarely played such pieces.</p>
+<p>Even among her repertoire, not every tune had the same ability to penetrate so deeply into the listener’s heart.</p>
+<p>The audience, puzzled yet captivated, floated between confusion and intoxication.</p>
+<p>It was a bliss so profound, even immortality could not compare.</p>
+<p>Amid the music, bonds of camaraderie stirred. Some of the attendees, realizing the rarity of this moment, quickly stepped outside during brief interludes in the melody to send messengers. They hurriedly invited friends and acquaintances who shared their love of <em>guqin </em>music, urging them to come to Hexian Pavilion to...</p>
+</article>
+<article id="c354" data-label="354">
+<h2 class="chapter">Chapter 354: The Water-Splitting Blade and the Divine Being 🔒</h2>
+<p><em>Creak…</em></p>
+<p>Song You pushed open the door, holding the girl’s hand. He let her step in first before following her inside.</p>
+<p>The moment he entered, Song You sensed that something was off. The little girl seemed to pick up on it as well. Her expression grew serious, and she looked around cautiously, craning her neck.</p>
+<p>Their gazes finally locked on the table. On it lay a dagger. Its hilt was wooden, and its blade was straight.</p>
+<p><em>Whoosh!</em></p>
+<p>White smoke suddenly rose within the room, resembling both clouds and mist. Within it, faint flashes of thunder could be seen, and a majestic figure emerged from the haze, radiating divine light.</p>
+<p>“Here’s your Water-Splitting Blade. I’ve also investigated its origin,” the divine being within the cloud and mist said. The voice, though quieter than before, still carried a reverberating echo, as if it were repeatedly striking the listeners’ eardrums.</p>
+<p>“This blade belonged to the River God of the Yin River. It was forged a thousand years ago but was lost to the mortal world about eight hundred years ago. Not long after its loss, the River God of the Yin River was punished for negligence and stripped of his title due to the loss of the ritual vessel and negligence of duty, leading to his gradual demise...</p>
+</article>
+<article id="c355" data-label="355">
+<h2 class="chapter">Chapter 355: Love Nothing More Than Challenging the Gods 🔒</h2>
+<p>“After we parted ways, following the resolution of the plague in Gui Commandery, we traveled through Hezhou and Guangzhou,” Doctor Cai said. “Everywhere we went, we heard many stories about you...”</p>
+<p>“And after leaving Yuezhou, we also heard countless tales of your medical prowess,” Song You replied. “The common folk speak of you with such admiration. I imagine that even centuries from now, your name will still be celebrated in this land.”</p>
+<p>The two reminisced about what had happened since their last meeting.</p>
+<p>The calico cat sat neatly on the floor near the fire, warming itself. The side of its body facing the brazier began to emit faint wisps of steam.</p>
+<p>“By the way…” After talking at length, recounting past events, Song You finally brought up the matter that had been on his mind. “A few days ago, while walking through the streets, I met a woman. We spoke about Dr. Chen of Jishi Hall, and I learned that he has passed away. Did you know about this?”</p>
+<p>“Of course I knew,” Doctor Cai said. “We had already returned when we heard the news. But soon after, we learned that smallpox had broken out in Jingzhou, so we went there. We knew about it long ago.”</p>
+<p>“My condolences, Doctor.”</p>
+<p>“Sigh...” Doctor Cai let out a long sigh. His expression was heavy with sorrow, his tone tinged with a mix of...</p>
+</article>
+<article id="c356" data-label="356">
+<h2 class="chapter">Chapter 356: Not Only the Court Deceives the People 🔒</h2>
+<p>Song You hadn’t walked far when he spotted a horse ahead. It was a jujube-red horse.</p>
+<p>Judging by its appearance, it was a <em>Beiyuan </em>breed, slightly thin, with a coat that stood out starkly against the snowy landscape.</p>
+<p>The moment it saw him, the horse trotted over.</p>
+<p>“Huh?”</p>
+<p>Song You was a bit surprised. As it stopped in front of him, he couldn’t help but ask, “How did you end up here?”</p>
+<p>“...”</p>
+<p>“Well, this must be fate,” he said, as if speaking to himself.</p>
+<p>Behind him, the calico cat was visibly delighted.</p>
+<p>It truly did seem like fate.</p>
+<p>The last time he had parted ways with this jujube-red horse, it had been in a completely different direction from Changjing. Moreover, this place was far from Changjing, yet the horse had made its way here and happened to cross paths with him.</p>
+<p>It must have been drawn here by the abundant spiritual energy of Mount Beiqin.</p>
+<p>“Let’s go, then.”</p>
+<p>“...”</p>
+<p>“We’ll be leaving Changjing in just over a month. Until then, you’re free to stay wherever you like.”</p>
+<p>As Song You spoke, he continued following the serpent’s trail.</p>
+<p>The jujube-red horse followed close behind.</p>
+<p>After crossing a mountain ridge, he soon saw the lake nestled in the valley below. Beside the lake was a small hut. The mountain winds seemed unable to touch this place; the lake’s surface was as still as a mirror. Upon it floated a small boat, where an old man in a bamboo raincoat and hat sat fishing—a scene so tranquil it looked like...</p>
+</article>
+<article id="c357" data-label="357">
+<h2 class="chapter">Chapter 357: The Snake Immortal’s Aid 🔒</h2>
+<p>The Snake Immortal, having once been closely connected to Grandmaster Fuyang and cultivated for so many years, went straight to the heart of the issue. Yet, while Song You listened, he didn’t dwell too much on these points. Accepting the tea the Snake Immortal offered, he asked directly, “Then, in your opinion, what is the root of the problem?”</p>
+<p>“The root of the problem?”</p>
+<p>“Yes,” Song You said, holding the tea. “You forged ties with Grandmaster Fuyang during times of chaos, encountered many gods, and cultivated for years. You were even granted the title of Snake Immortal by the Great Yan imperial family, with people from the lower mountains coming to worship you. Your understanding of gods and your experiences far exceed mine.</p>
+<p>“You are also one of the few elders of my sect left in the world. So I’d like to ask your perspective: Why does the Heavenly Palace frequently harbor gods who fail to act like gods, neglect their duties, and instead sow chaos in the mortal realm? In your view, what is the fundamental issue?”</p>
+<p>The Snake Immortal glanced at him. “It seems you have some thoughts of your own.”</p>
+<p>“Indeed,” Song You replied after a sip of tea. “Since coming down the mountain, I’ve encountered many incidents that make me feel the problems with the Heavenly Palace and its gods go beyond this. Without addressing these issues at their core, we will never fully rid ourselves of fallen gods.”</p>
+<p>“What’s your take on it?”</p>
+<p>“I...</p>
+</article>
+<article id="c358" data-label="358">
+<h2 class="chapter">Chapter 358: The Physician Writes Doctor Cai’s Medical Canon 🔒</h2>
+<p>The next morning…</p>
+<p>In the central hut, a fire crackled in the brazier. A raincoat hung on the wall, and fishing gear leaned nearby. Inside, only an old man and a calico cat lay by the fire.</p>
+<p>The old man prodded the fire with an iron rod, occasionally glancing down at the cat.</p>
+<p>The cat, in turn, raised its head and silently observed the old man.</p>
+<p>“You&#39;re called Lady Calico?”</p>
+<p>The old Snake Immortal was the first to break the silence, shifting his gaze and asking.</p>
+<p>“That&#39;s right!” The cat continued to stare at him, replying with a serious tone.</p>
+<p>“When did you meet him?”</p>
+<p>“It was in the afternoon!” the cat answered with precision. “Right when the sun was about to set!”</p>
+<p>“What year?”</p>
+<p>“It was called the first year of Mingde...”</p>
+<p>“And where?”</p>
+<p>“In a temple.”</p>
+<p>“A temple?”</p>
+<p>“My temple!”</p>
+<p>“Your temple?”</p>
+<p>“I was originally the Cat God, helping people catch mice. But the gods of the Heavenly Palace wouldn’t allow me to remain the Cat God...”</p>
+<p>“So he took you away?”</p>
+<p>“He invited me to travel the world with him so that he wouldn’t be lonely,” the cat replied seriously. “And I agreed.”</p>
+<p>“Did you want to go with him at the time?”</p>
+<p>“I agreed!”</p>
+<p>“I see.”</p>
+<p>The Snake Immortal nodded calmly, his gaze flickering...</p>
+</article>
+<article id="c359" data-label="359">
+<h2 class="chapter">Chapter 359: Plum Blossoms Bloom in the Capital 🔒</h2>
+<p>The most elegant of the Ten Wonders of Changjing was no more.</p>
+<p>The once-bustling Hexian Pavilion, frequented by nobles and high-ranking officials, had closed its doors after the funeral of Miss Wanjiang.</p>
+<p>Situated at the border between the eastern and western districts, the pavilion was often passed by dignitaries and refined scholars. Former regulars couldn’t help but pause as they walked by, glancing at its now-desolate entrance.</p>
+<p>Memories of drinking fine wine and listening to the ethereal melodies played there would resurface—of that transcendent music, like it descended from the heavens, and the unparalleled grace of the fairy of <em>qin </em>herself. A sigh inevitably followed.</p>
+<p>Neighbors occasionally claimed they could faintly hear the sound of a zither from the Hexian Pavilion at night. The music was as beautiful as ever but could only be heard in a dreamlike state, half-awake and half-asleep.</p>
+<p>Once fully awake, no matter how hard they listened or searched, the sound was nowhere to be found.</p>
+<p>At first, a single account could be dismissed. But as more neighbors shared the same story, unease began to spread. Some wondered if something supernatural was at work.</p>
+<p>Conversely, a few literary types took comfort in the notion, imagining that Miss Wanjiang’s spirit still lingered, guarding the...</p>
+</article>
+<article id="c360" data-label="360">
+<h2 class="chapter">Chapter 360: A Sleight of Hand 🔒</h2>
+<p>“Whose procession is that? Why is it so long, yet without an official clearing the way?”</p>
+<p>“Good heavens, look at all those carriages...”</p>
+<p>“Shh! I heard it&#39;s the procession of Princess Changping!”</p>
+<p>“Princess Changping?”</p>
+<p>Seeing the commotion and the lively discussions, Song You grew curious. He quietly approached a group of scholarly-looking men nearby, staying silent to listen to their conversation.</p>
+<p>The cat crouched beside him, appearing to lick its paws disinterestedly, but its ears were perked up to catch every word.</p>
+<p>“Didn’t Princess Changping...” The tall, lean scholar lowered his voice, unwilling to utter the word <em>rebel</em>. “How could she still be leaving the capital?”</p>
+<p>“Ah, Princess Changping is, after all, the Emperor’s own daughter, and the eldest at that,” another scholar, well-dressed and dignified, said softly. “She has assisted in governing the court for years, and the current prosperity owes no small part to her efforts. The Emperor, in the end, softened his heart.</p>
+<p>“Though she has been demoted to a commoner, she’s still permitted to take some household staff, servants, and money with her. The only condition is that she must leave the capital.”</p>
+<p>“It’s said the decision was made just yesterday,” he continued. “Many officials...</p>
+</article>
+<article id="c361" data-label="361">
+<h2 class="chapter">Chapter 361: May Good News Abound, and Don’t Forget This Wanderer of the Jianghu 🔒</h2>
+<p>“There’s something to this...”</p>
+<p>Heroine Wu lowered her head, taking the copper coin from Song You’s hand. She held it up to examine it closely. It wasn’t a rigged coin.</p>
+<p>Her gaze flickered a few times, and she murmured as if to herself, “You know, though I’ve roamed the <em>jianghu </em>all my life, I haven’t claimed many lives. To burden myself with so many karmic debts now does seem unwise. But letting their whole family off the hook so easily also feels too lenient.</p>
+<p>“Fortunately, over the years of my investigation, I’ve collected plenty of evidence of their earlier crimes. I hear that the imperial censor surnamed Yu is upright and fair. He even served as the prefect of Yizhou once. I might as well help him bolster his record of achievements.”</p>
+<p>“You’re simply kindhearted,” Song You remarked.</p>
+<p>“...”</p>
+<p>Heroine Wu glanced at him silently, gripping the copper coin tightly before tucking it into her robe. Without arguing further, she said, “I’ll make arrangements later and leave tomorrow. After that, no matter what happens, I won’t return to Changjing. If luck is on my side, well, as I’ve said before—ten years from now, when you’re back in Yizhou, I’ll bring a big, red rooster to...</p>
+</article>
+<article id="c362" data-label="362">
+<h2 class="chapter">Chapter 362: You Aren’t Heading to Mount Ye Too, Are You? 🔒</h2>
+<p>On the day of the Shangyuan Festival…</p>
+<p>Unexpectedly, before Song You could leave Changjing, General Chen came to bid him farewell.</p>
+<p>“I had hoped to personally see you off when the time came,” General Chen said, cupping his hands in a respectful salute. “But His Majesty has ordered me to return to the north and guard the northern frontier. Thus, I must come first to bid you farewell and express my gratitude. Thank you, sir, for speaking on my behalf before His Majesty and saving my life.”</p>
+<p>“You had already made thorough preparations, General. I merely relayed your words,” Song You replied. “Besides, His Majesty had already made up his mind. My role was insignificant.”</p>
+<p>“Still, it had to be you.”</p>
+<p>General Chen maintained his formal salute, his expression solemn.</p>
+<p>In truth, the general had later been summoned by the Emperor for a private audience. During that late-night conversation, the Emperor had mentioned the discussion from that fateful evening. General Chen learned that although Song You had not explicitly pleaded for his life, he had presented the facts and weighed the pros and cons truthfully.</p>
+<p>However, the Emperor would only trust and calmly consider such counsel if it came from Song You. Had it been anyone else, the Emperor might not have believed them so readily or taken the advice so ...</p>
+</article>
+<article id="c363" data-label="363">
+<h2 class="chapter">Chapter 363: Traveling Together to Fengzhou 🔒</h2>
+<p>“The road to Yangzhou passes through Fengzhou,” Miss Wanjiang said calmly and sincerely, explaining her thoughts. “I’ve heard that the State Preceptor has built a Ghost City on Mount Ye, leveraging the current circumstances. It may serve as the prototype and future bridge between the underworld and the human realm, forming a counterpart to the Heavenly Palace. It’s quite extraordinary. To be honest, I’m indeed curious, and I’d like to see it for myself.”</p>
+<p>“You’re so guarded against us,” the maid said, looking deeply hurt. “I thought that after sharing a few meals, we were already good friends.”</p>
+<p>“Perhaps we’ll even meet some old acquaintances there,” Miss Wanjiang added.</p>
+<p>“But there’s another reason for going to Fengzhou,” the maid said, her tone more serious in deference to her mistress’s sincerity.</p>
+<p>She continued, “Her Highness, the Princess, was demoted to commoner status and sent to Yaozhou. The last time she left the capital, it was in such a rush, and the journey was so crowded that we didn’t get the chance to see her off. This is a good opportunity to visit her in Yaozhou, bid her a proper farewell, and repay a past debt of gratitude.”</p>
+<p>“As my mistress puts it,” the maid continued, “everything should have a beginning and an end. It’s like when...</p>
+</article>
+<article id="c364" data-label="364">
+<h2 class="chapter">Chapter 364: Visiting the Divine at Qingxiao Temple 🔒</h2>
+<p>“Daoist priest, I seem to have been poisoned.”</p>
+<p>“Rice wine soup can indeed cause &#39;poisoning.&#39;”</p>
+<p>“What? Why didn’t you say so last time?”</p>
+<p>“You should sleep.”</p>
+<p>Song You bent down and effortlessly picked up the cat. She went limp in his grasp, her limbs dangling naturally while her tail curled up to preserve her modesty. She obediently allowed the Daoist to tuck her into his pouch.</p>
+<p>From inside, she poked her head out, glancing around curiously.</p>
+<p>As the swallow had said, Qingxiao Temple wasn’t far. By twilight, the group had arrived.</p>
+<p>Ahead was a round hill surrounded by farmlands. At this time of year, the fields weren’t planted with crops but were flooded for irrigation, forming glistening paddies that stretched across the landscape. The crimson glow of the evening sky was perfectly reflected in the water, creating a breathtaking rural scene.</p>
+<p>“How beautiful...” A sigh of admiration came from behind.</p>
+<p>When Song You turned to look, the maid smiled at him and said, “Before we came to Changjing, we often saw scenery like this. It wasn’t the same, of course, but it was equally beautiful. Sadly, after arriving in Changjing, it felt like we were trapped. It’s been so long since we’ve seen anything like this.”</p>
+<p>“You’re free now,” Song You said, continuing forward.</p>
+<p>“Let’s hope this freedom lasts,” the maid said with a smile, swinging her legs playfully.</p>
+<p>Song You turned his gaze away and continued walking.</p>
+<p>A narrow path cut through the...</p>
+</article>
+<article id="c365" data-label="365">
+<h2 class="chapter">Chapter 365: May the Gods Bless Me to Become a Nine-Tailed Fox 🔒</h2>
+<p>“Daoist Master Song, haven’t you found a deity you’d like to offer incense to yet?” asked Muyunzi’s senior disciple as he approached.</p>
+<p>“I’m just flipping through casually,” Song You replied with a smile, glancing toward the increasingly crowded Thunder God shrine. He asked, “Why are so many people coming to worship the Thunder God today?”</p>
+<p>“You may not know, Daoist Master,” the young disciple replied respectfully, “but Qingxiao Temple primarily venerates the legitimate gods of the Thunder Division. The Thunder God’s efficacy is well-known, so his shrine typically receives more worshippers than the main hall. Most people who come here are seeking the Thunder God’s help for exorcism and safety.”</p>
+<p>He continued, “Not long ago, a demon was causing trouble in Donghe County, roaming everywhere and particularly fond of luring children outside the villages to eat them. For a long time, children in the surrounding villages didn’t dare play outdoors. Even when they had to go out to herd cattle or gather pigweed, they had to be accompanied by adults. A few days ago, that demon was finally struck dead by a bolt of lightning. When the county folk heard the news, they flocked here to offer incense to the Thunder God.”</p>
+<p>“Oh? What kind of demon was it?” Song You asked.</p>
+<p>“It was a wild yellow mountain fox that had gained sentience.”</p>
+<p>“A fox demon, huh...”</p>
+<p>“Fox demons are the worst! I’ve always despised fox demons!” chimed in Miss Wanjiang’s...</p>
+</article>
+<article id="c366" data-label="366">
+<h2 class="chapter">Chapter 366: The Fox&#39;s True Nature 🔒</h2>
+<p>“Thank you, Daoist Master, for your hospitality and accommodation. However, I must continue my journey southward, so I won’t stay any longer,” he said with a slight bow.</p>
+<p>“<em>Meow...”</em> a soft feline sound came from beside him.</p>
+<p>“My deepest thanks to you, Daoist Master Muyunzi. I’m eternally grateful,” Wanjiang added with sincerity.</p>
+<p>The maid accompanying them spoke respectfully, “It is truly a blessing for the people of Donghe County to have the esteemed elder Daoist Master residing here. With you guarding this place, I dare say no demons or ghosts would dare come within ten li of this area. I’ve always admired esteemed Daoist Masters like you, who safeguard the peace of a region.”</p>
+<p>With a humble wave of his hand, Muyunzi replied, “Oh, you flatter me. This old man has no significant cultivation or abilities. It is all thanks to the efficacy of the Thunder God. If only I were as powerful as you claim, that would be a different story.”</p>
+<p>After speaking, he turned to face Song You and bowed.</p>
+<p>“Since you still have the world to traverse, I dare not hold you back. Allow me to escort you down the mountain.”</p>
+<p>“Thank you,” Song You responded, returning the gesture and ignoring the maid’s words.</p>
+<p>Muyunzi accompanied them all the way to the mountain gate. It was only when Song You stopped and requested that he not go further that Muyunzi agreed to halt. Otherwise, he would likely have escorted them all the way to the foot of...</p>
+</article>
+<article id="c367" data-label="367">
+<h2 class="chapter">Chapter 367: Payment to Be the Scapegoat 🔒</h2>
+<p>The mountain night was remarkably quiet. Only faint sounds of water and lapping could be heard.</p>
+<p>“<em>Splash</em>...”</p>
+<p>“<em>Slurp, slurp</em>...”</p>
+<p>The fox demon remained perched on the willow tree, occasionally swinging her legs, which were paler than the moon’s reflection in the water, causing small ripples to form. At times, she would lean down and scoop up a handful of water, letting it trickle through her fingers.</p>
+<p>Her actions were entirely self-indulgent, like a small animal delighting in play. Yet, her every movement was so effortlessly beautiful that it seemed almost intentional.</p>
+<p>The Daoist priest, however, kept his eyes shut, sitting cross-legged in silent meditation.</p>
+<p>The cat lay sprawled nearby, head bent over its bowl, licking it with serious concentration. Every now and then, it would pause, lift its head, squint its eyes, and sit in a sudden, inexplicable daze—whether in a trance of delight or confusion was unclear. After a moment, it would resume its focus, lowering its head to lap at the bowl a few more times.</p>
+<p>The cat glanced at its Daoist priest, then at the fox, then scanned the surroundings, seemingly in search of the fox’s tail.</p>
+<p>“<em>Whoosh</em>...”</p>
+<p>A gust of mountain wind swept through, carrying the chill of early spring.</p>
+<p>The previously...</p>
+</article>
+<article id="c368" data-label="368">
+<h2 class="chapter">Chapter 368: The Marsh Dragon Beneath the Waters 🔒</h2>
+<p>Zi Commandery was incredibly remote.</p>
+<p>Even though they were already in Fengzhou and getting closer to Zi Commandery as they headed south, asking for directions often proved futile. Most people had never even heard of Zi Commandery. Those who had only knew a vague direction, with no idea how to get there.</p>
+<p>The roadsides lacked proper milestones or markers, too. This posed quite a challenge for the swallow.</p>
+<p>Each time they needed directions, the bird agonized over the process, mentally calculating routes again and again. Every time it went to ask someone, it silently prayed for success on the first try.</p>
+<p>Despite the difficulties, they slowly made their way toward Zi Commandery.</p>
+<p>The land route was impassable, requiring a brief water journey instead.</p>
+<p>Fortunately, the stretch of water travel was short—just a few dozen li downriver to reach Zi Commandery.</p>
+<p>The maid once again summoned the coachman from the box, instructing him to take the carriage and horses along an alternate route to Yaozhou. Meanwhile, the group waited at the ferry dock for two days before finally finding a boatman willing to take them.</p>
+<p>The fare for the trip totaled only a few dozen wen.</p>
+<p>Song You brought his horse aboard, and they began their journey downriver.</p>
+<p>The banks on either side of the Yin River were mostly low hills, thick with dense...</p>
+</article>
+<article id="c369" data-label="369">
+<h2 class="chapter">Chapter 369: Heading Straight for Mount Ye 🔒</h2>
+<p>“That one...” Song You asked, still looking ahead. “Is it the marsh dragon from Yuezhou you’re searching for?”</p>
+<p>“Currently, within the territory of the Great Yan, there is almost only one species of marsh dragon remaining, and this one clearly looks different,” came a gentle and composed voice from beside him. It was quite soft. “Aside from the one in Yuezhou, I doubt any other lineage of marsh dragons this large still exists. However, my acquaintance from Yuezhou is not this one. As you’ve surely noticed, it has never met me, nor I it.”</p>
+<p>“Although we and the Yuezhou marsh dragons both lived in Yuezhou and both originated from ancient great demons, we were not particularly close and rarely interacted,” added the maid from behind the woman, her voice low to avoid being overheard by the boatman. “Among the surviving great demons of the marsh dragons, we only know one personally. We’re unfamiliar with the others.”</p>
+<p>She then chuckled softly, a mischievous glint in her eye. “That said, judging by the behavior of this giant marsh dragon, it must be from Yuezhou. Aggressive, but not excessively vicious. Foolish, but not reckless. Cold, yet not bloodthirsty. If I had to guess, it’s because those who were truly vicious, reckless, and bloodthirsty didn’t survive...</p>
+</article>
+<article id="c370" data-label="370">
+<h2 class="chapter">Chapter 370: A Matter of Fate 🔒</h2>
+<p>“May I ask how to get to Yinnan County?”</p>
+<p>“I don’t know...”</p>
+<p>“I’m not sure!”</p>
+<p>“I think it’s somewhere to the south, but I’m not clear on the exact route. That godforsaken place hardly has any visitors.”</p>
+<p>“Try asking someone else...”</p>
+<p>In this era, transportation and communication were truly underdeveloped. Many people spent their entire lives confined to a small area, knowing at most how to get to the neighboring village or the county town. As for other counties or places one or two hundred li away, they had no idea.</p>
+<p>Some people had never even heard of Yinnan County.</p>
+<p>The young man, dressed in black and white, was repeatedly met with dead ends, leaving him feeling frustrated and exhausted.</p>
+<p>“No need to rush—try asking in a different way,” Song You said with a gentle smile, showing no hint of blame.</p>
+<p>“It is said that over ten thousand Longwei troops are stationed around Mount Ye in Yinnan County. These troops were originally garrisoned in Fengzhou, tasked with defending Angzhou, where the imperial capital is located, in the south. When they were redeployed to Mount Ye, it must have caused quite a stir. With such a large army, feeding both men and horses would require frequent transportation of provisions, especially given Yinnan&#39;s poverty.</p>
+<p>Additionally, it’s said that the State Preceptor...</p>
+</article>
+<article id="c371" data-label="371">
+<h2 class="chapter">Chapter 371: Lady Calico’s Ghost City Adventure 🔒</h2>
+<p>It was dawn, and the sky at the horizon was beginning to lighten with hues of white and blue, reflecting off dark gray clouds that looked incredibly pristine.</p>
+<p>In the early light stood a bare, towering mountain, surrounded by smaller hills that cast long shadows under the breaking dawn.</p>
+<p>The scene resembled the northern frontier. The hills closest to Song You, forming the outermost ring around the central mountain, were equipped with watchtowers and beacon towers atop the higher elevations. Further in, the mountains featured additional defensive structures such as turreted towers, with large military tents at the base where soldiers kept vigil throughout the night.</p>
+<p>This perimeter was likely the encampment of the Longwei Army, tasked with defending against disturbances from the human world.</p>
+<p>Closer to the central mountain, such fortifications disappeared.</p>
+<p>The State Preceptor, having long known of Song You’s arrival, was already waiting for him on the road ahead. As soon as he spotted Song You, he led a group toward him.</p>
+<p>Following the State Preceptor were two young Daoist attendants, a middle-aged man in Daoist robes, an elder in a simple cloth robe, and two ghosts dressed in official attire—likely his aides. As they walked, they glanced at Song You, their eyes betraying their curiosity. It seemed they...</p>
+</article>
+<article id="c372" data-label="372">
+<h2 class="chapter">Chapter 372: Flawless 🔒</h2>
+<p>“What are you looking at?”</p>
+<p>“<em>Meow</em>!”</p>
+<p>The cat looked up at him, her eyes shining brightly, but she didn’t respond. Instead, she stopped at his feet and turned her head to continue surveying the Ghost City.</p>
+<p>“Let’s go,” Song You said, resuming his pace behind the State Preceptor.</p>
+<p>The cat followed suit, though she kept her head turned, glancing around and taking in the surroundings—up, down, left, and right.</p>
+<p>Occasionally, she would get distracted and follow someone else, mistakenly straying from the group. Fortunately, Lady Calico was clever and alert, recognizing her Daoist priest’s and horse’s distinct footsteps. Realizing her mistake, she would look back, and upon seeing them, dart back to her group, repeating the process as they moved on.</p>
+<p>“State Preceptor, this is quite a grand undertaking,” Song You remarked.</p>
+<p>“You misunderstand, fellow Daoist,” the State Preceptor said with a smile. “Building a massive underground city...</p>
+</article>
+<article id="c373" data-label="373">
+<h2 class="chapter">Chapter 373: 🔒</h2>
+<p>“And who are the Ghost Kings?” Song You asked.</p>
+<p>“They have not been appointed yet,” the State Preceptor replied after a moment’s hesitation. “This is just an initial setup and far from complete. Fortunately, there are currently not many ghosts, and time will gradually allow the system to improve. Future adjustments are inevitable.”</p>
+<p>“The affairs of gods and ghosts are always thus,” Song You remarked, nodding thoughtfully. After a brief pause, he asked, “Why are there demons here as well?”</p>
+<p>The State Preceptor laughed. “This place is rife with ghosts, many of them malevolent. With the underworld’s formation imminent, it’s hard to say how many demons, spirits, and other creatures might covet it in secret. My own cultivation is limited—I’m not adept at fighting or magical arts. Naturally, I’ve invited them here to lend a hand, suppress unruly ghosts, and deter other demons and monsters.”</p>
+<p>“And in return, you grant them positions in Ghost City?” Song You inquired.</p>
+<p>“I’ve reserved positions of some significance for them under His Majesty,” the State Preceptor explained. “The times have changed. Whether Daoism thrives while Buddhism wanes, or Buddhism flourishes...</p>
+</article>
+<article id="c374" data-label="374">
+<h2 class="chapter">Chapter 374: Observations in Ghost City 🔒</h2>
+<p>Unknowingly, Song You had followed the State Preceptor through the entirety of Ghost City.</p>
+<p>The city itself was entirely within Mount Ye and about the size of Yuan’an City. However, the surrounding smaller mountains also contained connected spaces, as did the vast underground caverns and fault lines—these, too, were part of the Ghost City. At this moment, Song You was following the State Preceptor deeper into the underground sections.</p>
+<p>“I noticed in the ledger that the ghosts are categorized into five levels,” Song You remarked.</p>
+<p>“It’s a temporary measure,” the State Preceptor replied, “designed to facilitate the management of Ghost City. It will be refined in the future. Every ghost who arrives here undergoes a thorough evaluation of their deeds. Under the Karma Mirror, there are no lies, and they are categorized into five levels accordingly.”</p>
+<p>“How are they divided?” Song You asked.</p>
+<p>“If a person was truly virtuous—of outstanding moral character—and has never knowingly committed any wrongdoing since reaching adulthood, they are categorized as first class. These ghosts may hold official positions in Ghost City,” the State Preceptor explained.</p>
+<p>He continued, “If someone committed minor errors or caused minor harm, but not to the extent of committing a crime or creating serious consequences, they are categorized as second class and may work as clerks in Ghost City. Those who bear sins or unresolved crimes from their mortal lives are placed in third class, and their transgressions must be settled here.”</p>
+<p>“And the fourth and fifth classes?” Song You inquired.</p>
+<p>“If someone committed grave crimes—heinous acts of great evil—but not to the extent of warranting death, they are categorized as fourth class and must serve penance and face punishment in Ghost City,” the State Preceptor explained.</p>
+<p>“As for the truly irredeemable—those who committed...</p>
+</article>
+<article id="c375" data-label="375">
+<h2 class="chapter">Chapter 375: Lady Calico&#39;s Wise Guidance 🔒</h2>
+<p>The rules and laws governing this Ghost City might not yet be entirely mature, but they were already quite comprehensive, fully capable of ensuring the operation of this small domain.</p>
+<p>In essence, they were modeled after the regulations of the living world.</p>
+<p>Naturally, there were flaws, but every era had its own set of rules. These rules were in harmony with their time, conforming to it while also being the most developed system nurtured by that era. Forcefully altering them would be a daunting task—pull one thread, and the entire fabric would unravel. To make changes, one would have to reform the entire system; amending just a part would render it incongruous.</p>
+<p>Thus, Song You mostly observed and contemplated. Even when he encountered aspects he found unreasonable or unsettling, he only raised a select few suggestions, refraining from being overly critical or meddlesome.</p>
+<p>Seven days passed quickly. Song You still didn’t discover anything of note.</p>
+<p>Lady Calico, too, had yet to locate the source of the peculiar, rodent-like stench she was concerned about. She could only discern that it permeated the air, stronger in some places and weaker in others.</p>
+<p>From the looks of things, the consolidation of the underworld was accelerating drastically. Its initial formation would likely occur in a decade or so. If that were the case, could the State Preceptor’s schemes be aimed not at the present but at ten years later?</p>
+<p>This possibility seemed unlikely.</p>
+<p>However, the Ghost City itself was the precursor to the underworld. As the Ghost City...</p>
+</article>
+<article id="c376" data-label="376">
+<h2 class="chapter">Chapter 376: Farewell to Zhengxi 🔒</h2>
+<p>South of Fengzhou lay a region long known for its barren mountains and treacherous terrain. Once, the Yin River flowed through this area, serving as a vital waterway between the capital and the southern regions. However, after the river changed its course, the land became a place of no strategic interest to military powers.</p>
+<p>This commandery city seems to be a relic from a thousand years ago, untouched by modern rebuilding efforts. The city walls, made of compacted yellow earth, at first glance resemble those of a northern military outpost. Even within the city, few people speak the official dialect.</p>
+<p>It was only upon arriving here that Song You learned the Yin River had once flowed through Zi Commandery a thousand years ago, passing just north of Yinnan County. The name “Yinnan“ itself meant “south of the Yin River.”</p>
+<p>A thousand years ago, this place had once been prosperous. But over the span of a millennium, much had changed. Were it not for the deeply rooted ideology of unity across these lands, a thousand years might have given rise to several distinct civilizations.</p>
+<p>In the city, there was a small hill with a dilapidated pavilion at its summit, located beside an inn. Two women stood in the pavilion, enjoying the breeze and taking in the sight of the crumbling cityscape.</p>
+<p>A Daoist in an old robe, leading a jujube-red horse, arrived at the base of the hill. Looking up, he happened to meet the gaze of the women looking down at him.</p>
+<p>Moments later, only the horse, laden with its pack, remained at the foot of the hill. The Daoist had already ascended and was now in the pavilion.</p>
+<p>A swallow perched on the edge of the pavilion’s thatched...</p>
+</article>
+<article id="c377" data-label="377">
+<h2 class="chapter">Chapter 377: Tales from Zhengxi 🔒</h2>
+<p>The old inn felt like it was shedding dust from above.</p>
+<p>The innkeeper, also elderly, stood nearby, wiping down surfaces with a rag.</p>
+<p>“Do you have rice wine? Or fermented rice?” Song You asked.</p>
+<p>“You mean fermented rice porridge?” the innkeeper replied in a thick local accent, leaning in to catch his words.</p>
+<p>Song You thought for a moment. “The kind that can make you drunk?”</p>
+<p>“That stuff? It doesn’t make you drunk! You could eat as much as you want and not get tipsy—unless a child eats too much of it...”</p>
+<p>“That’s the one.”</p>
+<p>“So you just want fermented rice porridge?”</p>
+<p>“Cook a bowl, please, and crack two poached eggs into it. Can you make it that way?” Song You was ready to introduce Lady Calico to a new delicacy.</p>
+<p>“Of course, of course.”</p>
+<p>“How much will it cost?”</p>
+<p>“Two eggs? With or without sugar?”</p>
+<p>“With sugar.”</p>
+<p>“Sugar’s pricey these days—it’ll be fifteen wen.”</p>
+<p>“Give me a bowl, then.”</p>
+<p>“Is that all you’re eating?”</p>
+<p>“Do you have any special dishes here?” Song You asked. “Something unique to this place, something tasty that you can’t find anywhere else?”</p>
+<p>“Cat&#39;s Ears!”</p>
+<p>“...!”</p>
+<p>Lady Calico, who had been squatting at the Daoist’s feet, diligently licking her paws and washing her face, froze. She looked up, staring blankly at the innkeeper, her paws suspended mid-air. She had completely forgotten to put her paws back down.</p>
+<p>Song You was also momentarily taken aback.</p>
+<p>“Cat&#39;s Ears?” he repeated.</p>
+<p>“Hahaha...” The innkeeper grinned, revealing a few missing teeth....</p>
+</article>
+<article id="c378" data-label="378">
+<h2 class="chapter">Chapter 378: An Encounter with Armed Guards 🔒</h2>
+<p>The Zheng family patriarch had taken the Water-Splitting Blade and followed the founding emperor into service...</p>
+<p>As Song You ate his bowl of Cat’s Ears, his mind wandered.</p>
+<p>The founding emperor of Great Yan was an extraordinarily capable and charismatic ruler. His magnetic personality was unparalleled, and it’s hard for ordinary people to imagine that, in the early days of his uprising, many of his followers pledged their lives and fortunes to him after merely sharing a meal or spending one night in deep conversation with him. From that moment on, they committed themselves to his cause, unwavering even in the face of death.</p>
+<p>After achieving his empire, the founding emperor also demonstrated a rare magnanimity. Unlike many rulers in history, he allowed his founding ministers and generals to live out their lives in peace. Many of them enjoyed peaceful retirements—something rare among those who helped build an empire.</p>
+<p>Based on what Song You knew of the founding emperor from his own sect’s Grandmaster Fuyang, he was more inclined to believe that the Zheng family patriarch had perished in battle, which was why he never returned home.</p>
+<p>In those turbulent times, the world was in chaos, and demons ran rampant. Monsters, ghosts, and even fallen gods descended to wreak havoc. For the Zheng family patriarch, wielding the Water-Splitting Blade in service of the emperor, dying in battle would have been all too common.</p>
+<p>Rationally speaking, it was unlikely that the founding emperor would have killed the patriarch for the knife....</p>
+</article>
+<article id="c379" data-label="379">
+<h2 class="chapter">Chapter 379: Lady Calico Hunts Again 🔒</h2>
+<p>The room was dimly lit by an oil lamp, providing just enough light to see once one’s eyes adjusted to it.</p>
+<p>The night was utterly silent.</p>
+<p>Song You walked to the bed and touched the blanket. Luck seemed to be on his side this time—the inn, likely suffering from a period of poor business, had taken the opportunity to wash all the sheets and covers. They smelled faintly of bean pods and felt dry and crisp, promising a comfortable night’s sleep.</p>
+<p>Lady Calico followed behind him, her expression troubled.</p>
+<p>“Daoist priest...” she called out.</p>
+<p>“What is it?”</p>
+<p>“Some of those people were staring at Lady Calico’s bowl all day!” she said, leaping onto the table. “Their gazes were strange.”</p>
+<p>“They looked sneaky,” Song You replied.</p>
+<p>“Sneaky!” she echoed.</p>
+<p>“They were as sneaky as thieves and rats.”</p>
+<p>“They’re sneaky!” she repeated emphatically.</p>
+<p>“They were like that at lunch too. Your bowl is both beautiful and valuable. It’s not surprising it would be coveted,” Song You explained. “Especially since it’s being used by a cat. Seeing a cat with such an exquisite bowl might make them think we don’t know its true worth.”</p>
+<p>“Coweded!” Lady Calico declared suddenly.</p>
+<p>“Yes, <em>coveted</em>—it means they’re envious and want it for themselves.”</p>
+<p>“I know that!” she said, staring at him with her sharp feline eyes. “I just find it amusing!”</p>
+<p>“I forgot how well-read you are,” Song You said with a smile.</p>
+<p>“I’m well-read and knowledgeable!”</p>
+<p>“Exactly.”</p>
+<p>“Do you think they might come tonight to steal my precious little bowl?” she asked worriedly.</p>
+<p>“<em>Sigh...”</em></p>
+<p>Song You sat down on the bed. Feeling the softness of the mattress, he...</p>
+</article>
+<article id="c380" data-label="380">
+<h2 class="chapter">Chapter 380: The State Preceptor&#39;s Scheme 🔒</h2>
+<p>“Wait!” The young armed guard seemed to suddenly realize something. “Immortal Master, you’re not planning to rob our shipment, are you?”</p>
+<p>“Of course not,” Song You replied calmly.</p>
+<p>“That’s true. With your boundless powers, you wouldn’t need to go through such trouble to rob us,” the armed guard said, then hesitated again, his tone faltering. “But this shipment seems extremely valuable. If word got out that someone in our armed guards agency leaked information, I’d be in serious trouble...”</p>
+<p>“Don’t worry,” Song You said, his gaze steady and reassuring. “Take your time. If you have concerns or anything to explain, say it all. I’m only asking about the origin and nature of the cargo. I won’t act on it in any way.”</p>
+<p>“Alright...”</p>
+<p>The armed guard finally began to speak, albeit slowly.”Honestly, we don’t even know who sent this shipment or where it’s ultimately headed. We’re just one link in the chain. As far as I know, not even our leader, Mr. Peng, knows the full details. What I do know is that it came from Yangzhou and is being sent to Yaozhou.</p>
+<p>“Since Yaozhou is full of rugged terrain, bandits, and dangerous paths, armed guards companies from outside the region won’t be able to do the job. Our company specializes in Yaozhou routes, so we were tasked with the delivery. It’s just one box. Once we get it to Fengzhou, someone...</p>
+</article>
+<article id="c381" data-label="381">
+<h2 class="chapter">Chapter 381: A Shocking Truth 🔒</h2>
+<p>The escort team gradually disappeared into the distance.</p>
+<p>Song You was about to descend the mountain. Just as he took his first step, he abruptly stopped and turned to look in another direction.</p>
+<p>A carriage was approaching slowly from there.</p>
+<p>Walking in front and behind the carriage were two men, with another two following behind. Although they wore simple robes, they were tall and powerfully built, exuding a robust vitality. Compared to the escort team from earlier, their aura was noticeably stronger.</p>
+<p>On one side of their waists hung swords and water flasks, while the other side carried quivers of arrows. If not for their lack of official attire, they would resemble the typical appearance of military officers’ attendants frequently seen in Changjing.</p>
+<p>The carriage in the center was slightly larger than an ordinary one, devoid of any adornments that would signify status or rank. It was simply covered with an oilcloth, but to Song You, it looked inexplicably familiar.</p>
+<p>Song You furrowed his brow.</p>
+<p>Suddenly, he blew a soft breath down the mountain.</p>
+<p>“<em>Whoosh</em>...”</p>
+<p>A gentle breeze swept across the mountain path.</p>
+<p>The wind was neither harsh nor chilling. It did not kick up dust or debris but lightly rustled the grass and trees along the mountainside....</p>
+</article>
+<article id="c382" data-label="382">
+<h2 class="chapter">Chapter 382: I Request Your Help for the Journey Back 🔒</h2>
+<p>This fox demon was truly extraordinary!</p>
+<p>She possessed an incredibly potent ability to conceal herself. Even among the gods in the heavens, few would be able to see through her disguise—and even those would need to carefully examine her to uncover the truth.</p>
+<p>Despite Song You’s mastery of the Four Seasons Rotation Method and the ability to reveal all hidden forms using the clarity of Qingming spiritual power, he had still been unable to discern her true nature without the precise timing of Qingming[1].</p>
+<p>Throughout the lineage of Hidden Dragon Temple successors, only a handful might have been able to see through her.</p>
+<p>And yet, she didn’t rely solely on her natural talents for concealment; she had layered herself in multiple identities.</p>
+<p>For dealing with mortals, she had the princess act as her shield. If anyone from the cultivation world—like the State Preceptor—suspected she wasn’t human, she could claim to be an immortal of the <em>qin</em>. If even that failed to convince, she could fall back on being the rabbit demon saved by the princess.</p>
+<p>Even when Song You managed to pierce her disguise and see her true form as a fox, that moment in Changjing should have been her most dangerous. She was on the verge of exposure. Yet, she remained unflustered, continuing to live in Changjing with composure. She even went so far as to seek out the Daoist herself to establish a connection,...</p>
+</article>
+<article id="c383" data-label="383">
+<h2 class="chapter">Chapter 383: Clash of Great Demons, Arrival of the Daoist 🔒</h2>
+<p>Today, a gentle breeze swept across the river—nothing but the breeze.</p>
+<p>After some time, a small boat appeared around a bend in the river, drifting effortlessly downstream.</p>
+<p>The boat barely needed to be rowed. It moved along on its own, and the boatman, at ease, occasionally broke into song. His voice echoed between the mountains on either side of the river, filling the serene scene with a sense of peace.</p>
+<p>“Ah…”</p>
+<p>Halfway through his song, the boatman suddenly groaned in pain.</p>
+<p>The damp air over the river had aggravated his chronic illness. Years of working the water had left him with rheumatism, and the sharp pain in his old legs came and went without warning, always capable of ruining his mood.</p>
+<p>But suddenly, the sound of hooves echoed from the riverbank.</p>
+<p>Faintly, the hooves were accompanied by the roars of a tiger and the howls of wolves.</p>
+<p>“...”</p>
+<p>The boatman’s groaning stopped immediately.</p>
+<p>Though the mountains flanking the Yin River were many, the forests weren’t dense. Normally, one would hear nothing more than the calls of various birds. Even wolf howls were rare, let alone this deafening roar that reverberated through the woods. The boatman didn’t recognize the sounds, but an inexplicable sense of fear gripped him, as though they came from some monstrous spirit of the mountains.</p>
+<p>Standing on his small boat in the middle of the river, he didn’t panic but instinctively craned his neck, raising his head to peer toward the source of the sound.</p>
+<p>On the path along the river, through the straight cedar forest, a figure on horseback seemed to be galloping wildly. The figure wove through the dense trees, repeatedly obscured and then revealed again, moving so fast that only a blurry shadow could be seen.</p>
+<p>In addition, there appeared to be several shorter shadows following, though their...</p>
+</article>
+<article id="c384" data-label="384">
+<h2 class="chapter">Chapter 384: Giving You Time to Run 🔒</h2>
+<p>The colossal marsh dragon, over a hundred zhang long, was far too massive to fit on an ordinary hilltop. Its dark, almost black back gleamed with a metallic yet otherworldly sheen. Every wrinkle, groove, and detail of its hide conveyed an overwhelming sense of reality and terror, as if it were a primeval beast that had traversed time and space to appear here.</p>
+<p>The marsh dragon’s eyes were open, its pupils mere slits.</p>
+<p>Under its watchful gaze, the Daoist leaned on his bamboo staff, showing not the slightest hint of fear as he slowly walked past it, continuing his ascent up the mountain.</p>
+<p>A total of five marsh dragons loomed, each possessing the cultivation of a great demon.</p>
+<p>The largest and most ancient one, positioned at the very top, had cultivation on par with the fox demon. It was no less powerful than the demon kings who had wreaked havoc in the north, amplifying their power through the blood and fury of vengeful spirits.</p>
+<p>Two other demons stood at a distance. Both were far larger and more imposing than ordinary humans.</p>
+<p>Song You suspected they belonged to the white rhinoceroses.</p>
+<p>The white rhinoceroses had been hunted relentlessly by the Heavenly Palace and had reached the end of their rope. Their presence here, seeking the State Preceptor, could mean many things. Perhaps they...</p>
+</article>
+<article id="c385" data-label="385">
+<h2 class="chapter">Chapter 385: Are You Worthy to Compare to My Master? 🔒</h2>
+<p>“<em>Whoosh</em>...”</p>
+<p>The Inferno was engulfed in roaring flames, their brightness piercingly intense, far exceeding what it had been before.</p>
+<p>The flames coursed through the mountain, creating a howling wind that echoed eerily.</p>
+<p>In an instant, the Daoist&#39;s figure was swallowed by the blaze.</p>
+<p>Yet, despite being surrounded by fire, he remained completely unharmed.</p>
+<p>Not only was he untouched, but his Daoist robe, with its flowing hem, and the emerald-green bamboo staff in his hand, remained unchanged in the flames.</p>
+<p>The Daoist walked slowly to the edge of the Inferno, lifted his head to glance upward, then surveyed his surroundings before lowering his gaze to the pit below.</p>
+<p>Not only had the intensity of the flames increased, but their nature had also changed.</p>
+<p>The fire now possessed a unique spiritual quality and function. In terms of burning ghostly souls, it was perhaps less intense than ordinary flames. Regular flames, at the very least, were feared by most ghosts; even elder spirits could not endure them for long. Yet in this fire, even newly departed souls did not immediately disintegrate.</p>
+<p>Instead, the flames burned slowly, steadily roasting the souls, reducing them to ash—while leaving behind something else.</p>
+<p>Below, countless ghostly figures writhed and twisted in agony, their numbers likely in the tens of thousands.</p>
+<p>All of them were trapped within the flames, crying, struggling, and pleading for mercy.</p>
+<p>“Ah!”</p>
+<p>“It hurts so much...”</p>
+<p>“I’m sorry for my mistakes! Please spare me!”</p>
+<p>“I only accidentally hurt someone....</p>
+</article>
+<article id="c386" data-label="386">
+<h2 class="chapter">Chapter 386: The Might of Ancient Great Demons 🔒</h2>
+<p>“<em>Boom</em>!”</p>
+<p>A thunderous explosion echoed from the distant mountaintop as countless rocks and debris erupted into the air.</p>
+<p>On closer inspection, what seemed like mere rubble were actually enormous boulders, many larger than a human. Amid this storm of massive “sand and dust,” one colossal boulder hurtled through the air with alarming speed.</p>
+<p>The size of the boulder was beyond estimation.</p>
+<p>It traveled so quickly that it was impossible to examine closely. All that could be discerned was that as soon as it launched, it darkened the sky like a massive cloud, casting a vast shadow over the ground below. Its sheer size caused it to fragment mid-flight, scattering chunks of debris.</p>
+<p>Yet even these fragments, falling to the ground, were large enough to crush oxen and elephants into pulp. Each broken piece was the size of a house.</p>
+<p>In the blink of an eye, the boulder reached the Daoist.</p>
+<p>Even though it had already shrunk significantly during its flight, it remained unimaginably massive—easily larger than the main hall of an imperial palace.</p>
+<p>Suddenly, a giant hand emerged from Mount Ye itself, as if formed from the mountain’s rock and soil. Its five fingers spread wide and firmly caught the colossal boulder.</p>
+<p>“<em>Boom</em>!”</p>
+<p>A deafening sound like mountains collapsing and the earth splitting filled the air.</p>
+<p>Yet the enormous hand remained completely steady, unwavering under the immense impact.</p>
+<p>The massive boulder didn’t harm the Daoist below in the slightest. At most, the resulting gusts of wind, laden with dust and debris, merely rustled his robe and tousled his hair.</p>
+<p>Fragments of the boulder, which had broken...</p>
+</article>
+<article id="c387" data-label="387">
+<h2 class="chapter">Chapter 387: Marsh Dragon&#39;s Domain and the Divine Prison Calamity 🔒</h2>
+<p>The entire world was engulfed in the sounds of mountains collapsing, the earth shattering, and the heavens seemingly falling apart. Roars, gales, and the waves of spiritual energy rippling through the air tore at eardrums and souls alike. Rocks shattered and debris flew, while dust and black smoke transformed the sky into a shadowy night.</p>
+<p>Yet, through the darkness, a streak of five-colored divine light pierced the gloom.</p>
+<p>Amidst the chaos, the fox demon turned to Song You and said, “Leave the old marsh Dragon Lord to us.”</p>
+<p>Song You ignored her, his eyes closed as he formed hand seals with calm precision, completely indifferent to the surrounding destruction.</p>
+<p>Gales swirled around him, lifting his robes and hair. Runes faintly appeared in the air, shimmering, while streams of spiritual energy darted like flowing light.</p>
+<p>The mountain-like white rhinoceros had already begun its charge.</p>
+<p>Song You opened his eyes and, with one hand, struck the ground.</p>
+<p>“<em>Boom</em>!”</p>
+<p>The gale slammed into the earth, propelling him skyward.</p>
+<p>“<em>Crash</em>!”</p>
+<p>The massive horn of the white rhinoceros plunged deep into the mountain. With a powerful upward thrust, it sent fragments of the mountaintop flying, shattering it as if it were made of brittle clay.</p>
+<p>The strength of the great demon was truly boundless.</p>
+<p>At the same time, the other white rhinoceros, transformed into a giant, extended its massive left hand, reaching toward the Daoist in midair, its fingers spread wide like a net. Behind it, the giant’s other fist was poised, ready to strike.</p>
+<p>That single swipe could have easily covered an entire palace.</p>
+<p>“<em>Whoosh</em>!”</p>
+<p>The Daoist, shrouded in wind,...</p>
+</article>
+<article id="c388" data-label="388">
+<h2 class="chapter">Chapter 388: Gods Shall Fall, Buddhas Shall Shatter 🔒</h2>
+<p>At Mount Ye’s outskirts…</p>
+<p>The swallow, wings flapping furiously, had been searching for the cat for quite some time. When it finally spotted her, the cat was perched neatly atop a small mound, staring intently toward Mount Ye as if entirely unafraid.</p>
+<p>By now, the Longwei Army had fully withdrawn.</p>
+<p>The swallow, too preoccupied to care about its usual wariness of the cat, flew dangerously low—so close that a single leap from the cat could snatch it from the air. Hovering just in front of her, the swallow demanded, “Have you delivered all your messages?”</p>
+<p>The cat finally turned her gaze from the distant mountain and looked up at the swallow, her expression blank as she replied, “Yes.”</p>
+<p>“Then why are you still here?” the swallow asked.</p>
+<p>“To watch the Daoist priet fight,” Lady Calico said matter-of-factly, her tone completely natural. She then fixed her wide-eyed stare on the swallow and added, “Those demons look really powerful.”</p>
+<p>“They’re all great demons descended from ancient times,” the swallow explained, “even older than us Anqing swallows, and nearly as ancient as the Daoist’s Hidden Dragon Temple. Their cultivation is profound, and they wield formidable mystical powers.</p>
+<p>“Naturally, they’re strong—perhaps no weaker than the corrupted demon kings we faced in the north. Now that several of them have gathered here, even if the Heavenly Palace’s Thunder and War Divisions descended to cleanse them, it wouldn’t be an easy task.”</p>
+<p>Having said her piece, the swallow tried to persuade the cat again. “Lady Calico, it’s better not to stay here. Leave with me at once.”</p>
+<p>“Can the Daoist priest win?” asked Lady Calico.</p>
+<p>“If Master hasn’t summoned the Thunder God to descend and assist, it must mean he is confident. There’s no need to worry!” the swallow reassured her. “Lady Calico, let’s leave quickly!”</p>
+<p>“I’m not going anywhere. I will stay right here and watch.” The cat, sharp as ever, saw no need for further explanation. Her gaze turned back toward the distant mountain. “We’re very far from it anyway.”</p>
+<p>“...”</p>
+<p>The swallow’s eyes flickered with...</p>
+</article>
+<article id="c389" data-label="389">
+<h2 class="chapter">Chapter 389: The Dust Settles 🔒</h2>
+<p>Thick black smoke hung in the air like water, and the old marsh Dragon Lord flew through the sky, his form flickering in and out of the dense smoke. At times, only his head and tail were visible, making him look just like a true dragon.</p>
+<p>The eight-tailed fox spewed radiant, multicolored divine light from its mouth, entangling with the old marsh Dragon Lord in a fierce battle.</p>
+<p>The divine light would frequently break through the sky or plow into the earth with devastating force.</p>
+<p>Suddenly, the fox took a risky gamble. With its small, fragile body, it surged forward, carrying its divine light straight into the marsh Dragon Lord.</p>
+<p>“<em>Whoosh</em>!”</p>
+<p>The divine light burst forth in a brilliant blaze.</p>
+<p>When the fox demon, shrouded in divine light and trailing black smoke, barely managed to escape the old marsh dragons&#39;s ferocious counterattack, the marsh dragon was left with one more grievous injury—its only remaining eye had gone blind.</p>
+<p>The giant eye bore a fresh claw mark, blood still flowing from the wound. If not for the bleeding, it would have looked identical to the other scarred, blinded eye.</p>
+<p>The eight-tailed fox hovered in the air, its fur dancing with the wind. Using its divine light, it dispelled the black smoke. Then, it turned its gaze toward the distance.</p>
+<p>Far away, the earth-vein giant was locked in a brutal melee with the Great Star God. Their battle was fierce, each punch connecting with raw power, and every clash erupted with sparks and divine light. Observing that the Daoist was handling the situation without much trouble, the fox withdrew its gaze.</p>
+<p>“Old marsh Dragon Lord, accept your fate.”</p>
+<p>The fox’s tone was calm and gentle, as though it was advising an old acquaintance.</p>
+<p>Just as the words fell, the fox’s...</p>
+</article>
+<article id="c390" data-label="390">
+<h2 class="chapter">Chapter 390: Changyuanzi 🔒</h2>
+<p>The spiritual light on Mount Ye dissipated, and the rocks returned to ordinary stone while the soil reverted to common earth. Though the mountain still carried the weight of its mass, how could it suppress an ancient great demon?</p>
+<p>The grayish-white giant rhinoceros burst free from the mountain.</p>
+<p>The last two great demons of the white rhinoceroses in Yuezhou reverted to their human forms—two towering, stout men with bulky physiques. They cupped their hands in unison, bowing deeply to Song You with utmost respect. Then, without a word, they turned and stepped into the water. Following the receding muddy floodwaters, they returned to the Yin River and began their eastward journey toward the sea.</p>
+<p>The three marsh dragons also emerged, each showing clear signs of injury.</p>
+<p>Not far away, a fox demon walked toward them, its steps graceful and deliberate.</p>
+<p>This phase of the battle was over, yet the shattered Ghost City atop Mount Ye had left Song You with a tremendous mess to clean up.</p>
+<p>The sky had fully darkened.</p>
+<p>At some point, the pearl that had hung in the heavens had vanished.</p>
+<p>Song You, still leaning on his staff, walked slowly onward.</p>
+<p>The smaller mountains surrounding Mount Ye had largely been flattened, the land devastated and scarred. The ground, drenched by the floodwaters, remained sodden and desolate.</p>
+<p>Alone, the Daoist made his way across the ruined landscape.</p>
+<p>The vast world seemed to contain only him.</p>
+<p>As the night deepened,...</p>
+</article>
+<article id="c391" data-label="391">
+<h2 class="chapter">Chapter 391: The Heavenly Dao and the Fox Demon 🔒</h2>
+<p>Mount Ye stood restored, as though untouched by the chaos.</p>
+<p>Song You remained indifferent to the fierce battle raging behind him. Instead, he strode toward the rebuilt Mount Ye, entering its heart.</p>
+<p>Meanwhile, the battle between the fox demon and the marsh dragons had reached a fever pitch.</p>
+<p>On one side, life surged; on the other, death loomed.</p>
+<p>The Daoist had already entered the interior of Mount Ye.</p>
+<p>“Let me borrow a strand of starlight.”</p>
+<p>From outside the mountain, the starlight scattered across the sky seemed to be drawn inward, faintly illuminating the interior of Mount Ye.</p>
+<p>What it revealed was a barren and chaotic landscape.</p>
+<p>While Song You could restore the physical form of Mount Ye, he could not recreate the structures built by the yin ghosts of the Ghost City.</p>
+<p>He did not mind. Instead, he sat cross-legged on the ground, closed his eyes, and fell into deep thought.</p>
+<p>Cultivation, as expected, required descending the mountain.</p>
+<p>In the many years since he had descended, Song You’s Daoist arts had improved, his cultivation had advanced, and his understanding of the so-called “Heavenly Dao” had deepened. Time and again, whether while climbing a mountain, meditating in practice, or caught in moments of fleeting clarity, he had inadvertently brushed against what people referred to as the Heavenly Dao—a concept often discussed among cultivators.</p>
+<p>“Heavenly Dao’s revelations…”</p>
+<p>From what Song You had perceived, the Heavenly Dao was devoid of emotion.</p>
+<p>Not only was it emotionless, but it was also not some entity detached from the mortal...</p>
+</article>
+<article id="c392" data-label="392">
+<h2 class="chapter">Chapter 392: Daoist Priest, Do You Have Some Powerful Skills You Haven’t Taught Lady Calico? 🔒</h2>
+<p>“If you could defeat the old marsh Dragon Lord, then single-handedly take down three marsh dragons and claim victory, and even possess the power of the fox ancestor’s severed tail, why didn’t you exact your revenge as a nine-tailed fox earlier?” Song You asked.</p>
+<p>“First,” the woman replied calmly, her tone steady, “I pushed my limits as a fox demon to defeat the old marsh Dragon Lord. To then fight and overcome three marsh dragons in succession cost me a hundred years of my lifespan.</p>
+<p>“Second, the power of the ancestor’s severed tail is tyrannical and not something any fox can use lightly. When I left Yuezhou years ago, I hadn’t yet gained the ability to wield it. Even now that I can, using it still burns a hundred years of my lifespan.</p>
+<p>“Third, while the marsh dragons remained in Yuezhou, even with the power of the ancestor’s severed tail granting me the strength of an ancient great being, I had to be wary of the thousand-year willow tree in Yuezhou.”</p>
+<p>She spoke with clarity and reason, “Fourth, the ancestor’s severed tail is singular—there has only ever been one in existence. It has been passed down through the ages for thousands of years. Its significance lies in preserving our lineage amidst a world evolving into one dominated by Divine Dao.</p>
+<p>“If I were...</p>
+</article>
+<article id="c393" data-label="393">
+<h2 class="chapter">Chapter 393: Lady Calico Takes Charge of the Daoist&#39;s Meals 🔒</h2>
+<p>The interior of Mount Ye was now vast and empty. The borrowed starlight still glimmered faintly, while Lady Calico had started a small fire on the ground. The Daoist sat cross-legged nearby, and she sat beside him, tilting her head upward to look at him. Whether or not her neck was getting tired was unclear, but the Daoist was more concerned about when her endless stream of questions might finally stop.</p>
+<p>“Why was this place flooded with water?”</p>
+<p>“It was a great marsh dragon demon who blocked the rivers and diverted the water to form this marsh here,” Song You replied patiently.</p>
+<p>“Blocked the rivers!”</p>
+<p>“If you train well, you won’t even need to learn spells. With the Water-Splitting Blade, you could draw water like a dragon and redirect entire rivers,” Song You said.</p>
+<p>“Really?”</p>
+<p>“For someone capable like you, of course it’s possible.”</p>
+<p>“How long will it take?”</p>
+<p>“...”</p>
+<p>“How long?”</p>
+<p>The cat stared at him with a serious expression, refusing to let the question go.</p>
+<p>“Maybe a few hundred years.”</p>
+<p>“So long!”</p>
+<p>“It’ll pass in the blink of an eye.”</p>
+<p>“Why did they bring the water here?” Lady Calico’s expression grew even more serious. “Did they want to drown you, Daoist priest?”</p>
+<p>“They wanted to create a battlefield that favored them.”</p>
+<p>“That sounds amazing!”</p>
+<p>“Transforming the landscape is an...</p>
+</article>
+<article id="c394" data-label="394">
+<h2 class="chapter">Chapter 394: A Small World of Its Own 🔒</h2>
+<p>Outside, it was already daylight, but the mountains remained shrouded in darkness.</p>
+<p>Within the dimness, the leisurely sound of a <em>qin </em>echoed through the air.</p>
+<p>The melody was intermittent, as if the <em>qin </em>player followed only their whims—playing faster when the mood struck, pausing longer when lost in thought. There was no discernible tune, as if everything was dictated solely by their heart&#39;s desire.</p>
+<p>The Daoist finished eating his small fish, rinsed his mouth, then stood and looked off into the distance.</p>
+<p>A square, flat boulder stood nearby, resembling a <em>qin </em>table. A woman dressed in white sat behind it, her figure strikingly prominent in the dim mountain landscape. She kept her head bowed as she plucked at the <em>qin </em>strings. Behind her stood a quiet and obedient maidservant, who, rather than showing any interest in her mistress&#39;s ethereal music, kept her gaze fixed on the Daoist.</p>
+<p>“I have matters to attend to. Please feel free to stay as you wish,” the Daoist said.</p>
+<p>“Don’t mind us, Daoist Master,” the woman replied, her voice calm as she continued playing. She didn’t even lift her head to glance at him.</p>
+<p>With a flick of his sleeve, the Daoist extinguished the campfire. Without another word, he turned and walked into the depths of the darkness.</p>
+<p>The <em>qin </em>music remained intermittent, leisurely yet ethereal.</p>
+<p>Only the maid turned her head, her clear, bright eyes reflecting the Daoist&#39;s figure as he walked farther and farther away, growing smaller and fainter in the ...</p>
+</article>
+<article id="c395" data-label="395">
+<h2 class="chapter">Chapter 395: The Swallow is as Clever as Lady Calico 🔒</h2>
+<p>“<em>Phew</em>...”</p>
+<p>Song You opened his eyes, exhaled a long breath, and paused briefly, sinking into silent contemplation.</p>
+<p>This was undoubtedly a complex and arduous process.</p>
+<p>The smaller challenge lay in the fact that his primary cultivation was in the Four Seasons Rotation Method. While the Four Seasons Rotation Method was boundlessly versatile, and its extreme yang and extreme yin spiritual energies could mimic yin-yang to some extent, it ultimately fell short compared to the true Yin-Yang Method.</p>
+<p>As a result, there was an underlying sense that there was an abundance of the seasonal spiritual energy but a deficiency in the yin and yang.</p>
+<p>This issue, however, was not difficult to resolve and didn’t pose a significant impact. At worst, it would simply take more time to achieve his goal.</p>
+<p>The greater challenge, though, was capturing that spiritual resonance and profundity—something that connected with the heavens and aligned with the natural laws of the universe. Without this connection, he couldn’t achieve the kind of creation he sought.</p>
+<p>This issue was far more nebulous.</p>
+<p>At its core, it boiled down to one point. No one before him had ever left behind a divine technique to create such transformative wonders. Song You was attempting to forge this path entirely on his own, and it was no easy task.</p>
+<p>Fortunately, he already had some prior...</p>
+</article>
+<article id="c396" data-label="396">
+<h2 class="chapter">Chapter 396: A Visit from Heavenly Palace Deities 🔒</h2>
+<p>“Immortal Master...”</p>
+<p>“There is no need to be afraid,” Song You said calmly as he looked at them. “For the State Preceptor to have valued and appointed you, you must be people of outstanding virtue and exceptional ability. Please introduce yourselves.”</p>
+<p>“...”</p>
+<p>The three ghosts became even more uneasy when he mentioned the State Preceptor.</p>
+<p>They exchanged glances, and an elder was the first to step forward.</p>
+<p>The elder bowed as he spoke. “I’m Fang Dongnian. During my life, I served as the Vice Minister of Revenue for the Great Yan court. After resigning, I passed away at home and became a ghost. The State Preceptor, remembering my integrity and uprightness as an official and my many efforts in disaster relief, appointed me as the vice minister of the First Palace.</p>
+<p>“Until a new Ghost King is appointed, I temporarily oversee matters of capturing ghosts, registering them, and evaluating their merits and sins.”</p>
+<p>“Greetings,” Song You replied.</p>
+<p>He had heard of this Vice Minister of Revenue before.</p>
+<p>Fang Dongnian was known for his virtuous conduct and had personally gone to the frontlines during disasters, making significant contributions to relief efforts. However, virtue could be both an asset and a limitation for an official. As a result, he had only risen to the position of Vice Minister.</p>
+<p>“I’m Tang Xiu. During my life, I served as the head magistrate of Changjing. I was demoted after offending a powerful noble. After my death, the State Preceptor, recognizing my fairness and impartiality in office, appointed me as the vice minister of the Second Palace. I temporarily oversee the matters of reward,...</p>
+</article>
+<article id="c397" data-label="397">
+<h2 class="chapter">Chapter 397: Divine Lord Yuewang 🔒</h2>
+<p>Lady Calico wore a solemn expression, her ears occasionally twitching slightly.</p>
+<p>“May I ask what brings you to this place...?” The elderly deity glanced to his left and right before addressing Song You, his voice soft and benevolent.</p>
+<p>“The State Preceptor harbored selfish ambitions and schemed against the natural order. The gods acted without virtue, descending to the mortal realm and causing chaos. This led to the destruction of Mount Ye’s Ghost City,” Song You replied in an even tone. “I am currently reconstructing it.”</p>
+<p>“The method you are using to rebuild seems quite different from that of the former State Preceptor of Great Yan,” the Immortal Elder of Green Wood remarked, his eyes widening slightly as he carefully observed the spiritual resonance around him. “It is imbued with the balance of yin and yang, the cycle of the four seasons, and draws upon the Five Elements of heaven and earth...”</p>
+<p>The Immortal Elder left the rest unsaid, simply cupping his hands and offering Song You a compliment, “Your Excellency possesses great divine powers and remarkable mastery of creation!”</p>
+<p>“Immortal Elder, you have sharp eyes and profound insight,” Song You replied, sincerely returning the compliment.</p>
+<p>“I’ve only lived long, that’s all,” the Immortal Elder said with a wave of his hand, then asked, “Is Your Excellency planning to remain here in this mortal world&#39;s Ghost City, serving as its guardian, rather than traveling the world?”</p>
+<p>“Not...</p>
+</article>
+<article id="c398" data-label="398">
+<h2 class="chapter">Chapter 398: Meeting the Divine Lord in a Dream 🔒</h2>
+<p>The world was shrouded in a vast expanse of white—not a pure white, but a textured, slightly pale gray, like the depths of endless mist.</p>
+<p>The white fog swirled gently with the wind.</p>
+<p>In the depths of the mist sat a young Daoist. His simple robe, washed so often it had faded to a pale hue, wrapped around him as he sat cross-legged. The mist circled around him, flowing softly.</p>
+<p>Suddenly, divine light descended.</p>
+<p>“<em>Swish</em>!”</p>
+<p>Within the fog, a godly figure appeared.</p>
+<p>It was a rugged yet elegant middle-aged man, his hair casually loose, a beard framing his face. He wore an ancient and magnificent robe, exuding a restrained divine radiance. He seemed both carefree and refined—a perfect blend of nonchalance and sophistication.</p>
+<p>“Divine Lord, it has been a long time,” Song You said, standing and bowing politely upon seeing him.</p>
+<p>“I can’t even remember how long it’s been,” Divine Lord Yuewang replied, standing with his hands cupped behind his back, his eyes fixed intently on Song You. “But I do recall you mocking me before.”</p>
+<p>“It has been six or seven years. For you, Divine Lord, that might feel like the blink of an eye, but for us mortals, it’s quite a long time,” Song You replied calmly, purposefully ignoring the latter half of the Divine Lord’s comment. “After traveling across half of Great Yan in these six or seven years, what left the deepest impression...</p>
+</article>
+<article id="c399" data-label="399">
+<h2 class="chapter">Chapter 399: Lady Calico, the Most Diligent 🔒</h2>
+<p>“We need to go faster…”</p>
+<p>Song You sat atop the high platform, a trace of helplessness in his expression.</p>
+<p>He glanced downward—</p>
+<p>The fox demon remained as she always was: drinking wine when idle, playing the <em>qin </em>when in the mood, and collapsing onto the instrument to sleep when drunk. She was carefree and unbothered, speaking to no one.</p>
+<p>Behind her, a maidservant—whoever she might be—sat obediently and quietly. She neither slept nor spoke, occasionally tilting her head to doze briefly, but most of the time, she gazed curiously upward, staring at the Daoist.</p>
+<p>At this moment, the fox demon was still playing the <em>qin</em>.</p>
+<p>After a moment of silence, Song You finally spoke, “Are you cultivating the Yin-Yang Method?”</p>
+<p>The woman continued to play the qin without pause, replying only with her voice, “Naturally.”</p>
+<p>Most demons cultivated the Yin-Yang Method, drawing in the essence of the sun and moon. They primarily focused on lunar energy and yin power, then refined solar essence and yang power later to balance the two. Only then could they become great demons.</p>
+<p>“I need to borrow a bit of pure yin-yang spiritual energy.”</p>
+<p>The fox demon remained silent, neither agreeing nor refusing, her gaze fixed on the strings of her qin.</p>
+<p>However, the maidservant behind her stood up. She glanced up at the high platform, then began walking slowly toward it,...</p>
+</article>
+<article id="c400" data-label="400">
+<span id="last"></span>
+<h2 class="chapter">Chapter 400: A Bright Mid-Autumn Moon 🔒</h2>
+<p>In the Ghost City, faint traces of <em>qin </em>music drifted through the air, barely perceptible yet soothing to the mind and soul. It was impossible to tell where the melody was coming from.</p>
+<p>The monk slowed his steps and glanced around, observing the Ghost City and the spirits moving about within it.</p>
+<p>He soon noticed that most of the ghosts here had young or middle-aged appearances. Judging by their faces, they clearly hadn’t died of old age. His expression softened with pity, as if he could empathize with them simply by seeing their plight.</p>
+<p>Suddenly, a ghost froze in place, staring blankly at him. The ghost immediately set aside what it was doing and offered the monk a deep bow.</p>
+<p>“Master…”</p>
+<p>“Amitabha…”</p>
+<p>The monk quickly returned the gesture.</p>
+<p>When both stood upright again, the young ghost’s face was already streaked with tears. The ghost looked at him and asked, sobbing, “Master, how did you end up here? Have you died too? With your great cultivation and virtue, how could someone as young as you end up in this place…?”</p>
+<p>The ghost’s voice was filled with sorrow and sincerity.</p>
+<p>“Oh…” The monk realized the misunderstanding.</p>
+<p>He hurried to explain why he was there, detailing how he had come to the Ghost City. He then asked for the ghost’s name and background, only to learn that this spirit had perished during the great plague in Gui...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="401-450.html" rel="next">Next: Chs 401–450 &rarr;</a>
+    <p class="page-end-links"><a href="301-350.html" rel="prev">&larr; Chs 301–350</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Unintended Immortality · Chs 351–400</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c351">Chapter 351: The Legacy of the Demons in Yuezhou 🔒</a></li>
+        <li><a href="#c352">Chapter 352: There Would No Longer Be a Wanjiang in Changjing 🔒</a></li>
+        <li><a href="#c353">Chapter 353: A Coincidence 🔒</a></li>
+        <li><a href="#c354">Chapter 354: The Water-Splitting Blade and the Divine Being 🔒</a></li>
+        <li><a href="#c355">Chapter 355: Love Nothing More Than Challenging the Gods 🔒</a></li>
+        <li><a href="#c356">Chapter 356: Not Only the Court Deceives the People 🔒</a></li>
+        <li><a href="#c357">Chapter 357: The Snake Immortal’s Aid 🔒</a></li>
+        <li><a href="#c358">Chapter 358: The Physician Writes Doctor Cai’s Medical Canon 🔒</a></li>
+        <li><a href="#c359">Chapter 359: Plum Blossoms Bloom in the Capital 🔒</a></li>
+        <li><a href="#c360">Chapter 360: A Sleight of Hand 🔒</a></li>
+        <li><a href="#c361">Chapter 361: May Good News Abound, and Don’t Forget This Wanderer of the Jianghu 🔒</a></li>
+        <li><a href="#c362">Chapter 362: You Aren’t Heading to Mount Ye Too, Are You? 🔒</a></li>
+        <li><a href="#c363">Chapter 363: Traveling Together to Fengzhou 🔒</a></li>
+        <li><a href="#c364">Chapter 364: Visiting the Divine at Qingxiao Temple 🔒</a></li>
+        <li><a href="#c365">Chapter 365: May the Gods Bless Me to Become a Nine-Tailed Fox 🔒</a></li>
+        <li><a href="#c366">Chapter 366: The Fox&#39;s True Nature 🔒</a></li>
+        <li><a href="#c367">Chapter 367: Payment to Be the Scapegoat 🔒</a></li>
+        <li><a href="#c368">Chapter 368: The Marsh Dragon Beneath the Waters 🔒</a></li>
+        <li><a href="#c369">Chapter 369: Heading Straight for Mount Ye 🔒</a></li>
+        <li><a href="#c370">Chapter 370: A Matter of Fate 🔒</a></li>
+        <li><a href="#c371">Chapter 371: Lady Calico’s Ghost City Adventure 🔒</a></li>
+        <li><a href="#c372">Chapter 372: Flawless 🔒</a></li>
+        <li><a href="#c373">Chapter 373: 🔒</a></li>
+        <li><a href="#c374">Chapter 374: Observations in Ghost City 🔒</a></li>
+        <li><a href="#c375">Chapter 375: Lady Calico&#39;s Wise Guidance 🔒</a></li>
+        <li><a href="#c376">Chapter 376: Farewell to Zhengxi 🔒</a></li>
+        <li><a href="#c377">Chapter 377: Tales from Zhengxi 🔒</a></li>
+        <li><a href="#c378">Chapter 378: An Encounter with Armed Guards 🔒</a></li>
+        <li><a href="#c379">Chapter 379: Lady Calico Hunts Again 🔒</a></li>
+        <li><a href="#c380">Chapter 380: The State Preceptor&#39;s Scheme 🔒</a></li>
+        <li><a href="#c381">Chapter 381: A Shocking Truth 🔒</a></li>
+        <li><a href="#c382">Chapter 382: I Request Your Help for the Journey Back 🔒</a></li>
+        <li><a href="#c383">Chapter 383: Clash of Great Demons, Arrival of the Daoist 🔒</a></li>
+        <li><a href="#c384">Chapter 384: Giving You Time to Run 🔒</a></li>
+        <li><a href="#c385">Chapter 385: Are You Worthy to Compare to My Master? 🔒</a></li>
+        <li><a href="#c386">Chapter 386: The Might of Ancient Great Demons 🔒</a></li>
+        <li><a href="#c387">Chapter 387: Marsh Dragon&#39;s Domain and the Divine Prison Calamity 🔒</a></li>
+        <li><a href="#c388">Chapter 388: Gods Shall Fall, Buddhas Shall Shatter 🔒</a></li>
+        <li><a href="#c389">Chapter 389: The Dust Settles 🔒</a></li>
+        <li><a href="#c390">Chapter 390: Changyuanzi 🔒</a></li>
+        <li><a href="#c391">Chapter 391: The Heavenly Dao and the Fox Demon 🔒</a></li>
+        <li><a href="#c392">Chapter 392: Daoist Priest, Do You Have Some Powerful Skills You Haven’t Taught Lady Calico? 🔒</a></li>
+        <li><a href="#c393">Chapter 393: Lady Calico Takes Charge of the Daoist&#39;s Meals 🔒</a></li>
+        <li><a href="#c394">Chapter 394: A Small World of Its Own 🔒</a></li>
+        <li><a href="#c395">Chapter 395: The Swallow is as Clever as Lady Calico 🔒</a></li>
+        <li><a href="#c396">Chapter 396: A Visit from Heavenly Palace Deities 🔒</a></li>
+        <li><a href="#c397">Chapter 397: Divine Lord Yuewang 🔒</a></li>
+        <li><a href="#c398">Chapter 398: Meeting the Divine Lord in a Dream 🔒</a></li>
+        <li><a href="#c399">Chapter 399: Lady Calico, the Most Diligent 🔒</a></li>
+        <li><a href="#c400">Chapter 400: A Bright Mid-Autumn Moon 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="301-350.html" rel="prev">&larr; Chs 301–350</a>    <a href="../../index.html">Library</a>
+<a href="401-450.html" rel="next">Chs 401–450 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

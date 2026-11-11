@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Overlord of Puluo Chs 201–250</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="151-200.html#last" data-next-page="251-300.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c201">Chapter 201: Into the Tiger’s Den 🔒</a></li>
+        <li><a href="#c202">Chapter 202: The Number One Daoist Path Under the Heavens 🔒</a></li>
+        <li><a href="#c203">Chapter 203: Yuren City 🔒</a></li>
+        <li><a href="#c204">Chapter 204: Warding Off Ill Omen 🔒</a></li>
+        <li><a href="#c205">Chapter 205: If You Want to Leave, Then Leave! 🔒</a></li>
+        <li><a href="#c206">Chapter 206: Abilities of the Folly Cultivators 🔒</a></li>
+        <li><a href="#c207">Chapter 207: Freewind Wharf 🔒</a></li>
+        <li><a href="#c208">Chapter 208: Level Four of Wanderlust Cultivation 🔒</a></li>
+        <li><a href="#c209">Chapter 209: Thirty Percent of Puluo 🔒</a></li>
+        <li><a href="#c210">Chapter 210: The Marvelous Film at the Platform 🔒</a></li>
+        <li><a href="#c211">Chapter 211: Iron Gate Fort 🔒</a></li>
+        <li><a href="#c212">Chapter 212: Deception Cultivator 🔒</a></li>
+        <li><a href="#c213">Chapter 213: He Is My Junior Brother 🔒</a></li>
+        <li><a href="#c214">Chapter 214: The Invisible Enemy 🔒</a></li>
+        <li><a href="#c215">Chapter 215: Half Truth 🔒</a></li>
+        <li><a href="#c216">Chapter 216: Hear Me At The Door 🔒</a></li>
+        <li><a href="#c217">Chapter 217: Senior Brother, Don’t Go! 🔒</a></li>
+        <li><a href="#c218">Chapter 218: A Good Subordinate 🔒</a></li>
+        <li><a href="#c219">Chapter 219: The Ruthless Combat Methods of the Upright Daoist Path 🔒</a></li>
+        <li><a href="#c220">Chapter 220: Level-Five Ability of a Homebound Cultivator 🔒</a></li>
+        <li><a href="#c221">Chapter 221: The Fort Lord’s Name Is Fort Lord 🔒</a></li>
+        <li><a href="#c222">Chapter 222: Flying Eagle Mountain 🔒</a></li>
+        <li><a href="#c223">Chapter 223: Husband Sings, Wife Follows 🔒</a></li>
+        <li><a href="#c224">Chapter 224: Beyond The Grave Mound Lie More Hills 🔒</a></li>
+        <li><a href="#c225">Chapter 225: Iron Gate Fort or Blood Gate Fort 🔒</a></li>
+        <li><a href="#c226">Chapter 226: Zhao Xiaowan 🔒</a></li>
+        <li><a href="#c227">Chapter 227: Acknowledging a Master 🔒</a></li>
+        <li><a href="#c228">Chapter 228: The Red Tassel Is Not a Spear 🔒</a></li>
+        <li><a href="#c229">Chapter 229: Success 🔒</a></li>
+        <li><a href="#c230">Chapter 230: The Long Spear Exploding Tiger 🔒</a></li>
+        <li><a href="#c231">Chapter 231: Peach Blossom Lake 🔒</a></li>
+        <li><a href="#c232">Chapter 232: Black Market 🔒</a></li>
+        <li><a href="#c233">Chapter 233: You Want to Kill Me? 🔒</a></li>
+        <li><a href="#c234">Chapter 234: The Balancer 🔒</a></li>
+        <li><a href="#c235">Chapter 235: Who Are You Calling Dust? 🔒</a></li>
+        <li><a href="#c236">Chapter 236: Who Can Guard Against a Thief for a Thousand Days? 🔒</a></li>
+        <li><a href="#c237">Chapter 237: Getting to the Root of the Matter 🔒</a></li>
+        <li><a href="#c238">Chapter 238: Reunion 🔒</a></li>
+        <li><a href="#c239">Chapter 239: The Sage&#39;s Peak 🔒</a></li>
+        <li><a href="#c240">Chapter 240: The Sage&#39;s Disciples 🔒</a></li>
+        <li><a href="#c241">Chapter 241: Making a Living By Relying on Talents 🔒</a></li>
+        <li><a href="#c242">Chapter 242: Endless Sincerity 🔒</a></li>
+        <li><a href="#c243">Chapter 243: You Must Respect the Elderly 🔒</a></li>
+        <li><a href="#c244">Chapter 244: Binding Edict and Spoken Word Manifestation 🔒</a></li>
+        <li><a href="#c245">Chapter 245: Eldest Senior Brother 🔒</a></li>
+        <li><a href="#c246">Chapter 246: Ruptured Cocoon 🔒</a></li>
+        <li><a href="#c247">Chapter 247: The Name of This Place 🔒</a></li>
+        <li><a href="#c248">Chapter 248: The Sage 🔒</a></li>
+        <li><a href="#c249">Chapter 249: Won Half 🔒</a></li>
+        <li><a href="#c250">Chapter 250: Worry-Free Flat 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="the-overlord-of-puluo">
+<article id="c201" data-label="201">
+<h2 class="chapter">Chapter 201: Into the Tiger’s Den 🔒</h2>
+<p>&#34;Old Wu, do you know what Old Land is?&#34;</p>
+<p>Ma Wu nodded. &#34;Of course I do. Old Land is a fine place to make money.&#34;</p>
+<p>&#34;And how exactly does it make money?&#34;</p>
+<p>&#34;Well, the way it works is like this. First you have to get that thing, and then…&#34; Ma Wu suddenly stopped. His eyes slid toward the side of the hall, and his face twisted in discomfort. &#34;Old Qi, if we are going to talk about business, could we please send the band outside first?&#34;</p>
+<p>Ma Wu could not take it anymore. The two of them were trying to discuss serious, secret, money-making matters. Yet right beside them, Li Banfeng had stationed a band that was making a racket loud enough to scare the birds out of the trees.</p>
+<p>It might have been bearable if they could actually play. Instead, the drummer kept dropping the beat, and the trumpet player blasted notes so crooked that the poor tune never stood a chance.</p>
+<p>Li Banfeng knew perfectly well that the band was terrible. That was not the point. They were there for the atmosphere. &#34;Bear with it for now. I will recruit a few more musicians in a few days.&#34;</p>
+<p>&#34;Don&#39;t you still have a gramophone? Why not use that to play music instead?&#34;</p>
+<p>&#34;That gramophone has another use. I will tell you about it later. Let&#39;s talk about Old Land first.&#34;</p>
+<p>Ma Wu frowned. &#34;Old Qi, what I am about to say are secrets for making money. Are you sure you want them listening in?&#34;</p>
+<p>Li Banfeng immediately sent the band outside. When it came to matters that required secrecy, there was no room for carelessness.</p>
+<p>Ma Wu then began explaining the nature of Old Land. Compared to Zuo Wugang, he was far better at putting things into words. The concepts he described were largely the same as Wifey&#39;s, but his focus was different. He was explaining how people made money from it.</p>
+<p>&#34;In Old Land, making money works...</p>
+</article>
+<article id="c202" data-label="202">
+<h2 class="chapter">Chapter 202: The Number One Daoist Path Under the Heavens 🔒</h2>
+<p>Within the dense fog, the two hurried forward.</p>
+<p>The hunter, Sun Tiecheng, moved at a fair pace. In half a day, he had covered more than thirty-five kilometers. However, for a level-three Wanderlust Cultivator, that speed was honestly quite slow.</p>
+<p>&#34;Are you really a Wanderlust Cultivator?&#34; Li Banfeng asked, growing impatient with the sluggish pace.</p>
+<p>Sun Tiecheng answered honestly, &#34;Sir, we can&#39;t walk too fast. If we move too fast, we won&#39;t be able to find Old Land.&#34;</p>
+<p>&#34;Why is that?&#34;</p>
+<p>&#34;I can&#39;t really explain it,&#34; Sun Tiecheng said. &#34;I only know that along this road, you have to walk slowly if you want to find the gate to Old Land.&#34;</p>
+<p><em>A gate? Old Land had a gate?</em></p>
+<p>The more Li Banfeng heard, the more curious he became.</p>
+<p>After another half day of walking, the fog finally began to thin. Little by little, something dark took shape ahead of them.</p>
+<p>It was a city. Unlike Greenwater City, this was not a modern settlement but an ancient one. High stone walls ringed the city. Jagged battlements crowned the top. And above the entrance rose a tall, heavy gatehouse that stared down at the road like a watchful giant.</p>
+<p>Sun Tiecheng pointed ahead. &#34;Sir, that&#39;s Yuren City. Once we pass through it and keep heading south, we&#39;ll reach Iron Goat Mountain.&#34;</p>
+<p>&#34;Yuren City?&#34; Li Banfeng asked. &#34;Does that mean there are lots of fishermen there?&#34;</p>
+<p>Sun Tiecheng shook his head. &#34;Not that yu. It&#39;s the other yu. I can&#39;t read, so I don&#39;t really know how to explain it.&#34;</p>
+<p>A city appearing so suddenly in the middle of an endless wilderness put Li Banfeng on edge. The place gave him a bad feeling, as if danger were already waiting inside.</p>
+<p>A Wanderlust Cultivator&#39;s first rule was simple: Seeking Fortune and Avoiding Calamity.</p>
+<p>Li Banfeng said to Sun Tiecheng, &#34;We won&#39;t...</p>
+</article>
+<article id="c203" data-label="203">
+<h2 class="chapter">Chapter 203: Yuren City 🔒</h2>
+<p><em>The number one Daoist path in the world? That&#39;s terrifying to hear! Why isn&#39;t Homebound Cultivation or Wanderlust Cultivation the number one Daoist path instead?</em></p>
+<p>Li Banfeng refused to accept it. &#34;Wifey, what abilities does this Daoist Path have?&#34;</p>
+<p>&#34;Heyaa, my dear, that question really stumps me. I do not know what abilities the Folly Cultivators possess. I have never seen a Folly Cultivator before. That Daoist path has been extinct for a very long time. There haven&#39;t been any Folly Cultivators in the world for many years. All I know is that this Daoist path was incredibly formidable. Its members were extremely shrewd and used crafty and deceitful tactics. They had no rivals among those of the same cultivation level.&#34;</p>
+<p><em>No rivals?</em></p>
+<p>With the exception of Gold Cultivators, all the Daoist paths of the world had a counterpart that they could overcome and be overcome by. That was what the Peddler had said.</p>
+<p>&#34;Is there no Daoist path that can overcome Folly Cultivators?&#34;</p>
+<p>The Gramophone replied, &#34;It is said that under the heavens, there is only one Daoist path capable of overcoming Folly Cultivators. But cultivators of that Daoist path are powerless to fight them.&#34;</p>
+<p>&#34;Wait,&#34; Li Banfeng said with a frown. &#34;I don&#39;t understand. Which Daoist path can overcome Folly Cultivators? And why would they be unable to fight them?&#34;</p>
+<p>&#34;I don&#39;t know which Daoist Path it is, nor do I know why they are unable to fight them. If I had to guess,...</p>
+</article>
+<article id="c204" data-label="204">
+<h2 class="chapter">Chapter 204: Warding Off Ill Omen 🔒</h2>
+<p>The next morning, Li Banfeng woke up feeling refreshed and stepped out of the Pocket Dwelling.</p>
+<p>His mind felt much clearer than it had the day before. Perhaps the good night&#39;s rest had finally settled his thoughts, or perhaps the special properties of the dwelling had helped him shake off the influence of the Folly Cultivators&#39; techniques. Whatever the reason, the fog that had clouded his thinking the previous day was gone.</p>
+<p>The truth was that some problems only needed a moment of quiet reflection before their answers revealed themselves.</p>
+<p>Could someone truly get lost in this city? No.</p>
+<p>No matter how complicated the streets were, if someone simply kept walking in one direction, they would eventually reach the city wall.</p>
+<p>Once he reached the wall, all he had to do was follow it, and sooner or later he would find one of the city gates. As long as he could leave the city through that gate, everything would return to normal.</p>
+<p>After thinking it through, Li Banfeng felt a great deal more confident. How large could this city possibly be? Even if it stretched from one end to the other, it could not be more than fifty kilometers across.</p>
+<p>For Li Banfeng, fifty kilometers was nothing. At his speed, he would not even need half an hour to cover that distance. The only thing he had to ensure was that he kept moving in a straight line the entire time.</p>
+<p>With that plan in mind, Li Banfeng immediately set off. Whenever the road ahead curved away from his direction, he ignored it entirely. He vaulted over walls, crossed courtyards, and pushed straight forward without hesitation, forcing his way through the city in the most direct path possible.</p>
+<p>After running for more than five hours, Li Banfeng still had not found the city wall. The street ahead looked exactly like the ones he had already passed through. A wide main road stretched forward, lined with open shops and noisy vendor stalls.</p>
+<p>Behind him were narrow alleys where people strolled leisurely or stood chatting in small groups. Li Banfeng was certain he had been here before. In fact, he had passed through this very place more than once.</p>
+<p>Along the way, he had tried...</p>
+</article>
+<article id="c205" data-label="205">
+<h2 class="chapter">Chapter 205: If You Want to Leave, Then Leave! 🔒</h2>
+<p><em>If. Hungry. Eat.</em></p>
+<p>The Judge&#39;s Brush suddenly said those three words. Then it went quiet again.</p>
+<p>The fortune teller did not have the ability of Perceiving the Spirit&#39;s Melody, so he could not hear the Judge&#39;s Brush. Even so, he sensed that the atmosphere in the room had changed slightly.</p>
+<p>On the wide mouth of the gramophone&#39;s horn, tiny droplets appeared.</p>
+<p>&#34;Mustn&#39;t eat him, mustn&#39;t eat him,&#34; the Gramophone murmured to herself. &#34;We still need this old thing to guide my husband out of the city.&#34;</p>
+<p>The Gramophone was not short on food, so the thought vanished from her mind almost as soon as it appeared.</p>
+<p>Li Banfeng, however, did not dismiss it at all. &#34;Wifey, eat him!&#34;</p>
+<p>&#34;Husband, we can&#39;t eat this person yet…&#34;</p>
+<p>&#34;Eat him now.&#34;</p>
+<p>&#34;If we eat him now, how will you…&#34;</p>
+<p>Li Banfeng looked at the Gramophone. &#34;Are you not listening to me?&#34;</p>
+<p>The Gramophone pondered for a while. Then, a thin, ghostly mist began to seep out of the mouth of the horn.</p>
+<p>The fortune teller&#39;s face was drained of color.</p>
+<p>&#34;What are you doing?&#34; he cried. &#34;Young man, don&#39;t you want to leave? Do you plan to stay trapped in this city for the rest of your life? I can take you out. I know the way out. I&#39;ll take you—&#34;</p>
+<p><em>Bang!</em></p>
+<p>Li Banfeng gave the fortune teller a sharp kick.</p>
+<p>The man lurched forward, stumbling helplessly until he landed right in front of the Gramophone.</p>
+<p>At once, the great horn let out a furious whirl.</p>
+<p><em>Whooooosh!</em></p>
+<p>Wifey inhaled.</p>
+<p>The fortune teller&#39;s soul disappeared straight into the horn as if it had been sucked up by a greedy vacuum. When everything finally settled, there was no body left on the floor. Only a dreadful mess of scattered flesh and splashes of blood.</p>
+<p>Li Banfeng looked at the Crimson Lotus. &#34;Eat.&#34;</p>
+<p>The Crimson Lotus glanced at the scraps of flesh on the floor but did not take a bite.</p>
+<p>She disliked eating mundane things. Yet the body of a...</p>
+</article>
+<article id="c206" data-label="206">
+<h2 class="chapter">Chapter 206: Abilities of the Folly Cultivators 🔒</h2>
+<p>Li Banfeng lay on the bed while Sun Tiecheng stood beside it.</p>
+<p>Sun Tiecheng clasped his hands together. The same simple, honest smile remained on his face, and he still looked like an upright and straightforward man.</p>
+<p>His tone was plain and unpretentious, as if he were simply chatting with Li Banfeng. &#34;I really didn&#39;t expect you to be a Lazy Cultivator.</p>
+<p>&#34;I&#39;ve never seen anyone cultivate both the Wanderlust Cultivation and the Lazy Cultivation. Technically speaking, these two paths cannot be cultivated together.</p>
+<p>&#34;I wouldn&#39;t have invited you to take the trial if I had known you were a Lazy Cultivator. Lazy Cultivators hold too much of an advantage in Yuren City. You were only able to pass the trial because of your advantage as a Lazy Cultivator.&#34;</p>
+<p>&#34;Do Lazy Cultivators counter Folly Cultivators?&#34; Li Banfeng asked listlessly.</p>
+<p>&#34;You didn&#39;t know that?&#34; Sun Tiecheng pressed his lips together. Then he squatted down, clasping his hands behind his back.</p>
+<p>In the same simple, honest tone, he said, &#34;Then just pretend I never mentioned it…&#34;</p>
+<p>That honest, guileless look was simply too misleading.</p>
+<p>Sun Tiecheng continued, &#34;I just said you passed the trial. You might not understand what that means yet. In truth, it&#39;s similar to activating a plot of land in the New Land.</p>
+<p>&#34;Stay alive on a plot of land in the New Land for three days, and you pass the trial of worthiness. Walk out of Yuren City alive, and you pass the trial here as well. And since you&#39;ve passed, I have three rewards for you. Rewards most people wouldn&#39;t even dare to dream about…&#34;</p>
+<p>Li Banfeng&#39;s eyes slowly lost focus. He was on the verge of drifting off into dreamland.</p>
+<p>Sun Tiecheng flicked his hand. A soft breeze brushed across Li Banfeng&#39;s face and woke him at once.</p>
+<p>&#34;The first reward,&#34; Sun Tiecheng said, &#34;is a domain in Yuren City reserved just for you. Of course, it won&#39;t be as large as one in the New Land. Now then, do you want to choose the spot yourself, or should I pick one for you?&#34;</p>
+<p>&#34;No.&#34; Li Banfeng replied succinctly.</p>
+<p>&#34;Why not?&#34; Sun Tiecheng asked curiously.</p>
+<p>Li Banfeng couldn&#39;t be bothered to explain.</p>
+<p><em>A plot of land in Yuren City? Do you think I am crazy or somethi...</em></p>
+</article>
+<article id="c207" data-label="207">
+<h2 class="chapter">Chapter 207: Freewind Wharf 🔒</h2>
+<p>Li Banfeng held Rong Yeguang&#39;s severed head and examined it carefully for a long while.</p>
+<p>He had never met Rong Yeguang before, but this bandit leader had ordered his men to raid Properfolk Village. Li Banfeng had sworn to avenge that grievance. What he had not expected was that Sun Tiecheng would settle the score for him so readily.</p>
+<p>Was that really the end of it? No, it was not. Lu Xiaolan was still alive. This debt still had to be settled.</p>
+<p>Sun Tiecheng said to Li Banfeng, &#34;In the eyes of the world, the Folly Cultivators have long been extinct. There shouldn&#39;t be any living Folly Cultivators in this world, and there absolutely must not be any Folly Cultivators still alive. You went to Yuren City, came back alive, and even learned two Folly Cultivation abilities. This must never become known to outsiders, or your life will be in danger.&#34;</p>
+<p>There should be no living Folly Cultivators in this world.</p>
+<p>Li Banfeng looked closely at Sun Tiecheng. &#34;Do you count as a living Folly Cultivator?&#34;</p>
+<p>Sun Tiecheng shook his head. &#34;I do not.&#34;</p>
+<p>Li Banfeng could not see any ghostly fire around Sun Tiecheng and had no idea what kind of existence he truly was.</p>
+<p>&#34;Then does the first person who passed the trial of worthiness count as a living Folly Cultivator?&#34;</p>
+<p>Sun Tiecheng let out a soft laugh. &#34;You should not ask that.&#34;</p>
+<p>&#34;Can I give up the land in Yuren City and trade it for something else? If it cannot be exchanged for anything, that&#39;s fine. I already gained an extra ability, so I should not be too greedy.&#34;</p>
+<p>Sun Tiecheng shook his head. &#34;You cannot.&#34;</p>
+<p>It was clear that this plot of land served as the bond between Li Banfeng and the Folly Cultivators, something equivalent to a contract. Sun Tiecheng had gone through so much trouble to test Li Banfeng precisely to find a suitable candidate for establishing that link.</p>
+<p>&#34;Visit Yuren City...</p>
+</article>
+<article id="c208" data-label="208">
+<h2 class="chapter">Chapter 208: Level Four of Wanderlust Cultivation 🔒</h2>
+<p>Ma Wu spoke first. &#34;Uncle Yu, I have already said what I needed to say. You[1] should head back.&#34;</p>
+<p>Yu Zhihe sat in the accounts office as steady as a mountain.</p>
+<p>&#34;Junyang,&#34; he said, &#34;no matter how capable you are outside, there are still rules in the family that you must follow. You are not qualified to tell me to leave.&#34;</p>
+<p>Ma Wu said nothing more. He left the accounts office and headed for the private room. Inside, Li Banfeng was sitting at the table, quietly drinking. Ma Wu walked over and sat down beside him.</p>
+<p>&#34;He won&#39;t leave?&#34; Li Banfeng asked.</p>
+<p>Ma Wu nodded.</p>
+<p>Li Banfeng poured himself another cup and said, &#34;Go deliver invitations to the various households. We&#39;ll still open in three days.&#34;</p>
+<p>Ma Wu stood and left.</p>
+<p>Once he was gone, Li Banfeng lowered the brim of his fedora until it shadowed most of his face. Then he walked into the accounts office. After stepping inside, he turned and locked the door behind him.</p>
+<p>Yu Zhihe was startled. &#34;Who are you?&#34;</p>
+<p>Li Banfeng answered, &#34;The owner of Freewind Wharf.&#34;</p>
+<p>Yu Zhihe shot to his feet. &#34;This is the Ma Family&#39;s business! Who do you think you are? Where&#39;s Junyang? Tell him to come see me!&#34;</p>
+<p>Li Banfeng stepped closer to Yu Zhihe. &#34;How old are you this year?&#34;</p>
+<p>Yu Zhihe immediately took two steps back. &#34;What are you trying to do?&#34;</p>
+<p>Li Banfeng smiled. &#34;You have lived this long and enjoyed plenty of good fortune, yet you still don&#39;t know how to behave. I think a simple funeral will suit you just fine.&#34;</p>
+<hr class="separator">
+<p>Ma Wu sent invitations to the various great families, and the Ma Family received one as well.</p>
+<p>When Ma Chunting read the invitation, his hands trembled with anger.</p>
+<p>Ma Junjiang, the fourth son of the Ma Family, hurried over and began pounding his father&#39;s shoulders and massaging his back. Once Ma Chunting calmed down slightly, he shouted, &#34;Go tell...</p>
+</article>
+<article id="c209" data-label="209">
+<h2 class="chapter">Chapter 209: Thirty Percent of Puluo 🔒</h2>
+<p>The level-four ability of the Wanderlust Cultivator path was called the Path of Unhindered Steps. The key to using it was simple: see nothing with the eyes, hold no obstruction in the heart, and focus the mind on unhindered movement.</p>
+<p>The principle itself was not difficult. The real challenge lay in the speed and decisiveness required. After using Traceless Quick Steps, he had to activate the ability immediately. But how fast was &#34;immediately&#34;?</p>
+<p>Li Banfeng walked out to the open ground beyond Freewind Wharf and soon spotted an abandoned shed standing crookedly at the edge of the lot.</p>
+<p>The shed had three small rooms. The walls between them were flimsy things, only a single layer of bricks, barely more than ten centimeters thick.</p>
+<p>Li Banfeng tried to use the ability. After Traceless Quick Steps, he worked on seeing nothing with his eyes and holding no obstruction in his heart. He focused his entire mind on moving forward without hindrance.</p>
+<p><em>Bang!</em></p>
+<p>Li Banfeng slammed into the wall.</p>
+<p>After a moment, he tried again.</p>
+<p><em>Bang!</em></p>
+<p>The wall shook slightly, and Li Banfeng felt a little dizzy.</p>
+<p>Traceless Quick Steps activated far too quickly, leaving him almost no time to use the fourth-level technique.</p>
+<p>He kept practicing.</p>
+<p><em>Bang!</em></p>
+<p><em>Who the heck came up with this ridiculous ability? Why does it have to be used right after Traceless Quick Steps? </em>Li Banfeng roared inwardly.</p>
+<hr class="separator">
+<p>An hour later, Li Banfeng finally managed to perform the ability, though only halfway.</p>
+<p>What did halfway mean? It meant that the...</p>
+</article>
+<article id="c210" data-label="210">
+<h2 class="chapter">Chapter 210: The Marvelous Film at the Platform 🔒</h2>
+<p>Three days later, early in the morning.</p>
+<p>After the doctor finished his ward rounds and left, He Jiaqing opened his eyes. There were a few things he needed to confirm with Ling Miaoying.</p>
+<p>&#34;My friend is a Wanderlust Cultivator,&#34; He Jiaqing said. &#34;He has an ability called Seeking Fortune and Avoiding Calamity. Have you made preparations for that?&#34;</p>
+<p>&#34;Don&#39;t worry. I have a method to conceal my malicious intent. Until the moment I make my move, your friend won&#39;t sense anything.&#34;</p>
+<p>He Jiaqing still felt uneasy. Li Banfeng had already surprised him more than once. &#34;Wanderlust Cultivators are known for their speed. You should still be more careful.&#34;</p>
+<p>&#34;You don&#39;t need to worry about your friend,&#34; Ling Miaoying replied. &#34;No matter how fast he is, it won&#39;t matter. Once he boards my train, even if he grows wings, he won&#39;t be able to escape.&#34;</p>
+<p>&#34;Ma Wu is the troublesome one. He&#39;s now quite the figure in Greenwater City and has dealings with the Border Controller. If we kill him at the station, it could anger the Border Controller.</p>
+<p>&#34;I have already made arrangements outside the station. The moment he leaves, we&#39;ll act. Neither he nor the support hooks under him will get away.&#34;</p>
+<p>&#34;I don&#39;t care about the others,&#34; He Jiaqing said. &#34;But keep my friend alive. The item is what we are after.&#34;</p>
+<p>&#34;Don&#39;t worry,&#34; Ling Miaoying replied. &#34;I will bring him back alive.&#34;</p>
+<p>&#34;We must keep this low-key and secret. Don&#39;t let anyone unrelated know about it.&#34;</p>
+<p>&#34;Since Ma Wu isn&#39;t coming, I will handle it alone this time. Aside from informing the people at the station, no one else knows.&#34;</p>
+<p>With everything arranged, He Jiaqing ended the communication and waited for news from Ling Miaoying.</p>
+<hr class="separator">
+<p>Li Banfeng had just finished packing and was about to head out...</p>
+</article>
+<article id="c211" data-label="211">
+<h2 class="chapter">Chapter 211: Iron Gate Fort 🔒</h2>
+<p>Li Banfeng did not come out right away. In fact, he stayed inside the Pocket Dwelling for a full sixteen hours.</p>
+<p>He stayed inside after thinking it through very carefully. There were several reasons for it.</p>
+<p>First, he could not be certain whether Ling Miaoying had planted a hook on him. To be safe, he asked his wifey to check him from head to toe, searching every inch, cleaning every trace, and making absolutely sure nothing strange had been attached to him.</p>
+<p>Fortunately, after a thorough inspection, his wifey found nothing.</p>
+<p>The second reason was that Li Banfeng had no idea whether Ling Miaoying might chase after the train. Worse still, he had no idea when the train would stop.</p>
+<p>If Ling Miaoying had managed to jump onto the train, or if the train had simply stopped right back in Greenwater City when Li Banfeng came out, then his escape would have been meaningless.</p>
+<p>He would be standing exactly where he started, neatly delivered back into Ling Miaoying&#39;s hands.</p>
+<p>In terms of cultivation, Li Banfeng was no match for Ling Miaoying. He also lacked experience. And when it came to enchanted artifacts, he held no advantage either. If Ling Miaoying managed to get him under control again, Li Banfeng would surely lose his life.</p>
+<p>The only thing he could rely on was the Pocket Dwelling. Hiding inside it a little longer was clearly the wisest choice.</p>
+<p>Of course, there was still one troubling possibility. What if Ling Miaoying had boarded the train and picked up the key?</p>
+<p>Was Li Banfeng not afraid? He was afraid, but he knew that being afraid wouldn&#39;t do anything.</p>
+<p>If Ling Miaoying had really found the key and decided to take it, there would have been nothing Li Banfeng could do to stop him anyway.</p>
+<p>And so, Li Banfeng simply prepared...</p>
+</article>
+<article id="c212" data-label="212">
+<h2 class="chapter">Chapter 212: Deception Cultivator 🔒</h2>
+<p>No wonder Li Banfeng found the man likable. And no wonder the whole village felt strangely endearing to him.</p>
+<p>Iron Gate Fort was a gathering place for Homebound Cultivators, which Li Banfeng found rather puzzling.</p>
+<p>Homebound Cultivators, by nature, did not like dealing with other people. In fact, the very idea of a &#34;gathering&#34; was already extremely difficult for them.</p>
+<p>There was another problem too. Every Homebound Cultivator had a fixed residence. They were not the sort who packed up and moved whenever they pleased. And so, getting many of them to live together in one place seemed like something that could only exist in one&#39;s imagination. And yet, Iron Gate Fort really existed and quite a number of Homebound Cultivators lived here. When Li Banfeng looked around, he saw house after house packed tightly together. They stretched so far into the distance that he could not even see where the village ended.</p>
+<p>A burst of arguing suddenly interrupted Li Banfeng&#39;s thoughts.</p>
+<p>A young woman had come out to buy rice. She opened the sack, rummaged through it with her hand, and quickly discovered something unpleasant. There was quite a lot of sand mixed in.</p>
+<p>She immediately turned to the old man driving the donkey cart and questioned, &#34;Every time I buy rice from you, there&#39;s sand in it. And there&#39;s more and more each time. This is way outrageous!&#34;</p>
+<p>&#34;The grain gets hauled from far away,&#34; he said. &#34;Isn&#39;t it normal for it to have a bit of dirt, a bit of sand mixed in? If you are that delicate, then don&#39;t eat rice. Eat meat every day instead. There&#39;s no sand in meat.&#34;</p>
+<p>The old man was shameless and utterly unreasonable,...</p>
+</article>
+<article id="c213" data-label="213">
+<h2 class="chapter">Chapter 213: He Is My Junior Brother 🔒</h2>
+<p>A Gold Cultivator cost one hundred yuan, while a Deception Cultivator cost three hundred thousand. The price gap was so wide it almost felt like a joke. It was simply a bit too outrageous.</p>
+<p>Sui Donglan gave Li Banfeng a long look, then narrowed her eyes. &#34;Are you really the Peddler?&#34;</p>
+<p>Li Banfeng let out a cold snort and said nothing. He pushed his cart forward, rattled his drum, and walked on as if she didn&#39;t exist.</p>
+<p>Sui Donglan hurried after him and blocked his path. She raised a hand to stop him, unwilling to let him leave just like that.</p>
+<p>&#34;Hold on,&#34; she said. &#34;Before you go, tell me this. What kind of Daoist Path is a Gold Cultivator?&#34;</p>
+<p>&#34;A fine Daoist Path!&#34; Li Banfeng said as he pulled out a chamber pot and a toilet brush. &#34;Carry this on your back. It&#39;s for collecting golden juice.</p>
+<p>&#34;And this,&#34; he said as he lifted the brush, &#34;is for stirring it.&#34;</p>
+<p>As for the ladle used to scoop the golden juice, he hadn&#39;t managed to find one. That sort of thing wasn&#39;t easy to come by.</p>
+<p>Sui Donglan shuddered and shoved the bucket away, quickly covering her nose. &#34;What kind of Daoist Path is that? Isn&#39;t that just cleaning dung?&#34;</p>
+<p>&#34;Young lady, watch your words. That&#39;s not pleasant to hear,&#34; Li Banfeng said. &#34;If you don&#39;t want it, then forget it. Wait for next time.&#34;</p>
+<p>He put the chamber pot and brush away and pushed his cart forward.</p>
+<p>Sui Donglan rushed after him. &#34;I want to become a Deception Cultivator.&#34;</p>
+<p>&#34;You are a pretty girl, right in the prime of your youth, and you still want to learn Deception Cultivation?&#34; Li Banfeng said as he shook his head. &#34;I won&#39;t sell it to you. Come back next time and pick a better Daoist Path.&#34;</p>
+<p>Sui Donglan stepped forward...</p>
+</article>
+<article id="c214" data-label="214">
+<h2 class="chapter">Chapter 214: The Invisible Enemy 🔒</h2>
+<p>The gates of Iron Gate Fort were about to shut. Li Banfeng wasn&#39;t nervous. At worst, he could stay inside the fort. He was confident he could find somewhere to hide the key.</p>
+<p>Sui Donglan, however, was terrified. She no longer cared about hiding her face and sprinted toward the gorge entrance. As she ran, her headscrap came loose and flew away.</p>
+<p>By the time she reached the mouth of the gorge, it was already too late. The massive iron gate had slammed shut.</p>
+<p>Two men stood before the gate and shouted at the fleeing merchants, &#34;Stop! Don&#39;t run out there! The bandits from Flying Eagle Mountain are here!&#34;</p>
+<p>The moment Sui Donglan heard the word &#34;bandits,&#34; she turned and ran straight back to Li Banfeng.</p>
+<p>&#34;Peddler sir, bandits are here! What are we supposed to do?!&#34;</p>
+<p>Li Banfeng said nothing. He wanted to see what these bandits were capable of.</p>
+<p>There were two to three hundred Homebound Cultivator households in Iron Gate Fort. As far as Li Banfeng knew, there were even level-four Homebound Cultivators here.</p>
+<p>The Fort Lord was a level-eight Homebound Cultivator. What kind of bandits would dare attack Iron Gate Fort?</p>
+<p>The steam-powered iron gate spewed white mist. The cigarette seller muttered, &#34;They can&#39;t get in. This gate is vicious. Anyone who steps too close will be scalded so badly their skin peels and their flesh rots…&#34;</p>
+<p>Before he could finish, a voice rang out from beyond the gate.</p>
+<p>&#34;Listen up, people inside! I&#39;m Luo Dagui, Flying Eagle Mountain&#39;s Spearhead and Rearguard. Tell your boss to come out and speak with me.&#34;</p>
+<p>&#34;The gun captain of Flying Eagle Mountain! A level-seven Martial Cultivator!&#34; Sui Donglan cried in shock and hurried beneath the eaves of Wu Yongchao&#39;s house.</p>
+<p>The cigarette seller was just as frightened. He pushed his cart along and ducked under the eaves as well.</p>
+<p>Spearhead and Rearguard was underworld slang. It...</p>
+</article>
+<article id="c215" data-label="215">
+<h2 class="chapter">Chapter 215: Half Truth 🔒</h2>
+<p>The next day, Iron Gate Fort was sealed shut. Li Banfeng went around gathering information about the surrounding area.</p>
+<p>There were many villages around Iron Gate Fort, inhabited by humble farmers living simple lives. He encountered two level-one Agrarian Cultivators, but the rest were not cultivators.</p>
+<p>Li Banfeng discovered the location of Flying Eagle Mountain, which was more than ten kilometers away from Iron Gate Fort. The bandits there had a notorious reputation; they were seemingly even more infamous than the bandits of Iron Goat Mountain. Whether it was the Stronghold Chief He Zhenlei or the Gun Captain Luo Dagui, they were prominent figures that struck fear into the locals.</p>
+<p>This group of bandits had many &#34;achievements.&#34; From the villagers&#39; accounts of the bandits, one word stood out to Li Banfeng—&#34;ruthless.&#34;</p>
+<p>Every year, the bandits took more than half of each village&#39;s grain. If there was even slight resistance, it was common for them to massacre the entire village.</p>
+<p>This was different from most bandits in Puluo. Ordinary bandits would not go as far as slaughtering the residents living near their base. They would even maintain good relations with nearby villages so they could look out for each other if something happened.</p>
+<p>For vicious bandits like those of Flying Eagle Mountain, hadn&#39;t any powerful influential families or clans come to suppress them? Of course, there had been!</p>
+<p>The largest local force was the Iron Gate Fort. Three hundred households of Homebound Cultivators lived there, making up a considerable force.</p>
+<p>Fort Lord Zhou Anju had once gone alone to Flying Eagle Mountain and fought He Zhenlei. The battle had ended without a clear victor.</p>
+<p>Another time, Zhou Anju had led more than a dozen subordinates to fight He Zhenlei at...</p>
+</article>
+<article id="c216" data-label="216">
+<h2 class="chapter">Chapter 216: Hear Me At The Door 🔒</h2>
+<p>Li Banfeng felt a faint unease creep into his chest.</p>
+<p><em>Something about this doesn&#39;t feel right. Could someone who needs a crowbar just to pry loose a rock on the cliff… be that same person who can climb down dozens of meters and kill a third-level Homebound Cultivator?</em></p>
+<p>Li Banfeng didn&#39;t believe it at all! He suspected that the one who killed Old Hu wasn&#39;t outside. They were inside Iron Gate Fort.</p>
+<p>Old Hu had refused to pay and had even wanted to fight back against the bandits from Flying Eagle Mountain. On top of that, he was old and had arrived at Iron Gate Fort earlier than most, even earlier than the Fort Lord himself. A person like that could easily become a target of the Fort Lord.</p>
+<p>Old Hu was dead, so who would be next?</p>
+<p>In Li Banfeng&#39;s view, it would most likely be Wu Yongchao.</p>
+<p>Wu Yongchao had voted to fight back. More importantly, his cultivation was high. He was obviously a threat to the Fort Lord.</p>
+<p>Why had Li Banfeng placed all his suspicions on the Fort Lord? In his eyes, there was no one more suspicious in Iron Gate Fort right now than the Fort Lord himself.</p>
+<p>The Fort Lord was a level-eight Homebound Cultivator… and he couldn&#39;t even stop a bunch of bandits from getting in? That just didn&#39;t sound right. Either his cultivation was fake… Or he was working with them, teaming up with the bandits to prey on these honest people together.</p>
+<p>Li Banfeng repeatedly warned, &#34;Before you hear me knocking on the door, you must not go out.&#34;</p>
+<p>Wu Yongchao didn&#39;t understand.</p>
+<p>Just then, the dwelling spirit reminded him, &#34;Kid, listen to him. As long as you stay inside the house, those bastards won&#39;t dare touch you. And even if they dared to come in, the two of us will fight them together!&#34;</p>
+<p>Wu Yongchao thought Li Banfeng couldn&#39;t hear a thing, but Li Banfeng caught every word. He possessed the ability of Perceiving the Spirit&#39;s Melody, which allowed him to hear spirit voices as clearly as if they were spoken aloud.</p>
+<p>This honest man really was quite lucky. He had met a good dwelling spirit, and he had also run into a good &#34;Peddler.&#34;</p>
+<p>Li Banfeng was just about to leave when Wu Yongchao hurriedly stopped him. &#34;Don&#39;t go out. Just stay here for now. If the Fort Lord...</p>
+</article>
+<article id="c217" data-label="217">
+<h2 class="chapter">Chapter 217: Senior Brother, Don’t Go! 🔒</h2>
+<p><em>Luo Dagui was Fort Lord Zhou? They are the same person? What kind of logic is that?</em></p>
+<p>Li Banfeng had no time to think about logic. A group of enraged Homebound Cultivators surged toward him. With the severed head still in his grip, he spun around and bolted.</p>
+<p>&#34;Catch him!&#34;</p>
+<p>&#34;Avenge the Fort Lord!&#34;</p>
+<p>&#34;With how fast he is running, he must be a Wanderlust Cultivator. Not a single one of them is any good!&#34;</p>
+<p>Li Banfeng ran and ran and ran. Only after more than ten miles did he finally dare to slow down, glancing over his shoulder to make sure those furious Homebound Cultivators were nowhere in sight.</p>
+<p>He plopped himself down on a hillside, still clutching Luo Dagui’s head. He stared at it for a long moment, then scratched his chin.</p>
+<p><em>This makes no sense at all</em>, he muttered inwardly. <em>Luo Dagui was just talking to Fort Lord Zhou at the gate… so how did he turn into Fort Lord Zhou himself? What is the secret behind this?</em></p>
+<p><em>And now those people think I killed their Fort Lord. How am I supposed to explain something I don’t even understand myself?</em> <em>Oh! Right! I almost forgot. I got a witness.</em></p>
+<p>Luo Dagui hadn’t noticed Sui Donglan hiding in the grass. His cultivation simply wasn’t up to it.</p>
+<p>Li Banfeng, on the other hand, had the Threaded Earring. Nothing within range escaped his hearing… He even heard Sui Donglan wetting herself.</p>
+<p>Immediately, he headed to Sui Donglan’s residence.</p>
+<p>Seeing Li Banfeng, Sui Donglan smiled. &#34;You’re here.&#34;</p>
+<p>&#34;I am,&#34; Li Banfeng said with a nod. &#34;You saw what happened during the day, right?&#34;</p>
+<p>&#34;During the day?&#34; Sui Donglan tilted her head, looking puzzled. &#34;What happened during the day? I have been at home the whole time, waiting for you.&#34;</p>
+<p>Li Banfeng blinked. &#34;What are you talking about? I mean Iron Gate Fort!&#34;</p>
+<p>&#34;Iron Gate Fort?&#34; she...</p>
+</article>
+<article id="c218" data-label="218">
+<h2 class="chapter">Chapter 218: A Good Subordinate 🔒</h2>
+<p>Wu Yongchao led Li Banfeng all the way to Fort Lord Zhou&#39;s residence.</p>
+<p>It stood deep within the valley, much larger than the homes of the other Homebound Cultivators. A five-story vermilion mansion rose in the center, with two three-story side buildings on either side, enclosing a vast courtyard. Beyond that courtyard were several smaller ones, along with a row of Western-style houses.</p>
+<p>Wu Yongchao said, &#34;Every year, we have to contribute money and labor to build the Fort Lord&#39;s residence. Ma Dingfu and the others always say that the bigger the residence is, the higher the Fort Lord&#39;s cultivation will be, and the better life in Iron Gate Fort will become.&#34;</p>
+<p>Li Banfeng smiled. &#34;Ma Dingfu really is a good subordinate.&#34;</p>
+<p>Lights shone from the main building. Lowering his voice, Wu Yongchao said, &#34;Those should be the Fort Lord&#39;s family members.&#34;</p>
+<p>Li Banfeng looked at the number of lights and asked, &#34;Isn&#39;t your Fort Lord a Homebound Cultivator? That&#39;s quite a crowd. Can the dwelling spirit really tolerate so many outsiders?&#34;</p>
+<p>Wu Yongchao hesitated, then said, &#34;The Fort Lord warned us before too. He said Homebound Cultivators shouldn&#39;t start families, or it would hinder their cultivation. He even made a rule that none of us in Iron Gate Fort are allowed to marry… But he himself has taken more than thirty wives. A lot of people can&#39;t make sense of that either.</p>
+<p>&#34;Ma Dingfu always say we shouldn&#39;t apply the Fort Lord&#39;s rules to the Fort Lord himself. The Fort Lord is different from us. The rules are for our own good....</p>
+</article>
+<article id="c219" data-label="219">
+<h2 class="chapter">Chapter 219: The Ruthless Combat Methods of the Upright Daoist Path 🔒</h2>
+<p>Just as Li Banfeng was placing a record in a gramophone to play some music, the Threaded Earring shouted, &#34;Watch out!&#34;</p>
+<p>Without the slightest hesitation, Li Banfeng used Traceless Quick Steps and moved away. A beautiful woman lunged at him from behind with a saber, missing his back by only a few inches.</p>
+<p>Li Banfeng flicked his wrist and hurled the sickle at the woman, striking her accurately.</p>
+<p>However, a crisp metallic sound rang out.</p>
+<p><em>Clang!</em></p>
+<p>The sickle bounced off the woman, leaving only faint scratches.</p>
+<p><em>She&#39;s a stone puppet!</em></p>
+<p>Li Banfeng ceased his offensive and swiftly retreated using Traceless Quick Steps. He was very familiar with this combat style.</p>
+<p><em>Golden House of Hidden Beauty!</em></p>
+<p>This was a level-four ability of a Homebound Cultivator. The stone maiden could both fight and endure blows. It would be pointless for Li Banfeng to take her head-on. He would just be leaving himself open for an ambush.</p>
+<p><em>An ambush set by the Homebound Cultivator himself!</em></p>
+<p>Steward He was a Homebound Cultivator of at least the fifth level. His level was higher than Li Banfeng&#39;s, which explained why Li Banfeng&#39;s Seeking Fortune and Avoiding Calamity hadn&#39;t detected his malicious intent.</p>
+<p><em>Old He is very familiar with this building. Is this his dwelling? Probably not.</em></p>
+<p><em>I came to steal vinyl records a few days ago, but he didn&#39;t notice. If this were truly his residence, his dwelling spirit would have sensed me. Regardless, even if it&#39;s not his dwelling, he&#39;s still...</em></p>
+</article>
+<article id="c220" data-label="220">
+<h2 class="chapter">Chapter 220: Level-Five Ability of a Homebound Cultivator 🔒</h2>
+<p><em>Ma Dingfu can&#39;t explain Zhou Anju&#39;s background? </em>Li Banfeng thought.</p>
+<p>&#34;Are you being insincere?&#34; Li Banfeng asked as he slashed Ma Dingfu&#39;s face again.</p>
+<p>Ma Dingfu gasped, struggling to breathe. &#34;I really don&#39;t know. Ever since I went to Flying Eagle Mountain, Zhou Anju was already the Fort Lord of Iron Gate Fort. I even heard he once led people to attack Flying Eagle Mountain. He used to be our mortal enemy.</p>
+<p>&#34;But one day, our chief summoned me back to the mountain and told me to go to Iron Gate Fort. That&#39;s when I learned Zhou Anju was actually a friend of our chief.</p>
+<p>&#34;He said Fort Lord Zhou was an extraordinary figure. He said that Fort Lord Zhou&#39;s cultivation was unfathomably high and that his schemes were beyond comprehension. He told me to follow Fort Lord Zhou from then on and that I should do whatever Fort Lord Zhou asked me to do.&#34;</p>
+<p>&#34;And did Fort Lord Zhou tell you to sleep with his wife?&#34;</p>
+<p>Ma Dingfu said, &#34;Our chief basically described him as someone who was capable of doing anything. I have always held very deep respect toward Fort Lord Zhou. When I first arrived at Iron Gate Fort, he made me his attendant. To outsiders, he claimed I was a Homebound Cultivator and even arranged a house for me.</p>
+<p>&#34;At first, he valued me greatly. He even discussed some confidential matters with me. But one time, he had an argument with Yu Hequan in the fort, and everything changed.&#34;</p>
+<p>&#34;How did it change?&#34;</p>
+<p>&#34;Yu Hequan was a level-two Homebound Cultivator. He had just arrived at the fort, young and hot-blooded, and he spoke to the Fort Lord without respect.</p>
+<p>The Fort Lord didn&#39;t take offense, yet he pushed his luck. While speaking, he even shoved the Fort Lord. I don&#39;t know if he...</p>
+</article>
+<article id="c221" data-label="221">
+<h2 class="chapter">Chapter 221: The Fort Lord’s Name Is Fort Lord 🔒</h2>
+<p>Li Banfeng stepped out of his Pocket Dwelling and walked to the front of the courtyard.</p>
+<p>A row of Homebound Cultivators stood there in neat formation, waiting for his orders.</p>
+<p>&#34;What are you all doing here? Did you finish what I told you?&#34;</p>
+<p>Wu Yongchao hurried forward. &#34;It&#39;s all done. Zhou Anju and Ma Dingfu&#39;s men have been dealt with. We also sent someone up to the cliff.&#34;</p>
+<p>&#34;How many did you send?&#34;</p>
+<p>&#34;One.&#34;</p>
+<p>Li Banfeng frowned. &#34;I told you to send people, and you sent one? Add two more. Three per team. Rotate every three hours. One watches, one reports, one backs the others up. Got it?&#34;</p>
+<p>Wu Yongchao nodded. &#34;I will handle it right away.&#34;</p>
+<p>&#34;How many people are at the boiler room?&#34;</p>
+<p>&#34;Five,&#34; Wu Yongchao said. &#34;All from the fort. They are taking turns tending the boiler.&#34;</p>
+<p>&#34;Add two more guards at the gate,&#34; Li Banfeng said. &#34;Tell them to stay sharp. If anything happens, shut the gates immediately. Everyone else returns to their houses and stays on guard.&#34;</p>
+<p>&#34;From now on, the Fort Lord&#39;s residence is restricted. No one is allowed within one hundred meters of the courtyard.&#34;</p>
+<p>Wu Yongchao acknowledged the order at once and called over two others. They pulled out a measuring tape and carefully marked out the distance step by step, drawing a clear boundary line on the ground. One by one, everyone withdrew beyond it without hesitation.</p>
+<p>They had measured it with a tape. They had even drawn a line. It was a little rigid, perhaps, but not a bad thing. At the very least, this group of Homebound Cultivators knew how to follow orders.</p>
+<p>Li Banfeng walked into the courtyard alone, then stepped into his Pocket Dwelling and pushed out the windmill-powered gramophone.</p>
+<p>A newly recorded disc...</p>
+</article>
+<article id="c222" data-label="222">
+<h2 class="chapter">Chapter 222: Flying Eagle Mountain 🔒</h2>
+<p>Xiao Zhenggong shoved the two women aside and stepped out of the pool. He was visibly excited. The weather was cold, yet he didn&#39;t even bother wrapping himself in a towel.</p>
+<p>&#34;Old Luo, I knew you had it in you. Take the brothers from the hall and head to Iron Gate Fort. Bring the item back.&#34;</p>
+<p>Luo Zhengnan reached up and touched the antenna on his head. He fell silent for a moment before speaking. &#34;Boss Xiao, where did you say you wanted me to take my men just now? The signal isn&#39;t very good, and I didn&#39;t hear clearly.&#34;</p>
+<p>Xiao Zhenggong repeated, &#34;I said go to Iron Gate Fort and bring the item back!&#34;</p>
+<p>&#34;Boss, I still can&#39;t hear you clearly…&#34; Luo Zhengnan muttered as he slowly pulled the antenna out of his skull.</p>
+<p><em>So that&#39;s your grand plan. You want me to take my men to Iron Gate Fort and retrieve it for you? Do you think it&#39;s that easy? If it were, He Jiaqing would have taken it long ago. Would it really still be your turn?</em></p>
+<p>Luo Zhengnan wiped the antenna clean, placed it into a box, and let out a bitter smile. <em>Do you even know what kind of place Iron Gate Fort is? If I take people there… do you think any of us would make it back alive?</em></p>
+<p>&#34;Old Luo? Old Luo!&#34;</p>
+<p>The line had already gone dead.</p>
+<p>Xiao Zhenggong dialed again, but a cold, mechanical voice answered, &#34;The number you have dialed does not exist.&#34;</p>
+<p>&#34;This useless fool!&#34; He yelled as he slammed the phone down. &#34;I handed him...</p>
+</article>
+<article id="c223" data-label="223">
+<h2 class="chapter">Chapter 223: Husband Sings, Wife Follows 🔒</h2>
+<p><em>Is this man really the Fort Lord of Iron Gate Fort? He wants me to lead men to attack Iron Gate Fort? What is he thinking? What exactly is he trying to do?</em></p>
+<p>He Zhenlei was deeply conflicted.</p>
+<p>The teeth that had been knocked out of his mouth still lay on the bed beside him, a silent reminder of what had happened.</p>
+<p>He pushed the door open and looked outside. The guards were gone. Alive or dead, none of them were there. Not a single body, not a single trace. It was as if they had vanished without a sound.</p>
+<p>He Zhenlei was terrified. He curled up on the bed and didn&#39;t sleep the entire night.</p>
+<p>At daybreak, He Zhenlei took his men and headed down the mountain toward Iron Gate Fort. By now, he had figured it all out.</p>
+<p><em>That man must have killed Little Ma and took his place as Fort Lord. He must be after the same thing as Zhou Anju. Using Flying Eagle Mountain to scare the Homebound Cultivators in Iron Gate Fort, then squeezing them dry for profit. The only difference is that he is much more ruthless and violent.</em></p>
+<p><em>Still, anyone who can sneak onto Flying Eagle Mountain and act so ruthlessly is not someone you want to mess with. Picking a fight with him would only bring trouble. Better to do as he says… and head to Iron Gate Fort…</em></p>
+<p>He Zhenlei led more than a hundred bandits to the gates of Iron Gate Fort.</p>
+<p>A group of Homebound Cultivators was already waiting at the entrance, ready for a fight. In terms of strength, they were far stronger than the bandits from Flying Eagle Mountain. However, they lacked real combat experience. Many of them were visibly tense facing such a large formation.</p>
+<p>The Homebound Cultivators on the platform...</p>
+</article>
+<article id="c224" data-label="224">
+<h2 class="chapter">Chapter 224: Beyond The Grave Mound Lie More Hills 🔒</h2>
+<p>Before dawn, when the sky was still dark, Wu Yongchao heard a knock at his door. He went out to check and found a beautiful young woman standing right at the entrance.</p>
+<p>It was late, far too late for visitors, and yet this pretty girl came knocking on the door. At a glance, she was obviously…painted.</p>
+<p>This was Li Banfeng&#39;s work, done with care and intention. It would have fooled most people without a second thought. But Wu Yongchao was no ordinary man. As a level-four Homebound Cultivator who excelled in painting himself, he could see through the trick immediately. To him, the illusion felt almost crude.</p>
+<p>The girl stepped forward and handed him two burlap sacks along with a letter.</p>
+<p>Wu Yongchao opened the letter and read it. When he finished, he looked up at her and asked, &#34;Where did the Fort Lord go? For something this important, why send you to deliver the message?&#34;</p>
+<p>The girl covered her mouth and smiled with her eyes. She didn&#39;t say a word.</p>
+<p>Of course she didn&#39;t. Li Banfeng hadn&#39;t painted her a mouth.</p>
+<hr class="separator">
+<p>The next day, Wu Yongchao slung two sacks over his shoulders and slipped quietly out of Iron Gate Fort, heading for a nearby village.</p>
+<p>Li Banfeng had made it very clear in his letter. The whole area was being watched. From the gates of the fort all the way to the village, there were eyes everywhere, hidden in plain sight.</p>
+<p>This was one of the Jiangxiang Gang&#39;s favorite tricks. On the surface, Iron Gate Fort looked calm and peaceful. But in truth, there were a lot of people nearby.</p>
+<p>It was just like Yu&#39;s Cloth Shop back then. Nothing seemed out of place, yet members of a Jiangxiang Gang branch were hidden nearby.</p>
+<p>After arriving at the village, Wu Yongchao changed into rough cloth clothes and put on a tattered...</p>
+</article>
+<article id="c225" data-label="225">
+<h2 class="chapter">Chapter 225: Iron Gate Fort or Blood Gate Fort 🔒</h2>
+<p>After lunch, Luo Zhengnan dragged a chair onto the terrace and sat down in the sun, soaking in the warmth like he had nowhere else to be.</p>
+<p>He was listening to a broadcast.</p>
+<p>Strange thing, really. Puluo Province did have broadcasts. Just not the kind everyone could hear. Only certain people picked them up, and even then, you never knew what would come through.</p>
+<p>Luo Zhengnan was one of those people. He had been listening for years.</p>
+<p>Today&#39;s program was a good one. The host had a soft, sweet voice, the kind that made Luo Zhengnan feel very relaxing.</p>
+<p>&#34;Those who kill often should already know this. Poison is a quiet method. Hard to detect beforehand, but tend to leave a trace afterward. That makes cleanup troublesome.</p>
+<p>&#34;So today, there is a recommendation. A special kind of poison. Mix it into water, and within two hours, it will evaporate completely. No residue. No trace.</p>
+<p>&#34;For example, if someone wishes to send off a superior, just add one or two drops into his cup. Do not add too much. It will affect the taste.</p>
+<p>&#34;After he drinks it, death will come within an hour. During the next hour, all that is needed is a bit of cover. Make sure no Poison Cultivators or anyone with detection abilities gets close. Not to him, and not to the cup.</p>
+<p>&#34;Once the poison has evaporated, there will be nothing left to find. Not even the cause of death.</p>
+<p>&#34;Some listeners may wonder about its effectiveness. If the poison evaporates within two hours, will its potency be affected? On this point, we can assure you with full responsibility…&#34;</p>
+<p>Luo Zhengnan found the poison quite useful and listened with growing interest.</p>
+<p>Just then, a sharp ringing sound cut through the broadcast, snapping his attention away.</p>
+<p><em>Ring, ring~~</em></p>
+<p>At the exact moment the ringing...</p>
+</article>
+<article id="c226" data-label="226">
+<h2 class="chapter">Chapter 226: Zhao Xiaowan 🔒</h2>
+<p>Li Banfeng sat back in his chair, the wide brim of his hat casting his face in shadow, so that only the faint outline of his expression could be seen.</p>
+<p>The man before him, Luo Zhengnan, had spoken with a mix of truth and lies. The lies were easy to spot. He claimed he had brought only two subordinates, but there were clearly more.</p>
+<p>Sun Xiao&#39;an from the Second Branch of the Medicine King Hall was already inside the fort, selling goods, yet Luo Zhengnan hadn&#39;t mentioned him at all.</p>
+<p>The truth, however, was harder to pin down, though a few things he said did make sense. If he could slip into Iron Gate Fort, then others could too.</p>
+<p>And Zhao Xiaowan… A dwelling spirit like her was bound to draw trouble. Once word got out, Iron Gate Fort would inevitably turn into Blood Gate Fort.</p>
+<p><em>What should I do about this?</em> Li Banfeng thought. <em>It&#39;s not hard getting Luo Zhengnan off our back, and it&#39;s not hard dealing with the Jiangxiang Gang. However, Zhao Xiaowan is so strong that even my wifey is no match for her. She&#39;s not something that I can simply deal with.</em></p>
+<p>After a long moment of silence, Li Banfeng finally spoke. &#34;Come back in three days. I will give you an answer then.&#34;</p>
+<p>&#34;I will await your reply.&#34; Luo Zhengnan rose and took his leave.</p>
+<p>Li Banfeng added, &#34;Take all your people with you. Not just the two vegetable sellers. If they don&#39;t leave now, I&#39;ll send them off myself soon enough.&#34;</p>
+<p>Luo Zhengnan paused, clearly surprised. He hadn&#39;t expected Li Banfeng to have noticed the others as well. He cupped his fists again...</p>
+</article>
+<article id="c227" data-label="227">
+<h2 class="chapter">Chapter 227: Acknowledging a Master 🔒</h2>
+<p>Han Juncheng had a flat face and wore black-rimmed glasses. He sat beneath the roof and stared silently at the fortune teller.</p>
+<p>The fortune teller gave a humble smile. &#34;Mr. Han, I have already explained the situation. Do you think tonight is a good time for us to make a move?&#34;</p>
+<p>Han Juncheng let out a cold laugh. &#34;When my father was still the Border Controller, I wouldn&#39;t have spared someone like you a second glance.&#34;</p>
+<p>The fortune teller bobbed his head over and over. &#34;An honor, Young Master Han. Truly. You have come out of respect for our master.&#34;</p>
+<p>Han Juncheng gave a short, sharp snort. &#34;Master? Who is your master? He Jiaqing? You clearly don&#39;t know who my father was. Back then, someone like He Jiaqing, the son of a businessman, wouldn&#39;t even get a chance to meet me in person.&#34;</p>
+<p>The fortune teller kept his smile.</p>
+<p>Han Juncheng was arrogant, that much was obvious. However, there was nothing aloof about him.</p>
+<p>&#34;You are making a move tonight,&#34; Han Juncheng said, expressing his dissatisfaction. &#34;And you are only telling me now?&#34;</p>
+<p>&#34;It&#39;s an emergency,&#34; the fortune teller replied carefully. &#34;Originally, our master planned to wait for a better…&#34;</p>
+<p>&#34;Stop rambling… What&#39;s the point of saying all that?&#34; Han Juncheng interrupted impatiently. &#34;Go prepare everything that needs to be prepared. We will make a move at midnight tonight. I really hate that place, Iron Gate Fort. A bunch of poor wretches who...</p>
+</article>
+<article id="c228" data-label="228">
+<h2 class="chapter">Chapter 228: The Red Tassel Is Not a Spear 🔒</h2>
+<p>Wan Jinxian made his way back to the village by feeling his way there using a bamboo cane. When he arrived, he sent a message to He Jiaqing.</p>
+<p>&#34;The plan has failed. Han Juncheng couldn&#39;t subdue Zhao Xiaowan and was pinned down in front of the residence.&#34;</p>
+<p>He Jiaqing was in an extremely foul mood.</p>
+<p>He knew Han Juncheng aimed high but lacked the ability and experience.</p>
+<p>However, it was not easy to subdue a level-six Homebound Cultivator, so He Jiaqing had accommodated him at every turn, even waiting for a more ideal opportunity before having him take action.</p>
+<p>Unexpectedly, He Jiaqing lost the undercover agent he had painstakingly nurtured near Iron Gate Fort for years so easily.</p>
+<p>This was not Wan Jinxian&#39;s fault, and He Jiaqing had no reason to vent his anger on him.</p>
+<p>Wan Jinxian asked, &#34;What should we do next?&#34;</p>
+<p>He Jiaqing pondered for a long time before saying, &#34;Wait for the Jiangxiang Gang&#39;s move. If Luo Zhengnan manages to obtain it, we&#39;ll snatch it from him.&#34;</p>
+<p>Wan Jinxian agreed. &#34;Snatching it midway is the best strategy, but I&#39;m worried Luo Zhengnan will have a hard time succeeding. Even a level-six Homebound Cultivator is nothing before that dwelling spirit. In all my years in the jianghu, I&#39;ve never encountered such a situation.&#34;</p>
+<p>&#34;The Flying General Zhao Xiaowan, one of the first Wanderlust Cultivators, is naturally no ordinary figure. Unfortunately, we have too few Homebound Cultivators. One misstep, and we lost the opportunity. But if Iron Gate Fort intends to hand Zhao Xiaowan over to Luo Zhengnan, then it&#39;s a different...</p>
+</article>
+<article id="c229" data-label="229">
+<h2 class="chapter">Chapter 229: Success 🔒</h2>
+<p>Li Banfeng looked at the large bouquet of fresh flowers in Sui Donglan&#39;s hands and sniffed them one by one.</p>
+<p>&#34;You call these good flowers? They don&#39;t have any fragrance at all. How are these good flowers?&#34;</p>
+<p>Sui Donglan pulled a long face. &#34;How was I supposed to know what kind of flowers you wanted? I thought you just wanted something that looked nice.&#34;</p>
+<p>Li Banfeng pushed the flowers aside. &#34;Do you think you can remove the words on your face with these trash flowers? Keep dreaming!&#34;</p>
+<p>&#34;Please!&#34; Sui Donglan grabbed him. &#34;How about this? I will take you somewhere with flowers. They are extremely fragrant. You can pick as many as you want.&#34;</p>
+<p>Honestly speaking, even though Sui Donglan was a swindler, she had put in real effort when it came to preparation.</p>
+<p>The place she recommended was a bit far, but there were indeed many good flowers.</p>
+<p>Li Banfeng picked all kinds of fresh flowers and wove them into a large garland. Even from a distance, the fragrance rushed straight to the nose.</p>
+<p>He then had Sui Donglan recommend some rouge. Putting the color aside, the fragrance was truly exceptional.</p>
+<p>After preparing all the gifts, Li Banfeng also prepared one thousand silver dollars. When the night came, he carried the box, took the garland and rouge, and entered the auxiliary building.</p>
+<p>Han Juncheng was still lying at the entrance. He was already dead. Completely dead. Yet no one dared to go near him, let alone move the body.</p>
+<p>Li Banfeng swallowed hard and kept walking. He remembered what the long...</p>
+</article>
+<article id="c230" data-label="230">
+<h2 class="chapter">Chapter 230: The Long Spear Exploding Tiger 🔒</h2>
+<p><em>If we refine a normal spear, a belt that can strengthen one&#39;s aura, and a button that can mimic voices together, would they form something like Hong Ying?</em> Li Banfeng thought and came to a conclusion. It was possible. After all, cultivation wasn’t something one could see with the naked eye.</p>
+<p>However, there was one condition. The Crimson Lotus had to be willing to help.</p>
+<p>Li Banfeng went to the sixth room, picked up the Crimson Lotus, and carried it back to the main room. The Crimson Lotus was already waiting. She had covered herself in tiny dewdrops from top to bottom, glistening like she’d just stepped out of a very suspicious bath.</p>
+<p>&#34;Crimson Lotus, I need a favor.&#34;</p>
+<p><em>Spat!</em></p>
+<p>A droplet shot from the Crimson Lotus and splattered right onto his face.</p>
+<p>Li Banfeng wiped his face and didn&#39;t seem angry at all. The Gramophone, however, quivered with fury. &#34;You shameless wretch! Spitting at my husband? How dare you?!&#34;</p>
+<p><em>Spat!!</em></p>
+<p>Another droplet flew out straight onto the Gramophone.</p>
+<p>The Gramophone hissed with steam, ready to lunge at the Crimson Lotus, when Li Banfeng shouted, &#34;Wifey, if she refuses to help, I will have no choice but to send Hong Ying away.&#34;</p>
+<p><em>Huff, huff~</em></p>
+<p>Wifey adjusted her breathing and composed herself. She turned her horn toward the Crimson Lotus and began playing a tune of huqin[1] and singing along, &#34;Heyaa, little sister dear~ We are family! No need to speak like strangers. Why cling to such a small grudge from before?&#34;</p>
+<p><em>Spat!</em> Another droplet struck her.</p>
+<p>&#34;Little...</p>
+</article>
+<article id="c231" data-label="231">
+<h2 class="chapter">Chapter 231: Peach Blossom Lake 🔒</h2>
+<p>Luo Zhengnan returned to the farmhouse and called everyone together at once.</p>
+<p>There were ten men under him. Three of them were Wanderlust Cultivators, one at level four and two at level three. Even in the Jiangxiang Gang, that counted as a strong and capable group.</p>
+<p>Without wasting time, Luo Zhengnan took out the long spear. He held it for a moment, then placed it into the hands of the level-four Wanderlust Cultivator, Chen Weiqin.</p>
+<p>He then instructed, &#34;Old Chen, take this and go straight to Greenwater City. Report to the Boss Xiao as quickly as you can. If anyone chases you, don&#39;t fight them. Don&#39;t even think about it. Just run. Run as fast as you can.&#34;</p>
+<p>&#34;Hall Master Luo… what about you?&#34;</p>
+<p>Luo Zhengnan&#39;s expression remained calm as he said, &#34;We will find a way to hold the pursuers back for you. This matter concerns the gang as a whole. Even if it costs us our lives, we will see it through.&#34;</p>
+<p>&#34;Hall Master Luo, everyone… take care!&#34; Chen Weiqin gripped the long spear tightly.</p>
+<p>Without another word, he signaled to the two level-three Wanderlust Cultivators. The three of them moved at once, bursting out of the village and racing off at full speed, as if the wind itself were chasing at their backs.</p>
+<p>Wan Jinxian was at the village entrance, still putting on the act of telling fortunes.</p>
+<p>He watched the three Wanderlust Cultivators rush out of the village, and his gaze settled at once on the long spear in Chen Weiqin&#39;s hands. It was wrapped in oilcloth, yet the shape...</p>
+</article>
+<article id="c232" data-label="232">
+<h2 class="chapter">Chapter 232: Black Market 🔒</h2>
+<p>At Yuezhou Third Hospital, He Jiaqing&#39;s eyes snapped open.</p>
+<p>Something had appeared. Not inside the ward, but not too far from the hospital.</p>
+<p><em>Who came to the Outer Provinces?</em></p>
+<p>He didn&#39;t know if he was overthinking it, but could this domineering presence be related to &#34;Zhao Xiaowan&#34;?</p>
+<p>He Jiaqing wanted to go out and investigate, but before he could, the ward door was suddenly pushed open, and Captain Chen of the Dark Star Bureau walked in.</p>
+<p>The doctor began explaining He Jiaqing&#39;s condition. Although there had been some recent developments, there were still no signs of real improvement.</p>
+<p>Captain Chen showed little interest in the diagnosis. He simply stood there, watching He Jiaqing in silence.</p>
+<p>He Jiaqing didn&#39;t dare move recklessly, because Old Chen was a high-level Spycraft Cultivator.</p>
+<p>The window was closed, yet a faint breeze seemed to drift into the room. It wasn&#39;t real wind. It was the ripple of that domineering presence.</p>
+<p>Old Chen sensed it as well. He glanced out the window, then slowly turned his gaze back to He Jiaqing.</p>
+<p>He Jiaqing groaned inwardly, <em>What&#39;s the meaning of this? Are you suspecting me?</em></p>
+<p>The two faced off for a moment, then the strange domineering presence vanished. Xiao Zhenggong had someone take &#34;Zhao Xiaowan&#34; away and immediately sealed it.</p>
+<hr class="separator">
+<p>After Old Chen left, He Jiaqing quickly contacted Wan Jinxian.</p>
+<p>&#34;Did you really get Zhao Xiaowan?&#34;</p>
+<p>Wan Jinxian...</p>
+</article>
+<article id="c233" data-label="233">
+<h2 class="chapter">Chapter 233: You Want to Kill Me? 🔒</h2>
+<p>Inside the dim cinema, Zhong Guoshu slipped in close and pressed a short saber against Xiao Zhenggong&#39;s ribs.</p>
+<p>Xiao Zhenggong did not look the least bit concerned. He neither called for help nor made a move. He simply stood there and watched Zhong Guoshu in silence.</p>
+<p>Zhong Guoshu tightened his grip and increased the pressure. He meant to make him bleed, just a little, without taking his life. As a level-five Martial Cultivator, he had precise control over his strength, but no matter how much force he applied, the blade refused to pierce the skin.</p>
+<p>Zhong Guoshu stared at Xiao Zhenggong, shock flickering across his face. According to the Dark Star Bureau&#39;s records, Xiao Zhenggong was only a level-three Combatant. There was no way he should have been able to withstand the strength of a fifth-level Combatant.</p>
+<p><em>Is he wearing armor? </em>Zhong Guoshu thought. <em>Or… is there some kind of enchanted artifact protecting him?</em></p>
+<p>Xiao Zhenggong smiled, almost kindly, and then, without warning, shot out a hand and caught Zhong Guoshu&#39;s wrist.</p>
+<p>A jolt of alarm shot through Zhong Guoshu. He pulled back hard, putting all his strength into it, but the hand gripping him didn&#39;t move at all. Xiao Zhenggong barely seemed to try. He pressed down lightly, adjusted his fingers just a little, and twisted it...</p>
+</article>
+<article id="c234" data-label="234">
+<h2 class="chapter">Chapter 234: The Balancer 🔒</h2>
+<p>Xiao Zhenggong looked at Blockhead as he rolled a coin between his fingers.</p>
+<p>Blockhead was a level-five Martial Cultivator. He was talented, but not actually that much stronger than Zhong Guoshu. If Xiao Zhenggong wanted to kill him, it wouldn&#39;t take much effort. Just this coin in his hand would be enough.</p>
+<p>Suddenly, Xiao Zhenggong&#39;s tone softened as he asked calmly, &#34;Blockhead, what exactly did you come here for?&#34;</p>
+<p>Blockhead replied, &#34;The captain sent me.&#34;</p>
+<p>&#34;You better be honest. The captain has never told you to come to the hospital every day. There&#39;s something else going on.&#34;</p>
+<p>Blockhead shook his head at once. &#34;I do not come every day. I only came to take a look today.&#34;</p>
+<p>&#34;I am questioning you as the deputy right now. You know the rules of the Dark Star Bureau. If you don&#39;t cooperate, I won&#39;t show you any mercy.&#34;</p>
+<p>At some point, the coin in Xiao Zhenggong&#39;s hand had flipped to rest between his thumb and index finger.</p>
+<p>&#34;I told him to come.&#34; Captain Chen Changrui suddenly appeared at the doorway. &#34;Zhenggong, put the coin away. It&#39;s just a one-yuan coin, yet you are playing with it so enthusiastically. If others see you, they will think we can&#39;t even afford to pay salaries.&#34;</p>
+<p>Xiao Zhenggong put the coin away and said to Chen Changrui, &#34;I suspect Investigator Zou Guoming and He Jiaqing are colluding in secret and leaking the bureau&#39;s confidential information. There&#39;s nothing wrong with me asking him a couple of questions, right?&#34;</p>
+<p>Chen Changrui smiled. &#34;There&#39;s nothing wrong with this. Go ahead and ask, but this is not the place for it. Some things are not meant for outsiders to hear. Let us take him back to the bureau and question him there. What do you think?&#34;</p>
+<p>Xiao Zhenggong let out a cold laugh.</p>
+<p>&#34;No need,&#34; he...</p>
+</article>
+<article id="c235" data-label="235">
+<h2 class="chapter">Chapter 235: Who Are You Calling Dust? 🔒</h2>
+<p>Li Banfeng walked forward, casually humming a tune. It was very loud, so Zhuo Yuling, along with the two experts from Iron Goat Mountain hiding in the shadows, heard it loud and clear.</p>
+<p>The song made their heads spin, and their bodies twitched involuntarily. Even that slight movement didn&#39;t escape the Threaded Earring.</p>
+<p>&#34;Sir, there&#39;s movement in the forest. Three people.&#34;</p>
+<p>Three people.</p>
+<p>Li Banfeng didn&#39;t know their cultivation levels, but since Ling Miaoying had arranged the ambush, they definitely weren&#39;t weak.</p>
+<p>Facing three opponents alone would put him at a disadvantage. Should he retreat into his Pocket Dwelling for now and avoid them?</p>
+<p>The thought passed through his mind, then faded just as quickly. There was simply no need.</p>
+<p>Li Banfeng was extremely familiar with this territory. Back then, to advance his Wanderlust Cultivation, he had traversed Shui Yongquan and Qiu Luoye&#39;s territories countless times. He didn&#39;t mind having a little fun with them.</p>
+<p>Li Banfeng didn&#39;t move. He simply stood there and kept singing. The longer they listened, the worse their injuries became.</p>
+<p>Using the hook, Lu Xiaolan sent a message to Zhuo Yuling. &#34;Mom, his singing is a cultivation ability.&#34;</p>
+<p>Li Banfeng made the first move.</p>
+<p>Zhuo Yuling didn&#39;t hesitate for even a moment. She burst out of the forest with the two experts at her side. At the same time, she flicked her hips, and her tail snapped forward before she even arrived.</p>
+<p>Li Banfeng was prepared. His Tang saber flashed out of its sheath in a single, clean motion, faster than her advance. The blade cut through the air and sliced off a portion of Zhuo Yuling&#39;s tail before she could get any closer.</p>
+<p>Pain struck at once, forcing...</p>
+</article>
+<article id="c236" data-label="236">
+<h2 class="chapter">Chapter 236: Who Can Guard Against a Thief for a Thousand Days? 🔒</h2>
+<p>Li Banfeng set Zhuo Yuling&#39;s head down in front of Lu Xiaolan and beckoned for her to come out.</p>
+<p>Lu Xiaolan was no fool. Li Banfeng had already killed Zhuo Yuling, and the other two fifth-level experts were nowhere to be seen. Most likely, they had met the same fate.</p>
+<p>She knew she was no match for Li Banfeng. The moment she stepped out of her domain, she would die without a doubt. She refused to come out, but Li Banfeng was certain he could lure her out.</p>
+<p>The Fool&#39;s Thousand Worries would work on anyone who felt hesitated and indecisive. As Lu Xiaolan stared at Zhuo Yuling&#39;s severed head, Li Banfeng knew she wouldn&#39;t be able to stay calm. Anger would take hold of her, and once it did, doubt would follow close behind.</p>
+<p>As long as she was torn between decisions, she wouldn&#39;t escape the Fool&#39;s Thousand Worries. Sooner or later, she would make a choice that benefited Li Banfeng.</p>
+<p>Lu Xiaolan stared at Zhuo Yuling&#39;s head and her gaze drifted out of focus.</p>
+<p>This was her biological mother. The woman who had devoted her entire life to turning her into a professional assassin.</p>
+<p>The same woman who had never treated her with any gentleness, no matter how much she had suffered as a child.</p>
+<p>She tried to marry Lu Xiaolan off to Ma Wu, then to He Jiaqing. Later, for the sake of the Crimson...</p>
+</article>
+<article id="c237" data-label="237">
+<h2 class="chapter">Chapter 237: Getting to the Root of the Matter 🔒</h2>
+<p>At the Lu residence, Lu Yuanhai was laughing so hard he could barely stop.</p>
+<p>&#34;Isn&#39;t it ridiculous?&#34; he said. &#34;Ling Miaoying promoted that film everywhere, made such a huge effort. In the end, the film reel got burned! I laughed about it for a whole hour!&#34;</p>
+<p>Lu Yuanshan didn&#39;t laugh. He was older, and he tended to look further ahead than Lu Yuanhai. After a moment, he turned to Qiu Zhiheng.</p>
+<p>&#34;Uncle Qiu, do you think this is an opportunity?&#34;</p>
+<p>Qiu Zhiheng glanced at him. &#34;What! You want to make films too?&#34;</p>
+<p>Lu Yuanshan nodded slightly. &#34;Ling Miaoying&#39;s idea is actually quite good. Shooting all ten films altogether… if we can do this…&#34;</p>
+<p>At this moment, Madam Duan Shaoxia spoke up. &#34;Yuanshan, have you ever made a film before? If you&#39;re not confident about it, you shouldn&#39;t rush in recklessly.&#34;</p>
+<p>Lu Yuanshan said, &#34;That&#39;s exactly why I am discussing it with Uncle Qiu.&#34;</p>
+<p>Qiu Zhiheng didn&#39;t answer right away. He needed time to think it through.</p>
+<p>Lu Yuanhai waved a hand. &#34;I think it&#39;ll work. At the end of the day, filmmaking comes down to the actors. If they&#39;re famous, the film will be popular.&#34;</p>
+<p>Duan Shaoxia shot Lu Yuanhai a glance. &#34;Easy for you to say. Where are you going to find actors like that? The Ling Family can even hire...</p>
+</article>
+<article id="c238" data-label="238">
+<h2 class="chapter">Chapter 238: Reunion 🔒</h2>
+<p>He had only just returned to Greenwater City two days ago, yet he was already on the move again.</p>
+<p>After boarding, he slept for nearly half a day. When dusk came, he walked out from his compartment and brewed a fresh pot of tea before he started drinking tea while reading the newspaper.</p>
+<p>There came a knock at the door.</p>
+<p>&#34;Sir! Ticket inspection! Open up at once and show your ticket!&#34;</p>
+<p>The voice sounded familiar, but just a little strange.</p>
+<p>With his hand holding the teacup, Zhou Changhong did not move at all.</p>
+<p><em>Knock, knock.</em></p>
+<p>The knock sounded again as the attendant said, &#34;Sir, open the door immediately and present your ticket.&#34;</p>
+<p>No answer. Not a breath. Nothing. Zhou Changhong still sat there with his teacup and remained as still as a figure molded from clay.</p>
+<p>Then…</p>
+<p><em>BANG! BANG! BANG!</em></p>
+<p>The third knock sounded against the door.</p>
+<p>&#34;Sir, you must cooperate with the inspection! If you refuse to open the door, I will be forced to take action!&#34;</p>
+<p>At last, there was movement inside the room.</p>
+<p>Zhou Changhong moved. He flipped the newspaper to the other side and took another sip of his tea.</p>
+<p><em>How strange…</em></p>
+<p>Standing outside the door, Li Banfeng, disguised as a train attendant, listened through the Threaded Earring for any movement inside the compartment.</p>
+<p><em>He&#39;s still drinking tea?</em> Li Banfeng couldn&#39;t understand Changhong&#39;s reaction at all.</p>
+<p>Ticket inspections usually happened once, about five or six hours after boarding. Li Banfeng had experienced it himself on his first train ride, and Ma Wu had confirmed it was standard procedure.</p>
+<p><em>Why isn&#39;t he opening the...</em></p>
+</article>
+<article id="c239" data-label="239">
+<h2 class="chapter">Chapter 239: The Sage&#39;s Peak 🔒</h2>
+<p>Li Banfeng slept until evening. When he got up, it was already 6 PM.</p>
+<p>He had missed the time to get off the train.</p>
+<p>Nevertheless, there was nothing he could do about that now. The Judge&#39;s Brush was still in effect, so he couldn&#39;t be bothered thinking about it.</p>
+<p>He exited the Pocket Dwelling and picked up his house key from under the berth. But when he did so, he had no choice but to think about it after all.</p>
+<p>There were two young women in his berth—one on top of the other. Technically, this wasn&#39;t Li Banfeng&#39;s berth anymore. It now belonged to the two young women, as Li Banfeng was supposed to have already gotten off the train hours ago.</p>
+<p>Seeing the two young women grinding against each other, Li Banfeng hurriedly said, &#34;I entered the wrong compartment. Don&#39;t mind me…&#34;</p>
+<p>A shrill scream rang out from the compartment, and a train attendant rushed over. The two female passengers explained that Li Banfeng had suddenly crawled out from beneath the berth.</p>
+<p>Li Banfeng explained that he should have gotten off earlier, but he had overslept.</p>
+<p>The train attendant looked at Li Banfeng and asked, &#34;You overslept… under the berth?&#34;</p>
+<p>Li Banfeng explained for a long time, but couldn&#39;t come up with a reasonable explanation.</p>
+<p>The train attendant ground his teeth and said, &#34;You...</p>
+</article>
+<article id="c240" data-label="240">
+<h2 class="chapter">Chapter 240: The Sage&#39;s Disciples 🔒</h2>
+<p>The white-robed man proposed that they kneel indefinitely, and the crowd quickly echoed in agreement. They knelt in front of the gates.</p>
+<p>Li Banfeng was not afraid of evil people, but he had to stay far away from shameless people. Shameless people were more loathsome than evil people and far harder to deal with.</p>
+<p><em>But the question now is… where should I go?</em></p>
+<p>Going north was definitely not an option. If he wasn&#39;t careful, he might end up circling back again.</p>
+<p>He managed to determine the direction of true north, so he could figure out the other directions as well. Li Banfeng chose to head east.</p>
+<p>There were several hills to the east, unlike the barren wilderness to the north. As long as he kept his eyes on the hills, he believed he surely couldn&#39;t end up somewhere else.</p>
+<p>As he made his way down the mountain, Li Banfeng kept wondering what food those Sages ate. He&#39;d wandered around the mountain for quite some time, but he hadn&#39;t seen any farmland or farmers.</p>
+<p>When he reached halfway down the slope, Li Banfeng saw a seventy-year-old man pulling a cart of white rice uphill. Two other people pushed the cart from behind. One was his son, who was in his early thirties, and the other was his ten-year-old grandson.</p>
+<p>The white rice was heavy, and the three generations of that family struggled to push the cart. When they reached the middle of the slope, the old man stopped the cart. With just a pot of plain water, the old man, his son, and his grandson chewed on coarse grain ca...</p>
+</article>
+<article id="c241" data-label="241">
+<h2 class="chapter">Chapter 241: Making a Living By Relying on Talents 🔒</h2>
+<p><em>Xiao Yeci?</em></p>
+<p>After not seeing her for so long, Li Banfeng could barely remember what Xiao Yeci looked like, but he hadn&#39;t forgotten her unique manner of speech.</p>
+<p>&#34;Benefactor, come with me quickly. Don&#39;t stay in this village. If the Sage finds you, it&#39;ll be terrible, eh!&#34;</p>
+<p>Xiao Yeci pulled Li Banfeng into a mountain pass and led him to a cave. Lu Chunying, Xiao Yeci&#39;s daughter, was inside.</p>
+<p>Aside from Lu Chunying, there were several children, ranging from four to thirteen years old.</p>
+<p>&#34;Benefactor, how did you end up in this place?&#34;</p>
+<p><em>How did I get here? I don&#39;t know how to explain that.</em></p>
+<p>Li Banfeng said, &#34;That&#39;s not important. How did you and your daughter end up here?&#34;</p>
+<p>Xiao Yeci lowered her head, her face flushed red. &#34;I&#39;m afraid you&#39;ll laugh at me, Benefactor. I brought Nannan here to seek knowledge.&#34;</p>
+<p>Li Banfeng did indeed laugh. &#34;You came here for her to learn? When we first met, I remember you being quite knowledgeable. How could you do something this absurd?&#34;</p>
+<p>Before Xiao Yeci could speak, Lu Chunying interjected, &#34;Isn&#39;t that why she&#39;s called a Mouth Cultivator? In the end, she&#39;s only good at talking!&#34;</p>
+<p>Xiao Yeci snapped, &#34;You brat! No respect at all for your elders when you speak. Benefactor, I came here to let Nannan learn some real skills. Ever since we parted at Medicine...</p>
+</article>
+<article id="c242" data-label="242">
+<h2 class="chapter">Chapter 242: Endless Sincerity 🔒</h2>
+<p>Li Banfeng squatted beside the mountain path for an entire day. He seized cart after cart of grain, livestock, cloth, and daily necessities.</p>
+<p>While taking a cart of miscellaneous goods, Li Banfeng even took the time to share some &#34;insights&#34; with the farmer he was robbing.</p>
+<p>&#34;Look at this cold cream. The quality is clearly poor. I&#39;m an expert in this field. The Peddler is my junior brother!&#34;</p>
+<p>Xiao Yeci and Lu Chunying went back and forth, pushing cart after cart full of food, drinks, and supplies into the cave until there was a massive pile.</p>
+<p>The children ate until their bellies were round. Xiao Yeci took out a needle, thread, and a measuring tape from the pile of supplies and made clothes for them.</p>
+<p>These children each had only one set of clothes. During their escape, their clothes became covered in mud and dirt. They then hid in a forest deep in the mountains for over a month, and their clothes became holey and tattered. They had no chance to mend or wash the clothes, leaving them looking like rags.</p>
+<p>Li Banfeng was quite satisfied with how things had turned out. The cloth he had seized could be used to make clothes for the children.</p>
+<p>After dinner, Li Banfeng asked each of the children about their background.</p>
+<p>One of the children was Xiaosuo[1]. He had been playing outside his home when he encountered someone selling medicated candy. The man said business had been good that day and offered him some candy for free, asking...</p>
+</article>
+<article id="c243" data-label="243">
+<h2 class="chapter">Chapter 243: You Must Respect the Elderly 🔒</h2>
+<p>At dusk, the group of elderly people returned to the village. They cried and yelled, denouncing the bandits for their cruelty.</p>
+<p>If Li Banfeng had been present, he would have tried to talk some sense into them no matter what. It was only natural that he was cruel. How could he rob people without being cruel?</p>
+<p>The villagers had tried both soft and hard approaches to deal with the bandit problem, but none of them had worked. Several villages discussed the matter and decided that they had to ask the Sage&#39;s disciples to step in.</p>
+<p>The offerings they had prepared for the Sage had been snatched away by bandits. Surely, the Sage&#39;s disciples couldn&#39;t just stand by and do nothing!</p>
+<p>However, the Sage&#39;s disciples were not easy to deal with. If anything displeased them even slightly, they would hit people.</p>
+<p>Nevertheless, the villagers were sincere in their devotion to the Sage. They could endure beatings and scoldings alike, all for the sake of showing their sincerity to the Sage.</p>
+<p>They knelt for a long time in front of the disciples&#39; gates, refusing to rise. They just kept begging the disciples to report the situation in the villages to Sage&#39;s Peak.</p>
+<p>Now it was the disciples&#39; turn to feel troubled. The villagers were expressing their sincerity to the Sage, and as the Sage&#39;s...</p>
+</article>
+<article id="c244" data-label="244">
+<h2 class="chapter">Chapter 244: Binding Edict and Spoken Word Manifestation 🔒</h2>
+<p>Pebbles no bigger than fingertips came whistling through the air and smacked into the backs of their heads.</p>
+<p>Ren Wenlie took one slightly off to the side. With only a red lump swelling up at once, he was still fine.</p>
+<p>Qu Jingzhang, on the other hand, took several solid hits, and his skull cracked with a sickening snap.</p>
+<p>They both knew at once they had been ambushed. Qu Jingzhang spun around to face Li Banfeng, while Ren Wenlie bolted in the opposite direction.</p>
+<p>Their different reactions had nothing to do with cultivation. It was because of their different down experiences.</p>
+<p>Qu Jingzhang had crossed paths with Wanderlust Cultivators before. He knew that one should never have their backs facing a Wanderlust Cultivator. If he did, he wouldn&#39;t survive.</p>
+<p>Ren Wenlie had also encountered Wanderlust Cultivators and knew he shouldn&#39;t turn his back to Li Banfeng. However, he made this choice because he knew Qu Jingzhang well. Given his temperament, Qu Jingzhang would surely turn back and fight for his life.</p>
+<p>Seeing Ren Wenlie run, Qu Jingzhang panicked. He wanted to flee as well, but didn&#39;t dare turn his back towards Li Banfeng.</p>
+<p>The chance of a Moralism Cultivator fighting a Wanderlust Cultivator alone and winning was very low. However, it was already too late for him to run.</p>
+<p>Ren Wenlie had gotten far away, and this bearded man would definitely target the nearest person.</p>
+<p>While Qu Jingzhang was torn between decisions, he managed to survive two moves before making...</p>
+</article>
+<article id="c245" data-label="245">
+<h2 class="chapter">Chapter 245: Eldest Senior Brother 🔒</h2>
+<p>Li Banfeng sat inside the Pocket Dwelling, studying the spear Hong Ying with a concerned look. &#34;Little sis, you have had it rough these past few days.&#34;</p>
+<p>&#34;Pfft!&#34; Hong Ying spat. &#34;Heartless man. Who are you calling your sis?&#34;</p>
+<p>&#34;Keep your voice down,&#34; Li Banfeng said quickly. &#34;Don&#39;t wake my wife.&#34;</p>
+<p>With the Gramophone asleep, Li Banfeng seized the opportunity. He softened his tone as he spoke to Hong Ying.</p>
+<p>&#34;Sis, I can tell you and my wife still share some connection. If there&#39;s a grudge you can&#39;t let go of… why not tell me about it?&#34;</p>
+<p>Hong Ying let out a cold, mocking laugh. &#34;There are too many grudges between us. I stopped counting them long ago. Which one do you want to hear?&#34;</p>
+<p>Li Banfeng sighed. &#34;Let&#39;s skip the parts that will only stir up bad feelings. I just want to hear about your fights, especially the ones where it came down to life and death.&#34;</p>
+<p>He wanted to learn the level-five ability of a Wanderlust Cultivator. Hong Ying knew them inside out. The only problem was how to get her to reveal them… without letting his wife find out.</p>
+<p>Hong Ying sneered. &#34;Did that vicious woman send you to pry for information? You heartless man, go tell her to give up. She won&#39;t get a single truthful word out of me in this lifetime.&#34;</p>
+<p>Li Banfeng sighed. &#34;Why take it this far? You are like sisters. Is there really any...</p>
+</article>
+<article id="c246" data-label="246">
+<h2 class="chapter">Chapter 246: Ruptured Cocoon 🔒</h2>
+<p>Cong Shixiang had swallowed the Corrosion Pill. Yet he stood there unharmed.</p>
+<p>Worse, anything that came near him began to decay. Steel dulled, rusted, and crumbled in an instant. He hadn&#39;t suffered from the pill. He had inherited its power.</p>
+<p>Li Banfeng was still shocked. He didn&#39;t think much and struck a match, flicking it at Cong Shixiang.</p>
+<p>The alcohol mist hung thick in the air, and flames suddenly engulfed Cong Shixiang. His body fat crackled and spat as it burned, sending up greasy smoke.</p>
+<p>He didn&#39;t dodge. He didn&#39;t struggle. He didn&#39;t even try to put out the fire.</p>
+<p>Instead, he calmly tore strips of charred flesh from his burning body and stuffed them into his mouth, chewing them down along with the flames.</p>
+<p>Cong Shixiang looked quite pleased with the taste. He drew in a deep breath, sucking in the flames clinging to his body along with the alcohol mist in the air. Then he leaned forward and spat it all back at Li Banfeng.</p>
+<p>It was not hard dodging this blast of fire, but Li Banfeng no longer dared to approach Cong Shixiang. He had no idea what else Cong Shixiang could spit out, nor what he might devour next.</p>
+<p>Cong Shixiang charged at Li Banfeng again. Li Banfeng kept a distance of ten meters, circling him.</p>
+<p>Ren Wenlie shouted, &#34;You are a young man in your prime, yet you don&#39;t dare face an old man head-on?&#34;</p>
+<p>A surge of guilt rose in Li Banfeng&#39;s chest. In that moment of hesitation, Cong Shixiang cut off his path. Then Ren Wenlie[1] shouted again, &#34;When two meet on a narrow path, the brave...</p>
+</article>
+<article id="c247" data-label="247">
+<h2 class="chapter">Chapter 247: The Name of This Place 🔒</h2>
+<p>Ren Wenlie lay dead with his throat slit.</p>
+<p>The two remaining junior brothers, Pei Maojin and Gao Yangting, stood frozen where they were. None of them dared to turn back, nor step forward.</p>
+<p>Li Banfeng&#39;s words still rang in their ears. Standing still was the best choice. So they stayed where they were, not moving an inch.</p>
+<p>With a smile, Li Banfeng stepped forward and patted their heads. &#34;You are disciples of the Sage?&#34;</p>
+<p>Pei Maojin trembled as he spoke, his voice unsteady. &#34;The Sage&#39;s power knows no bounds. You have already made a grave mistake, but it&#39;s not too late to turn back!&#34;</p>
+<p>Gao Yangting hurried to add from the side, &#34;We will put in a good word for you before our teacher. We will let this matter go and won&#39;t pursue it any further.&#34;</p>
+<p>Li Banfeng nodded. &#34;As expected of the Sage&#39;s disciples. You two are kind and generous. Come. The two of you can accompany me to my cave abode for a chat.&#34;</p>
+<p>With her clothes already soaked through with sweat, Xiao Yeci stood where she was.</p>
+<p>Li Banfeng looked at her with clear approval. &#34;You have earned merit today. I will have a proper talk with these two disciples of the Sage first. Tonight, there will be additional rewards for you.&#34;</p>
+<p>Xiao Yeci turned to look at Li Banfeng&#39;s back, unsure what kind of reward he meant.</p>
+<hr class="separator">
+<p>After entering the cave, Pei Maojin still tried to put on a brave...</p>
+</article>
+<article id="c248" data-label="248">
+<h2 class="chapter">Chapter 248: The Sage 🔒</h2>
+<p>Li Banfeng returned to the Pocket Dwelling and told wifey about the meeting ten days later.</p>
+<p>Wifey pondered for a long while before saying, “Husband dear~ This little wifey thinks that it&#39;s better if you don&#39;t meet him.&#34;</p>
+<p>Li Banfeng shook his head. “If I don’t meet him, how am I supposed to leave this place?”</p>
+<p>Wifey’s voice turned grave. “Husband dear, let’s think of another way.”</p>
+<p>Crimson Lotus let out a hissing sound, as if she was agreeing with the gramophone.</p>
+<p>Hong Ying let out a cold snort. “That&#39;s someone who has a Ruptured Cocoon. You should know what kind of monster that makes him, and you should know your own limits. Still, giving you ten days is already more than generous.”</p>
+<p>Li Banfeng was also very curious as to why the Sage would give him ten days.</p>
+<p>After returning to Benefactor Stronghold, Li Banfeng ordered everyone to stay on high alert. He suspected the Sage might make a sudden move within these ten days and catch them off guard. In actuality, he had the same plan and wanted to give this Sage a surprise.</p>
+<p>However, the Sage did not appear the next day nor did his disciples. Instead, dozens of people came to seek refuge at Benefactor Stronghold.</p>
+<p>Their reasons were about the same as the others. They all said that they could no longer endure the exploitation of Sage’s Mountain or the bullying of his disciples.</p>
+<p>Among them, one woman had suffered the most. Her name was Dong Qiaoqin,...</p>
+</article>
+<article id="c249" data-label="249">
+<h2 class="chapter">Chapter 249: Won Half 🔒</h2>
+<p>The Sage held his teacup and gently swirled it in his hand.</p>
+<p>Waves of domineering presence rolled out from Li Banfeng, one after another, filling the space with crushing force.</p>
+<p>It took the Sage by surprise. More than that, something about the presence stirred a faint sense of familiarity, as though he had encountered it before.</p>
+<p>&#34;Have you been on a battlefield?&#34; the Sage asked.</p>
+<p>&#34;Something like that.&#34; Li Banfeng gave a vague reply. There was no need for him to be too specific.</p>
+<p>It was, in a sense, the truth. Whether he had been on a battlefield depended on how one chose to define it.</p>
+<p>By that reasoning, the clash between Qiu Luoye and Shui Yongquan could just as well be called a proper battlefield.</p>
+<p>The Sage asked again, &#34;How old are you this year?&#34;</p>
+<p>Li Banfeng thought for a moment. &#34;I don&#39;t remember. Perhaps about the same as you.&#34;</p>
+<p>That was only half the truth. Li Banfeng clearly wasn&#39;t as old as the Sage, yet he really couldn&#39;t remember his own age. He had grown up an orphan.</p>
+<p>The Sage&#39;s domineering presence continued to press forward, colliding with Li Banfeng&#39;s presence in steady waves.</p>
+<p>One of the disciples couldn&#39;t hold back his curiosity. He wanted to see for himself what kind of man could stand on equal footing with his master.</p>
+<p>He lifted his gaze and glanced into the room. That small movement was...</p>
+</article>
+<article id="c250" data-label="250">
+<span id="last"></span>
+<h2 class="chapter">Chapter 250: Worry-Free Flat 🔒</h2>
+<p>Li Banfeng led Xiao Yeci and the remaining twenty-six people south.</p>
+<p>The mountain path grew narrower and rougher the farther they went. By two in the morning, most of them were at their limit. Even Xiao Yeci began to stumble.</p>
+<p>Seeing this, Li Banfeng had Xiao Yeci and Lu Chunying organize the group to set up camp on the spot. He used the excuse of scouting ahead to slip away from the campsite, but instead of continuing forward, he returned to his Pocket Dwelling.</p>
+<p>The others were exhausted from the journey, yet this level of travel barely affected him. He felt no trace of sleepiness. With nothing pressing to do, he took out the history books the Sage had given him, intending to give them a good read.</p>
+<p>However, the moment he opened it, drowsiness washed over him. It wasn&#39;t because he disliked studying. He could tolerate the vertically printed, right-opening format of ancient texts, and he could endure the dense, archaic grammar of classical prose. What he couldn&#39;t stand was reading an annalistic history book.</p>
+<p>An annalistic history followed a strict timeline, recording events year by year. For historians, that made it ideal for tracing events and understanding the context of each era. To Li Banfeng, however, it was nothing more...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="251-300.html" rel="next">Next: Chs 251–300 &rarr;</a>
+    <p class="page-end-links"><a href="151-200.html" rel="prev">&larr; Chs 151–200</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">The Overlord of Puluo · Chs 201–250</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c201">Chapter 201: Into the Tiger’s Den 🔒</a></li>
+        <li><a href="#c202">Chapter 202: The Number One Daoist Path Under the Heavens 🔒</a></li>
+        <li><a href="#c203">Chapter 203: Yuren City 🔒</a></li>
+        <li><a href="#c204">Chapter 204: Warding Off Ill Omen 🔒</a></li>
+        <li><a href="#c205">Chapter 205: If You Want to Leave, Then Leave! 🔒</a></li>
+        <li><a href="#c206">Chapter 206: Abilities of the Folly Cultivators 🔒</a></li>
+        <li><a href="#c207">Chapter 207: Freewind Wharf 🔒</a></li>
+        <li><a href="#c208">Chapter 208: Level Four of Wanderlust Cultivation 🔒</a></li>
+        <li><a href="#c209">Chapter 209: Thirty Percent of Puluo 🔒</a></li>
+        <li><a href="#c210">Chapter 210: The Marvelous Film at the Platform 🔒</a></li>
+        <li><a href="#c211">Chapter 211: Iron Gate Fort 🔒</a></li>
+        <li><a href="#c212">Chapter 212: Deception Cultivator 🔒</a></li>
+        <li><a href="#c213">Chapter 213: He Is My Junior Brother 🔒</a></li>
+        <li><a href="#c214">Chapter 214: The Invisible Enemy 🔒</a></li>
+        <li><a href="#c215">Chapter 215: Half Truth 🔒</a></li>
+        <li><a href="#c216">Chapter 216: Hear Me At The Door 🔒</a></li>
+        <li><a href="#c217">Chapter 217: Senior Brother, Don’t Go! 🔒</a></li>
+        <li><a href="#c218">Chapter 218: A Good Subordinate 🔒</a></li>
+        <li><a href="#c219">Chapter 219: The Ruthless Combat Methods of the Upright Daoist Path 🔒</a></li>
+        <li><a href="#c220">Chapter 220: Level-Five Ability of a Homebound Cultivator 🔒</a></li>
+        <li><a href="#c221">Chapter 221: The Fort Lord’s Name Is Fort Lord 🔒</a></li>
+        <li><a href="#c222">Chapter 222: Flying Eagle Mountain 🔒</a></li>
+        <li><a href="#c223">Chapter 223: Husband Sings, Wife Follows 🔒</a></li>
+        <li><a href="#c224">Chapter 224: Beyond The Grave Mound Lie More Hills 🔒</a></li>
+        <li><a href="#c225">Chapter 225: Iron Gate Fort or Blood Gate Fort 🔒</a></li>
+        <li><a href="#c226">Chapter 226: Zhao Xiaowan 🔒</a></li>
+        <li><a href="#c227">Chapter 227: Acknowledging a Master 🔒</a></li>
+        <li><a href="#c228">Chapter 228: The Red Tassel Is Not a Spear 🔒</a></li>
+        <li><a href="#c229">Chapter 229: Success 🔒</a></li>
+        <li><a href="#c230">Chapter 230: The Long Spear Exploding Tiger 🔒</a></li>
+        <li><a href="#c231">Chapter 231: Peach Blossom Lake 🔒</a></li>
+        <li><a href="#c232">Chapter 232: Black Market 🔒</a></li>
+        <li><a href="#c233">Chapter 233: You Want to Kill Me? 🔒</a></li>
+        <li><a href="#c234">Chapter 234: The Balancer 🔒</a></li>
+        <li><a href="#c235">Chapter 235: Who Are You Calling Dust? 🔒</a></li>
+        <li><a href="#c236">Chapter 236: Who Can Guard Against a Thief for a Thousand Days? 🔒</a></li>
+        <li><a href="#c237">Chapter 237: Getting to the Root of the Matter 🔒</a></li>
+        <li><a href="#c238">Chapter 238: Reunion 🔒</a></li>
+        <li><a href="#c239">Chapter 239: The Sage&#39;s Peak 🔒</a></li>
+        <li><a href="#c240">Chapter 240: The Sage&#39;s Disciples 🔒</a></li>
+        <li><a href="#c241">Chapter 241: Making a Living By Relying on Talents 🔒</a></li>
+        <li><a href="#c242">Chapter 242: Endless Sincerity 🔒</a></li>
+        <li><a href="#c243">Chapter 243: You Must Respect the Elderly 🔒</a></li>
+        <li><a href="#c244">Chapter 244: Binding Edict and Spoken Word Manifestation 🔒</a></li>
+        <li><a href="#c245">Chapter 245: Eldest Senior Brother 🔒</a></li>
+        <li><a href="#c246">Chapter 246: Ruptured Cocoon 🔒</a></li>
+        <li><a href="#c247">Chapter 247: The Name of This Place 🔒</a></li>
+        <li><a href="#c248">Chapter 248: The Sage 🔒</a></li>
+        <li><a href="#c249">Chapter 249: Won Half 🔒</a></li>
+        <li><a href="#c250">Chapter 250: Worry-Free Flat 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="151-200.html" rel="prev">&larr; Chs 151–200</a>    <a href="../../index.html">Library</a>
+<a href="251-300.html" rel="next">Chs 251–300 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

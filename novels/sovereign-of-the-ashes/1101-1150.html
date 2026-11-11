@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1101–1150</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1051-1100.html#last" data-next-page="1151-1200.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1101">Chapter 1101: Still Fuming 🔒</a></li>
+        <li><a href="#c1102">Chapter 1102: Cruel and Intense War 🔒</a></li>
+        <li><a href="#c1103">Chapter 1103: Meeting Again 🔒</a></li>
+        <li><a href="#c1104">Chapter 1104: The Ultimate Ugliness 🔒</a></li>
+        <li><a href="#c1105">Chapter 1105: Battling A Stronger Opponent 🔒</a></li>
+        <li><a href="#c1106">Chapter 1106: Surprise 🔒</a></li>
+        <li><a href="#c1107">Chapter 1107: Speculation 🔒</a></li>
+        <li><a href="#c1108">Chapter 1108: Shocked 🔒</a></li>
+        <li><a href="#c1109">Chapter 1109: Crushed 🔒</a></li>
+        <li><a href="#c1110">Chapter 1110: Irrefutable Evidence 🔒</a></li>
+        <li><a href="#c1111">Chapter 1111: Resolved 🔒</a></li>
+        <li><a href="#c1112">Chapter 1112: Contact 🔒</a></li>
+        <li><a href="#c1113">Chapter 1113: Continuing Their Travel 🔒</a></li>
+        <li><a href="#c1114">Chapter 1114: Beastmen World 🔒</a></li>
+        <li><a href="#c1115">Chapter 1115: Goodwill 🔒</a></li>
+        <li><a href="#c1116">Chapter 1116: Barrenness 🔒</a></li>
+        <li><a href="#c1117">Chapter 1117: Savior 🔒</a></li>
+        <li><a href="#c1118">Chapter 1118: The King of Kameron 🔒</a></li>
+        <li><a href="#c1119">Chapter 1119: Half-Beastmen 🔒</a></li>
+        <li><a href="#c1120">Chapter 1120: Monkeyfolk of the Simius Tribe 🔒</a></li>
+        <li><a href="#c1121">Chapter 1121: No Man’s Land 🔒</a></li>
+        <li><a href="#c1122">Chapter 1122: Eugene 🔒</a></li>
+        <li><a href="#c1123">Chapter 1123: Upgrading Divine Artifacts 🔒</a></li>
+        <li><a href="#c1124">Chapter 1124: Noble Guests 🔒</a></li>
+        <li><a href="#c1125">Chapter 1125: Success 🔒</a></li>
+        <li><a href="#c1126">Chapter 1126: Bouldrak Plane 🔒</a></li>
+        <li><a href="#c1127">Chapter 1127: I Have a Dream 🔒</a></li>
+        <li><a href="#c1128">Chapter 1128: The War Begins 🔒</a></li>
+        <li><a href="#c1129">Chapter 1129: Watching Closely 🔒</a></li>
+        <li><a href="#c1130">Chapter 1130: Obedient 🔒</a></li>
+        <li><a href="#c1131">Chapter 1131: Clash Between Main Forces 🔒</a></li>
+        <li><a href="#c1132">Chapter 1132: Forbidden Spell 🔒</a></li>
+        <li><a href="#c1133">Chapter 1133: Everfire Hellscape 🔒</a></li>
+        <li><a href="#c1134">Chapter 1134: Early Phase Advantage 🔒</a></li>
+        <li><a href="#c1135">Chapter 1135: Indestructible Copper Pea 🔒</a></li>
+        <li><a href="#c1136">Chapter 1136: Terrifying Details 🔒</a></li>
+        <li><a href="#c1137">Chapter 1137: Poison 🔒</a></li>
+        <li><a href="#c1138">Chapter 1138: Phantom Crow World 🔒</a></li>
+        <li><a href="#c1139">Chapter 1139: Joining the Bouldrak World Battlefield 🔒</a></li>
+        <li><a href="#c1140">Chapter 1140: Legion of Phantom Crows 🔒</a></li>
+        <li><a href="#c1141">Chapter 1141: Struggle 🔒</a></li>
+        <li><a href="#c1142">Chapter 1142: Brutal 🔒</a></li>
+        <li><a href="#c1143">Chapter 1143: Golden Hand 🔒</a></li>
+        <li><a href="#c1144">Chapter 1144: Defeat 🔒</a></li>
+        <li><a href="#c1145">Chapter 1145: Strategy 🔒</a></li>
+        <li><a href="#c1146">Chapter 1146: The End of the War 🔒</a></li>
+        <li><a href="#c1147">Chapter 1147: Earning 🔒</a></li>
+        <li><a href="#c1148">Chapter 1148: Establishing Connections 🔒</a></li>
+        <li><a href="#c1149">Chapter 1149: Summon 🔒</a></li>
+        <li><a href="#c1150">Chapter 1150: Demihumans 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1101" data-label="1101">
+<h2 class="chapter">Chapter 1101: Still Fuming 🔒</h2>
+<p>The moment the emaciated old man in black robes appeared, the fiery glares between Sein and Harnban cooled significantly.</p>
+<p>This Rank Five black mage was Andy—one of the more approachable tower masters in Blackhaven.</p>
+<p>Unlike many others, he rarely tortured lesser creatures and never dabbled in those bone-chilling body modification experiments.</p>
+<p>He was actually known for his achievements in manufacturing.</p>
+<p>A lot of the space fortresses and prism forts used by black tower masters in Blackhaven were outdated models smuggled in from the Magus Alliance.</p>
+<p>Not only were these fortresses old, but repairing them was a nightmare.</p>
+<p>Blackhaven could launch conquests on foreign planes, but such endeavors would be next to impossible without transports and large war platforms like space fortresses.</p>
+<p>Andy was one of the few experts in Blackhaven capable of repairing and modifying such massive...</p>
+</article>
+<article id="c1102" data-label="1102">
+<h2 class="chapter">Chapter 1102: Cruel and Intense War 🔒</h2>
+<p>Blackhaven’s harsh environment made its mages and knights even more unruly and battle-hungry than those in the rest of the Magus World.</p>
+<p>Sometimes, just a verbal jab or even mild annoyance was enough to spark a deadly fight.</p>
+<p>Sein’s fight with Harnban was honestly pretty ridiculous too.</p>
+<p>All he did was fly over Harnban’s magic tower. Apparently, that alone was enough to offend the demigod-level black mage.</p>
+<p>As an outsider, Sein had a hard time adjusting to Blackhaven’s way of life.</p>
+<p>But after flying around for a while, he began to figure out how things worked here.</p>
+<p>On his way to the Black Tower of Cinderbones, he made a point to steer clear of the more prominent towers.</p>
+<p>He still ran into a few...</p>
+</article>
+<article id="c1103" data-label="1103">
+<h2 class="chapter">Chapter 1103: Meeting Again 🔒</h2>
+<p>Sein, having entered the battlefield in his demigod form, eventually caught Leena’s trail near a basin with an underground mine on the outskirts of the Black Tower of Cinderbones</p>
+<p>The fighting here was just as intense, with initiates from the tower using the terrain of the mine to hold their ground.</p>
+<p>Unfortunately, the sheer number of black mages attacking the area had pushed the battle deep into the underground tunnels.</p>
+<p>Sein’s arrival immediately drew attention from both parties.</p>
+<p>What made him stand out even more was that his robe bore no indication of which black tower he belonged to.</p>
+<p>Nevertheless, his blazing demigod aura was enough to send shivers down the spines of most lower-ranking mages.</p>
+<p>After a quick glance around, Sein...</p>
+</article>
+<article id="c1104" data-label="1104">
+<h2 class="chapter">Chapter 1104: The Ultimate Ugliness 🔒</h2>
+<p>“I thought you...” Leena said, her voice trembling.</p>
+<p>The Dark Reaper, who had killed countless in Blackhaven, showed her vulnerable side only when she was with Sein.</p>
+<p>Sein had not been able to contact Leena while he was trapped in Faeloria. They had never gone this long without contacting each other.</p>
+<p>Leena, more well-read than Sein in certain subjects, had studied occult arts and astrology.</p>
+<p>She had tried to divine his whereabouts but found nothing. She had no idea where he was or even if he was still alive.</p>
+<p>Her grasp of astrology was still shallow, and there were no low-ranking mages in Blackhaven skilled in the field.</p>
+<p>At one point, she had been so desperate that she had almost marched to Eastern Stargazing Heights to kidnap...</p>
+</article>
+<article id="c1105" data-label="1105">
+<h2 class="chapter">Chapter 1105: Battling A Stronger Opponent 🔒</h2>
+<p>“What about the rest of you?” the Rank Four Tower Master of Bone asked, his gaze sweeping over the remaining full-fledged mages.</p>
+<p>After watching a Rank Three black mage get torn apart moments earlier, everyone knew exactly what the correct choice was.</p>
+<p>If they did not surrender, they would die right here and now.</p>
+<p>If they did, their souls would be enslaved by the Tower Master of Bone… but at least they might die a little later.</p>
+<p>Faced with that reality, these black mages knew what choice to make!</p>
+<p>A chorus of voices crying out in surrender and begging for mercy quickly filled the battlefield.</p>
+<p>This only made the Rank Four black mage’s cruel, arrogant laughter echo louder and sharper across the mine.</p>
+<p>Of course, not everyone...</p>
+</article>
+<article id="c1106" data-label="1106">
+<h2 class="chapter">Chapter 1106: Surprise 🔒</h2>
+<p>Blazing flames and violent elemental explosions lit up the sky above the basin.</p>
+<p>Every surviving mage below stared in horror as Sein, fully transformed into his demon form, charged at the Rank Four tower master.</p>
+<p>Endless fireballs and energy rays rained down, showcasing Sein’s exceptional magical talent and immense elemental reserves.</p>
+<p>Compared to him, even the strongest mages on the field—including a few Rank Three grand mages—looked like amateurs.</p>
+<p>On top of that, Sein’s spells carried traces of law power, something only demigod-level mages and above could wield.</p>
+<p>All the remaining black mages quickly retreated to the edges of the battlefield. A few Rank Three stood rooted to the spot, captivated...</p>
+</article>
+<article id="c1107" data-label="1107">
+<h2 class="chapter">Chapter 1107: Speculation 🔒</h2>
+<p>The eerie magic tower, steeped in the stench of death and decay, was the Tower Master of Bone’s personal den.</p>
+<p>It did not seem to be his black tower—more like one of his secret hideouts.</p>
+<p>Sein watched calmly as the Tower Master of Bone stood in the center of the hall, practically glowing with excitement and greed.</p>
+<p>In his hands were the two divine relics that had once belonged to Sein.</p>
+<p>While black mages in Blackhaven could launch interplanar wars, they were never as efficient—or as prioritized—as the divine towers.</p>
+<p>Despite having built his name over thousands of years, the Tower Master of Bone had never once initiated an interplanar w...</p>
+</article>
+<article id="c1108" data-label="1108">
+<h2 class="chapter">Chapter 1108: Shocked 🔒</h2>
+<p>Several more lashes landed in quick succession, leaving fresh, visible wounds across Sein’s body.</p>
+<p>Not far away, Leena’s face was stained with tears as her heart twisted in agony.</p>
+<p>These whips might not have stirred a reaction from the “Dark Reaper” herself had they landed on her, but seeing them fall on Sein tore her up inside.</p>
+<p>The Tower Master of Bone sneered.</p>
+<p>“Tsk, you two seem pretty close. What do you think? Should I make her into a corpse puppet?”</p>
+<p>Sein’s expression immediately shifted from calm to fury.</p>
+<p>Leena was his Achilles’ heel.</p>
+<p>Although he had spent more time with Natalya and the others after joining the Divine Tower of Verdant Spring, Leena’s place in his heart...</p>
+</article>
+<article id="c1109" data-label="1109">
+<h2 class="chapter">Chapter 1109: Crushed 🔒</h2>
+<p>Sein had not expected his reunion with Tourmaline to play out like this.</p>
+<p>Seeing the scene unfold before him, he could not help but think back to their first meeting.</p>
+<p>Tourmaline, Lorianne, and Leena… All of them had shown up when he needed help the most.</p>
+<p>Right now, Sein was overwhelmed with emotion.</p>
+<p>Tourmaline, still fuming, was in no mood for conversation. Her entire focus was locked on the Tower Master of Bone.</p>
+<p>As expected of a Rank Four black mage who had mastered the rare bone law, his bones were indeed strong.</p>
+<p>If that slap from Tourmaline had landed on a dragon’s head, it would have been flattened. And yet, this guy...</p>
+</article>
+<article id="c1110" data-label="1110">
+<h2 class="chapter">Chapter 1110: Irrefutable Evidence 🔒</h2>
+<p>“Is Blackhaven really so messed up that a Rank Four black mage can throw his weight around in our home plane?” White Stella asked.</p>
+<p>Like most mermaids, she had a beautiful voice, perfect for singing.</p>
+<p>However, her strong authority and questioning tone made all the black mages stiffen.</p>
+<p>“I don’t think it is fair to judge the entire Blackhaven based on the actions of a single tower master,” someone finally replied.</p>
+<p>“The Tower Master of Bone has indeed committed a serious crime,” Master Andy said as he stepped forward with a faint smile, “but I came to clear up some misunderstandings and prevent this from spiraling further out of control.”</p>
+<p>He gestured to the knight standing beside him. “For this reason, I have also invited Rank Five knight, Warren Smith.”</p>
+<p>Clad in black...</p>
+</article>
+<article id="c1111" data-label="1111">
+<h2 class="chapter">Chapter 1111: Resolved 🔒</h2>
+<p>With both hard evidence and eyewitness accounts, there was no way the Tower Master of Bone could weasel his way out of this one.</p>
+<p>In a final show of defiance, the black mage glared at Sein with sinister eyes and growled, “Don’t let me catch you next time!”</p>
+<p>The odds of Sein ever crossing paths with this black mage again were practically zero.</p>
+<p>Even if they did meet again, Sein probably would not be afraid of him.</p>
+<p>His strength was growing by the day, while the Tower Master of Bone—now bound for Atlan Interstellar Prison—was not likely to have a bright future ahead.</p>
+<p>Atlan was home to the largest concentration of devils and demons in the Magus Alliance, including several Rank...</p>
+</article>
+<article id="c1112" data-label="1112">
+<h2 class="chapter">Chapter 1112: Contact 🔒</h2>
+<p>Sein had indeed amassed a great fortune during his time in Faeloria.</p>
+<p>With Zorro and Faye now both at Rank Two, the gifts he brought were more than enough to sustain them for a long while.</p>
+<p>Of course, they were fully capable on their own. Even without Sein’s help, they could stand their ground in Blackhaven.</p>
+<p>But with his support, their progress would be much faster.</p>
+<p>While he was there, Sein also took the time to discuss alchemy with Zorro and pyro elemental magic with Faye.</p>
+<p>Now that he had reached the rank of demigod, Sein’s insights into both fields were far deeper than theirs.</p>
+<p>If not for his concerns about the situation at the Divine Tower of Verdant Spring, he would...</p>
+</article>
+<article id="c1113" data-label="1113">
+<h2 class="chapter">Chapter 1113: Continuing Their Travel 🔒</h2>
+<p>In addition to reconnecting with his mentor, Sein also asked about Selina and Eileen.</p>
+<p>He learned that the two ladies had successfully advanced to Rank Two during his time away from the Magus World.</p>
+<p>They had also performed exceptionally well in the interplanar wars led by the Divine Tower of Verdant Spring.</p>
+<p>But alongside the good news came some bad.</p>
+<p>Sein’s great-grandfather, Jeremy Grantt, had been killed in an interplanar war launched by the Order of the Steel Fist.</p>
+<p>Several other Rank One knights from House Grantt, promoted in recent centuries, had also suffered heavy losses.</p>
+<p>Jeremy’s death was a major blow to the family. By the time he died, he had already broken through...</p>
+</article>
+<article id="c1114" data-label="1114">
+<h2 class="chapter">Chapter 1114: Beastmen World 🔒</h2>
+<p>Unlike the lonely, drifting experience Sein had gone through in Faeloria, his travels through the Magus World brought him a sense of warmth and fulfillment.</p>
+<p>Along the way, he shared stories of what he had seen and learned in Faeloria with the two girls.</p>
+<p>As a fellow mage, Leena was genuinely interested. She listened closely, nodding often as he spoke.</p>
+<p>Even though she had not begun studying the power of laws yet, Sein’s experiences still offered her valuable perspective.</p>
+<p>Tourmaline, on the other hand, was mostly just listening for the fun of it.</p>
+<p>The power of laws and elemental theories did not interest her at all. She was not even particularly curious about the many deities or the Avatar Crisis that had shaken Faeloria.</p>
+<p>Instead, she spent most of her time happily playing with Lou, the half-undead girl Sein had released from her spatial living device.</p>
+<p>Though Lou’s intelligence...</p>
+</article>
+<article id="c1115" data-label="1115">
+<h2 class="chapter">Chapter 1115: Goodwill 🔒</h2>
+<p>Tourmaline was actually quite wealthy, probably even richer than Sein.</p>
+<p>Still, like most dragonkind, she had a deep-rooted love for treasure and hoarding wealth.</p>
+<p>She was certainly generous with Sein because he was her friend.</p>
+<p>But when it came to anything else, especially if it meant dipping into her own stash, her pouty lips made it clear she was less than willing.</p>
+<p>Of course, Tourmaline’s wealth did not exist in the form of magicoins.</p>
+<p>Most of her treasures were gifts from her siblings and uncles.</p>
+<p>Not only did those items have sentimental value, but they were also highly practical in nature.</p>
+<p>To just exchange them for magicoins would have been a total waste.</p>
+<p>Since it had been Sein’s idea...</p>
+</article>
+<article id="c1116" data-label="1116">
+<h2 class="chapter">Chapter 1116: Barrenness 🔒</h2>
+<p>The moment Sein stepped out of the teleportation array, he was greeted by a vast, pale gray wasteland stretching endlessly in every direction.</p>
+<p>This was the Du’Nahl Great Wasteland—the largest barren region in the Beastmen World.</p>
+<p>This world was home to hundreds of beastman nations, each worshipping either the same or different beast gods.</p>
+<p>In terms of raw resources, the Du’Nahl Great Wasteland was far poorer than the fertile Karemdor Steppe, but it was the most authentic representation of Beastmen World’s environment and cultural makeup.</p>
+<p>More than seventy percent of the plane was barren, like the Du’Nahl Great Wasteland. The rest was fertile, like the Karemdor Steppe.</p>
+<p>Sein had come here to experience the truest side of Beastmen World.</p>
+<p>Despite being classified...</p>
+</article>
+<article id="c1117" data-label="1117">
+<h2 class="chapter">Chapter 1117: Savior 🔒</h2>
+<p>Sein was not exactly a saint.</p>
+<p>The average life expectancy of Beastmen World’s ratfolk was short—barely a decade or two at most.</p>
+<p>It was still hard to believe that native races with such short lives actually existed in a large-sized plane.</p>
+<p>The ratfolk in front of Sein looked around seven years old. Judging by their condition, most of them would not even make it to the average life expectancy.</p>
+<p>At the rate they were going, another two years of life would already be considered a miracle.</p>
+<p>“Based on my research and observation, the theoretical lifespan of ratfolk in Beastmen World should be around forty. Some of the longer-lived variants might reach sixty or seventy,” Leena said, shaking her head.</p>
+<p>Leena, who had already seen...</p>
+</article>
+<article id="c1118" data-label="1118">
+<h2 class="chapter">Chapter 1118: The King of Kameron 🔒</h2>
+<p>In every world, guardians were chosen from those who love their homeplane with all their heart.</p>
+<p>Of course, not everyone who loved their world could become a guardian—power still mattered.</p>
+<p>In some planes, guardianship could even be determined or influenced by external forces.</p>
+<p>Most of the time, a plane had only one guardian. But in special cases, there could be two or more.</p>
+<p>Magus World was one of those rare exceptions—it had four guardians!</p>
+<p>The passion Azelia showed for her homeland seemed to stir a faint response from the will of Beastmen World. That was why Tourmaline made the comment she did.</p>
+<p>Tourmaline came from a family that had long assisted in regulating Magus World’s internal laws, and...</p>
+</article>
+<article id="c1119" data-label="1119">
+<h2 class="chapter">Chapter 1119: Half-Beastmen 🔒</h2>
+<p>The warm welcome Sein received in Kameron Kingdom got his visit to Beastmen World off to a great start.</p>
+<p>The many beastman specimens he gathered also added some nice variety to his personal collection.</p>
+<p>His only complaint was that Beastmen World did not seem to produce any particularly valuable materials.</p>
+<p>Kameron Kingdom, for instance, was a small nation in the southern region of the Du’Nahl Great Wasteland. It had no interesting mineral deposits—just an endless stretch of ordinary soil with no research value.</p>
+<p>Its only real “specialty” was its population.</p>
+<p>This explained why the bearfolk king had been so generous.</p>
+<p>From his conversations with the Rank Two king, Sein also learned that the Kameron Kingdom would soon be at...</p>
+</article>
+<article id="c1120" data-label="1120">
+<h2 class="chapter">Chapter 1120: Monkeyfolk of the Simius Tribe 🔒</h2>
+<p>After leaving Kameron Kingdom, Sein passed through several more beastman nations.</p>
+<p>Beastmen World truly lived up to its status as a large-sized plane. Its diversity and population density far outclassed that of most medium-sized planes.</p>
+<p>Faeloria might have had more land and richer resources, but in terms of species diversity, Beastmen World was not lacking in the slightest.</p>
+<p>Since arriving, Sein had been repeatedly impressed by the beastmen’s tireless work ethic and resilience.</p>
+<p>No wonder beastman warriors were the top-selling slaves across the Magus Alliance—their muscle-bound physiques spoke for themselves.</p>
+<p>Most beastmen were also known for being straightforward and loyal.</p>
+<p>They rarely turned on their masters, and...</p>
+</article>
+<article id="c1121" data-label="1121">
+<h2 class="chapter">Chapter 1121: No Man’s Land 🔒</h2>
+<p>The arrival of all these Magus World knights and mages from different regions could also be seen as a sign that certain factions within Magus World were quietly backing the half-beastmen’s cause.</p>
+<p>According to Somme, the knightly order he belonged to had recently lowered the teleportation fares to Beastmen World.</p>
+<p>And as soon as these traveling knights arrived, they found themselves in the Du’Nahl Great Wasteland.</p>
+<p>That reminded Sein of his own arrival.</p>
+<p>He and Leena had landed in the Du’Nahl Great Wasteland too when they first came to this world.</p>
+<p>They had also quickly caught wind of the news that a half-beastman was about to ascend to godhood.</p>
+<p>Getting caught up in a planar war was not all that...</p>
+</article>
+<article id="c1122" data-label="1122">
+<h2 class="chapter">Chapter 1122: Eugene 🔒</h2>
+<p>Sein’s status as a demigod-level mage definitely earned him more respect than an average Rank One or Rank Two Magus World traveler, especially since he was traveling with Tourmaline.</p>
+<p>Most people probably could not see through Tourmaline’s true nature when she was in her human form, but the true master of No Man’s Land noticed her immediately.</p>
+<p>Though busy with countless affairs, Eugene personally came to welcome Sein and his group the moment he sensed such an important guest had arrived.</p>
+<p>Just like the rumors said, the half-beastman demigod had green skin. His mixed bloodline was so complex that it was impossible to tell his origins.</p>
+<p>There were many different species of...</p>
+</article>
+<article id="c1123" data-label="1123">
+<h2 class="chapter">Chapter 1123: Upgrading Divine Artifacts 🔒</h2>
+<p>Shortly after returning to the camp at the oasis, Sein received the gifts from Eugene.</p>
+<p>Most of them were not particularly valuable, but they were unique and rarely seen.</p>
+<p>Novel trinkets, strange flora and fauna—many of them were species Eugene had collected from the various allied planes he had visited back in the day.</p>
+<p>Making life better in Beastmen World had been Eugene’s dream from the start.</p>
+<p>He had gone out of his way to bring back these rare plants, especially food crops, from across the Magus Alliance in hopes of easing the constant famines that plagued his homeland.</p>
+<p>And it was not just Sein—nearly every Magus World mage who had arrived in No Man’s Land had received a gift from the Rank...</p>
+</article>
+<article id="c1124" data-label="1124">
+<h2 class="chapter">Chapter 1124: Noble Guests 🔒</h2>
+<p>While Sein was busy conducting intensive alchemy experiments in his laboratory, Eugene was entertaining a few honored guests inside his tent at the heart of No Man’s Land.</p>
+<p>These were his closest allies—individuals without whom the rise of the half-beastman race would not have been possible.</p>
+<p>Unfortunately, when it came to the ascension of godhood, none of them could take Eugene’s place for various reasons.</p>
+<p>Still, they did everything they could to support him. That included the upcoming interplanar war Eugene was planning—they had already pledged to assist in any way they could.</p>
+<p>These guests were Senarius, the God of Forest; Reksha, the Champion of Wilderness; and Mangius, the Drunken Panda Immortal.</p>
+<p>Senarius was a hybrid of elf and beastman, bearing the graceful appearance of a humanoid deer.</p>
+<p>His mother was a Rank Five elf queen, and his father a Rank Five deer-headed Beast...</p>
+</article>
+<article id="c1125" data-label="1125">
+<h2 class="chapter">Chapter 1125: Success 🔒</h2>
+<p>Amidst the billowing smoke, Sein, dressed in his black robe, and a dust-covered Leena flew out from the ruins of the magic tower.</p>
+<p>Confidence did not always guarantee success.</p>
+<p>After all, seventy percent certainty still meant a thirty percent chance of failure.</p>
+<p>The main reason for this particular mishap was that Sein had miscalculated the elemental ratios during the final phase of the magic rod upgrade.</p>
+<p>When it came to high-precision alchemy, even the smallest miscalculation could lead to a massive difference in outcome.</p>
+<p>Considering the rod had two divine relics as its core energy source, it was no wonder the explosion had been so violent.</p>
+<p>As Sein and...</p>
+</article>
+<article id="c1126" data-label="1126">
+<h2 class="chapter">Chapter 1126: Bouldrak Plane 🔒</h2>
+<p>After successfully upgrading his magic rod, Sein did not rest on his laurels. He took a short break, then dove straight into the next round of experiments with Leena.</p>
+<p>This time, he was going to improve the Demon Eye Mask.</p>
+<p>Laid out on his experimental table was a beautiful lavender divine relic that once belonged to the Goddess of Music.</p>
+<p>Beside it sat the Octave Box—an extremely rare octagonal divine artifact of sonido attribute.</p>
+<p>The Demon Eye Mask had incorporated some of Sein’s sonido elemental knowledge, which should have given it a good level of compatibility with the Goddess of Music’s divine relic and the Octave Box.</p>
+<p>However,...</p>
+</article>
+<article id="c1127" data-label="1127">
+<h2 class="chapter">Chapter 1127: I Have a Dream 🔒</h2>
+<p>Conquering a low-level plane was a whole different beast compared to taking over a microplane.</p>
+<p>Bouldrak World was guarded by a Rank Five being, and from the looks of it, there were several Rank Four creatures in that world as well.</p>
+<p>Anyone planning to chew on a bone that tough had better be ready to lose a few teeth in the process.</p>
+<p>Sein and the other Magus World knights and mages were undoubtedly strong external support for the half-beastman clan.</p>
+<p>But Eugene did not dare to treat them like cannon fodder.</p>
+<p>If the Magus World legions suffered too many losses in the war, it would spell serious trouble for Eugene. At that point, it might have been better to fight alone...</p>
+</article>
+<article id="c1128" data-label="1128">
+<h2 class="chapter">Chapter 1128: The War Begins 🔒</h2>
+<p>The teleportation gate’s sudden appearance caught most of the native creatures in this microplane completely off guard.</p>
+<p>The massive half-beastman legions that Eugene had been building up over the years actually put up a good fight, despite their crude weapons.</p>
+<p>More importantly, these half-beastmen were fighting with conviction.</p>
+<p>They would not turn back, even if it meant dying on the battlefield for the sake of their race.</p>
+<p>Among the nearly seven hundred thousand half-beastman troops, there were even two who had reached demigod level—one a half-wolffolk, the other a half-bearfolk.</p>
+<p>Both were formidable in combat.</p>
+<p>Honestly, the overall quality of the half-beastman troops...</p>
+</article>
+<article id="c1129" data-label="1129">
+<h2 class="chapter">Chapter 1129: Watching Closely 🔒</h2>
+<p>The two demigod-level knights from Magus World were both chivalrous enough.</p>
+<p>When the demigod-level half-wolffolk stepped up to take the lead, they stopped arguing.</p>
+<p>This son of Eugene clearly had some real skill—he was no showpiece.</p>
+<p>Letting out a howl, he charged toward the demigod-level Bouldrak on his wolf mount without hesitation.</p>
+<p>There were no grand speeches to introduce himself and no taunts for his enemy—just raw, unfiltered violence!</p>
+<p>Were the half-beastmen who invaded the Bouldrak World and its vassal planes truly the evil invaders the natives claimed them to be?</p>
+<p>Maybe.</p>
+<p>But from the half-beastmen’s perspective, they had every reason to fight.</p>
+<p>They were fighting for their people, for the right to live freely and equally in Beastmen World.</p>
+<p>To them, this war was just!</p>
+<p>The...</p>
+</article>
+<article id="c1130" data-label="1130">
+<h2 class="chapter">Chapter 1130: Obedient 🔒</h2>
+<p>Given the Jackal God’s strength and the sheer number of beast gods gathered in the hall, Eugene should not have had any chance of ascending to godhood in the first place.</p>
+<p>Beastmen Plane had already hit its saturation point for divine influence over a hundred thousand years ago.</p>
+<p>Every new beast god meant fiercer competition with older, more established deities for limited resources.</p>
+<p>Unlike the Magus World, where the number of Rank Four and above knights and mages continued to grow steadily, the number of higher-ranking beings in allied planes had remained stagnant for ages.</p>
+<p>It was not because those worlds lacked talent, but because there simply was no more space left at the top.</p>
+<p>One could say there was already a donkey in every stall.</p>
+<p>Paired...</p>
+</article>
+<article id="c1131" data-label="1131">
+<h2 class="chapter">Chapter 1131: Clash Between Main Forces 🔒</h2>
+<p>Boubor World…</p>
+<p>The success of the first battle allowed the half-beastman legion to press forward at high speed into the heart of Boubor World.</p>
+<p>This time, though, Sein deliberately controlled the pace of their advance, making sure the main force stayed as cohesive as possible.</p>
+<p>After all, the half-beastman legions could not compare to the Magus World knights and mages in terms of strength.</p>
+<p>And the total number of half-beastmen that had entered this world was only about seven hundred thousand.</p>
+<p>Given the limitations of No Man’s Land, Sein did not believe Eugene could rally more qualified fighters anytime soon.</p>
+<p>On the other hand, Boubor World, though just a microplane, was governed by a set of well-established ...</p>
+</article>
+<article id="c1132" data-label="1132">
+<h2 class="chapter">Chapter 1132: Forbidden Spell 🔒</h2>
+<p>While tactics, strategy, and planning mattered in interplanar wars, what usually determined the outcome was still the most basic factor—raw strength.</p>
+<p>The half-beastman legion had only average overall strength, and their numbers were limited.</p>
+<p>They also lacked a space fortress or a large mage legion to provide long-range firepower support.</p>
+<p>Given the limitations of this half-beastman force, achieving victory at a small cost was not exactly realistic to begin with.</p>
+<p>The laws of the microplane’s narrow environment restricted Rank Four creatures from entering. Hence, the highest combat force was limited to demigods.</p>
+<p>That said, the demigod-level strength of this invading army was still...</p>
+</article>
+<article id="c1133" data-label="1133">
+<h2 class="chapter">Chapter 1133: Everfire Hellscape 🔒</h2>
+<p>The forbidden spell that Sein summoned was classified as pyro elemental magic within the magic spectrum.</p>
+<p>However, because it incorporated a large amount of lumen and geo elemental magic principles, it could also be considered a mixed-type forbidden spell.</p>
+<p>At first glance, it looked like nothing more than a beautiful meteor shower.</p>
+<p>When the meteors fell from the sky, piercing through Boubor World’s planar barrier and shrieking as they tore through the air, many of the world’s lesser creatures sensed the scent of death hidden within the dazzling spectacle above.</p>
+<p>This was officially the first time Sein had successfully summoned and unleashed an area-of-effect forbidden spell.</p>
+<p>In terms of destructive power against a single target, it was definitely...</p>
+</article>
+<article id="c1134" data-label="1134">
+<h2 class="chapter">Chapter 1134: Early Phase Advantage 🔒</h2>
+<p>By the time Sein and Leena returned to Boubor World, the elemental flames engulfing the main battlefield in the eastern part of this world still showed no signs of dying down.</p>
+<p>In addition to the incredible penetration and coverage of the Everfire Hellscape spell when it was first unleashed, the lingering, searing effect of the flames had proven just as deadly.</p>
+<p>“The planar suppression on us feels a lot weaker now,” Leena commented.</p>
+<p>Sein nodded and said, “The Everfire Hellscape’s lingering flames will keep the will of this world weakened for a while. This is also the best time for us to act.”</p>
+<p>The forbidden spell had wiped out hundreds of thousands of Boubor World’s allied native forces, while throwing the remaining legions into utter chaos.</p>
+<p>The two demigod-level...</p>
+</article>
+<article id="c1135" data-label="1135">
+<h2 class="chapter">Chapter 1135: Indestructible Copper Pea 🔒</h2>
+<p>The two giant porcupines each had bodies several hundred meters long, but the most striking figure was the giant bear known as Ursa.</p>
+<p>On the battlefield, this giant bear’s physique could expand to nearly a thousand meters tall.</p>
+<p>A single swipe of its massive paw could shatter a small mountain peak.</p>
+<p>Even though the Grove Python was empowered by the planar will, it was still no match for this Rank Four giant bear in direct combat.</p>
+<p>In terms of raw destructive power, Ursa was even a bit stronger than both Senarius and Eugene.</p>
+<p>Strangely, despite being the strongest combat unit on the field, Reksha and the giant bear were not assigned to confront the Rank Five Bouldrak King.</p>
+<p>Instead, it was Eugene who fought it alone.</p>
+<p>The Drunken Panda Immortal was supporting the half-beastman...</p>
+</article>
+<article id="c1136" data-label="1136">
+<h2 class="chapter">Chapter 1136: Terrifying Details 🔒</h2>
+<p>Inside the massive crystal palace within the Obsidian Range, the Bouldrak King, who had temporarily withdrawn from the battlefield, did not waste time resting.</p>
+<p>Instead, it urgently contacted beings located far beyond Bouldrak Plane through certain methods.</p>
+<p>In the vast starry space beyond Bouldrak Plane, there were other planes and intelligent races.</p>
+<p>The Bouldrak King had known this fact for more than a hundred thousand years, ever since it had first advanced to Rank Four.</p>
+<p>Unlike most geo elemental creatures, who lived in isolation and clung to tradition their entire lives, the Bouldrak King had always been curious about the world beyond.</p>
+<p>Tens of thousands of years ago, it had personally traveled to a foreign plane and even participated in a war raging there.</p>
+<p>Through those rare experiences, it had built a handful...</p>
+</article>
+<article id="c1137" data-label="1137">
+<h2 class="chapter">Chapter 1137: Poison 🔒</h2>
+<p>The Sea Emperor Shark’s silence weighed heavily on the Bouldrak King’s heart.</p>
+<p>Submerged Wave World was a medium-sized plane, and the Sea Emperor Shark was a powerful Rank Six being.</p>
+<p>Many years ago, Submerged Wave World had fought a brutal war against Phantom Crow World.</p>
+<p>Both medium-sized worlds had invested over a hundred Rank Four creatures, creating one of the most intense and unprecedented conflicts the Bouldrak King had ever witnessed.</p>
+<p>In the Bouldrak King’s memory, that war was as far as it could imagine when it came to large-scale battles.</p>
+<p>Could there be a civilization stronger than Submerged Wave World?</p>
+<p>Unlike the Eternal Sand Lord, the Bouldrak King had not traveled widely across...</p>
+</article>
+<article id="c1138" data-label="1138">
+<h2 class="chapter">Chapter 1138: Phantom Crow World 🔒</h2>
+<p>The Phantom Crow King was an extremely greedy and bloodthirsty existence in the surrounding star domains.</p>
+<p>The Phantom Crow World it ruled over was incredibly far from Bouldrak World. In fact, it was in another medium-sized star domain.</p>
+<p>Its insatiable hunger for souls and constant need to feed kept Phantom Crow World in a permanent state of expansion.</p>
+<p>They were not as closed-off and old-fashioned as Bouldrak World, nor did they possess the more peaceful tendencies of Eternal Sand World or Submerged Wave World.</p>
+<p>The interplanar wars that the Bouldrak King had participated in before had been at the invitation of the Sea Emperor Shark, who had called on foreign aid to defend Submerged Wave World from the Phantom Crows.</p>
+<p>The Rank Five Bouldrak King had performed admirably...</p>
+</article>
+<article id="c1139" data-label="1139">
+<h2 class="chapter">Chapter 1139: Joining the Bouldrak World Battlefield 🔒</h2>
+<p>“Your Majesty, are we really going to help those Bouldraks?” asked a Rank Five Phantom Crow as it landed inside the open-air black hall where the Phantom Crow King was.</p>
+<p>The Phantom Crows had always been known for bloodlust and brutality—not for lending a hand, let alone sending an army into someone else’s war.</p>
+<p>For as long as the Rank Five Phantom Crow could remember, their king had never bothered with anything as tedious or thankless as helping others.</p>
+<p>Even with the Bouldrak King reluctantly offering two microplanes as payment, it still felt out of character for their king to take on such a request.</p>
+<p>“Fool. Of course, we are not doing it just to help. I could not care less about that law contract I signed with the Bouldrak King. With...</p>
+</article>
+<article id="c1140" data-label="1140">
+<h2 class="chapter">Chapter 1140: Legion of Phantom Crows 🔒</h2>
+<p>Although it was the Drunken Panda Immortal whom Eugene had called to check out the situation, it was the God of Forest, Senarius, who arrived first near the pitch-black vortex.</p>
+<p>Senarius had been quite badly injured in the previous battle.</p>
+<p>Eugene had wanted him to retreat and recover, but Senarius refused. As he watched more and more half-beastmen fall, he grew just as anxious as Eugene.</p>
+<p>He was ready to give everything he had for the half-beastman clan.</p>
+<p>The half-human, half-deer walked steadily through the air. In his hand, he held a long, emerald green staff.</p>
+<p>The faint umbra and necromantic energy leaking from the vortex filled him with deep...</p>
+</article>
+<article id="c1141" data-label="1141">
+<h2 class="chapter">Chapter 1141: Struggle 🔒</h2>
+<p>“Sein, go ahead and leave first,” Tourmaline said to the mage standing behind her before stepping onto the battlefield.</p>
+<p>With a Rank Five Phantom Crow now entering the fray, this was clearly no place for a mere demigod like Sein to linger.</p>
+<p>Sein had thought he was growing rapidly, but in this moment, he was reminded just how powerless he still was.</p>
+<p>Still, he had no intention of staying too far from Tourmaline.</p>
+<p>With that Rank Five Phantom Crow leading an entire legion, nowhere was completely safe on the Bouldrak Plane battlefield.</p>
+<p>Even if he tried to run, Sein’s flight speed was not enough to outrun the Phantom Crows.</p>
+<p>Aside from the Rank Five Phantom Crow, the skies swarmed with countless others at the demigod level.</p>
+<p>Though he did not withdraw from the battlefield...</p>
+</article>
+<article id="c1142" data-label="1142">
+<h2 class="chapter">Chapter 1142: Brutal 🔒</h2>
+<p>Tourmaline let out a sky-shaking dragon roar as she slammed a mighty blow into the Phantom Crows before her.</p>
+<p>Despite the Rank Five Phantom Crow clearly possessing a higher life level, it could not scratch Tourmaline’s hard shell or damage the green ribbons that floated protectively around her.</p>
+<p>On the other hand, Tourmaline’s immense dragon claws struck with a force far beyond what the frail Rank Five Phantom Crow could endure.</p>
+<p>To be overpowered by a lower-ranking opponent—nothing was more humiliating to the Phantom Crow than this. Even the Bouldrak King’s frustration paled in comparison!</p>
+<p>Meanwhile, Gray Feather, having swiftly defeated the God of Forest, moved in, ready to join the siege against Tour...</p>
+</article>
+<article id="c1143" data-label="1143">
+<h2 class="chapter">Chapter 1143: Golden Hand 🔒</h2>
+<p>The appearance of the golden hand was beyond anything Sein could grasp.</p>
+<p>Just how powerful would an existence have to be to conjure a hand of this size from pure energy?</p>
+<p>The moment it appeared in the sky, it flooded the world below with unimaginable power!</p>
+<p>What stunned Sein even more was that the golden hand had appeared right above his head.</p>
+<p>In the midst of chanting his forbidden spell, Sein found himself watching the entire display of this terrifying force unfold overhead.</p>
+<p>Honestly, if Sein had not already been someone used to witnessing the craziest things, just the sight of that golden hand might have rattled him so badly that he would have lost focus and suffered an elemental backlash on the spot.</p>
+<p>The golden...</p>
+</article>
+<article id="c1144" data-label="1144">
+<h2 class="chapter">Chapter 1144: Defeat 🔒</h2>
+<p>The trial for the God of Half-Beastmen had come to an end.</p>
+<p>Eugene had successfully passed.</p>
+<p>In fact, the moment Eugene ascended to Rank Five, the other beastman gods of Beastmen World knew that this God of Half-Beastman had secured his place among the gods.</p>
+<p>As a large-sized plane, Beastmen World could afford to lose a Rank Four beast god. But when it came to a Rank Five beast god, no one dared to challenge their position.</p>
+<p>After all, Rank Five beings were already part of Beastmen World’s higher echelon, trusted aides of none other than the God of Beastmen himself, Kampas.</p>
+<p>Many beast gods assumed Kampas had come to Eugene’s aid only because he saw Eugene break through to Rank Five.</p>
+<p>But in truth, only a handful of gods—like Jackal God—truly understood Kampas’s int...</p>
+</article>
+<article id="c1145" data-label="1145">
+<h2 class="chapter">Chapter 1145: Strategy 🔒</h2>
+<p>In addition to the God of Lionfolk, a Rank Five deer-headed beast god from the Cervus Tribe had also arrived on the battlefield.</p>
+<p>The Cervus Tribe’s beast gods were quite different from the Lionfolk God, who fought with a golden sword and charged into battle with fearless aggression.</p>
+<p>The deer-headed god wielded a cabasa, and his war songs conjured halos that strengthened the nearby beast gods and the massive half-beastman legions.</p>
+<p>He was a Rank Five shaman priest—and also the father of Senarius, the God of Forest.</p>
+<p>The moment he set foot on the battlefield, the deer-headed beast god flew straight to Senarius’ side.</p>
+<p>Thanks to the Drunken Panda Immortal’s interception, the God of Forest had not fallen. But still, he was severely injured.</p>
+<p>A vibrant green light glowed from deep within Senarius’ body.</p>
+<p>Even though he had...</p>
+</article>
+<article id="c1146" data-label="1146">
+<h2 class="chapter">Chapter 1146: The End of the War 🔒</h2>
+<p>The war in Bouldrak World, which dragged on for another four years after the beastmen legions joined, finally came to an end.</p>
+<p>The Rank Five Bouldrak King had fallen.</p>
+<p>Although Eugene was not the only one responsible for bringing it down, he had proved himself.</p>
+<p>He had earned a rightful place in Beastmen World for himself and for the half-beastmen.</p>
+<p>Alongside the Bouldrak King, two other Rank Five Phantom Crows and a Rank Four Bouldrak also perished.</p>
+<p>Those Rank Five Phantom Crows were considered an unexpected windfall of the war.</p>
+<p>Another major prize was the vast army of Phantom Crows they wiped out.</p>
+<p>These Phantom Crows, known for their addiction to blood and souls, had a soul essence deep within their brains.</p>
+<p>Some of these essences...</p>
+</article>
+<article id="c1147" data-label="1147">
+<h2 class="chapter">Chapter 1147: Earning 🔒</h2>
+<p>“Hey, Sein… When are we leaving this world?” Tourmaline asked, her voice slightly muffled as she sipped from her glass of fruit juice, legs swinging as she lounged in a chair inside Sein’s magic tower.</p>
+<p>The juice had been prepared by the fox maiden, who was getting better and better at figuring out Sein’s preferences.</p>
+<p>Since he usually drank these, Tourmaline had picked up a taste for them too.</p>
+<p>The reddish-orange drink was not only tasty, but also infused with several of Sein’s body-tempering potion recipes.</p>
+<p>To put it mildly, this was not something for the faint of heart.</p>
+<p>The special ingredients blended in to enhance physical tempering effects were potent enough that they could poison ordinary Rank One or Rank Two beings.</p>
+<p>Only those at Rank...</p>
+</article>
+<article id="c1148" data-label="1148">
+<h2 class="chapter">Chapter 1148: Establishing Connections 🔒</h2>
+<p>When Sein finally went to meet Eugene, an esteemed guest was already standing beside him.</p>
+<p>Sein recognized the guest immediately—it was none other than Mayne, the Rank Four knight who had arranged their free passage to Beastmen World at the start of their journey.</p>
+<p>Compared to a few decades ago, Sein had changed a lot.</p>
+<p>Mages rarely stayed the same for long, and Sein’s rate of growth had been astonishing by anyone’s standard.</p>
+<p>“Long time no see, Master Sein,” Mayne greeted him warmly, giving him a polite nod.</p>
+<p>It was clear that Mayne and Eugene had been in the middle of a discussion before Sein arrived.</p>
+<p>What surprised Sein, though, was how respectful the Rank Four knight was being toward him.</p>
+<p>In Sein’s...</p>
+</article>
+<article id="c1149" data-label="1149">
+<h2 class="chapter">Chapter 1149: Summon 🔒</h2>
+<p>The development and takeover of Bouldrak Plane no longer required much involvement from Sein and the others.”</p>
+<p>Truthfully, Sein had already gathered most of what he wanted from this world.</p>
+<p>As for Tourmaline, she had been eager to leave for quite a while. She never liked Bouldrak World with its heavy geo elemental energy and lingering scent of war and death.</p>
+<p>After saying their goodbyes to Eugene and the others, Sein took Tourmaline, Leena, and the rest of the group back to Beastmen World to continue their travels.</p>
+<p>This time, instead of trekking across the barren lands near No Man’s Land, they headed east to the Karemdor Steppe—the most prosperous...</p>
+</article>
+<article id="c1150" data-label="1150">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1150: Demihumans 🔒</h2>
+<p>At the end of the teleportation passage stood a magnificent, pitch-black palace that exuded majestic grandeur.</p>
+<p>Sein had visited many knightly orders led by Rank Four or higher knights, but none of them came close to this one in terms of atmosphere.</p>
+<p>The massive dark hall was nearly empty at this hour.</p>
+<p>Other than Sein and his group, hardly a soul was in sight.</p>
+<p>Mayne led them deeper into the hall, clearly familiar with the place.</p>
+<p>Sein lost track of how far they walked or how many towering metal doors they passed, but eventually, they reached their destination.</p>
+<p>“My grandfather is inside. Follow me,” Mayne said before pushing open the heavy door ahead and stepping through.</p>
+<p>Sein,...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1151-1200.html" rel="next">Next: Chs 1151–1200 &rarr;</a>
+    <p class="page-end-links"><a href="1051-1100.html" rel="prev">&larr; Chs 1051–1100</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1101–1150</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1101">Chapter 1101: Still Fuming 🔒</a></li>
+        <li><a href="#c1102">Chapter 1102: Cruel and Intense War 🔒</a></li>
+        <li><a href="#c1103">Chapter 1103: Meeting Again 🔒</a></li>
+        <li><a href="#c1104">Chapter 1104: The Ultimate Ugliness 🔒</a></li>
+        <li><a href="#c1105">Chapter 1105: Battling A Stronger Opponent 🔒</a></li>
+        <li><a href="#c1106">Chapter 1106: Surprise 🔒</a></li>
+        <li><a href="#c1107">Chapter 1107: Speculation 🔒</a></li>
+        <li><a href="#c1108">Chapter 1108: Shocked 🔒</a></li>
+        <li><a href="#c1109">Chapter 1109: Crushed 🔒</a></li>
+        <li><a href="#c1110">Chapter 1110: Irrefutable Evidence 🔒</a></li>
+        <li><a href="#c1111">Chapter 1111: Resolved 🔒</a></li>
+        <li><a href="#c1112">Chapter 1112: Contact 🔒</a></li>
+        <li><a href="#c1113">Chapter 1113: Continuing Their Travel 🔒</a></li>
+        <li><a href="#c1114">Chapter 1114: Beastmen World 🔒</a></li>
+        <li><a href="#c1115">Chapter 1115: Goodwill 🔒</a></li>
+        <li><a href="#c1116">Chapter 1116: Barrenness 🔒</a></li>
+        <li><a href="#c1117">Chapter 1117: Savior 🔒</a></li>
+        <li><a href="#c1118">Chapter 1118: The King of Kameron 🔒</a></li>
+        <li><a href="#c1119">Chapter 1119: Half-Beastmen 🔒</a></li>
+        <li><a href="#c1120">Chapter 1120: Monkeyfolk of the Simius Tribe 🔒</a></li>
+        <li><a href="#c1121">Chapter 1121: No Man’s Land 🔒</a></li>
+        <li><a href="#c1122">Chapter 1122: Eugene 🔒</a></li>
+        <li><a href="#c1123">Chapter 1123: Upgrading Divine Artifacts 🔒</a></li>
+        <li><a href="#c1124">Chapter 1124: Noble Guests 🔒</a></li>
+        <li><a href="#c1125">Chapter 1125: Success 🔒</a></li>
+        <li><a href="#c1126">Chapter 1126: Bouldrak Plane 🔒</a></li>
+        <li><a href="#c1127">Chapter 1127: I Have a Dream 🔒</a></li>
+        <li><a href="#c1128">Chapter 1128: The War Begins 🔒</a></li>
+        <li><a href="#c1129">Chapter 1129: Watching Closely 🔒</a></li>
+        <li><a href="#c1130">Chapter 1130: Obedient 🔒</a></li>
+        <li><a href="#c1131">Chapter 1131: Clash Between Main Forces 🔒</a></li>
+        <li><a href="#c1132">Chapter 1132: Forbidden Spell 🔒</a></li>
+        <li><a href="#c1133">Chapter 1133: Everfire Hellscape 🔒</a></li>
+        <li><a href="#c1134">Chapter 1134: Early Phase Advantage 🔒</a></li>
+        <li><a href="#c1135">Chapter 1135: Indestructible Copper Pea 🔒</a></li>
+        <li><a href="#c1136">Chapter 1136: Terrifying Details 🔒</a></li>
+        <li><a href="#c1137">Chapter 1137: Poison 🔒</a></li>
+        <li><a href="#c1138">Chapter 1138: Phantom Crow World 🔒</a></li>
+        <li><a href="#c1139">Chapter 1139: Joining the Bouldrak World Battlefield 🔒</a></li>
+        <li><a href="#c1140">Chapter 1140: Legion of Phantom Crows 🔒</a></li>
+        <li><a href="#c1141">Chapter 1141: Struggle 🔒</a></li>
+        <li><a href="#c1142">Chapter 1142: Brutal 🔒</a></li>
+        <li><a href="#c1143">Chapter 1143: Golden Hand 🔒</a></li>
+        <li><a href="#c1144">Chapter 1144: Defeat 🔒</a></li>
+        <li><a href="#c1145">Chapter 1145: Strategy 🔒</a></li>
+        <li><a href="#c1146">Chapter 1146: The End of the War 🔒</a></li>
+        <li><a href="#c1147">Chapter 1147: Earning 🔒</a></li>
+        <li><a href="#c1148">Chapter 1148: Establishing Connections 🔒</a></li>
+        <li><a href="#c1149">Chapter 1149: Summon 🔒</a></li>
+        <li><a href="#c1150">Chapter 1150: Demihumans 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1051-1100.html" rel="prev">&larr; Chs 1051–1100</a>    <a href="../../index.html">Library</a>
+<a href="1151-1200.html" rel="next">Chs 1151–1200 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

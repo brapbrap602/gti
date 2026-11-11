@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 351–400</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="301-350.html#last" data-next-page="401-450.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c351">Chapter 351: Subjugating An Engineer 🔒</a></li>
+        <li><a href="#c352">Chapter 352: New Magic Rod 🔒</a></li>
+        <li><a href="#c353">Chapter 353: Eve of Departure 🔒</a></li>
+        <li><a href="#c354">Chapter 354: Ball 🔒</a></li>
+        <li><a href="#c355">Chapter 355: Departure 🔒</a></li>
+        <li><a href="#c356">Chapter 356: Pyro Crystal Range 🔒</a></li>
+        <li><a href="#c357">Chapter 357: Trade 🔒</a></li>
+        <li><a href="#c358">Chapter 358: Traveling Southward 🔒</a></li>
+        <li><a href="#c359">Chapter 359: Revisits 🔒</a></li>
+        <li><a href="#c360">Chapter 360: The Prosperous Southern Coast 🔒</a></li>
+        <li><a href="#c361">Chapter 361: Aquatic Race Hybrids 🔒</a></li>
+        <li><a href="#c362">Chapter 362: Mermaids 🔒</a></li>
+        <li><a href="#c363">Chapter 363: Aquatic Civilization 🔒</a></li>
+        <li><a href="#c364">Chapter 364: Divine Tower of Dawn’s Territory 🔒</a></li>
+        <li><a href="#c365">Chapter 365: Visit 🔒</a></li>
+        <li><a href="#c366">Chapter 366: Medich 🔒</a></li>
+        <li><a href="#c367">Chapter 367: Gifts 🔒</a></li>
+        <li><a href="#c368">Chapter 368: Marie 🔒</a></li>
+        <li><a href="#c369">Chapter 369: Changes 🔒</a></li>
+        <li><a href="#c370">Chapter 370: Fourth Wheel 🔒</a></li>
+        <li><a href="#c371">Chapter 371: Challenge 🔒</a></li>
+        <li><a href="#c372">Chapter 372: Live Without Regrets 🔒</a></li>
+        <li><a href="#c373">Chapter 373: In His Memories 🔒</a></li>
+        <li><a href="#c374">Chapter 374: Promise 🔒</a></li>
+        <li><a href="#c375">Chapter 375: Storm City 🔒</a></li>
+        <li><a href="#c376">Chapter 376: Decrepit Ship 🔒</a></li>
+        <li><a href="#c377">Chapter 377: Setting Sail 🔒</a></li>
+        <li><a href="#c378">Chapter 378: Attack From Sea Creatures 🔒</a></li>
+        <li><a href="#c379">Chapter 379: Sea Lizard 🔒</a></li>
+        <li><a href="#c380">Chapter 380: Sein’s Vision 🔒</a></li>
+        <li><a href="#c381">Chapter 381: Yuri’s Debut 🔒</a></li>
+        <li><a href="#c382">Chapter 382: Defeat 🔒</a></li>
+        <li><a href="#c383">Chapter 383: Tribe 🔒</a></li>
+        <li><a href="#c384">Chapter 384: Making a Loss 🔒</a></li>
+        <li><a href="#c385">Chapter 385: Arrived at the Black Market 🔒</a></li>
+        <li><a href="#c386">Chapter 386: Observations in the Black Market 🔒</a></li>
+        <li><a href="#c387">Chapter 387: Imperial Pearl Auction 🔒</a></li>
+        <li><a href="#c388">Chapter 388: Auction List 🔒</a></li>
+        <li><a href="#c389">Chapter 389: Highlights 🔒</a></li>
+        <li><a href="#c390">Chapter 390: Spatial Equipment 🔒</a></li>
+        <li><a href="#c391">Chapter 391: Rank Two Black Mage 🔒</a></li>
+        <li><a href="#c392">Chapter 392: Leaving After the Transaction 🔒</a></li>
+        <li><a href="#c393">Chapter 393: Information on Blackhaven 🔒</a></li>
+        <li><a href="#c394">Chapter 394: Wrapping Up 🔒</a></li>
+        <li><a href="#c395">Chapter 395: Premonition 🔒</a></li>
+        <li><a href="#c396">Chapter 396: Massacre 🔒</a></li>
+        <li><a href="#c397">Chapter 397: Associate 🔒</a></li>
+        <li><a href="#c398">Chapter 398: Incoming Attack 🔒</a></li>
+        <li><a href="#c399">Chapter 399: Intensifying 🔒</a></li>
+        <li><a href="#c400">Chapter 400: Menace 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c351" data-label="351">
+<h2 class="chapter">Chapter 351: Subjugating An Engineer 🔒</h2>
+<p>“Huh? It worked? That went smoother than I anticipated,” Sein murmured as he approached Yuri, examining the pattern on her forehead, then glanced at the leftover magic materials.</p>
+<p>At this point, Sein felt a connection between his mental focus and Yuri’s soul.</p>
+<p>He could vaguely detect Yuri’s emotions and her discomfort at being made a soul slave.</p>
+<p>Yet, the resistance within her seemed to have dissipated significantly due to the newly established bond between them.</p>
+<p>It made sense, as the soul binding spell would not have succeeded otherwise.</p>
+<p>The soul master-servant bond between Sein and Yuri was nascent, and...</p>
+</article>
+<article id="c352" data-label="352">
+<h2 class="chapter">Chapter 352: New Magic Rod 🔒</h2>
+<p>Subjugating Yuri did not immediately grant Sein the services of a formidable engineer.</p>
+<p>Yuri’s prowess lay not in her own strength but in her adeptness with controlling mecha and her significant mental focus.</p>
+<p>Sein initially contemplated investing in new mechas for Yuri, considering Magus Civilization had seized numerous Neisse Civilization mechas and possessed well-equipped factories in the Neisse Star Domain.</p>
+<p>These mechas, however, were not easily obtainable even if Sein was willing to pay a substantial amount for them.</p>
+<p>He speculated that he might have a better chance of obtaining them when he visited the Pyro Secret Society or Steel City in the future.</p>
+<p>However, to Sein’s...</p>
+</article>
+<article id="c353" data-label="353">
+<h2 class="chapter">Chapter 353: Eve of Departure 🔒</h2>
+<p>With his new magic rod crafted, Sein was ready for his journey to the Western Archipelago.</p>
+<p>He had already informed his mentor, Lorianne, so his departure would not come as a surprise.</p>
+<p>However, he had not informed Selina and Eileen of his plan because he had no intention of bringing the two women on his travels to the Western Archipelago and other parts of the Magus World.</p>
+<p>Selina was a gentle and attentive woman. She had actually noticed Sein’s recent peculiar behavior but never probed him about it.</p>
+<p>As Sein&#39;s departure neared, Selina’s anxiety grew. Yet she managed to quell her worries, continuing...</p>
+</article>
+<article id="c354" data-label="354">
+<h2 class="chapter">Chapter 354: Ball 🔒</h2>
+<p>Berlina was a freshly promoted Rank One mage who lived on the 47th floor of the divine tower. Sein was not acquainted with her, but Eileen had grown quite close to her in recent years.</p>
+<p>Unlike Sein, who tended to keep to himself and his research within the Divine Tower of Verdant Spring, Eileen was more sociable and outgoing.</p>
+<p>Mages were not inherently antisocial or solemn. Many enjoyed hosting balls or banquets due to their noble backgrounds.</p>
+<p>Besides, only weirdos like Sein could immerse themselves in experiments all year round. Other mages often pursued hobbies or leisure activities after their working hours.</p>
+<p>Influenced by Sein, Selina also spent most of her time in the laboratory....</p>
+</article>
+<article id="c355" data-label="355">
+<h2 class="chapter">Chapter 355: Departure 🔒</h2>
+<p>The day Sein decided to depart from the Divine Tower of Verdant Spring for his journey came as a surprise to everyone.</p>
+<p>He had not told others about his plan and maintained the same routine until the very end, even spending his last evening with Selina and the evening before with Eileen.</p>
+<p>Despite never sharing his travel plans with Selina or others, Selina had an exceptionally lavish meal ready for him by the time he finished packing up his stuff</p>
+<p>Sein was not even sure if this would be the last time he would get to enjoy Selina’s meal.</p>
+<p>After all, his journey was not going to be a short escapade of a few months or years. It would stretch over a decade...</p>
+</article>
+<article id="c356" data-label="356">
+<h2 class="chapter">Chapter 356: Pyro Crystal Range 🔒</h2>
+<p>“Where shall we go first?” Yuri asked, standing beside Sein on a huge metallic disk in the sky.</p>
+<p>As the influence of the Soul Enslavement magic grew, so did Yuri’s obedience and reliance on Sein.</p>
+<p>Moreover, Sein did not enforce a strict hierarchy as a master, allowing his daily interactions with Yuri to develop into a more natural and relaxed dynamic.</p>
+<p>For instance, Yuri could just inquire about their next destination without the fear of speaking out of turn.</p>
+<p>“Let’s head to the Tyron Kingdom first. We’ll continue south in this direction,” Sein decided, using the magic map in his hands as a reference.</p>
+<p>The magic map was a more comprehensive illustration of the Magus World. Sein had acquired it at the Divine Tower of Verdant Spring...</p>
+</article>
+<article id="c357" data-label="357">
+<h2 class="chapter">Chapter 357: Trade 🔒</h2>
+<p>This massive creature, standing at thirty meters tall with a wingspan of nearly fifty meters, was a stark contrast to the Fire-Breathing Dragon King in Master Lorianne’s laboratory.</p>
+<p>Its scales were bigger and rougher, and its horns were more pronounced.</p>
+<p>The dragons from the Viridian Venom Flame World appeared more slender, whereas the ones from the Magus World looked more resilient and powerful.</p>
+<p>Sein was not sure which was the stronger of the two types of dragons, but he could tell that the life level of the dragon in front of him was Rank Two.</p>
+<p>Dragons in the Magus World typically lead solitary lives. However, some adventurers were willing to defy the regulations of the divine towers and orders of the...</p>
+</article>
+<article id="c358" data-label="358">
+<h2 class="chapter">Chapter 358: Traveling Southward 🔒</h2>
+<p>The storage habits of a dragon vastly differed from those of Magus World’s humans. For a mage who was a germophobe, the items regurgitated by this Rank Two dragon might be off-putting.</p>
+<p>However, Sein merely frowned but made no complaint.</p>
+<p>Dragon Blood Herb was not only an upgrade from Dragon Spittle Herb, but also a rarer magic ingredient with an even more potent aphrodisiac effect.</p>
+<p>Yet, Sein’s interest lay elsewhere.</p>
+<p>As a Rank One mage with extensive experience across various magic materials, he had learned from a tome that Dragon Blood Herb could be added to dragon blood as a supplementary ingredient to enhance the body tempering...</p>
+</article>
+<article id="c359" data-label="359">
+<h2 class="chapter">Chapter 359: Revisits 🔒</h2>
+<p>The city lord’s mansion in Berthold City suddenly buzzed with activity today after six months of silence.</p>
+<p>Half a year ago, the city lord’s eldest son met a tragic fate in a skirmish with a neighboring territory. Devastated by this tragic loss, the old city lord canceled a much-anticipated birthday celebration.</p>
+<p>Yet today, the mansion suddenly lit up. Speculation was rife—perhaps one of the city lord’s wives was expecting once more.</p>
+<p>Upon visiting the city lord’s mansion, Sein was reunited with the corpulent baron after twenty years.</p>
+<p>While Sein remained youthful and handsome as he used to be, the city lord had aged considerably.</p>
+<p>Although the city lord...</p>
+</article>
+<article id="c360" data-label="360">
+<h2 class="chapter">Chapter 360: The Prosperous Southern Coast 🔒</h2>
+<p>Although not truly a southern coastal city, Jasmine City bore many characteristics typical of the Magus World’s southern coast.</p>
+<p>The architecture within the city was notably low-rise, with roofs featuring gentle slopes unlike the sharp ones common in northern cities.</p>
+<p>The overall vibe of the southern coast felt more open and liberal.</p>
+<p>Sein observed that women of all social standings in the city wore lighter attire.</p>
+<p>As for the women in the north, the commoners typically wore gray linen, while the wardrobes of the noble ladies predominantly featured black.</p>
+<p>Here, both nobility and commoners embraced a more diverse lifestyle.</p>
+<p>Based solely on the societal aspects of the lower class, the southern...</p>
+</article>
+<article id="c361" data-label="361">
+<h2 class="chapter">Chapter 361: Aquatic Race Hybrids 🔒</h2>
+<p>The blue-skinned, humanoid creatures Sein encountered were most likely members of the aquatic race in the Magus World.</p>
+<p>He noticed a fin-like structure at their lower jaw.</p>
+<p>However, the appearance of the aquatic races varied significantly, showcasing a richness in racial diversity that surpassed the humans in the Magus World.</p>
+<p>Unlike land magic beasts or demihumans, the aquatic races represented the biggest genetic repository, with many species dating back to Primordial and even Immemorial Eras dwelling in the depths of the sea.</p>
+<p>In comparison, due to the overexploitation of knights and mages in the Magus Continent, the oldest species here could only be...</p>
+</article>
+<article id="c362" data-label="362">
+<h2 class="chapter">Chapter 362: Mermaids 🔒</h2>
+<p>Compared to the Primordial Era, the Magus World saw a marked improvement in the treatment of the aquatic races in the current era.</p>
+<p>The divine towers and orders of the knights had explicitly banned the poaching of these beings.</p>
+<p>In the Magus Alliance, the aquatic races theoretically stood on equal footing with humans because of their contributions to the flourishing of the Magus Civilization.</p>
+<p>Many divine towers along the southern coast even invited aquatic races to join them in interplanar wars, recognizing their considerable strength.</p>
+<p>Although not on par with knights and mages, the strength of the aquatic races was significant enough to rival that of major world civilizations.</p>
+<p>The vast expanse of the sea nurtured countless...</p>
+</article>
+<article id="c363" data-label="363">
+<h2 class="chapter">Chapter 363: Aquatic Civilization 🔒</h2>
+<p>Sein did not stay too long at the stall.</p>
+<p>Aside from acquiring a hundred Oxygen Pearls, Sein also learned from the female Half-Sharkfolk why she could discern his true identity as a mage.</p>
+<p>“You have concealed your elemental power well, Esteemed Master, yet we, the aquatic race, can sense the life force and pulse of various beings through subtle shifts in water molecules. I must say, you are very strong,” she explained as she shyly dropped her gaze to Sein’s chest.</p>
+<p>The aquatic races occupied a precarious position within the hierarchy of Magus World when compared to human knights and mages.</p>
+<p>This was even more pronounced for the Half-Sharkfolk, whose status and living conditions markedly...</p>
+</article>
+<article id="c364" data-label="364">
+<h2 class="chapter">Chapter 364: Divine Tower of Dawn’s Territory 🔒</h2>
+<p>From the Flame Jellyfolk, Sein gleaned secrets of the underwater world.</p>
+<p>The Twilight Sea Snakefolk he acquired allowed him to investigate the unique sensory organ of the aquatic race.</p>
+<p>By dissecting the creature, he discovered a small tumor deep within its ear, which he termed the “core”.</p>
+<p>This organ, prevalent among aquatic species, was likely what enabled them to sense the life force and pulse of nearby creatures through minute vibrations in the water molecules.</p>
+<p>This phenomenon was not limited to the Twilight Sea Snakefolk. Upon dissecting the three Green Oyster Crabs, Sein found similar primitive organs at the sides of their brain.</p>
+<p>However, theirs were not as well-developed as the Snakefolk’s, which Sein concluded was likely due to their lower evolutionary status.</p>
+<p>“It’s not just the aquatic races of the Magus World. In other planes of the Astral Realm, it’s likely that creatures evolved to a certain level also possess unique abilities and means of detection. It seems like an Aura Restraint spell won’t suffice for total concealment,” Sein mused.</p>
+<p>In the midst of his experiments, Sein noticed the diligent and quiet engineer next to him.</p>
+<p>He could not help but ask, “How do those from the Neisse Civilization detect and track foes?”</p>
+<p>Yuri, who had been zoning out, was caught off guard by the question.</p>
+<p>She quickly recovered and replied,...</p>
+</article>
+<article id="c365" data-label="365">
+<h2 class="chapter">Chapter 365: Visit 🔒</h2>
+<p>“I’m headed to the Divine Tower of Dawn,” Sein informed the female senior initiate before him.</p>
+<p>Perhaps it was the southern coast’s congenial climate and environment that lent its residents an enhanced grace and beauty compared to their northern counterparts.</p>
+<p>The female initiate facing him could easily be considered a beauty by the Divine Tower of Verdant Spring Academy’s standards.</p>
+<p>Sein could not help but notice several other female initiates in the stone hall, each as striking as the one before him.</p>
+<p>It led him to wonder if the Divine Tower of Dawn had deliberately assigned these beautiful female initiates here to enhance the reception experience for visitors.</p>
+<p>Sein even noticed a Rank One knight in black armor giving his undivided attention to another female senior initiate from...</p>
+</article>
+<article id="c366" data-label="366">
+<h2 class="chapter">Chapter 366: Medich 🔒</h2>
+<p>Upon presenting Medich’s Divine Light Badge, Sein was met with a warm reception from the Rank One mage.</p>
+<p>It seemed like Medich was truly popular within the tower.</p>
+<p>The mage promptly used a crystal ball to notify Medich, requesting his presence outside the tower and then began chatting with Sein.</p>
+<p>Sein learned that the mage, named Gus, had been recently promoted to Rank One.</p>
+<p>However, he had yet to experience an interplanar war as he had been undertaking academy quests since his promotion. Through their conversation, he revealed to Sein his longing for the experiences of interplanar warfare.</p>
+<p>“Master Medich...</p>
+</article>
+<article id="c367" data-label="367">
+<h2 class="chapter">Chapter 367: Gifts 🔒</h2>
+<p>Sein’s visit was to express his gratitude to Master Medich, so it was out of the question for him to accept a gift without offering anything in return.</p>
+<p>By right, Sein should be the one giving him a gift as a gesture of thanks instead of the other way around.</p>
+<p>Sein promptly declined Master Medich’s generous offer, then retrieved a space ring and placed it on the table.</p>
+<p>“What is the meaning of this?” Medich asked, giving him a puzzled look.</p>
+<p>“I’ve gathered numerous specimens of extraplanar creatures while in the Viridian Venom Flame World. These are the extras from my collection, they might not fetch many magicoins though. Consider them a small token of my appreciation for your initial assistance,” Sein explained ea...</p>
+</article>
+<article id="c368" data-label="368">
+<h2 class="chapter">Chapter 368: Marie 🔒</h2>
+<p>At that time, there was a significant number of black magic initiates like Sein in Mystralora City.</p>
+<p>The major divine towers in the Magus World demonstrated a certain level of tolerance and understanding toward these initiates.</p>
+<p>After all, black magic initiates were, in a sense, victims—innocent children abducted and forced into the underground.</p>
+<p>Furthermore, the frequent abduction of school-age children by black mages reflected poorly on the region’s divine towers and the orders of the knights.</p>
+<p>In such instances, the Magus Alliance might penalize the divine towers or orders of the knights in the region. In extreme cases, they might even close down these established...</p>
+</article>
+<article id="c369" data-label="369">
+<h2 class="chapter">Chapter 369: Changes 🔒</h2>
+<p>Sein and Marie’s reunion took place on the second floor of a cafe within the Divine Tower of Dawn Academy.</p>
+<p>The facilities in the Divine Tower of Dawn were better than the Divine Tower of Verdant Spring.</p>
+<p>The southern coast’s more liberal and relaxed atmosphere meant the academy was also equipped with numerous entertainment amenities, with the cafe merely being one of them.</p>
+<p>Along the academy’s main street lay other eateries and venues designed for the enjoyment of initiates.</p>
+<p>“This place is indeed much better than Mystralora City,” Sein remarked, sipping his coffee while gazing out at the academy building basking in the sun.</p>
+<p>Unlike fruit juice, coffee was an acquired taste for Sein due to its...</p>
+</article>
+<article id="c370" data-label="370">
+<h2 class="chapter">Chapter 370: Fourth Wheel 🔒</h2>
+<p>After Marie shared her story, Sein recounted his experiences too.</p>
+<p>Upon hearing about Sein reuniting with his family, Marie’s eyes lit up with a genuine smile.</p>
+<p>Yet, the smile quickly turned into astonishment when Sein told her about his achievements, including his acceptance as an apprentice by the Tower Master of Verdant Spring after securing first place in the regional academy war.</p>
+<p><em>THUD!</em></p>
+<p>“OWWWW!” An unexpected yelp of pain from the next table interrupted them.</p>
+<p>It turned out that Angie, Marie’s junior, had been so focused on eavesdropping on them that she lost her balance and fell off her high stool.</p>
+<p>The adorable and energetic thirteen-year-old girl was accepted as an apprentice by Master Monroe possibly due to familial connections.</p>
+<p>Both Marie and Angie were Master Monroe’s only two remaining apprentices.</p>
+<p>Marie was the fifth apprentice...</p>
+</article>
+<article id="c371" data-label="371">
+<h2 class="chapter">Chapter 371: Challenge 🔒</h2>
+<p>The regulations at the Divine Tower of Dawn mirrored those of the Divine Tower of Verdant Spring—initiates were prohibited from engaging in private duels or causing grievous harm to one another.</p>
+<p>Nevertheless, the Divine Tower of Dawn had an arena stage, offering initiates a sanctioned venue to resolve personal disputes or test their mettle against each other.</p>
+<p>Marie’s reputation within the Divine Tower of Dawn was not just attributed to her exceptional skills as an apothecary but also her considerable combat abilities.</p>
+<p>Overall, Marie was a well-regarded figure among the female initiates in the Divine Tower of Dawn Academy.</p>
+<p>Kled might not have matched Marie in popularity or reputation,...</p>
+</article>
+<article id="c372" data-label="372">
+<h2 class="chapter">Chapter 372: Live Without Regrets 🔒</h2>
+<p>The spectacle of a magic initiate daring to challenge a full-fledged mage was considered an uncommon occurrence within the Divine Tower of Dawn.</p>
+<p>As the crowd of magic initiates swelled, Sein’s expression darkened, visibly displeased by the unfolding scene within the cafe.</p>
+<p>The female owner of the cafe quickly made her way to Marie, leaning in to discreetly share her worries and expressing her wish to avoid any unnecessary altercations in her shop.</p>
+<p>According to the Divine Tower of Dawn’s rules, Sein could accept Kled’s challenge and duel with him on the arena stage.</p>
+<p>However, the idea of a full-fledged mage dueling an initiate seemed beneath him...</p>
+</article>
+<article id="c373" data-label="373">
+<h2 class="chapter">Chapter 373: In His Memories 🔒</h2>
+<p>As expected, Marie’s former residence was the Divine Tower of Dawn’s initiate dormitory.</p>
+<p>Since Marie and the other black magic initiates arrived at the Divine Tower of Dawn as part of the same cohort, the tower opted to house them together for convenience.</p>
+<p>Not every magic initiate enjoyed the privilege of being assigned an individual building for accommodation like Sein did upon commencing his studies at the divine tower.</p>
+<p>The living conditions provided to initiates at the Divine Tower of Dawn were commendably comfortable, with each initiate allocated their own reasonably sized room.</p>
+<p>Yet, about a dozen such rooms were grouped...</p>
+</article>
+<article id="c374" data-label="374">
+<h2 class="chapter">Chapter 374: Promise 🔒</h2>
+<p>As a weak magic initiate, Marie’s constitution was far inferior to that of a full-fledged mage like Eileen.</p>
+<p>She was likely even weaker than Selina.</p>
+<p>At least Selina’s body had gradually adapted to Sein over the years, unlike Marie, who was still a first-timer in this respect.</p>
+<p>The crimson red that stained the bed served as undeniable evidence of Marie’s purity.</p>
+<p>After tempering his body with the verdant flame, Sein’s constitution was nearly on par with a knight.</p>
+<p>Sein had barely started enjoying himself when Marie came for the third time, leaving her lying limply on the bed.</p>
+<p>Given Sein’s profound understanding of human anatomy, he knew that proceeding further could be detrimental to Marie so he reluctantly ceased his ...</p>
+</article>
+<article id="c375" data-label="375">
+<h2 class="chapter">Chapter 375: Storm City 🔒</h2>
+<p>Reunions, however sweet, were often fleeting.</p>
+<p>The time had come for Sein and Marie to say their farewells once more.</p>
+<p>Master Medich, the peak Rank Two mage, personally escorted Sein to the outskirts of the Divine Tower of Dawn.</p>
+<p>While they were on their way there, Medich shared with Sein some additional information regarding the “Black Extermination Mission” that took place in Gloomhaven under the Divine Tower of Dawn’s leadership.</p>
+<p>Although Master Medich could not divulge every detail of that mission, he provided a concise report.</p>
+<p>From this, Sein learned about the fates of various black mages, including Martin, Jeanne, Master Dedaelon, and Daelis.</p>
+<p>Dedaelon, the Rank Two black mage who once imprisoned Sein within the dungeons of the Black...</p>
+</article>
+<article id="c376" data-label="376">
+<h2 class="chapter">Chapter 376: Decrepit Ship 🔒</h2>
+<p>Although Marie had gotten rid of her status as a black magic initiate from Mystralora City by studying in the Divine Tower of Dawn, she had been secretly gathering clues about the black mages.</p>
+<p>Marie had no intention of re-affiliating herself with the black mages—she was far too wise for that.</p>
+<p>Her unique experience had heightened her awareness of the black mages’s activities and the dark underbelly of the Magus World.</p>
+<p>Despite never leaving the Divine Tower of Dawn in the past decades, Marie’s extensive network and connections had kept her well-informed about the southern coast’s secrets.</p>
+<p>Although Master Medich might also possess such knowledge, he could not proactively...</p>
+</article>
+<article id="c377" data-label="377">
+<h2 class="chapter">Chapter 377: Setting Sail 🔒</h2>
+<p>Sein’s silence was the best response.</p>
+<p>The tough sailor was convinced that he had figured out Sein’s origins.</p>
+<p>“Passengers” like Sein often filled him with unease due to their peculiar dispositions and tendencies to invite trouble.</p>
+<p>Yet, he also knew these passengers typically possessed valuable items not easily obtained through regular means, assuming he survived long enough to use them.</p>
+<p>After a brief pause, Sein finally remembered the sailor’s question.</p>
+<p>With his face hidden under the black hood, he replied in a subdued voice, “I wish to go to Monique Black Market.”</p>
+<p>His explicit mention of the “black market” indicated his awareness that the vessel was no ordinary merchant ship.</p>
+<p>The...</p>
+</article>
+<article id="c378" data-label="378">
+<h2 class="chapter">Chapter 378: Attack From Sea Creatures 🔒</h2>
+<p>Standing atop the deck, Sein’s face was visibly pale beneath his black hood.</p>
+<p>Moments earlier, their small alchemy ship had daringly navigated through the eye of a storm.</p>
+<p>The formidable might of the Magus World’s sea had given Sein a vivid lesson in both grandeur and terror.</p>
+<p>Without precise navigation and exceptionally quick reflexes, Sein doubted they could have survived such a fearsome storm head-on.</p>
+<p>Such a feat was impossible for a Rank Three or even a demigod-level being!</p>
+<p>The storm’s force was powerful enough to twist a steel structure over a hundred meters in diameter into a corkscrew.</p>
+<p>Furthermore, there were many visible and hidden whirlpools in the sea, capable of dragging...</p>
+</article>
+<article id="c379" data-label="379">
+<h2 class="chapter">Chapter 379: Sea Lizard 🔒</h2>
+<p>The group of Sea Lizards that emerged before them was far from elite in terms of their gear and presence.</p>
+<p>Yet, what stood out was their sheer numbers.</p>
+<p>In a matter of moments, the sea surface was densely populated by a growing throng.</p>
+<p>As time progressed, the number of Sea Lizards visible on the sea ranged from twenty to thirty thousand.</p>
+<p>Kurt&#39;s loud curses and shouts echoed his fury.</p>
+<p>In the Magus World, knights and mages typically held Sea Lizards in low regard, a sentiment rooted in historical context and the significant power disparity between them.</p>
+<p>Since the dawn of recorded history, knights and mages had reigned supreme in the Magus World.</p>
+<p>Without...</p>
+</article>
+<article id="c380" data-label="380">
+<h2 class="chapter">Chapter 380: Sein’s Vision 🔒</h2>
+<p>In the Magus World, there existed another group that bore similarities to the aquatic races—the demihumans.</p>
+<p>Spread throughout the depths of the underground world, the demihumans’ societal structure might not quite match that of the aquatic races, yet they were not far behind either.</p>
+<p>During his time in Mystralora City, Sein had his fair share of encounters with these demihumans, even narrowly escaping death at the hands of one.</p>
+<p>Consequently, Sein’s knowledge of demihumans surpassed that of his peers among the divine tower mages.</p>
+<p>Life for demihumans was harsh.</p>
+<p>In years of calamity, the demihuman tribe was forced to exchange their offspring for sustenance.</p>
+<p>Yet, the harsh survival laws in Gloomhaven were even more unforgiving...</p>
+</article>
+<article id="c381" data-label="381">
+<h2 class="chapter">Chapter 381: Yuri’s Debut 🔒</h2>
+<p>Sein’s ambitious vision teetered on the edge of possibility. It was a reality burdened with complexities not to be underestimated.</p>
+<p>Yet, amidst considerations of far-reaching plans, an immediate crisis demanded attention—Kurt was at his limit!</p>
+<p>As a Rank One Knight, Kurt possessed formidable strength, but even that had its bounds.</p>
+<p>In group combat, sheer numbers and relentless assault could very well overwhelm him.</p>
+<p>The Sea Lizards, driven by desperation, proved to be formidable adversaries.</p>
+<p>Navigating through the eye of the storm had depleted a considerable amount of Kurt’s stamina and battle qi. The ordeal also left him marked with numerous cuts on his chest.</p>
+<p>The fact that he could still fight...</p>
+</article>
+<article id="c382" data-label="382">
+<h2 class="chapter">Chapter 382: Defeat 🔒</h2>
+<p>In this confrontation, the Sea Lizards residing in the nearby waters suffered losses far greater than the three thousand bodies left behind.</p>
+<p>Many of them were grievously injured, and given the tribe’s limited healing abilities, their casualties likely exceeded five thousand adults.</p>
+<p>This reduction effectively meant five thousand fewer mouths to feed.</p>
+<p>For a tribe of their moderate size, such a drastic population decline could offer a grim chance of surviving the harsh winter.</p>
+<p>Compared to the underground demihumans of Gloomhaven, the Sea Lizard tribe had a greater sense of compassion and unity.</p>
+<p>Otherwise, in dire circumstances such as famine, the sheer size of these five thousand Sea Lizards,...</p>
+</article>
+<article id="c383" data-label="383">
+<h2 class="chapter">Chapter 383: Tribe 🔒</h2>
+<p>Faced with the stark disparity in strength and the grim reality of their situation, the Sea Lizard elder found himself without alternatives.</p>
+<p>Bowing his head in acquiescence, Sein turned to Yuri, instructing, “Ask Kurt and the rest to wait a bit for me. I’ll be back soon.”</p>
+<p>Sein’s intention to venture into Sea Lizard’s territory alone reflected his unshakeable confidence in his abilities.</p>
+<p>The trench where the Sea Lizards had inhabited for generations was surprisingly close. Should any danger arise, Yuri’s swift flying abilities ensured she could quickly come to Sein’s aid.</p>
+<p>With minimal hesitation, Yuri flew back to the ship to relay Sein’s message.</p>
+<p>Kurt and the goateed elder, still nursing the wounds from their recent battle, were...</p>
+</article>
+<article id="c384" data-label="384">
+<h2 class="chapter">Chapter 384: Making a Loss 🔒</h2>
+<p>In addition to the four Sea Lizard eggs, the tribe also presented Sein with various strange-looking undersea resources.</p>
+<p>The Sea Lizard tribe was truly poor. They attempted to contribute what they could, offering seaweeds, oysters, shells, and undersea rocks.</p>
+<p>While Sein had indeed expressed his desire to collect some underwater flora or fauna, these items failed to capture Sein’s interest.</p>
+<p>After scrutinizing those items for a long time, Sein stored all the “worthless items” in his space ring and compensated the Sea Lizards with three magicoins.</p>
+<p>All those worthless items, along with the four Sea Lizard eggs, amounted to a total of seven magicoins.</p>
+<p>While Sein’s generosity might not completely alleviate...</p>
+</article>
+<article id="c385" data-label="385">
+<h2 class="chapter">Chapter 385: Arrived at the Black Market 🔒</h2>
+<p>Kurt was a decent guy, or perhaps it was his years of experience operating in the gray area that taught him how to cultivate a loyal customer base.</p>
+<p>Even a sum of a few or ten magicoins was significant. In fact, the conflict might not have erupted had this amount initially been given to the Sea Lizards.</p>
+<p>Despite his impulsiveness and boldness, Kurt was undeniably a Rank One knight with a good head on his shoulders</p>
+<p>Sein was more than willing to forge a friendship with a knight like that.</p>
+<p>After Sein returned to the ship, Kurt took nearly another hour to recuperate before setting sail again.</p>
+<p>They had navigated through the most perilous part of the giant storm. With the storm season...</p>
+</article>
+<article id="c386" data-label="386">
+<h2 class="chapter">Chapter 386: Observations in the Black Market 🔒</h2>
+<p>In the vast territories of the Magus World, the status of human knights and mages was unparalleled.</p>
+<p>Humans were the predominant group, with other races—be it demihumans, aquatic races, or magic beasts—largely at the mercy of the knights and mages of Magus World.</p>
+<p>However, the dynamics in the Monique Black Market were rather different.</p>
+<p>The influence of the divine towers and the orders of the knights were nonexistent here.</p>
+<p>At least during the black market season, the privileges typically enjoyed by human knights and mages were not evident.</p>
+<p>In this gray area, status was irrelevant. Everyone was on equal footing.</p>
+<p>To put it bluntly, the aquatic races...</p>
+</article>
+<article id="c387" data-label="387">
+<h2 class="chapter">Chapter 387: Imperial Pearl Auction 🔒</h2>
+<p>Five days later, Sein led Yuri to the largest building in the center of the Monique Black Market.</p>
+<p>This cylindrical building towered over a hundred meters, supported by thick marble columns that encircled it.</p>
+<p>The architecture, reminiscent of liberal coastal styles, featured subtle modifications that set it apart from the coastal cities Sein had previously visited.</p>
+<p>A half-naked mermaid statue stood at the building’s center, while various corners featured decorations inspired by the culture of aquatic races.</p>
+<p>Such design elements suggested a connection between the Imperial Pearl Auction and these aquatic races, leading...</p>
+</article>
+<article id="c388" data-label="388">
+<h2 class="chapter">Chapter 388: Auction List 🔒</h2>
+<p>Sein was interested in bidding on black magic initiates or black squires, but not to dissect them for study or make them work as his assistant.</p>
+<p>As a divine tower mage, he lived at the very core of its regulations and did not wish to tarnish his reputation.</p>
+<p>Those genuinely interested in these unregistered individuals were likely mages not affiliated with the divine tower or those with a dark disposition.</p>
+<p>Sein only intended to gain a deeper understanding of Blackhaven in the Western Archipelago directly from those black magic initiates and black squires.</p>
+<p>Until now, his knowledge of Blackhaven was limited to what he had learned...</p>
+</article>
+<article id="c389" data-label="389">
+<h2 class="chapter">Chapter 389: Highlights 🔒</h2>
+<p>Like most auctions, the Imperial Pearl Auction began with items that had the lowest starting bids and gradually progressed to those with higher values.</p>
+<p>Sein also realized that the yellow-robed mage was great at stirring the emotions of all participants.</p>
+<p>Initially, Sein perceived an auction item as just that, but the mage was able to turn it into something extraordinary through his spirited introduction.</p>
+<p>If not for Sein’s ingrained rationality and calm, he might have been swept away by the mage’s persuasive skills.</p>
+<p>After using his mental focus to scan the auction house, Sein was further astonished to discover the absence of magic fluctuations.</p>
+<p>This showed that the mage had relied...</p>
+</article>
+<article id="c390" data-label="390">
+<h2 class="chapter">Chapter 390: Spatial Equipment 🔒</h2>
+<p>Sein had to admit that the pink-tailed mermaid before him was perhaps the most exquisite female creature he had ever encountered.</p>
+<p>He refused to describe her as “most beautiful” because, in his memory, Leena was the most beautiful.</p>
+<p>Besides, “beautiful” was an extremely subjective adjective.</p>
+<p>Aside from Leena, he also considered Selina, Eileen, Faye, and his mentor, Lorianne, beauties.</p>
+<p>Setting aside these subjective factors and judging solely from an objective standpoint, Sein had truly never encountered a more exquisite female than the mermaid before him.</p>
+<p>She seemed like a beauty out of a painting, with her pink tail and long wavy hair complemented by her lovely, striking eyes.</p>
+<p>A five-meter-long...</p>
+</article>
+<article id="c391" data-label="391">
+<h2 class="chapter">Chapter 391: Rank Two Black Mage 🔒</h2>
+<p>After the auction concluded, Sein took a special passage down to the basement on the bottom floor of the auction house, where all transactions and payments were processed.</p>
+<p>The magic array in place was powerful enough to withstand an attack from a Rank Three mage, ensuring the basement’s security.</p>
+<p>Its secretive nature also shielded it from the prying eyes of the divine towers, unless they were determined to conduct a thorough investigation.</p>
+<p>Sein’s total expenditure at the auction amounted to 364 magicoins.</p>
+<p>He had managed his resources wisely, mindful of spending beyond the limits of his financial capabilities.</p>
+<p>The items he purchased were practical...</p>
+</article>
+<article id="c392" data-label="392">
+<h2 class="chapter">Chapter 392: Leaving After the Transaction 🔒</h2>
+<p>Just by standing there, the mysterious black mage instilled a profound sense of fear and oppression in everyone.</p>
+<p>For the entire time, Sein and the other two mages remained silent. Only the Rank One Knight conversed with the black-robed old man.</p>
+<p>Sein did not gather much information about the black mage through their conversation.</p>
+<p>“Hey, do you have any female full-fledged mage for sale here?” the black-haired knight asked, possibly growing accustomed to the oppressive aura or feeling secure within the confines of the Imperial Pearl Auction.</p>
+<p>The black mage responded with a piercing laugh before turning around and nodding at the knight.</p>
+<p>“I do have one here, priced at twelve hundred magicoins....</p>
+</article>
+<article id="c393" data-label="393">
+<h2 class="chapter">Chapter 393: Information on Blackhaven 🔒</h2>
+<p>In the shallow jungle southwest of Jagem Plains, Sein, having just arrived via a teleportation array, was pinching the spot between his eyebrows to regain his focus.</p>
+<p>Beside him, Yuri, who was supposed to be protecting him, looked even paler and more disoriented than Sein.</p>
+<p>Around them, the three individuals who had also been teleported lay unconscious on the jungle floor.</p>
+<p>Clearly, the stability of the teleportation array in the Monique Black Market left much to be desired!</p>
+<p>Sein was unsure whether this was an issue with their subpar teleportation technology or the absence of necessary adaptive devices.</p>
+<p>In any case, the disorienting experience reminded Sein of his first journey to the Yellow...</p>
+</article>
+<article id="c394" data-label="394">
+<h2 class="chapter">Chapter 394: Wrapping Up 🔒</h2>
+<p>The information about Blackhaven provided by the three soul slaves was regionally limited, given their low life levels and the fact that they had never left the island they lived on.</p>
+<p>However, by piecing together their accounts, Sein was able to form a rough idea of the situation in Blackhaven.</p>
+<p>Combining the information Sein had been continuously collecting on Blackhaven over the years with the details extracted from the three soul slaves left him visibly grave.</p>
+<p>No one could understand the depth of Sein’s somber mood.</p>
+<p>After a lengthy pause, Sein looked out at the darkening sky and suddenly said, “We should get going.”</p>
+<p>Sev hooted softly before returning to perch...</p>
+</article>
+<article id="c395" data-label="395">
+<h2 class="chapter">Chapter 395: Premonition 🔒</h2>
+<p>The sphere of influence of the Divine Tower of Crimson primarily extended across the northern inland regions.</p>
+<p>However, to the south of this tower, in the ocean and across numerous islands in the South Sea, lay another major force—the Order of the Land Sword.</p>
+<p>It was a renowned order of knights on the southern coast of the Magus World, led by a master rumored to possess Rank Five strength.</p>
+<p>The Order of the Land Sword was heavily involved in the black mage extermination operations in the Darwell Region, led by the Divine Tower of Dawn.</p>
+<p>Sein recalled that Baldor, a Rank Two knight who had shown him kindness in the underground world, hailed from this order.</p>
+<p>The...</p>
+</article>
+<article id="c396" data-label="396">
+<h2 class="chapter">Chapter 396: Massacre 🔒</h2>
+<p>Four months later, Sein found himself at Sea Gazing Harbor.</p>
+<p>The harbor was located a little left from the central south of the Magus Continent, away from the southern coast.</p>
+<p>After a relentless journey, Sein managed to arrive just in time to board a sea vessel bound west for the Marmett Union Alliance.</p>
+<p>Even on an alchemy ship, the journey to his destination, Cannes Sea City within the Marmett Union Alliance, would take at least six months.</p>
+<p>Depending on the monsoons and ocean currents, this duration could vary by a month or two.</p>
+<p>Navigating the whims of the sea breeze, which were beyond human control, added a layer of unpredictability. The solid foundation of laws in the Magus World ensured that not even Rank Four creatures could significantly influence the climate over a large area.</p>
+<p>Sein&#39;s decision to travel by sea vessel to the Marmett Union Alliance was influenced by the geography to the north—Zerzis...</p>
+</article>
+<article id="c397" data-label="397">
+<h2 class="chapter">Chapter 397: Associate 🔒</h2>
+<p>After storing the mermaid back into the crystal necklace and gathering all the loot on the deck, the black-robed man retrieved a dark yellow crystal ball.</p>
+<p>As an expert in alchemy, he had crafted this crystal ball himself. It included special features beyond the standard functions.</p>
+<p>The crystal ball emitted a faint, eerie glow and displayed a semi-transparent magic map. At the center of this map was the black-robed man’s current location.</p>
+<p>Two points of light were visible nearby. However, he disregarded the numerous distant lights, as they lay deep within the territories of the major divine towers and orders of the knights on the southern...</p>
+</article>
+<article id="c398" data-label="398">
+<h2 class="chapter">Chapter 398: Incoming Attack 🔒</h2>
+<p>Sein’s focus and mana were undoubtedly among the highest in his rank.</p>
+<p>However, his constitution was remarkably different—it was, frankly, “absurd”!</p>
+<p>Sein’s constitution had surpassed 100 points, positioning him alongside newly promoted Rank One knights.</p>
+<p>However, this comparison pertained only to his physical resilience; it did not imply that his muscle power and physical strength matched theirs.</p>
+<p>Furthermore, Sein could not harness battle qi like knights. It was inaccurate to call him a knight armed with a magic rod.</p>
+<p>His constitution merely granted him superior resilience and vitality compared to other mages, improving his chances of survival in...</p>
+</article>
+<article id="c399" data-label="399">
+<h2 class="chapter">Chapter 399: Intensifying 🔒</h2>
+<p>The primary distinction between a Rank Two mage and a Rank One mage was the ability to elementalize their body.</p>
+<p>Aside from that, one had to possess a minimum of 1000 points of mental focus to become a Rank Two mage, which was nearly ten times that of a newly initiated Rank One mage.</p>
+<p>However, this significant numerical difference did not directly translate to combat prowess.</p>
+<p>Ten Rank One mages could not simply overpower a Rank Two mage due to multiple complex factors.</p>
+<p>The Rank Two black mage before Sein was confident that he could withstand a siege from a dozen Rank One creatures and emerge unscathed.</p>
+<p>Black mages were the group within the Magus World that had most thoroughly...</p>
+</article>
+<article id="c400" data-label="400">
+<span id="last"></span>
+<h2 class="chapter">Chapter 400: Menace 🔒</h2>
+<p>A series of agonized screams pierced the air from the deck.</p>
+<p>Amidst his battle with Thatch and the others, the Rank Two black mage had not overlooked the “worms” on deck.</p>
+<p>Several magic initiates were mercilessly slaughtered by the black crows, their bodies disintegrated, leaving behind only traces of corrosive, dark liquid that emitted a pungent odor.</p>
+<p>This gruesome scene severely tested the resolve of the remaining initiates and ordinary crew members.</p>
+<p>Unlike Sein in his early days, not all initiates were hardened to such brutality.</p>
+<p>The deck quickly descended into chaos, with horrific images of carnage spreading panic among the crew.</p>
+<p>Simultaneously, the two magic cannons,...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="401-450.html" rel="next">Next: Chs 401–450 &rarr;</a>
+    <p class="page-end-links"><a href="301-350.html" rel="prev">&larr; Chs 301–350</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 351–400</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c351">Chapter 351: Subjugating An Engineer 🔒</a></li>
+        <li><a href="#c352">Chapter 352: New Magic Rod 🔒</a></li>
+        <li><a href="#c353">Chapter 353: Eve of Departure 🔒</a></li>
+        <li><a href="#c354">Chapter 354: Ball 🔒</a></li>
+        <li><a href="#c355">Chapter 355: Departure 🔒</a></li>
+        <li><a href="#c356">Chapter 356: Pyro Crystal Range 🔒</a></li>
+        <li><a href="#c357">Chapter 357: Trade 🔒</a></li>
+        <li><a href="#c358">Chapter 358: Traveling Southward 🔒</a></li>
+        <li><a href="#c359">Chapter 359: Revisits 🔒</a></li>
+        <li><a href="#c360">Chapter 360: The Prosperous Southern Coast 🔒</a></li>
+        <li><a href="#c361">Chapter 361: Aquatic Race Hybrids 🔒</a></li>
+        <li><a href="#c362">Chapter 362: Mermaids 🔒</a></li>
+        <li><a href="#c363">Chapter 363: Aquatic Civilization 🔒</a></li>
+        <li><a href="#c364">Chapter 364: Divine Tower of Dawn’s Territory 🔒</a></li>
+        <li><a href="#c365">Chapter 365: Visit 🔒</a></li>
+        <li><a href="#c366">Chapter 366: Medich 🔒</a></li>
+        <li><a href="#c367">Chapter 367: Gifts 🔒</a></li>
+        <li><a href="#c368">Chapter 368: Marie 🔒</a></li>
+        <li><a href="#c369">Chapter 369: Changes 🔒</a></li>
+        <li><a href="#c370">Chapter 370: Fourth Wheel 🔒</a></li>
+        <li><a href="#c371">Chapter 371: Challenge 🔒</a></li>
+        <li><a href="#c372">Chapter 372: Live Without Regrets 🔒</a></li>
+        <li><a href="#c373">Chapter 373: In His Memories 🔒</a></li>
+        <li><a href="#c374">Chapter 374: Promise 🔒</a></li>
+        <li><a href="#c375">Chapter 375: Storm City 🔒</a></li>
+        <li><a href="#c376">Chapter 376: Decrepit Ship 🔒</a></li>
+        <li><a href="#c377">Chapter 377: Setting Sail 🔒</a></li>
+        <li><a href="#c378">Chapter 378: Attack From Sea Creatures 🔒</a></li>
+        <li><a href="#c379">Chapter 379: Sea Lizard 🔒</a></li>
+        <li><a href="#c380">Chapter 380: Sein’s Vision 🔒</a></li>
+        <li><a href="#c381">Chapter 381: Yuri’s Debut 🔒</a></li>
+        <li><a href="#c382">Chapter 382: Defeat 🔒</a></li>
+        <li><a href="#c383">Chapter 383: Tribe 🔒</a></li>
+        <li><a href="#c384">Chapter 384: Making a Loss 🔒</a></li>
+        <li><a href="#c385">Chapter 385: Arrived at the Black Market 🔒</a></li>
+        <li><a href="#c386">Chapter 386: Observations in the Black Market 🔒</a></li>
+        <li><a href="#c387">Chapter 387: Imperial Pearl Auction 🔒</a></li>
+        <li><a href="#c388">Chapter 388: Auction List 🔒</a></li>
+        <li><a href="#c389">Chapter 389: Highlights 🔒</a></li>
+        <li><a href="#c390">Chapter 390: Spatial Equipment 🔒</a></li>
+        <li><a href="#c391">Chapter 391: Rank Two Black Mage 🔒</a></li>
+        <li><a href="#c392">Chapter 392: Leaving After the Transaction 🔒</a></li>
+        <li><a href="#c393">Chapter 393: Information on Blackhaven 🔒</a></li>
+        <li><a href="#c394">Chapter 394: Wrapping Up 🔒</a></li>
+        <li><a href="#c395">Chapter 395: Premonition 🔒</a></li>
+        <li><a href="#c396">Chapter 396: Massacre 🔒</a></li>
+        <li><a href="#c397">Chapter 397: Associate 🔒</a></li>
+        <li><a href="#c398">Chapter 398: Incoming Attack 🔒</a></li>
+        <li><a href="#c399">Chapter 399: Intensifying 🔒</a></li>
+        <li><a href="#c400">Chapter 400: Menace 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="301-350.html" rel="prev">&larr; Chs 301–350</a>    <a href="../../index.html">Library</a>
+<a href="401-450.html" rel="next">Chs 401–450 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

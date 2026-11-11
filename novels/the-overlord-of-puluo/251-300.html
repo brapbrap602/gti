@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Overlord of Puluo Chs 251–300</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="201-250.html#last" data-next-page="301-350.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c251">Chapter 251: Prince Chun&#39;s Manor 🔒</a></li>
+        <li><a href="#c252">Chapter 252: Prince Chun&#39;s Manor 🔒</a></li>
+        <li><a href="#c253">Chapter 253: Changban Slope 🔒</a></li>
+        <li><a href="#c254">Chapter 254: Performing Arts Cultivator 🔒</a></li>
+        <li><a href="#c255">Chapter 255: Episode 🔒</a></li>
+        <li><a href="#c256">Chapter 256: The Bloodspear Detective 🔒</a></li>
+        <li><a href="#c257">Chapter 257: This Is Art! 🔒</a></li>
+        <li><a href="#c258">Chapter 258: Blank Copper Seal 🔒</a></li>
+        <li><a href="#c259">Chapter 259: Causing Trouble On My Turf 🔒</a></li>
+        <li><a href="#c260">Chapter 260: Benefactor&#39;s Identity 🔒</a></li>
+        <li><a href="#c261">Chapter 261: An Old Friend 🔒</a></li>
+        <li><a href="#c262">Chapter 262: The Art of the Empty Hand 🔒</a></li>
+        <li><a href="#c263">Chapter 263: We Are Brothers    🔒</a></li>
+        <li><a href="#c264">Chapter 264: The Reunion of Father and Son 🔒</a></li>
+        <li><a href="#c265">Chapter 265: Pure Conduct Society 🔒</a></li>
+        <li><a href="#c266">Chapter 266: The Night-Blooming Jasmine of Blackstone Slope 🔒</a></li>
+        <li><a href="#c267">Chapter 267: The First Battle 🔒</a></li>
+        <li><a href="#c268">Chapter 268: Green Fire Gang 🔒</a></li>
+        <li><a href="#c269">Chapter 269: Elder Wu 🔒</a></li>
+        <li><a href="#c270">Chapter 270: A Public Duel 🔒</a></li>
+        <li><a href="#c271">Chapter 271: Say It! 🔒</a></li>
+        <li><a href="#c272">Chapter 272: Thoughts 🔒</a></li>
+        <li><a href="#c273">Chapter 273: Level-Five Ability of Wanderlust Cultivator 🔒</a></li>
+        <li><a href="#c274">Chapter 274: Granduncle, Rest in Peace 🔒</a></li>
+        <li><a href="#c275">Chapter 275: A Loss He Couldn&#39;t Accept 🔒</a></li>
+        <li><a href="#c276">Chapter 276: He Jiaqing&#39;s Hand 🔒</a></li>
+        <li><a href="#c277">Chapter 277: The Train to the New Land 🔒</a></li>
+        <li><a href="#c278">Chapter 278: The Woman in White 🔒</a></li>
+        <li><a href="#c279">Chapter 279: Dreambinding Tower 🔒</a></li>
+        <li><a href="#c280">Chapter 280: Grandpa Train 🔒</a></li>
+        <li><a href="#c281">Chapter 281: The Best Train In The World 🔒</a></li>
+        <li><a href="#c282">Chapter 282: They Want My Train 🔒</a></li>
+        <li><a href="#c283">Chapter 283: The Edge of the World of Dreams 🔒</a></li>
+        <li><a href="#c284">Chapter 284: Don&#39;t Give It to Anyone 🔒</a></li>
+        <li><a href="#c285">Chapter 285: Wait for Me to Save You 🔒</a></li>
+        <li><a href="#c286">Chapter 286: A Bond Between Brothers 🔒</a></li>
+        <li><a href="#c287">Chapter 287: Cultivating Through the Pictures 🔒</a></li>
+        <li><a href="#c288">Chapter 288: The Vigorous Elder, Lu Maoxian 🔒</a></li>
+        <li><a href="#c289">Chapter 289: The Illusory Film Building 🔒</a></li>
+        <li><a href="#c290">Chapter 290: The House Thief 🔒</a></li>
+        <li><a href="#c291">Chapter 291: You Need Evidence to Catch a Thief 🔒</a></li>
+        <li><a href="#c292">Chapter 292: I Dreamed About You 🔒</a></li>
+        <li><a href="#c293">Chapter 293: Conflicting and Interdependent Homebound and Wanderlust Cultivation 🔒</a></li>
+        <li><a href="#c294">Chapter 294: Raising the Banner 🔒</a></li>
+        <li><a href="#c295">Chapter 295: Ambush 🔒</a></li>
+        <li><a href="#c296">Chapter 296: Make Him Put in a Little More Effort 🔒</a></li>
+        <li><a href="#c297">Chapter 297: Projected Image 🔒</a></li>
+        <li><a href="#c298">Chapter 298: The Level-Six Ability of a Homebound Cultivator 🔒</a></li>
+        <li><a href="#c299">Chapter 299: The Oil Can 🔒</a></li>
+        <li><a href="#c300">Chapter 300: Step On the Nose and Onto the Face 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="the-overlord-of-puluo">
+<article id="c251" data-label="251">
+<h2 class="chapter">Chapter 251: Prince Chun&#39;s Manor 🔒</h2>
+<p>As Li Banfeng stepped into the abandoned residence and looked around, he couldn&#39;t help but marvel inwardly, <em>What a huge manor!</em></p>
+<p>Seven courtyards stretched from south to north, while five crossed from east to west. The big and small courtyards were interwoven, twisting into one another like a maze.</p>
+<p>After making two rounds of the place, Li Banfeng found no danger and no sign of anyone. He headed back to the front gate and called the others in.</p>
+<p>No one there, not even Xiao Yeci, had ever seen such a large estate. As they entered the first courtyard, they couldn&#39;t help but look around in curiosity, and before long, a few of them had already wandered off toward the ornamental hanging-flower gate.</p>
+<p>Beyond the gate was the second courtyard. Li Banfeng moved to stand before it, blocking the way. &#34;Find somewhere to shelter from the rain,&#34; he said firmly. &#34;Stay in the first courtyard. We leave immediately when the rain stops tomorrow.&#34;</p>
+<p>Compared with the other courtyards, the first was not particularly large, but it had the most rooms.</p>
+<p>The rooms here were known as gatehouse rooms. Because they all faced the shaded side, they were also called inverted rooms. There were more than thirty of them stretching from east to west, all meant for the servants.</p>
+<p>Xiao Yeci looked around, clearly pleased. &#34;There are so many rooms here. There&#39;s enough for each of us to take one.&#34;</p>
+<p>Li Banfeng shook his head. &#34;No. It can&#39;t...</p>
+</article>
+<article id="c252" data-label="252">
+<h2 class="chapter">Chapter 252: Prince Chun&#39;s Manor 🔒</h2>
+<p>The performer refused to come any closer, and the door to the Pocket Dwelling could not stay open indefinitely. Li Banfeng shut the door, lifted the pendulum, and continued fighting the opera performer.</p>
+<p>The opera performer could sing very well. However, he was not very good at fighting. Even with only a pendulum in hand, Li Banfeng relied on his speed, keeping the fight evenly matched.</p>
+<p>They fought for several minutes. The performer was slashed several times, while Li Banfeng remained completely unharmed.</p>
+<p>When the performer realized that he could not gain the upper hand, he vanished in the blink of an eye.</p>
+<p>Li Banfeng shouted angrily, &#34;Are you coming out or not? If you don&#39;t, I will keep singing!&#34;</p>
+<p>With the ability Deep Court Domain, Li Banfeng could use his wifey&#39;s ability outside of the Pocket Dwelling. Through her singing, he could lure wandering souls toward him. Standing in the second courtyard, he continued singing &#34;Wu Family Slope.&#34;</p>
+<p>He sang several verses at the top of his lungs. Peking opera was no ordinary song; it demanded real skill. Li Banfeng sang until his throat felt like it was burning, yet the performer still did not appear.</p>
+<p><em>My wifey&#39;s abilities aren&#39;t working? That means this performer&#39;s cultivation isn&#39;t low. But what kind of Daoist Path does he follow, to have such poor combat ability despite such...</em></p>
+</article>
+<article id="c253" data-label="253">
+<h2 class="chapter">Chapter 253: Changban Slope 🔒</h2>
+<p>After dealing with all the ghosts in the third courtyard, Li Banfeng pushed open the hanging flower gate to the fourth courtyard. He had only taken a few steps into the courtyard when war drums thundered from all directions, rolling without end.</p>
+<p>Li Banfeng quickly swept his gaze around. The courtyard, which had been empty just a moment ago, was now filled with soldiers.</p>
+<p>Cavalry thundered into formation. Infantry marched forward in tight lines. Archers raised their bows in unison. Among them, soldiers with firearms stepped out, their weapons gleaming coldly.</p>
+<p><em>Such a massive formation?</em> Li Banfeng really started panicking.</p>
+<p>He couldn’t tell whether the troops were real or illusions. The only thing he knew for certain was that they weren’t human. Every last one of them was a ghost.</p>
+<p>Li Banfeng darted back and forth through the storm of bullets and arrows, then lightly tapped the pendulum.</p>
+<p>The pendulum understood at once. It circled behind Li Banfeng, sliced open his suit, and pulled a record from the lining. Then, using its tip, it began to glide evenly along the grooves.</p>
+<p>The gramophone wasn’t powered by electromagnetism. It worked purely through the friction and vibration between the needle and the record.</p>
+<p>At that moment, the pendulum took the place of the needle. It was a tactic Li Banfeng and his wifey had devised together.</p>
+<p>Li Banfeng could use the Deep Court Domain ability to imitate...</p>
+</article>
+<article id="c254" data-label="254">
+<h2 class="chapter">Chapter 254: Performing Arts Cultivator 🔒</h2>
+<p>Under Li Banfeng&#39;s relentless questioning, the performer dismissed all the spirits in the room and began to recount his past.</p>
+<p>&#34;Back then, the one I wanted to marry wasn&#39;t Hong Ying. It was Zhao Xiaowan. I even brought it up to her and asked His Majesty to arrange the match, but Zhao Xiaowan refused.&#34;</p>
+<p>Li Banfeng asked, &#34;What status do you hold?&#34;</p>
+<p>The performer raised his hand and gestured all around them. &#34;With this courtyard and these furnishings in my home, can&#39;t you tell what my status is?&#34;</p>
+<p>Li Banfeng shook his head. &#34;I can&#39;t.&#34;</p>
+<p>&#34;I am a prince! Prince Chun!&#34; the performer said, raising his voice. &#34;You should know what kind of status a prince holds.&#34;</p>
+<p>Li Banfeng hadn&#39;t studied history in university, but he still had a basic understanding of what a prince was. &#34;You&#39;re a prince, and Zhao Xiaowan is a general who used to be a performer. You wanted to marry her? And she dared to refuse?&#34;</p>
+<p>Prince Chun wore a bitter smile. &#34;That was because of what was happening at the time. Under normal circumstances, she wouldn&#39;t have dared to refuse. I could have dragged her into the prince&#39;s manor by force if I wanted. I wouldn&#39;t even have needed to give her a title to take her in. But it wasn&#39;t possible at that time. There was a war going on, and Zhao Xiaowan kept winning battle after battle. His Majesty couldn&#39;t do without her, so this...</p>
+</article>
+<article id="c255" data-label="255">
+<h2 class="chapter">Chapter 255: Episode 🔒</h2>
+<p>Xiao Yeci and Lu Chunying sat inside the room, quietly watching Prince Chun perform opera.</p>
+<p>Prince Chun was cross-dressing as a female character[1] and performed <em>The Case of Chen Shimei</em>.</p>
+<p>Every aspect of the performance was impeccable. Prince Chun portrayed Qin Xianglian[2] with striking depth, and Lu Chunying&#39;s eyes welled with tears as she watched.</p>
+<p>Tears welled up in Xiao Yeci&#39;s eyes too, but it was out of fear.</p>
+<p>No matter how afraid she was, she had to watch the performance to the end. Lu Chunying had offended Prince Chun, and to make it up to him, he had made a simple request—sit through his opera performance.</p>
+<p>It did not seem like a big deal, but Xiao Yeci was truly terrified.</p>
+<p>Seeing her trembling nonstop, Lu Chunying cautiously reminded her, &#34;Mom, if you can&#39;t hold it in, say something right away. I&#39;ll take you to the latrine. This prince cares about cleanliness. We mustn&#39;t cause any more trouble.&#34;</p>
+<p>Li Banfeng sat inside the Pocket Dwelling, quietly watching the Gramophone and Hong Ying.</p>
+<p><em>Pop… crackle… pop…</em></p>
+<p>The Gramophone spoke first. &#34;Husband dear, did Prince Chun tell you everything? That old fella is a cunning fox. You can&#39;t trust everything he says.&#34;</p>
+<p>Hong Ying let out a soft sigh. &#34;Among all the officials in court, who isn&#39;t a...</p>
+</article>
+<article id="c256" data-label="256">
+<h2 class="chapter">Chapter 256: The Bloodspear Detective 🔒</h2>
+<p>Li Banfeng lay in the Pocket Dwelling for most of the day before he finally recovered. Throughout that time, the Gramophone held him tightly with the steam.</p>
+<p>This was why Li Banfeng had returned to the Pocket Dwelling. He had known that once the episode struck, he would likely lose control completely.</p>
+<p>He was at level five for both his Daoist paths. If he were to truly let loose, not a single person in the entire inn would survive. Fortunately, his wife could still restrain him.</p>
+<p>He sat beside the bed and calmly asked the Gramophone, &#34;Wifey, there&#39;s this ability. Give someone a push, and they go flying. You can fly. The other person can fly too. What is that ability called?&#34;</p>
+<p>Li Banfeng&#39;s enunciation was still a bit unclear, and it was clear from the way he spoke that his thoughts were still quite muddled.</p>
+<p>The Gramophone gently soothed him and asked, &#34;My dear, why are you asking about this?&#34;</p>
+<p>&#34;That&#39;s my enemy&#39;s method. I&#39;m going to find him and take revenge!&#34;</p>
+<p>Li Banfeng stood up to leave, but the Gramophone pulled him into a tight embrace.</p>
+<p>&#34;My dear, you can&#39;t go.&#34;</p>
+<p>&#34;Why can&#39;t I go?!&#34;</p>
+<p>Right now, Li Banfeng truly wanted to return to the Outer Provinces and get a clear answer from He Jiaqing.</p>
+<p>Hong Ying let out a cold laugh. &#34;What you just described is a level-nine Wanderlust ability, A Parting Across Ten Thousand Miles. If your enemy is a level-nine Wanderlust Cultivator, then how could you possibly be his match with your current cultivation level? Wouldn&#39;t going there just be seeking...</p>
+</article>
+<article id="c257" data-label="257">
+<h2 class="chapter">Chapter 257: This Is Art! 🔒</h2>
+<p>Normally, Ma Wu was unbothered about the state of his reputation, but this time, he was genuinely angry.</p>
+<p>Lu Yuanshan poured Ma Wu a cup of wine. &#34;Junyang, what are you saying? You&#39;re earning a lot of money. Given the bond between us brothers, we&#39;re happy for you.&#34;</p>
+<p>Lu Yuanhai chimed, &#34;Exactly. We&#39;re both happy for you.&#34;</p>
+<p>&#34;Happy for me?&#34; Ma Wu did not touch the cup of wine. &#34;Shouldn&#39;t you be happy for yourselves? Our two families funded and produced this movie together. Now that it&#39;s making money, we should split it however it ought to be split!&#34;</p>
+<p>&#34;Now, now. Why are you talking like we&#39;re strangers?&#34; Lu Yuanshan said as he handed Ma Wu a cigar. &#34;Talking about splitting money makes it all sound too formal, polite. We&#39;re brothers, aren&#39;t we? Let&#39;s not talk about money.&#34;</p>
+<p>Lu Yuanhai added, &#34;Old Wu, it hasn&#39;t been easy for you, working so hard to make a living in Greenwater City. As your brothers, It pains us to watch you like this. It&#39;s only right that we help you out financially.&#34;</p>
+<p>&#34;What do you mean, help me out financially?&#34; The more Ma Wu listened, the angrier he became. &#34;This was a business partnership. You invest and get a return when there&#39;s a profit. Tomorrow, I&#39;ll call all the reporters over and talk about how we&#39;re dividing the profits first.&#34;</p>
+<p>&#34;No splitting, no splitting!&#34; Lu Yuanshan waved his hand dismissively. &#34;Uncle...</p>
+</article>
+<article id="c258" data-label="258">
+<h2 class="chapter">Chapter 258: Blank Copper Seal 🔒</h2>
+<p>&#34;Big Bro Qi, it&#39;s me, Qin Tianjiu.&#34;</p>
+<p>Qin Tianjiu, Chubby Qin, had met Ma Wu once before. He remembered Ma Wu and recognized him.</p>
+<p>Ma Wu remembered Chubby Qin, but he truly did not recognize him.</p>
+<p>The first time they had seen Chubby Qin, the chubby fella had been around 1.7 meters tall and weighed around 85 kilograms.</p>
+<p>Now, the young man standing before them was still around 1.7 meters tall, but he might not even weigh 45 kilograms. His physique had changed. His appearance had changed. And because he had become so thin, even his voice had changed.</p>
+<p>It was not just Ma Wu who had failed to recognize him. Even Li Banfeng did not recognize him.</p>
+<p>After Chubby Qin explained who he was, he also revealed the purpose of his visit.</p>
+<p>No matter what it was, he would never hide anything from Li Banfeng.</p>
+<p>After Chubby Qin consumed the Intestinal Roller Silkworm, his appetite surged every day. Within half a year, he advanced continuously and became a level-three Gourmandism Cultivator. The Three Heroes Sect regarded him as a talented member, so much so that they made an exception and promoted him to Copper Seal.</p>
+<p>In truth, this so-called exception was not really an exception. Within the Three Heroes Sect, cultivators at levels one and two served as Iron Seals, while cultivators at levels three and four served as Copper Seals. This had been the rule for many years.</p>
+<p>However, the reason it was an exception was that Chubby Qin was not suited to be a Copper Seal, and that was...</p>
+</article>
+<article id="c259" data-label="259">
+<h2 class="chapter">Chapter 259: Causing Trouble On My Turf 🔒</h2>
+<p>The sequel to <em>The Legendary Bloodspear Detective</em> was an even bigger hit, outperforming the first in sales.</p>
+<p>Lu Yuanhai grew restless and brought it up with Lu Yuanshan. &#34;Brother, are we still pulling out? We have already made a fortune from this!&#34;</p>
+<p>Lu Yuanshan pondered for a long while before shaking his head. &#34;We still have to back out from this. Money isn&#39;t the main concern. Dirty work is still dirty work, and we can&#39;t get too deeply involved.&#34;</p>
+<p>Lu Yuanhai was unwilling to let it go. &#34;How about we discuss it with Uncle Qiu?&#34;</p>
+<p>&#34;No need to discuss it. You know Uncle Qiu&#39;s temperament. He would definitely tell us to stop as soon as possible. It&#39;s fine to watch whatever that Ma Wu produces once or twice. However, it becomes cringy and boring when you see too much of it. This isn&#39;t a long-term solution. We can&#39;t drag our family&#39;s reputation into this.&#34;</p>
+<p>This was actually something they should discuss with Qiu Zhiheng as Qiu Zhiheng would understand the situation better than anyone else.</p>
+<p>Lu Yuanshan and Lu Yuanhai had grown up swimming in wealth. They had seen everything, tasted everything, and poked their noses into more amusements than most people could dream of. At first, the films had been a delight. New, bold, a little shocking. But after a while, the movie began to feel … boring.</p>
+<p>It was different for the ordinary folk. They had never seen anything like it. The things in those films were dazzling, almost unbelievable, the kind of sights people whispered about and secretly longed for. How could they possibly grow tired of it?</p>
+<p>If the brothers had ever visited the Outer Provinces, they would have known better. People there could sit through hundreds of such films, eyes wide the whole time, never once thinking of leaving.</p>
+<p>Unfortunately, Qiu Zhiheng had been far too busy with other business lately. The film scene? He hadn&#39;t spared it a single glance.</p>
+<p>Ma Wu had gone and...</p>
+</article>
+<article id="c260" data-label="260">
+<h2 class="chapter">Chapter 260: Benefactor&#39;s Identity 🔒</h2>
+<p>&#34;Jiaqing, Chen Changrui from the Dark Star Bureau came to see me today. He stayed for a long time, he might have noticed something.&#34;</p>
+<p>&#34;You are just lying there and not moving. How could he possibly notice any issue?&#34;</p>
+<p>&#34;This isn’t his first visit. Last time he came, he brought doctors over and had them run several examinations on me.</p>
+<p>&#34;The doctors told him everything was perfectly normal, but he wouldn’t believe a word of it. Not a single word. He even told his men that something about me isn’t right. I think he’s figured it out.&#34;</p>
+<p>&#34;Brother, just hang on for two more days. I will be back in two days.&#34;</p>
+<p>&#34;Jiaqing, that surnamed Chen is too difficult to deal with. You must come back as soon as possible.&#34;</p>
+<hr class="separator">
+<p>The fake Zhou Changhong cut off the connection and stood alone in the woods, staring into the distance.</p>
+<p>After a long moment, he raised a hand and wiped the blood from his face. That land deity, Qiu Luoye, had quite the temper. And his strikes? Heavy. Very heavy.</p>
+<p>He knew one thing for sure now. He could not step into the territories of Qiu Luoye or Shui Yongquan again. Otherwise, the consequences would be severe.</p>
+<p>Was there a way to slip past the watchful eyes of Shui Yongquan and Qiu Luoye… and still strike the film set? There was. But the risk was huge.</p>
+<p><em>So that&#39;s it? </em>the fake Zhou Changhong thought. <em>Should we just give up? Just stand by and let Ma Wu carry on filming? Or make Ling Miaoying try directing a different style of film? There is no...</em></p>
+</article>
+<article id="c261" data-label="261">
+<h2 class="chapter">Chapter 261: An Old Friend 🔒</h2>
+<p>At the Dark Star Bureau, Blockhead reported Xiao Zhenggong’s hospital visit to Captain Chen Changrui.</p>
+<p>He mentioned that Xiao Zhenggong had been visiting He Jiaqing’s hospital ward, but he did not say a single word about He Jiaqing already being awake.</p>
+<p>&#34;Captain, Deputy Xiao has been going to the hospital quite often lately.&#34;</p>
+<p>Chen Changrui gave a small nod. &#34;I know.&#34;</p>
+<p>&#34;It… seems like there’s some kind of personal grudge between him and He Jiaqing.&#34;</p>
+<p>&#34;I know that too.&#34;</p>
+<p>&#34;I am worried he might kill He Jiaqing,&#34; he said, making sure to put it in the simplest possible terms.</p>
+<p>Chen Changrui smiled. &#34;I know that as well.&#34;</p>
+<p>The captain’s attitude left Blockhead confused and he thought, <em>He knows everything, but he doesn&#39;t do anything about it? What&#39;s the logic behind this?</em></p>
+<p>Chen Changrui handed Blockhead a cigarette and lit one for himself. &#34;What kind of person do you think He Jiaqing is?&#34;</p>
+<p>Blockhead took a drag. &#34;I don’t know. I have never interacted with him before. I only know that he is someone that the Bureau values highly.&#34;</p>
+<p>Chen Changrui took a deep drag from his cigarette, then let out a long, lazy cloud of smoke. &#34;Then what kind of person do you think Xiao Zhenggong is?&#34;</p>
+<p>Blockhead didn&#39;t dare to answer carelessly. He fell silent for...</p>
+</article>
+<article id="c262" data-label="262">
+<h2 class="chapter">Chapter 262: The Art of the Empty Hand 🔒</h2>
+<p>The Greenwater Beggar was right in front of him.</p>
+<p>He Jiaqing panicked for a brief moment, then quickly calmed down.</p>
+<p>The button on his chest was still vibrating. The connection hadn&#39;t been cut, so he was confident that he could escape. He just had to make sure he did it without getting hit by the Greenwater Beggar&#39;s abilities.</p>
+<p>&#34;Senior… have I offended you in some way?&#34; He Jiaqing asked.</p>
+<p>&#34;No,&#34; the Greenwater Beggar replied with a pleasant smile. &#34;Just that a friend of mine is rather curious about you. He has a few questions to ask you. What Daoist Path do you follow? What&#39;s your cultivation level? You also went to his territory and caused trouble for no reason. So tell me… What exactly were you trying to do?&#34;</p>
+<p>He Jiaqing froze for a moment, then replied respectfully, &#34;Senior, I can certainly tell you my Daoist Path and cultivation level. But as for causing trouble in your friend&#39;s territory… I am very confused.&#34;</p>
+<p>The Greenwater Beggar raised his brows. &#34;If you say you are confused, then you&#39;re not being sincere.&#34;</p>
+<p>As he spoke, a festering sore under the corner of his eye burst open and a thin line of green pus slowly trickled down his cheek.</p>
+<p>He Jiaqing&#39;s eyelid twitched. He knew the Greenwater Beggar was about to make a move. &#34;Senior, I know the rules of Greenwater Bay. By rights, you can only show yourself outside once a year. Are you sure it&#39;s worth wasting such a rare chance on me?&#34;</p>
+<p>&#34;There&#39;s clearly some misunderstanding between us. Until things are clarified, how about this… you pretend you never...</p>
+</article>
+<article id="c263" data-label="263">
+<h2 class="chapter">Chapter 263: We Are Brothers    🔒</h2>
+<p>&#34;Haiqin, how did you hear about this?&#34;</p>
+<p>He Haiqin&#39;s expression remained stoic as he answered, &#34;From the Lu Family.&#34;</p>
+<p>He Yuxiu waved his hand and said, &#34;Do you think information that you get from the Lu Family is trustworthy? They are obviously trying to drive a wedge between us and He Jiaqing!&#34;</p>
+<p>He Haiqin glanced over at He Yuxiu and said, &#34;The Lu Family wouldn&#39;t make things up. A thorough investigation is absolutely needed.&#34;</p>
+<p>He Yuxiu rubbed her chin, lost in thought for a long while before saying, &#34;Have our Third Brother head to Yuezhou first and take a look. I have watched Jiaqing grow up. He&#39;s an honest child. There&#39;s no way he would lie to you.&#34;</p>
+<p>He Haiqin sprang to his feet suddenly. &#34;No need for Third Brother! I have already had someone buy the ticket for me. I will go to the Outer Provinces myself and see with my own eyes whether the fellow lying in that hospital bed is him or not!&#34;</p>
+<p>&#34;Haiqin, you can&#39;t act recklessly. You are the head of the He Family. If you march off to the Outer Provinces, you will stir up a tremendous fuss!&#34;</p>
+<p>By the very next day, He Haiqin had already climbed aboard a train bound straight for the Outer Provinces</p>
+<p>He Yuxiu could not stop He Haiqin at all and He Haiqin really did cause a huge stir.</p>
+<hr class="separator">
+<p>Properfolk Village was in a complete and utter frenzy. Everyone was rushing about as if the place had suddenly been poked with a very large...</p>
+</article>
+<article id="c264" data-label="264">
+<h2 class="chapter">Chapter 264: The Reunion of Father and Son 🔒</h2>
+<p>At Yuezhou Third Hospital, the second inpatient building was completely empty. All the patients had been transferred to other inpatient buildings, leaving only He Jiaqing and Xiao Zhenggong in the entire building. Not even the medical staff remained. If something really went wrong with He Jiaqing, there would not even be anyone to save him.</p>
+<p>Xiao Zhenggong stood before He Jiaqing&#39;s hospital bed, frowning in silence.</p>
+<p>He was not sure whether the man lying in the bed was He Jiaqing or Zhou Changhong.</p>
+<p><em>If it really were Zhou Changhong, he should have woken up the moment he heard I arrived. Is this really He Jiaqing?</em></p>
+<p><em>If He Jiaqing has returned, why didn&#39;t Zhou Changhong send me word? Does he have a death wish?</em></p>
+<p><em>He Haiqin will be here any moment. If this He Jiaqing is a fake, all hell is going to break loose. So be it! I am just here to watch the chaos.</em></p>
+<p>He Haiqin arrived in Yuezhou today. Xiao Zhenggong was in charge of monitoring He Jiaqing at the hospital, while Chen Changrui was responsible for receiving He Haiqin at the station.</p>
+<p>As Xiao Zhenggong was observing He Jiaqing, a wave of pressure suddenly descended.</p>
+<p>Xiao Zhenggong looked toward the ward entrance.</p>
+<p>He Haiqin walked into the ward with He Haisheng and eight support hooks, then looked Xiao Zhenggong up and down.</p>
+<p>He had met Xiao Zhenggong before and knew he was the leader of the Jiangxiang Gang. Xiao...</p>
+</article>
+<article id="c265" data-label="265">
+<h2 class="chapter">Chapter 265: Pure Conduct Society 🔒</h2>
+<p><em>The Legendary Bloodspear Detective</em> premiered as scheduled, and the streets of Greenwater City were emptied as crowds flocked to the cinemas.</p>
+<p>The film itself hit like nothing people had seen before. The story pulled you in, the images stayed in your mind, and the scale of it all felt bigger than anything Puluo Province had ever produced. The male lead, Song Chunjie, first unraveled layers of mystery within the city before shifting the battlefield to the New Land, where he plunged into deadly combat.</p>
+<p>In Li Banfeng&#39;s point of view, even if the film were released in the Outer Provinces, it would still cause a sensation as long as it screened smoothly. It might even spark an entirely new breakthrough in cinematic concepts.</p>
+<p>At the very least, this film had already made a breakthrough in the kinds of creatures it showed.</p>
+<p>With the film&#39;s tremendous success, it was time for Li Banfeng to fulfill his promise to Qiu Luoye.</p>
+<p>During filming, Qiu Luoye had given the crew tremendous support, and Li Banfeng had promised to activate three new plots of New Land within his domain.</p>
+<p>This, too, was a major breakthrough.</p>
+<p>In Puluo Province, there were generally only two ways to activate a plot of New Land.</p>
+<p>One was to fight head-on, defeating every aberrant creature that came to test them.</p>
+<p>The second method was attrition. One would never face the aberrant creatures head-on and every possible method to stall until enough time had passed.</p>
+<p>Qiu Luoye didn&#39;t want to make things difficult for Li Banfeng over this matter. He made it clear that it only needed to be a formality.</p>
+<p>Li Banfeng was absolutely confident, but Qiu Luoye was still worried that something might go wrong. Because of that, he even sought out Shui Yongquan for advice beforehand.</p>
+<p>&#34;What methods does Li Qi and Ma Wu use? Do they fight head-on or do they drag things out? I will ask my subordinates not to make things hard for them.&#34;</p>
+<p>Shui Yongquan pondered for a long while....</p>
+</article>
+<article id="c266" data-label="266">
+<h2 class="chapter">Chapter 266: The Night-Blooming Jasmine of Blackstone Slope 🔒</h2>
+<p>When they arrived at Blackstone Slope, everyone got off the train.</p>
+<p>This was Li Banfeng&#39;s first visit to Blackstone Slope. Soon after he stepped off, he sensed that the city smelled distinctly different.</p>
+<p>Blackstone Slope had a scent unlike anywhere else. With his Hundred Flavors at the Tip of the Nose ability, Li Banfeng could pick out that difference with sharp precision.</p>
+<p>Girdle-Slipping Hollow had a thick, cloying sweetness that lingered in the air and stuck to the nose. The Ridges of Bottomless Stomachs were packed with the rich smell of food. The smell in Iron Gate Fort left people with a quiet calmness that didn&#39;t exist anywhere else. And Greenwater City? It smelled loudly of wealth and excess that felt bold and showy.</p>
+<p>Blackstone Slope&#39;s scent was much heavier. In simple terms, it came down to three things: smoke, ash, and machine oil.</p>
+<p>The sky here was noticeably dimmer than elsewhere. After leaving the station, he looked up and saw chimneys of all heights crowding the skyline.</p>
+<p>In an era where electricity had yet to spread, steam had been pushed to its limits, and coal had become the most essential fuel for steam engines.</p>
+<p>Blackstone Slope had three main resources: iron ore, stone, and coal.</p>
+<p>Some of these were shipped across Puluo Province, while the rest were processed locally into finished goods.</p>
+<p>That was the nature of Blackstone Slope. It was an industrial city through and through.</p>
+<p>Little Chuan had arrived ahead of them and already arranged lodging for everyone. While Li Banfeng was still thinking about transportation, Little Chuan had everything prepared.</p>
+<p>It wasn&#39;t a horse carriage or a rickshaw,...</p>
+</article>
+<article id="c267" data-label="267">
+<h2 class="chapter">Chapter 267: The First Battle 🔒</h2>
+<p>Li Banfeng said, &#34;My surname is Ye. It&#39;s the Ye that means night. I want to buy your cinema.&#34;</p>
+<p>The owner of Triple Blessings Cinema was rather knowledgeable. He had once read about rare surnames in a magazine, and Ye was indeed one of them.</p>
+<p>&#34;So it&#39;s Boss Ye,&#34; he said. &#34;You really plan to screen The Legendary Bloodspear Detective here?&#34;</p>
+<p>Li Banfeng nodded. &#34;I like the movie.&#34;</p>
+<p>The owner clenched his jaw. &#34;I like it too. It&#39;s a damn good film. If I were a few years younger, I would stand with you and take on those bastards myself…&#34;</p>
+<p>As he spoke, his voice caught in his throat. The injustice burned in his chest, and he simply couldn&#39;t accept it.</p>
+<p><em>Good</em>, Li Banfeng thought. <em>This means the fire in you has not gone out yet.</em></p>
+<p>&#34;Boss Ye, I can sell you this cinema. What are you offering?&#34;</p>
+<p>&#34;You name a price first.&#34;</p>
+<p>The owner hesitated, then said, &#34;Two hundred silver dollars.&#34;</p>
+<p>The price was low. It was ridiculously low mainly because the owner was desperate to sell. The cinema had been smashed so badly that it was barely more than an empty shell.</p>
+<p>Fortunately, this was Blackstone Slope, where supplies were easy to come by.</p>
+<p>Li Banfeng handed the repairs over to Little Chuan. The place didn&#39;t need much, just enough work to get the projector running again. Three days, he said. That was all the time Little Chuan would get.</p>
+<p>The cinema was registered under Bai Qiusheng&#39;s name. He had lived in Blackstone Slope before, so no one would find it suspicious.</p>
+<p>As soon as work began, news spread quickly.</p>
+<p>In the southern part of Blackstone Slope stood an old, elegant mansion. Inside, in a quiet study, Tang Peigong, an elder stationed there by the Pure Conduct Society, sat reading.</p>
+<p>Mansions like this were rare in Blackstone Slope, and neither the street in front nor the one behind had any railway access.</p>
+<p>Tang Peigong had devoted his life to study and the ancient ways. He revered the sages of old and clung to their teachings with near-obsessive...</p>
+</article>
+<article id="c268" data-label="268">
+<h2 class="chapter">Chapter 268: Green Fire Gang 🔒</h2>
+<p>Little Chuan had prepared over a hundred buckets for Little Gen, each filled to the brim with filth. The workers had grumbled and gagged their way through the job. The pay was good, yes, but no amount of silver could make that kind of work pleasant.</p>
+<p>The crowd that had been circling the Pure Conduct Society scattered at once. They fled in all directions, clutching their sleeves over their noses, terrified that even a single drop might touch them.</p>
+<p>The filth was not the only thing Little Chuan had prepared. Every trick, every hidden device, every nasty little surprise used in the fight outside the cinema had been arranged ahead of time by Little Chuan and his crew. That was why everything had gone so smoothly.</p>
+<p>Seeing that the time was about right, Li Banfeng gave the order. &#34;Ring the bell.&#34;</p>
+<p>That was how things were usually done when a film began. Little Chuan quickly spoke up from the side. &#34;Master Qi, that&#39;s not how it works here. In Blackstone City, we use a whistle.&#34;</p>
+<p>This cinema was connected to the neighboring factory&#39;s steam pipes. In winter, it was used for heating, and at other times, it was used for cleaning and disinfection. Once the valve was opened, the steam whistle would sound. Every cinema in Blackstone Slope used a whistle instead of a bell.</p>
+<p>In fact, it wasn&#39;t just the cinemas. The entire slope ran on steam. Some households kept their own boilers, puffing away like stubborn old beasts. Others simply bought steam from the factories. Either way, every home had pipes running through it, hissing and sighing at all hours.</p>
+<p>The whistle shrieked through...</p>
+</article>
+<article id="c269" data-label="269">
+<h2 class="chapter">Chapter 269: Elder Wu 🔒</h2>
+<p>The thug led the way and brought Li Banfeng into the sect hall. The so-called sect hall was nothing more than a factory building.</p>
+<p>The Green Fire Gang&#39;s leader was drinking wine inside the factory, while a photographer was doing a photoshoot. His models were three pretty and slender young women, posing nude.</p>
+<p><em>So, the Green Fire Gang is in this line of business as well.</em></p>
+<p>Li Banfeng lowered the brim of his hat and walked toward the gang leader. By the time the man sensed Li Banfeng&#39;s presence, Li Banfeng was already at his side.</p>
+<p>The gang leader&#39;s cultivation was too low, at most level three. He could barely sense the presence of a level-five Homebound Cultivator.</p>
+<p>He was not the only one who did not sense Li Banfeng. The photographer and the models had noticed nothing as well and remained fully absorbed in the photoshoot.</p>
+<p>The gang leader didn&#39;t even dare to breathe loudly. Lowering his voice, he said, &#34;My friend, is something the matter?&#34;</p>
+<p>Li Banfeng rubbed his sickle blade against the gang leader&#39;s cheek. &#34;You&#39;re the boss, right? What&#39;s your name?&#34;</p>
+<p>&#34;Han Xianrong.&#34;</p>
+<p>&#34;Boss Han, I came to see you because I want you to publish a few news articles.&#34;</p>
+<p>&#34;That&#39;s easy. Just give me a few points, and I&#39;ll have someone write the articles.&#34;</p>
+<p>&#34;No need. I&#39;ve already written them, and the photos are ready too.&#34;</p>
+<p>&#34;I&#39;ll have them printed in tomorrow morning&#39;s papers right away.&#34;</p>
+<p>&#34;One paper isn&#39;t enough. Call all the newspaper offices in your territory and have them publish the articles together.&#34;</p>
+<p>&#34;Understood....</p>
+</article>
+<article id="c270" data-label="270">
+<h2 class="chapter">Chapter 270: A Public Duel 🔒</h2>
+<p>The elders of the Pure Conduct Society were divided into two types: civil elders and martial elders.</p>
+<p>Tang Peigong was a civil elder. Wu Decheng was a martial elder.</p>
+<p>The key difference between them was that Wu Decheng, the martial elder, was a cultivator. He was a level-six Mentalism Cultivator, a top-tier expert in Blackstone Slope.</p>
+<p>Li Banfeng had Ma Wu conduct a thorough investigation of the Pure Conduct Society, so he knew there was someone called Wu Decheng in Blackstone Slope and had made full preparations against him. However, he had not expected Wu Decheng to stay away from the movie theater entrance.</p>
+<p>There were some hidden circumstances behind this that Li Banfeng did not know of.</p>
+<p>At the beginning of the year, Tang Peigong and Wu Decheng had a dispute. Tang Peigong had scolded Wu Decheng in public. Unable to bear the humiliation, Wu Decheng had withdrawn to his estate outside the city to recuperate for a period of time.</p>
+<p>They were both elders of the Pure Conduct Society, and Wu Decheng was a cultivator, so why did Tang Peigong have the right to reprimand him?</p>
+<p>This was a unique convention of the Pure Conduct Society.</p>
+<p>There were differences in rank among the elders, and their status was not determined by cultivation level but by virtue and talent.</p>
+<p>Tang Peigong was not a cultivator and possessed no special abilities. Nevertheless, he was both virtuous and talented, placing him above Wu Decheng in rank. It was only proper for him to reprimand Wu Decheng.</p>
+<p>He had not expected that smashing a movie theater would end with him getting doused in filth. Left with no choice, Tang Peigong could only ask Wu Decheng to step in and deal with the <em>Night-Blooming J...</em></p>
+</article>
+<article id="c271" data-label="271">
+<h2 class="chapter">Chapter 271: Say It! 🔒</h2>
+<p>The public duel between the <em>Night-Blooming Jasmine</em> and the Pure Conduct Society caused a huge stir in Blackstone Slope.</p>
+<p>Before the match, Tang Peigong had arrived in grand fashion, carrying the society&#39;s banner, bringing reporters, and leading more than a hundred of the Pure Conduct Society&#39;s disciples to answer the challenge.</p>
+<p>When they left the match, the disciples had to fetch stretchers and doctors, wailing all the way back to Tang Peigong&#39;s residence.</p>
+<p>Tang Peigong was badly injured. The Pure Conduct Society was badly injured.</p>
+<p>The disciples went around wailing their grievances, claiming that the <em>Night-Blooming Jasmine</em>&#39;s side<em> </em>had broken the rules by using martial arts in what was supposed to be a civil contest.</p>
+<p>The Pure Conduct Society had close ties with the major gangs, and those gangs controlled large newspaper offices, giving the Pure Conduct Society a greater reach and advantage in influencing public opinion.</p>
+<p>Despite that, the Pure Conduct Society&#39;s reputation still suffered a huge hit. No matter how they explained it, they had lost, and they had lost badly.</p>
+<p>Moreover, Martial Elder Wu Decheng did not make a clear statement on where he stood in this debacle. He never clarified whether the match had been a civil contest or a martial one. All he said was there might have been a misunderstanding.</p>
+<p>The distinguished figures who had served as witnesses stayed silent too, as they themselves had not figured out the rules of the duel.</p>
+<p>Three days later, all of Blackstone Slope remembered...</p>
+</article>
+<article id="c272" data-label="272">
+<h2 class="chapter">Chapter 272: Thoughts 🔒</h2>
+<p>Wu Decheng wiped the filth from his face and silently watched Li Banfeng.</p>
+<p>His aims today had been to kill Boss Ye and earn merit in front of Lu Maoxian. He would win back the Pure Conduct Society&#39;s reputation, which Tang Peigong had thrown away, and seize a higher position within the Pure Conduct Society.</p>
+<p>Wu Decheng might have lost the match, but it would not be too late to achieve his aims if he killed Boss Ye now.</p>
+<p>Yue Qingsong, a level-four Poison Cultivator, reminded him, &#34;Master, the other disciples have arrived as well. We can strike at any moment.&#34;</p>
+<p>Wu Decheng clenched his hands into fists. Nevertheless, he ultimately calmed down, had the injured disciples taken away, and left the venue.</p>
+<p>He had just decided to kill Boss Ye, so why had he changed his mind so quickly?</p>
+<p>Wu Decheng had roamed the jianghu long enough to read the situation clearly. He did not care about others pointing fingers at him. He understood this principle well: &#34;The victor becomes king. The loser is branded a criminal.&#34; The problem was that it would be very difficult to kill Boss Ye now.</p>
+<p>His earlier plan had been based on the assumption that Boss Ye would be careless. Now, it seemed that not only had Boss Ye not let his guard down, but he had even set a trap for him. The two skinny men on the stage were not easy opponents. Boss Ye appeared to have no support hooks, but they were likely hidden among the crowd.</p>
+<p>There was nothing to be gained from continuing this standoff, so Wu Decheng withdrew decisively.</p>
+<p>Seeing them leave in haste, Li Banfeng...</p>
+</article>
+<article id="c273" data-label="273">
+<h2 class="chapter">Chapter 273: Level-Five Ability of Wanderlust Cultivator 🔒</h2>
+<p>Li Banfeng began rummaging through the shredded clothes on the ground, checking to see if he could find any enchanted artifacts or spirit-bound items.</p>
+<p>Mentalism Cultivators had decent perception, but they were not skilled in direct combat. Since this one had dared to act as an assassin, he should have been carrying at least one offensive spirit-bound item.</p>
+<p>To Li Banfeng&#39;s disappointment, after searching for a long time, he found nothing but torn scraps of cloth.</p>
+<p><em>As an elder of the Pure Conduct Society, you don&#39;t even have a single decent item?</em></p>
+<p>Li Banfeng couldn&#39;t believe it. He searched the scraps again, and this time, he finally found something. Amid the pile of rags, there was a yarn glove.</p>
+<p>What kind of glove was a yarn glove? It was the kind of glove commonly used by laborers. This one was quite worn, stained with grease, and crumpled up among the scraps, making it hard to notice.</p>
+<p><em>Is this an enchanted artifact? </em>Li Banfeng wondered. <em>It didn&#39;t look like one.</em></p>
+<p>Li Banfeng gave the glove a few shakes. He didn&#39;t sense any spirit energy, but quite a bit of dust fell off.</p>
+<p>Even so, he didn&#39;t throw it away. Wu Decheng was an elder of the Pure Conduct Society. With his status, there was no way he would be doing manual labor on a worksite, so carrying a glove like this made no sense.</p>
+<p><em>Is it meant to hide fingerprints? </em>Li Banfeng thought. <em>Does anyone even need to do that in Puluo Province?</em></p>
+<p>Even if someone wanted to hide their fingerprints, they would at least use a pair...</p>
+</article>
+<article id="c274" data-label="274">
+<h2 class="chapter">Chapter 274: Granduncle, Rest in Peace 🔒</h2>
+<p>In Greenwater City, at Lu Maoxian&#39;s residence.</p>
+<p>After going through the newspapers sent from Blackstone Slope, Lu Maoxian sat in silence, leaning back in his chair without a word.</p>
+<p>He knew something had happened at Blackstone Slope, and he had expected trouble over <em>The Legendary Bloodspear Detective</em>. What he hadn&#39;t expected was for it to end like this.</p>
+<p>Tang Peigong had been gravely injured and was nearly crippled. Wu Decheng had vanished, and there was still no word of him.</p>
+<p>The steward brought over a cup of tea, but Lu Maoxian waved him off and had it set aside.</p>
+<p>&#34;Go buy a ticket. I am leaving for Blackstone Slope today.&#34;</p>
+<p>&#34;Master, are you going alone?&#34;</p>
+<p>Lu Maoxian smiled. &#34;Who else would I bring?&#34;</p>
+<p>&#34;Master, there is something I am not sure I should say.&#34;</p>
+<p>&#34;Say it.&#34;</p>
+<p>The steward had served him for many years, and Lu Maoxian had always treated him well.</p>
+<p>&#34;Master, I don&#39;t think you should go to Blackstone Slope. Given your status and reputation, and what that place has become, you shouldn&#39;t involve yourself in this.&#34;</p>
+<p>&#34;If I stay out of it, will it simply go away?&#34; Lu Maoxian gave a bitter smile. &#34;Everyone knows Blackstone Slope is my territory. Even if I want to avoid this, I can&#39;t.&#34;</p>
+<p>&#34;You make profit from that territory, but that doesn&#39;t mean you have to take responsibility...</p>
+</article>
+<article id="c275" data-label="275">
+<h2 class="chapter">Chapter 275: A Loss He Couldn&#39;t Accept 🔒</h2>
+<p>Lu Yuanshan held the longsword steady. It was his strongest enchanted artifact. If he struck now, Lu Maoxian would die without question.</p>
+<p>The tip of the blade remained fixed on the narrow slit in the rickshaw hood. Yet he did not move.</p>
+<p>He Haiqin grew impatient. &#34;You youngsters never learn. Show mercy now, and he will show you none later.&#34;</p>
+<p>Lu Yuanshan still didn&#39;t strike. It wasn&#39;t that he couldn&#39;t bring himself to kill Lu Maoxian. He simply didn&#39;t want to bear the blame that would come after.</p>
+<p>Tan Fucheng, the rickshaw driver, quickly understood what was going on, and said, &#34;I will go check on the Second Young Master.&#34;</p>
+<p>Seeing this, He Haiqin asked, &#34;Should I step away as well?&#34;</p>
+<p>Lu Yuanshan nodded. &#34;Uncle He, keep watch for me. I&#39;m worried that old bastard didn&#39;t come alone.&#34;</p>
+<p>&#34;Yuanshan, isn&#39;t that why you called me here? To deal with anyone who shows up to help him?</p>
+<p>&#34;Whether they come in the shadows or out in the open, let them come. Today, I will show you what I can do. Even if he brings an army, I will clean them up for you. That should put your mind at ease.&#34;</p>
+<p>&#34;Much appreciated, Uncle He.&#34;</p>
+<p>Tan Fucheng headed toward the alley entrance.</p>
+<p>He Haiqin walked a little farther off. With his back to Lu Yuanshan, he faced the wall and lit a cigarette.</p>
+<p>Lu Yuanshan thrust his sword down.</p>
+<p><em>Splash!</em></p>
+<p>Blood splattered across his face.</p>
+<p>It was thick, salty, and sticky. Lu Yuanshan lowered his head and looked. It wasn&#39;t Lu Maoxian&#39;s blood. It was his own.</p>
+<p>He had thrust the sword straight into his own abdomen.</p>
+<p>Lu Yuanshan&#39;s...</p>
+</article>
+<article id="c276" data-label="276">
+<h2 class="chapter">Chapter 276: He Jiaqing&#39;s Hand 🔒</h2>
+<p>After Duan Shaoxia calmed down, Qiu Zhiheng had Tan Fucheng explain everything from beginning until the end.</p>
+<p>Tan Fucheng made one thing clear right away. &#34;Steward Qiu, this isn&#39;t on me. When the eldest young master came to me, the first thing he asked was who was in charge of the Lu Family.&#34;</p>
+<p>He paused, then added, &#34;I work for the Lu Family. I have to follow the head of the family. I didn&#39;t have a choice.&#34;</p>
+<p>Duan Shaoxia kept crying, but Qiu Zhiheng stayed calm. He turned to Tan Fucheng and asked, &#34;How did you get in touch with He Haiqin?&#34;</p>
+<p>&#34;The eldest young master arranged it,&#34; Tan Fucheng said. &#34;I don&#39;t know the details, but I heard it had something to do with his son, He Jiaqing.&#34;</p>
+<p>&#34;Did He Haiqin make a move tonight?&#34;</p>
+<p>Tan Fucheng shook his head. &#34;I was the one who trapped the Old Master[1]. The eldest young master planned to handle it himself and didn&#39;t want anyone watching. The second young master and I stayed at the alley entrance, while He Haiqin waited by the wall.&#34;</p>
+<p>He hesitated for a moment. &#34;Then, for some reason… the eldest young master&#39;s body suddenly shattered.&#34;</p>
+<p>&#34;The Desolation-Shattering Sword?&#34;</p>
+<p>&#34;I have never seen the Desolation-Shattering Sword before, but the eldest young master was holding a sword. When the second young master rushed over, he grabbed it and tried to stab himself. It looked like someone was controlling him, so I used my cultivation ability to stop him.&#34;</p>
+<p>&#34;What kind of method was used to control him? Was it an ability of Mentalism Cultivation?&#34;</p>
+<p>Tan Fucheng thought...</p>
+</article>
+<article id="c277" data-label="277">
+<h2 class="chapter">Chapter 277: The Train to the New Land 🔒</h2>
+<p>&#34;Master Qi, there&#39;s nothing much going on at the newspaper office. I can accompany you for a stroll around the city,&#34; Bai Qiusheng said as he packed up, ready to leave.</p>
+<p>Li Banfeng, however, did not want to bring him along. There were times when he was more used to traveling alone. It would be inconvenient to handle serious matters if he had to take someone with him, and it would be inconvenient for him to go back to the Pocket Dwelling whenever he wanted.</p>
+<p>The day before, Yu Wenqi had mentioned that a new dance hall had opened in the eastern part of the city. More than a dozen dancers performed there together, completely unclothed.</p>
+<p>Li Banfeng was not interested in watching the girls dance. He simply wanted to observe the customs of Blackstone Slope.</p>
+<p>Furthermore, it was not suitable for him to go to such a place with someone. Others might misunderstand and think that he had poor taste. And if something unexpected happened to whatever in his pants, others might think that he lacked endurance.</p>
+<p>&#34;Get me a map. I will go by myself. Make sure the New Land is marked.&#34;</p>
+<p>Bai Qiusheng quickly handed one over. &#34;Master Qi, this is the latest map, but maps aren&#39;t always reliable in Blackstone Slope.&#34;</p>
+<p>He pointed to several marked spots as he spoke, &#34;Especially near the New Land, you must be extremely careful. You can enter through the points I have marked, but don&#39;t go anywhere...</p>
+</article>
+<article id="c278" data-label="278">
+<h2 class="chapter">Chapter 278: The Woman in White 🔒</h2>
+<p>It was impossible for Bai Qiusheng to come back to Properfolk Village.</p>
+<p>Li Banfeng had seen him just before he left this morning. Even if Bai Qiusheng had immediately taken a train, there was no way he could appear in Properfolk Village at this time.</p>
+<p><em>This Bai Qiusheng is a fake!</em></p>
+<p>Li Banfeng asked, &#34;Qiusheng, when did you get back?&#34;</p>
+<p>Bai Qiusheng raised his head and said, &#34;My stomach hurts, Master Qi. We will talk later!&#34;</p>
+<p>After saying that, Bai Qiusheng ran off, darted into a latrine beside the film set, and slammed the door shut behind him.</p>
+<p>Just as Li Banfeng was about to go after him, Ma Wu stopped him. &#34;Master Qi, you still haven&#39;t said why you came back.&#34;</p>
+<p>&#34;I took the train, and then…&#34;</p>
+<p><em>Master Qi? Ma Wu called me Master Qi?</em></p>
+<p>Li Banfeng took half a step back and smiled. &#34;Why don&#39;t you guess why I came back?&#34;</p>
+<p><em>This Ma Wu is a fake as well!</em></p>
+<p>Ma Wu glanced at the camera. &#34;We are out of film. I will go check if there&#39;s any left.&#34;</p>
+<p>After that, Ma Wu sprinted off, rushed into the storage room by the lake, and shut the door behind him.</p>
+<p>&#34;Don&#39;t go!&#34; Li Banfeng hurried after him for a couple of steps, only to see Zuo Wugang approaching from the front in an azure-colored vest.</p>
+<p>&#34;Master Qi, what happened to Old Wu just now? Why was he in such a panic?&#34;</p>
+<p>&#34;He&#39;s not… I mean, we ran out of film. He went to look for more.&#34;</p>
+<p><em>WAIT. A. MINUTE. ZUO WUGANG JUST CALLED MA...</em></p>
+</article>
+<article id="c279" data-label="279">
+<h2 class="chapter">Chapter 279: Dreambinding Tower 🔒</h2>
+<p>Li Banfeng realized that he had been using the wrong method. To be more precise, he had been misled by the one in white. However, this matter actually had nothing to do with the one in white.</p>
+<p>In his dream, there were only two kinds of people.The first were those he himself had created. The second kind were those who had invaded the dream. The woman had already made it clear that he was the only one. If he wanted to leave the dream, he had to find her.</p>
+<p>Those created within the dream behaved according to Li Banfeng&#39;s own logic. Qiaocui, whom he had first met at the village entrance, was one such creation, and everything she did aligned with his understanding.</p>
+<p>After entering the village, everyone else behaved more or less as expected. Only Bai Qiusheng stood out.</p>
+<p>He should never have appeared in Properfolk Village. His presence made no sense, which meant he was an intruder in the dream.</p>
+<p>An intruder in the dream could attach herself to someone within it. She did not fully understand the people in the dream, but she could pick up information from her surroundings. When she heard Qiaocui call him Master Qi, she copied it and addressed him the same way.</p>
+<p>The moment Li Banfeng noticed the inconsistency, the intruder ran into the latrine and left his line of sight. Not long after, she attached...</p>
+</article>
+<article id="c280" data-label="280">
+<h2 class="chapter">Chapter 280: Grandpa Train 🔒</h2>
+<p>&#34;Let me tell you. There are plenty of people who would pay to come here. I am a Dark Ability User. In the terms of Puluo Province, I am a cultivator.</p>
+<p>&#34;In Chunsheng City, we Dark Ability Users have quite a few circles. I joined several before I finally found the right connections to get into Dreambinding Tower.&#34;</p>
+<p>The man&#39;s name was Zhao Dajun, and he was extremely talkative. Before Li Banfeng could even ask a question, he had already introduced himself.</p>
+<p>&#34;I am a Numerical Adept. In Puluo Province terms, that means I am a Calculation Cultivator. I worked as a programmer in Chunsheng City for ten years.&#34;</p>
+<p><em>A Calculation Cultivator? Sounds like a path for people who are good with numbers.</em></p>
+<p>Li Banfeng said, &#34;Then being a programmer must have suited you perfectly.&#34;</p>
+<p>&#34;It really was!&#34; Zhao Dajun nodded. &#34;When I first graduated and started working, I felt programming suited me perfectly. I was convinced I would become one of the industry&#39;s top figures someday.</p>
+<p>&#34;And honestly, I really was cut out for it. I&#39;m not bragging, but at my peak, I was easily earning fifty or sixty thousand a month.</p>
+<p>&#34;I worked in Chunsheng City for ten years. Even after covering my living expenses and sending money home, I still managed to save over two million. In Chunsheng City, that&#39;s enough to buy a house. Even in a better district, I would have easily paid for...</p>
+</article>
+<article id="c281" data-label="281">
+<h2 class="chapter">Chapter 281: The Best Train In The World 🔒</h2>
+<p>When Grandpa Train started talking about trains, he became very excited.</p>
+<p>&#34;That train of mine is really good! It can carry so many things and so many people! The train follows me everywhere.&#34;</p>
+<p>Li Banfeng laughed. &#34;Now you are just making things up. Didn&#39;t you say earlier that people go wherever the train goes? There&#39;s no way the train would follow a person around.&#34;</p>
+<p>Grandpa Train shook his head and said, &#34;My train is different. It has spirit essence and it can follow me wherever I go.&#34;</p>
+<p>&#34;But trains must move on railway tracks. How can I follow you to places without railway tracks?&#34;</p>
+<p>&#34;It lays its own tracks wherever it goes. Tell me, isn&#39;t that impressive?&#34;</p>
+<p>Li Banfeng is even more surprised. &#34;A train that can lay its own tracks wherever it goes?&#34;</p>
+<p>&#34;Yes! It&#39;s lay its own tracks wherever it goes!&#34; The more Grandpa Train spoke, the more excited he seemed.</p>
+<p>&#34;Then the train must carry a lot of tracks, right?&#34;</p>
+<p>&#34;It doesn&#39;t need that many. A dozen or so will do. My train can both lay tracks and remove them. Once it&#39;s done using a section, it pulls the rails back up and uses them again.&#34;</p>
+<p>After spending almost half a day thinking about this, Li Banfeng still didn&#39;t understand how this train worked.</p>
+<p>Grandpa Train was still trying his best to explain. &#34;There&#39;s a special carriage on my train that...</p>
+</article>
+<article id="c282" data-label="282">
+<h2 class="chapter">Chapter 282: They Want My Train 🔒</h2>
+<p>Grandpa Train asked Li Banfeng if he still wanted to get out. Of course, Li Banfeng wanted to leave.</p>
+<p>Zhao Dajun was still admiring the butt he had meticulously calculated, and Grandpa Train gave a cough.</p>
+<p>&#34;Huff, huff~&#34;</p>
+<p>A burst of steam hissed through the air, and Teacher Risa, who had been posing before Zhao Dajun just moments ago, suddenly aged fifty years in an instant.</p>
+<p>Her peaches had fully ripped.</p>
+<p>The once smooth and firm curves sagged visibly before his eyes. Zhao Dajun stared in horror and let out a shrill scream on the spot.</p>
+<p>As Zhao Dajun screamed, Teacher Risa vanished, and the entire villa shattered. The garden crumbled next, and even the lake beyond the villa disappeared without a trace.</p>
+<p>All that remained around them was a stretch of wild grassland.</p>
+<p>Li Banfeng looked around and said, &#34;The dream Zhao Dajun painstakingly built is just gone like that?&#34;</p>
+<p>Grandpa Train nodded and said, &#34;He woke up.&#34;</p>
+<p>After a moment of silence, Grandpa Train said, &#34;Am I being too cruel?&#34;</p>
+<p>Li Banfeng nodded. &#34;A little, yeah.&#34;</p>
+<p>A breeze drifted past, and the two of them let out wicked laughter.</p>
+<p>&#34;HEK HEK HEK! If you say I was cruel, then that&#39;s right!&#34;</p>
+<p>&#34;HEK HEK HEK! That was such a nice ass! Yet he wanted to fix them. Don&#39;t you think he had it coming?&#34;</p>
+<p>The two were laughing happily when the wild grass suddenly receded, and a brand new villa appeared before them.</p>
+<p>Zhao Dajun had rebuilt...</p>
+</article>
+<article id="c283" data-label="283">
+<h2 class="chapter">Chapter 283: The Edge of the World of Dreams 🔒</h2>
+<p>Grandpa Train said he would take Li Banfeng out of the Inner Provinces.</p>
+<p>Li Banfeng asked excitedly, &#34;How are we getting out?&#34;</p>
+<p>&#34;Huff, huff~&#34;</p>
+<p>Grandpa Train turned his head and stared at him. &#34;The train is about to leave. Are you buying a ticket first, or paying after you board?&#34;</p>
+<p>Li Banfeng blinked. &#34;Wait… weren&#39;t we just talking about … never mind, I&#39;ll buy a ticket first.&#34;</p>
+<p>There was no reasoning with Grandpa Train.</p>
+<p>Li Banfeng pulled out three hundred yuan. &#34;One sleeper berth.&#34;</p>
+<p>Grandpa Train&#39;s face crumpled like he&#39;d just bitten into something sour. &#34;Do you still want to get out?&#34;</p>
+<p>&#34;I do!&#34;</p>
+<p>&#34;And you think you can still leave if you buy a sleeper berth?&#34;</p>
+<p><em>Is there even any connection between the two?</em> Li Banfeng thought.</p>
+<p>Li Banfeng pulled one bill back. &#34;Then… I&#39;ll take a hard seat.&#34;</p>
+<p>Grandpa Train took the money and said, &#34;Board the train!&#34;</p>
+<p>Li Banfeng climbed onto Grandpa Train&#39;s back. Grandpa Train gave the whistle a sharp tug and shot forward with him. And then… he slowed to an almost ridiculous crawl.</p>
+<p>&#34;Dear passengers, the next stop is Ms. Wang Chunfang&#39;s dream. As everyone knows, Ms. Wang Chunfang is a very kind person. You may want to take a closer look at the scenery outside the window.&#34;</p>
+<p>Wang Chunfang really was a kind person. The sort who smiled at strangers, spoke gently to everyone, and quietly hoped the world might be kind to her the way she had been kind to the world. Unfortunately,...</p>
+</article>
+<article id="c284" data-label="284">
+<h2 class="chapter">Chapter 284: Don&#39;t Give It to Anyone 🔒</h2>
+<p>The surrounding darkness and emptiness gradually receded. First, the outlines of mountains reappeared, then the colors of vegetation returned.</p>
+<p>In the wild grassland opposite Li Banfeng, there stood a man. His head was narrow at the top and wide at the bottom, forming a triangular shape. His nose was around sixteen centimeters long and hung over his mouth, all the way down to his chin.</p>
+<p>Grandpa Train pulled the whistle and said, &#34;Dear passenger, the creature ahead is Meng Xuan. His original form is a dream-devouring tapir, a level-ten Dream Cultivator!&#34;</p>
+<p>Li Banfeng was astonished. <em>To think that this strange person is actually a level-ten cultivator…</em></p>
+<p>He had seen quite a lot in his life, yet he was so shocked that he could feel his pulse thumping at the base of his throat. If it were someone else, they would likely have lost their composure. In Puluo, a level-ten cultivator was considered the peak, an insurmountable existence.</p>
+<p>&#34;Not easy to deal with!&#34; Grandpa Train sounded the whistle again. &#34;Dream Cultivators are different from other cultivators. He can enter people&#39;s dreams with his main form. If we were to fight his main form with our dream forms inside a dream, we&#39;d hold a massive disadvantage!&#34;</p>
+<p>Before Grandpa Train finished talking, the level-ten Dream Cultivator had already...</p>
+</article>
+<article id="c285" data-label="285">
+<h2 class="chapter">Chapter 285: Wait for Me to Save You 🔒</h2>
+<p>Li Banfeng returned to the newspaper office and found Bai Qiusheng frantic with worry.</p>
+<p>&#34;Master Qi, you can&#39;t scare us like this. When you left, you said you&#39;d try to come back the same day or the next day, at the latest. But you disappeared for three whole days without a single word!&#34;</p>
+<p>Li Banfeng replied, &#34;Something unexpected happened on the road and delayed me for two days. Let me ask you something. What&#39;s the name of our newspaper again?&#34;</p>
+<p>Bai Qiusheng froze for a moment. &#34;<em>Night-Blooming Jasmine!</em>&#34;</p>
+<p>He wondered, <em>Why is he suddenly asking that?</em></p>
+<p>Li Banfeng continued, &#34;This is your first time running a newspaper, right?&#34;</p>
+<p>Bai Qiusheng froze again. &#34;No. This was what I was doing previously too.&#34;</p>
+<p>&#34;Where did Yu Wenqi go?&#34;</p>
+<p>&#34;He&#39;s taking photographs and working on the magazine.&#34;</p>
+<p>&#34;Take me to him immediately.&#34;</p>
+<p>Li Banfeng suspected he was still dreaming. One of the best ways to verify a dream was to urgently search for a specific person or place and see whether it could actually be found.</p>
+<p>Dreams were constructed by the dreamer, and that process took time. Some people and scenes were not so easy to recreate in the dream.</p>
+<p>Bai Qiusheng brought Li Banfeng straight into the studio. They had arrived so suddenly that the young women inside panicked and did their best to cover their top and bottom halves,...</p>
+</article>
+<article id="c286" data-label="286">
+<h2 class="chapter">Chapter 286: A Bond Between Brothers 🔒</h2>
+<p>Inside the Lu Family estate, Qiu Zhiheng slowly shook his head as he looked at Madam Duan Shaoxia and revealed that Lu Yuanhai would never recover.</p>
+<p>&#34;Madam,&#34; Qiu Zhiheng said, &#34;I was incapable. I failed to protect the two young masters. I am too embarrassed to continue staying with the Lu Family.&#34;</p>
+<p>Qiu Zhiheng really wanted to leave the Lu Family. It was not only because of Old Mister Yao&#39;s advice, but also because he blamed himself. He genuinely had no idea that the two brothers tried to take Lu Maoxian&#39;s life. If he had noticed the warning signs earlier, even a little sooner, perhaps he could have prevented everything from happening.</p>
+<p>&#34;Zhiheng,&#34; Duan Shaoxia grabbed Qiu Zhiheng&#39;s hand, &#34;You can&#39;t leave me and my son by ourselves. I know those two children acted foolishly and hurt you deeply, but please… Please don&#39;t hold it against them anymore. Yuanshan is already dead, and Yuanhai has become like this…&#34;</p>
+<p>Before Duan Shaoxia could finish speaking, she broke down into uncontrollable sobs.</p>
+<p>Qiu Zhiheng did not know what to say. For now, he could put aside the thought of leaving the Lu Family, but even then, he still had no idea how to resolve the situation before them.</p>
+<p>In a few days, Lu Maoxian would definitely come knocking on their door again. They could not keep dragging things out like this forever.</p>
+<p>Not long afterward, his subordinates brought back news that several of Lu Maoxian&#39;s sons had secretly taken over a number of Lu Yuanshan&#39;s businesses. Those businesses had to be taken back immediately, so Qiu Zhiheng quickly gathered his men and rushed out.</p>
+<p>Not long after Monkey Qiu left, Duan Shaoxia&#39;s elder sister, Duan Shaohong, came to visit.</p>
+<p>The two sisters exchanged a few pleasantries. Duan...</p>
+</article>
+<article id="c287" data-label="287">
+<h2 class="chapter">Chapter 287: Cultivating Through the Pictures 🔒</h2>
+<p>While Monkey Qiu—Qiu Zhiheng—finished packing his luggage, his wife and son boarded the rickshaw first.</p>
+<p>The task Duan Shaoxia had given him was something he could never do, no matter what.</p>
+<p>She wanted to give Zhang Huaiyi a new identity as a member of the Lu Family, and she wanted Monkey Qiu to handle the matter personally. After thinking it over and over again, Monkey Qiu ultimately felt that leaving the Lu Family was the wisest choice.</p>
+<p>Just as Monkey Qiu carried his suitcase downstairs, Duan Shaoxia rushed out and dropped to her knees in front of him.</p>
+<p>Monkey Qiu tried to pull Duan Shaoxia to her feet, but she absolutely refused.</p>
+<p>&#34;Zhiheng, you can&#39;t leave.&#34;</p>
+<p>Since Duan Shaoxia refused to stand, Monkey Qiu knelt down as well. &#34;Madam, I have to leave.&#34;</p>
+<p>&#34;Zhiheng, if you insist on leaving, then I will remain on my knees forever.&#34;</p>
+<p>&#34;Madam, if you refuse to let me leave, then I&#39;ll crawl out on my knees.&#34;</p>
+<p>Neither side could persuade the other.</p>
+<p>Monkey Qiu was a dignified man. He had not wanted things to turn out like this either.</p>
+<p>However, Duan Shaoxia wanted to acknowledge her nephew as her son, and it was simply impossible for Monkey Qiu to make that reality.</p>
+<p>Monkey Qiu&#39;s wife stepped back into the house and tried to persuade Duan Shaoxia, but Duan Shaoxia grabbed onto her and burst into tears.</p>
+<p>Once Duan Shaoxia started crying, Monkey Qiu&#39;s wife&#39;s resolve weakened.</p>
+<p>She said, &#34;Zhiheng, the master and madam have both treated us well. You can&#39;t just leave like this.&#34;</p>
+<p>Monkey Qiu stood there frozen, completely at a loss for what to do.</p>
+<p>Just then, Ma Wu arrived with some men to deliver the dividend money. Monkey Qiu first had his wife escort...</p>
+</article>
+<article id="c288" data-label="288">
+<h2 class="chapter">Chapter 288: The Vigorous Elder, Lu Maoxian 🔒</h2>
+<p>Duan Shaohong stormed up to Duan Shaoxia with a newspaper in hand and slammed it onto the table. &#34;What&#39;s the meaning of this? Why did you spread the news?&#34;</p>
+<p>Duan Shaoxia glanced at the newspaper. The headline read: <em>Lu Family Falls Into Misfortune, Zhang Bochu Puts on a Green Hat for Wealth and Status.</em>[1]</p>
+<p>Duan Shaohong pointed at the newspaper and shouted, &#34;Listen to how awful that sounds! How are our families supposed to hold our heads high after this?&#34;</p>
+<p>After reading the article, Duan Shaoxia tried to calm her down. &#34;Why bother paying attention to this? Besides, the news was bound to come out sooner or later. The banquet is only a few days away. Are you still afraid people will find out?&#34;</p>
+<p>Duan Shaohong shoved Duan Shaoxia aside. &#34;Once the matter is settled, I don&#39;t care what people say. But it hasn&#39;t been settled yet…&#34;</p>
+<p>At this moment, Monkey Qiu walked into the hall.</p>
+<p>Duan Shaohong immediately turned on him and said fiercely, &#34;Steward Qiu, you weren&#39;t the one who spread this news, were you?&#34;</p>
+<p>Monkey Qiu froze for a moment. &#34;What news?&#34;</p>
+<p>Duan Shaohong threw the newspaper at him. &#34;See for yourself!&#34;</p>
+<p>&#34;<em>Night-Blooming Jasmine</em>?&#34; Qiu Zhiheng uttered in surprise. &#34;I&#39;ve never even heard of this newspaper.&#34;</p>
+<p>&#34;You&#39;ve never heard of it? This paper is selling like mad in Greenwater City. Look at how they described our families!&#34;</p>
+<p>Monkey Qiu shook his head. &#34;I know nothing about this.&#34;</p>
+<p>&#34;You know nothing? Then who else could it be besides you?&#34;</p>
+<p>Monkey Qiu suddenly fell silent.</p>
+<p>Seeing that, Duan Shaohong shivered in fear and lowered her head, not daring to say a word more.</p>
+<p>She had spent the last few days thinking...</p>
+</article>
+<article id="c289" data-label="289">
+<h2 class="chapter">Chapter 289: The Illusory Film Building 🔒</h2>
+<p>Duan Shaohong sat in the middle of the Lu Family estate howling and crying loudly, &#34;Little Sister! Please!! I am begging you! Let me take Huaiyi away! If this goes on, I will die here!&#34;</p>
+<p>Lu Maoxian had not shown the Zhang Family the slightest bit of mercy. Zhang Bochu, who was Zhang Huaiyi&#39;s father by name, had been beaten up so badly that he looked more dead than alive.</p>
+<p>At first, Duan Shaohong had acted terribly tough and stubborn.</p>
+<p>&#34;Go on then!&#34; she had shouted at Lu Maoxian&#39;s men. &#34;Beat us however you like! Our family will never yield!&#34;</p>
+<p>Naturally, she did not care in the slightest if Zhang Bochu got thrashed. She felt absolutely no sympathy for the man. However, she did not expect that Lu Maoxian&#39;s men would beat her too. When the fists and sticks came crashing down on her own body, the pain suddenly became a very real thing indeed.</p>
+<p>Not only had the husband and wife been beaten, but their house had also been burned to ashes. Every bit of their family property had been seized, and even the old master of the Duan Family had been dragged into the mess.</p>
+<p>Only then did Duan Shaohong finally understand what sort of monster she had provoked. All this time, she had only seen the Lu Family&#39;s wealth. Yet she had never once considered how ruthless a family had to be to hold onto such wealth.</p>
+<p>It had been easy to hand the boy over, but taking him back would be difficult as the current Zhang Huaiyi was no longer her actual son.</p>
+<p>Duan Shaoxia comforted, &#34;Elder Sister, at times like this, we absolutely cannot lower our heads. We must show the backbone of the Duan Family!&#34;</p>
+<p>&#34;The backbone&#39;s gone already!&#34; Duan Shaohong cried, shaking her head...</p>
+</article>
+<article id="c290" data-label="290">
+<h2 class="chapter">Chapter 290: The House Thief 🔒</h2>
+<p>Late that night, Lu Maoxian stumbled through the gates of the estate.</p>
+<p>The steward took one look at him and nearly swallowed his own tongue. &#34;Master! Wh-what in heaven&#39;s name happened to you?!&#34;</p>
+<p>Lu Maoxian pointed at his cheek to show that he couldn&#39;t speak. Then he raised the stump of his severed arm and gestured frantically for someone to stop the bleeding.</p>
+<p>The steward hurriedly called for a physician to treat Lu Maoxian&#39;s wounds.</p>
+<hr class="separator">
+<p>Inside a hospital room at Yuezhou Third Hospital.</p>
+<p>While He Haisheng stepped outside for a smoke, He Jiaqing pressed the button on his chest and contacted Ling Miaoying to ask about the situation.</p>
+<p>On the other end, Ling Miaoying tried his best to reply in a calm tone. &#34;Jiaqing, Lu Maoxian&#39;s matter has been dealt with.&#34;</p>
+<p>&#34;You didn&#39;t kill him, did you?&#34;</p>
+<p>&#34;I didn&#39;t kill him,&#34; Ling Miaoying replied. &#34;I only chopped off one of his hands, punched two holes through his face, and killed several of his men.&#34;</p>
+<p>As he spoke, the muscles in his cheek twitched ever so slightly. It was the twitch of a man who had wanted very badly to do something much more satisfying and had been forced to stop halfway. The whole thing clearly sat in his heart like a fishbone stuck in his throat.</p>
+<p>He Jiaqing praised him. &#34;Well done. Spread the news that Lu Maoxian is severely wounded. Be careful during this time and watch for anyone trying to cause trouble. I will have people protect you in secret.&#34;</p>
+<p>&#34;Understood.&#34;</p>
+<p>He Jiaqing ended the connection.</p>
+<p>Ling Miaoying turned around to look at the film building, feeling another wave of irritation rise in his chest. He had poured immense effort and an enormous amount...</p>
+</article>
+<article id="c291" data-label="291">
+<h2 class="chapter">Chapter 291: You Need Evidence to Catch a Thief 🔒</h2>
+<p>Li Banfeng picked up the feather duster and marched through the Pocket Dwelling, searching high and low for the missing glove.</p>
+<p>It was not in the main room. It was not in the second room either. Then he reached the third room. There, leaning against the doorway, was the Tang saber, fast asleep. Beside it lay a heap of filthy rags.</p>
+<p>The Tang saber was terribly fond of cleanliness. Whenever it had a spare moment, it liked to polish itself with a cloth.</p>
+<p>Li Banfeng gave the third room one last look, then shut the door and walked away. The pile of &#34;rags&#34; beside the Tang saber suddenly twitched.</p>
+<p>Because it was not a pile of rags at all! It was the glove! The sneaky little thing had rolled itself in dirt and greasy stains until it looked like nothing more than a lump of filthy cloth tossed into a corner.</p>
+<p>Slowly, very slowly, it stretched out two fingers and began creeping across the floor. It was preparing to sneak into the storage chest.</p>
+<p><em>BANG!</em></p>
+<p>Li Banfeng kicked the door open, charged inside, and swung the feather duster down wildly on the glove.</p>
+<p><em>WHACK! WHACK! WHACK!</em></p>
+<p>The glove shouted, &#34;Stop hitting me! Stop it! You need evidence to catch a thief! You can&#39;t just beat people without proof!&#34;</p>
+<p>It squealed as it scrambled frantically toward the doorway on its two fingers, darted into the main room, and ran straight into a cloud of steaming vapor.</p>
+<p><em>SSSSS!</em></p>
+<p>The steam wrapped around the glove at once, and the poor thing was nearly scalded half to death.</p>
+<p>In complete panic, the glove scuttled toward the front door of the Pocket Dwelling. It flattened...</p>
+</article>
+<article id="c292" data-label="292">
+<h2 class="chapter">Chapter 292: I Dreamed About You 🔒</h2>
+<p>Lu Dongchun was Lu Maoxian&#39;s daughter.</p>
+<p>Monkey Qiu was in his early forties, and Lu Dongchun was two years older than him. Even so, she looked no more than a woman in her twenties. Her skin was smooth and delicate, her features graceful and refined. She was the kind of beauty one rarely encountered.</p>
+<p>She stood outside the Lu Family&#39;s main residence beneath a dark parasol, dressed in a neat Western-style gown. She did not complain. She did not knock impatiently on the gates. She did not even bring servants to fuss around her. How could such a beautiful and well-mannered lady provoke Duan Shaoxia so badly that Madam Duan detested even the sight of her?</p>
+<p>&#34;I am not seeing her. Send her away!&#34; Duan Shaoxia snapped. She still refused to let Lu Dongchun in the house.</p>
+<p>Monkey Qiu said, &#34;Madam, she&#39;s here to gather people to avenge Grand Old Master.&#34;</p>
+<p>Duan Shaoxia ground her teeth together. &#34;She still dares to come looking for me? It&#39;s already merciful enough that I haven&#39;t gone to settle the score with them myself!&#34;</p>
+<p>Monkey Qiu shook his head. &#34;Madam, those are the family rules.&#34;</p>
+<p>Duan Shaoxia&#39;s expression darkened further. She understood the rules of a great family all too well. If Lu Maoxian had been wounded by someone within the Lu Family, the other branches would simply turn a blind eye and leave him to fend for himself.</p>
+<p>However, if an outsider had injured him, especially to such a serious degree, then it became a matter concerning the entire Lu Family. Once the culprit was identified and Lu Maoxian called for revenge, every branch of the family would be obligated to answer that call.</p>
+<p>Any branch that refused would be isolated by the family. At times...</p>
+</article>
+<article id="c293" data-label="293">
+<h2 class="chapter">Chapter 293: Conflicting and Interdependent Homebound and Wanderlust Cultivation 🔒</h2>
+<p>Late that night, Ma Wu finally finished decorating the cinema and was just about to pack up and leave when he spotted a woman with a delicate little face walking toward him at the entrance.</p>
+<p>The woman was beautiful, but her expression was very stiff and awkward. Running into a woman like that in the middle of the night would make anyone feel uneasy.</p>
+<p>&#34;Junyang, it&#39;s been a long time.&#34;</p>
+<p><em>She knows me?</em></p>
+<p>Ma Wu also thought the woman looked a little familiar, but he could not immediately remember who she was.</p>
+<p>Zuo Wugang recognized her instantly. &#34;Miss Dongchun!&#34;</p>
+<p>The woman really was indeed Lu Dongchun. She hardly ever left her house, and Ma Wu had only met her twice before, so it was no surprise that he did not recognize her right away.</p>
+<p>Zuo Wugang, however, recognized her instantly.</p>
+<p>Back when Lu Dongliang was still alive, Zuo Wugang had served as his chief support hook. He had seen Lu Dongchun many times.</p>
+<p>Lu Dongchun was Lu Maoxian&#39;s daughter, and Lu Maoxian had always been at odds with Master Qi. The moment Zuo Wugang recognized her, he became wary. He quietly signaled for Ma Wu not to get too close to her, worried she might suddenly make a move against him.</p>
+<p>Lu Dongchun stared at Ma Wu expressionlessly. Her eyes were so clear, so strangely bright, that Ma Wu could see himself reflected inside them.</p>
+<p>&#34;Can we find somewhere private to talk?&#34; Lu Dongchun asked.</p>
+<p>Ma Wu led her into the cinema and opened one of the private rooms for her.</p>
+<p>The whole time, Zuo Wugang stayed glued to Ma Wu&#39;s side like a watchdog. He did not leave him for even a single step.</p>
+<p>Lu Dongchun looked straight at Ma Wu and said in that same flat, lifeless voice, &#34;I came to discuss...</p>
+</article>
+<article id="c294" data-label="294">
+<h2 class="chapter">Chapter 294: Raising the Banner 🔒</h2>
+<p>Li Banfeng stared at Bai Qiusheng in shock. Bai Qiusheng and the others stared back at him with the same stunned expression. Beside them, the girl hurriedly covered her butt in shock.</p>
+<p><em>How did I end up here?</em></p>
+<p>Li Banfeng&#39;s first thought was that someone had taken the key and brought him to Blackstone Slope. He searched the entire factory building in a panic, but the key was nowhere to be found.</p>
+<p>&#34;Who came here today?&#34; Li Banfeng blurted out. In his panic, he could barely get the words out clearly. The key was one of the possessions he valued most.</p>
+<p>&#34;A lot of people came by…&#34; Bai Qiusheng said. He looked completely lost and had no idea how to answer. Only after Li Banfeng calmed down a little did Bai Qiusheng finally understand what he was asking.</p>
+<p>&#34;Master Qi, let&#39;s find somewhere private to talk.&#34;</p>
+<p>Li Banfeng&#39;s room in the rear building had been kept intact, and someone cleaned it regularly.</p>
+<p>After entering the room, Bai Qiusheng said, &#34;Master Qi, everyone who came to the newspaper office today was someone we know. Even the models were regulars who have worked with us many times before.&#34;</p>
+<p>&#34;No one returned from outside the area?&#34;</p>
+<p>&#34;No. Master Qi, I spent the entire day taking photographs in the factory building. I can guarantee it.&#34;</p>
+<p>Li Banfeng could not make sense of it.</p>
+<p><em>If no outsiders came here, then who brought the key here? Or was the key never brought over in the first place? Could it still be at Freewind Wharf?</em></p>
+<p><em>But if that&#39;s true, then how did the Pocket Dwelling end up here? It&#39;s supposed to follow the key wherever it goes.</em></p>
+<p><em>Maybe I should...</em></p>
+</article>
+<article id="c295" data-label="295">
+<h2 class="chapter">Chapter 295: Ambush 🔒</h2>
+<p>Late at night, Li Banfeng tore down the railway tracks like a madman, running even faster than the train.</p>
+<p>The main reason he needed to take the train was to cross the border. He could have found someone to arrange a travel permit and simply run straight back across the border as well.</p>
+<p>However, the border checkpoints only opened at fixed times, their locations constantly changed, and identity checks were extremely strict. Li Banfeng was in a hurry to find the key and did not want to waste time on such matters.</p>
+<p>The train had departed at five in the afternoon. Under normal circumstances, it should still be within Blackstone Slope. Whether he could catch up to it depended on Li Banfeng&#39;s abilities.</p>
+<p>He had always taken the train when traveling between Greenwater City and Blackstone Slope. As a Wanderlust Cultivator, Li Banfeng knew the route very well. After running for over two hours, he finally caught a faint glimpse of the train around ten o&#39;clock.</p>
+<p>He adjusted his steps while silently reciting the chant, chased the train to its rear, and leaped onto the last carriage.</p>
+<p>After boarding, Li Banfeng kept reciting the chant. &#34;Don&#39;t run into the conductor. Don&#39;t run into the conductor…&#34;</p>
+<p>His luck was not bad. The train traveled for over an hour and left Blackstone Slope&#39;s border without him running into the conductor.</p>
+<hr class="separator">
+<p>As midnight approached, everyone in the Lu Family&#39;s...</p>
+</article>
+<article id="c296" data-label="296">
+<h2 class="chapter">Chapter 296: Make Him Put in a Little More Effort 🔒</h2>
+<p>Ling Miaoying&#39;s stomach burst open. Blood, organs, chunks of flesh, half-digested food, and things that had long since stopped looking like food sprayed everywhere.</p>
+<p>Li Banfeng had run like mad the whole way, leaving him almost completely sapped of his energy. He had been away from the Pocket Dwelling for too long, so his Homebound characteristic of being hard to detect was no longer at its peak effectiveness. On top of that, he had successfully used Passing Flowers on Horseback for the first time, and it had drained him greatly.</p>
+<p>He staggered and nearly fell. Tu Yinghong heard the noise and rushed out of the room. Just as she was about to attack Li Banfeng, he aimed the pistol at her head and fired first.</p>
+<p><em>Bang!</em></p>
+<p>Ling Miaoying&#39;s pistol would always land a hit once fired. However, Li Banfeng&#39;s aim was poor, so he missed Tu Yinghong&#39;s vitals and struck her right shoulder instead.</p>
+<p>Tu Yinghong wore armor that she had made herself, but Ling Miaoying&#39;s pistol was too powerful. Its bullet managed to penetrate the armor and still pierce through Tu Yinghong&#39;s bone. Before she could steady herself, Li Banfeng fired four more shots in quick succession.</p>
+<p>Only one of the four shots went off, and that one struck Tu Yinghong in the neck. Tu Yinghong clutched the wound on her neck and retreated several steps. Ling Miaoying looked to Tu Yinghong for help, but Tu Yinghong did not linger. Without the slightest hesitation, she leaped out of the corridor window and vanished in the blink of an eye.</p>
+<p><em>She fled.</em></p>
+<p>Li Banfeng did not know what method she had used, but she had managed...</p>
+</article>
+<article id="c297" data-label="297">
+<h2 class="chapter">Chapter 297: Projected Image 🔒</h2>
+<p>Inside Freewind Wharf, Li Banfeng patiently explained the whole thing to Ma Wu.</p>
+<p>&#34;You lot were all waiting at the Lu Family&#39;s place to ambush Ling Miaoying,&#34; he said. &#34;But while you were waiting there, Ling Miaoying sneaked over here and tried to ambush Freewind Wharf instead. That&#39;s called taking advantage of an opening. That&#39;s called luring the tiger away from the mountain. That&#39;s called making noise in the east while attacking in the west. You get it?&#34;</p>
+<p>Ma Wu nodded at once. &#34;I get it.&#34;</p>
+<p>&#34;But what he didn&#39;t expect was that I stayed behind at Freewind Wharf. So when he finally made his move, he wasn&#39;t ready for me at all, and I caught him red-handed. You can understand that part too, right?&#34;</p>
+<p>Ma Wu nodded again. &#34;I can.&#34;</p>
+<p>Li Banfeng frowned. &#34;So with this explanation, you should at least be able to clear things up with Qiu Zhiheng and the others, right?&#34;</p>
+<p>Ma Wu shook his head. &#34;Nope. Can&#39;t explain it.&#34;</p>
+<p>&#34;How can you not explain it?&#34;</p>
+<p>&#34;Old Qi, let&#39;s be reasonable here. What kind of cultivation does Ling Miaoying have? What kind of tricks and schemes does he have? The guy&#39;s cautious as hell too. How could someone like him be so easy to ambush?</p>
+<p>&#34;The Lu Family sent so many people after him and still couldn&#39;t kill him. Yet you somehow sneak up on him casually and kill him just like that?&#34;</p>
+<p>Li Banfeng also felt that the gap in strength was not something that could be explained so easily.</p>
+<p>First of all, Ma Wu couldn&#39;t explain Li Banfeng&#39;s actual cultivation level was.</p>
+<p>Secondly, although Li Banfeng possessed the strength of a level-six Wanderlust Cultivator and a level-five Homebound Cultivator, a good deal of luck had played a part in him killing Ling Miaoying.</p>
+<p>&#34;Of course, I wasn&#39;t the only...</p>
+</article>
+<article id="c298" data-label="298">
+<h2 class="chapter">Chapter 298: The Level-Six Ability of a Homebound Cultivator 🔒</h2>
+<p>Li Banfeng stood at the doorway, looking at the hologram of Ling Miaoying and marveling at the exquisite mastery of the projection technique.</p>
+<p><em>Just look at this hologram. It looks exactly like the real thing.</em></p>
+<p>When Li Banfeng first saw it from the doorway, he had not been able to tell it was merely a hologram. Now that he was examining it carefully inside the Pocket Dwelling, he still could not tell the difference between it and the real person.</p>
+<p>He could not see any flaws in its appearance, expression, clothing, or movements. Even the hologram&#39;s voice sounded exactly like Ling Miaoying&#39;s.</p>
+<p>Judging from the Glove&#39;s reaction, the hologram also felt incredibly real to the touch.</p>
+<p>The Glove shrieked, &#34;Boss, save me! His grip is too strong. He&#39;s about to squeeze me to death!&#34;</p>
+<p>Li Banfeng nodded. &#34;I want to save you too, but this hologram is impervious to blades and bullets.&#34;</p>
+<p>During the fight at Freewind Wharf, the Tang Saber had already struck the hologram once and even cut off its head, yet the thing could still move.</p>
+<p>&#34;Boss, think of something else.&#34;</p>
+<p>Li Banfeng thought for a moment and said, &#34;Oh! Why don&#39;t I set it on fire?&#34;</p>
+<p>The Glove shouted, &#34;You can&#39;t set it on fire! You&#39;d just be burning me to death too! Boss, you just need to find a way to turn off that projector.&#34;</p>
+<p>Li Banfeng&#39;s lips spread into a slow smile. &#34;What projector? When I came back, I counted all the enchanted...</p>
+</article>
+<article id="c299" data-label="299">
+<h2 class="chapter">Chapter 299: The Oil Can 🔒</h2>
+<p>&#34;Husband dear, the key to the ability Homebound Heart and Thickset Body is to think of your own home and let your body grow thick and heavy.&#34;</p>
+<p><em>Think of my home and let my body grow thick and heavy. The process of making that connection seems… a little complicated.</em></p>
+<p>The Gramophone adjusted the angle of the firelight and projected a photograph of a large house onto the wall.</p>
+<p>&#34;A fine residence must be sturdy, with thick walls and a heavy foundation. In ordinary times, it shields its occupants from the wind and rain. In times of war, it withstands the attacks of foreign enemies. Whether one faces a dragon&#39;s lair or a tiger&#39;s den, a mountain of swords or a sea of fire, all dangers remain outside the walls. As long as a Homebound Cultivator is inside their dwelling, they fear nothing.&#34;</p>
+<p>Li Banfeng understood this point deeply.</p>
+<p>For Homebound Cultivators, as long as they were inside their dwelling, they would not be afraid even if they were traveling through the universe.</p>
+<p>The Gramophone continued, &#34;My dear, imagine yourself in the form of your own house. Think of its sturdy structure, with its thick walls and heavy foundation. Concentrate that thought on your body, and make your flesh and bones indestructible.&#34;</p>
+<p>Li Banfeng could understand the process, but it was difficult for him to apply the Gramophone&#39;s instructions.</p>
+<p>He could not imagine his own house because he had never seen the Pocket Dwelling&#39;s external appearance. He did not know what it looked like in its entirety.</p>
+<p><em>What am I supposed to do?</em></p>
+<p><em>Ignore the Pocket Dwelling&#39;s true appearance and just imagine a sturdy house!</em></p>
+<p>Li...</p>
+</article>
+<article id="c300" data-label="300">
+<span id="last"></span>
+<h2 class="chapter">Chapter 300: Step On the Nose and Onto the Face 🔒</h2>
+<p>Li Banfeng had been thinking about the oil can the whole time, but he never expected to step out the door and end up in a lake of oil.</p>
+<p><em>How did a lake of oil suddenly appear?</em> <em>Wasn&#39;t I in Freewind Wharf? How did I end up in this place?</em></p>
+<p>Faint ripples shimmered across the surface of the lake, yet not a single star could be seen in the night sky.</p>
+<p><em>Is this a New Land? Or is it an Old Land?</em></p>
+<p>Oil had little buoyancy and high viscosity, so swimming through it was extremely exhausting.</p>
+<p>Li Banfeng glanced at the shoreline. It was quite far away. Then he looked at the small island in the middle of the lake, which was fewer than a hundred meters from him.</p>
+<p>Logically speaking, he should swim toward the shore. However, after swimming only a few meters toward the shore, Li Banfeng sensed that something was wrong. Some kind of creature in the oil lake seemed to have locked onto him. Regardless of what kind of creature it was, Li Banfeng would likely be at a disadvantage if he were to fight it in the oil lake.</p>
+<p><em>I should get on land first and observe the situation.</em></p>
+<p>Li Banfeng quickly swam over to the small island instead. He was covered in oil, and the rocks on the small island were also slick with oil, so he could not climb up.</p>
+<p>He had been so focused on swimming from the moment he stepped out of the Pocket Dwelling that he had temporarily forgotten about his enchanted artifacts. Some of the enchanted artifacts he carried could fly.</p>
+<p>Li Banfeng patted the Tang Saber and the Liquor Gourd. The...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="301-350.html" rel="next">Next: Chs 301–350 &rarr;</a>
+    <p class="page-end-links"><a href="201-250.html" rel="prev">&larr; Chs 201–250</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">The Overlord of Puluo · Chs 251–300</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c251">Chapter 251: Prince Chun&#39;s Manor 🔒</a></li>
+        <li><a href="#c252">Chapter 252: Prince Chun&#39;s Manor 🔒</a></li>
+        <li><a href="#c253">Chapter 253: Changban Slope 🔒</a></li>
+        <li><a href="#c254">Chapter 254: Performing Arts Cultivator 🔒</a></li>
+        <li><a href="#c255">Chapter 255: Episode 🔒</a></li>
+        <li><a href="#c256">Chapter 256: The Bloodspear Detective 🔒</a></li>
+        <li><a href="#c257">Chapter 257: This Is Art! 🔒</a></li>
+        <li><a href="#c258">Chapter 258: Blank Copper Seal 🔒</a></li>
+        <li><a href="#c259">Chapter 259: Causing Trouble On My Turf 🔒</a></li>
+        <li><a href="#c260">Chapter 260: Benefactor&#39;s Identity 🔒</a></li>
+        <li><a href="#c261">Chapter 261: An Old Friend 🔒</a></li>
+        <li><a href="#c262">Chapter 262: The Art of the Empty Hand 🔒</a></li>
+        <li><a href="#c263">Chapter 263: We Are Brothers    🔒</a></li>
+        <li><a href="#c264">Chapter 264: The Reunion of Father and Son 🔒</a></li>
+        <li><a href="#c265">Chapter 265: Pure Conduct Society 🔒</a></li>
+        <li><a href="#c266">Chapter 266: The Night-Blooming Jasmine of Blackstone Slope 🔒</a></li>
+        <li><a href="#c267">Chapter 267: The First Battle 🔒</a></li>
+        <li><a href="#c268">Chapter 268: Green Fire Gang 🔒</a></li>
+        <li><a href="#c269">Chapter 269: Elder Wu 🔒</a></li>
+        <li><a href="#c270">Chapter 270: A Public Duel 🔒</a></li>
+        <li><a href="#c271">Chapter 271: Say It! 🔒</a></li>
+        <li><a href="#c272">Chapter 272: Thoughts 🔒</a></li>
+        <li><a href="#c273">Chapter 273: Level-Five Ability of Wanderlust Cultivator 🔒</a></li>
+        <li><a href="#c274">Chapter 274: Granduncle, Rest in Peace 🔒</a></li>
+        <li><a href="#c275">Chapter 275: A Loss He Couldn&#39;t Accept 🔒</a></li>
+        <li><a href="#c276">Chapter 276: He Jiaqing&#39;s Hand 🔒</a></li>
+        <li><a href="#c277">Chapter 277: The Train to the New Land 🔒</a></li>
+        <li><a href="#c278">Chapter 278: The Woman in White 🔒</a></li>
+        <li><a href="#c279">Chapter 279: Dreambinding Tower 🔒</a></li>
+        <li><a href="#c280">Chapter 280: Grandpa Train 🔒</a></li>
+        <li><a href="#c281">Chapter 281: The Best Train In The World 🔒</a></li>
+        <li><a href="#c282">Chapter 282: They Want My Train 🔒</a></li>
+        <li><a href="#c283">Chapter 283: The Edge of the World of Dreams 🔒</a></li>
+        <li><a href="#c284">Chapter 284: Don&#39;t Give It to Anyone 🔒</a></li>
+        <li><a href="#c285">Chapter 285: Wait for Me to Save You 🔒</a></li>
+        <li><a href="#c286">Chapter 286: A Bond Between Brothers 🔒</a></li>
+        <li><a href="#c287">Chapter 287: Cultivating Through the Pictures 🔒</a></li>
+        <li><a href="#c288">Chapter 288: The Vigorous Elder, Lu Maoxian 🔒</a></li>
+        <li><a href="#c289">Chapter 289: The Illusory Film Building 🔒</a></li>
+        <li><a href="#c290">Chapter 290: The House Thief 🔒</a></li>
+        <li><a href="#c291">Chapter 291: You Need Evidence to Catch a Thief 🔒</a></li>
+        <li><a href="#c292">Chapter 292: I Dreamed About You 🔒</a></li>
+        <li><a href="#c293">Chapter 293: Conflicting and Interdependent Homebound and Wanderlust Cultivation 🔒</a></li>
+        <li><a href="#c294">Chapter 294: Raising the Banner 🔒</a></li>
+        <li><a href="#c295">Chapter 295: Ambush 🔒</a></li>
+        <li><a href="#c296">Chapter 296: Make Him Put in a Little More Effort 🔒</a></li>
+        <li><a href="#c297">Chapter 297: Projected Image 🔒</a></li>
+        <li><a href="#c298">Chapter 298: The Level-Six Ability of a Homebound Cultivator 🔒</a></li>
+        <li><a href="#c299">Chapter 299: The Oil Can 🔒</a></li>
+        <li><a href="#c300">Chapter 300: Step On the Nose and Onto the Face 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="201-250.html" rel="prev">&larr; Chs 201–250</a>    <a href="../../index.html">Library</a>
+<a href="301-350.html" rel="next">Chs 301–350 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

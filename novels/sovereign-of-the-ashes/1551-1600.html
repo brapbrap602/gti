@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1551–1600</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1501-1550.html#last" data-next-page="1601-1650.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1551">Chapter 1551: Negotiations 🔒</a></li>
+        <li><a href="#c1552">Chapter 1552: The Army Sets Out 🔒</a></li>
+        <li><a href="#c1553">Chapter 1553: Flames of Emotions 🔒</a></li>
+        <li><a href="#c1554">Chapter 1554: Recruiting Hundred Flowers World 🔒</a></li>
+        <li><a href="#c1555">Chapter 1555: The Flower King’s Stance 🔒</a></li>
+        <li><a href="#c1556">Chapter 1556: Threats and Promises 🔒</a></li>
+        <li><a href="#c1557">Chapter 1557: The Sisters 🔒</a></li>
+        <li><a href="#c1558">Chapter 1558: Intel 🔒</a></li>
+        <li><a href="#c1559">Chapter 1559: Maintaining Composure 🔒</a></li>
+        <li><a href="#c1560">Chapter 1560: Splitting the Army into Three 🔒</a></li>
+        <li><a href="#c1561">Chapter 1561: Meager Mineral Deposits 🔒</a></li>
+        <li><a href="#c1562">Chapter 1562: Deep Sea Mystery 🔒</a></li>
+        <li><a href="#c1563">Chapter 1563: Ruins of a Civilization 🔒</a></li>
+        <li><a href="#c1564">Chapter 1564: Butterfly Specimen 🔒</a></li>
+        <li><a href="#c1565">Chapter 1565: Reinforcing the Army 🔒</a></li>
+        <li><a href="#c1566">Chapter 1566: Eiyurant Papillon Civilization 🔒</a></li>
+        <li><a href="#c1567">Chapter 1567: Seeking Aid 🔒</a></li>
+        <li><a href="#c1568">Chapter 1568: March to Battlefields 🔒</a></li>
+        <li><a href="#c1569">Chapter 1569: Beauties 🔒</a></li>
+        <li><a href="#c1570">Chapter 1570: Help 🔒</a></li>
+        <li><a href="#c1571">Chapter 1571: Pleading 🔒</a></li>
+        <li><a href="#c1572">Chapter 1572: Sea of Fire 🔒</a></li>
+        <li><a href="#c1573">Chapter 1573: Engagement 🔒</a></li>
+        <li><a href="#c1574">Chapter 1574: Respective Backings 🔒</a></li>
+        <li><a href="#c1575">Chapter 1575: Saturation Bombardment 🔒</a></li>
+        <li><a href="#c1576">Chapter 1576: Position 🔒</a></li>
+        <li><a href="#c1577">Chapter 1577: Abandon 🔒</a></li>
+        <li><a href="#c1578">Chapter 1578: The Sand Crocodile’s Scheme 🔒</a></li>
+        <li><a href="#c1579">Chapter 1579: White Stella’s Might 🔒</a></li>
+        <li><a href="#c1580">Chapter 1580: End of Battle 🔒</a></li>
+        <li><a href="#c1581">Chapter 1581: Causing Trouble 🔒</a></li>
+        <li><a href="#c1582">Chapter 1582: Between Mother and Daughter 🔒</a></li>
+        <li><a href="#c1583">Chapter 1583: Stepping Stone 🔒</a></li>
+        <li><a href="#c1584">Chapter 1584: Specimen 🔒</a></li>
+        <li><a href="#c1585">Chapter 1585: Infinity Light 🔒</a></li>
+        <li><a href="#c1586">Chapter 1586: Enemy Pushing Forward 🔒</a></li>
+        <li><a href="#c1587">Chapter 1587: Hydro Battlefield 🔒</a></li>
+        <li><a href="#c1588">Chapter 1588: Sea Races in War 🔒</a></li>
+        <li><a href="#c1589">Chapter 1589: Chaos 🔒</a></li>
+        <li><a href="#c1590">Chapter 1590: Song of the Sea 🔒</a></li>
+        <li><a href="#c1591">Chapter 1591: Gadar 🔒</a></li>
+        <li><a href="#c1592">Chapter 1592: The Brothers’ Conflict 🔒</a></li>
+        <li><a href="#c1593">Chapter 1593: Revealing Trump Cards 🔒</a></li>
+        <li><a href="#c1594">Chapter 1594: God Realm 🔒</a></li>
+        <li><a href="#c1595">Chapter 1595: A Civilization’s Treasures 🔒</a></li>
+        <li><a href="#c1596">Chapter 1596: The Strongest 🔒</a></li>
+        <li><a href="#c1597">Chapter 1597: Myriad Springs World 🔒</a></li>
+        <li><a href="#c1598">Chapter 1598: Withdrawal 🔒</a></li>
+        <li><a href="#c1599">Chapter 1599: The Space-time Hub 🔒</a></li>
+        <li><a href="#c1600">Chapter 1600: Adjusted 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1551" data-label="1551">
+<h2 class="chapter">Chapter 1551: Negotiations 🔒</h2>
+<p>The Netherworld Star Domain battlefield was already nearing its end before Sein even had the chance to formally participate.</p>
+<p>For him, it was quite a pity.</p>
+<p>But the war between the Magus Civilization and the Gallant Federation was far from over. The millennium-long conflict in the Netherworld Star Domain had only been the opening act.</p>
+<p>The battles raging in other star domains bordering these two top-tier civilizations might well prove just as brutal as those in Netherworld.</p>
+<p>Soon after Gregory arrived in the Sanok Star Domain, Bernice showed up as well, leading the Divine Tower of Floating Flame legion.</p>
+<p>Marching alongside her was Berecca, the Rank Four knight and grand master...</p>
+</article>
+<article id="c1552" data-label="1552">
+<h2 class="chapter">Chapter 1552: The Army Sets Out 🔒</h2>
+<p>The total strength of the Magus Civilization legions gathered in the Sanok Star Domain had surged past thirty million.</p>
+<p>And that number was still rising, with the rear lines continuing their mobilization.</p>
+<p>Shortly after Aelid, the last member of the Verdant Flame Faction, arrived, Feylis finally issued the order to advance toward the nearest Hundred Flowers Worlds.</p>
+<p>For this maneuver around the Shadowbat Civilization, Feylis’ forces consisted not only of her own apprentices and the Magus Alliance legions, but also several members of her Elemental Gate.</p>
+<p>Through introductions by his mentor and elders, Sein recently met several powerful Rank Four and Rank Five Magus World mages within the Elemental...</p>
+</article>
+<article id="c1553" data-label="1553">
+<h2 class="chapter">Chapter 1553: Flames of Emotions 🔒</h2>
+<p>Inside the laboratory, a mesmerizing orange-red flame burned slowly in Sein’s palm.</p>
+<p>This was <em>Lustfire</em>—a tangible flame born of emotion.</p>
+<p>Refining it had been anything but easy.</p>
+<p>Jessica had remained in Sein’s laboratory for nearly two years, enduring countless rounds of mental and physical stimuli.</p>
+<p>Even now, specialized devices were still working on her most sensitive areas.</p>
+<p>Yet unlike before, Jessica showed no reaction at all on the experimental table. She was peacefully asleep.</p>
+<p>From his long observation, Sein had recently concluded that the emotional power in a sentient being existed in a finite total amount.</p>
+<p>Refining this Lustfire would...</p>
+</article>
+<article id="c1554" data-label="1554">
+<h2 class="chapter">Chapter 1554: Recruiting Hundred Flowers World 🔒</h2>
+<p>When the Magus Civilization’s forces arrived at the border of the Hundred Flowers Worlds, they stirred deep apprehension among the native plant creatures living there.</p>
+<p>Even though Sein had previously negotiated peace with the natives of this star domain and received essence from their Rank Six Snowball Flower King, the sheer scale of the Magus Civilization Army still sent shivers through these floral inhabitants.</p>
+<p>Still, the native beings of the Hundred Flowers Worlds understood their limits. They showed clear unease, gathering along the border to observe, but they did not mobilize their forces or take any reckless action.</p>
+<p>Had they done so, the situation would have spiraled out of control, potentially forcing the Magus Civilization to fight its first...</p>
+</article>
+<article id="c1555" data-label="1555">
+<h2 class="chapter">Chapter 1555: The Flower King’s Stance 🔒</h2>
+<p>The moment Sein finished speaking, the expressions of most Rank Five beings from Hundred Flowers World shifted at once.</p>
+<p>It was exceedingly rare for plant creatures to leave their homeplane, so Sein’s request for the Snowball Flower King to travel beyond the plane to sign a contract was extremely unreasonable.</p>
+<p>It was essentially asking the Flower King to hand over both autonomy and personal safety to the Magus Civilization.</p>
+<p>Yet how could these Hundred Flowers Worlds’ natives refuse?</p>
+<p>Half a year of negotiations had already confirmed their decision to join the Magus Alliance.</p>
+<p>The formal signing of the contract was the final procedure they needed to complete.</p>
+<p>If the Snowball Flower King refused now, how would the Magus Civilization interpret it...</p>
+</article>
+<article id="c1556" data-label="1556">
+<h2 class="chapter">Chapter 1556: Threats and Promises 🔒</h2>
+<p>After the meeting concluded, Sein approached the Snowball Flower King and said, “Within our Magus Alliance, there’s a large dendro-attribute plane known as Floral Psychic World. It shares many similarities with your Hundred Flowers World.”</p>
+<p>“Once you become acquainted with the other members of the alliance, you may try reaching out to Floral Psychic World. Elven World is another vast plane devoted to nature and plant life, and it should also benefit your Hundred Flowers World,” he suggested.</p>
+<p>Although Sein had never personally visited Floral Psychic World or Elven World, he possessed extensive knowledge of these large-sized allied planes.</p>
+<p>The Hundred Flowers Worlds, home to the Snowball Flower King, lay in a remote corner of the Astral Realm and had...</p>
+</article>
+<article id="c1557" data-label="1557">
+<h2 class="chapter">Chapter 1557: The Sisters 🔒</h2>
+<p>Without lingering in the Houllier Star Domain, Sein and his group continued forward along their predetermined stellar route.</p>
+<p>Lately, the Huusian sisters had been frequent visitors to Sein’s laboratory.</p>
+<p>They were clearly being encouraged by their father to visit so diligently.</p>
+<p>The two women were bound to Sein through contractual marriage agreements.</p>
+<p>Aside from their different skin tones, both sisters possessed features that aligned extremely well with Magus World’s standards of beauty.</p>
+<p>Because of this, Sein never showed even the slightest hint of rejection or displeasure toward them.</p>
+<p>In fact, because Gwyneira had once saved his life, Sein treated her with a degree of preference.</p>
+<p>For example, she was one of the very few allowed unrestricted access to his laboratory—a privilege...</p>
+</article>
+<article id="c1558" data-label="1558">
+<h2 class="chapter">Chapter 1558: Intel 🔒</h2>
+<p>At the Chaos Sea Star Domain’s border…</p>
+<p>Their return to this realm of chaotic laws signaled that Sein and his group were entering the region once inhabited by Blue Star natives and the Klytherans.</p>
+<p>“After you entered that space-time rift back then, you ended up getting transported to this star domain?” Feylis asked Sein.</p>
+<p>“It was even farther than this,” Sein replied. “After entering the rift, I first passed through a short stretch of the space-time corridor. Then, using the last trace of my power, I forced my way through a portal,” Sein replied.</p>
+<p>“It was only after breaking through and returning to the Astral Realm that I felt I was ready to attempt my breakthrough to Rank Five. And not long after advancing, I encountered the Klytherans in a nearby...</p>
+</article>
+<article id="c1559" data-label="1559">
+<h2 class="chapter">Chapter 1559: Maintaining Composure 🔒</h2>
+<p>“Damn it! How dare Orven pull something like this while I was away?!”</p>
+<p>A roar of uncontrollable fury echoed through the Ashen Fortress.</p>
+<p>Orven was Orric’s half-brother. For as long as he could remember, Orric believed he had always watched over his younger sibling.</p>
+<p>He had patiently guided Orven whenever the latter struggled with the Ocean King’s royal secret techniques.</p>
+<p>But Orven’s talent had always lagged behind Orric’s.</p>
+<p>In terms of personality, Orven had always been timid and passive—the complete opposite of Orric’s bold, headstrong nature.</p>
+<p>For that same younger brother he had trusted for years to suddenly pull something like this was beyond anything Orric could have expected.</p>
+<p>Was this what they...</p>
+</article>
+<article id="c1560" data-label="1560">
+<h2 class="chapter">Chapter 1560: Splitting the Army into Three 🔒</h2>
+<p>Despite years of contact with Sein and others from the Magus Civilization, Auron had never once expressed any intention of joining the Magus Alliance.</p>
+<p>Yet now, with war looming over both the Shadowbat Civilization and Marvelous Plane, he chose to step in without hesitation.</p>
+<p>Part of this was because Sein and his group had always interacted with Auron from a rather “utilitarian” angle, focusing on practical benefits.</p>
+<p>Darian, Beatrice, and the others, however, connected with the Voltaran emotionally, or rather, through shared ideals.</p>
+<p>And of course, another factor was that Auron acted solely on his own behalf. His choice to join the Shadowbat Civilization’s...</p>
+</article>
+<article id="c1561" data-label="1561">
+<h2 class="chapter">Chapter 1561: Meager Mineral Deposits 🔒</h2>
+<p>During this deployment, Feylis remained stationed at the center of the Chaos Sea Star Domain.</p>
+<p>Since the Magus Civilization had not yet entered a major clash with the Gallant Federation in the Golden Rock Worlds, Feylis saw no need to rush there.</p>
+<p>Gregory jumped straight into getting ready to deal with the unruly wandering races scattered all over the Chaos Sea.</p>
+<p>He seemed to enjoy this kind of work.</p>
+<p>No, more like, Gregory <em>loved </em>fighting. He reveled in the raw, bone-crunching impact of close combats.</p>
+<p>The more Sein interacted with Gregory, the more baffled he became by his elder’s unusual preferences.</p>
+<p>For someone who was technically a mage who commanded elemental powers, his interests were practically identical to those of knights.</p>
+<p>Sein...</p>
+</article>
+<article id="c1562" data-label="1562">
+<h2 class="chapter">Chapter 1562: Deep Sea Mystery 🔒</h2>
+<p>The research findings Sein submitted to the Magus Civilization focused entirely on the discovery of Gray Quartz and his early explorations into inert crystals.</p>
+<p>As for the deeper connection between the Klytherans and the Klytherite embedded within their own bodies, he had only submitted a small portion and withheld the rest of his years of research.</p>
+<p>Sein did not believe the Magus Civilization would take any real interest in Klytherans anyway.</p>
+<p>Through Grandmaster Feylis, he already understood that the Magus Civilization only cared about the Gray Quartz vein.</p>
+<p>Master Gilbert’s request for an equal exchange was a private matter between the two of them, nothing to do with the Magus Civilization.</p>
+<p>After thinking for a moment, Sein...</p>
+</article>
+<article id="c1563" data-label="1563">
+<h2 class="chapter">Chapter 1563: Ruins of a Civilization 🔒</h2>
+<p>“Orric isn’t alone this time. Aside from the two hundred thousand royal guards he took from the forces stationed around Blue Star, I heard that once he reached the Shadowbat Civilization’s frontlines, he also rallied several Aquarian troops who refused to obey the new Ocean King—including a few Rank Four beings,” Karazo reported to Sein.</p>
+<p>The Klytheran powerhouses were the most up-to-date on the battles raging around the Shadowbat Civilization.</p>
+<p>Sein had been busy with experiments lately. He was completely absorbed in the new truths he had gained from his exchange with Master Gilbert.</p>
+<p>As a result, he had left all intelligence gathering to Karazo and the others.</p>
+<p>“Oh?” Sein resp...</p>
+</article>
+<article id="c1564" data-label="1564">
+<h2 class="chapter">Chapter 1564: Butterfly Specimen 🔒</h2>
+<p>Since the Blue Star natives first shed their ignorance and built their civilization, they had always believed themselves to be the only civilization in existence.</p>
+<p>That was what both the Blue Star natives and the Klytherans had told Sein.</p>
+<p>If any other intelligent race had ever fought Blue Star’s natives for dominance, there was no reason for them to hide it—especially not from Sein.</p>
+<p>And judging by the Blue Star creatures’ nature and way of life… Sein doubted they could take on any race in the Astral Realm.</p>
+<p>This meant the ruins Gilbert and the other Rank Four mages had discovered could only belong to a civilization far older—one that predated Blue Star’s own...</p>
+</article>
+<article id="c1565" data-label="1565">
+<h2 class="chapter">Chapter 1565: Reinforcing the Army 🔒</h2>
+<p>Gilbert, Ralph, Prand, and the other Rank Four mages of the Magus Civilization all possessed deep expertise in inert energy crystals and mineral exploration.</p>
+<p>Exploring and excavating ancient ruins, however, was not their specialty.</p>
+<p>Finding an ancient civilization site buried deep within Blue Star’s core was pure coincidence.</p>
+<p>That was why Gilbert insisted that Sein report the discovery to the Magus Civilization immediately and wait for a more specialized investigation team.</p>
+<p>“Ancient ruins like these rarely exist on their own, especially when those of a top-tier civilization. Once you find one, you’re bound to discover a second, third, and many more in the surrounding star domain…</p>
+<p>“Given this, we suspect there are more waiting to be uncovered in the neighboring...</p>
+</article>
+<article id="c1566" data-label="1566">
+<h2 class="chapter">Chapter 1566: Eiyurant Papillon Civilization 🔒</h2>
+<p>Sein understood why Gilbert had done that perfectly well.</p>
+<p>Everyone was driven by profit, and they were no different.</p>
+<p>As the first discoverers of the ruins, Gilbert, Sein, and the others naturally had the right and leeway to secure some benefits for themselves.</p>
+<p>Sein had previously been in charge of this region. It would not have been nice if Gilbert and his group had taken something valuable for themselves without sharing it with him.</p>
+<p>“Besides this crystal, what else did you all discover?” Sein asked.</p>
+<p>“If it were some crucial artifact from the ancient civilization…” he began.</p>
+<p>“Of course not. Just a few crystals,” Master Gilbert replied quickly.</p>
+<p>“If there were any ancient artifacts with real research...</p>
+</article>
+<article id="c1567" data-label="1567">
+<h2 class="chapter">Chapter 1567: Seeking Aid 🔒</h2>
+<p>The Eiyurant Papillon Folk had achieved extraordinary accomplishments in the realm of technology.</p>
+<p>Their focus was not limited to mechanical advancements alone. They had also made significant progress in the field of biology.</p>
+<p>Much like how the Gallant Federation developed both massive interstellar fleets and giant mobile suits as individual combat weapons, the Eiyurant Papillon Civilization relied on a dual path of mechanical and biological technologies.</p>
+<p>Unfortunately, very little information related to their biotechnology had survived within these ruins.</p>
+<p>Biological data was far more vulnerable to erosion, decay, and loss over the long river of time. By contrast, mechanical technology was far more likely...</p>
+</article>
+<article id="c1568" data-label="1568">
+<h2 class="chapter">Chapter 1568: March to Battlefields 🔒</h2>
+<p>The Shadowbat Civilization had been pretty prideful.</p>
+<p>When Sein first arrived with the Klytheran Legion, the Huusian Legion, and millions of Magus Civilization troops, including the Divine Tower of Ashes Army, near Blue Star, the Shadowbat Civilization did not immediately come begging for aid.</p>
+<p>Instead, they chose to grit their teeth and endure.</p>
+<p>Half a year after Gregory’s subsequent arrival at the periphery of Blue Star with tens of millions of legions and established defensive lines, the Shadowbat Civilization had finally reached its breaking point and was forced to seek aid from the Magus Civilization.</p>
+<p>They truly could not hold out any longer!</p>
+<p>Sein reached this conclusion almost immediately after meeting the Shadowbat Civilization’s envoy.</p>
+<p>A major reason for their...</p>
+</article>
+<article id="c1569" data-label="1569">
+<h2 class="chapter">Chapter 1569: Beauties 🔒</h2>
+<p>Gregory raised no objections to Sein’s plan.</p>
+<p>The Shadowbat Civilization front was clearly the main battlefield. With Gregory being the stronger of the two, it made perfect sense for him to lead the main force there.</p>
+<p>As for Sein volunteering to head to Marvelous Plane, Gregory—who had been stationed near Blue Star for some time—knew it was only a low-level plane battlefield.</p>
+<p>“Alright. Do your best! If you run into any danger or problems you can’t handle, inform me immediately,” Gregory said with a nod.</p>
+<p>Gregory doted on Lorianne and naturally extended the same care to Sein.</p>
+<p>Since reuniting with members of the faction, Sein had always kept a low profile,...</p>
+</article>
+<article id="c1570" data-label="1570">
+<h2 class="chapter">Chapter 1570: Help 🔒</h2>
+<p>“Hurry and leave. I’ll open a path for you shortly,” Hippolyta said as she stepped in front of her daughter, spear in hand.</p>
+<p>The Amazon Queen wore a brown battle outfit made of animal hide.</p>
+<p>It was the standard attire of Amazon warriors. Before ascending the throne, Hippolyta had been the strongest warrior among them.</p>
+<p>Yet after becoming queen, she had rarely shown that wild, untamed side of herself. Most of the time, she dealt with others in a warm and gentle manner.</p>
+<p>Across the entire Marvelous Plane, Hippolyta’s popularity, along with the respect and affection she commanded, even surpassed that of the Guardians.</p>
+<p>“I’m not going anywhere!” Beatrice declared, her resolve unwavering.</p>
+<p>Her return had required breaking through a blockade established jointly by Arid Expanse World...</p>
+</article>
+<article id="c1571" data-label="1571">
+<h2 class="chapter">Chapter 1571: Pleading 🔒</h2>
+<p>After Sein flew out from the space fortress, Karazo and the Huusian King followed close behind.</p>
+<p>Yuri stayed at Sein’s side throughout the entire operation.</p>
+<p>The two Rank Four Magus World knights reacted with impressive speed.</p>
+<p>Elemental firepower from the three space fortresses rained down on the enemy forces pursuing Beatrice near the planar barrier.</p>
+<p>Those pursuing forces were mainly creatures from Planet Aquaria.</p>
+<p>Most of them were marine lifeforms, bearing clear traits of oceanic races such as scales, gills, and webbed feet.</p>
+<p>The long-range firepower of the Magus Civilization’s space fortresses far exceeded anything the surrounding planar worlds of this star domain could ima...</p>
+</article>
+<article id="c1572" data-label="1572">
+<h2 class="chapter">Chapter 1572: Sea of Fire 🔒</h2>
+<p>As Sein closed in on Marvelous Plane, Karazo and the Huusian King caught up to him as well.</p>
+<p>Sein had not been the only one engaging the small Aquarian pursuit force. The other Rank Four and Rank Five powerhouses of the Magus Alliance joined in as well, and their combined might was nothing short of terrifying.</p>
+<p>The joint forces of Arid Expanse World and Aquaria within Marvelous Plane had clearly sensed the arrival of Sein and the Magus Civilization Army. What they had not expected was just how quickly Sein’s group would arrive.</p>
+<p>As a result, no proper countermeasures had been readied. They had only managed to set up a faint yellow energy membrane over Marvelous Plane.</p>
+<p>“Activate the main cannons,” Sein ordere...</p>
+</article>
+<article id="c1573" data-label="1573">
+<h2 class="chapter">Chapter 1573: Engagement 🔒</h2>
+<p>When Sein arrived directly above the Amazon Rainforest, a bizarre sight greeted him.</p>
+<p>A divine domain of raging flames and sand elements enveloped the heart of the jungle, while a water divine domain shrouded the rainforest’s outer edge.</p>
+<p>The two opposing divine domains clashed. The violent opposition between fire and water was far beyond what any natural environment could endure, accelerating the devastation of the Amazon Rainforest.</p>
+<p>Sein ignored the divine domains below and plunged straight into the heart of the rainforest, which had become a forbidden zone for low-level creatures.</p>
+<p>As far as the eye could see, not a single living being remained.</p>
+<p>Marvelous Plane was rich in water vapor. By all logic, such a world should have been able to resist large-scale fire.</p>
+<p>The fact that the rainforest...</p>
+</article>
+<article id="c1574" data-label="1574">
+<h2 class="chapter">Chapter 1574: Respective Backings 🔒</h2>
+<p>The Crab King—or more accurately, the leader of the void-wandering Cerulean Crabs—was roughly at the mid-stage of Rank Five.</p>
+<p>The Cerulean Crabs were comparable in power to the Huusians. Aside from the Rank Five Crab King himself, they also boasted three formidable Rank Four powerhouses.</p>
+<p>During the years when the Klytherans struggled to survive in the Chaos Sea, scarce resources and limited living space frequently led to clashes with other nomadic races in the Astral Realm.</p>
+<p>Weak, lower-tier interstellar races never dared to provoke the Klytherans.</p>
+<p>The Cerulean Crabs, however, were among the few Astral Realm forces bold enough to challenge the Klytherans.</p>
+<p>The Crab King had fought against Karazo on multiple occasions.</p>
+<p>Back then, the Cerulean Crab King had been...</p>
+</article>
+<article id="c1575" data-label="1575">
+<h2 class="chapter">Chapter 1575: Saturation Bombardment 🔒</h2>
+<p>The war between the Magus Civilization and the Gallant Federation had always been a full-scale, three-dimensional conflict.</p>
+<p>The same was true of the battles waged by their respective representatives.</p>
+<p>If the fighting failed to reach this level of intensity, it would almost feel like an insult to the prestige of these top-tier civilizations.</p>
+<p>Now that the opposing legions on Marvelous Plane had opened fire, the Magus Civilization refused to sit idle.</p>
+<p>Ever since the three colossal space fortresses descended onto this low-level plane, their assault had never let up.</p>
+<p>The Ashen Fortress, in particular, launched attacks as if it were running on free energy crystals.</p>
+<p>The sheer frequency and intensity of its elemental bombardment quickly drew the attention...</p>
+</article>
+<article id="c1576" data-label="1576">
+<h2 class="chapter">Chapter 1576: Position 🔒</h2>
+<p>In terms of sheer numbers, the Magus Civilization legions Sein brought to Marvelous Plane likely amounted to no more than one-tenth of the opposing forces.</p>
+<p>Yet when it came to momentum and overall strength, both sides were evenly matched.</p>
+<p>If anything, the Magus Civilization appeared to have the edge.</p>
+<p>At this moment, Marvelous Plane had not yet been completely wiped clean of its native species.</p>
+<p>The small contingent of allies Beatrice had managed to break through with was the last remaining elite of this low-level plane.</p>
+<p>But in reality, vast numbers of ordinary creatures were still clinging to life across Marvelous Plane.</p>
+<p>The timely arrival of the Magus Civilization’s legions greatly boosted the morale of these native beings.</p>
+<p>Under the coordination of other powerhouses...</p>
+</article>
+<article id="c1577" data-label="1577">
+<h2 class="chapter">Chapter 1577: Abandon 🔒</h2>
+<p>Arid Expanse World was not afraid of Gregory’s legion arriving on the Shadowbat Civilization battlefield. They simply did not want to face the Magus Civilization alone.</p>
+<p>Seiron, the notoriously <em>barbaric</em>, <em>tyrannical</em>, and <em>bloodthirsty</em> Rank Six powerhouse long stationed near this star domain, was not a fool.</p>
+<p>The Magus Civilization far surpassed Arid Expanse World in sheer scale.</p>
+<p>Even if it ascended to overlord status and Arid Expanse World became a large-sized plane, it still could not be mentioned in the same breath as the Magus Civilization.</p>
+<p>As for the distress calls sent by both Arid Expanse World and Aquaria, the Gallant Federation had shown little response in recent days.</p>
+<p>Its attention remained firmly fixed on the Golden Rock Worlds.</p>
+<p>The Magus Civilization had already made its aggressive stance toward that...</p>
+</article>
+<article id="c1578" data-label="1578">
+<h2 class="chapter">Chapter 1578: The Sand Crocodile’s Scheme 🔒</h2>
+<p>The unwittingly trapped Rank Five Sand Crocodile only came back to its senses when it was struck from behind by the Huusian King.</p>
+<p>The Huusian King wielded a short golden dart that could inflict negative effects. It was an unusual weapon, better described as a discreet weapon.</p>
+<p>When the dart first pierced the thick hide of the enraged Rank Five Sand Crocodile, the creature barely registered.</p>
+<p>Only after the effects began to kick in did the Sand Crocodile slowly regain clarity, lifting its head to take in its surroundings.</p>
+<p>The large-scale retreat of Aquaria’s forces and the interstellar mercenaries was what truly forced the creature to calm down.</p>
+<p>No matter how arrogant or powerful it was, it clearly understood that it could not fight alone against the Magus Civilization...</p>
+</article>
+<article id="c1579" data-label="1579">
+<h2 class="chapter">Chapter 1579: White Stella’s Might 🔒</h2>
+<p>The crystalline blue trident appeared out of nowhere and pierced straight through the Sand Crocodile’s spine in a single, decisive strike.</p>
+<p>Sein could tell that the creature had desperately tried to evade the blow at the last moment.</p>
+<p>Yet a strange force of law suppression locked it in place, leaving the formidable Rank Five Sand Crocodile completely helpless.</p>
+<p>This was the power of the sea!</p>
+<p>Marvelous Plane was rich with life, its jungles and tropical rainforests spreading across vast stretches of land. Before the war, true wastelands had been rare.</p>
+<p>In the Astral Realm, there was a saying that water was the source of life.</p>
+<p>Marvelous Plane’s oceans were far more extensive than one might expect. While not as vast as those...</p>
+</article>
+<article id="c1580" data-label="1580">
+<h2 class="chapter">Chapter 1580: End of Battle 🔒</h2>
+<p>A low-level plane could barely withstand the descent of a Rank Six being.</p>
+<p>When a Rank Six existence entered a low-level world that had never hosted such a powerhouse before, the impact on the planar will and its underlying laws was immense.</p>
+<p>Marvelous Plane was precisely such a case. This world had never before welcomed a Rank Six being.</p>
+<p>As a result, when White Stella descended, the planar will let out a cry of pain.</p>
+<p>In truth, White Stella had not yet reached Rank Six. Her life level remained at Rank Five.</p>
+<p>However, the amplification provided by the Royal Trident, combined with the sheer mass of life energy contained within her colossal body, placed this giant mermaid only a step away from true Rank Six power.</p>
+<p>Fortunately, the planar will recognized...</p>
+</article>
+<article id="c1581" data-label="1581">
+<h2 class="chapter">Chapter 1581: Causing Trouble 🔒</h2>
+<p>Sein was quite satisfied with the outcome of this battle.</p>
+<p>Achieving such results at minimal cost and within such a short time was more than enough to serve as the opening salvo of the Magus Civilization’s military campaign across the surrounding star domains.</p>
+<p>His only real regret was that White Stella and Tourmaline had arrived a little too late, and that the main force of the sea races under their command had not yet fully arrived.</p>
+<p>Otherwise, not a single one of the powerful invaders who dared trespass into Marvelous Plane would have escaped!</p>
+<p>After the war, the distribution of spoils became their next focus.</p>
+<p>Sein claimed only the most valuable prize—the Rank Five Sand Crocodile.</p>
+<p>White Stella appeared indifferent to the creature’s...</p>
+</article>
+<article id="c1582" data-label="1582">
+<h2 class="chapter">Chapter 1582: Between Mother and Daughter 🔒</h2>
+<p>Inside the laboratory, Sein continued cleaning up the mess Tourmaline had caused.</p>
+<p>Beatrice’s condition was relatively stable. Sein took out recovery potions after healing potions, each with different properties, and even retrieved the scalpel he often used during experiments.</p>
+<p>Perhaps because of his extensive experience vivisecting and dissecting specimens, Sein did not rely solely on potions to treat Beatrice’s injuries.</p>
+<p>Wherever flesh and skin had been severely damaged, he simply excised the damaged tissue directly with the scalpel.</p>
+<p>Beatrice proved remarkably tough. Despite the massive blood loss and the chunks of damaged flesh removed after being corroded by foreign laws, she clenched her teeth and endured. Aside from a...</p>
+</article>
+<article id="c1583" data-label="1583">
+<h2 class="chapter">Chapter 1583: Stepping Stone 🔒</h2>
+<p>Unlike her daughter, who verbally thanked Sein and asked what could be considered rather “shallow” questions, Hippolyta would never express her intentions so directly.</p>
+<p>When she pursued a goal, she moved toward it through both thought and action.</p>
+<p>This was likely the result of years of growth and experience as a queen.</p>
+<p>Sein currently held considerable influence over the Marvelous Plane. He could even shape its future trajectory to a certain extent.</p>
+<p>Naturally, Hippolyta would take the initiative to show goodwill toward him.</p>
+<p>And this goodwill went far beyond polite gestures or empty courtesy. Hippolyta delivered it with subtlety and ease.</p>
+<p>Compared to Beatrice’s idealism, the Amazon Queen was more pragmatic.</p>
+<p>After clearly...</p>
+</article>
+<article id="c1584" data-label="1584">
+<h2 class="chapter">Chapter 1584: Specimen 🔒</h2>
+<p>Days spent buried in experiments made it easy to lose track of time.</p>
+<p>Before Sein realized it, he had already been on Marvelous Plane for quite a while.</p>
+<p>After the Magus Civilization dispatched Sein and Gregory to the battlefronts surrounding the Shadowbat Civilization, both had achieved decisive victories in their respective engagements.</p>
+<p>Since then, however, the two of them had fallen temporarily quiet, showing no intention of pushing further into the surrounding star domains.</p>
+<p>Meanwhile, the allied forces of Arid Expanse World and Aquaria were too intimidated by the Magus Civilization to make any rash moves.</p>
+<p>Instead, they continued amassing vast legion forces along the frontlines, maintaining a tense standoff with the Magus Civilization.</p>
+<p>What...</p>
+</article>
+<article id="c1585" data-label="1585">
+<h2 class="chapter">Chapter 1585: Infinity Light 🔒</h2>
+<p>The void surrounding Blue Star was the same region where Sein had first drifted when he arrived in this star domain.</p>
+<p>Dominated by scattered demiplanes and broken planes of lumen and pyro attributes, the entire starfield felt lifeless, devoid of any sentient presence.</p>
+<p>Within that void, the Magus Civilization had indeed discovered several veins of inert crystal ore.</p>
+<p>However, the scale of these deposits fell far short of what was found around Blue Star itself.</p>
+<p>Even so, the reserves were still considerable, especially given that such rare resources were almost nonexistent elsewhere.</p>
+<p>Compared to the inert crystal deposits in the lifeless void, what truly caught Sein’s attention was another piece of news brought back by Gilbert and the others. Alongside those resource veins, they had uncovered several ruins of ancient civilizations.</p>
+<p>The...</p>
+</article>
+<article id="c1586" data-label="1586">
+<h2 class="chapter">Chapter 1586: Enemy Pushing Forward 🔒</h2>
+<p>The Magus Civilization had suffered a crushing defeat in the Saitos Star Domain. Over a billion troops were wiped out, and even an overlord-class being fell.</p>
+<p>Although the Magus Alliance deliberately suppressed the news, some information inevitably leaked out, sending shockwaves through every battlefield where the Magus Civilization was engaged.</p>
+<p>This included the fronts around the Shadowbat Civilization, where Sein was stationed.</p>
+<p>When Sein received the news, his mood grew noticeably heavier. Even while conducting experiments, he found it difficult to maintain his usual patience.</p>
+<p>This state of mind likely stemmed from a deep sense of helplessness in the face of overwhelming, irresistible power.</p>
+<p>If the Gallant Federation could erase an entire Saitos Star Domain, then it certainly possessed...</p>
+</article>
+<article id="c1587" data-label="1587">
+<h2 class="chapter">Chapter 1587: Hydro Battlefield 🔒</h2>
+<p>Of course, Aquaria and Arid Expanse World were not about to bicker like kids.</p>
+<p>After all, both of them answered to the Gallant Federation and Grand Apocalypse World.</p>
+<p>Still, there was no denying that Aquaria bore responsibility for the crushing defeat on Marvelous Plane.</p>
+<p>The interstellar mercenary who had withdrawn at the same time—the Rank Five Cerulean Crab King—also confirmed that the Rank Five Aquarian merman had been the first to disengage from the battlefield.</p>
+<p>Out of a measure of restraint, the Cerulean Crab King described the merman’s action as a “withdrawal” rather than a “flight”.</p>
+<p>Even so, it was Arid Expanse World that ultimately suffered the heaviest losses in the conflict. After a period of heated wrangling and deliberation, a final decision was made.</p>
+<p>Orven, the young Rank Six Ocean King,...</p>
+</article>
+<article id="c1588" data-label="1588">
+<h2 class="chapter">Chapter 1588: Sea Races in War 🔒</h2>
+<p>The war arrived sooner than anyone had expected.</p>
+<p>As the forces of Aquaria entered Sein’s field of vision, he immediately noticed a special operations legion among them—troops clad in distinctive equipment, their skulls shaped like sharp blades.</p>
+<p>That had to be the Grand Apocalypse World legion.</p>
+<p>As one of the Gallant Federation’s key supporters, Grand Apocalypse World maintained direct troop deployments across nearby star domains.</p>
+<p>Many of its legions were already fighting on the Shadowbat Civilization front, where Grandmaster Feylis was stationed.</p>
+<p>Compared to those forces, however, the Apocalypse Legion that appeared on Marvelous Plane could only be considered a small detachment.</p>
+<p>The hydro element within the surrounding starry environment grew increasingly...</p>
+</article>
+<article id="c1589" data-label="1589">
+<h2 class="chapter">Chapter 1589: Chaos 🔒</h2>
+<p>As the sea kings charged forward and the sea race legions advanced in full force, Sein had no time for reflection.</p>
+<p>He immediately ordered the deployment of the remaining Magus Civilization forces into the combat zone.</p>
+<p>Sein’s legions were highly diverse, including several knightly orders, the Klytherans, the Huusians, and units from the Magus Alliance.</p>
+<p>Alongside them were two Rank Five powerhouses—Orric and Hippolyta, the latter determined to return to the battlefield despite her severe injuries.</p>
+<p>Not long ago, Grandmaster Feylis had also dispatched a formidable divine tower mage legion to reinforce him.</p>
+<p>This divine tower had been founded by Chakra, a late-stage Rank Four Aeromancer from the...</p>
+</article>
+<article id="c1590" data-label="1590">
+<h2 class="chapter">Chapter 1590: Song of the Sea 🔒</h2>
+<p>Thousands of sea kings had torn through the vanguard of the Aquarian legions, opening a path for the sea race legions behind them.</p>
+<p>To Sein, this looked like a favorable turn. Yet from the command center, he caught a flicker of sorrow crossing White Stella’s face.</p>
+<p>She must be grieving for the wounded and fallen sea kings, Sein suddenly realized.</p>
+<p>War inevitably claimed lives. This was a truth he had accepted long ago.</p>
+<p>Those sea kings had always obeyed White Stella and accepted her commands without hesitation.</p>
+<p>Beyond the bloodline suppression she held over them, White Stella had invested genuine care and affection in these creatures.</p>
+<p>Within Magus World, sea kings were actually considered a minority race.</p>
+<p>Their survival depended...</p>
+</article>
+<article id="c1591" data-label="1591">
+<h2 class="chapter">Chapter 1591: Gadar 🔒</h2>
+<p>Sein was currently stationed at the central command hub.</p>
+<p>The Clash of Civilizations’ battlefield was never a place where law-wielding beings rushed in from the outset and fought without restraint.</p>
+<p>Moreover, the scale of this star domain battlefield was immense. The Magus Civilization alone had fielded nearly thirty law-wielding combatants.</p>
+<p>Aquaria’s forces were no less formidable. If Sein charged in by himself, the impact would be minimal at best.</p>
+<p>More importantly, Sein valued his life. In a melee of this scale, even wielding a world-class secret treasure offered no guarantee of survival.</p>
+<p>One careless move, and if he found himself surrounded by several Rank Five opponents, even Sein would be skinned alive.</p>
+<p>After...</p>
+</article>
+<article id="c1592" data-label="1592">
+<h2 class="chapter">Chapter 1592: The Brothers’ Conflict 🔒</h2>
+<p>Battles among lower-tier creatures erupted along the frontline.</p>
+<p>Sein, however, focused his attention on the strategic movements of the high-ranking combatants.</p>
+<p>The Rank Six Ocean King, entering the fray at the very outset of the clash exceeded Sein’s expectations.</p>
+<p>What surprised him even more was Orven’s choice of target. Rather than striking at weaker points in the Magus Civilization’s formations, the young king flew straight toward White Stella, where defenses were strongest and elite forces most heavily concentrated.</p>
+<p>White Stella commanded immense prestige among the sea races.</p>
+<p>Every law-wielding sea race powerhouse from Magus World present on this battlefield regarded protecting...</p>
+</article>
+<article id="c1593" data-label="1593">
+<h2 class="chapter">Chapter 1593: Revealing Trump Cards 🔒</h2>
+<p>The deep blue blur Orric had become was instantly swept away by an even greater surge of hydro elemental energy.</p>
+<p>In the Astral Realm, even a single rank difference in life level meant a massive gap in strength.</p>
+<p>That gap only grew wider above Rank Four.</p>
+<p>Unless one had a world-class secret treasure as a trump card like Sein did, cross-rank combat was no easy feat.</p>
+<p>Rank Six beings, the symbols of medium-sized planar worlds, were a whole tier above Rank Five creatures.</p>
+<p>On top of that, Orven had inherited Aquaria’s royal treasure—the Ocean King&#39;s Crown.</p>
+<p>The crown was far more than a tool to help the Ocean King receive planar power and ascend to Rank Six.</p>
+<p>It could also amplify the Ocean King’s power across multiple aspects.</p>
+<p>Passed down for generations, the crown was deeply...</p>
+</article>
+<article id="c1594" data-label="1594">
+<h2 class="chapter">Chapter 1594: God Realm 🔒</h2>
+<p>The battle unfolding in the starry expanse had Sein completely spellbound.</p>
+<p>White Stella stood at the very peak of Rank Five, right on the verge of breaking through to Rank Six, while Orven had already fully stepped into Rank Six.</p>
+<p>Watching a battle at this level and observing how the combatants wielded their respective law powers was immensely valuable for Sein’s growth.</p>
+<p>The sudden appearance of multiple world-class secret treasures quickly drew the attention of Sein and other powerhouses around the battlefield.</p>
+<p>A collection like this would tempt even an overlord if one happened to show up, especially White Stella’s treasures, as they appeared to be of an exceptionally high grade.</p>
+<p>Sein had long been impressed by how rich White Stella and Tourmaline were.</p>
+<p>Take Tourmaline, for example. Her two green arm ribbons were low-grade world-class secret treasures! Counted separately, did that not mean...</p>
+</article>
+<article id="c1595" data-label="1595">
+<h2 class="chapter">Chapter 1595: A Civilization’s Treasures 🔒</h2>
+<p>Beyond discussing the situation in the Saitos Star Domain, Bev also brought up recent developments across other fronts between the Magus Civilization and the Gallant Federation during her conversation with Viktor.</p>
+<p>This soul-level mechanic named Viktor could be considered one of Lady Bev’s most loyal supporters.</p>
+<p>Currently, the Magus Civilization appeared to be led by Lady Bev. Her role in presiding over the 25th Magus Alliance Conference had largely confirmed her leadership position on the frontlines of the war effort.</p>
+<p>In truth, Magus World remained internally fragmented.</p>
+<p>This meant that among the many member planes of the Magus Alliance, loyalties and dependencies varied significantly.</p>
+<p>That was to be expected, since the Magus Civilization does not follow...</p>
+</article>
+<article id="c1596" data-label="1596">
+<h2 class="chapter">Chapter 1596: The Strongest 🔒</h2>
+<p>If the Gallant Federation had truly wanted to maximize the impact, their most devastating move would have been to unleash the Infinity Light on the Netherworld Star Domain.</p>
+<p>Instead, they targeted the Saitos Star Domain—a battlefield of comparatively lower intensity. The decision ultimately came down to a mix of strategic considerations.</p>
+<p>After a few high-level discussions among the soul overmages of Magus World, it became clear that the Gallant Federation was still unpredictable at its core.</p>
+<p>With battles still ongoing along the edges of the Netherworld Star Domain, firing the Infinity Light there would have caused devastating friendly fire to their own fleets.</p>
+<p>More importantly, it seemed the Gallant Federation did not fully trust the weapon yet.</p>
+<p>The Netherworld Star...</p>
+</article>
+<article id="c1597" data-label="1597">
+<h2 class="chapter">Chapter 1597: Myriad Springs World 🔒</h2>
+<p>“Rather than waiting for the Insectoids to return, I think we should try to re-establish contact with the Myriad Springs Worlds. It could boost our combat power in the short term,” Lady Bev said.</p>
+<p>Viktor halted mid-stride. He turned back to look at her, clearly surprised. “The Myriad Springs Worlds?”</p>
+<p>Myriad Springs World had once been a plane within the Magus Alliance. It was not just any member, but a crucial one.</p>
+<p>However, because of ideological differences and a major conflict ten thousand years ago, the Myriad Springs Worlds left the Magus Alliance.</p>
+<p>To this day, it remained the only one to have withdrawn from the alliance without suffering retaliation from the Magus Civilization.</p>
+<p>To the uninformed, Myriad Springs World appeared overwhelmingly powerful. It was home to multiple...</p>
+</article>
+<article id="c1598" data-label="1598">
+<h2 class="chapter">Chapter 1598: Withdrawal 🔒</h2>
+<p>High in the sky, Sein swung his sleeves, dispersing the cascading pitch-black raindrops around him.</p>
+<p>The environment of this broken plane was brutally harsh. Beyond the unrelenting downpour, violent lightning occasionally tore through the sky.</p>
+<p>Sein deeply disliked the conditions here, but he had no choice. Moments earlier, that Rank Five walrus had charged headlong into this plane, dragging him along with all its strength.</p>
+<p>When it came to brute force, a mage like Sein simply could not match this walrus.</p>
+<p>His body-tempering experiments had strengthened his constitution and improved his resistance to damage, but that did not mean he could swing a giant ax like a Rank Five knight and clash head-on with such a beast.</p>
+<p>The most rational approach was to rely on magic, harassing...</p>
+</article>
+<article id="c1599" data-label="1599">
+<h2 class="chapter">Chapter 1599: The Space-time Hub 🔒</h2>
+<p>The Rank Five walrus managed to escape from Sein, but only barely.</p>
+<p>It was left in a miserable state.</p>
+<p>Not only had one of its tusks been snapped off by Sein’s magic, but its left foreleg had been thoroughly cooked by a beam fired from Sein’s Faceless Mask.</p>
+<p>The walrus’ successful escape owed much to the intervention of a Rank Five creature from the Grand Apocalypse World.</p>
+<p>As expected, Rank Five beings born in a large-sized world truly surpassed those from most medium-sized and low-level planes.</p>
+<p>This Rank Five creature from the Grand Apocalypse World was clad in silver-gray armor and a metal helmet adorned with three sharp horns.</p>
+<p>Even the rectangular metal blade it wielded was a product of advanced technological...</p>
+</article>
+<article id="c1600" data-label="1600">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1600: Adjusted 🔒</h2>
+<p>Calculating the precise location based on that vague coordinate node was no simple task. Even the slightest miscalculation could result in a massive deviation.</p>
+<p>Determining the exact space-time hub coordinates from which the Eiyurant Papillon Civilization had departed the Astral Realm would take considerably more time.</p>
+<p>In the meantime, uncovering additional ruins would greatly aid the Magus Civilization’s archaeological teams in their calculations.</p>
+<p>As for Sein, exploring the mysteries of a top-tier civilization was far too advanced. That was the kind of subject meant for overlord-level beings of Magus World.</p>
+<p>Had he not been directly involved, he would likely not have had access to secrets of this scale at a...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1601-1650.html" rel="next">Next: Chs 1601–1650 &rarr;</a>
+    <p class="page-end-links"><a href="1501-1550.html" rel="prev">&larr; Chs 1501–1550</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1551–1600</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1551">Chapter 1551: Negotiations 🔒</a></li>
+        <li><a href="#c1552">Chapter 1552: The Army Sets Out 🔒</a></li>
+        <li><a href="#c1553">Chapter 1553: Flames of Emotions 🔒</a></li>
+        <li><a href="#c1554">Chapter 1554: Recruiting Hundred Flowers World 🔒</a></li>
+        <li><a href="#c1555">Chapter 1555: The Flower King’s Stance 🔒</a></li>
+        <li><a href="#c1556">Chapter 1556: Threats and Promises 🔒</a></li>
+        <li><a href="#c1557">Chapter 1557: The Sisters 🔒</a></li>
+        <li><a href="#c1558">Chapter 1558: Intel 🔒</a></li>
+        <li><a href="#c1559">Chapter 1559: Maintaining Composure 🔒</a></li>
+        <li><a href="#c1560">Chapter 1560: Splitting the Army into Three 🔒</a></li>
+        <li><a href="#c1561">Chapter 1561: Meager Mineral Deposits 🔒</a></li>
+        <li><a href="#c1562">Chapter 1562: Deep Sea Mystery 🔒</a></li>
+        <li><a href="#c1563">Chapter 1563: Ruins of a Civilization 🔒</a></li>
+        <li><a href="#c1564">Chapter 1564: Butterfly Specimen 🔒</a></li>
+        <li><a href="#c1565">Chapter 1565: Reinforcing the Army 🔒</a></li>
+        <li><a href="#c1566">Chapter 1566: Eiyurant Papillon Civilization 🔒</a></li>
+        <li><a href="#c1567">Chapter 1567: Seeking Aid 🔒</a></li>
+        <li><a href="#c1568">Chapter 1568: March to Battlefields 🔒</a></li>
+        <li><a href="#c1569">Chapter 1569: Beauties 🔒</a></li>
+        <li><a href="#c1570">Chapter 1570: Help 🔒</a></li>
+        <li><a href="#c1571">Chapter 1571: Pleading 🔒</a></li>
+        <li><a href="#c1572">Chapter 1572: Sea of Fire 🔒</a></li>
+        <li><a href="#c1573">Chapter 1573: Engagement 🔒</a></li>
+        <li><a href="#c1574">Chapter 1574: Respective Backings 🔒</a></li>
+        <li><a href="#c1575">Chapter 1575: Saturation Bombardment 🔒</a></li>
+        <li><a href="#c1576">Chapter 1576: Position 🔒</a></li>
+        <li><a href="#c1577">Chapter 1577: Abandon 🔒</a></li>
+        <li><a href="#c1578">Chapter 1578: The Sand Crocodile’s Scheme 🔒</a></li>
+        <li><a href="#c1579">Chapter 1579: White Stella’s Might 🔒</a></li>
+        <li><a href="#c1580">Chapter 1580: End of Battle 🔒</a></li>
+        <li><a href="#c1581">Chapter 1581: Causing Trouble 🔒</a></li>
+        <li><a href="#c1582">Chapter 1582: Between Mother and Daughter 🔒</a></li>
+        <li><a href="#c1583">Chapter 1583: Stepping Stone 🔒</a></li>
+        <li><a href="#c1584">Chapter 1584: Specimen 🔒</a></li>
+        <li><a href="#c1585">Chapter 1585: Infinity Light 🔒</a></li>
+        <li><a href="#c1586">Chapter 1586: Enemy Pushing Forward 🔒</a></li>
+        <li><a href="#c1587">Chapter 1587: Hydro Battlefield 🔒</a></li>
+        <li><a href="#c1588">Chapter 1588: Sea Races in War 🔒</a></li>
+        <li><a href="#c1589">Chapter 1589: Chaos 🔒</a></li>
+        <li><a href="#c1590">Chapter 1590: Song of the Sea 🔒</a></li>
+        <li><a href="#c1591">Chapter 1591: Gadar 🔒</a></li>
+        <li><a href="#c1592">Chapter 1592: The Brothers’ Conflict 🔒</a></li>
+        <li><a href="#c1593">Chapter 1593: Revealing Trump Cards 🔒</a></li>
+        <li><a href="#c1594">Chapter 1594: God Realm 🔒</a></li>
+        <li><a href="#c1595">Chapter 1595: A Civilization’s Treasures 🔒</a></li>
+        <li><a href="#c1596">Chapter 1596: The Strongest 🔒</a></li>
+        <li><a href="#c1597">Chapter 1597: Myriad Springs World 🔒</a></li>
+        <li><a href="#c1598">Chapter 1598: Withdrawal 🔒</a></li>
+        <li><a href="#c1599">Chapter 1599: The Space-time Hub 🔒</a></li>
+        <li><a href="#c1600">Chapter 1600: Adjusted 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1501-1550.html" rel="prev">&larr; Chs 1501–1550</a>    <a href="../../index.html">Library</a>
+<a href="1601-1650.html" rel="next">Chs 1601–1650 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

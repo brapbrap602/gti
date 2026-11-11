@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 601–650</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="551-600.html#last" data-next-page="651-700.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c601">Chapter 601: New Combat Mission 🔒</a></li>
+        <li><a href="#c602">Chapter 602: Rights of the Weak 🔒</a></li>
+        <li><a href="#c603">Chapter 603: Negotiation 🔒</a></li>
+        <li><a href="#c604">Chapter 604: Alliance Structure 🔒</a></li>
+        <li><a href="#c605">Chapter 605: Seeing The World 🔒</a></li>
+        <li><a href="#c606">Chapter 606: Mission Complete 🔒</a></li>
+        <li><a href="#c607">Chapter 607: Rank Four Knight’s Consideration 🔒</a></li>
+        <li><a href="#c608">Chapter 608: Seven Years 🔒</a></li>
+        <li><a href="#c609">Chapter 609: Arrest 🔒</a></li>
+        <li><a href="#c610">Chapter 610: Protected 🔒</a></li>
+        <li><a href="#c611">Chapter 611: Letter For Lorianne 🔒</a></li>
+        <li><a href="#c612">Chapter 612: Return To The Divine Tower Of Verdant Spring 🔒</a></li>
+        <li><a href="#c613">Chapter 613: Verdant Wave Canal 🔒</a></li>
+        <li><a href="#c614">Chapter 614: Grand Reception 🔒</a></li>
+        <li><a href="#c615">Chapter 615: Life Is A Play; It’s All About Acting 🔒</a></li>
+        <li><a href="#c616">Chapter 616: Employment Mode 🔒</a></li>
+        <li><a href="#c617">Chapter 617: Sumptuous Dinner 🔒</a></li>
+        <li><a href="#c618">Chapter 618: Spread Your Wings And Fly 🔒</a></li>
+        <li><a href="#c619">Chapter 619: Dendro Elemental Plane 🔒</a></li>
+        <li><a href="#c620">Chapter 620: Reprimanded by Lorianne 🔒</a></li>
+        <li><a href="#c621">Chapter 621: Slim Profits From Slave Trade 🔒</a></li>
+        <li><a href="#c622">Chapter 622: Switching Collaboration Modes 🔒</a></li>
+        <li><a href="#c623">Chapter 623: Can’t Help 🔒</a></li>
+        <li><a href="#c624">Chapter 624: Deployment 🔒</a></li>
+        <li><a href="#c625">Chapter 625: Caught Wind 🔒</a></li>
+        <li><a href="#c626">Chapter 626: Arrest Rescinded 🔒</a></li>
+        <li><a href="#c627">Chapter 627: Team 🔒</a></li>
+        <li><a href="#c628">Chapter 628: Area-of-Effect Spells 🔒</a></li>
+        <li><a href="#c629">Chapter 629: Conclusion 🔒</a></li>
+        <li><a href="#c630">Chapter 630: Increasing Payment 🔒</a></li>
+        <li><a href="#c631">Chapter 631: Young God of Smithing 🔒</a></li>
+        <li><a href="#c632">Chapter 632: Summoned By Mentor 🔒</a></li>
+        <li><a href="#c633">Chapter 633: Cover 🔒</a></li>
+        <li><a href="#c634">Chapter 634: Cheered Up By Natalya 🔒</a></li>
+        <li><a href="#c635">Chapter 635: End Of Thunderfall World War 🔒</a></li>
+        <li><a href="#c636">Chapter 636: Leena The Rank Two Black Mage 🔒</a></li>
+        <li><a href="#c637">Chapter 637: Introduction 🔒</a></li>
+        <li><a href="#c638">Chapter 638: Changes In The Family 🔒</a></li>
+        <li><a href="#c639">Chapter 639: Leena’s New Mentor 🔒</a></li>
+        <li><a href="#c640">Chapter 640: Altar of Flesh and Blood 🔒</a></li>
+        <li><a href="#c641">Chapter 641: Political Engagement 🔒</a></li>
+        <li><a href="#c642">Chapter 642: Eager 🔒</a></li>
+        <li><a href="#c643">Chapter 643: Hedge Mages of Viridescent Land 🔒</a></li>
+        <li><a href="#c644">Chapter 644: Mild Approach To Integration 🔒</a></li>
+        <li><a href="#c645">Chapter 645: Lorianne’s Worries 🔒</a></li>
+        <li><a href="#c646">Chapter 646: Legion Of Nearly A Million 🔒</a></li>
+        <li><a href="#c647">Chapter 647: Verdant Leaf World 🔒</a></li>
+        <li><a href="#c648">Chapter 648: Crisis 🔒</a></li>
+        <li><a href="#c649">Chapter 649: Gap In Quality 🔒</a></li>
+        <li><a href="#c650">Chapter 650: You Haven’t Used It? 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c601" data-label="601">
+<h2 class="chapter">Chapter 601: New Combat Mission 🔒</h2>
+<p>After the experiment concluded, Sein&#39;s laboratory was in disarray, yet he remained unfazed. His gaze followed the path Reina had taken in her escape, murmuring softly, “I can’t believe she managed to free herself after such a high dose of a body-weakening potion and being secured with a magic alloy restraint strong enough to hold an adult dragon…”</p>
+<p>In that moment, a flame ignited in Sein’s eyes.</p>
+<p>This was the state of a truth seeker upon discovering a profound truth.</p>
+<p>Countless insights and revelations now flashed through his mind.</p>
+<p>This was the way for mages to grow stronger!</p>
+<p>One might have expected Sein’s progress to slow after his advancement to Rank Two; at the very least,...</p>
+</article>
+<article id="c602" data-label="602">
+<h2 class="chapter">Chapter 602: Rights of the Weak 🔒</h2>
+<p>The interplanar war, in truth, had little to do with those who were truly weak.</p>
+<p>Their meager strength was insufficient to impact such a vast conflict.</p>
+<p>However, it was precisely because of their weakness that the shift in realm ownership affected them the most.</p>
+<p>Upon entering the Thunder Range, Sein frequently encountered weaker thunder creatures, including many Garths, millions of whom had been slaughtered in previous battles.</p>
+<p>Unlike their more formidable counterparts, these Garths had lighter skin and were considerably weaker, maybe even more than farmers in the Magus World.</p>
+<p>Sein referred to them in his crystal ball as “Mountain Garths.”</p>
+<p>In terms of individual strength, a strong male from...</p>
+</article>
+<article id="c603" data-label="603">
+<h2 class="chapter">Chapter 603: Negotiation 🔒</h2>
+<p>In the remote Thunderpoint Peak within the Thunder Range, Sein and his companions encountered the main highlight of their journey.</p>
+<p>This area, the highest point of the range, lay close to the clouds, where thunder and lightning were particularly intense.</p>
+<p>This resulted in an abundance of Thunderfall World’s specialty ores and other rare resources.</p>
+<p>During their ascent, Sein had collected many materials that piqued his interest. However, given the mission ahead, he could not indulge in a collecting spree.</p>
+<p>There was only so much he could do alone; if he truly wanted to gather quality electro-elemental materials, the most practical solution was to purchase them using magicoins from the fortress base.</p>
+<p>The occupation of numerous resource points and the defeat of the Garths Legion by the Order of the Steel Fist had yielded a vast array of electro...</p>
+</article>
+<article id="c604" data-label="604">
+<h2 class="chapter">Chapter 604: Alliance Structure 🔒</h2>
+<p>The sound of intense battle soon faded from the ears of Sein and his companions.</p>
+<p>The instigators of the conflict were primarily Garths who could fight within the Thunder Range.</p>
+<p>Many of these Garths had fled here, and some might have even participated in the bloody battle on the Thunder Plains over half a year ago.</p>
+<p>However, the routed troops were hardly a match for Sein’s well-led team.</p>
+<p>Not every Garth screamed and charged. Despite their numbers exceeding a million in the Thunder Range, only two to three thousand of them with combat capabilities fought bravely.</p>
+<p>The low turnout was largely because the vast majority were ordinary Garths lacking fighting skills. Additionally, the successive defeats of the Thunderfall World Army had demoralized those capable of fig...</p>
+</article>
+<article id="c605" data-label="605">
+<h2 class="chapter">Chapter 605: Seeing The World 🔒</h2>
+<p>&#34;In my 8,471-year-long life, I had the honor of communicating with two otherworldly planes through the Thunder Well,” the old Rank Three Thunder Lizard chief suddenly said.</p>
+<p>His voice was deep and buzzing, requiring Sein to focus intently to parse his words through mental focus in order to understand him.</p>
+<p>After the Thunder Lizard chief spoke, the initially irritable and uncontrollable ranked Thunder Lizards around them quieted down significantly.</p>
+<p>Its murky purple eyes flashed briefly.</p>
+<p>Looking at Sein, who stood at the forefront of the Magus World negotiation team, the Rank Three Thunder Lizard continued, “Birdfish Floral World and Windchaser World… Both have a...</p>
+</article>
+<article id="c606" data-label="606">
+<h2 class="chapter">Chapter 606: Mission Complete 🔒</h2>
+<p>When words failed to resolve conflicts, armed violence often became necessary.</p>
+<p>Reina’s fighting style was crude, but Sein had already expected this ever since he discovered that she had the ultimate truth of body tempering.</p>
+<p>In battle, Reina pushed violence and raw power to the extreme.</p>
+<p>With her octagonal hammer, capable of breaking a dragon’s spine, she delivered a crushing blow to the Rank Two Thunder Lizard’s head.</p>
+<p>The impact caused significant swelling near the lizard’s eye socket and left its brain reeling, briefly erasing its short-term memory.</p>
+<p>Remarkably, despite her size, Reina emitted no energy fluctuation until the moment of impact.</p>
+<p>Sein speculated that her substantial mass helped absorb much of the...</p>
+</article>
+<article id="c607" data-label="607">
+<h2 class="chapter">Chapter 607: Rank Four Knight’s Consideration 🔒</h2>
+<p>“Oh? The Tower Master of Verdant Spring’s apprentice? This young one named Sein did a pretty good job.”</p>
+<p>In the command room on the top floor of the space fortress, Rank Four Knight Brendek Satorra looked at the screen before him and chuckled.</p>
+<p>The screen displayed the impressive results achieved by Sein and his group in the Thunder Range.</p>
+<p>Since Sein had negotiated certain terms with the old Rank Three Giant Thunder Lizard chief on behalf of the Magus World, the order of the knights was paying closer attention to this matter.</p>
+<p>The terms Sein secured were reasonable, and the order could easily meet the Thunder Range’s demands.</p>
+<p>With the numbers of external support mages dwindling, the three orders in the Thunderfall World indeed needed a new source of power.</p>
+<p>It was...</p>
+</article>
+<article id="c608" data-label="608">
+<h2 class="chapter">Chapter 608: Seven Years 🔒</h2>
+<p>Seven years later, on the Scorched Plain on the outskirts of the Thunder Domain…</p>
+<p>The intermittent crackling of burning firewood and the occasional rumble of thunder intertwined with each other.</p>
+<p>Even so, Gould was sleeping soundly next to the campfire.</p>
+<p>Describing him as a dead pig might not be entirely accurate, considering that Gould, having indulged in high-purity specialty rum, was sprawled on the ground in his transformed state, resembling a six-meter-tall black bear with fur harder than steel.</p>
+<p>Seemingly caught in a pleasant dream, Gould chuckled, clutching his heavy sword before affectionately kissing it.</p>
+<p>The other Rank One and Two knights were not faring much better.</p>
+<p>Apart from Sein and Reina, who sat farther from the bonfire, most knights were somewhat inebriated.</p>
+<p>Natalya was even worse off, draping an arm around Sein, her breath heavy...</p>
+</article>
+<article id="c609" data-label="609">
+<h2 class="chapter">Chapter 609: Arrest 🔒</h2>
+<p>Thunderfall World experienced shorter days and nights compared to Magus World.</p>
+<p>The farther north one traveled, the shorter the days became and the longer the nights grew.</p>
+<p>Despite years in Thunderfall World, Sein’s perception of time remained anchored to that of Magus World.</p>
+<p>In fact, nearly all the knights and mages engaged in the interplanar war adhered to the Magus World’s time, reflecting their deep sense of belonging and identification with it—even while residing in a foreign plane far from their home.</p>
+<p>The skies of Thunderfall World were often shrouded in thick clouds. Even during the day, the Thunder Domain remained dimly lit.</p>
+<p>This region was perpetually...</p>
+</article>
+<article id="c610" data-label="610">
+<h2 class="chapter">Chapter 610: Protected 🔒</h2>
+<p>Talman was a demigod-level knight from the Order of the Steel Fist, overseeing the nearby war zone.</p>
+<p>While Sein and his group typically reported to the nearby Rank Three Sky Knights, they sometimes received direct orders from Talman.</p>
+<p>Over the past decade since his arrival in Thunderfall World, Sein had encountered the demigod-level knight three times.</p>
+<p>On one occasion, Talman even engaged in a rare, personal conversation with him, likely because he learned of Sein’s identity as the Tower Master of Verdant Spring’s apprentice.</p>
+<p>The shouts of the two knights caught the attention of those nearby, including Natalya.</p>
+<p>Upon hearing the word “arrest”, the surrounding knights initially froze, then erupted in indignant curses.</p>
+<p>Gould was particularly incensed....</p>
+</article>
+<article id="c611" data-label="611">
+<h2 class="chapter">Chapter 611: Letter For Lorianne 🔒</h2>
+<p>Sein met the demigod-level knight inside a large war airship.</p>
+<p>Talman was a middle-aged knight with short brown hair. Rather than heavy iron armor, he wore only simple leather armor.</p>
+<p>Upon meeting Sein, Talman displayed none of the majesty or solemnity typically associated with someone of his stature.</p>
+<p>Instead, he greeted Sein with a smile that immediately put him at ease.</p>
+<p>“Everything should be fine,” Sein thought to himself.</p>
+<p>“The grand master has also heard about your situation. The Order of the Steel Fist will not betray one of its own, so you can rest assured!” the demigod-ranked knight said with a reassuring smile.</p>
+<p>Talman himself was a branch hall master, so the “grand master” he spoke of...</p>
+</article>
+<article id="c612" data-label="612">
+<h2 class="chapter">Chapter 612: Return To The Divine Tower Of Verdant Spring 🔒</h2>
+<p>With the full support of the Order of the Steel Fist, Sein had just enough time to bid farewell to Natalya and the others through the knight badge before stepping into the teleportation array back to the Magus World.</p>
+<p>As members of the Magus Civilization, no matter how far they traveled, Magus World was always their home—a sanctuary for both mental and physical rejuvenation.</p>
+<p>It was only upon returning to the warm, welcoming embrace of Magus World that their bodies, wearied from a decade of interplanar war, could finally relax.</p>
+<hr class="separator">
+<p>Stepping out of the interplanar teleportation array, Sein found himself back in the Order of the Steel Fist’s main hall.</p>
+<p>Nestled among the mountains,...</p>
+</article>
+<article id="c613" data-label="613">
+<h2 class="chapter">Chapter 613: Verdant Wave Canal 🔒</h2>
+<p>“Indeed. The Divine Tower of Verdant Spring has certainly improved significantly in recent years. Many families are exploring opportunities here,” Harry, the Rank One knight, replied.</p>
+<p>“Not long ago, a merchant family from the East Coast proposed collaborating with the Divine Tower of Verdant Spring,” he added.</p>
+<p>Although Harry was a corpulent knight, he gave out a different aura than Reina. He was approachable and unimposing. Sein felt at ease when conversing with him. Not only that, he was also a master at ingratiating himself with others.</p>
+<p>“Have you been away for a long time, Master?” Harry ventured.</p>
+<p>After Sein nodded, Harry enthusiastically described the substantial developments at the Divine...</p>
+</article>
+<article id="c614" data-label="614">
+<h2 class="chapter">Chapter 614: Grand Reception 🔒</h2>
+<p>Tourmaline arrived at the Divine Tower of Verdant Spring seven years ago. Shortly after Sein left the Western Archipelago, she began her journey here too.</p>
+<p>Given the dragon turtle’s immense size, a land journey from the South Coast would have been impractical.</p>
+<p>Thus, as she departed from the Western Archipelago, the giant Mermaid, White Stella, had already made all the necessary arrangements.</p>
+<p>The Verdant Wave Canal, which connected directly to the South Coast, was constructed specifically to accommodate Tourmaline, allowing her easy passage not just to the Divine Tower of Verdant Spring, but also between the South Coast and the Western Archipelago.</p>
+<p>The vastness of the Magus World,...</p>
+</article>
+<article id="c615" data-label="615">
+<h2 class="chapter">Chapter 615: Life Is A Play; It’s All About Acting 🔒</h2>
+<p>After dropping Sein off at the Divine Tower of Verdant Spring, Tourmaline left to play in the north of the Jewel Sea.</p>
+<p>The dragon turtle’s enthusiasm for new experiences never waned.</p>
+<p>Despite having lived in the area for nearly seven years, Tourmaline never seemed to tire of her adventures here.</p>
+<p>When playtime exhausted her, she would take a nap—such was the simplicity of her daily routine.</p>
+<p>Tourmaline’s enduring curiosity might stem from an incident during her last nap, where she accidentally slept for three years in the eastern waters of the Jewel Sea.</p>
+<p>As a result, although she had been in the region for seven years, she had actually been awake for less than two, considering she had taken more than one nap during...</p>
+</article>
+<article id="c616" data-label="616">
+<h2 class="chapter">Chapter 616: Employment Mode 🔒</h2>
+<p>Others might be unaware of Sein’s background, but Lorianne certainly was not.</p>
+<p>She was convinced that the law enforcement knights of the Order of the Dark Sword were not mistaken in suspecting Sein of colluding with black mages.</p>
+<p>If that was not the case, why would Sein wander to remote regions like the Western Archipelago instead of popular destinations like the Alveroth Empire or Sky City?</p>
+<p>Even the realms of the Northern Witches Council and the territories of the Warlock Clan on the West Coast held more allure for a mage than the Western Archipelago.</p>
+<p>Knowing the truth, however, was one thing; determining the right course of action was another.</p>
+<p>There was no way Lorianne could push her own apprentice into the fire pit!</p>
+<p>The severity of Sein’s situation could vary greatly, depending...</p>
+</article>
+<article id="c617" data-label="617">
+<h2 class="chapter">Chapter 617: Sumptuous Dinner 🔒</h2>
+<p>After spending some time with Lorianne, Sein excused himself and returned to his own quarters.</p>
+<p>Lorianne had not made a decision; she was still considering her options.</p>
+<p>After all, decisions like these should not be made recklessly without much thought.</p>
+<p>Besides, the Divine Tower of Verdant Spring would also require some time to recruit forces and prepare. The Order of the Steel Fist did not expect the assembly of mages to be completed within just a few months either.</p>
+<p>Sein’s residence was located several floors below Lorianne’s in the divine tower.</p>
+<p>No matter the time of day, it was easy for Lorianne to locate Sein, and he was always welcome to visit her as well.</p>
+<p>After decades of travel, Sein had accumulated many questions and doubts from his experiments and training.</p>
+<p>Having just returned...</p>
+</article>
+<article id="c618" data-label="618">
+<h2 class="chapter">Chapter 618: Spread Your Wings And Fly 🔒</h2>
+<p>In the afternoon, Sein had already indulged in a hearty meal, and now he was seated for another lavish dinner.</p>
+<p>The dinner included elemental alcohol that Sein had crafted himself—a potent brew strong enough to inebriate even the battle-hardened knights.</p>
+<p>Therefore, it was unsurprising that Eileen and Selina, being relatively frail Rank One female mages, found themselves overwhelmed.</p>
+<p>Reflecting on his personal life, Sein realized he had abstained from intimate relationships for many years.</p>
+<p>Due to his rigorous body tempering experiments, Sein had a higher libido than most mages.</p>
+<p>However, the pressures of the Thunderfall World War and his intense focus on research had left little room for such activities.</p>
+<p>Now, back at the Divine Tower of Verdant Spring, the familiar and tranquil setting, along with the congenial company, rekindled his long-suppressed desires.</p>
+<p>In a bid to lighten the...</p>
+</article>
+<article id="c619" data-label="619">
+<h2 class="chapter">Chapter 619: Dendro Elemental Plane 🔒</h2>
+<p>Lorianne summoned Sein today, intending to discuss more than just her impending deployment to Thunderfall World.</p>
+<p>Sein, her apprentice, had proven to be a true blessing.</p>
+<p>Among his peers, Sein displayed a maturity and insight uncommon among low-ranked mages.</p>
+<p>“As soon as the Thunderfall World War concludes, it’s time for the Divine Tower of Verdant Spring to undertake new endeavors,” Lorianne declared abruptly.</p>
+<p>“Master Lorianne, have you identified another plane suitable for conquest?” Sein asked curiously.</p>
+<p>Lorianne was impressed that her apprentice caught on quickly without any explanation, mentally aligning his thoughts with hers.</p>
+<p>Lorianne nodded in response. “I currently have coordinates for two foreign worlds, both dendro elemental planes, but I have...</p>
+</article>
+<article id="c620" data-label="620">
+<h2 class="chapter">Chapter 620: Reprimanded by Lorianne 🔒</h2>
+<p>Over the past fifty years, the Divine Tower of Verdant Spring had experienced significant growth.</p>
+<p>Currently, the total number of registered mages within the Divine Towers exceeded two thousand—nearly doubled since before Sein left for his travels.</p>
+<p>These mages hail from diverse origins, including the Byrne Empire, the South Coast, and Viridescent Land.</p>
+<p>The presence of the Verdant Wave Canal had indeed impacted the Divine Tower of Verdant Spring significantly.</p>
+<p>Of these two thousand mages, Lorianne could usually draft at least a thousand into battle under normal circumstances, though the actual number might be slightly higher.</p>
+<p>The spoils from the last Viridian Venom Flame World war had prompted a number of less combat-oriented “academy mages” to reconsider their career.</p>
+<p>Besides, an academy mage was not an inherent role; one could...</p>
+</article>
+<article id="c621" data-label="621">
+<h2 class="chapter">Chapter 621: Slim Profits From Slave Trade 🔒</h2>
+<p>After Sein left the top floor of the divine tower, all mages, including Sein, received a message in their crystal ball.</p>
+<p>It was an announcement that the Divine Tower of Verdant Spring would soon participate in the war against Thunderfall World.</p>
+<p>Although joining the war was not mandatory, the excitement among the divine tower mages was palpable.</p>
+<p>As Sein descended from the top floor, he observed numerous full-fledged mages exiting their laboratories, whispering excitedly about the impending Thunderfall World War.</p>
+<p>The crystal ball update also clarified that all participating mages from the Divine Tower of Verdant Spring would join the Thunderfall World battlefield as external individual support.</p>
+<p>The three orders of the knights promised substantial employment fees to each mage. This, coupled with the allure of an unexplored...</p>
+</article>
+<article id="c622" data-label="622">
+<h2 class="chapter">Chapter 622: Switching Collaboration Modes 🔒</h2>
+<p>Sein did not spend too much time exchanging pleasantries with Luna.</p>
+<p>Their conversation was brief, mainly because they were not well acquainted and their meeting was purely driven by mutual benefits.</p>
+<p>Through Lorianne, Sein understood that the Divine Tower of Verdant Spring’s purchase of enslaved creatures from Luna’s tribe was inevitable.</p>
+<p>The question was not whether to buy, but how many to purchase.</p>
+<p>If Lorianne were to conquer that low-level dendro elemental plane, two hundred thousand enslaved creatures would not suffice. The demand could escalate to as many as three or even four hundred thousand.</p>
+<p>This figure was near the limit of...</p>
+</article>
+<article id="c623" data-label="623">
+<h2 class="chapter">Chapter 623: Can’t Help 🔒</h2>
+<p>After discussing their intentions to cooperate with Luna, Sein politely excused himself from the conversation and departed.</p>
+<p>Mages, after all, were perpetually busy, and he had little time to waste.</p>
+<p>Reflecting on his past, Sein realized he had always been a “busy man,” except for the times he and Leena traveled through the Western Archipelago, fully immersing themselves in the vibrant beauty of the world.</p>
+<p>Despite being under a hundred years old, he had already ascended to Rank Two.</p>
+<p>His achievements were not merely a product of potential and opportunity; it was primarily driven by his relentless effort.</p>
+<p>Unlike his peers,...</p>
+</article>
+<article id="c624" data-label="624">
+<h2 class="chapter">Chapter 624: Deployment 🔒</h2>
+<p>Sein’s intensive studies at the Divine Tower of Verdant Spring were abruptly concluded after just over half a year.</p>
+<p>On the eve of deployment, the divine tower had amassed a total of 1,579 full-fledged mages ready to participate in the Thunderfall World War.</p>
+<p>While the number of mages might seem small compared to older divine towers, which boasted over ten thousand registered mages and a history spanning tens of thousands of years, it was a considerable achievement.</p>
+<p>Considering that the Divine Tower of Verdant Spring was established merely three hundred years ago, its rapid growth was remarkable.</p>
+<p>In such a short time, it had registered more than two thousand mages, and for a single battle, could rally over fifteen hundred to fight.</p>
+<p>This made it the fastest-growing among all the newly...</p>
+</article>
+<article id="c625" data-label="625">
+<h2 class="chapter">Chapter 625: Caught Wind 🔒</h2>
+<p>When apprentices asked questions, it fell to the mentor to find ways to answer them.</p>
+<p>Although Lorianne was now a Rank Four mage, it did not change the fact that she was still the apprentice of Feylis, a Rank Six mage.</p>
+<p>The source of Feylis’ headache was not that Lorianne asked her difficult questions.</p>
+<p>Rather, it was that Lorianne often failed to grasp her explanations…</p>
+<p>The fundamentals of verdant flame magic were not inherently complex, yet Feylis, as a Rank Six mage, could not limit herself to merely superficial explanations of the element.</p>
+<p>If the transformation for Rank Three mages focused on the qualitative change in elemental energy, then for Rank Four and above, it shifted toward more complex applications, involving the manipulation of laws.</p>
+<p>When Feylis discussed the intricacies of verdant flame with Lorianne, her explanations naturally incorporated these complex laws.</p>
+<p>Lorianne was well-versed in the power of laws—she had already achieved notable accomplishments in the fields of dendrology and lifeology.</p>
+<p>However, the laws of verdant flame were another matte...</p>
+</article>
+<article id="c626" data-label="626">
+<h2 class="chapter">Chapter 626: Arrest Rescinded 🔒</h2>
+<p>“Order of the Dark Sword? All right, I’ll have a chat with them later. Since your apprentice managed to interact with White Stella’s family and befriend her sister, he must have a decent character,” Feylis said.</p>
+<p>“Accusing him of colluding with black mages is… quite a slur,” she added, shaking her head.</p>
+<p>Feylis had a favorable impression of Sein, although she was unaware of his past.</p>
+<p>Given Sein’s ability to forge connections with special beings like Tourmaline and White Stella, who were favored by the Magus World’s planar will, Feylis believed he could not be a bad person.</p>
+<p>Helping Sein clear his name with the Order of the Dark Sword was a trivial task to her.</p>
+<p>She suspected that the Rank Six knight in the Order of the Dark Sword was likely unaware of the situation. It was probably those lower down who had caused the whole issue.</p>
+<p>The grand...</p>
+</article>
+<article id="c627" data-label="627">
+<h2 class="chapter">Chapter 627: Team 🔒</h2>
+<p>It had been only a year since Sein left Thunderfall World, and now he was returning.</p>
+<p>Having a Rank Four tower master there certainly made things better!</p>
+<p>Upon their arrival in Thunderfall World, the employment contracts between the three knightly orders and the mages were facilitated by the Divine Tower of Verdant Spring, sparing the mages any administrative hassle.</p>
+<p>Although each mage was independently contracted in this interplanar war, the Divine Tower of Verdant Spring acted as their representative.</p>
+<p>According to the Divine Tower of Verdant Spring’s higher management, they had rejected the contract templates proposed by the Order of the Steel Fist thrice.</p>
+<p>Despite these rejections, the contracts were bound to be signed...</p>
+</article>
+<article id="c628" data-label="628">
+<h2 class="chapter">Chapter 628: Area-of-Effect Spells 🔒</h2>
+<p>Sein was right—ever since the Divine Tower of Verdant Spring entered this low-level interplanar battlefield, the density of magic elements in the skies over the Thunder Domain battlefield had increased tenfold.</p>
+<p>The command center recognized the critical importance of this location, deeming it even more vital than the Thunder Pool battlefield.</p>
+<p>This was primarily because the elite Garth legions had converged here, awaiting orders from the King of Garths.</p>
+<p>In contrast, the Thunder Pool battlefield drew mostly lesser creatures of Thunderfall World.</p>
+<p>Given its proximity to the planar barrier, the Thunder Pool was difficult for the Magus World Army to “cleanse” effectively.</p>
+<p>Should any harm come to Thunderfall World’s navel, it could disrupt...</p>
+</article>
+<article id="c629" data-label="629">
+<h2 class="chapter">Chapter 629: Conclusion 🔒</h2>
+<p>Sein commanded nine mages, over a hundred knights, and nearly four thousand extraplanar creatures upon his return to the battlefield of Thunderfall World.</p>
+<p>Having spent considerable time with the Order of the Steel Fist, Sein not only befriended demigod-level knights but became acquainted with many Sky Knights across neighboring battlefields.</p>
+<p>This significantly enhanced his autonomy on the Thunder Domain battlefield.</p>
+<p>Team cohesion was evident not only in command strategy but also in ensuring that every team member benefited from following him.</p>
+<p>This mutual benefit, combined with Sein&#39;s capabilities, ensured that everyone was satisfied with his leadership once the general offensive began.</p>
+<p>The battle in the Thunder Domain...</p>
+</article>
+<article id="c630" data-label="630">
+<h2 class="chapter">Chapter 630: Increasing Payment 🔒</h2>
+<p>“I didn’t expect you needed to secure a living Rank Four creature’s heart, Sir Thunder. That was really hard work for us,” Lorianne said, hovering above the clouds with a verdant green magic rod in hand.</p>
+<p>Although Lorianne appeared calm and her breathing was steady, her mana was severely depleted.</p>
+<p>This depletion, within just three and a half years, stemmed from a special request by the Rank Five knight, Thunder, after her arrival on the Thunderfall World’s battlefield.</p>
+<p>The Thunderfall World War had escalated; the knightly orders had suffered countless losses, and the number of knights who perished remained unknown.</p>
+<p>Lower-ranked knights and mages, including Sein, attributed this to the inherent...</p>
+</article>
+<article id="c631" data-label="631">
+<h2 class="chapter">Chapter 631: Young God of Smithing 🔒</h2>
+<p>In the Magus World, mages highly valued contracts, and their reputation for honoring signed agreements was renowned even in the neighboring star domains.</p>
+<p>The stability of the Magus Alliance was largely due to the reliability of the Magus World’s powerhouses in keeping their promises.</p>
+<p>With a law contract in place, the basic interests of the member planes and the foreign gods within the Magus Alliance were secured.</p>
+<p>The Magus World had consistently honored its agreements without publicly reneging on any contract.</p>
+<p>As a Rank Four mage, Lorianne was naturally committed to honoring contracts.</p>
+<p>However, she had yet to sign the contract with Thunder.</p>
+<p>Initially, the Order of the Thunder Knights had offered her an employment reward of 1.5 million magicoins. Believing there was room for...</p>
+</article>
+<article id="c632" data-label="632">
+<h2 class="chapter">Chapter 632: Summoned By Mentor 🔒</h2>
+<p>Lorianne was in a very good mood after securing a generous magicoin payment from Thunder.</p>
+<p>After her nod of approval, they signed a law contract right there.</p>
+<p>The binding power of law contracts surpassed the usual magic contracts familiar to Sein and other mages.</p>
+<p>This specific contract imposed severe consequences for violators, particularly those above Rank Four, serving as a formidable deterrent.</p>
+<p>With the contract finalized, Lorianne committed to returning to the Thunder Pool battlefield in six months before taking her leave.</p>
+<p>According to the contract’s stipulations, Lorianne had no entitlement to the post-war spoils of Thunderfall World, sparing her from any obligation to explore the plane’s riches.</p>
+<p>Besides, Lorianne’s...</p>
+</article>
+<article id="c633" data-label="633">
+<h2 class="chapter">Chapter 633: Cover 🔒</h2>
+<p>Lorianne’s sudden mention of Sein’s marriage with House Ernst immediately snapped Sein out of his deep thoughts.</p>
+<p>Given Lorianne’s role as his mentor, she was certainly entitled to address Sein’s “family affairs”.</p>
+<p>However, the topic of marriage and children did not seem to directly impact her.</p>
+<p>Sein looked at his young mentor with a mix of confusion and bewilderment.</p>
+<p>In response to Sein’s gaze, Lorianne remained composed.</p>
+<p>Unlike before, when she would have scolded him with a playful poke of her slender finger, she now spoke calmly.</p>
+<p>“Those law enforcement knights from the Order of the Dark Sword—they haven’t wronged you, have they?”</p>
+<p>“What exactly have you been doing in the Western Archipelago for the...</p>
+</article>
+<article id="c634" data-label="634">
+<h2 class="chapter">Chapter 634: Cheered Up By Natalya 🔒</h2>
+<p>After leaving Lorianne’s quarters, Sein returned to the Thunder Domain battlefield with thoughts racing in his mind.</p>
+<p>By this time, the Thunder Domain had largely quieted down. The knights and mages here were mostly scavenging the unique resources this low-level plane had to offer.</p>
+<p>With his mind preoccupied, Sein had lost his mood to continue scavenging for materials.</p>
+<p>After briefly meeting up with Natalya and the others, Sein headed to a magic tower within the fortress camp.</p>
+<p>With the conclusion of the Thunder Domain War, the fortress camps and magic towers set up by the Magus World Army would soon be dismantled.</p>
+<p>Equipment that could be reused would be transported back to the three orders...</p>
+</article>
+<article id="c635" data-label="635">
+<h2 class="chapter">Chapter 635: End Of Thunderfall World War 🔒</h2>
+<p>Of course, not all knights were thick-skinned.</p>
+<p>Natalya was an exception, choosing to overlook some of Sein’s “minor flaws” because of her feelings for him.</p>
+<p>In this world, it was not just men who pursued women shamelessly.</p>
+<p>When a woman set her heart on a man and pursued him relentlessly, even the coldest heart could be warmed over time.</p>
+<p>At this moment, Sein found himself deeply moved as he listened to Natalya.</p>
+<p>His relationship with Selina had developed through their daily interactions at the Divine Tower of Verdant Spring.</p>
+<p>His bond with Leena was forged during their time together at the Black Magic Academy in Mystralora City.</p>
+<p>Natalya was the first female knight who had truly...</p>
+</article>
+<article id="c636" data-label="636">
+<h2 class="chapter">Chapter 636: Leena The Rank Two Black Mage 🔒</h2>
+<p>After the Thunderfall World War, Sein could tell that his mentor, Lorianne, was in a good mood.</p>
+<p>This was likely due to the substantial magicoin proceeds that had eased her loan pressures.</p>
+<p>Sein’s earnings from the war in Thunderfall World were considerable. Over fifteen years, his efforts had accumulated a significant sum.</p>
+<p>Apart from various resources and special specimens collected during the war, Sein had amassed nearly six thousand purely in magicoin earnings.</p>
+<p>With such resources, mages like Sein could comfortably fund their experiments and research for many years to come.</p>
+<p>Sein spent this time indulging in experimental research, occasionally relaxing with Selina and Eileen, and strolling with friends.</p>
+<p>This simple,...</p>
+</article>
+<article id="c637" data-label="637">
+<h2 class="chapter">Chapter 637: Introduction 🔒</h2>
+<p>Sein took Leena to the laboratory on the top floor of the divine tower where his mentor, Lorianne, was apparently working on an experiment.</p>
+<p>They waited for a while before Lorianne finally emerged in a long light blue dress.</p>
+<p>Lorianne was generally laid-back, preferring comfort in her attire while at home and in her laboratory.</p>
+<p>She usually only dressed up for meetings with other mages of the divine towers or during official events.</p>
+<p>On a previous occasion, she had even met Sein while dressed in a nightgown.</p>
+<p>Before Sein could say anything, Lorianne recognized Leena immediately, thanks to her keen senses as a Rank Four mage.</p>
+<p>First impressions...</p>
+</article>
+<article id="c638" data-label="638">
+<h2 class="chapter">Chapter 638: Changes In The Family 🔒</h2>
+<p>After meeting with Lorianne, Sein took Leena for a stroll around the divine tower before heading directly to the divine tower library.</p>
+<p>Leena showed little interest in the bustling commercial area on the outskirts of the divine tower or the crowded divine tower academy.</p>
+<p>Like Sein, she was also an introvert drawn to the tranquility and rich collection hidden in the library.</p>
+<p>Despite her status as a Rank Two mage, she found the foundational materials for Rank One mages and even magic initiates particularly captivating.</p>
+<p>The vast repository of elemental knowledge within the library was enough to keep her occupied for over a decade.</p>
+<p>Sein understood the allure when he was just a humble magic initiate.</p>
+<p>Now that Leena had reached greater heights,...</p>
+</article>
+<article id="c639" data-label="639">
+<h2 class="chapter">Chapter 639: Leena’s New Mentor 🔒</h2>
+<p>The only witness to Sein and Leena’s wedding was Sev, the owl from Gloomhaven.</p>
+<p>Sein’s younger half-brother, Solon, probably knew about it since Sein had sourced some wedding supplies through him.</p>
+<p>Solon, however, did not pry much.</p>
+<p>After years apart, Sein noted that Solon’s demeanor had become far more composed.</p>
+<p>He was no longer the youth he once was, and Sein estimated that Solon would likely live another ten years or so.</p>
+<p>In the Magus World, living to about a hundred as an ordinary person was a privilege usually reserved for the noble class in favorable environments.</p>
+<p>Sein provided Solon with some potions he had crafted himself, using copious amounts...</p>
+</article>
+<article id="c640" data-label="640">
+<h2 class="chapter">Chapter 640: Altar of Flesh and Blood 🔒</h2>
+<p>Before Leena departed from the Divine Tower of Verdant Spring, she assisted Sein with completing an experiment.</p>
+<p>This experiment was centered on the modification of Heisse and the other sea lizards.</p>
+<p>Since they were born from an altar typically used for synthesizing undead chimera, they differed significantly from any known sea lizard species in the Magus World.</p>
+<p>These creatures were more like hybrid products of bloodline synthesis. Their genetic makeup combined sea lizard, dragon, deep-sea clam, marsh lizard, and various other genes.</p>
+<p>As synthetic creatures, their progression to Rank One deviated from that of natural life forms.</p>
+<p>During the Thunderfall World war, Heisse, the strongest of the siblings, was on the cusp of breaking through to...</p>
+</article>
+<article id="c641" data-label="641">
+<h2 class="chapter">Chapter 641: Political Engagement 🔒</h2>
+<p>After sending a congratulatory message to Marie on her promotion to Rank One, Sein returned to his routine of daily experiments.</p>
+<p>The Verdant Wave Canal truly eased the communication between the Viridescent Land and the South Coast.</p>
+<p>Since Marie mentioned that she could not visit the Divine Tower of Verdant Spring anytime soon, Sein could not help but wonder if it was because the Divine Tower of Dawn was on the brink of waging an interplanar war.</p>
+<p>Given Marie’s role as an apothecary, she could indeed prove more crucial than some seasoned mages in the upcoming conflict.</p>
+<p>Sein’s thoughts turned to interplanar wars, specifically the one Master Lorianne was soon to wage.</p>
+<p>It would be the first offensive led and initiated by the Divine Tower of Verdant Spring since its establishment.</p>
+<p>This war, irrespective of its scale,...</p>
+</article>
+<article id="c642" data-label="642">
+<h2 class="chapter">Chapter 642: Eager 🔒</h2>
+<p>House Ernst was a huge family, consisting of several main lineages, with a significant number of members from the side branches.</p>
+<p>At the banquet, nearly a hundred knights bearing the Ernst surname were present.</p>
+<p>Among them, six were Rank Two knights, including Natalya.</p>
+<p>Two were Rank Three knights, one was Sein’s future mother-in-law.</p>
+<p>Sein’s future father-in-law, Wilson, was absent.</p>
+<p>He was reportedly in Thunderfall World, assisting Steel Fist the Rank Four knight.</p>
+<p>The demigod-level knight of House Ernst was not present either.</p>
+<p>Nevertheless, both of them would be attending Sein’s wedding ceremony. Master Lorianne would likely make a brief appearance too.</p>
+<p>The event was sure to be lively.</p>
+<p>Scarlet, whose real...</p>
+</article>
+<article id="c643" data-label="643">
+<h2 class="chapter">Chapter 643: Hedge Mages of Viridescent Land 🔒</h2>
+<p>Three years later…</p>
+<p>It had been nearly a decade since the Thunderfall World War had concluded.</p>
+<p>With the Divine Tower of Verdant Spring’s official declaration and the various supportive policies of the divine tower, almost all the registered mages were aware of the impending assault on a microplane, known as the Verdant Leaf World.</p>
+<p>This would be a solo endeavor by the Divine Tower of Verdant Spring, meaning no other divine towers or orders of the knights would participate in this interplanar conflict.</p>
+<p>Such military initiatives by a single divine tower were no longer common in the recent history of the Magus World’s foreign wars.</p>
+<p>Yet, given the inherent weakness of a microplane, the strength of the Divine Tower of Verdant Spring should make this a manageable challenge.</p>
+<p>Significant developments...</p>
+</article>
+<article id="c644" data-label="644">
+<h2 class="chapter">Chapter 644: Mild Approach To Integration 🔒</h2>
+<p>Sein knew his mentor secretly abhorred those mage councils in the Viridescent Land.</p>
+<p>When the Divine Tower of Verdant Spring was first established, these organizations fiercely competed for local resources, severely impeding its early growth.</p>
+<p>Reflecting on the initial one to two hundred years, the Divine Tower of Verdant Spring struggled so hard to recruit initiates.</p>
+<p>Despite offering various welfare policies, the enrollment numbers remained low and the quality of initiates was poor.</p>
+<p>Dean Archimedes even introduced the concept of “commoner mages” as a supportive measure.</p>
+<p>Was the problem with the initiates of Viridescent Land?</p>
+<p>Certainly not!</p>
+<p>Rather, the most promising local initiates, who should have been drawn to the Divine...</p>
+</article>
+<article id="c645" data-label="645">
+<h2 class="chapter">Chapter 645: Lorianne’s Worries 🔒</h2>
+<p>On this particular day, Sein found himself visiting his mentor once again.</p>
+<p>He had requested that Lorianne order a small energy generator from the Capiche Business Alliance on his behalf.</p>
+<p>It was a device typically employed in space fortresses and, on rarer occasions, in war airships and their modified counterparts.</p>
+<p>Sein had acquired this energy generator for Yuri.</p>
+<p>Over the past few years, he had been buying a number of spare parts for Yuri, including several original pieces from the Neisse Civilization’s constructs and mecha factory in Steel City.</p>
+<p>With Sein’s help and a slew of top-tier parts, Yuri’s Burning Flame Unit had undergone significant upgrades from the inside out.</p>
+<p>As an alchemist, Sein was extremely interested in Yuri&#39;s mecha units.</p>
+<p>Their combined efforts significantly enhanced the Burning Flame Unit’s...</p>
+</article>
+<article id="c646" data-label="646">
+<h2 class="chapter">Chapter 646: Legion Of Nearly A Million 🔒</h2>
+<p>Although Lorianne harbored some concerns about the impending war, the preparations were proceeding smoothly.</p>
+<p>The Luna’s tribe from the Centaurworld had already communicated their readiness to the Divine Tower of Verdant Spring.</p>
+<p>They had rallied not only nearly a hundred fifty thousand centaur warriors but also over three hundred thousand minotaurlings, surpassing the divine tower’s initial estimates.</p>
+<p>Furthermore, these centaurs reported that their reserves could muster an additional one to two hundred thousand minotaurlings at any time needed.</p>
+<p>This commitment suggested that Luna’s tribe was staking their future on the outcome of this battle.</p>
+<p>During negotiations, Luna boldly claimed...</p>
+</article>
+<article id="c647" data-label="647">
+<h2 class="chapter">Chapter 647: Verdant Leaf World 🔒</h2>
+<p><em>Verdant Leaf World.</em></p>
+<p>That was the name Lorianne bestowed upon the microplane upon its discovery.</p>
+<p>She chose the name for its lush vegetation, with land vegetation coverage nearing seventy percent.</p>
+<p>In the oceans covering seventy percent of the entire world map, a significant variety of marine plants thrived as well.</p>
+<p>Water was indeed the source of life.</p>
+<p>Originally, this microplane was known as the “Bamboo Leaf Dragonfly World”, named after its primary inhabitants, the “Bamboo Leaf Dragonfly Clan”.</p>
+<p>It was common for the dominant intelligent race of a world to imprint its identity onto its homeplane’s name.</p>
+<p>However, the Bamboo Leaf Dragonfly Clan was...</p>
+</article>
+<article id="c648" data-label="648">
+<h2 class="chapter">Chapter 648: Crisis 🔒</h2>
+<p>Crises arose not only from natural disasters but also from the deeds of men.</p>
+<p>The Guardian, Ancient Verdant Banyan, was a creature of profound insight and experience.</p>
+<p>Despite its tens of thousands of years, the guardian had never encountered an otherworldly creature.</p>
+<p>However, its predecessor—the guardian who entrusted it with this role three thousand years ago—had indeed encountered such beings and passed down this critical knowledge through a form of life inheritance.</p>
+<p>For the first half of its existence, the Ancient Verdant Banyan lived in blissful ignorance.</p>
+<p>Plant creatures, excluding certain exceptional species, lacked natural intelligence.</p>
+<p>Originating from a seed in a mountain gorge, this banyan tree did not gain sentience or the capacity for judgment until it reached the age of two thousand years, marking its evolution from a mere tree into an intelligent entity.</p>
+<p>This type of plant creature differed significantly from the ones...</p>
+</article>
+<article id="c649" data-label="649">
+<h2 class="chapter">Chapter 649: Gap In Quality 🔒</h2>
+<p>Beside Lorianne stood Sein, nine Rank Three grand mages, and a female centaur with flowing gold and silver hair.</p>
+<p>These nine grand mages were either already registered with the Divine Tower of Verdant Spring, or about to join it.</p>
+<p>The presence of the old dean from the divine tower academy, Master Archimedes, indicated the significance of their tower. Even venerable figures like Master Archimedes made their way to Verdant Leaf World to contribute.</p>
+<p>The female centaur with long golden and silver hair was Maya, the ancestor of Luna’s tribe.</p>
+<p>In this interplanar war, the Maya tribe had deployed half a million...</p>
+</article>
+<article id="c650" data-label="650">
+<span id="last"></span>
+<h2 class="chapter">Chapter 650: You Haven’t Used It? 🔒</h2>
+<p>“According to my observations, there is a total of five demigod-level creatures in that microplane. One of the creatures’ soul flame appears quite dull and likely won’t live long,” Lorianne calmly announced from her seat at the head of the table.</p>
+<p>“Another is the guardian of that microplane, dwelling in the southeastern part of the Verdant Leaf World,” she added.</p>
+<p>No matter how stressed out and worried Lorianne felt about the interplanar war, she maintained a stoic and indifferent demeanor in front of other divine tower mages and outsiders.</p>
+<p>This facade undoubtedly helped to calm the minds of the less experienced mages within the Divine Tower of Verdant Spring.</p>
+<p>Even the Rank Three beings in the magic tower...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="651-700.html" rel="next">Next: Chs 651–700 &rarr;</a>
+    <p class="page-end-links"><a href="551-600.html" rel="prev">&larr; Chs 551–600</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 601–650</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c601">Chapter 601: New Combat Mission 🔒</a></li>
+        <li><a href="#c602">Chapter 602: Rights of the Weak 🔒</a></li>
+        <li><a href="#c603">Chapter 603: Negotiation 🔒</a></li>
+        <li><a href="#c604">Chapter 604: Alliance Structure 🔒</a></li>
+        <li><a href="#c605">Chapter 605: Seeing The World 🔒</a></li>
+        <li><a href="#c606">Chapter 606: Mission Complete 🔒</a></li>
+        <li><a href="#c607">Chapter 607: Rank Four Knight’s Consideration 🔒</a></li>
+        <li><a href="#c608">Chapter 608: Seven Years 🔒</a></li>
+        <li><a href="#c609">Chapter 609: Arrest 🔒</a></li>
+        <li><a href="#c610">Chapter 610: Protected 🔒</a></li>
+        <li><a href="#c611">Chapter 611: Letter For Lorianne 🔒</a></li>
+        <li><a href="#c612">Chapter 612: Return To The Divine Tower Of Verdant Spring 🔒</a></li>
+        <li><a href="#c613">Chapter 613: Verdant Wave Canal 🔒</a></li>
+        <li><a href="#c614">Chapter 614: Grand Reception 🔒</a></li>
+        <li><a href="#c615">Chapter 615: Life Is A Play; It’s All About Acting 🔒</a></li>
+        <li><a href="#c616">Chapter 616: Employment Mode 🔒</a></li>
+        <li><a href="#c617">Chapter 617: Sumptuous Dinner 🔒</a></li>
+        <li><a href="#c618">Chapter 618: Spread Your Wings And Fly 🔒</a></li>
+        <li><a href="#c619">Chapter 619: Dendro Elemental Plane 🔒</a></li>
+        <li><a href="#c620">Chapter 620: Reprimanded by Lorianne 🔒</a></li>
+        <li><a href="#c621">Chapter 621: Slim Profits From Slave Trade 🔒</a></li>
+        <li><a href="#c622">Chapter 622: Switching Collaboration Modes 🔒</a></li>
+        <li><a href="#c623">Chapter 623: Can’t Help 🔒</a></li>
+        <li><a href="#c624">Chapter 624: Deployment 🔒</a></li>
+        <li><a href="#c625">Chapter 625: Caught Wind 🔒</a></li>
+        <li><a href="#c626">Chapter 626: Arrest Rescinded 🔒</a></li>
+        <li><a href="#c627">Chapter 627: Team 🔒</a></li>
+        <li><a href="#c628">Chapter 628: Area-of-Effect Spells 🔒</a></li>
+        <li><a href="#c629">Chapter 629: Conclusion 🔒</a></li>
+        <li><a href="#c630">Chapter 630: Increasing Payment 🔒</a></li>
+        <li><a href="#c631">Chapter 631: Young God of Smithing 🔒</a></li>
+        <li><a href="#c632">Chapter 632: Summoned By Mentor 🔒</a></li>
+        <li><a href="#c633">Chapter 633: Cover 🔒</a></li>
+        <li><a href="#c634">Chapter 634: Cheered Up By Natalya 🔒</a></li>
+        <li><a href="#c635">Chapter 635: End Of Thunderfall World War 🔒</a></li>
+        <li><a href="#c636">Chapter 636: Leena The Rank Two Black Mage 🔒</a></li>
+        <li><a href="#c637">Chapter 637: Introduction 🔒</a></li>
+        <li><a href="#c638">Chapter 638: Changes In The Family 🔒</a></li>
+        <li><a href="#c639">Chapter 639: Leena’s New Mentor 🔒</a></li>
+        <li><a href="#c640">Chapter 640: Altar of Flesh and Blood 🔒</a></li>
+        <li><a href="#c641">Chapter 641: Political Engagement 🔒</a></li>
+        <li><a href="#c642">Chapter 642: Eager 🔒</a></li>
+        <li><a href="#c643">Chapter 643: Hedge Mages of Viridescent Land 🔒</a></li>
+        <li><a href="#c644">Chapter 644: Mild Approach To Integration 🔒</a></li>
+        <li><a href="#c645">Chapter 645: Lorianne’s Worries 🔒</a></li>
+        <li><a href="#c646">Chapter 646: Legion Of Nearly A Million 🔒</a></li>
+        <li><a href="#c647">Chapter 647: Verdant Leaf World 🔒</a></li>
+        <li><a href="#c648">Chapter 648: Crisis 🔒</a></li>
+        <li><a href="#c649">Chapter 649: Gap In Quality 🔒</a></li>
+        <li><a href="#c650">Chapter 650: You Haven’t Used It? 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="551-600.html" rel="prev">&larr; Chs 551–600</a>    <a href="../../index.html">Library</a>
+<a href="651-700.html" rel="next">Chs 651–700 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

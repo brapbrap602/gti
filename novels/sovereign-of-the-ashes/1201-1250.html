@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1201–1250</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1151-1200.html#last" data-next-page="1251-1300.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1201">Chapter 1201: Reaching Out 🔒</a></li>
+        <li><a href="#c1202">Chapter 1202: Empty Promise 🔒</a></li>
+        <li><a href="#c1203">Chapter 1203: The Empire’s Benefits 🔒</a></li>
+        <li><a href="#c1204">Chapter 1204: Ideal and Reality 🔒</a></li>
+        <li><a href="#c1205">Chapter 1205: The Scales of Conservation 🔒</a></li>
+        <li><a href="#c1206">Chapter 1206: Impressive Fortune 🔒</a></li>
+        <li><a href="#c1207">Chapter 1207: Darwell Region 🔒</a></li>
+        <li><a href="#c1208">Chapter 1208: Site Selection 🔒</a></li>
+        <li><a href="#c1209">Chapter 1209: The Spider Queen’s Assistance 🔒</a></li>
+        <li><a href="#c1210">Chapter 1210: Asserting Rights 🔒</a></li>
+        <li><a href="#c1211">Chapter 1211: “Oversight” 🔒</a></li>
+        <li><a href="#c1212">Chapter 1212: The Divine Tower of Ashes 🔒</a></li>
+        <li><a href="#c1213">Chapter 1213: Massive Loan 🔒</a></li>
+        <li><a href="#c1214">Chapter 1214: Artificial Lake 🔒</a></li>
+        <li><a href="#c1215">Chapter 1215: Reyno Star City 🔒</a></li>
+        <li><a href="#c1216">Chapter 1216: Money-Squandering Den 🔒</a></li>
+        <li><a href="#c1217">Chapter 1217: Prosperity 🔒</a></li>
+        <li><a href="#c1218">Chapter 1218: The Casino 🔒</a></li>
+        <li><a href="#c1219">Chapter 1219: Sophisticated Old Man 🔒</a></li>
+        <li><a href="#c1220">Chapter 1220: Gambling Skill 🔒</a></li>
+        <li><a href="#c1221">Chapter 1221: Snapping Back To Reality 🔒</a></li>
+        <li><a href="#c1222">Chapter 1222: Bet 🔒</a></li>
+        <li><a href="#c1223">Chapter 1223: The White Sand World 🔒</a></li>
+        <li><a href="#c1224">Chapter 1224: Gifts 🔒</a></li>
+        <li><a href="#c1225">Chapter 1225: Crescent Bay 🔒</a></li>
+        <li><a href="#c1226">Chapter 1226: Goodwill 🔒</a></li>
+        <li><a href="#c1227">Chapter 1227: Teleportation Array 🔒</a></li>
+        <li><a href="#c1228">Chapter 1228: Cracking Down on Black Mages’ Activities 🔒</a></li>
+        <li><a href="#c1229">Chapter 1229: Lawful Material 🔒</a></li>
+        <li><a href="#c1230">Chapter 1230: Diplomatic Maneuvering 🔒</a></li>
+        <li><a href="#c1231">Chapter 1231: Legions Assembled 🔒</a></li>
+        <li><a href="#c1232">Chapter 1232: Setting Out 🔒</a></li>
+        <li><a href="#c1233">Chapter 1233: Space Fortress’ Performance 🔒</a></li>
+        <li><a href="#c1234">Chapter 1234: An Isolated World 🔒</a></li>
+        <li><a href="#c1235">Chapter 1235: Breaking the Barrier 🔒</a></li>
+        <li><a href="#c1236">Chapter 1236: Disaster Approaches 🔒</a></li>
+        <li><a href="#c1237">Chapter 1237: Response 🔒</a></li>
+        <li><a href="#c1238">Chapter 1238: Giant Flame Demon 🔒</a></li>
+        <li><a href="#c1239">Chapter 1239: Scrutiny of a Divine Eye 🔒</a></li>
+        <li><a href="#c1240">Chapter 1240: Reckless 🔒</a></li>
+        <li><a href="#c1241">Chapter 1241: The Eternal Sand Lord’s Advice 🔒</a></li>
+        <li><a href="#c1242">Chapter 1242: Surrender Negotiations 🔒</a></li>
+        <li><a href="#c1243">Chapter 1243: Joining the Alliance 🔒</a></li>
+        <li><a href="#c1244">Chapter 1244: A Plane’s Wealth 🔒</a></li>
+        <li><a href="#c1245">Chapter 1245: Agreement 🔒</a></li>
+        <li><a href="#c1246">Chapter 1246: Conditions 🔒</a></li>
+        <li><a href="#c1247">Chapter 1247: The Breakout of the White-Winged Bird King 🔒</a></li>
+        <li><a href="#c1248">Chapter 1248: Frantic Escape 🔒</a></li>
+        <li><a href="#c1249">Chapter 1249: War Spoils 🔒</a></li>
+        <li><a href="#c1250">Chapter 1250: Diplomatic Mission 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1201" data-label="1201">
+<h2 class="chapter">Chapter 1201: Reaching Out 🔒</h2>
+<p>Upon hearing that Bousse had extended his lifespan by purchasing an Activator Fairy Potion and successfully advanced to the late stages of Rank One, Sein could not help but feel a little emotional.</p>
+<p>The higher life level one reached, the fewer friends they tended to have.</p>
+<p>This was simply because those who once walked beside them often fell behind or perished along the way.</p>
+<p>Sein was genuinely glad that Selina and the others had managed to advance.</p>
+<p>But seeing Bousse again brought his thoughts back to Marie, who remained far away in the Divine Tower of Dawn.</p>
+<p>Of the few companions he had made during his black magic initiate days, only Marie was still around.</p>
+<p>It had been many years since they last...</p>
+</article>
+<article id="c1202" data-label="1202">
+<h2 class="chapter">Chapter 1202: Empty Promise 🔒</h2>
+<p>“What do you want now?!” the Spider Queen snapped impatiently.</p>
+<p>But before Sein could respond, she sensed something and immediately conjured a flash of golden light in front of him. In the next moment, her divine clone materialized before him.</p>
+<p>Being able to summon a clone so effortlessly came down to two key factors: first, they were inside the Magus World; and second, her temple was nearby.</p>
+<p>If they had been on a foreign plane, even with the Silver Spider Ring, summoning a divine clone would have taken a considerable toll on the Spider Queen.</p>
+<p>Once she appeared, the Spider Queen grabbed Sein’s arm.</p>
+<p>Closing her eyes, she focused for a few seconds, then opened them in surprise. “You’ve already advanced to Rank Four?”</p>
+<p>Of course, she had not seen...</p>
+</article>
+<article id="c1203" data-label="1203">
+<h2 class="chapter">Chapter 1203: The Empire’s Benefits 🔒</h2>
+<p>After leaving the Underworld, Sein flew straight north toward the Alveroth Empire.</p>
+<p>The prosperous Alveroth truly lived up to its name as the “Magic Empire”.</p>
+<p>Compared to other regions, the atmosphere here was clearly more welcoming to spellcasters.</p>
+<p>Thanks to the widespread adoption of magic, its infrastructure far surpassed that of most other places in the Magus World.</p>
+<p>Now a powerful Rank Four spellcaster, Sein arrived in a major city in the southern part of the empire.</p>
+<p>Upon releasing a trace of his Rank Four aura, official representatives from the empire quickly made contact.</p>
+<p>“Esteemed Master, is there anything I can assist you with?” a Rank Three grand mage asked respectfully as he approached Sein.</p>
+<p>“I recently...</p>
+</article>
+<article id="c1204" data-label="1204">
+<h2 class="chapter">Chapter 1204: Ideal and Reality 🔒</h2>
+<p>The greater the expectation, the greater the disappointment.</p>
+<p>Aside from the four nearby vacant planar nodes, Sein had inspected a total of seventeen in the southern region of the Alveroth Empire with the demigod-level mage named Schubert.</p>
+<p>Sadly, not a single one met his standards.</p>
+<p>Their pyro elemental laws were either far too weak, or so strong that the entire surrounding area was a sea of fire or dormant volcanoes. The terrain was so harsh that even airships carrying initiates would have trouble landing.</p>
+<p>Then there were nodes with mixed elemental energies that simply did not align with Sein’s affinity.</p>
+<p>One particular node did meet his minimum requirements, but it came with one major drawback: there were already...</p>
+</article>
+<article id="c1205" data-label="1205">
+<h2 class="chapter">Chapter 1205: The Scales of Conservation 🔒</h2>
+<p>After leaving the Magic Empire with a hint of regret, Sein set off toward the Capiche Business Alliance.</p>
+<p>This was not his first time visiting the Capiche Business Alliance. As he watched the countless space fortresses and airships flying in the sky, Sein could not help but feel a touch of envy.</p>
+<p>Given his current financial situation, purchasing a space fortress remained a dream.</p>
+<p>Besides, it would have to come <em>after </em>the construction of his divine tower.</p>
+<p>Without enough full-fledged mages to operate one, a space fortress would be nothing more than a “metal box toy”.</p>
+<p>The Capiche Business Alliance remained a picture of extreme prosperity.</p>
+<p>But unlike the Alveroth Empire, this kind...</p>
+</article>
+<article id="c1206" data-label="1206">
+<h2 class="chapter">Chapter 1206: Impressive Fortune 🔒</h2>
+<p>After pouring out two-thirds of the resources from the space conch, Sein finally stopped.</p>
+<p>Although he had stored a wide variety of useful materials in his laboratory at the Divine Tower of Verdant Spring, he still preferred to keep some in reserve. That was just how he was—cautious by nature.</p>
+<p>Even though it was only two-thirds of the total, what he had poured out caused the small hill on the scale plate to rise nearly two hundred meters high.</p>
+<p>The sheer volume was astonishing.</p>
+<p>And on top of that, there were almost no low-grade materials. Even the lowest-grade ones were still useful for Rank One mages.</p>
+<p>“You can begin the appraisal. I need to know their value as...</p>
+</article>
+<article id="c1207" data-label="1207">
+<h2 class="chapter">Chapter 1207: Darwell Region 🔒</h2>
+<p>After wrapping up his transaction with the Capiche Business Alliance, Sein took a moment to think.</p>
+<p>Instead of continuing his journey east or west, he decided to head straight back to the Divine Tower of Verdant Spring.</p>
+<p>When ideals fell short, it was best to return to reality.</p>
+<p>There were still plenty of undeveloped regions in Magus World.</p>
+<p>After all, it was a vast world.</p>
+<p>Even with close to ten thousand divine towers scattered across it, they were still spaced far apart.</p>
+<p>Many magic initiates lived their entire lives without ever coming across a divine tower, let alone stepping inside one.</p>
+<p>To most lesser beings, divine towers remained symbols of “mystery” and “power.”</p>
+<p>The area surrounding the Viridescent Land was essentially still untapped.</p>
+<p>One simple indicator...</p>
+</article>
+<article id="c1208" data-label="1208">
+<h2 class="chapter">Chapter 1208: Site Selection 🔒</h2>
+<p>The underground world was a maze of winding, interconnected tunnels, and the cave entrance Sein had entered this time was not the same one he had used to leave years ago.</p>
+<p>Still, relying on his memory and sense of direction, Sein managed to navigate through alternate paths toward the ruins of Mystralora City.</p>
+<p>After thousands of years of change, what used to be the site of Mystralora had turned into a sea of magma.</p>
+<p>Crimson-red magma flowed slowly before him, casting a fiery glow across the cavern walls.</p>
+<p>Only along the fringes of this molten expanse could one still make out a few heavily eroded remnants of stone structures.</p>
+<p>Returning to this place stirred something deep in Sein.</p>
+<p>Back then, he had just been a...</p>
+</article>
+<article id="c1209" data-label="1209">
+<h2 class="chapter">Chapter 1209: The Spider Queen’s Assistance 🔒</h2>
+<p>“Master Sein, why do you want to build your divine tower here?” asked the overseer sent by the Magus Alliance—a Rank Four knight named Tesdor.</p>
+<p>Though he was a knight, Tesdor was an experienced and knowledgeable overseer who had already assisted two mages and four knights in establishing their divine towers and knightly orders.</p>
+<p>That was why he seemed genuinely surprised that Sein had chosen the Darwell Region for his divine tower.</p>
+<p>“Because the laws and environment here are unique. They’re a perfect match for the elemental arcana I’m exploring,” Sein replied.</p>
+<p>Tesdor nodded and sighed. “The rampant activity of black mages in Darwell has persisted for tens of thousands of years, despite multiple efforts...</p>
+</article>
+<article id="c1210" data-label="1210">
+<h2 class="chapter">Chapter 1210: Asserting Rights 🔒</h2>
+<p>When Sein began the construction of his divine tower, the changes he brought to those around him were significant.</p>
+<p>Natalya barely knew what was happening. She was only aware that Sein had been promoted to demigod.</p>
+<p>However, a demigod-level being and a Rank Four creature were two very different things.</p>
+<p>Now, all of a sudden, her husband had become a Rank Four powerhouse and was about to become a divine tower master.</p>
+<p>Though she had always been pretty thick-skinned, even Natalya felt a little dizzy from the news.</p>
+<p>Even Sein’s mother-in-law, Sia, looked completely dazed.</p>
+<p>House Ernst and House Grantt were among those most affected.</p>
+<p>But due to internal issues within House Ernst, the...</p>
+</article>
+<article id="c1211" data-label="1211">
+<h2 class="chapter">Chapter 1211: “Oversight” 🔒</h2>
+<p>“Hephaes is the centaur god I had a contract with. I recently found out he was killed, and I want all of you to explain what happened!”</p>
+<p>Lorianne got straight to the point the moment they met, her tone sharp and commanding.</p>
+<p>It was the first time Sein had ever seen this side of his mentor.</p>
+<p>The representative from Centaurworld was also a Rank Four centaur god.</p>
+<p>None of them had expected a Magus World powerhouse to investigate Hephaes’ death suddenly.</p>
+<p>Hephaes had died during the interplanar war launched by the two knightly orders in the Western Archipelago.</p>
+<p>The Magus Alliance and the two orders of knights had already compensated Centaurworld for the loss.</p>
+<p>If the case...</p>
+</article>
+<article id="c1212" data-label="1212">
+<h2 class="chapter">Chapter 1212: The Divine Tower of Ashes 🔒</h2>
+<p>Although it had clearly been a malicious scheme targeting a Rank Four being, after several heated discussions between Sein and the Rank Four centaur god, the matter was conveniently reframed as a case of “oversight” and “misunderstanding”.</p>
+<p>It was not that the world was dark—this was just how reality worked.</p>
+<p>Besides, Hephaes had not actually died because his allies turned a blind eye to his plight, nor had he been slain in some desperate counterattack by extraplanar creatures.</p>
+<p>He had died by his own hand.</p>
+<p>Drunk on arrogance and sudden wealth, his end was neither tragic nor worth pitying.</p>
+<p>The centaur god sent to handle this matter was named Hecam.</p>
+<p>He had long, pure white hair, as well as strength and presence that far outclassed those of the...</p>
+</article>
+<article id="c1213" data-label="1213">
+<h2 class="chapter">Chapter 1213: Massive Loan 🔒</h2>
+<p>If the construction of a divine tower started at around ten million magicoins, expanding it to include both upper and lower sections would raise the cost to at least sixteen million.</p>
+<p>However, to build the upper, middle, and lower sections as proposed by Master Wenger, the total cost would likely exceed twenty million magicoins!</p>
+<p>Putting aside the staggering expense, once Sein’s divine tower was complete, the power it granted him would reach its peak.</p>
+<p>The pyro elemental law deep within the underground veins that Master Wenger had mentioned was precisely what Sein needed in his pursuit of the power of ashes.</p>
+<p>For Sein, trading resources for accelerated growth was more than worth it.</p>
+<p>“So, roughly how many...</p>
+</article>
+<article id="c1214" data-label="1214">
+<h2 class="chapter">Chapter 1214: Artificial Lake 🔒</h2>
+<p>In the twentieth year of constructing the Divine Tower of Ashes, Tourmaline came to visit Sein.</p>
+<p>She had already returned to Magus World some time ago, but Sein had been too busy surveying various regions to visit her.</p>
+<p>Tourmaline was quite pleased with Sein’s decision to establish his divine tower in Darwell.</p>
+<p>For one, the location was not far from Jewel Bay and the Boundless South Sea, making it convenient for her to travel between them.</p>
+<p>Second, while the site Sein had chosen contained abundant pyro elemental law deep underground, the surface and surrounding areas did not have enough heat to make Tourmaline uncomfortable.</p>
+<p>“Can I dig a lake here? I have always wanted...</p>
+</article>
+<article id="c1215" data-label="1215">
+<h2 class="chapter">Chapter 1215: Reyno Star City 🔒</h2>
+<p>As construction on the Divine Tower of Ashes got underway and Tourmaline began her large-scale excavation project, the Darwell Region started to transform.</p>
+<p>The knights of House Grantt took the lead to purge bandits and thieves throughout the region that was now officially known as Ashenreach.</p>
+<p>Black mages were also rooted out, and order gradually returned to what had once been a chaotic and lawless region.</p>
+<p>One of the top priorities was to put an end to the old pattern of city-states developing independently.</p>
+<p>At the very least, the scattered settlements would be unified to support Sein’s recruitment efforts for his divine tower and to lay the groundwork for broader regional development.</p>
+<p>Although the knights of House Grantt...</p>
+</article>
+<article id="c1216" data-label="1216">
+<h2 class="chapter">Chapter 1216: Money-Squandering Den 🔒</h2>
+<p>Reyno Star City, also known as “Locke Starport”, was the first star city built outside Magus World.</p>
+<p>Lorianne had visited it before and had mentioned it to Sein more than once.</p>
+<p>Sein himself had been to a few starports beyond Magus World. He had even helped Lorianne retrieve the prism forts and war airships she had purchased and delivered there.</p>
+<p>A starport was a special interstellar hub constructed from massive asteroids, or sometimes even entire demiplanes, orbiting outside Magus World.</p>
+<p>Most starports existed to accommodate large-scale war platforms like space fortresses, prism forts, and war airships.</p>
+<p>Some were privately owned, while others operated as public starports.</p>
+<p>If Sein ever bought a space fortress in the future,...</p>
+</article>
+<article id="c1217" data-label="1217">
+<h2 class="chapter">Chapter 1217: Prosperity 🔒</h2>
+<p>Tourmaline had no idea that her best friend had been kidnapped by her brother.</p>
+<p>Sein and Black Oblivion were headed to Reyno Star City, located outside Magus World, and they kept the trip relatively low-key.</p>
+<p>Black Oblivion did not dare tell anyone around him, while Sein was focused on quickly selling off a batch of materials and divine artifacts to improve his cash flow.</p>
+<p>Technically, Sein could have just sold the divine artifacts, divine corpses, or artifact-grade materials in his possession directly to the Capiche Business Alliance.</p>
+<p>However, doing that would not have been nearly as profitable as selling them in Reyno Star City.</p>
+<p>Selling in Reyno meant cutting out the middlemen, and with how tight money had been for Sein in recent years, even a difference of tens of thousands of magicoins was worth...</p>
+</article>
+<article id="c1218" data-label="1218">
+<h2 class="chapter">Chapter 1218: The Casino 🔒</h2>
+<p>With a surprised look on his face, Sein continued flying deeper into the star city, gradually realizing that it was beginning to feel more and more like an actual plane.</p>
+<p>Not only were there creatures at Rank Four and above like himself exploring the star city, but a considerable number of beings below Rank Four could also be seen.</p>
+<p>Of course, the lowest-ranked ones appeared to be Rank One. Sein had yet to spot anything lower than that.</p>
+<p>This visit to Reyno Star City was truly an eye-opener for him.</p>
+<p>He suddenly started thinking about how much profit he could make if he opened a shop in the city.</p>
+<p>Most mages in Magus World had their own specialties.</p>
+<p>Sein specialized in alchemy, Lorianne in botany... and as long as those...</p>
+</article>
+<article id="c1219" data-label="1219">
+<h2 class="chapter">Chapter 1219: Sophisticated Old Man 🔒</h2>
+<p>“Bring over that little guy who had screwed over our friend. I’ll head somewhere else first,” said the penguin in a tailcoat to the bone-armored man beside him.</p>
+<p>“Yes, my lord,” the bone-armored man replied respectfully.</p>
+<p>A tarot card flew out from the penguin’s flippers. As it hit the ground, a portal came into existence.</p>
+<p>Under the respectful gaze of those around it, the penguin slowly walked through.</p>
+<p>Its massive, rounded body gave it a somewhat comical appearance, but there was undeniable poise in the way it carried itself.</p>
+<p>Appearances should fool no one—this penguin was the strongest being in all of Reyno Star City.</p>
+<p>The portal led to a golden VIP private room that was even more...</p>
+</article>
+<article id="c1220" data-label="1220">
+<h2 class="chapter">Chapter 1220: Gambling Skill 🔒</h2>
+<p>The massive roulette wheel spun wildly.</p>
+<p>It was just one of many seemingly ordinary gambling machines in this huge casino.</p>
+<p>Aside from Sein, who stood before it, there were only seven or eight other extraplanar creatures gathered around.</p>
+<p>Sein spotted a few powerhouses from Magus World nearby, but most were knights. Rank Four and above mages like him were rare in this place.</p>
+<p>The roulette wheel kept spinning, finally slowing after about 360 full turns.</p>
+<p>Everyone’s eyes were locked on the pointer in the center, watching intently as it came to a stop.</p>
+<p>This particular wheel had sixty slots in total. In theory, every player had a one-in-sixty chance of winning.</p>
+<p>Sein was the only one who bet...</p>
+</article>
+<article id="c1221" data-label="1221">
+<h2 class="chapter">Chapter 1221: Snapping Back To Reality 🔒</h2>
+<p>Earning over a hundred thousand magicoins in such a short time… This profit rate easily outstripped what one could get from even an interplanar war.</p>
+<p>Sein had been able to keep the magicoins flowing in steadily because no matter which gambling device he played, he always stuck to a fixed bet of twenty thousand magicoins each time.</p>
+<p>With the Faceless Mask giving him a success rate between 60% and 70%, his chances were naturally better than the average gambler’s.</p>
+<p>More importantly, Sein was not greedy. He would never recklessly throw in everything he had.</p>
+<p>Even if the Faceless Mask showed a near ninety percent win rate, he would still hesitate.</p>
+<p>That kind of risk-taking just did not fit with...</p>
+</article>
+<article id="c1222" data-label="1222">
+<h2 class="chapter">Chapter 1222: Bet 🔒</h2>
+<p>As Sein quietly raised his guard, Black Oblivion smiled beside him.</p>
+<p>“Oh, it’s you. Too bad I’m low on funds this time, so I’ll be heading out,” he said with a shrug.</p>
+<p>He seemed totally unaware of how unusual the penguin was, chatting with him like a friend.</p>
+<p>Black Oblivion had already met the penguin during his last visit to the casino. Something about the penguin’s demeanor just clicked with him.</p>
+<p>To Black Oblivion, this creature was simply an interesting guy.</p>
+<p>Of course, in front of both Black Oblivion and Sein, the penguin’s aura gave off nothing more than the presence of an ordinary Rank Four being.</p>
+<p>Truly, he seemed no different from any other Rank Four.</p>
+<p>After a bit of casual conversation...</p>
+</article>
+<article id="c1223" data-label="1223">
+<h2 class="chapter">Chapter 1223: The White Sand World 🔒</h2>
+<p>In addition to the octopus that was brimming with life force, Sein also spotted some sealed artifacts among the penguin’s tarot cards.</p>
+<p>Each of those dark golden cards held profound mysteries, and they made Sein’s eyes light up.</p>
+<p>The penguin finished shuffling quickly, and now both it and Sein could only see the backs of the floating cards.</p>
+<p>Mystical patterns shimmered on their surfaces.</p>
+<p>Even with the Faceless Mask feeding him data, Sein found these cards hard to read in a short amount of time.</p>
+<p>The penguin stretched out his pitch-black right wing, motioning for Sein to go first.</p>
+<p>Just before making his choice, Sein suddenly asked, “Do you wield the law of gambling?”</p>
+<p>The penguin clearly had not expected the question and was caught off guard for a moment.</p>
+<p>He nodded, then shook his...</p>
+</article>
+<article id="c1224" data-label="1224">
+<h2 class="chapter">Chapter 1224: Gifts 🔒</h2>
+<p>After leaving the gambling city, Sein and Black Oblivion wandered around Reyno Star City.</p>
+<p>It was clear that the flood dragon’s excitement had faded compared to when they first arrived.</p>
+<p>Sein, on the other hand, was not too bothered. The million or so magicoins he had made in the casino were quickly drained in this money-squandering den.</p>
+<p>The last stop on Sein’s tour was Reyno Star City’s Blackhaven Commercial District.</p>
+<p>Though the overall atmosphere was gloomy and cold, the place still saw a decent amount of foot traffic. Still, very few Magus World knights and mages came here to shop.</p>
+<p>After walking around for a while, Sein noticed that the only ones around were foreign deities.</p>
+<p>It seemed that only he and Black Oblivion were from Magus World.</p>
+<p>Sein came to a stop in front...</p>
+</article>
+<article id="c1225" data-label="1225">
+<h2 class="chapter">Chapter 1225: Crescent Bay 🔒</h2>
+<p>After spending some time in Reyno Star City, Sein returned to Magus World with Black Oblivion.</p>
+<p>The countless space fortresses docked outside the city left him feeling a bit envious, but for now, his main focus was still on building his divine tower.</p>
+<p>Massive war platforms like space fortresses could only be considered after his divine tower had recruited enough full-fledged mages to operate them.</p>
+<p>Otherwise, even if he bought one, there would not be enough people to operate it.</p>
+<p>On top of that, the outrageous cost, often over tens of millions of magicoins, was not something to be taken lightly.</p>
+<p>Sein still had that huge divine tower loan hanging over him, with no clear repayment plan in sight.</p>
+<p>With how cautious he was, he would not even think about buying a space fortress...</p>
+</article>
+<article id="c1226" data-label="1226">
+<h2 class="chapter">Chapter 1226: Goodwill 🔒</h2>
+<p>After chatting with Tourmaline for a while and handling some recent affairs at the Divine Tower of Ashes, Sein flew straight to the Divine Tower of Verdant Spring.</p>
+<p>Although he had already established the Divine Tower of Ashes in the southern region of Ashenreach, Lorianne continued to grant him unrestricted access to the Divine Tower of Verdant Spring, along with his private residence on the upper floors.</p>
+<p>This time, Sein no longer had to worry about being stopped outside by Jessica, the demigod-level mage.</p>
+<p>Now that he had advanced to Rank Four, and with Lorianne’s permission, he could bypass the Divine Tower of Verdant Spring’s shield entirely and move freely in and out.</p>
+<p>In fact, only he and Lorianne held that level of freedom within the entire tow...</p>
+</article>
+<article id="c1227" data-label="1227">
+<h2 class="chapter">Chapter 1227: Teleportation Array 🔒</h2>
+<p>This was Sein’s first visit to the Divine Tower of Floating Flame.</p>
+<p>Likewise, when he had previously gone to the Divine Tower of Whispering Flame and the Divine Tower of the Blazing Sword, it had also been his first time there in person.</p>
+<p>The divine towers belonging to the Verdant Flame Faction were not too far apart.</p>
+<p>At the very least, they were all located in the central region of the Magus World, and the Divine Tower of Verdant Flame, Whispering Flame, Floating Flame, and the Blazing Sword had all joined the Pyro Secret Society.</p>
+<p>This trip to the Divine Tower of Floating Flame was both a formal visit and an opportunity for Sein to familiarize himself with the area.</p>
+<p>Back then, Sein had always observed these elders while standing behind his mentor.</p>
+<p>But after he had advanced to Rank Four, he could finally represent himself...</p>
+</article>
+<article id="c1228" data-label="1228">
+<h2 class="chapter">Chapter 1228: Cracking Down on Black Mages’ Activities 🔒</h2>
+<p>Setting up an interplanar teleportation array solely to transport initiates would not be worth the cost.</p>
+<p>However, the cost of transporting them within the Magus World was relatively low, as each activation’s expense was directly tied to the life levels of the creatures using the array.</p>
+<p>How much energy could beings below Rank One possibly consume?</p>
+<p>Besides, the Divine Tower of Ashes had only recently been established. Both its faculty and curriculum were still in their infancy.</p>
+<p>Even if a large number of initiates were recruited, the tower would not be able to fully develop their potential just yet.</p>
+<p>At this stage, the Divine Tower of Ashes would reach capacity with around two thousand...</p>
+</article>
+<article id="c1229" data-label="1229">
+<h2 class="chapter">Chapter 1229: Lawful Material 🔒</h2>
+<p>“As a gentleman, you should return these kidnapped magic initiates to where they were originally headed,” Lorianne began.</p>
+<p>“However, since the Divine Tower of Ashes is currently in urgent need of initiates, I’ll pretend I didn’t see anything,” she said with an angelic smile.</p>
+<p>Although there were only about two hundred initiates, it was still a good number for the Divine Tower of Ashes.</p>
+<p>At the very least, the hired academy mages now had steady work for the foreseeable future.</p>
+<p>Gone were the awkward days when a full-fledged mage had only five initiates to instruct.</p>
+<p>Now, each of them had at least ten initiates under their guidance.</p>
+<p>Compared to two years ago, the Divine Tower of Ashes had undergone some subtle changes.</p>
+<p>For one, it no longer felt so empty. There were more people...</p>
+</article>
+<article id="c1230" data-label="1230">
+<h2 class="chapter">Chapter 1230: Diplomatic Maneuvering 🔒</h2>
+<p>After successfully organizing the Divine Tower of Ashes’ first general assembly, Sein turned most of his attention to the conquest of White Sand World.</p>
+<p>Over the years, he had not neglected infiltration and reconnaissance efforts on this low-level plane.</p>
+<p>Even Sein’s mentor had requested her close friend, Tower Master of Cipher, to perform a divination on the situation in White Sand World.</p>
+<p>The Order of the Green Bounty had also sent scouts into the surrounding regions to gather a wide range of intelligence.</p>
+<p>Overall, White Sand World was located at the edge of the Magus Alliance’s territory, in a relatively unfamiliar star domain that the Magus Civilization was only just beginning to make contact with.</p>
+<p>Before Sein reached Rank Four, the last interplanar war he fought on...</p>
+</article>
+<article id="c1231" data-label="1231">
+<h2 class="chapter">Chapter 1231: Legions Assembled 🔒</h2>
+<p>This time, as he prepared to set out for White Sand World, Sein had only about a hundred mages under his command—a rather modest number.</p>
+<p>However, he had already issued a call to arms in nearby regions, drawing traveling mages from across Ashenreach into the campaign.</p>
+<p>These participants did not need to be officially registered with the Divine Tower of Ashes, though their war profits would naturally be a bit lower as a result.</p>
+<p>The move also helped further promote the Divine Tower of Ashes.</p>
+<p>It was expected that once the war concluded, some of these mages would choose to join Sein’s tower.</p>
+<p>Although his mage legion was relatively small, Sein commanded several other legions.</p>
+<p>In Centaurworld, Maya and Luna increased their available forces to fifty thousand centaurs and two hundred thousand...</p>
+</article>
+<article id="c1232" data-label="1232">
+<h2 class="chapter">Chapter 1232: Setting Out 🔒</h2>
+<p>Sein was acquainted with both the Green Spikefur King and Kingfisher.</p>
+<p>The little beautiful bird, in particular, had accompanied him throughout the Wild Gorilla World War.</p>
+<p>Even after all these years, Kingfisher recognized him.</p>
+<p>Letting out a clear, resonant cry, it flew over and perched on Sein’s shoulder.</p>
+<p>The creatures of the Verdant Wilderness World were very different from the enslaved creatures used as cannon fodder in the space fortress.</p>
+<p>The most obvious difference was that the creatures from enslaved planes like the Viridian Venom Flame World were kept in cages and suppressed through soul seals.</p>
+<p>By contrast, the plant creatures of the Verdant Wilderness World were not caged, and most of them carried no soul seals on them.</p>
+<p>This difference...</p>
+</article>
+<article id="c1233" data-label="1233">
+<h2 class="chapter">Chapter 1233: Space Fortress’ Performance 🔒</h2>
+<p>Both Centaurworld and Beastmen World were not too far from Magus World.</p>
+<p>This meant that during the early stages of the Magus Civilization’s expansion, these two worlds had already come into contact with Magus World and were quickly brought into the fold of the Magus Alliance.</p>
+<p>Outside both Centaurworld and Beastmen World, several space fortresses were docked.</p>
+<p>These space fortresses did not belong to the powerful beings of Magus World but to the native deities of the respective worlds.</p>
+<p>As a large-sized world, Beastmen World’s level of development far surpassed that of Centaurworld.</p>
+<p>When the Verdant Spring Space Fortress and the Green Bounty Space Fortress arrived outside Beastmen World, Sein realized that they were not the only group from Magus World there to recruit...</p>
+</article>
+<article id="c1234" data-label="1234">
+<h2 class="chapter">Chapter 1234: An Isolated World 🔒</h2>
+<p>Due to the urgency of their mission, neither of the two space fortresses lingered in the cosmic storm to “take advantage” of the situation.</p>
+<p>Aside from that medium-sized storm, Sein had also observed several other unusual phenomena throughout their journey across the Astral Realm.</p>
+<p>A milky-white elliptical vortex, a pale purple cloud of mist, and even a colorful meteor that held significant research value.</p>
+<p>Unfortunately, by the time Sein reacted, the meteor had already streaked across the sky and disappeared into the distance.</p>
+<p>Sein had a strong interest in studying the phenomena scattered throughout the Astral Realm.</p>
+<p>Despite having traveled widely within the Magus World, this was the first time he had embarked on...</p>
+</article>
+<article id="c1235" data-label="1235">
+<h2 class="chapter">Chapter 1235: Breaking the Barrier 🔒</h2>
+<p>“It seems this world has more than just the two Rank Four creatures mentioned in your intel. There should be three of them,” Lorianne said, glancing at Sein as their space fortress hovered above the white planet.</p>
+<p>White Sand World actually had two Rank Four creatures, but there were technically three in total because of its guardian.</p>
+<p>Orethorn was not a true Rank Four being. But by relying on its status as the guardian, the nourishing spiritual qi from deep within the plane’s navel, and a lifespan that defied common sense, it had reached a level of strength comparable to a Rank Four creature.</p>
+<p>That was the wonder of the Astral Realm and other planes.</p>
+<p>No one ever truly knew what strange species or unusual...</p>
+</article>
+<article id="c1236" data-label="1236">
+<h2 class="chapter">Chapter 1236: Disaster Approaches 🔒</h2>
+<p>At the navel of the plane on the white planet below, Orethorn looked up at the sky and murmured, “A disaster will soon be upon White Sand World.”</p>
+<p>Standing beside it were the other two Rank Four beings of White Sand World—the White-Winged Bird King and the Sandworm Queen.</p>
+<p>The elemental maelstrom stirred up by the forbidden spell was still sweeping across the heavens.</p>
+<p>To coordinate with Sein’s forbidden spell, Penetrating Eye, both space fortresses had deliberately held off from firing their cannons.</p>
+<p>The fact that the White-Winged Bird King and the Sandworm Queen had been summoned to the guardian’s side so quickly spoke volumes about the unity of White Sand World.</p>
+<p>Both Rank Four beings clearly held Orethorn in high regard.</p>
+<p>Many native creatures...</p>
+</article>
+<article id="c1237" data-label="1237">
+<h2 class="chapter">Chapter 1237: Response 🔒</h2>
+<p>The native creatures of White Sand World taking the initiative to charge through the planar barrier only showed how little they truly knew about the Magus World, and how unaware they were of just how powerful their enemies really were.</p>
+<p>The most rational course of action for them would have been to remain within the barrier and stay on the defense.</p>
+<p>By relying on the terrain, the advantages of their homeplane’s laws and environment, they could have held out for a much longer time.</p>
+<p>In fact, geo elemental worlds had always been one of the most difficult types of planes to conquer in the entire Astral Realm.</p>
+<p>Back during the Bouldrak World War that Sein had participated in, Eugene would have never managed to conquer that geo elemental world so quickly if he had not received support from the other beast...</p>
+</article>
+<article id="c1238" data-label="1238">
+<h2 class="chapter">Chapter 1238: Giant Flame Demon 🔒</h2>
+<p>Had the White Sand World legion kept up its relentless, high-speed charge, it would have taken heavy losses.</p>
+<p>But since that could have interfered with Sein’s casting of the forbidden spell, the Magus World Army would definitely have taken countermeasures.</p>
+<p>The elite knight legion, already on standby, would have stepped in to form a solid defensive line in front of Sein.</p>
+<p>At the same time, the cannon fodder legions made up of enslaved creatures would have rushed into the native forces of White Sand World, locking them in fierce combat.</p>
+<p>However, because the native creatures of White Sand World focused on defense instead, they avoided heavy casualties but also missed their best chance to disrupt Sein’s forbidden spell.</p>
+<p>The two space...</p>
+</article>
+<article id="c1239" data-label="1239">
+<h2 class="chapter">Chapter 1239: Scrutiny of a Divine Eye 🔒</h2>
+<p>When Sein’s forbidden-level Penetrating Eye spell pierced the planar barrier of White Sand World, and the two fortresses’ main cannon beams also struck their marks, violent tremors were felt on this low-level plane that had remained quiet and undisturbed for tens of thousands of years.</p>
+<p>They were not just the result of the three devastating impacts against the barrier, but also the White Sand World’s cries of pain.</p>
+<p>Countless mountains crumbled, sand dunes shifted violently, and even the sparse oceans surged with waves, mirroring the turbulent ripples in the sky.</p>
+<p>This tremendous impact was what finally woke Tourmaline from her deep sleep inside the space fortress.</p>
+<p>She was jolted awake, and...</p>
+</article>
+<article id="c1240" data-label="1240">
+<h2 class="chapter">Chapter 1240: Reckless 🔒</h2>
+<p>Tourmaline’s voice made Sein turn around.</p>
+<p>The girl was clearly not fully awake yet—her eyes were still bleary, and she let out a long yawn.</p>
+<p>“No. You can go back and rest if you’re tired,” Sein replied.</p>
+<p>Tourmaline had mastered the Strength Law, and as a water-dwelling dragon, the dry environment of White Sand World was not exactly ideal for her abilities.</p>
+<p>After hearing Sein’s response, Tourmaline did not hesitate.</p>
+<p>She looked around in all directions and said, “Then I’ll go explore some other places and see if anything is interesting.”</p>
+<p>Though she said she was going to look for something fun, Tourmaline was really just searching for a good place to sleep.</p>
+<p>While Sein’s bed in the space fortress was big and soft, Tourmaline...</p>
+</article>
+<article id="c1241" data-label="1241">
+<h2 class="chapter">Chapter 1241: The Eternal Sand Lord’s Advice 🔒</h2>
+<p>Lorianne had truly underestimated Sein; he was not as reckless as she thought.</p>
+<p>Under Sein’s control, the Faceless Mask was not even using its full combat power. He also wanted to capture this guardian alive for further study.</p>
+<p>Besides, since Orethorn possessed Rank Four combat strength, it was not likely to be taken down easily anyway.</p>
+<p>In fact, the guardian was still very much alive. Every blow Sein landed only seemed to make it grow more resilient.</p>
+<p>That seriously slowed Sein’s progress into White Sand World, which infuriated him.</p>
+<p>This was his first real battle in front of Lorianne, and also the first interplanar war led by the Divine Tower of Ashes.</p>
+<p>If he ended up humiliated by an elemental whose life level had not even reached true Rank Four, how could he hold his head high in front of...</p>
+</article>
+<article id="c1242" data-label="1242">
+<h2 class="chapter">Chapter 1242: Surrender Negotiations 🔒</h2>
+<p>After Sein entered White Sand World, the Magus World Army quickly set up a fortified base.</p>
+<p>Berecca arrived after him. During this time, the native creatures of White Sand World did not make any unusual moves.</p>
+<p>Lorianne and the two space fortresses followed shortly after, entering this low-level plane.</p>
+<p>When the two massive metallic structures that looked like floating mountains hovered high above the skies of the White Sand World, every weaker lifeform that saw them was gripped by a deep sense of dread.</p>
+<p>Lorianne and Berecca both had plenty of experience when it came to conquering low-level planes.</p>
+<p>Sein, on the other hand, was still learning the ropes in this war.</p>
+<p>While he had the strength...</p>
+</article>
+<article id="c1243" data-label="1243">
+<h2 class="chapter">Chapter 1243: Joining the Alliance 🔒</h2>
+<p>Surrendering to invaders of one’s homeplane was never an easy thing.</p>
+<p>Not everyone among the upper echelons of White Sand World saw eye to eye on the matter.</p>
+<p>The White-Winged Bird King of the Winged Tribe was firmly against surrender.</p>
+<p>It would rather break out of its homeplane and roam the cosmos with its flock than bow before the Magus Civilization.</p>
+<p>As a Rank Four lifeform, the White-Winged Bird King had the strength to back up its defiance.</p>
+<p>On top of that, the creatures of the Winged Tribe were known for their speed in the air, giving them at least a slim shot at breaking through enemy lines and escaping.</p>
+<p>However, Orethorn had to take responsibility for all the lives that make up the majority of White...</p>
+</article>
+<article id="c1244" data-label="1244">
+<h2 class="chapter">Chapter 1244: A Plane’s Wealth 🔒</h2>
+<p>The Magus Alliance maintained a stance of “tolerance” toward most foreign planes, but that did not mean just anyone could join as they pleased.</p>
+<p>The key lay in the review process.</p>
+<p>Only those deemed qualified by the Magus Alliance were permitted to join. Anyone who felt they did not meet the mark should step aside!</p>
+<p>During this phase, firsthand reports and intelligence from the Magus Civilization Army on the frontlines played a major role in shaping the alliance’s judgment.</p>
+<p>For example, when Sein sent word that White Sand World wished to join, he could include a personal note stating that, in his opinion, this plane was not qualified.</p>
+<p>Most of the time, the Magus Alliance would accept the suggestions of the legions stationed...</p>
+</article>
+<article id="c1245" data-label="1245">
+<h2 class="chapter">Chapter 1245: Agreement 🔒</h2>
+<p>“The sandworms in this world are rich in energy, and their mucus can be used as a raw ingredient for all kinds of potions?” Sein looked at the crystal ball in front of him, surprised.</p>
+<p>Figuring out what resources a world contained, and which ones could be developed or harvested, was the job of specialized personnel within the Magus Civilization Army.</p>
+<p>White Sand World was full of exploitable resources, but the two most valuable by far were the energy crystal veins and the sandworms themselves.</p>
+<p>The mucus secreted by lesser sandworms might not be especially rare or potent, but the sheer size of their population was staggering!</p>
+<p>How many sandworms lived across the entire White Sand World?</p>
+<p>Even the Sandworm...</p>
+</article>
+<article id="c1246" data-label="1246">
+<h2 class="chapter">Chapter 1246: Conditions 🔒</h2>
+<p>The Magus Civilization’s decision to agree to peace talks with White Sand World came as a bombshell to the native creatures.</p>
+<p>Naturally, the guardian still remembered how Sein had tried to kill it the last time they met.</p>
+<p>So when the Magus Civilization offered to reopen negotiations, the guardian made one demand: it would choose the location.</p>
+<p>The Magus Civilization agreed to demonstrate its sincerity.</p>
+<p>The second round of talks was held in the Don River Basin, located in the southeastern region of White Sand World.</p>
+<p>The planar node energy there was just as dense as the previous site, giving the guardian significant support.</p>
+<p>Holding the talks in this location also served to highlight just how far and fast the Magus Civilization had advanced within White...</p>
+</article>
+<article id="c1247" data-label="1247">
+<h2 class="chapter">Chapter 1247: The Breakout of the White-Winged Bird King 🔒</h2>
+<p>Aside from Mayne’s request, which already put Orethorn in a difficult position, the second condition presented by Sein left it even more at a loss.</p>
+<p>It was not exactly a condition—just something Sein brought up during the negotiations: what were they going to do about the Rank Four White-Winged Bird King?</p>
+<p>At this point, White Sand World’s stance was anything but unified.</p>
+<p>The guardian and the Sandworm Queen clearly supported peace. But the winged tribe, led by the White-Winged Bird King, was determined to keep fighting.</p>
+<p>While large-scale clashes between the Magus Civilization’s expeditionary forces and native White Sand World creatures had decreased, disturbances in the rear had sharply increased.</p>
+<p>The main culprits...</p>
+</article>
+<article id="c1248" data-label="1248">
+<h2 class="chapter">Chapter 1248: Frantic Escape 🔒</h2>
+<p>Most planes were spherical.</p>
+<p>Sein had studied planar knowledge during his initiate years, so he understood why the White-Winged Bird King had managed to escape so quickly from the northern battlefield to the southern region.</p>
+<p>Still, he suspected the guardian might have done something shady behind the scenes.</p>
+<p>That said, Orethorn had been on its best behavior recently.</p>
+<p>It had not only taken the initiative to mediate the conflict between White Sand World’s native legions and the Magus World’s expeditionary forces, but also offered up a hefty tribute of high-quality energy crystals.</p>
+<p>Even if White Sand World joined the Magus Alliance, it would still fall under the jurisdiction of the Divine Tower of Ashes...</p>
+</article>
+<article id="c1249" data-label="1249">
+<h2 class="chapter">Chapter 1249: War Spoils 🔒</h2>
+<p>Despite both being Rank Four creatures, the White-Winged Bird King’s body was less than one-tenth the size of Tourmaline’s.</p>
+<p>Despite her colossal size, the White-Winged Bird King—exhausted from its frantic escape—had completely failed to notice her massive presence in the asteroid belt near White Sand World, thanks to her well-restrained aura.</p>
+<p>Tourmaline appeared to have just woken up and was a little grumpy.</p>
+<p>The battle between Sein’s group and the White-Winged Bird King had stirred up quite a commotion near the planar barrier—there was no way Tourmaline would not have heard it.</p>
+<p>With one massive claw, the dragon turtle swatted the bird king...</p>
+</article>
+<article id="c1250" data-label="1250">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1250: Diplomatic Mission 🔒</h2>
+<p>As a member of the Magus Alliance affiliated with the Divine Tower of Ashes, Sein naturally had the right to demand whatever he wanted from White Sand World.</p>
+<p>Moreover, since he had not openly harmed the world’s core interests, it was difficult for the guardian to refuse his request for the living fine sand.</p>
+<p>“Don’t worry, I won’t kill it. I’ll help it grow instead. I just obtained a wing from the White-Winged Bird King. I can use it along with this wisp of sand to create a brand-new magic artifact,” Sein said, his eyes gleaming.</p>
+<p>The last time he wore an expression like that was when he crafted the Demon Mask in the Faceless Secret Realm.</p>
+<p>It was obvious that the discovery of this living sand, combined with the rare materials in Sein’s...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1251-1300.html" rel="next">Next: Chs 1251–1300 &rarr;</a>
+    <p class="page-end-links"><a href="1151-1200.html" rel="prev">&larr; Chs 1151–1200</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1201–1250</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1201">Chapter 1201: Reaching Out 🔒</a></li>
+        <li><a href="#c1202">Chapter 1202: Empty Promise 🔒</a></li>
+        <li><a href="#c1203">Chapter 1203: The Empire’s Benefits 🔒</a></li>
+        <li><a href="#c1204">Chapter 1204: Ideal and Reality 🔒</a></li>
+        <li><a href="#c1205">Chapter 1205: The Scales of Conservation 🔒</a></li>
+        <li><a href="#c1206">Chapter 1206: Impressive Fortune 🔒</a></li>
+        <li><a href="#c1207">Chapter 1207: Darwell Region 🔒</a></li>
+        <li><a href="#c1208">Chapter 1208: Site Selection 🔒</a></li>
+        <li><a href="#c1209">Chapter 1209: The Spider Queen’s Assistance 🔒</a></li>
+        <li><a href="#c1210">Chapter 1210: Asserting Rights 🔒</a></li>
+        <li><a href="#c1211">Chapter 1211: “Oversight” 🔒</a></li>
+        <li><a href="#c1212">Chapter 1212: The Divine Tower of Ashes 🔒</a></li>
+        <li><a href="#c1213">Chapter 1213: Massive Loan 🔒</a></li>
+        <li><a href="#c1214">Chapter 1214: Artificial Lake 🔒</a></li>
+        <li><a href="#c1215">Chapter 1215: Reyno Star City 🔒</a></li>
+        <li><a href="#c1216">Chapter 1216: Money-Squandering Den 🔒</a></li>
+        <li><a href="#c1217">Chapter 1217: Prosperity 🔒</a></li>
+        <li><a href="#c1218">Chapter 1218: The Casino 🔒</a></li>
+        <li><a href="#c1219">Chapter 1219: Sophisticated Old Man 🔒</a></li>
+        <li><a href="#c1220">Chapter 1220: Gambling Skill 🔒</a></li>
+        <li><a href="#c1221">Chapter 1221: Snapping Back To Reality 🔒</a></li>
+        <li><a href="#c1222">Chapter 1222: Bet 🔒</a></li>
+        <li><a href="#c1223">Chapter 1223: The White Sand World 🔒</a></li>
+        <li><a href="#c1224">Chapter 1224: Gifts 🔒</a></li>
+        <li><a href="#c1225">Chapter 1225: Crescent Bay 🔒</a></li>
+        <li><a href="#c1226">Chapter 1226: Goodwill 🔒</a></li>
+        <li><a href="#c1227">Chapter 1227: Teleportation Array 🔒</a></li>
+        <li><a href="#c1228">Chapter 1228: Cracking Down on Black Mages’ Activities 🔒</a></li>
+        <li><a href="#c1229">Chapter 1229: Lawful Material 🔒</a></li>
+        <li><a href="#c1230">Chapter 1230: Diplomatic Maneuvering 🔒</a></li>
+        <li><a href="#c1231">Chapter 1231: Legions Assembled 🔒</a></li>
+        <li><a href="#c1232">Chapter 1232: Setting Out 🔒</a></li>
+        <li><a href="#c1233">Chapter 1233: Space Fortress’ Performance 🔒</a></li>
+        <li><a href="#c1234">Chapter 1234: An Isolated World 🔒</a></li>
+        <li><a href="#c1235">Chapter 1235: Breaking the Barrier 🔒</a></li>
+        <li><a href="#c1236">Chapter 1236: Disaster Approaches 🔒</a></li>
+        <li><a href="#c1237">Chapter 1237: Response 🔒</a></li>
+        <li><a href="#c1238">Chapter 1238: Giant Flame Demon 🔒</a></li>
+        <li><a href="#c1239">Chapter 1239: Scrutiny of a Divine Eye 🔒</a></li>
+        <li><a href="#c1240">Chapter 1240: Reckless 🔒</a></li>
+        <li><a href="#c1241">Chapter 1241: The Eternal Sand Lord’s Advice 🔒</a></li>
+        <li><a href="#c1242">Chapter 1242: Surrender Negotiations 🔒</a></li>
+        <li><a href="#c1243">Chapter 1243: Joining the Alliance 🔒</a></li>
+        <li><a href="#c1244">Chapter 1244: A Plane’s Wealth 🔒</a></li>
+        <li><a href="#c1245">Chapter 1245: Agreement 🔒</a></li>
+        <li><a href="#c1246">Chapter 1246: Conditions 🔒</a></li>
+        <li><a href="#c1247">Chapter 1247: The Breakout of the White-Winged Bird King 🔒</a></li>
+        <li><a href="#c1248">Chapter 1248: Frantic Escape 🔒</a></li>
+        <li><a href="#c1249">Chapter 1249: War Spoils 🔒</a></li>
+        <li><a href="#c1250">Chapter 1250: Diplomatic Mission 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1151-1200.html" rel="prev">&larr; Chs 1151–1200</a>    <a href="../../index.html">Library</a>
+<a href="1251-1300.html" rel="next">Chs 1251–1300 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

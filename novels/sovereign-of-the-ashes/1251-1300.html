@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 1251–1300</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="1201-1250.html#last" data-next-page="1301-1350.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1251">Chapter 1251: Mate 🔒</a></li>
+        <li><a href="#c1252">Chapter 1252: Eternal Sand World 🔒</a></li>
+        <li><a href="#c1253">Chapter 1253: Successful Recruitment 🔒</a></li>
+        <li><a href="#c1254">Chapter 1254: A Promising Start 🔒</a></li>
+        <li><a href="#c1255">Chapter 1255: Rewarding Journey 🔒</a></li>
+        <li><a href="#c1256">Chapter 1256: A Series of Good News 🔒</a></li>
+        <li><a href="#c1257">Chapter 1257: Wealth Law 🔒</a></li>
+        <li><a href="#c1258">Chapter 1258: Aurelia Chamber of Commerce 🔒</a></li>
+        <li><a href="#c1259">Chapter 1259: Scolding 🔒</a></li>
+        <li><a href="#c1260">Chapter 1260: Persuading Phantom Crow World 🔒</a></li>
+        <li><a href="#c1261">Chapter 1261: Divine Tower’s Dean 🔒</a></li>
+        <li><a href="#c1262">Chapter 1262: Sources of Frustration 🔒</a></li>
+        <li><a href="#c1263">Chapter 1263: Opportunity 🔒</a></li>
+        <li><a href="#c1264">Chapter 1264: The Divine Tower of Ashes’ Initiates 🔒</a></li>
+        <li><a href="#c1265">Chapter 1265: The Black Mages of Ashenreach 🔒</a></li>
+        <li><a href="#c1266">Chapter 1266: Anti-Black Vanguard 🔒</a></li>
+        <li><a href="#c1267">Chapter 1267: The First Academy War 🔒</a></li>
+        <li><a href="#c1268">Chapter 1268: Seeds of Potential 🔒</a></li>
+        <li><a href="#c1269">Chapter 1269: The Divine Towers’ Names 🔒</a></li>
+        <li><a href="#c1270">Chapter 1270: Investigation 🔒</a></li>
+        <li><a href="#c1271">Chapter 1271: Initiate Achievements 🔒</a></li>
+        <li><a href="#c1272">Chapter 1272: Benefits of Smuggling 🔒</a></li>
+        <li><a href="#c1273">Chapter 1273: Heavy Losses 🔒</a></li>
+        <li><a href="#c1274">Chapter 1274: The Skeletal Dragon’s Metamorphosis 🔒</a></li>
+        <li><a href="#c1275">Chapter 1275: Mission 🔒</a></li>
+        <li><a href="#c1276">Chapter 1276: A “Grand” Welcome 🔒</a></li>
+        <li><a href="#c1277">Chapter 1277: Phantom Crow World 🔒</a></li>
+        <li><a href="#c1278">Chapter 1278: Historical Turning Point 🔒</a></li>
+        <li><a href="#c1279">Chapter 1279: The Phantom Crow King’s Demand 🔒</a></li>
+        <li><a href="#c1280">Chapter 1280: Mission Accomplished 🔒</a></li>
+        <li><a href="#c1281">Chapter 1281: Crescent Sea World 🔒</a></li>
+        <li><a href="#c1282">Chapter 1282: Priority In Trade 🔒</a></li>
+        <li><a href="#c1283">Chapter 1283: Purchasing a Fortress 🔒</a></li>
+        <li><a href="#c1284">Chapter 1284: Azure Starbane 🔒</a></li>
+        <li><a href="#c1285">Chapter 1285: Purchase 🔒</a></li>
+        <li><a href="#c1286">Chapter 1286: Lose Composure 🔒</a></li>
+        <li><a href="#c1287">Chapter 1287: Thor the Thunder God 🔒</a></li>
+        <li><a href="#c1288">Chapter 1288: Tag Along 🔒</a></li>
+        <li><a href="#c1289">Chapter 1289: The Power of the Magus Alliance 🔒</a></li>
+        <li><a href="#c1290">Chapter 1290: Howling Stone Plane 🔒</a></li>
+        <li><a href="#c1291">Chapter 1291: The Young God of Smithing 🔒</a></li>
+        <li><a href="#c1292">Chapter 1292: Exploding Furnace 🔒</a></li>
+        <li><a href="#c1293">Chapter 1293: Sales Pitch 🔒</a></li>
+        <li><a href="#c1294">Chapter 1294: Golden Apple 🔒</a></li>
+        <li><a href="#c1295">Chapter 1295: The Phantom Crow King’s Shock 🔒</a></li>
+        <li><a href="#c1296">Chapter 1296: Loki 🔒</a></li>
+        <li><a href="#c1297">Chapter 1297: A Powerful Woman 🔒</a></li>
+        <li><a href="#c1298">Chapter 1298: Hela 🔒</a></li>
+        <li><a href="#c1299">Chapter 1299: Before the Conference Hall 🔒</a></li>
+        <li><a href="#c1300">Chapter 1300: True Friend 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c1251" data-label="1251">
+<h2 class="chapter">Chapter 1251: Mate 🔒</h2>
+<p>Mayne’s grandfather was the knight overlord who gave Sein many opportunities.</p>
+<p>If he had not sent Sein to the Knight Continent back then, Sein might not have inherited the Faceless Mask.</p>
+<p>Though the magic artifact he was working on was still unfinished, Sein thought about it for a moment and accepted Mayne’s invitation.</p>
+<p>After all, he was genuinely curious about this unfamiliar foreign plane.</p>
+<p>He was not too worried about potential danger since Mayne was the descendant of a knight overlord. Surely he had to have some means of keeping himself safe.</p>
+<p>Besides, the Eternal Sand Lord had no reason to be hostile toward powerhouses from Magus World.</p>
+<p>Sein treated this journey as a trip to an unknown...</p>
+</article>
+<article id="c1252" data-label="1252">
+<h2 class="chapter">Chapter 1252: Eternal Sand World 🔒</h2>
+<p>What shocked and amazed Sein was nothing out of the ordinary for Mayne.</p>
+<p>There was nothing shameful about finding a mate for the Aphid King.</p>
+<p>In fact, Void Aphid World had long been a member of the Magus Alliance, which was why it enjoyed such support from the Magus Civilization.</p>
+<p>There were many “beneficial insect planes” within the alliance. So why did the Magus Civilization keep allocating resources to Void Aphid World and Activator Fairy World?</p>
+<p>It all came down to seniority!</p>
+<p>From that angle, the Magus Civilization could even be seen as generous—choosing not to cast aside certain “elderly” planes for the sake of efficiency.</p>
+<p>The Rank Six Aphid King, who had spent its life idling away, was definitely one of the happiest...</p>
+</article>
+<article id="c1253" data-label="1253">
+<h2 class="chapter">Chapter 1253: Successful Recruitment 🔒</h2>
+<p>Eternal Sand World was a unique sand elemental plane.</p>
+<p>A thick, bright yellow sandstorm blanketed the surface of this low-level plane.</p>
+<p>Just by observing its planar barrier, one could tell that the strength of its laws far surpassed that of White Sand World!</p>
+<p>But the uniqueness of Eternal Sand World did not stop there. Tiny net-winged insects lingered in the sandy sea visible on the surface of the planar barrier.</p>
+<p>Upon closer look, it became clear that this sandy sea had also developed a full ecological system of its own.</p>
+<p>The sudden arrival of White Sand World’s guardian came as a complete surprise to the many creatures of Eternal Sand World.</p>
+<p>After all, guardians almost never left their homeplanes.</p>
+<p>Even though Orethorn had only sent a clone, it was enough to draw the attention of the...</p>
+</article>
+<article id="c1254" data-label="1254">
+<h2 class="chapter">Chapter 1254: A Promising Start 🔒</h2>
+<p>As an open and prosperous world, Eternal Sand World naturally had more than one powerhouse.</p>
+<p>In fact, the overall strength of this unique sand elemental plane far surpassed that of Bouldrak World, which had been conquered by the half-beastmen.</p>
+<p>In addition to the Rank Five Eternal Sand Lord, the plane was home to four other Rank Four beings.</p>
+<p>The Belbacor mentioned by Sein was the Lava King—a former lord who ascended to Rank Four about a thousand years ago.</p>
+<p>Its promotion was proof enough of the transformation in his life level.</p>
+<p>It was a Rank Four being who wielded both geo and pyro elemental laws. When Sein and the others approached it, it was in the middle of an interplanar trade at the bottom of his lava lake.</p>
+<p>In truth, Belbacor’s rise among the many demigod-level beings...</p>
+</article>
+<article id="c1255" data-label="1255">
+<h2 class="chapter">Chapter 1255: Rewarding Journey 🔒</h2>
+<p>Mayne did not return to White Sand World with Sein.</p>
+<p>The two parted ways upon arriving at the star domain void near White Sand World.</p>
+<p>Before leaving, Mayne reminded Sein not to forget the promise he had made.</p>
+<p>Sein nodded in acknowledgment. Mayne then added that once he returned, he would help Sein get in touch with Void Aphid World.</p>
+<p>When Sein arrived back in White Sand World, everything had pretty much settled down and returned to normal.</p>
+<p>Sustainable development and construction efforts were already underway in several regions across the plane.</p>
+<p>In addition to stable production of energy crystals and the harvesting of sandworm mucus, Sein had also secured at least two hundred thousand winged enslaved creatures...</p>
+</article>
+<article id="c1256" data-label="1256">
+<h2 class="chapter">Chapter 1256: A Series of Good News 🔒</h2>
+<p>The resources looted from White Sand World filled the entire space fortress.</p>
+<p>Since Lorianne had strong connections within the Capiche Business Alliance, she took it upon herself to handle the sale of this massive haul.</p>
+<p>Meanwhile, Sein led the other mages aboard the fortress back to their divine towers.</p>
+<p>Overall, the war had been a resounding success. In addition to the spoils of war, Sein also gained around two hundred full-fledged mages as new recruits.</p>
+<p>These mages were mercenaries who had participated in the White Sand World War.</p>
+<p>Thanks to the favorable benefits offered by the Divine Tower of Ashes and the unique environment it provided, this group of mages decided to stay.</p>
+<p>As of now, the total number of registered mages at...</p>
+</article>
+<article id="c1257" data-label="1257">
+<h2 class="chapter">Chapter 1257: Wealth Law 🔒</h2>
+<p>Aurelia, the Goddess of Wealth, heard every word of their conversation.</p>
+<p>Fortunately, the Dark Elf Queen had already led her subjects to the underground space of Ashenreach to consolidate the factions there.</p>
+<p>Otherwise, the Spider Queen’s divine authority in the hearts of her followers might have taken a serious hit.</p>
+<p>At that moment, Aurelia stared at Sein in shock. She could not understand how he could speak to Lorthisra like that.</p>
+<p>None of the other Rank Four or higher beings in Blackhaven had ever dared to act this way.</p>
+<p>Even though the Spider Queen looked angry after Sein teased her, she did not take it to heart.</p>
+<p>After all, this guy had always been fearless since they first met.</p>
+<p>He had even publicly commented...</p>
+</article>
+<article id="c1258" data-label="1258">
+<h2 class="chapter">Chapter 1258: Aurelia Chamber of Commerce 🔒</h2>
+<p>The Goddess of Wealth was highly motivated and more capable than Sein had expected.</p>
+<p>Even before the Spider Queen’s funds arrived, and before the profits from the war spoils Lorianne traded with the Capiche Business Alliance came through, Aurelia had already begun to prove her worth.</p>
+<p>Sein still had some funds left. They were actually part of the operating budget set aside to keep his divine tower running smoothly.</p>
+<p>Thanks to steady recruitment of initiates over the past few years and a new batch of full-fledged mages, the divine tower academy could finally consider another expansion.</p>
+<p>Whether it was constructing new libraries or developing the underground resources beneath the Divine Tower of Ashes, all of it required money...</p>
+</article>
+<article id="c1259" data-label="1259">
+<h2 class="chapter">Chapter 1259: Scolding 🔒</h2>
+<p>After settling matters with the Goddess of Wealth and the Dark Elf Queen, Sein could finally throw himself into the experimental research he had been itching to do.</p>
+<p>This time, his focus was mainly on body tempering experiments.</p>
+<p>Although his ongoing alchemy work was still unfinished, Sein was a master of time management. He never clung to a single experiment unless he was completely absorbed in it.</p>
+<p>His development plan was to progress steadily in all areas.</p>
+<p>While becoming an “all-around expert” was never his goal, the last thing he wanted was to fall behind in the fields he already excelled at.</p>
+<p>Now that he had reached Rank Four, time was on his side. Hundreds, thousands, even tens of thousands of years hardly mattered.</p>
+<p>He ensured...</p>
+</article>
+<article id="c1260" data-label="1260">
+<h2 class="chapter">Chapter 1260: Persuading Phantom Crow World 🔒</h2>
+<p>Of course, Bernice did not beat Sein up.</p>
+<p>The matter was resolved without straining the bonds within the Verdant Flame Faction.</p>
+<p>At a glance from Bernice, Berecca stepped forward and admitted that she was the one at fault for overreacting.</p>
+<p>Sein and his mentor finally dropped the act and let out a quiet sigh of relief.</p>
+<p>After they left the Divine Tower of Floating Flame, something else was unfolding in a private laboratory at the very top of the tower… Something sensual and undeniably passionate.</p>
+<p>Maybe it was just how things were in the Magus World, or maybe the Verdant Flame Faction really did have an unusually high concentration of perverts...</p>
+<p>Either way, the session between Bernice and Berecca was far more intense than...</p>
+</article>
+<article id="c1261" data-label="1261">
+<h2 class="chapter">Chapter 1261: Divine Tower’s Dean 🔒</h2>
+<p>“Ashenreach is still in its early stages of development. Isn’t it too soon to build a floating port?” Sein asked.</p>
+<p>“No. Ashenreach is in a very strategic location, yet it’s developing too slowly. We can’t wait for the local economy to grow on its own. We have to jumpstart it using external resources. Building multiple floating ports will support that development,” the Goddess of Wealth explained.</p>
+<p>“I also request that you, as the head of the Divine Tower of Ashes, purchase a large number of airships for transport and related functions,” she added.</p>
+<p>Aurelia went on to outline exactly why the funds needed to be spent and how the budget should be allocated.</p>
+<p>While she had performed well overall since receiving financial support from Sein,...</p>
+</article>
+<article id="c1262" data-label="1262">
+<h2 class="chapter">Chapter 1262: Sources of Frustration 🔒</h2>
+<p>In addition to Marie, now serving as dean, Sein had recently appointed another Rank Three grand mage as vice dean.</p>
+<p>The individual in question was Pekerman, a Rank Three Mechanic who had joined the Divine Tower of Ashes following the White Sand World War.</p>
+<p>He was a traveling mage, and joining the Divine Tower of Ashes was just a temporary stop on his journey.</p>
+<p>When Sein proposed that he collaborate with Peyton to study the silver mecha housed within the divine tower, the brown-mustached mechanic agreed to extend his contract as vice dean from fifty years to two hundred.</p>
+<p>Along with finalizing both appointments, Sein also reviewed the development projects in Ashenreach over the past few decades.</p>
+<p>Thanks to Aurelia’s generous allocation of magicoins, seven floating...</p>
+</article>
+<article id="c1263" data-label="1263">
+<h2 class="chapter">Chapter 1263: Opportunity 🔒</h2>
+<p>Magic experiments helped Sein forget his mundane worries.</p>
+<p>The pursuit of truth usually did not involve much outside interference. It simply presented spellcasters with its raw, fundamental form.</p>
+<p>Lately, Sein’s magic research had been focused mainly on bloodlines.</p>
+<p>Natalya and Reina’s strength had gradually hit a plateau in recent years.</p>
+<p>For knights, growth came from long-term physical training and discipline.</p>
+<p>Unlike mages, who could sometimes leap forward in power through a flash of inspiration, knights improved slowly but steadily.</p>
+<p>Even so, Natalya and Reina were progressing pretty quickly compared to other knights.</p>
+<p>The reason...</p>
+</article>
+<article id="c1264" data-label="1264">
+<h2 class="chapter">Chapter 1264: The Divine Tower of Ashes’ Initiates 🔒</h2>
+<p>Kayne was an 18-year-old junior initiate at the Divine Tower of Ashes.</p>
+<p>Five years ago, he had been rescued from the black mages by a mage from the divine tower. Ever since then, he had been studying there.</p>
+<p>Oh, and Kayne was not the only lucky one that mage had saved.</p>
+<p>At the time, over two hundred initiates were rescued alongside him—they had all been loaded onto an airship and brought back to the Divine Tower of Ashes.</p>
+<p>Over the course of his five years of study, Kayne came to understand what kind of place he had ended up in. He also gained a clearer picture of the former “Darwell Region”—the land that eventually became Ashenreach.</p>
+<p>The divine tower’s library had...</p>
+</article>
+<article id="c1265" data-label="1265">
+<h2 class="chapter">Chapter 1265: The Black Mages of Ashenreach 🔒</h2>
+<p>Pollock was a 1,600-year-old “native” Rank Two black mage of the Darwell Region.</p>
+<p>His early years as an initiate had twisted him into a ruthless black mage with a personality that was both cowardly and bloodthirsty.</p>
+<p>His cowardice only showed when facing those stronger than him, like his former mentor, the well-known Rank Three grand mages of the Darwell Region, or now, the Divine Tower of Ashes.</p>
+<p>Yes, the Divine Tower of Ashes—an enormous threat hanging like a guillotine over the heads of countless black mages in Darwell.</p>
+<p>Ever since that tower was successfully established in the region over a century...</p>
+</article>
+<article id="c1266" data-label="1266">
+<h2 class="chapter">Chapter 1266: Anti-Black Vanguard 🔒</h2>
+<p>Over eighty percent of the “specimens” in the lower levels of the black magic tower were humans captured from the surrounding areas, and most of them were still alive.</p>
+<p>Such specimens were the easiest to capture, and in the fields of evolutionary biology and life science research, there truly were no subjects better or more suitable than these humans of Magus World.</p>
+<p>Many of these specimens had already been altered beyond recognition.</p>
+<p>Setting aside whether Pollock was a psychopath and the fact that he violated the laws of the Magus Civilization, there was no denying that he was one of the most accomplished Rank Two mages when it came to body modification and the research and development of active flesh.</p>
+<p>One of the magic arrays Pollock had activated would trigger the tower’s self-destruction program.</p>
+<p>He could only abandon every...</p>
+</article>
+<article id="c1267" data-label="1267">
+<h2 class="chapter">Chapter 1267: The First Academy War 🔒</h2>
+<p>“Actually, the Rank Two mage didn’t come back alone. When Flacq returned, he brought back a girl,” Marie said as she stepped forward to report to Sein.</p>
+<p>“A girl?” Sein raised his eyebrows.</p>
+<p>“An eight-year-old female black magic initiate. Flacq found her when they broke into the black magic tower. When the entire tower blew up, he only managed to rescue this little girl who happened to be closest to him. But one of her arms was crippled,” Marie explained.</p>
+<p>A young black magic initiate who had been rescued…</p>
+<p>Hearing Marie’s account, Sein could not help but think of his own past.</p>
+<p>And surely Marie felt the same way. That must have been why she chose to share this small detail with him.</p>
+<p>Given her age, she would likely stay...</p>
+</article>
+<article id="c1268" data-label="1268">
+<h2 class="chapter">Chapter 1268: Seeds of Potential 🔒</h2>
+<p>Twenty years had passed in the blink of an eye.</p>
+<p>For Sein, it had felt like nothing more than the time it took to complete a few small experimental projects. But for others, it had been the most important period of their lives.</p>
+<p>“Are there any promising candidates in this academy war?” Sein asked Marie.</p>
+<p>As the academy’s dean, Marie had just finished leading the pre-war mobilization meeting.</p>
+<p>Looking at the eager, inexperienced students, she could not help but feel a little younger herself.</p>
+<p>“The overall quality of initiates at our Divine Tower of Ashes is quite good. We have seven Quasi Mages and twenty-one senior initiates. The total number of initiates participating...</p>
+</article>
+<article id="c1269" data-label="1269">
+<h2 class="chapter">Chapter 1269: The Divine Towers’ Names 🔒</h2>
+<p>The names and titles of the divine towers in Magus World were decided by the personal preferences of their tower masters.</p>
+<p>The Magus Alliance recorded these divine towers without interfering with the names their owners chose.</p>
+<p>Sein’s Divine Tower of Ashes, for example, was named after the law power he commanded. There was nothing particularly deep about it.</p>
+<p>Unlike Sein, who liked to keep things simple, many other divine tower masters considered different factors when picking names.</p>
+<p>For instance, the Tower Master of Hosta named his divine tower after his family, showing how much he valued his family’s growth.</p>
+<p>It was likely his family had played a big part in helping him rise...</p>
+</article>
+<article id="c1270" data-label="1270">
+<h2 class="chapter">Chapter 1270: Investigation 🔒</h2>
+<p>“Greetings, Master Sein. I’m Crist, inspector from the Alveroth Empire. I’m here to investigate a cross-border smuggling case involving initiates.”</p>
+<p>A Rank Four mage in red leather armor approached Sein and spoke politely.</p>
+<p>The fact that he wore leather armor made it clear he was one of those rare and powerful dual cultivators.</p>
+<p>Crist definitely qualified as a “powerhouse”. Even though Sein was not wearing the Faceless Mask at the moment, he could tell from the man’s aura and battle qi that Crist’s strength was no less than his own.</p>
+<p>Crist did not come alone. About two hundred knights and mages were behind him. They were clearly well-prepared, so it seemed...</p>
+</article>
+<article id="c1271" data-label="1271">
+<h2 class="chapter">Chapter 1271: Initiate Achievements 🔒</h2>
+<p>Among the over five hundred full-fledged mages of the Divine Tower of Ashes, more than a hundred were recruited in recent years.</p>
+<p>About seventy or so were raised in the Divine Tower of Ashes over the past two hundred years.</p>
+<p>Because of their humble origins, these full-fledged mages were required to serve the Divine Tower of Ashes for at least three hundred years after signing their contracts.</p>
+<p>There was no way around it—effort and reward go hand in hand.</p>
+<p>The Divine Tower of Ashes had invested vast resources into cultivating these mages, so it was only natural that they repay the tower’s investment.</p>
+<p>That said, these mages were not treated as free labor after signing a contract with the Divine Tower of Ashes; they also received proper salaries from the tower.</p>
+<p>The overall...</p>
+</article>
+<article id="c1272" data-label="1272">
+<h2 class="chapter">Chapter 1272: Benefits of Smuggling 🔒</h2>
+<p>After the academy war ended, the Tower Master of Flowlight Waterfall approached Sein.</p>
+<p>“Master Sein, the overall quality of your initiates is really high. It’s hard to believe these children are taking part in the academy war for the first time. Do you have any tips for training initiates that you can share?” he asked.</p>
+<p>The Divine Tower of Flowlight Waterfall had ranked fourth overall in the academy war.</p>
+<p>If it were not for one phenomenal initiate with the highest individual score carrying the team, this tower master would have looked as dismayed as the Tower Master of Hosta.</p>
+<p>Before the academy war began, the Tower Master of Flowlight Waterfall had been quite confident in his...</p>
+</article>
+<article id="c1273" data-label="1273">
+<h2 class="chapter">Chapter 1273: Heavy Losses 🔒</h2>
+<p>The negotiations with the two Rank Four mages from the Byrne Empire went quite smoothly.</p>
+<p>In truth, there was not much that needed to be discussed—most of the rules and terms had already been set in advance.</p>
+<p>The Spider Queen and certain high-ranking officials in the Byrne Empire had already reached a consensus.</p>
+<p>Sein and the other two divine tower masters were really just intermediaries helping to finalize the agreement.</p>
+<p>This was a large-scale smuggling network spanning the Byrne Empire, Ashenreach, and Blackhaven, with resource flows stretching far beyond Magus World.</p>
+<p>It also included the enslaved planes controlled by the Byrne Empire, allied planes it had recruited, and all the foreign...</p>
+</article>
+<article id="c1274" data-label="1274">
+<h2 class="chapter">Chapter 1274: The Skeletal Dragon’s Metamorphosis 🔒</h2>
+<p>As soon as he saw Crist and the others off, Sein summoned the Dark Elf Queen and the others.</p>
+<p>“Don’t you think blowing up one of my floating ports is a bit pricey?” Sein asked, shooting a sideways glance at the alluring, scantily clad Dark Elf Queen.</p>
+<p>The construction cost of a single floating port was already sky-high, not to mention this one was close to completion and had extra value.</p>
+<p>Speaking on the Dark Elf Queen’s behalf was the Goddess of Wealth, whose confidence had only grown over the years.</p>
+<p>“We need to force that inspection team to leave as soon as possible. The <em>goods</em> from the Byrne Empire have been piling up at the entrance to the Verdant Wave Canal for quite a while. If they end...</p>
+</article>
+<article id="c1275" data-label="1275">
+<h2 class="chapter">Chapter 1275: Mission 🔒</h2>
+<p>Representing the Magus Alliance on a mission to Phantom Crow World was a lucrative opportunity, but it was also dangerous and unpredictable.</p>
+<p>The Phantom Crow World was far from the Magus Civilization, well outside its sphere of influence.</p>
+<p>The creatures living in that star domain had never even heard of Magus World before.</p>
+<p>The Rank Six Phantom Crow King was an exception, considering it had once been struck from afar by the God of Beastmen, an overlord of the Magus Alliance.</p>
+<p>That blow had forced it to flee back to its home star domain in panic.</p>
+<p>Of course, the Phantom Crow King had figured out later who had hit it.</p>
+<p>There were two reasons why the Magus Alliance decided to send an envoy to Phantom Crow World this time.</p>
+<p>On one hand, it wanted to recruit...</p>
+</article>
+<article id="c1276" data-label="1276">
+<h2 class="chapter">Chapter 1276: A “Grand” Welcome 🔒</h2>
+<p>As he crossed the boundless Astral Realm, Sein could not help but marvel at its vastness every single time.</p>
+<p>The journey from Magus World to the Phantom Crow Star Domain was an incredibly long one.</p>
+<p>If Sein were to fly on his own at the speed of a Rank Four creature, the trip might have taken thousands of years to complete.</p>
+<p>But thanks to the spatial jump function of the space fortress, the time needed was cut down drastically.</p>
+<p>That was the advantage brought by Magus World’s magitech.</p>
+<p>The gap between the Magus Civilization and other, weaker world civilizations was not just about having more Rank Four or higher beings.</p>
+<p>It showed in many other areas as well.</p>
+<p>While weaker civilizations focused on exploring the handful of nearby planes in their own...</p>
+</article>
+<article id="c1277" data-label="1277">
+<h2 class="chapter">Chapter 1277: Phantom Crow World 🔒</h2>
+<p>According to intelligence gathered by the Magus Civilization, the Phantom Crow King was a greedy creature and enjoyed bullying the weak.</p>
+<p>This Rank Six creature, with its obvious personality flaws, was actually one of the easier ones to recruit.</p>
+<p>The Rank Six Sea Emperor Shark had taken a firm stance, but in doing so, it had left its own subjects and the plane under its command trapped in a dilemma.</p>
+<p>The Phantom Crow King that appeared in the starry sky was unusually silent. Each flap of its massive wings carried an enormous amount of particle energy.</p>
+<p>However, this overwhelming display did not provide the Phantom Crow King with any real advantage during the actual negotiations.</p>
+<p>The cawing of the Phantom Crows swarming around Sein and the others...</p>
+</article>
+<article id="c1278" data-label="1278">
+<h2 class="chapter">Chapter 1278: Historical Turning Point 🔒</h2>
+<p>During his initial conversation with the Phantom Crow King, Sein did not immediately bring up the topic of recruiting it into the Magus Alliance.</p>
+<p>Instead, he casually spoke about other matters, like the history of Phantom Crow World, which interested him.</p>
+<p>The Phantom Crow King was seen as somewhat of a revolutionary figure among the Phantom Crows, as it was the one who led them in overthrowing the Soul-Eating Beasts and transforming their world into a medium-sized plane.</p>
+<p>Its aggressive, expansionist stance aligned with the interests of nearly all Rank Four and above beings in Phantom Crow World.</p>
+<p>Naturally, the Rank Four and higher Phantom Crows were fiercely loyal to their king. Some of...</p>
+</article>
+<article id="c1279" data-label="1279">
+<h2 class="chapter">Chapter 1279: The Phantom Crow King’s Demand 🔒</h2>
+<p>Phantom Crow World was a dictatorship plane where the Phantom Crow King’s word was law; there was no real need for it to consult the other Phantom Crows.</p>
+<p>The fact that the Phantom Crow King even asked this question showed it was caught in a real dilemma.</p>
+<p>It dared not outright refuse and risk provoking the Magus Civilization, but it also felt unsure about what the future might hold if it agreed to join the Magus Alliance.</p>
+<p>The feeling of having one’s fate in someone else’s hands was truly unbearable!</p>
+<p>The Phantom Crow King even started to regret ever getting involved in the Bouldrak World War in the first place.</p>
+<p>If it had stayed out of that war, it probably would never have crossed paths with the Magus Civilization or ended up in...</p>
+</article>
+<article id="c1280" data-label="1280">
+<h2 class="chapter">Chapter 1280: Mission Accomplished 🔒</h2>
+<p>Of the two Rank Five Phantom Crows, only one was returned, as the other was already dead.</p>
+<p>When asked whether the Phantom Crow King wanted the remains of that one, this Rank Six creature shook its head. It had already sensed some sincerity from Magus World.</p>
+<p>In truth, not all Phantom Crows of Rank Four and above could temporarily extinguish their soul flame and feign death.</p>
+<p>With the return of the Rank Five gray-feathered Phantom Crow, Sein’s subsequent negotiations with the Phantom Crow King on behalf of the Magus Civilization about joining the Magus Alliance went much more smoothly.</p>
+<hr class="separator">
+<p>Due to the complexity of the terms involved, the negotiations between Sein and the Phantom Crow King went on for two years.</p>
+<p>The discussions mainly focused on the contract agreements, along with the rights and obligations of both sides.</p>
+<p>Overall, this mission to the Phantom Crow World was a success.</p>
+<p>In addition to...</p>
+</article>
+<article id="c1281" data-label="1281">
+<h2 class="chapter">Chapter 1281: Crescent Sea World 🔒</h2>
+<p>Phantom Crow World and Submerged Wave World, the bitter rivals, somehow ended up in the same alliance.</p>
+<p>The irony of it all was hard to miss.</p>
+<p>However, the Magus Civilization was displeased by Submerged Wave World’s earlier indecision.</p>
+<p>So, even though it was larger and had greater potential, it ended up with the lowest privileges in the Magus Alliance—slightly less even than what Eternal Sand received.</p>
+<p>Yet the obligations it had to fulfill were no less demanding!</p>
+<p>Since the mission in the Phantom Crow Star Domain was complete, Sein saw no reason to stay. After letting the Phantom Crow King know, he returned to Magus World.</p>
+<p>Meanwhile, the Magus Civilization’s military forces continued...</p>
+</article>
+<article id="c1282" data-label="1282">
+<h2 class="chapter">Chapter 1282: Priority In Trade 🔒</h2>
+<p>After wandering around the alliance’s star domain for decades, Sein and his crew finally made it back to Magus World.</p>
+<p>As the high-performance, boat shuttle-like space fortress docked at a starport outside Magus World, Sein felt a twinge of reluctance to leave. The trip had only deepened his desire to have his own space fortress.</p>
+<p>He wondered how Aurelia had managed his fortune over the years. Ideally, he wanted to secure a war fortress before the Clash of Civilizations broke out.</p>
+<p>If Aurelia could not provide the funds, Sein figured he would just have to take out a loan from the Capiche Business Alliance or Steel City to place an order.</p>
+<p>But since Aurelia...</p>
+</article>
+<article id="c1283" data-label="1283">
+<h2 class="chapter">Chapter 1283: Purchasing a Fortress 🔒</h2>
+<p>Although Rank Four and above creatures found it extremely difficult to reproduce, countless specialized fertility-enhancing potions had been developed as the Magus Civilization advanced to its current stage.</p>
+<p>While they did not guarantee conception for Rank Four and above creatures, they still improved the chances to some extent.</p>
+<p>If Sein wanted to leave descendants, it would have been better for him to prepare for that before breaking through to Rank Four.</p>
+<p>After all, the potions made for Rank Four and below had a better success rate, and they were more affordable, too.</p>
+<p>But Sein’s promotion at the Divine Tower of Verdant Flame came rather suddenly, and at the time, he simply was not interested in having kids, so he had not given it much thought.</p>
+<p>If Sia...</p>
+</article>
+<article id="c1284" data-label="1284">
+<h2 class="chapter">Chapter 1284: Azure Starbane 🔒</h2>
+<p>The Fairy Dragon model and the latest generation of standard space fortresses from the Capiche Business Alliance each had their strengths and weaknesses.</p>
+<p>The Capiche Business Alliance’s new-generation standard fortress might have a slight advantage in main cannon firepower, but the Byrne Empire’s Fairy Dragon model boasted longer endurance and stronger defense.</p>
+<p>On top of that, when it came to defense and outer armor, it incorporated plenty of special elemental arcane.</p>
+<p>In Peyton’s opinion, its overall performance was slightly superior to the Capiche Business Alliance’s standard model.</p>
+<p>More importantly, if Sein had the connections to buy the Fairy Dragon model...</p>
+</article>
+<article id="c1285" data-label="1285">
+<h2 class="chapter">Chapter 1285: Purchase 🔒</h2>
+<p>The space fortress that Sein wanted was essentially a self-modified model.</p>
+<p>It combined the sturdy hull produced by the Capiche Business Alliance with the advanced modification technology of Steel City.</p>
+<p>After receiving suggestions and a purchase list from Old Peyton in Sky City, Sein headed straight for the Capiche Business Alliance.</p>
+<p>Sein’s funds were still insufficient.</p>
+<p>If he had eighty or ninety million, or even over a hundred million magicoins, he could have commissioned a fully custom-made space fortress tailored to his needs through Sky City’s heavy industry laboratory.</p>
+<p>Unfortunately, even the cheapest custom-made space fortress in Sky City cost fifty million magicoins...</p>
+</article>
+<article id="c1286" data-label="1286">
+<h2 class="chapter">Chapter 1286: Lose Composure 🔒</h2>
+<p>Schlesyn enjoyed dealing with mages like Sein immensely.</p>
+<p>Sein still remembered how picky Lorianne had been when she was choosing her space fortress.</p>
+<p>She had toured every exhibition booth showing off the latest standard models and even checked the second-hand market.</p>
+<p>After all that effort, she still ended up purchasing a mid-range standard fortress of the latest model…</p>
+<p>A decisive client like Sein was every salesperson’s dream in the Capiche Business Alliance.</p>
+<p>When Schlesyn brought him to the alliance’s headquarters to finalize the paperwork, Sein showed no hesitation or regret.</p>
+<p>He paid in full on the spot, which only made Schlesyn’s service even more enthusiastic.</p>
+<p>They even exchanged crystal ball contact information, and Schlesyn mentioned that Sein could reach out to him directly...</p>
+</article>
+<article id="c1287" data-label="1287">
+<h2 class="chapter">Chapter 1287: Thor the Thunder God 🔒</h2>
+<p>Over the years, Sein had encountered countless treasures. From “divine artifacts” wielded by beings of Rank Four and above, to even rarer world‑class secret treasures, he had studied them all.</p>
+<p>The square‑shaped hammer in the hands of the blond, muscular man before him was also a world‑class secret treasure!</p>
+<p>Its grade surpassed even Tourmaline’s arm ribbons, rivaling the Faceless Mask itself.</p>
+<p>Sein’s exclamation drew the attention of the blond foreign god nearby.</p>
+<p>The man looked at Sein, or rather, at his Faceless Mask.</p>
+<p>Moments later, the blond god approached of his own accord.</p>
+<p>He seemed easy enough to get along with;...</p>
+</article>
+<article id="c1288" data-label="1288">
+<h2 class="chapter">Chapter 1288: Tag Along 🔒</h2>
+<p>Thor turned out to be quite a talkative deity. He chatted with Sein about all sorts of things.</p>
+<p>When Sein expressed his surprise that Thor had managed to purchase a top-tier space fortress from the Capiche Business Alliance, the Thunder God merely explained that he carried some Magus World bloodline.</p>
+<p>“I see. No wonder you feel so unique to me,” Sein said with a nod of understanding.</p>
+<p>Sein was not the type to strike up conversations easily, but Thor’s wealth and the world‑class secret treasure he wielded made him curious enough to talk more than usual.</p>
+<p>It turned out that Thor was also heading to the Howling Stone Demiplane for the 25th Magus Alliance...</p>
+</article>
+<article id="c1289" data-label="1289">
+<h2 class="chapter">Chapter 1289: The Power of the Magus Alliance 🔒</h2>
+<p>While Sein was in Steel City, Thor also tried to find a factory to help improve his <em>Thunderer.</em></p>
+<p>Unfortunately, he was told that his “golden‑type” space fortress was already one of the highest‑end models, so there was not much room for improvement.</p>
+<p>Even with a full upgrade, the changes would only be superficial and hardly worth the effort, especially since Thor would have to pay exorbitant modification fees.</p>
+<p>The mechanics of the Capiche Business Alliance were more than willing to “milk” Thor for every coin he had.</p>
+<p>Most of the convincing to drop the idea came from Sein.</p>
+<p>Thor might seem wealthy, but he was by no means foolish.</p>
+<p>After weighing his options, he accepted...</p>
+</article>
+<article id="c1290" data-label="1290">
+<h2 class="chapter">Chapter 1290: Howling Stone Plane 🔒</h2>
+<p>Upon arriving in the Howling Stone World, Sein and Thor entered the demiplane together.</p>
+<p>The main venue of the Magus Alliance Conference was located in its central region.</p>
+<p>Since the conference had not yet officially begun, Sein and Thor were in no hurry to head straight there.</p>
+<p>This was Sein’s first time attending the Magus Alliance Conference, but Thor had already been to two of them before.</p>
+<p>He moved with ease and familiarity, flying directly toward the western region of the Howling Stone Demiplane.</p>
+<p>“There are always good things on sale here during every Magus Alliance Conference. After all, only this event could bring so many foreign...</p>
+</article>
+<article id="c1291" data-label="1291">
+<h2 class="chapter">Chapter 1291: The Young God of Smithing 🔒</h2>
+<p>Sein’s interest in dissecting the Green Parrot Goddess far outweighed any personal interest he might have had in her.</p>
+<p>After a brief introduction, he was surprised to learn that the Green Parrot Goddess was not actually a Titan goddess; her true form was that of a parrot.</p>
+<p>In Titan World, not all deities were once Titans who ascended to godhood.</p>
+<p>The plane had a diverse array of species. As one of the large-sized planes, it was home to not only Titans but also countless land and marine creatures.</p>
+<p>The Titans simply dominated the plane, much like humans did in Magus World.</p>
+<p>“I’m looking for the God of Smithing. Where is he now?” Thor asked the Green Parrot Goddess.</p>
+<p>“In...</p>
+</article>
+<article id="c1292" data-label="1292">
+<h2 class="chapter">Chapter 1292: Exploding Furnace 🔒</h2>
+<p>Normally, gods who commissioned Domus to craft a divine artifact had to wait their turn.</p>
+<p>But that rule clearly did not apply to Thor.</p>
+<p>Using his sheer bulk to push through the crowd, Thor casually slapped Domus on the shoulder while he was busy at work and said, “That armor I commissioned last time… is it ready? You promised it would be delivered two hundred years ago.”</p>
+<p>The sudden slap startled Domus, who was still working in front of the furnace.</p>
+<p>High‑precision work like this could not afford any disruptions.</p>
+<p>That brief distraction caused the special metal inside the furnace, already at its melting point, to suddenly become u...</p>
+</article>
+<article id="c1293" data-label="1293">
+<h2 class="chapter">Chapter 1293: Sales Pitch 🔒</h2>
+<p>“It’s been a long time, Sir Thunder,” Sein said as he stepped forward to greet him.</p>
+<p>The two had met a few times before, but back then, Sein had mostly stood quietly behind Lorianne.</p>
+<p>Thunder was a rugged‑looking, middle‑aged knight with a bit of stubble on his chin. Despite his rough appearance, he had an excellent memory and recognized Sein immediately.</p>
+<p>“Oh, it’s you, Master Sein. I heard you have established your own divine tower. Congratulations!” Thunder nodded and smiled.</p>
+<p>The Order of the Thunder Knights was situated northwest of Ashenreach, farther away than the Order of the Steel Fist. This made it one of the Divine Tower of Ashes’ neigh...</p>
+</article>
+<article id="c1294" data-label="1294">
+<h2 class="chapter">Chapter 1294: Golden Apple 🔒</h2>
+<p>Sein and Thor communicated privately through mental focus, so no one heard their conversation.</p>
+<p>When Sein mentioned the “Golden Apple”, Thor furrowed his brow and then shook his head.</p>
+<p>“I ate plenty of those when I was a child, but my mother sealed off the Golden Apple Orchard twenty thousand years ago. Now they are classified as ‘strategic resources’, so I cannot just take them freely anymore.”</p>
+<p>“What a pity. If you had asked me twenty thousand years ago, I could have gotten you some,” he added with a shrug.</p>
+<p>“Is that so? That’s too bad!” Sein sighed.</p>
+<p>The Golden Apple was something Sein had come across while studying in Sky City.</p>
+<p>The Golden Apple Tree was considered...</p>
+</article>
+<article id="c1295" data-label="1295">
+<h2 class="chapter">Chapter 1295: The Phantom Crow King’s Shock 🔒</h2>
+<p>After placing a pre‑order for a Golden Apple with Thor, Sein wandered through the Titan gods’ activity area under Thor’s guidance.</p>
+<p>The Magus Alliance Conference had not yet officially begun, and there were only about a thousand Titan gods present in this area.</p>
+<p>Some Titan gods had yet to arrive, while others were unable to attend because of other commitments.</p>
+<p>Even so, being surrounded by so many Rank Four or higher beings left Sein deeply impressed.</p>
+<p>Though Sein did not have much cash on hand, he still had several million magicoins remaining.</p>
+<p>Under Thor’s introductions and recommendations, Sein purchased quite a few specialties from Titan World.</p>
+<p>In truth, the vast majority of foreign gods in the Magus Alliance were not...</p>
+</article>
+<article id="c1296" data-label="1296">
+<h2 class="chapter">Chapter 1296: Loki 🔒</h2>
+<p>After exchanging a few words with the Phantom Crow King in the starry sky, Sein took it along and descended toward Howling Stone World below.</p>
+<p>As they were about to enter, at least a thousand different detection spectra swept over them.</p>
+<p>Among them, a golden light stood out the most, but the moment it made contact with the Magus Alliance Conference invitations carried by Sein and the Phantom Crow King, all the scanning signals scattered and dispersed.</p>
+<p>Seeing such a spectacle for the first time, the Phantom Crow King gradually forgot its anxiety and confusion. It began scanning the strange environment around it with interest.</p>
+<p>Tens of thousands of Rank Four and above beings,...</p>
+</article>
+<article id="c1297" data-label="1297">
+<h2 class="chapter">Chapter 1297: A Powerful Woman 🔒</h2>
+<p><em>“I object to the deal you and Thor made to trade the Golden Apple for seventy million magicoins, Master Sein,”</em> Loki said bluntly via voice transmission.</p>
+<p>“Oh?” Sein raised a brow, then turned to Thor with a questioning look.</p>
+<p>Thor, already guessing what his younger brother was about to say, flushed red.</p>
+<p>Given Thor’s character, going back on his word was something he simply could not do.</p>
+<p>“Then how many magicoins do you think is fair?” Sein asked.</p>
+<p>In truth, Loki did not believe Sein could actually come up with seventy million magicoins.</p>
+<p>His sudden change of heart was partly to make Sein back down and partly to find a more suitable buyer.</p>
+<p>Compared to Sein, who was only Rank Four and looked ordinary, the...</p>
+</article>
+<article id="c1298" data-label="1298">
+<h2 class="chapter">Chapter 1298: Hela 🔒</h2>
+<p>Sein had been locked in place for what felt like an eternity, and when he finally regained control of his body, the powerful woman reached out a hand toward him.</p>
+<p>“Greetings, I’m Hela,” she said.</p>
+<p>“Greetings… I’m Sein,” he replied, extending his hand as well.</p>
+<p>He was used to the social etiquette of Magus World mages, but in front of someone this overwhelmingly powerful, he suddenly felt unsure how to act.</p>
+<p>When they shook hands, Loki looked most surprised.</p>
+<p>He stared in disbelief at Sein and Hela’s hands, then shifted his gaze to the Faceless Mask that had suddenly appeared on Sein’s face.</p>
+<p>Sein had not revealed the mask in any of his previous interactions with Loki and the others.</p>
+<p>As a world-class secret treasure,...</p>
+</article>
+<article id="c1299" data-label="1299">
+<h2 class="chapter">Chapter 1299: Before the Conference Hall 🔒</h2>
+<p>In the days that followed, Sein spent most of his time with Thor and the other Titan gods—at least until the eve of the Magus Alliance Conference.</p>
+<p>There was no helping it; Sein did not know many people in the Magus Alliance, and he still could not contact Lorianne or the others.</p>
+<p>Compared to wandering aimlessly around Howling Stone World, tagging along with Thor and the others was far more interesting and efficient.</p>
+<p>When he was with these esteemed Titan gods, it was rarely Sein who made the first move to approach others.</p>
+<p>Instead, people naturally gravitated toward him.</p>
+<p>During the days leading up to the conference, Sein met not only numerous Titan gods through Thor’s introductions, but also befriended many Elven deities, Beastmen deities, and even gods from other planar civilizations.</p>
+<p>Unfortunately, he never ran into...</p>
+</article>
+<article id="c1300" data-label="1300">
+<span id="last"></span>
+<h2 class="chapter">Chapter 1300: True Friend 🔒</h2>
+<p>The Sandworm Queen was attending this year’s Magus Alliance Conference as White Sand World’s representative.</p>
+<p>Aside from her, the Eternal Sand Lord and the Sea Emperor Shark were the only other Rank Four or higher beings from that star domain taking part in the event.</p>
+<p>For now, though, there was still no sign of the Eternal Sand Lord.</p>
+<p>Foreign deities attending the Magus Alliance Conference for the first time were usually assigned someone to receive them.</p>
+<p>However, the Sandworm Queen arrived directly at the venue with the Rank Six Void Aphid King, catching both Sein and Lorianne by surprise.</p>
+<p>When Sein and Lorianne saw the Sandworm Queen, the Rank Four worm naturally noticed them.</p>
+<p>While the Void Aphid King was undeniably her strongest supporter at the moment, the Sandworm Queen knew very well that Sein and Lorianne were the true Magus Civilization powerhouses...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="1301-1350.html" rel="next">Next: Chs 1301–1350 &rarr;</a>
+    <p class="page-end-links"><a href="1201-1250.html" rel="prev">&larr; Chs 1201–1250</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 1251–1300</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c1251">Chapter 1251: Mate 🔒</a></li>
+        <li><a href="#c1252">Chapter 1252: Eternal Sand World 🔒</a></li>
+        <li><a href="#c1253">Chapter 1253: Successful Recruitment 🔒</a></li>
+        <li><a href="#c1254">Chapter 1254: A Promising Start 🔒</a></li>
+        <li><a href="#c1255">Chapter 1255: Rewarding Journey 🔒</a></li>
+        <li><a href="#c1256">Chapter 1256: A Series of Good News 🔒</a></li>
+        <li><a href="#c1257">Chapter 1257: Wealth Law 🔒</a></li>
+        <li><a href="#c1258">Chapter 1258: Aurelia Chamber of Commerce 🔒</a></li>
+        <li><a href="#c1259">Chapter 1259: Scolding 🔒</a></li>
+        <li><a href="#c1260">Chapter 1260: Persuading Phantom Crow World 🔒</a></li>
+        <li><a href="#c1261">Chapter 1261: Divine Tower’s Dean 🔒</a></li>
+        <li><a href="#c1262">Chapter 1262: Sources of Frustration 🔒</a></li>
+        <li><a href="#c1263">Chapter 1263: Opportunity 🔒</a></li>
+        <li><a href="#c1264">Chapter 1264: The Divine Tower of Ashes’ Initiates 🔒</a></li>
+        <li><a href="#c1265">Chapter 1265: The Black Mages of Ashenreach 🔒</a></li>
+        <li><a href="#c1266">Chapter 1266: Anti-Black Vanguard 🔒</a></li>
+        <li><a href="#c1267">Chapter 1267: The First Academy War 🔒</a></li>
+        <li><a href="#c1268">Chapter 1268: Seeds of Potential 🔒</a></li>
+        <li><a href="#c1269">Chapter 1269: The Divine Towers’ Names 🔒</a></li>
+        <li><a href="#c1270">Chapter 1270: Investigation 🔒</a></li>
+        <li><a href="#c1271">Chapter 1271: Initiate Achievements 🔒</a></li>
+        <li><a href="#c1272">Chapter 1272: Benefits of Smuggling 🔒</a></li>
+        <li><a href="#c1273">Chapter 1273: Heavy Losses 🔒</a></li>
+        <li><a href="#c1274">Chapter 1274: The Skeletal Dragon’s Metamorphosis 🔒</a></li>
+        <li><a href="#c1275">Chapter 1275: Mission 🔒</a></li>
+        <li><a href="#c1276">Chapter 1276: A “Grand” Welcome 🔒</a></li>
+        <li><a href="#c1277">Chapter 1277: Phantom Crow World 🔒</a></li>
+        <li><a href="#c1278">Chapter 1278: Historical Turning Point 🔒</a></li>
+        <li><a href="#c1279">Chapter 1279: The Phantom Crow King’s Demand 🔒</a></li>
+        <li><a href="#c1280">Chapter 1280: Mission Accomplished 🔒</a></li>
+        <li><a href="#c1281">Chapter 1281: Crescent Sea World 🔒</a></li>
+        <li><a href="#c1282">Chapter 1282: Priority In Trade 🔒</a></li>
+        <li><a href="#c1283">Chapter 1283: Purchasing a Fortress 🔒</a></li>
+        <li><a href="#c1284">Chapter 1284: Azure Starbane 🔒</a></li>
+        <li><a href="#c1285">Chapter 1285: Purchase 🔒</a></li>
+        <li><a href="#c1286">Chapter 1286: Lose Composure 🔒</a></li>
+        <li><a href="#c1287">Chapter 1287: Thor the Thunder God 🔒</a></li>
+        <li><a href="#c1288">Chapter 1288: Tag Along 🔒</a></li>
+        <li><a href="#c1289">Chapter 1289: The Power of the Magus Alliance 🔒</a></li>
+        <li><a href="#c1290">Chapter 1290: Howling Stone Plane 🔒</a></li>
+        <li><a href="#c1291">Chapter 1291: The Young God of Smithing 🔒</a></li>
+        <li><a href="#c1292">Chapter 1292: Exploding Furnace 🔒</a></li>
+        <li><a href="#c1293">Chapter 1293: Sales Pitch 🔒</a></li>
+        <li><a href="#c1294">Chapter 1294: Golden Apple 🔒</a></li>
+        <li><a href="#c1295">Chapter 1295: The Phantom Crow King’s Shock 🔒</a></li>
+        <li><a href="#c1296">Chapter 1296: Loki 🔒</a></li>
+        <li><a href="#c1297">Chapter 1297: A Powerful Woman 🔒</a></li>
+        <li><a href="#c1298">Chapter 1298: Hela 🔒</a></li>
+        <li><a href="#c1299">Chapter 1299: Before the Conference Hall 🔒</a></li>
+        <li><a href="#c1300">Chapter 1300: True Friend 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="1201-1250.html" rel="prev">&larr; Chs 1201–1250</a>    <a href="../../index.html">Library</a>
+<a href="1301-1350.html" rel="next">Chs 1301–1350 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

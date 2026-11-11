@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unintended Immortality Chs 251–300</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="201-250.html#last" data-next-page="301-350.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c251">Chapter 251: A Tradition That Might Last for Centuries 🔒</a></li>
+        <li><a href="#c252">Chapter 252: Duel of Magic on the Snowy Plains 🔒</a></li>
+        <li><a href="#c253">Chapter 253: Sealing the Four Seasons 🔒</a></li>
+        <li><a href="#c254">Chapter 254: Stabilizing Water 🔒</a></li>
+        <li><a href="#c255">Chapter 255: Borrowing a Mountain in Pingzhou 🔒</a></li>
+        <li><a href="#c256">Chapter 256: Riding Alone Across Tens of Thousands of Li 🔒</a></li>
+        <li><a href="#c257">Chapter 257: The Revitalized He Plains 🔒</a></li>
+        <li><a href="#c258">Chapter 258: An Ancient Myth Before Our Eyes 🔒</a></li>
+        <li><a href="#c259">Chapter 259: The Military Camp of Yanzhou 🔒</a></li>
+        <li><a href="#c260">Chapter 260: Truly Grateful to Lady Calico 🔒</a></li>
+        <li><a href="#c261">Chapter 261: The Grassland Festival and Horse Racing 🔒</a></li>
+        <li><a href="#c262">Chapter 262: Lady Calico at the Horse Racing Event 🔒</a></li>
+        <li><a href="#c263">Chapter 263: The Yin Ghosts of Turtle City 🔒</a></li>
+        <li><a href="#c264">Chapter 264: Lady Calico Knows Magic Too 🔒</a></li>
+        <li><a href="#c265">Chapter 265: The Making of a Confident Cat 🔒</a></li>
+        <li><a href="#c266">Chapter 266: Night Encounter with Ghost Soldiers 🔒</a></li>
+        <li><a href="#c267">Chapter 267: Old Tales of Yidu 🔒</a></li>
+        <li><a href="#c268">Chapter 268: Frightening Away a Ghost General 🔒</a></li>
+        <li><a href="#c269">Chapter 269: Why Choose to Be a Ghost Here Instead of Being a God 🔒</a></li>
+        <li><a href="#c270">Chapter 270: Resolving Old Matters 🔒</a></li>
+        <li><a href="#c271">Chapter 271: Entrust a Task 🔒</a></li>
+        <li><a href="#c272">Chapter 272: I Rarely Lie 🔒</a></li>
+        <li><a href="#c273">Chapter 273: Journey to the Border 🔒</a></li>
+        <li><a href="#c274">Chapter 274: Zhaoye City 🔒</a></li>
+        <li><a href="#c275">Chapter 275: The Night Wanderer 🔒</a></li>
+        <li><a href="#c276">Chapter 276: The Mountain God Vanquishes the Bear Demon 🔒</a></li>
+        <li><a href="#c277">Chapter 277: The Special Talents Division of the Northern Army 🔒</a></li>
+        <li><a href="#c278">Chapter 278: Countless Remarkable Figures in the World 🔒</a></li>
+        <li><a href="#c279">Chapter 279: Phantom Trace and Strategies to Defeat the Enemy 🔒</a></li>
+        <li><a href="#c280">Chapter 280: Catching a Demon in the Camp at Night 🔒</a></li>
+        <li><a href="#c281">Chapter 281: Knowledge is Power 🔒</a></li>
+        <li><a href="#c282">Chapter 282: Slaying Demons on the Battlefield 🔒</a></li>
+        <li><a href="#c283">Chapter 283: Just Like a Thousand Years Ago 🔒</a></li>
+        <li><a href="#c284">Chapter 284: Merely Skilled in Spells 🔒</a></li>
+        <li><a href="#c285">Chapter 285: Time Will Pass Quickly 🔒</a></li>
+        <li><a href="#c286">Chapter 286: Returning to the Temple for the Celestial Seed 🔒</a></li>
+        <li><a href="#c287">Chapter 287: The Demons’ Strategy to Breach the City 🔒</a></li>
+        <li><a href="#c288">Chapter 288: The Wonders of the Celestial Seeds and a Letter from the Temple 🔒</a></li>
+        <li><a href="#c289">Chapter 289: Exorcizing Demons Outside the City 🔒</a></li>
+        <li><a href="#c290">Chapter 290: Lady Calico Grows Stronger Again 🔒</a></li>
+        <li><a href="#c291">Chapter 291: The Legends of Yuezhou 🔒</a></li>
+        <li><a href="#c292">Chapter 292: The Command Shook Mountains, and the Assembly of Generals Startled Even Ghosts and Gods 🔒</a></li>
+        <li><a href="#c293">Chapter 293: A Pivotal Moment in History 🔒</a></li>
+        <li><a href="#c294">Chapter 294: Lady Calico and the Stone Giant 🔒</a></li>
+        <li><a href="#c295">Chapter 295: The Swallow Returns 🔒</a></li>
+        <li><a href="#c296">Chapter 296: The Swallow Immortal Has Become a Deity 🔒</a></li>
+        <li><a href="#c297">Chapter 297: Arriving in Yuezhou in the Winter of the Sixth Year of Mingde 🔒</a></li>
+        <li><a href="#c298">Chapter 298: Delivering Letters to the Changqiang Sect 🔒</a></li>
+        <li><a href="#c299">Chapter 299: Hearing One’s Tales Is Also a Kind of Meeting 🔒</a></li>
+        <li><a href="#c300">Chapter 300: Qingtong Forest in Northern Yuezhou 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="the-unintentional-path-to-immortality">
+<article id="c251" data-label="251">
+<h2 class="chapter">Chapter 251: A Tradition That Might Last for Centuries 🔒</h2>
+<p>On the first day of the Lunar New Year, it was the time for Hansu County’s annual deity worship.</p>
+<p>Hezhou was once a major grain-producing region with a dense population. Hansu was a large county situated near He Plains, with at least 200,000 residents in the past.</p>
+<p>It was said that even within the city alone, there were 20,000 to 30,000 people. But over time, wars and demons took their toll, and many lives were lost. Precisely because of this, the people came to understand the terror of demons.</p>
+<p>Thus, when the Snow Temples were built, every year on the first day of the Lunar New Year and the sixth day of the sixth lunar month, nearly all of Hansu’s remaining able-bodied citizens would gather at the temples along the Snowy Plains’s edge to offer their prayers. Many people would carry baskets or shoulder poles filled with incense, stopping at each temple without missing a single one.</p>
+<p>Back then, the temples were shrouded in clouds of incense smoke, and the worshippers formed an unbroken line along the Snowy Plains’s edge. Sometimes, long queues would stretch out in front of the temple gates.</p>
+<p>The county seat became a ghost town, and the villages were left empty. Any newly appointed county magistrate who witnessed this scene was invariably struck with awe.</p>
+<p>Even in the past two years, with droughts ravaging Hezhou, the people’s determination to offer incense remained unshaken. However,...</p>
+</article>
+<article id="c252" data-label="252">
+<h2 class="chapter">Chapter 252: Duel of Magic on the Snowy Plains 🔒</h2>
+<p>“This one is real, you know…”</p>
+<p>A snow mouse stood on the ground, its tiny paws hanging down naturally, making it look both cute and obedient. It tilted its head up, staring at Song You.</p>
+<p>Its voice was high-pitched and faint, almost inaudible if one didn’t listen carefully.</p>
+<p>Before him lay a fissure, shallower and narrower than the one before, but still deep enough to be fatal.</p>
+<p>“…” Song You merely glanced at it before stepping forward. Once again, he crossed the chasm as if walking on solid ground.</p>
+<p>On the other side of the Snowy Plains, a fox lay sprawled out.</p>
+<p>It was a red fox, with a pointed snout. Its fur resembled the persimmons clinging to branches in winter. Lying lazily on the snow, it yawned, looking like a flicker of flame against the white snow, speckled with a dusting of snowflakes on its fur.</p>
+<p>As Song You approached, the red fox turned its head to look at him, its eyes lively and bright. It asked curiously, “You’re skilled in illusions as well?”</p>
+<p>The voice sounded like a child’s.</p>
+<p>“I know a bit.”</p>
+<p>“But even if you see through the flaws, is there truly not the slightest doubt in your heart?”</p>
+<p>“Why doesn’t Your Excellency meet me in your true form?”</p>
+<p>“My true form is still far away.”</p>
+<p>“And where might it be?”</p>
+<p>The red fox didn’t answer him. Seeing that Song You’s steps didn’t falter as he walked past, the fox could only yawn lazily...</p>
+</article>
+<article id="c253" data-label="253">
+<h2 class="chapter">Chapter 253: Sealing the Four Seasons 🔒</h2>
+<p>In the distance, an immense column of ice spiraled up into the sky like a pillar supporting the heavens. Upon reaching the heights, it reversed direction and, with the force of gravity, came crashing down toward the ground where the Daoist stood.</p>
+<p>Song You, with his gaze lowered and his steps unbroken, formed a hand seal.</p>
+<p>“<em>Boom</em>!”</p>
+<p>A dragon of fire surged upward, piercing through the column of ice. Shards of ice, sharp as blades, scattered and fell like a shower.</p>
+<p>The blizzard in the distance continued advancing.</p>
+<p>The land was a vast expanse of white, the sky dark and murky. Amidst the hazy world, the Daoist leaned on his staff and walked slowly westward, appearing as nothing more than a tiny black dot—so small, so solitary.</p>
+<p>Around him, the metal and stone giants clashed fiercely with the demonic horde, filling the air with thunderous crashes. Blood splattered across the snow, and occasionally, a giant would fall.</p>
+<p>All around, columns of ice spiraled up into the sky.</p>
+<p>Some formed towering pillars, others morphed into enormous hands that slammed down, while still others scattered into countless icy blades.</p>
+<p>Fire dragons rose once more, clashing head-on with the ice and snow. They were truly worthy of being the spirit of the marshlands.</p>
+<p>This must be a form of water manipulation.</p>
+<p>If the land had remained a plain, covered with marshes and wetlands, controlling it would have been far easier for the demon. However, to weaken the power of Duke of Thunder Zhou, it had transformed the plains into Snowy Plains, turning the marshes into glaciers. While...</p>
+</article>
+<article id="c254" data-label="254">
+<h2 class="chapter">Chapter 254: Stabilizing Water 🔒</h2>
+<p>Inside the temple beyond the Snowy Plains, the swordsman and the calico cat waited day after day.</p>
+<p>The swordsman didn’t have many tasks each day. Every morning, he would wake up, boil a pot of hot water, have a simple breakfast, and then spend the entire morning practicing swordsmanship. Sometimes, he would visit nearby villages to buy some provisions and fodder.</p>
+<p>In the afternoon, he would sit cross-legged on the ground, gazing toward the Snowy Plains in the north. He would watch the sky shrouded in dark clouds, where the wind sometimes swirled and lightning occasionally flashed. He would imagine the fierce battles happening there, ponder over his own Sword Dao, and patiently await that storm of thunder.</p>
+<p>Naturally, he also kept an eye on Lady Calico.</p>
+<p>At first, the calico cat acted as usual—</p>
+<p>She would sometimes dart around the temple, looking for anything she could play with. Even a dry stalk of grass poking out from the snow was enough for her to circle around, pawing and swatting at it. It seemed like she could always find something interesting to do, no matter where she was. When she got tired from her play, she would lie down inside the temple and take a nap.</p>
+<p>If anyone came to offer incense, she would approach and sit at a spot neither too far nor too close, tilting her head to observe them.</p>
+<p>Sometimes, she would transform into her human form, find a small wooden stick, and practice writing characters in the snow.</p>
+<p>The swordsman was literate, but he hadn’t read many books. He could tell that most of what Lady Calico wrote were poems; occasionally, she would write...</p>
+</article>
+<article id="c255" data-label="255">
+<h2 class="chapter">Chapter 255: Borrowing a Mountain in Pingzhou 🔒</h2>
+<p>“Giddy up!” The swordsman urged his horse forward, galloping across the Snowy Plains.</p>
+<p>Though there was still snow on the ground, it had thinned considerably. Sometimes, as the horse’s hooves struck down, clumps of snow would scatter, leaving dark hoofprints on the earth.</p>
+<p>A jujube-red horse ran alongside, carrying a saddle bag. Dangling from the bag was a pouch, inside which a calico cat peeked out, her head bobbing up and down with the rhythm of the horse’s stride. She craned her neck, intently watching the road ahead.</p>
+<p>They had a hundred li to go.</p>
+<p>Along the way, there were numerous ravines and even chasms left behind by old riverbeds, forcing them to take a winding path.</p>
+<p>They rode from noon until dusk.</p>
+<p>By the time the swordsman arrived, the sky had already darkened. From a distance, he could make out a spring, its surface shimmering with vibrant colors, perfectly calm and without a single ripple.</p>
+<p>Sitting serenely beside the spring was a Daoist, exuding a tranquil presence. As he lifted his gaze, the thick clouds on the distant horizon parted slightly, revealing the glow of the setting sun. The light was a brilliant yellowish-orange, like a blazing fire, while the untouched edges remained a cold, icy blue.</p>
+<p>The fiery-red sun met the icy-blue sky, and the sky was crystal clear. The swordsman couldn’t help but pause, momentarily stunned by the scene.</p>
+<p>The black horse, however, was already following the jujube-red horse, galloping directly toward the Daoist seated on the ground.</p>
+<p>...</p>
+</article>
+<article id="c256" data-label="256">
+<h2 class="chapter">Chapter 256: Riding Alone Across Tens of Thousands of Li 🔒</h2>
+<p>The towering mountains stretched endlessly for hundreds of li.</p>
+<p>Amid these remote, uninhabited peaks stood an elegant pavilion, with a welcoming pine tree bending down with its branches forward. At the table, tea was set out.</p>
+<p>The swordsman conversed with the Mountain God.</p>
+<p>“Please, have some tea.”</p>
+<p>“Thank you.”</p>
+<p>The swordsman, weary from his long journey, was indeed thirsty.</p>
+<p>There was nothing to worry or be cautious about, nor was there any need to be hesitant or refuse; he took the cup in hand and drained it in one gulp, displaying a bold and straightforward spirit.</p>
+<p>He frowned slightly and placed the cup back down.</p>
+<p><em>Gurgle, gurgle...</em></p>
+<p>Water bubbled up from the bottom of the cup, filling it once again.</p>
+<p>“You’re trying to attain enlightenment through martial arts?” The Mountain God looked at him with a smile.</p>
+<p>“How did you know?”</p>
+<p>“I’ve been the god of this place for over a thousand years. This road was once far more bustling than it is now,” the Mountain God said. He pointed to the now seldom-trodden mountain path behind the swordsman, which had no overgrown weeds despite its disuse.</p>
+<p>He seemed a bit nostalgic as he continued, “In these thousand years, countless travelers have passed through here. Over time, it can get quite dull, so I’ve conversed with some of the finest martial artists.”</p>
+<p>“I see.”</p>
+<p>“I can tell that you’re on the verge of attaining enlightenment through martial arts—just one step away.”</p>
+<p>“Still a long way to go.” The...</p>
+</article>
+<article id="c257" data-label="257">
+<h2 class="chapter">Chapter 257: The Revitalized He Plains 🔒</h2>
+<p>As he reached the former Snowy Plains, the swordsman instinctively slowed his pace.</p>
+<p>The ice and snow covering the plains had completely melted away. In just a little over ten days, fresh green grass had already begun to sprout. From afar, the land stretched out in a vast sea of green, teeming with new life, vibrant and full of energy.</p>
+<p>Riding his horse through the fields, both the swordsman and the black horse felt their moods soften. Yet amidst this tranquility, he couldn’t help but feel a sense of bewilderment.</p>
+<p>Could this really be the same icy, demonic kingdom of snow?</p>
+<p>He still remembered the scenes of the frozen land, the raging blizzards. He also recalled the later spectacle of lightning strikes tearing through the heavens and earth. Even when he left, there was still snow covering this place.</p>
+<p>Now, it seemed like an entirely different world. No snow, no thunder—only the flourishing vitality spread across the plains.</p>
+<p>Could this be the rebirth brought about by the Heavenly Thunder?</p>
+<p>For a moment, he found himself in a daze once again.</p>
+<p>The blue sky, white clouds, lush green grass, distant farmhouses, the faintly discernible official road, the divided plots of farmland, and the long-dead roadside trees—all seemed to have returned to their original state.</p>
+<p>If not for the temples still standing on the plain, and the fact that he had indeed passed by one...</p>
+</article>
+<article id="c258" data-label="258">
+<h2 class="chapter">Chapter 258: An Ancient Myth Before Our Eyes 🔒</h2>
+<p>The stone mountain was towering and majestic, yet not at all crude. It dominated most of the view.</p>
+<p>This area was perfectly flat; as far as the eye could see, there wasn’t the slightest rise or fall in the land. This was not only the sole elevation but also the only mountain in sight.</p>
+<p>This was no ordinary mound of earth, nor a mere hill. It resembled a massive, gray-white boulder. While it couldn’t compare in height to towering mountain ranges or the vast highland peaks, it rose abruptly from the flat plains.</p>
+<p>It stood alone, without being part of any plateau or mountain range—an independent peak emerging from the ground. By this measure, it was quite tall. On a foggy day, its summit might even pierce through the clouds.</p>
+<p>The mountain&#39;s surface was rough and steep. Apart from a few ancient pine trees rooted in the crevices, there were almost no other plants. In this vast plain, the mountain appeared abrupt, yet it also seemed like a masterstroke, as if it were the focal point of the entire landscape, giving an overwhelming sense of visual impact.</p>
+<p>Even if one encountered such a mountain elsewhere, they would be awestruck, let alone seeing it here.</p>
+<p>Especially when it had grown overnight.</p>
+<p>“...”</p>
+<p>The swordsman’s eyes were filled with astonishment. Even the Daoist couldn’t help but express his amazement.</p>
+<p>The Mountain God of Pingzhou had truly put his heart into this.</p>
+<p>“Let’s go take a look.”</p>
+<p>“Alright!”</p>
+<p>The group immediately stood up, packed their belongings, and headed toward the towering stone mountain a...</p>
+</article>
+<article id="c259" data-label="259">
+<h2 class="chapter">Chapter 259: The Military Camp of Yanzhou 🔒</h2>
+<p>On the other side of the Snowy Plains, there were also temples built. Here, the land finally had some undulation.</p>
+<p>The hills, standing tens or even a hundred zhang tall, had gentle, rolling curves. With early spring approaching in March, they were already covered in lush green grass. Even on the steepest slopes, horses could likely trot up at an angle without difficulty.</p>
+<p>The temples were built atop these hills.</p>
+<p>After more than a decade of He Plains being frozen in ice, the snow had melted, revealing the old official road once more.</p>
+<p>The Daoist, the jujube-red horse, and the calico cat followed the official road of He Plains leading toward Yanzhou, continuing on until they reached the base of the hills, where they could see the original boundary marker between Hezhou and Yanzhou. However, looking further ahead, they found that the road, unused for over ten years, was now completely covered in grass, making it nearly impossible to discern.</p>
+<p>Song You led the jujube-red horse onward. The cat carefully stepped through the grass, occasionally pausing and glancing around, seemingly distracted by some faint sound or movement.</p>
+<p>Yet, the general direction of the original road could still be faintly traced.</p>
+<p>Because hills stretched continuously on both sides, there was only this single passage in the middle. Naturally, the road wouldn’t detour unnecessarily over the hills; it simply followed the natural path through the valley.</p>
+<p>It took them a full day...</p>
+</article>
+<article id="c260" data-label="260">
+<h2 class="chapter">Chapter 260: Truly Grateful to Lady Calico 🔒</h2>
+<p>A few days later, it was already early March, with the spring sun shining bright.</p>
+<p>Between the hills, a stream meandered gently. By the stream stood two trees, and a rope was strung between them, hung with the Daoist’s clothes to dry. Song You sat in the shade beneath the trees, holding a book. In front of him, a small campfire simmered with a pot of millet porridge.</p>
+<p>The grasslands were growing greener by the day, and many wild herbs had sprouted. Song You had foraged some, washed and torn them into pieces, and added them to the porridge.</p>
+<p>Lady Calico was frolicking in the distance, darting back and forth. Her small figure appeared and disappeared amidst the tall grass.</p>
+<p>Song You had no idea exactly where he had wandered to. He only knew that the sound of the stream trickling beside him and the bubbling of the pot brought a sense of calm. He lowered his head, focused on his book, and pondered the route ahead.</p>
+<p>Yanzhou was the northernmost prefecture of the Great Yan. From here, heading west would lead into the vast northwestern territories, eventually reaching the Western Regions. Going east would take him toward the northeastern territories, all along the northern border.</p>
+<p>Naturally, he intended to head east.</p>
+<p>Yanzhou was narrow from north to south but stretched...</p>
+</article>
+<article id="c261" data-label="261">
+<h2 class="chapter">Chapter 261: The Grassland Festival and Horse Racing 🔒</h2>
+<p>When Song You awoke from his nap, he found seven or eight small fish neatly lined up beside him. Lady Calico was soaking wet, sprawled out on the grass in the sunlight, fast asleep.</p>
+<p>The world remained vast and open. The jujube-red horse had returned as well, now standing in the shade of the tree, peacefully grazing.</p>
+<p>“...”</p>
+<p>Song You let out a long breath, unhurriedly getting up to clean all the fish. Hearing the noise, Lady Calico lifted her head, glanced at him a few times, then rolled over and went back to sleep.</p>
+<p>Dinner that evening was grilled fish and roasted groundhog.</p>
+<p>They fell asleep beneath the starry sky.</p>
+<p>His clothes, dried in the sun all day and blown by the wind through the night, were fully dry by the next morning. Only then did the trio—one man, one cat, and one horse—resume their journey.</p>
+<p>They traveled through the vast grasslands.</p>
+<p>In Yanzhou, where the land was wide and the population sparse, walking alone in such an expansive world could indeed evoke a sense of solitude. But once that feeling was accepted, it became nothing to fear. Instead, it brought a profound sense of inner peace and openness, as vast as the land itself.</p>
+<p>Traveling alone was one of the most common forms of cultivation. It was the same for everyone.</p>
+<p>Sometimes, while climbing a hill, Song You would spot a distant white yurt. Occasionally, when he lit a campfire to stay the night, packs of wolves would cautiously approach, testing their luck. On rainy nights, he’d find a tree...</p>
+</article>
+<article id="c262" data-label="262">
+<h2 class="chapter">Chapter 262: Lady Calico at the Horse Racing Event 🔒</h2>
+<p>The night grew slowly deeper.</p>
+<p>The Daoist did not, like others who had not brought tents, find a random spot to rest in the camp below. Instead, he walked a long way in the darkness and climbed up a nearby mountain.</p>
+<p>Where there were many people, there were many troubles; where there were fewer people, there were fewer dangers. The Daoist was indifferent to both troubles and dangers. He simply wanted to be farther away, to find some peace and quiet, with fresher air. Moreover, from this mountain, he got a perfect bird&#39;s-eye view of the campfires across the entire campsite, making for a rather pleasant sight.</p>
+<p>Lady Calico walked to the edge of the mountain slope and gazed down. She left the Daoist with only a tiny silhouette, almost invisible among the grass.</p>
+<p>Below, a large bonfire was burning brightly, and many torches were scattered throughout the tents. People had gathered in a circle around the fire, dancing. The sounds of singing and shouting were still clearly audible, even from such a distance. The intense, unrestrained emotions seemed to be felt even by the cat.</p>
+<p>The Daoist, however, sat cross-legged on a woolen mat in the back, holding a small blue-and-white porcelain bowl, which was filled with about half a bowl of water.</p>
+<p>“Lady Calico, you should drink some water.”</p>
+<p>“...”</p>
+<p>The small figure...</p>
+</article>
+<article id="c263" data-label="263">
+<h2 class="chapter">Chapter 263: The Yin Ghosts of Turtle City 🔒</h2>
+<p>“How did your horse run so fast?”</p>
+<p>The young man approached, leading his own horse, his eyes wide with surprise and confusion as he looked at the little girl and her horse.</p>
+<p>“As I mentioned before,” Song You replied with a smile, “our horse may be small, but it excels in running. It seems we ended up taking the spotlight from you.”</p>
+<p>“It’s alright,” the young man replied, grinning brightly. “I came in third anyway. Even without you, I wouldn’t have taken first place today. It’s only my first day here; there are still a few more days. I’ll try again tomorrow.”</p>
+<p>“Then I wish you victory tomorrow,” Song You said.</p>
+<p>“Where did you stay last night?”</p>
+<p>“We spent the night up on that hill,” Song You replied, turning to point at the mountain where they had camped the previous night.</p>
+<p>“That far?” The young man glanced back at the hill, then remarked, “Why didn’t you stay down here? It’s much livelier at night. If you stay up on the hill, you might run into trouble or wolves.”</p>
+<p>“It’s quieter up there,” Song You replied.</p>
+<p>“And tonight?”</p>
+<p>“Tonight, I’m not sure yet.”</p>
+<p>“My father said you guys are impressive. He’d like to invite you to have dinner with us tonight.”</p>
+<p>“This...” Song You couldn’t help but smile.</p>
+<p>Since arriving in Yanzhou, this sort of invitation had become quite common, especially during his travels across the grasslands. It seemed that the locals here were just like that—a casual chat was enough for them to extend an invitation to dine together in their tent.</p>
+<p>For the people here, it seemed like a perfectly...</p>
+</article>
+<article id="c264" data-label="264">
+<h2 class="chapter">Chapter 264: Lady Calico Knows Magic Too 🔒</h2>
+<p>“<em>Whoosh</em>!”</p>
+<p>In an instant, Lady Calico turned her head sharply to the right, as if she had sensed something. Her gaze locked in that direction, unblinking.</p>
+<p>The master, now on his feet, looked around frantically. His face, smeared with blood, was filled with panic and confusion.</p>
+<p>The area was vast, filled with people and noisy chatter. After the master had finished performing his incredible miraculous magic, he chatted with the officials for a while. At this moment, not everyone was paying close attention to this side. Only those close by noticed the master’s sudden fall, assuming he had simply lost his balance.</p>
+<p>Even when he got up, face covered in blood, they still couldn’t grasp what had happened.</p>
+<p>Even the officials seated nearby, straining to see in the firelight, could only make out the blood on his face. They couldn’t clearly see that his face was already covered in fresh wounds.</p>
+<p>“What happened, Immortal?” one of the officials asked, alarmed.</p>
+<p>“Don&#39;t... Don&#39;t touch me!”</p>
+<p>The master was frantically looking around, darting behind various people for cover.</p>
+<p>This threw the surrounding officials into a state of panic. With more onlookers turning their attention to the scene, the panic began to spread outwards.</p>
+<p>Just then, several more bursts of yin qi surged forward.</p>
+<p>“<em>Whoosh</em>...”</p>
+<p>The yin qi once again transformed into a yin gust, sweeping toward them.</p>
+<p>The master leaned out, hiding behind a high-ranking official with a huge belly, peeking...</p>
+</article>
+<article id="c265" data-label="265">
+<h2 class="chapter">Chapter 265: The Making of a Confident Cat 🔒</h2>
+<p>The mountain slope was peaceful and quiet late into the night.</p>
+<p>Down below, many people in the camp had dispersed, and the bonfires had dimmed significantly. Yet there were still some who lingered, reluctant to leave, continuing to sing and dance around the remaining embers, brimming with boundless energy and enthusiasm.</p>
+<p>From behind came the bleating of a sheep. “<em>Baaa…</em>”</p>
+<p>Lady Calico held onto the rope with one hand, standing beside the sheep. With her other hand, she gently stroked the sheep’s neck, whispering softly to it.</p>
+<p>If you didn’t listen closely, it almost seemed like a beautiful scene.</p>
+<p>But if one listened carefully, they would hear her murmuring, “Good sheep, good sheep… Don’t wander off at night… There are ghosts here. Just wait until tomorrow. Tomorrow, I’ll eat you.”</p>
+<p>Song You’s face remained expressionless, and his heart was equally unmoved. He held a bowl in one hand and a water bag in the other, calmly pouring water into the bowl.</p>
+<p>A soft gurgling sound could be heard.</p>
+<p>Lady Calico stretched her neck to glance over, noticing that the bowl in the Daoist’s hand was her own and that it was already filled halfway with water. At first, she wanted to pretend not to see, even turning her head away. But she seemed to have thought of something, turned her head back, hesitated for a moment, then walked over of her...</p>
+</article>
+<article id="c266" data-label="266">
+<h2 class="chapter">Chapter 266: Night Encounter with Ghost Soldiers 🔒</h2>
+<p>The grassy hills of the plains stretch endlessly, most places devoid of human presence. Walking among them were only a Daoist, a young girl, and a jujube-red horse.</p>
+<p>Lady Calico purposely stayed in her human form to keep her money close, frequently reaching into her pocket to feel it.</p>
+<p>“Who knew sheep were so expensive!”</p>
+<p>“The people of Great Yan love to eat lamb,” the Daoist replied.</p>
+<p>“The people of Great Yan love to eat lamb,” Lady Calico repeated, puzzled. “Why don’t they like eating rats?”</p>
+<p>The Daoist merely smiled in silence and continued forward.</p>
+<p>One tall and one small figure, accompanied by the jujube-red horse, sometimes climbed hills, sometimes descended slopes, and occasionally walked along the ridgeline, searching not only for a path but also for the fabled Turtle City.</p>
+<p>It was near dusk when they finally arrived.</p>
+<p>This area was relatively flat, with low, gently sloping hills. Faintly visible on the ground was a long, earthen-colored ridge resembling a dragon, stretching out toward a walled earthen city.</p>
+<p>Though it wasn’t entirely barren around the city, the heavy ghostly qi and thick yin qi made the surrounding vegetation sparse. Large patches of grass appeared withered and yellow.</p>
+<p>Song You stopped in the distance, then sat cross-legged. From his travel bag, he took out a small jade vial and consumed a Swallow Pill, transforming himself into a swallow.</p>
+<p>Soaring into the sky, he felt...</p>
+</article>
+<article id="c267" data-label="267">
+<h2 class="chapter">Chapter 267: Old Tales of Yidu 🔒</h2>
+<p>Lady Calico pranced ahead alone with a lively little trot, stopping now and then. Each time she stopped, she would turn back for a quick glance.</p>
+<p>Behind her, humans and ghosts walked side by side.</p>
+<p>The Daoist asked the ghost beside him, “How many ghosts are there in the city now?”</p>
+<p>“Sir, there are over twelve hundred.”</p>
+<p>“That many, huh...”</p>
+<p>“It’s been this way since last year.”</p>
+<p>“Truly fascinating.”</p>
+<p>“May I ask... what do you find so fascinating about it?”</p>
+<p>“Are they all former garrison soldiers of Yuan’an City?”</p>
+<p>“The information you heard, sir, isn’t quite correct,” said the ghost in armor. “Over ten years ago, the northern frontier army invaded southward and indeed captured Yuan’an City. Not only were all the soldiers in the city slaughtered, but many of them were tortured to death. The intense resentment led to some of the three thousand garrison soldiers turning into vengeful spirits and evil ghosts who refused to disperse.</p>
+<p>“However, of the current twelve hundred ghosts in the city, the vast majority are not from those original three thousand troops. In fact, only about twenty or thirty of the original garrison became ghosts.”</p>
+<p>“Oh?” Song You raised an eyebrow.</p>
+<p>“Take us, for example,” the armored ghost said, turning and glancing at the comrades around him. “We died on the northern battlefield over a decade ago and became ghosts. After wandering around for years, we eventually ended up here.”</p>
+<p>“I see.” That made much more sense.</p>
+<p>Initially, he had thought all the ghosts in Turtle City were transformed from the city’s original garrison. That had genuinely startled him—after...</p>
+</article>
+<article id="c268" data-label="268">
+<h2 class="chapter">Chapter 268: Frightening Away a Ghost General 🔒</h2>
+<p>“After all these years, General, have you ever thought about going back?”</p>
+<p>“Of course I’ve thought about it. I think about it all the time,” the captain ghost replied. The ghost&#39;s expression was complex, a mix of bitterness, sorrow, and helplessness intertwined. Yet, despite it all, no tears fell. “But Yidu is thousands of li away from here. It’s hard enough for the living to make the journey. I’ve only recently become a ghost—how could I possibly find my way back?”</p>
+<p>“I see...” Song You stood in place, gazing up at the crescent moon on the horizon. After a moment of contemplation, he said, “Thinking about it, back when Lady Calico and I were in Yidu, we were once helped by both you and your wife. Thanks to the two of you, we were able to establish ourselves in the city. If you truly wish to return and see her again, I’d be willing to lend you a hand.”</p>
+<p>“You’re willing to take me back to Yidu?”</p>
+<p>“I do plan to return to Yidu someday, but that might not be for another ten years or so. While you’re a ghost and can be easily carried along, ten years is still a long, lonely wait for you.”</p>
+<p>“I’ve already waited over ten years—I’m not afraid to wait ten more,” the captain ghost replied without hesitation. He seemed to recall some old tales and added, “As...</p>
+</article>
+<article id="c269" data-label="269">
+<h2 class="chapter">Chapter 269: Why Choose to Be a Ghost Here Instead of Being a God 🔒</h2>
+<p>“Please be fair, Immortal!” The voice of the captain ghost sounded from the side. “Harming the common folk and their livestock—those were the deeds of General Feng. It was General Chang who gave the orders to kill. These actions have nothing to do with the other soldiers!”</p>
+<p>“General, there&#39;s no need to panic,” Song You quickly reassured him. “I am merely a Daoist, not a deity who eradicates ghosts. You and your comrades sacrificed yourselves for the nation. As long as you remain well-behaved and do not harm the people, how could I trouble you?</p>
+<p>“Besides, even if there were any missteps, such matters should fall under the jurisdiction of the Heavenly Palace and the Thunder Gods.”</p>
+<p>“Thunder Gods...”</p>
+<p>The ghosts exchanged uneasy glances with one another.</p>
+<p>“Immortal...”</p>
+<p>“What else troubles you, General?”</p>
+<p>“You are a person of great power and a kind-hearted soul. We...”</p>
+<p>“There’s no need for all this formality,” Song You said with a touch of exasperation. “Cut to the chase.”</p>
+<p>“We did not gather here intentionally to form a ghost city,” the captain ghost explained. “After death, we became ghosts, wandering aimlessly and with nowhere to go, alone and adrift. That’s why we eventually came together here. It was General Feng who went out to harm livestock, and it was only because of this that the local authorities sent people to investigate.</p>
+<p>“Those who came to exorcise us were vile, not only attempting to exterminate us but also insulting us incessantly. General Chang could not bear it and led a...</p>
+</article>
+<article id="c270" data-label="270">
+<h2 class="chapter">Chapter 270: Resolving Old Matters 🔒</h2>
+<p>“I’ve just said a few words—how could that amount to kindness or deserving gratitude?” Song You smiled as he stood up.</p>
+<p>He continued, “You all defended the nation in life. If you can continue to safeguard this area in death, it is I who should thank you on behalf of the people. Should you one day become netherworld deities through this, that would be the result of your own efforts and diligence, and it would have nothing to do with me.”</p>
+<p>He added with a chuckle, “I’ll take another stroll around Yuan’an City.”</p>
+<p>“We will escort you, Immortal!”</p>
+<p>The ghosts eagerly followed, enthusiastically introducing the details of the city to him.</p>
+<p>After a thorough tour of the city, the ghosts gradually dispersed. By this time, Song You and his cat and horse had returned to their original spot—the former residence of the city’s commanding general. Song You planned to spend the night there.</p>
+<p>Only one ghost remained at his side: Tang An.</p>
+<p>Taking the opportunity, Song You asked, “General, I heard earlier that the reason the northern frontier army attacked again this time was due to the involvement of demons and ghosts?”</p>
+<p>“According to those delivering messages along the border and to Caotou Pass, the northern army had demons and ghosts assisting them,” Tang An replied honestly. “I don’t...</p>
+</article>
+<article id="c271" data-label="271">
+<h2 class="chapter">Chapter 271: Entrust a Task 🔒</h2>
+<p>At night on March 7th…</p>
+<p>The bonfires of the Grassland Festival still blazed brightly, with a large crowd singing and dancing around the flames. It was unclear whether the same group of people had been celebrating tirelessly or if they had been replaced by newcomers.</p>
+<p>Song You arrived once again with the little girl, seeking out Lin Le and his family seated at the edge of the gathering. They exchanged smiles and greetings before sitting together.</p>
+<p>“This Grassland Festival is truly lively,” Song You remarked as he looked at the scene before him.</p>
+<p>“Tomorrow will be even more lively,” Lin Chang said, though he then shook his head. “But no matter how lively it gets, it’s only a few days out of the year. The rest of the time, this place is so desolate it’s hard to believe. Sometimes, ten days or half a month might pass without seeing another person.”</p>
+<p>“Indeed,” Song You agreed.</p>
+<p>That likely explained the excitement of the Grassland Festival.</p>
+<p>“When do you plan to head back?” Lin Chang asked.</p>
+<p>“Tomorrow, we’ll offer sacrifices to heaven and earth, and the day after, we’ll head back. My eldest son has gone to the north to serve in the military, and Lin Le is still young. If my eldest were home, or when Lin Le had grown up a bit after a few years, we...</p>
+</article>
+<article id="c272" data-label="272">
+<h2 class="chapter">Chapter 272: I Rarely Lie 🔒</h2>
+<p>“Sir, you mentioned there was one more matter?”</p>
+<p>“There is one more,” Song You said, elaborating carefully. “After the chaos in the North, demons and ghosts have been appearing frequently. During my time here at the Grassland Festival with Lady Calico, I’ve already heard many accounts of minor demons and ghosts disturbing the people.</p>
+<p>“Turtle City’s leading ghost general, the one causing trouble, has fled, leaving behind mostly heroic souls who sacrificed themselves for the nation. Though they’ve not been ghosts for long, they are quite capable. The life of a ghost is a lonely one, so I asked them to help patrol the grasslands. If they come across minor demons or spirits troubling the common folk, they are to step in and assist.</p>
+<p>“I also told them that perhaps one day, the local people, moved by their virtue and deeds, might come to offer incense and worship them. If enough people do so, they might be able to use the power of such offerings to transcend their existence as wandering ghosts and become netherworld deities, like the city’s City Gods or their subordinate martial officers.&#34;</p>
+<p>“This...” The young official almost asked, <em>‘Is this really true?’</em> but stopped himself before the words left his mouth.</p>
+<p>After a long pause,...</p>
+</article>
+<article id="c273" data-label="273">
+<h2 class="chapter">Chapter 273: Journey to the Border 🔒</h2>
+<p>By the time Lady Calico finished her milk, the Daoist had already packed up their belongings.</p>
+<p>“<em>Burp!”</em></p>
+<p>Lady Calico let out a little burp and turned her head to stare at him.</p>
+<p>After a brief glance, she quickly turned her head the other way.</p>
+<p>From the foot of the mountain, a few figures on horseback approached at a trot, all people she recognized.</p>
+<p>“Giddy up!”</p>
+<p>The sound of hooves on the grass was faint.</p>
+<p>Lady Calico stretched her neck to get a better look.</p>
+<p>Leading the group were Lin Chang and Lord Han. Behind them were the young Lin Le and his sister, the boy riding lightly and energetically atop his young, spirited horse. Yet despite their enthusiasm, they stayed obediently behind their father.</p>
+<p>Lady Calico blinked in slight confusion as they quickly drew nearer.</p>
+<p>Realizing she couldn’t just stand there, she twisted her body and, with a well-aimed leap, dove straight into one of the pouches on their horse.</p>
+<p>“Mr. Song!”</p>
+<p>Lin Chang and Lord Han greeted him as they arrived.</p>
+<p>The four riders approached one after another, their horses coming to a halt nearby.</p>
+<p>Lin Chang and Lord Han dismounted from their horses, greeting the Daoist warmly. The young boy and girl, however, remained seated on their horses, glancing around as if searching for something.</p>
+<p>Lady Calico, curled up inside the pouch, peeked out discreetly. She could hear her Daoist priest conversing...</p>
+</article>
+<article id="c274" data-label="274">
+<h2 class="chapter">Chapter 274: Zhaoye City 🔒</h2>
+<p>The Daoist walked steadily from west to east, leaning on his bamboo staff. The jujube-red horse silently followed, carrying their luggage.</p>
+<p>Beside him, the little girl also held a bamboo staff, hers much thinner than the Daoist’s.</p>
+<p>She ran ahead, holding her staff high. Tied to the top was a slender grass string, and fastened to the string was a small white cloth about the size of a cat’s paw. As she ran, the wind caught the cloth, making it flutter and spin. It looked less like a piece of cloth and more like a butterfly.</p>
+<p>The butterflies of the grasslands, as simple-minded as they were, seemed to believe it was indeed a butterfly. They began to follow the white cloth, soon forming a neat line trailing behind it.</p>
+<p>The little girl ran, waving her staff, the cloth fluttering.</p>
+<p>Behind her stretched a long, orderly line of butterflies.</p>
+<p>When she had run far enough, she turned in a wide circle across the grasslands before running back. Passing behind the Daoist and the jujube-red horse, she then continued forward again, as if tireless.</p>
+<p>“Daoist priest, look!”</p>
+<p>“Hmm.”</p>
+<p>“There are even more now!”</p>
+<p>“Impressive.”</p>
+<p>“...”</p>
+<p>Not only did she seem tireless, but she also didn’t smile—her face remained serious. Yet her eyes shone with an unusual brightness, filled with curiosity, and her voice rang out clear and crisp.</p>
+<p>She ran back and forth, holding her bamboo staff high.</p>
+<p>The Daoist...</p>
+</article>
+<article id="c275" data-label="275">
+<h2 class="chapter">Chapter 275: The Night Wanderer 🔒</h2>
+<p>“Zhaoye City was indeed consumed by demons,” the cavalryman surnamed Feng began, his voice carrying both fear and a certain indifference to life and death as the firelight flickered across his face. “It’s said that one day, a yellow sandstorm swept in from the north, devouring the heavens and the earth, swallowing Zhaoye City whole.</p>
+<p>“Whatever demons were within that sandstorm, when it passed, all the remaining defenders in the city were reduced to white bones. After that, Zhaoye City became a den of demons, teeming with countless monsters. Neither we nor the people of the northern frontier dared to approach within a hundred li of the city.”</p>
+<p>“And the demons in the city?”</p>
+<p>“The demon that ruled Zhaoye City was called the Yellow Sand King. At least, that’s what we in the northern garrison called it. When the news reached Changjing, it’s hard to say if the nobles in the court believed it. Most common folk took it as a mere legend.”</p>
+<p>“Yellow Sand King...”</p>
+<p>“Starting a few years ago,” Feng continued, “the beacon towers closest to Zhaoye City began reporting frequent lightning strikes over the area. At its peak, the thunder and lightning covered a radius of a hundred li. Some even claimed to have seen celestial officials in the sky.</p>
+<p>“There were rumors of golden-armored immortals descending from the heavens. Whether that’s...</p>
+</article>
+<article id="c276" data-label="276">
+<h2 class="chapter">Chapter 276: The Mountain God Vanquishes the Bear Demon 🔒</h2>
+<p>The summer mornings on the grasslands still carried a chill.</p>
+<p>This group of cavalrymen woke before dawn, breaking their fast with millet cakes and warming themselves with sips of liquor.</p>
+<p>Whether it was due to their skills giving them confidence, the innate boldness of northern soldiers, or their certainty that no people of the northern frontier were nearby, after a few swigs of wine, one of them began to sing loudly.</p>
+<p>The song echoed across the chilly morning plains.</p>
+<p>Not far away lay the corpse of the Night Wanderer, its lingering miasma of blood and malice not yet dissipated. It was said that even the wolves of the grasslands would not touch such creatures.</p>
+<p>Before long, the cavalrymen had finished packing. They carefully secured the body of their fallen comrade onto a horse and approached Song You one by one, cupping their fists in farewell.</p>
+<p>“Sir, if you’re not heading to Zhaoye City, then we’ll take our leave here. The people of the northern frontier have been acting strangely in this area recently, so we need to return and report,” said Feng.</p>
+<p>“From here, travel six hundred li east, and you’ll reach Yuanzhi City. The Liaoxin Pass you asked about last night is not far from Yuanzhi, forming a defensive pincer. If you head there, it’s just a few dozen li further east past Yuanzhi,” another cavalryman added.</p>
+<p>“As long as you don’t head further north, you’ll remain in our...</p>
+</article>
+<article id="c277" data-label="277">
+<h2 class="chapter">Chapter 277: The Special Talents Division of the Northern Army 🔒</h2>
+<p>On a distant hillside stood a beacon tower. Beside the beacon tower, a Daoist sat cross-legged.</p>
+<p>A jujube-red horse, loaded with traveling bags, grazed quietly, seemingly indifferent to the war raging below. Meanwhile, the calico cat sat upright beside the Daoist, as if imitating his posture, staring intently at the scene below.</p>
+<p>The little cat couldn&#39;t suppress her curiosity. Turning around to look at the Daoist, she kept asking questions. “What are they doing?”</p>
+<p>The Daoist remained calm and answered in a soft tone, his gaze fixed on the scene below.</p>
+<p>“Fighting a war.”</p>
+<p>“This is what fighting a war looks like?”</p>
+<p>“Yes.”</p>
+<p>“Why are there so many people?”</p>
+<p>“Because there are many people.”</p>
+<p>“Why do they do this?”</p>
+<p>The cat seemed unable to comprehend the concept of war, its eyes filled with pure curiosity.</p>
+<p>“Don’t cats fight too?”</p>
+<p>“That’s true…“</p>
+<p>“Right?”</p>
+<p>“Why do you always summon the Mountain God?”</p>
+<p>“Because it’s useful.”</p>
+<p>“Doesn’t the Mountain God get tired?”</p>
+<p>“I was casting the Boulder Legion spell.”</p>
+<p>“The Boulder Legion spell!”</p>
+<p>“It’s an earth element spell, a spell of the five elements. Back in Yidu, I told you about it—depending on one&#39;s cultivation depth, it can raise earth into walls, transform stone into soldiers, carve paths through mountains, or command mountains as deities.”</p>
+<p>“I forgot…“</p>
+<p>“It’s fine.”</p>
+<p>“It sounds amazing.”</p>
+<p>“Do you want to learn?”</p>
+<p>“If I learn, will I be that powerful too?”</p>
+<p>“Depends on your level of cultivation.”</p>
+<p>“I possess vast divine powers and immense magical strength!”</p>
+<p>“...</p>
+</article>
+<article id="c278" data-label="278">
+<h2 class="chapter">Chapter 278: Countless Remarkable Figures in the World 🔒</h2>
+<p>“Haha! Mr. Song!”</p>
+<p>A group of people walked in from outside.</p>
+<p>Leading them was a man who appeared to be around thirty years old. His face was plain and unremarkable, and he still wore simple gray cloth garments. However, his complexion had grown much darker from the sun compared to a little over a year ago.</p>
+<p>His smile, though, was as hearty as ever.</p>
+<p>“Mr. Song! It really is you! I never thought I’d see you again in this lifetime!” His voice was loud and clear, his laughter bold and unrestrained.</p>
+<p>As he approached, he cupped his hands in salute. “It’s an honor to meet you again, sir.”</p>
+<p>Then, lowering his cupped hands and bowing his head, he turned his gesture toward Lady Calico on the ground.</p>
+<p>“And greetings to you, Lady Calico.”</p>
+<p>“<em>Meow</em>...”</p>
+<p>“We also thought we wouldn’t see you again.” Song You returned the salute with a faint smile. “Previously, I was worried about the chaos in the north making it difficult for you to reach the border. Seeing you here now, I can set my mind at ease.”</p>
+<p>“It’s all thanks to the two talismans you gifted me. Without them, I might not have made it through the dangers along the way,” Xing Wu replied. He must have encountered something along the way. Even now, as he thought about it, he still felt lingering fear. Unable to help himself, he turned his head to the side and let out...</p>
+</article>
+<article id="c279" data-label="279">
+<h2 class="chapter">Chapter 279: Phantom Trace and Strategies to Defeat the Enemy 🔒</h2>
+<p>“Mr. Song, there’s something you may not know...”</p>
+<p>Advisor Zhang leaned closer to Song You and whispered, “The enemy we’re facing is the eastern eight tribes of the grasslands, under the command of the northern Right Wolf King. Among his subordinates is a strategist who has a peculiar hobby—he enjoys collecting severed hands, feet, skulls, or other body parts from his enemies as trophies and often plays with them.</p>
+<p>“Previously, we devised a meticulous plan and sent a pair of Mr. Yin’s ears to his tent.”</p>
+<p>“Does that mean the movements of the northern Right Wolf King’s army are entirely under your control?” Song You asked.</p>
+<p>“It’s not quite that effective,” Advisor Zhang replied. “First, since the ears are in that strategist’s tent, we can only hear what’s said within it. Most of the time, important discussions among the army of the northern frontier take place in the Right Wolf King’s main tent, and this strategist is only one of many under the Wolf King.</p>
+<p>“Second, the ears are usually kept in a box. Whether or not we can hear anything clearly depends entirely on chance.”</p>
+<p>“I see.”</p>
+<p>“Still, any bit of information we can gather is something. It’s better than nothing,” Advisor Zhang added.</p>
+<p>“Indeed,” Song You agreed, falling silent as he turned his attention to Yin Wenxing.</p>
+<p>He had moved to a corner of the training hall, hands covering his ears and bending slightly as he listened intently. After a while, his voice came through, “They’re discussing Mr. Song...”</p>
+<p>“Who’s discussing him? And...</p>
+</article>
+<article id="c280" data-label="280">
+<h2 class="chapter">Chapter 280: Catching a Demon in the Camp at Night 🔒</h2>
+<p>The training hall was already equipped with brushes, ink, paper, and inkstones.</p>
+<p>Since the army often relied on experts to deal with supernatural threats, such as ghosts or demons, cinnabar was naturally among their supplies as well.</p>
+<p>It didn’t take long for everything to be prepared, and the brushes, ink, paper, inkstone, and cinnabar were placed on the desk commonly used by General Chen.</p>
+<p>The Daoist sat down in front of the desk.</p>
+<p>“<em>Swish</em>!”</p>
+<p>He smoothed the paper and weighed it down. A junior officer personally came forward to grind the ink.</p>
+<p>The calico cat leaped onto the desk, sometimes lowering its head to watch the officer grinding the ink and the ink-stick, and sometimes raising its gaze to scrutinize the officer’s face.</p>
+<p>The Daoist picked up the brush and dipped it into the cinnabar. The tip of the brush touched the top-right corner of the paper, moving like a dragon or serpent.</p>
+<p>Each stroke carried a subtle sheen of light, and when the talisman was complete, a faint breeze stirred the paper.</p>
+<p>The talisman was created at one go.</p>
+<p>Among those watching was a folk expert well-versed in talismans. Peering intently, he could tell that the design and structure of this talisman were entirely different from the current mainstream styles and bore no apparent connection to Heavenly Palace deities. Yet, the mystical phenomenon in the process made it clear that this talisman was extraordinary.</p>
+<p>Strangely, the center of the talisman paper remained blank.</p>
+<p>The Daoist paused, set down the brush, and picked up...</p>
+</article>
+<article id="c281" data-label="281">
+<h2 class="chapter">Chapter 281: Knowledge is Power 🔒</h2>
+<p>“<em>Whoosh</em>...”</p>
+<p>Bolai waved his hand again, sending a gust of wind and a flurry of sand flying.</p>
+<p>With over a hundred thousand elite soldiers and countless skilled individuals stationed in this city, how could he dare linger any longer?</p>
+<p>He immediately turned and fled!</p>
+<p>The horse under General Lu’s saddle shook its head instinctively, disturbed by the sudden storm of sand. The general raised his arm slightly to shield his eyes, and by the time he lowered it, the demon had already leapt onto the rooftops again. General Lu merely smirked, his lips curling into a sneer. Combined with the scar on his face, his ferocity rivaled that of the demon itself.</p>
+<p>“<em>Hya</em>!”</p>
+<p>With a light nudge, he spurred his horse forward in pursuit.</p>
+<p>The demon had barely landed on the rooftop when another arrow struck, forcing him down again.</p>
+<p>This time, his thigh was nearly pierced clean through.</p>
+<p>It was said that even the tough-skinned rhino demon, whose hide could barely be penetrated by siege crossbows, had fallen to one of Cao Yan&#39;s arrows. That legendary shot had pierced the demon&#39;s eye, killing it beneath the city walls. Bolai had no doubt about the precision and power of this famed sharpshooter of Great Yan’s army.</p>
+<p>“But what on earth is going on?”</p>
+<p>It wasn’t surprising that the northern garrison had skilled individuals capable of predicting his arrival tonight. But why were so many dark corners of the city lit with lamps tonight? Why were those previously abandoned buildings and storehouses now under constant guard? Could it be that they had uncovered the secret behind his technique?</p>
+<p>And why was it that, despite finding supposedly unguarded places multiple times, he still felt as though he was being watched and unable to escape?</p>
+<p><em>Neigh...</em></p>
+<p>Ahead stood another imposing general, armed with a spear.</p>
+<p>“<em>Whoosh</em>...”</p>
+<p>Bolai exhaled a gust of gray smoke.</p>
+<p>As the smoke swept...</p>
+</article>
+<article id="c282" data-label="282">
+<h2 class="chapter">Chapter 282: Slaying Demons on the Battlefield 🔒</h2>
+<p>“Mr. Song, you’re truly remarkable,” Xing Wu was the first to speak. “Back when I traveled to the north with two of your talismans, I already knew you were an immortal master, skilled in exorcizing demons and subduing evil.”</p>
+<p>“It&#39;s merely because I&#39;ve read many ancient texts and learned a few more techniques,” Song You said with a smile. “Now, all of you are aware of these things too, aren&#39;t you?”</p>
+<p>“The northern frontier people must already know that Bolai didn’t return last night,” Advisor Zhang said, still referring to the shrike as Bolai as he stroked his beard.</p>
+<p>He added, “After over a year of dealing with them, we’ve learned that most of the demons in their ranks are as arrogant and combative as the northern frontier people themselves, likely raised on the grasslands. Most likely, by tomorrow at the latest, they&#39;ll either launch another assault on the city or come directly to challenge you to a duel.”</p>
+<p>“As expected of a strategist.”</p>
+<p>“You remain so composed, Mr. Song,” Advisor Zhang said with a smile, then turned to the wiry, dark-skinned man. “Mr. Yin, please keep your ears open today and see if you can catch anything.”</p>
+<p>“Of course.”</p>
+<p>“Mr. Song, would you like to hear about the abilities of the demons in the northern frontier army?”</p>
+<p>Song You glanced down at the calico cat by his feet. Her head drooped low, and she looked like she was about to fall asleep standing up. Though he wasn’t sure why she was so tired, he nodded and said, “It wouldn’t hurt to hear about them.”</p>
+<p>“It’s better for us to leave this place for them to arrange their troops. Mr. Song, please come with me!”</p>
+<p>With a gesture of invitation, Advisor Zhang led the way out. Song You followed behind him as they walked outside.</p>
+<p>The calico cat swayed her head, as though sleepwalking,...</p>
+</article>
+<article id="c283" data-label="283">
+<h2 class="chapter">Chapter 283: Just Like a Thousand Years Ago 🔒</h2>
+<p><em>Thud, thud, thud...</em></p>
+<p>The sound of galloping hooves grew closer.</p>
+<p>The officer had returned.</p>
+<p>“Sir!”</p>
+<p>Even before he arrived, his voice rang out, “The demons in the northern frontier army are furious and have come to fight. Please be careful!”</p>
+<p>Just as he finished speaking, a sudden <em>boom</em> erupted from behind. It sounded like a whirlwind rising or an explosion of gunpowder.</p>
+<p>A wave of intense heat surged from behind.</p>
+<p>The officer, startled, turned to look. On the grasslands behind them, flames roared like a river, surging along the ground toward them.</p>
+<p>The fire moved with astonishing speed—faster than a galloping horse.</p>
+<p>“General Pyro!”</p>
+<p>The officer immediately recognized the demon. It had previously used its abilities to ignite fires within Yuanzhi City, even attempting to set the walls ablaze. On one occasion, the flames climbed the walls, burning many officers and soldiers stationed there.</p>
+<p>The first time, it was subdued only after a local expert in rain-summoning rituals invoked rain to extinguish the fire. The second time, a divine immortal descended from the heavens, scaring it off.</p>
+<p>But the flames seen before were nowhere near as terrifying as the flowing fire resembling a river seen today.</p>
+<p>This scene defied logic. If not for having witnessed the demon’s powers firsthand and feeling the intense heat rising behind him, one might have thought it was a hallucination.</p>
+<p>“<em>Hyah</em>!” In a panic,...</p>
+</article>
+<article id="c284" data-label="284">
+<h2 class="chapter">Chapter 284: Merely Skilled in Spells 🔒</h2>
+<p>In the golden tent of the northern frontier army, the Right Wolf King sat surrounded by tribal leaders, key advisors, and military commanders. Though the table before them was laden with wine and meat, no one touched it. All eyes were focused, waiting.</p>
+<p>Although those in the army with divine powers were called “generals,” the relationship was more akin to a partnership. When their help was needed, one must respectfully send someone to invite them, and they might not even agree.</p>
+<p>Fortunately, these individuals didn’t require much in terms of provisions and were indeed highly capable. Most of the time, as long as they were asked, they usually respond—though the extent of their efforts varied. Even so, the Right Wolf King was able to remain composed about it.</p>
+<p>Today, when the generals decided to confront the spell-wielding Great Yan man to avenge the bear general and General Bolai, the leadership knew about it but didn’t intervene.</p>
+<p>Firstly, it was tradition for the northern frontier forces to issue challenges before battle. Secondly, if the generals managed to kill the Great Yan spellcaster, it would be a significant morale boost. However, how the generals conducted their battles was beyond the council’s control.</p>
+<p>At most, they could offer some advice and watch from a distance.</p>
+<p>It wasn’t long before the sound of galloping hooves broke the tense silence...</p>
+</article>
+<article id="c285" data-label="285">
+<h2 class="chapter">Chapter 285: Time Will Pass Quickly 🔒</h2>
+<p>In the military, it was customary to hold a banquet to celebrate a victorious battle. Given such a resounding victory, it was only natural to host a grand feast.</p>
+<p>Although Song You was not a warrior, he did not decline the invitation.</p>
+<p>The living conditions in the military were simple, yet the banquet was almost as formal as a banquet.</p>
+<p>What constituted a banquet?</p>
+<p>In ancient times, people did not use tables and chairs for meals. When hosting a banquet, a layer of coarse woven fabric would be spread on the ground as the <em>yan</em>[1], followed by a layer of finer woven fabric as the <em>xi</em>[2], combining to form what we now call <em>yanxi</em>[3]. However, in modern times, most people in Great Yan use tables and chairs or low desks for dining, making traditional <em>yanxi </em>arrangements largely obsolete.</p>
+<p>The military, being less formal, still followed the older customs and used <em>yanxi </em>for their feast.</p>
+<p>They chose a large room and invited the generals who were not on duty, the strategists under the commander’s banner, and the officers who had distinguished themselves in battle. The room was then filled with wine and meat for a grand meal.</p>
+<p>Song You and Lady Calico sat at the seats of honor, constantly approached by others who respectfully offered them toasts.</p>
+<p>“Sir, you truly have the bearing of a divine...</p>
+</article>
+<article id="c286" data-label="286">
+<h2 class="chapter">Chapter 286: Returning to the Temple for the Celestial Seed 🔒</h2>
+<p>At dawn, just before the fifth watch, someone arrived outside the door. It was none other than Advisor Zhang.</p>
+<p>He seemed to have something urgent to discuss but dared not disturb Song You’s sleep. After asking the soldier standing guard if the Daoist was awake and receiving a negative reply, Advisor Zhang began pacing back and forth outside.</p>
+<p>The sound of his quick, light footsteps clearly reflected his anxious state.</p>
+<p>Inside the house, the calico cat was curled up on the bed, her entire body wrapped in the blanket with only her head peeking out. She stared wide-eyed toward the door.</p>
+<p>After hesitating for a long time, she finally turned around and woke the Daoist.</p>
+<p>“<em>Meow…</em>”</p>
+<p>The Daoist opened his eyes, glanced outside, and immediately understood what was happening. Without saying much, he got up and dressed.</p>
+<p>The cloth he had used to wash his face the night before was still damp. He grabbed it and casually wiped his face. The stark temperature difference between day and night on the plains made the cloth icy cold, instantly refreshing him.</p>
+<p>When he opened the door, the night outside was still heavy with darkness. Lanterns flickered, and Advisor Zhang, pacing back and forth, turned toward him at the sound.</p>
+<p>“Mr. Song, you’re awake?”</p>
+<p>“I am,” Song You replied calmly, looking at him. “Advisor Zhang, you’re waiting outside in the cold....</p>
+</article>
+<article id="c287" data-label="287">
+<h2 class="chapter">Chapter 287: The Demons’ Strategy to Breach the City 🔒</h2>
+<p>After making another visit to the infirmary, Song You emerged just as the sky was beginning to lighten.</p>
+<p>He paused at the doorway for a moment, then turned his head and saw the towering walls of Yuanzhi City, rising like cliffs. A sudden thought struck him. Turning back briefly to borrow a small bowl, he set off, making his way up to the city walls.</p>
+<p>Standing at the battlements, scarred by countless nicks from swords and knives, he looked out over the distance. Before him stretched a vast expanse of mountains and grasslands, heavy with morning dew. The sun was just beginning to rise in the east, casting its first rays of light over the horizon.</p>
+<p>“...”</p>
+<p>Song You took a deep breath.</p>
+<p>From the crisp morning air, he could sense the vitality and spiritual energy of the grasslands, tinged faintly with the aura of battle—somber and blood-soaked.</p>
+<p>Holding the small bowl in one hand, Song You raised the other, forming a sword finger. Pointing toward the grasslands in the distance, he made a slight beckoning gesture. Instantly, a drop of morning dew rose from the grasslands and floated into the bowl.</p>
+<p>Descending from the walls, he returned to his room and spread out a sheet of white paper. Fetching an ink stick, he asked Lady Calico to help grind the ink. Using the morning dew from the grasslands as the medium, he mixed it with the ink. The characters written with this ink...</p>
+</article>
+<article id="c288" data-label="288">
+<h2 class="chapter">Chapter 288: The Wonders of the Celestial Seeds and a Letter from the Temple 🔒</h2>
+<p>The weather on the grasslands could change in the blink of an eye.</p>
+<p>The morning had been pleasant, with clear skies and sunlight. By noon, however, the distant horizon was covered by a mass of dark clouds, heavy and oppressive, as though they hung just above one’s head, casting vast shadows across the land. By afternoon, fierce winds swept through, bending the wild grass outside the city and sending yellow dust swirling through the streets within.</p>
+<p>Song You stood atop the city wall, gazing into the distance.</p>
+<p>The vastness of the heavens and earth stretched before him. The wind swept unhindered across the plains, and even the tattered scraps of cloth carried aloft seemed carefree and unbound.</p>
+<p>A sight one could never witness in the south.</p>
+<p>The Daoist stood watching for a long time.</p>
+<p>It wasn’t until the calico cat’s voice came from beside him, “The clouds over there look like they’re about to fall.”</p>
+<p>“They do.”</p>
+<p>“Why are the clouds so low here?”</p>
+<p>“Perhaps because the land here is so vast, flat, and open, it makes the clouds seem lower,” the Daoist replied, withdrawing his gaze from the distance.</p>
+<p>He turned to meet the eyes of the calico cat, who was perched on the city wall and staring at him intently. He answered patiently, “It could also be due to the terrain and...</p>
+</article>
+<article id="c289" data-label="289">
+<h2 class="chapter">Chapter 289: Exorcizing Demons Outside the City 🔒</h2>
+<p>Song You held the letter, turning it over repeatedly in his hands.</p>
+<p>Three days ago, when Big Belly Jiang astral-traveled to Yizhou and was promptly sent back by his master after delivering the message, Song You had already had a faint sense that he might not receive a reply.</p>
+<p>There wasn’t much analytical basis to go on, nor could a few concrete reasons be given. It was just that, whether dealing with people or situations, spending enough time together naturally bred familiarity. Sometimes, there was no need for overthinking—the first thought that flashed through your mind was often the best analysis.</p>
+<p>This letter confirmed it.</p>
+<p>His master hadn’t just refrained from replying but had likely also instructed Daoist Elder Heiyu not to reply either. However, Daoist Elder Heiyu was an old friend of hers, and whether he followed her instructions fully—or at all—depended on his own thoughts. And so, there was a reply, albeit a very short one.</p>
+<p>As for why his master hadn’t written back herself… The reason was in the letter itself.</p>
+<p>Song You had the ability to sense vitality and a deathly aura.</p>
+<p>Even though this letter hadn’t been touched by his master’s hands and had likely been sitting in the chest for three days, it still carried a faint trace of a deathly aura.</p>
+<p>It was...</p>
+</article>
+<article id="c290" data-label="290">
+<h2 class="chapter">Chapter 290: Lady Calico Grows Stronger Again 🔒</h2>
+<p>The scene in the distance was both clear and unclear to those watching from the city wall.</p>
+<p>The dark clouds were thick, casting a dim light even during the day. The wind and rain turned the grasslands into a vast swamp. The Daoist, holding his staff, had already walked far ahead. From the distance, he appeared as nothing more than a small black dot.</p>
+<p>Yet, despite being dozens of li away, the thunder and lightning in the sky were still visible with incredible clarity. This scene was seared into everyone’s eyes, and no doubt, it would stay with them for a long time.</p>
+<p>The thunder struck the ground, sparking bursts of fire, sending waves of electric serpents scattering. Even demons that transformed into birds were struck by lightning the moment they took flight, instantly incinerated.</p>
+<p>This wasn’t just a battle of magic between the Daoist and the demons. It was clearly a divine being walking the mortal world, purging the filth.</p>
+<p>“We should capture this moment…”</p>
+<p>A member of the Special Talents Division, who enjoyed painting, stared at the distant scene as he muttered to himself. He was deeply shaken by the awe-inspiring sight and profoundly moved by the Daoist’s power and grace, which had already disappeared into the distance.</p>
+<p>It was unclear how much time had passed.</p>
+<p>The...</p>
+</article>
+<article id="c291" data-label="291">
+<h2 class="chapter">Chapter 291: The Legends of Yuezhou 🔒</h2>
+<p>As they walked through the city, the atmosphere was charged with tension.</p>
+<p>The streets were filled with soldiers moving in groups. At the entrances to barracks, many were sharpening their swords and spears, while others hauled carts loaded with military supplies through the alleyways.</p>
+<p>It was clear that a major battle was imminent.</p>
+<p>And it made sense—</p>
+<p>Though the northern frontier was powerful, General Chen had never been one to fear them. Moreover, the Great Yan Empire was at its peak, both in military strength and national prosperity.</p>
+<p>The northern forces had invaded south twice this time. The reason General Chen had primarily focused on defense was simply because the northern army had demons aiding them. Now that the demons had been eliminated, the northern forces were undoubtedly in turmoil, with fear among the people and unrest in the ranks. General Chen certainly wouldn’t miss such an opportune moment.</p>
+<p>“We’re here.” Advisor Zhang stopped in front of a large courtyard gate.</p>
+<p>The gate was open, and Song You entered with him.</p>
+<p>The inside was not as elaborate as a typical city residence, though it was noticeably better than the conditions in field camps. Beyond the gate, there was a sizable open space where pear trees and vegetables were planted. The courtyard was surrounded on all sides by earthen houses with tiled roofs, one room per person, and a central hall that served as a common area. Compared to the average...</p>
+</article>
+<article id="c292" data-label="292">
+<h2 class="chapter">Chapter 292: The Command Shook Mountains, and the Assembly of Generals Startled Even Ghosts and Gods 🔒</h2>
+<p>Song You thanked Advisor Zhang, Mr. Qiao, and Big Belly Jiang before leaving the camp. He passed through the city again, this time walking more slowly than on his way there.</p>
+<p>The oppressive aura of killing intent in the city seemed to grow heavier with each passing moment.</p>
+<p>The Daoist strolled leisurely, observing his surroundings. When encountering large convoys of carts and horses, he stepped aside to let them pass, exchanging glances with those who cast their eyes his way.</p>
+<p>In his heart, a peculiar feeling began to take root—</p>
+<p>For many of these people, it was likely the first time he had made eye contact with them, and it might also be the last. For some, it was because the vastness of the world made even a fleeting meeting rare and precious. Every ordinary moment of passing by someone, no matter how unremarkable it seemed, was inherently invaluable. For others, it was because they would not survive the battles to come.</p>
+<p>Song You walked, pausing now and then, meeting their gazes and nodding.</p>
+<p>These people were all vividly alive, each with unique appearances and personalities. They passed by him in different ways—some avoided his gaze, some met his eyes, some nodded in greeting, some smiled and cupped their hands respectfully, and some glanced at him furtively or waited until they had walked a distance before daring to look back.</p>
+<p>At first glance, these...</p>
+</article>
+<article id="c293" data-label="293">
+<h2 class="chapter">Chapter 293: A Pivotal Moment in History 🔒</h2>
+<p>In this era, battles required long periods of preparation, lengthy marches, and extended standoffs. Yet, when the fighting began, the time from engagement to resolution often lasted no more than half a day to a full day.</p>
+<p>In just half a day, rivers of blood could flow.</p>
+<p>The vastness of the grasslands allowed for numerous skirmishes within the larger conflict. Both sides experienced alternating victories and setbacks. Various tribes on the grasslands and the northern five garrisons provided mutual reinforcements.</p>
+<p>Offensives and defenses shifted repeatedly, with pursuits and entanglements happening concurrently. The Right Wolf King was defeated, and then the Left Wolf King fell.</p>
+<p>With both gone, the people of the golden tent and the imperial court rallied their forces. The remaining men and boys of the grasslands mounted their horses, and additional soldiers were summoned from allied nations, forming yet another army.</p>
+<p>Only very few demons occasionally appeared, so Song You seldom had to take action. Still, he traveled with the army throughout the campaign.</p>
+<p>When the army stretched for tens of li, Song You walked along a nearby hillside. When General Chen led elite cavalry in a surprise decapitation strike, Song You observed from the side.</p>
+<p>At the decisive battle in Starlight River, where 300,000 elite troops clashed...</p>
+</article>
+<article id="c294" data-label="294">
+<h2 class="chapter">Chapter 294: Lady Calico and the Stone Giant 🔒</h2>
+<p>“Mountain God, please come out!” A clear and delicate voice rang out, but its tone carried a sense of solemnity and formality.</p>
+<p>At that moment, a stone by the riverside suddenly trembled, as if moved by some invisible force.</p>
+<p>“Mountain God, please come out!”</p>
+<p>The voice remained as clear and delicate as before, but it had grown slightly heavier, as though the speaker was becoming impatient—or perhaps putting in more effort.</p>
+<p>The stone trembled again, then a second time. Then, as if pushed by an unseen hand, it began to roll.</p>
+<p>And it wasn’t just that one stone. The nearby stones also started to roll in succession.</p>
+<p>“<em>Clatter, clatter</em>…”</p>
+<p>The stones didn’t roll from south to north, nor from north to south—they moved from all directions, converging toward a single central point. The smaller ones rolled lightly and swiftly, while the larger ones moved more slowly, with some difficulty. Once they had all gathered, they began to stack themselves one on top of the other, rising higher and higher.</p>
+<p>“Mountain God, come out!”</p>
+<p>The voice&#39;s owner seemed to be putting in extra effort now, and even without looking, one could imagine their teeth gritting with determination.</p>
+<p>It seemed to work—</p>
+<p>The stones suddenly assembled, taking on the form of a humanoid figure.</p>
+<p>“Wow!” a...</p>
+</article>
+<article id="c295" data-label="295">
+<h2 class="chapter">Chapter 295: The Swallow Returns 🔒</h2>
+<p>Passing by Yuanzhi City once more, Song You noted that the city&#39;s garrison had diminished significantly. He had no intention of entering the city, merely glancing at it from a distance before heading toward Liaoxin Pass.</p>
+<p>On the way, he casually chose a spot to spend the night.</p>
+<p>However, when he awoke, Lady Calico was nowhere to be found.</p>
+<p>“...” Sitting up, Song You scanned his surroundings.</p>
+<p>Not far away, the rustling of grass caught his attention. The withered grass occasionally bent and trembled, likely stirred by the antics of that cat.</p>
+<p>He paid it no mind. Instead, he poured water to wash his face and freshen up before starting to pack his belongings.</p>
+<p>As he rolled up his wool blanket and rug and tucked them into his travel bag, a sound drew his attention. Turning around, he saw a calico cat emerging from the tall grass, accompanied by a small stone figure stumbling behind her. Most notably, the cat had a slender yellow bamboo tube clenched in her teeth. She strode up confidently and placed it at his feet.</p>
+<p>“What’s this?”</p>
+<p>“It’s bamboo.”</p>
+<p>“...”</p>
+<p>Song You crouched down and picked up the tube.</p>
+<p>The bamboo was slender, no thicker than Lady Calico’s little leg. It had a capped end bound securely with hemp rope—the...</p>
+</article>
+<article id="c296" data-label="296">
+<h2 class="chapter">Chapter 296: The Swallow Immortal Has Become a Deity 🔒</h2>
+<p>“Swallow?” The calico cat seemed to sense something unusual.</p>
+<p>It was only then that the swallow flew over, landing above the city gate. Folding its wings, it dove down sharply, piercing the air like an arrow.</p>
+<p>Just like Yuan’an City, Zhaoye City also had a pond outside its gates, named the Xima Pond. By the pond, there had once been a temple, but the ravages of war had reduced it to ruins, leaving only broken walls and crumbled stone. Nearby, a lone tree stood, its branches bare in the deep autumn, lending an air of desolation to the scene.</p>
+<p>“Whoosh!”</p>
+<p>The swallow perched on the tree.</p>
+<p>Lowering its head, it locked eyes with the trio of a person, a cat, and a horse just stepping out of the city gate. It opened its beak, as though wanting to say something, but hesitated. Instead, it turned its head away and pretended to preen its feathers.</p>
+<p>“Long time no see,” the Daoist said with a smile, looking up to meet the swallow&#39;s gaze.</p>
+<p>With a <em>swish</em>, the swallow suddenly pulled its head out from beneath its wing and stared intently at the person below. “Greetings, sir!”</p>
+<p>The cat straightened up, sitting properly with its head held high. Recognizing that this was the same swallow it had known before, it mimicked the Daoist’s tone and said, “Long time no see.”</p>
+<p>“Greetings, Lady Calico…”</p>
+<p>“Greetings...</p>
+</article>
+<article id="c297" data-label="297">
+<h2 class="chapter">Chapter 297: Arriving in Yuezhou in the Winter of the Sixth Year of Mingde 🔒</h2>
+<p>About ten days later, it seemed winter had arrived. The group had long since entered Yuezhou.</p>
+<p>The Daoist walked ahead alone, leaning on his staff, while the jujube-red horse followed silently as usual. Lady Calico, however, didn’t dash about sniffing, exploring, and looking at everything as she usually did. Instead, voices kept sounding from behind.</p>
+<p>“How did the old Swallow Immortal become the Swallow God?”</p>
+<p>“He became a god through imperial decree and the merit of good deeds.”</p>
+<p>“But how exactly did he become a god?”</p>
+<p>“The ancestor was already a divine being, supported by incense offerings, but his influence was limited to Anqing. There hasn’t been an imperial decree or official acknowledgment from the Heavenly Palace confirming his deity status. Over the past two years, Xuzhou’s entire population became his followers. With the court’s decree, all he had to do was shed his mortal body to automatically manifest a divine spiritual form, ascend to the heavens, and take his place among the immortals.”</p>
+<p>“Shed his mortal body!”</p>
+<p>“What about it?”</p>
+<p>“How does one shed their mortal body?”</p>
+<p>“By dying,” the swallow explained. “The ancestor was already nearing the end of his life span. I was standing outside his door at the time. Suddenly, I heard a rooster crow from somewhere, and then the ancestor ascended to the...</p>
+</article>
+<article id="c298" data-label="298">
+<h2 class="chapter">Chapter 298: Delivering Letters to the Changqiang Sect 🔒</h2>
+<p>The vast Mount Huangsha appeared almost barren from a distance, with sparse, withered trees scattered across its surface. Yet, the chaotic array of dark wooden huts constructed on the mountain gave it a strange, imposing grandeur.</p>
+<p>Song You observed as he walked.</p>
+<p>There didn’t seem to be many people left in the sect now. As they passed by, many of the houses were empty—some locked, others casually secured with wooden latches. Judging by the latches, some of these homes hadn’t been opened in a long time; the rain-swollen wood had expanded, leaving noticeable marks where the latches strained against them.</p>
+<p>They continued their ascent.</p>
+<p>Every so often, Song You saw people diligently practicing martial arts. Some were spinning their spears with ferocious energy, others were grinding away at strength training or using different methods to harden their bodies. Some groups sparred with one another.</p>
+<p>Occasionally, a senior sect member could be seen instructing disciples, and in some cases, mischievous elders would egg the younger ones into fighting.</p>
+<p>Both Song You and Lady Calico were intrigued.</p>
+<p>Whenever the cat passed by these scenes, she would often stop, staring unblinkingly at the people as they trained. Only when she realized that Song You had walked too far ahead or when he called out to her...</p>
+</article>
+<article id="c299" data-label="299">
+<h2 class="chapter">Chapter 299: Hearing One’s Tales Is Also a Kind of Meeting 🔒</h2>
+<p>“Since you do not wish to stay as a guest, I won’t insist,” the Third Hall Master said. “However, seeing that you travel the world and carry quite a complete set of supplies, I’ve prepared a bamboo tube of white mushrooms for you. Please, you must accept it.”</p>
+<p>He held the bamboo tube and made a show of placing it on the horse’s back, as if worried that Song You might refuse.</p>
+<p>Seeing this, Song You had no choice but to accept it, placing it in the saddlebag himself.</p>
+<p>“Sir, don&#39;t underestimate these white mushrooms. They only grow in a few places—the grasslands of Yanzhou in the north and a small part of Yuezhou here. They used to be a tribute exclusively supplied to the palace. During times of peace with the northern frontier people, they would use these mushrooms to trade with us.</p>
+<p>“The white mushrooms are incredibly delicious, and the northern frontier people always demanded a high price for them. Now that chaos has erupted in the north, even the palace is likely receiving fewer of them.”</p>
+<p>The Third Hall Master, worried that Song You might not recognize the value of the gift and think the Changqiang Sect was trying to brush him off with something trivial, added earnestly, “When you eat them, soak them in water to rehydrate, and cook them the same way you would shiitake mushrooms.”</p>
+<p>“Thank...</p>
+</article>
+<article id="c300" data-label="300">
+<span id="last"></span>
+<h2 class="chapter">Chapter 300: Qingtong Forest in Northern Yuezhou 🔒</h2>
+<p>“Look at my little Mountain God!”</p>
+<p>“Yes, I see it…”</p>
+<p>“Isn’t it amazing?”</p>
+<p>“It’s amazing…”</p>
+<p>“I also have big wolves! More than a dozen of them!”</p>
+<p>“Yes, I see them.”</p>
+<p>“Aren’t they awesome?”</p>
+<p>“They’re awesome…”</p>
+<p>“Do you know any spells?”</p>
+<p>“I know a few.”</p>
+<p>“Show me!”</p>
+<p><em>Flap, flap, flap...</em></p>
+<p>“So many swallows!”</p>
+<p>“This is one of the secret techniques of our swallow clan in Anqing,” the swallow’s voice rang out. “I’ve only just started learning it, so I’m not very good at it yet. But my ancestor was incredible—he could transform into countless swallows.</p>
+<p>“Back in the days of the Anqing famine, the ancestor used this very spell to carry rice from the government granary. Each swallow carried just a tiny bit, and in no time, the entire granary was emptied, saving all the people of Anqing.”</p>
+<p>“Are the swallows you summon real?”</p>
+<p>“No... Don’t eat them!”</p>
+<p>“Aw…”</p>
+<p>Song You didn’t need to turn around to imagine the scene behind him. He simply continued cooking his meal.</p>
+<p>On this desolate mountain with no one around, a fire crackled as he prepared food.</p>
+<p>The firewood had been gathered by Lady Calico, the fire lit by her as well. The water had been found and fetched by the swallow. All Song You had to do was cook the meal.</p>
+<p>This often gave him a peculiar feeling, as if he had recruited two little demons to serve him.</p>
+<p>And these two demons were remarkably low-maintenance. Most of the time,...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="301-350.html" rel="next">Next: Chs 301–350 &rarr;</a>
+    <p class="page-end-links"><a href="201-250.html" rel="prev">&larr; Chs 201–250</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Unintended Immortality · Chs 251–300</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c251">Chapter 251: A Tradition That Might Last for Centuries 🔒</a></li>
+        <li><a href="#c252">Chapter 252: Duel of Magic on the Snowy Plains 🔒</a></li>
+        <li><a href="#c253">Chapter 253: Sealing the Four Seasons 🔒</a></li>
+        <li><a href="#c254">Chapter 254: Stabilizing Water 🔒</a></li>
+        <li><a href="#c255">Chapter 255: Borrowing a Mountain in Pingzhou 🔒</a></li>
+        <li><a href="#c256">Chapter 256: Riding Alone Across Tens of Thousands of Li 🔒</a></li>
+        <li><a href="#c257">Chapter 257: The Revitalized He Plains 🔒</a></li>
+        <li><a href="#c258">Chapter 258: An Ancient Myth Before Our Eyes 🔒</a></li>
+        <li><a href="#c259">Chapter 259: The Military Camp of Yanzhou 🔒</a></li>
+        <li><a href="#c260">Chapter 260: Truly Grateful to Lady Calico 🔒</a></li>
+        <li><a href="#c261">Chapter 261: The Grassland Festival and Horse Racing 🔒</a></li>
+        <li><a href="#c262">Chapter 262: Lady Calico at the Horse Racing Event 🔒</a></li>
+        <li><a href="#c263">Chapter 263: The Yin Ghosts of Turtle City 🔒</a></li>
+        <li><a href="#c264">Chapter 264: Lady Calico Knows Magic Too 🔒</a></li>
+        <li><a href="#c265">Chapter 265: The Making of a Confident Cat 🔒</a></li>
+        <li><a href="#c266">Chapter 266: Night Encounter with Ghost Soldiers 🔒</a></li>
+        <li><a href="#c267">Chapter 267: Old Tales of Yidu 🔒</a></li>
+        <li><a href="#c268">Chapter 268: Frightening Away a Ghost General 🔒</a></li>
+        <li><a href="#c269">Chapter 269: Why Choose to Be a Ghost Here Instead of Being a God 🔒</a></li>
+        <li><a href="#c270">Chapter 270: Resolving Old Matters 🔒</a></li>
+        <li><a href="#c271">Chapter 271: Entrust a Task 🔒</a></li>
+        <li><a href="#c272">Chapter 272: I Rarely Lie 🔒</a></li>
+        <li><a href="#c273">Chapter 273: Journey to the Border 🔒</a></li>
+        <li><a href="#c274">Chapter 274: Zhaoye City 🔒</a></li>
+        <li><a href="#c275">Chapter 275: The Night Wanderer 🔒</a></li>
+        <li><a href="#c276">Chapter 276: The Mountain God Vanquishes the Bear Demon 🔒</a></li>
+        <li><a href="#c277">Chapter 277: The Special Talents Division of the Northern Army 🔒</a></li>
+        <li><a href="#c278">Chapter 278: Countless Remarkable Figures in the World 🔒</a></li>
+        <li><a href="#c279">Chapter 279: Phantom Trace and Strategies to Defeat the Enemy 🔒</a></li>
+        <li><a href="#c280">Chapter 280: Catching a Demon in the Camp at Night 🔒</a></li>
+        <li><a href="#c281">Chapter 281: Knowledge is Power 🔒</a></li>
+        <li><a href="#c282">Chapter 282: Slaying Demons on the Battlefield 🔒</a></li>
+        <li><a href="#c283">Chapter 283: Just Like a Thousand Years Ago 🔒</a></li>
+        <li><a href="#c284">Chapter 284: Merely Skilled in Spells 🔒</a></li>
+        <li><a href="#c285">Chapter 285: Time Will Pass Quickly 🔒</a></li>
+        <li><a href="#c286">Chapter 286: Returning to the Temple for the Celestial Seed 🔒</a></li>
+        <li><a href="#c287">Chapter 287: The Demons’ Strategy to Breach the City 🔒</a></li>
+        <li><a href="#c288">Chapter 288: The Wonders of the Celestial Seeds and a Letter from the Temple 🔒</a></li>
+        <li><a href="#c289">Chapter 289: Exorcizing Demons Outside the City 🔒</a></li>
+        <li><a href="#c290">Chapter 290: Lady Calico Grows Stronger Again 🔒</a></li>
+        <li><a href="#c291">Chapter 291: The Legends of Yuezhou 🔒</a></li>
+        <li><a href="#c292">Chapter 292: The Command Shook Mountains, and the Assembly of Generals Startled Even Ghosts and Gods 🔒</a></li>
+        <li><a href="#c293">Chapter 293: A Pivotal Moment in History 🔒</a></li>
+        <li><a href="#c294">Chapter 294: Lady Calico and the Stone Giant 🔒</a></li>
+        <li><a href="#c295">Chapter 295: The Swallow Returns 🔒</a></li>
+        <li><a href="#c296">Chapter 296: The Swallow Immortal Has Become a Deity 🔒</a></li>
+        <li><a href="#c297">Chapter 297: Arriving in Yuezhou in the Winter of the Sixth Year of Mingde 🔒</a></li>
+        <li><a href="#c298">Chapter 298: Delivering Letters to the Changqiang Sect 🔒</a></li>
+        <li><a href="#c299">Chapter 299: Hearing One’s Tales Is Also a Kind of Meeting 🔒</a></li>
+        <li><a href="#c300">Chapter 300: Qingtong Forest in Northern Yuezhou 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="201-250.html" rel="prev">&larr; Chs 201–250</a>    <a href="../../index.html">Library</a>
+<a href="301-350.html" rel="next">Chs 301–350 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign of the Ashes Chs 301–350</title>
+    <script>
+    // Text settings before first paint. site.js changes them through readerSettings.apply,
+    // which validates every field (an unknown or missing one gets its default) and returns them all.
+    window.readerSettings = (function () {
+        var KEY = 'reader:settings', SCALES = [0.9, 1, 1.1, 1.2, 1.35];
+        var THEMES = ['system', 'light', 'dark', 'sepia'], FONTS = ['sans', 'serif'];
+        var LEADING = {compact: 1.6, normal: 1.8, loose: 2}, MEASURE = {narrow: '60ch', normal: '68ch', wide: '80ch'};
+        var light = matchMedia('(prefers-color-scheme: light)'), current;
+        function pick(value, allowed, fallback) {
+            return allowed.indexOf(value) >= 0 ? value : fallback;
+        }
+        function apply(s) {
+            s = s || {};
+            current = {
+                scale: SCALES[s.scale] ? s.scale : 1,
+                theme: pick(s.theme, THEMES, 'dark'),
+                font: pick(s.font, FONTS, 'sans'),
+                spacing: LEADING.hasOwnProperty(s.spacing) ? s.spacing : 'normal',
+                width: MEASURE.hasOwnProperty(s.width) ? s.width : 'normal'
+            };
+            var root = document.documentElement;
+            root.dataset.theme = current.theme === 'system' ? (light.matches ? 'light' : 'dark') : current.theme;
+            root.dataset.font = current.font;
+            root.style.setProperty('--r-scale', SCALES[current.scale]);
+            root.style.setProperty('--r-leading', LEADING[current.spacing]);
+            root.style.setProperty('--r-measure', MEASURE[current.width]);
+            return current;
+        }
+        light.addEventListener('change', function () { apply(current); });
+        var saved = null;
+        try { saved = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
+        apply(saved);
+        return {key: KEY, apply: apply, scales: SCALES, current: function () { return current; }};
+    })();
+    </script>
+    <link rel="stylesheet" href="../../assets/style.css?v=8cddffaf30fa">
+    <script src="../../assets/site.js?v=8cddffaf30fa" defer></script>
+</head>
+<body>
+<div class="calibre">
+<header class="reader-bar" hidden data-prev-page="251-300.html#last" data-next-page="351-400.html">
+    <a class="bar-prev" aria-label="Previous chapter">&lsaquo;</a>
+    <span class="bar-title"></span>
+    <a class="bar-next" aria-label="Next chapter">&rsaquo;</a>
+    <button type="button" class="bar-button" data-open="chapters">Chapters</button>
+    <button type="button" class="bar-button" data-open="settings" aria-label="Text settings">Aa</button>
+    <a class="bar-button" href="../../index.html">Library</a>
+</header>
+<noscript>
+<nav class="toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c301">Chapter 301: Sinner of the Viridian Venom Flame World 🔒</a></li>
+        <li><a href="#c302">Chapter 302: The Guardian’s Decision 🔒</a></li>
+        <li><a href="#c303">Chapter 303: Small Trade Fair 🔒</a></li>
+        <li><a href="#c304">Chapter 304: Changes 🔒</a></li>
+        <li><a href="#c305">Chapter 305: Softness 🔒</a></li>
+        <li><a href="#c306">Chapter 306: Feelings 🔒</a></li>
+        <li><a href="#c307">Chapter 307: Conversation Between Master and Apprentice 🔒</a></li>
+        <li><a href="#c308">Chapter 308: A Worthy Opponent 🔒</a></li>
+        <li><a href="#c309">Chapter 309: All-Out Assault 🔒</a></li>
+        <li><a href="#c310">Chapter 310: Farce 🔒</a></li>
+        <li><a href="#c311">Chapter 311: Submission 🔒</a></li>
+        <li><a href="#c312">Chapter 312: The Conclusion of the War 🔒</a></li>
+        <li><a href="#c313">Chapter 313: Returning Soon 🔒</a></li>
+        <li><a href="#c314">Chapter 314: Sweet Air 🔒</a></li>
+        <li><a href="#c315">Chapter 315: Figures From The Past 🔒</a></li>
+        <li><a href="#c316">Chapter 316: Gift 🔒</a></li>
+        <li><a href="#c317">Chapter 317: Nostalgic Flavors 🔒</a></li>
+        <li><a href="#c318">Chapter 318: Study Plan 🔒</a></li>
+        <li><a href="#c319">Chapter 319: Offer 🔒</a></li>
+        <li><a href="#c320">Chapter 320: Letter from House Grantt 🔒</a></li>
+        <li><a href="#c321">Chapter 321: Plans to Travel 🔒</a></li>
+        <li><a href="#c322">Chapter 322: Offerings 🔒</a></li>
+        <li><a href="#c323">Chapter 323: Visit 🔒</a></li>
+        <li><a href="#c324">Chapter 324: Living Specimens 🔒</a></li>
+        <li><a href="#c325">Chapter 325: Marriage? 🔒</a></li>
+        <li><a href="#c326">Chapter 326: Yuri’s Fear 🔒</a></li>
+        <li><a href="#c327">Chapter 327: A Year 🔒</a></li>
+        <li><a href="#c328">Chapter 328: Activators 🔒</a></li>
+        <li><a href="#c329">Chapter 329: Spirit Familiar 🔒</a></li>
+        <li><a href="#c330">Chapter 330: Good News from Old Grantt 🔒</a></li>
+        <li><a href="#c331">Chapter 331: Gathering of Knights 🔒</a></li>
+        <li><a href="#c332">Chapter 332: Recommendation 🔒</a></li>
+        <li><a href="#c333">Chapter 333: Cunning Fox 🔒</a></li>
+        <li><a href="#c334">Chapter 334: Alchemy Experiment 🔒</a></li>
+        <li><a href="#c335">Chapter 335: Risks and Rewards 🔒</a></li>
+        <li><a href="#c336">Chapter 336: Significant Increase In Constitution 🔒</a></li>
+        <li><a href="#c337">Chapter 337: All-Out Assault On The Neisse Star Domain 🔒</a></li>
+        <li><a href="#c338">Chapter 338: The Most Dignified Woman In The Magus World 🔒</a></li>
+        <li><a href="#c339">Chapter 339: Future and Immediate Concerns 🔒</a></li>
+        <li><a href="#c340">Chapter 340: Lorianne’s Return 🔒</a></li>
+        <li><a href="#c341">Chapter 341: Challenges In Mentorship 🔒</a></li>
+        <li><a href="#c342">Chapter 342: Generous Mentor 🔒</a></li>
+        <li><a href="#c343">Chapter 343: World Laboratory 🔒</a></li>
+        <li><a href="#c344">Chapter 344: Arcanist 🔒</a></li>
+        <li><a href="#c345">Chapter 345: Travel Route 🔒</a></li>
+        <li><a href="#c346">Chapter 346: Soul Enslavement Method 🔒</a></li>
+        <li><a href="#c347">Chapter 347: Arcane Points 🔒</a></li>
+        <li><a href="#c348">Chapter 348: Mirage’s Almanac of Souls 🔒</a></li>
+        <li><a href="#c349">Chapter 349: Light In Eyes 🔒</a></li>
+        <li><a href="#c350">Chapter 350: Soul Binding 🔒</a></li>
+    </ol>
+
+</nav>
+</noscript>
+<main data-slug="sovereign-of-the-ashes">
+<article id="c301" data-label="301">
+<h2 class="chapter">Chapter 301: Sinner of the Viridian Venom Flame World 🔒</h2>
+<p>Most of the pyro elemental creatures halted before reaching the grand shrine nestled deep within the trench, displaying evident fear at the sight of the dark and imposing structure.</p>
+<p>Only the guardian proceeded slowly into the grand shrine.</p>
+<p>Anridar the Venom Flame Demon King, a Rank Five creature, had invested considerable effort into the creation of this dark shrine in the depths of the lava sea.</p>
+<p>It was common for many Rank Four and above creatures from lesser worlds to label themselves as gods.</p>
+<p>In fact, some worlds under the governance of the Magus Alliance adhered to a well-defined and rigid belief system in godly powers, though the Viridian Venom Flame World lacked a clear path to divinity.</p>
+<p>Anridar’s ascent...</p>
+</article>
+<article id="c302" data-label="302">
+<h2 class="chapter">Chapter 302: The Guardian’s Decision 🔒</h2>
+<p>Under the pressure from the Magus Civilization Army, it would be extremely challenging for Anridar the Venom Flame Demon King to escape the Viridian Venom Flame World.</p>
+<p>While others might be oblivious, Anridar and the guardian were aware that a Rank Five mage from the Magus World had set his sights on Anridar.</p>
+<p>Despite Anridar’s current state, the Rank Five mage from the Magus World was in no better condition.</p>
+<p>Anridar, although outmatched by Gregory, managed to present a formidable challenge.</p>
+<p>On top of that, when the mecha armies from the Neisse Civilization first appeared, the silver mecha had managed to wound Gregory considerably through a surprise attack.</p>
+<p>If it was not for Gregory’s proficiency in Body...</p>
+</article>
+<article id="c303" data-label="303">
+<h2 class="chapter">Chapter 303: Small Trade Fair 🔒</h2>
+<p>Sein found Eileen in a conference room on the middle floor of the space fortress, along with nearly forty other mages.</p>
+<p>The strongest among them was a Rank Three mage, explaining their ability to repurpose a conference room for a small trade fair.</p>
+<p>Such fairs, common in past interplanar wars, emerged due to the space fortress’ limitations in fulfilling all trading needs of mages and as a way to circumvent the fortress’ transaction fees. This prompted many to favor bartering as their preferred method of exchange.</p>
+<p>Typically, these trade fairs were organized among acquaintances, ranging from a few individuals to as many as one or two hundred participant...</p>
+</article>
+<article id="c304" data-label="304">
+<h2 class="chapter">Chapter 304: Changes 🔒</h2>
+<p>After the trade fair concluded, Sein bid farewell to Selphy, and they went their separate ways.</p>
+<p>Selphy had her own quarters within the space fortress, but it was on one of the middle levels, which paled in comparison to Sein’s luxurious single accommodation.</p>
+<p>Although she was the youngest apprentice of Master Andres, she was not his only apprentice. Naturally, Master Andres was not able to give her much preferential treatment.</p>
+<p>Selphy never mentioned anything about it, but she was definitely envious of Sein’s lavish living conditions and the preferential treatment he received from his mentor.</p>
+<p>“My...</p>
+</article>
+<article id="c305" data-label="305">
+<h2 class="chapter">Chapter 305: Softness 🔒</h2>
+<p>By the time they exited the laboratory, Sein’s bedroom had returned to its original state.</p>
+<p>Eileen had changed the sheets, and that did not escape Sein’s notice due to the different color of his bed.</p>
+<p>Sein’s gaze involuntarily drifted to the spot where the conspicuous red bra had been resting, just a short while ago.</p>
+<p>Apart from that, he also moved his gaze toward the foot of the bed. The purple panties that had fallen there were now nowhere to be seen.</p>
+<p>This meant that Eileen had meticulously tidied up the room.</p>
+<p>Sein remained silent, yet the palpable shift in the room’s ambiance and his own unspoken reactions seemed to stir unease in Eile...</p>
+</article>
+<article id="c306" data-label="306">
+<h2 class="chapter">Chapter 306: Feelings 🔒</h2>
+<p>After the passionate session, Eileen found herself lying in the middle of the bed, under a bloodstained quilt.</p>
+<p>“You said that you were worried about me when I was injured… Did you really mean it?” Eileen asked, her cheeks still flushed with a hint of allure.</p>
+<p>Sein did not put on his magic robe again but instead, he changed into a set of comfortable loungewear.</p>
+<p>He met Eileen’s question with a brief silence before nodding earnestly.</p>
+<p>He asked himself if he genuinely cared about Eileen.</p>
+<p>The answer was maybe. Yet, the nature of his concern at that juncture had not evolved into romantic feelings but was grounded in the camaraderie shared between friends or acquaintances.</p>
+<p>Sein was far from oblivious. Such naivety would have seen him perish in Mystralora City long before now...</p>
+</article>
+<article id="c307" data-label="307">
+<h2 class="chapter">Chapter 307: Conversation Between Master and Apprentice 🔒</h2>
+<p>The dinner was modest yet comforting.</p>
+<p>Sev, the owl, was extremely perceptive and tactful. During Sein and Eileen’s intimate moments, it had already retreated to its incubation room before they even began.</p>
+<p>When the aroma of the meal filled the air, it quietly reemerged.</p>
+<p>“How long are you going to be resting in the fortress?” Sein asked Eileen, who sat next to him, during the meal.</p>
+<p>“I have another month left. And you?” Eileen asked him.</p>
+<p>“Two months for me, but I can end it earlier to join you on combat missions,” Sein offered.</p>
+<p>“Fantastic,” Eileen’s expression briefly lit up with delight.</p>
+<p>Since they have already forged a deep bond, Sein and Eileen grew increasingly protective...</p>
+</article>
+<article id="c308" data-label="308">
+<h2 class="chapter">Chapter 308: A Worthy Opponent 🔒</h2>
+<p>Six months later, just outside the Viridian Venom Flame World…</p>
+<p>Five years ago, Feylis departed this world to join the war in the Neisse Star Domain.</p>
+<p>Now, she had returned to propel the conflict in this low-level plane toward its conclusion.</p>
+<p>From her vantage point, Feylis gazed upon the Viridian Venom Flame World, ablaze with its verdant flames before her. For a brief moment, a sense of contentment washed over her.</p>
+<p>“The young ones have managed quite well. Even in my absence, they could probably conquer this world within the planned time frame,” Feylis remarked with a low chuckle.</p>
+<p>The world before her had significantly weakened since her departure five years ago.</p>
+<p>This...</p>
+</article>
+<article id="c309" data-label="309">
+<h2 class="chapter">Chapter 309: All-Out Assault 🔒</h2>
+<p>If self-destruction was the only option left for the mecha armies from the Neisse Civilization, then a pivotal moment had arrived for the native creatures of the Viridian Venom Flame World to decide their fate.</p>
+<p>The guardian was currently in the south-central region of the Viridian Venom Flame World, near the navel of the plane.</p>
+<p>There, a magnificent and imposing lava vortex swirled at the heart of a vast lava sea.</p>
+<p>To the countless of native inhabitants of the Viridian Venom Flame World, this vortex was revered as the most sacred site in the world.</p>
+<p>Generations of guardians had emerged from this place. Many, including Rank Three creatures of the Viridian Venom Flame...</p>
+</article>
+<article id="c310" data-label="310">
+<h2 class="chapter">Chapter 310: Farce 🔒</h2>
+<p>The Neisse Civilization’s sole surviving Rank Four combatant was the azure mecha that had clashed with Sein’s mentor, Lorianne, many years prior.</p>
+<p>Sein had only caught a glimpse of this mecha from afar within the space fortress.</p>
+<p>Compared to damaged silver mecha captured by the Divine Tower of Floating Flame, this azure mecha seemed slightly smaller and bore significantly lesser marks and damage on its surface.</p>
+<p>When the azure mecha first emerged on the battlefield near the Azurite Sea, it was Lorianne who came forward to face it.</p>
+<p>She had fought the azure mecha for many years. Based on the outcomes of past conflicts, Lorianne’s strength slightly exceeded that of the azure mecha.</p>
+<p>However, this marginal...</p>
+</article>
+<article id="c311" data-label="311">
+<h2 class="chapter">Chapter 311: Submission 🔒</h2>
+<p>The conflict near the navel of the plane spanned two years.</p>
+<p>However, the mages from the Magus Civilization were more of spectators rather than participants. The ones that were truly fighting were the native creatures of the Viridian Venom Flame World.</p>
+<p>Sein also noticed that the ferocity of their clashes surpassed even the destructive interventions of external civilizations.</p>
+<p>Over these two years, the sea of molten lava had turned significantly redder, as it had become a grave for countless native creatures.</p>
+<p>Sein and the other mages from the Magus Civilization could easily acquire their remains from the lava sea during their patrols.</p>
+<p>The elite native forces of the...</p>
+</article>
+<article id="c312" data-label="312">
+<h2 class="chapter">Chapter 312: The Conclusion of the War 🔒</h2>
+<p>Although the conflict near the navel of the Viridian Venom Flame World was drawing to a close, the battles within the world never stopped completely.</p>
+<p>Part of the remaining mechas from the Neisse Civilization still lurked in various regions in this low-level plane, and the Magus Civilization Army was intent on eliminating their remaining hiding places.</p>
+<p>Besides, not all pyro elemental creatures of the Viridian Venom Flame World had submitted to the Magus Civilization.</p>
+<p>Despite the capture of Anridar the Venom Flame Demon King, and the defeat of most rebellious pyro elemental creatures, a handful remained defiant toward the guardian.</p>
+<p>It was no surprise as pyro elemental creatures were known for their impulsive and fierce nature.</p>
+<p>As the Magus Civilization...</p>
+</article>
+<article id="c313" data-label="313">
+<h2 class="chapter">Chapter 313: Returning Soon 🔒</h2>
+<p>The eastern continent of the Viridian Venom Flame World was covered in pitch-black rocks.</p>
+<p>A man clad in a black robe approached from afar, eventually descending into an area filled with makeshift camps.</p>
+<p>Among those makeshift camps, stood a modest magic tower with a height surpassing just over ten meters. The gentle elemental glow at its peak served as a deterrent to any pyro elemental creatures considering encroachment.</p>
+<p>Upon landing, the man removed his hood, unveiling a handsome face framed with short, blond hair.</p>
+<p>Shortly after, three mages emerged from the magic tower and gathered around the black-robed man, who was none other than Sein.</p>
+<p><em>Hoot, hoot!</em></p>
+<p>A distinctive cry pierced the sky as a massive owl with a wingspan...</p>
+</article>
+<article id="c314" data-label="314">
+<h2 class="chapter">Chapter 314: Sweet Air 🔒</h2>
+<p>The war in the Viridian Venom Flame World had undeniably brought Sein and Selphy closer together.</p>
+<p>Their frequent communication via crystal balls meant it was natural for Selphy to wait for Sein’s return.</p>
+<p>The group made their way to the interstellar teleportation array in the operation area, as Selphy and Sein caught up on the events of the past two years.</p>
+<p>The sense of camaraderie among the apprentices of the Verdant Flame Faction was unmistakable, fostering a warm and welcoming environment that gradually made Sein feel like he was part of the expansive family.</p>
+<p>Approaching a concealed hatch in the operation area, Sein saw Master Holfson, Feylis’ sixth apprentice.</p>
+<p>At this point in time, the space fortress...</p>
+</article>
+<article id="c315" data-label="315">
+<h2 class="chapter">Chapter 315: Figures From The Past 🔒</h2>
+<p>Sein had spent a total of three days at the Divine Tower of Verdant Flame.</p>
+<p>While Selphy and others had hoped Sein would stay a little longer at the Divine Tower of Verdant Flame, the timely departure of an airship in three days prompted Sein to decide against imposing further on his seniors.</p>
+<p>After saying his goodbyes, Sein embarked on his journey back to the Divine Tower of Verdant Spring.</p>
+<p>He was astounded to learn that the first group of mages to leave the Viridian Venom Flame World had yet to arrive in the Magus World.</p>
+<p>His seniors at the Divine Tower of Verdant Flame had indicated they were expected to arrive in about two months.</p>
+<p>“The sheer size of the Magus Star Domain is truly overwhelming. It’s astonishing...</p>
+</article>
+<article id="c316" data-label="316">
+<h2 class="chapter">Chapter 316: Gift 🔒</h2>
+<p>Upon Sein’s arrival, the group of magic initiates, including Mark, looked visibly nervous and ill at ease.</p>
+<p>It had been over a decade since their last encounter, and while Sein appeared largely unchanged, Mark had matured significantly.</p>
+<p>Now in his forties or fifties, Mark sported a beard, looking every bit the middle-aged man he had become.</p>
+<p>Recognizing that the full-fledged mage who had just landed before them was Sein, Mark quickly offered his respects.</p>
+<p>Any past grievances between them had been long forgotten since the regional academy war.</p>
+<p>Sein, as a phenomenal initiate, played a pivotal role in elevating the Divine Tower of Verdant Spring into the top two of the overall rankings, cementing his status as a legend overnight.</p>
+<p>This legendary status...</p>
+</article>
+<article id="c317" data-label="317">
+<h2 class="chapter">Chapter 317: Nostalgic Flavors 🔒</h2>
+<p>Dean Archimedes and the others refrained from overwhelming Sein with inquiries, knowing that he had just returned to the academy and likely had personal matters to address.</p>
+<p>Yet, as Sein was about to depart, Dean Archimedes broached a subject concerning his newest apprentice, Grimm.</p>
+<p>Sein was momentarily taken aback by the question, realizing he had not heard any news of Grimm when he was in the Viridian Venom Flame World, despite their friendship.</p>
+<p>Given the vastness of the battlefield, it was not unusual for participating mages to go more than a decade without encountering each other.</p>
+<p>This was precisely the situation for Sein and Grimm.</p>
+<p>However, given their...</p>
+</article>
+<article id="c318" data-label="318">
+<h2 class="chapter">Chapter 318: Study Plan 🔒</h2>
+<p>Selina prepared a lavish dinner that night.</p>
+<p>While Sein knew his way well in the kitchen, his culinary skills were still slightly inferior to Selina’s.</p>
+<p>The girl had dedicated a lot of effort and time into mastering various recipes from a young age.</p>
+<p>Sein had initially offered to assist Selina with the cooking, but she declined, insisting on preparing his welcome-back meal herself.</p>
+<p>Yielding to Selina’s insistence, Sein returned to his work in the warehouse. It was not until an hour later, when Selina called out to him from outside, that he paused.</p>
+<p>Her call evoked nostalgic memories, transporting Sein back to a time over a decade ago when she would call...</p>
+</article>
+<article id="c319" data-label="319">
+<h2 class="chapter">Chapter 319: Offer 🔒</h2>
+<p>After dinner, Sein headed straight back to the upper floor of the divine tower to continue sorting out his spoils from the Viridian Venom Flame World and also make a study plan for Selina.</p>
+<p>Though Sein and Selina were cousins, Sein frequently assumed the role of Selina’s mentor.</p>
+<p>Consider the study plan, for instance. No one would normally extend such comprehensive support to a magic initiate.</p>
+<p>Sein also allowed Selina to assist him in his experiment, just like how he once assisted in the alchemy projects of his first mentor, Master Morsidor.</p>
+<p>Shortly after Sein began sorting through his items in the warehouse, Selina returned, having swiftly...</p>
+</article>
+<article id="c320" data-label="320">
+<h2 class="chapter">Chapter 320: Letter from House Grantt 🔒</h2>
+<p>As a magic initiate, Selina naturally had a weaker constitution.</p>
+<p>She barely lasted half an hour before showing signs of defeat. The look of utter exhaustion on her face prompted Sein to halt their activity.</p>
+<p>Selina’s performance was typical for mages, who were known to lack physical stamina.</p>
+<p>During his magic initiate days, Sein’s sessions with his senior, Faye, could last for two hours straight.</p>
+<p>At that time, Sein had yet to temper his body, so he was left with a sore back after each session.</p>
+<p>He could only conclude that Faye possessed an extraordinary constitution and an immense appetite.</p>
+<p>In contrast, Selina’s appetite was a fraction of Faye’s.</p>
+<p>Just a single round was enough to satisfy her.</p>
+<p>The Verdant Flame...</p>
+</article>
+<article id="c321" data-label="321">
+<h2 class="chapter">Chapter 321: Plans to Travel 🔒</h2>
+<p>Both House Grantt and House Farion, Sein’s maternal family, had been actively sending magic letters.</p>
+<p>Sending magic letters to the Divine Tower of Verdant Spring was a considerable expense, particularly for smaller local nobles.</p>
+<p>Earl Grantt used to write only once every six months or even annually due to the high cost.</p>
+<p>House Farion, less affluent than House Grantt, had shown increased interest in contacting Sein since his promotion to Rank One and becoming the apprentice of a divine tower master.</p>
+<p>House Farion, despite being less prosperous and somewhat utilitarian, shared a blood relationship with Sein. From their perspective, maintaining contact was...</p>
+</article>
+<article id="c322" data-label="322">
+<h2 class="chapter">Chapter 322: Offerings 🔒</h2>
+<p>In the basement of Grantt Castle, Sein saw his father, Earl Grantt, who had just concluded his training session.</p>
+<p>After a separation of over a decade, Earl Grantt’s face bore additional wrinkles. Yet, like Sein, Earl Grantt still looked very handsome.</p>
+<p>Age had not lessened Earl Grantt’s charm. Instead, his masculine demeanor enhanced his appeal, transforming him into what could be described as a handsome older gentleman.</p>
+<p>Sein also discovered from both Earl Grantt and his great grandfather, Jeremy, about Earl Grantt’s unsuccessful attempt to reach Rank One four years ago.</p>
+<p>Furthermore, it was revealed that their ancestor, Julius the Rank Two knight, had returned to the order of the knights three years ago, in part...</p>
+</article>
+<article id="c323" data-label="323">
+<h2 class="chapter">Chapter 323: Visit 🔒</h2>
+<p>Upon Sein’s return to the Divine Tower of Verdant Spring, the first group of mages to depart from the Viridian Venom Flame World had already arrived.</p>
+<p>Given the smaller number of mages from the Divine Tower of Verdant Spring and the preferential treatment Lorianne received from her seniors, all the mages from her divine tower managed to join the first three fleets of space fortresses returning to the Magus World.</p>
+<p>The return of nearly two hundred full-fledged mages injected life into the Divine Tower of Verdant Spring again.</p>
+<p>Under normal circumstances, it was rare to see so many full-fledged mages within the divine tower academy.</p>
+<p>In the recent two months, magic initiates...</p>
+</article>
+<article id="c324" data-label="324">
+<h2 class="chapter">Chapter 324: Living Specimens 🔒</h2>
+<p>Three months later, the second batch of war mages successfully returned to the Divine Tower of Verdant Spring.</p>
+<p>The mages arrived on a space fortress from a divine tower affiliated with the Pyro Secret Society in the north, which reportedly had a close relationship with Sein’s grandmaster, Feylis.</p>
+<p>Not only did this divine tower facilitate the mages’ return to the Divine Tower of Verdant Spring at no charge, but it also provided two airships for their use upon returning to the Magus World.</p>
+<p>While the gesture of the two airships might seem minor, Sein interpreted it as that divine tower’s attempt to establish a stronger...</p>
+</article>
+<article id="c325" data-label="325">
+<h2 class="chapter">Chapter 325: Marriage? 🔒</h2>
+<p>A passionate reunion between Eileen and Sein marked their first night together after a long separation.</p>
+<p>At the end of the session, Eileen broached the subject of marriage with Sein.</p>
+<p>In the Magus World, polygamy was common among nobility and knights. It was a tradition rooted in ancient practices, and nothing to do with demeaning women.</p>
+<p>In the Astral Realm, powerful life forms claimed more mates from the opposite sex. In a more primitive power structure, men often wielded greater influence than women.</p>
+<p>Conversely, the mages of Magus World largely adhered to monogamy, possibly because their strength derived from knowledge, which was inherently gender-neutral.</p>
+<p>During the Viridian Venom Flame World...</p>
+</article>
+<article id="c326" data-label="326">
+<h2 class="chapter">Chapter 326: Yuri’s Fear 🔒</h2>
+<p>The life of mages was often monotonous, filled with endless routines and little variation.</p>
+<p>Sein had experienced this monotony and busyness when he was a magic initiate. Yet, this lifestyle scarcely changed upon his advancement to a full-fledged mage.</p>
+<p>During the Viridian Venom Flame World war, Sein assessed his immediate priorities and identified gaps in his knowledge.</p>
+<p>Now that he was back in the Magus World with a lingering desire to visit the Western Archipelago, Sein found himself with ample time to engage in experiments that piqued his interest.</p>
+<p>In the laboratory, Sein was meticulously dissecting the oval-shaped bump on...</p>
+</article>
+<article id="c327" data-label="327">
+<h2 class="chapter">Chapter 327: A Year 🔒</h2>
+<p>Sein was not the type of mage to stubbornly waste time on a wild goose chase.</p>
+<p>He prioritized the efficiency and value of his research over exploration of any specific school of thought that might not prove beneficial in the long run.</p>
+<p>“Knowledge on constructs might appeal to the mechanics of the Magus World, but my focus is on elemental magic. I’ll only require surface knowledge. My efforts are better spent on more pressing research areas,” Sein reminded himself.</p>
+<p>With that thought in mind, Sein began another incantation, and the expanded laboratory reverted to its original size.</p>
+<p>The mechas were stowed away in the storage of the laboratory, leaving it uncertain...</p>
+</article>
+<article id="c328" data-label="328">
+<h2 class="chapter">Chapter 328: Activators 🔒</h2>
+<p>The power of activation was a unique attribute found in only a select few plant creatures. When Sein began his apprenticeship under Lorianne, he stumbled upon mentions of this rare ability in her private library.</p>
+<p>With his keen memory, Sein identified this peculiar plant ability based on his readings.</p>
+<p>Yet, the offerings at the Rank Two mage’s stall were far from the exotic plant fairies he had read about.</p>
+<p>The activation factors in these hybrid plants were faint, a far cry from the “activator fairies” detailed in Lorianne’s collection.</p>
+<p>The Activator Fairy World was a renowned medium-sized world under the governance of the Magus Alliance. The activator fairies produced a large amount of activator plasma...</p>
+</article>
+<article id="c329" data-label="329">
+<h2 class="chapter">Chapter 329: Spirit Familiar 🔒</h2>
+<p>While Sein and Selina were talking, peculiar squawks were heard from where Grimm stood.</p>
+<p>“Fuckin’ fool~” A word spoken in the Magus World’s common language but with a distinct accent came from a creature perched on Grimm’s shoulder.</p>
+<p>That was when Sein noticed a parrot on Grimm’s shoulder. It was covered in vibrant red feathers, contrasted by a green forehead and distinguished by its long beak.</p>
+<p>The parrot’s unique pronunciation and raspy insult quickly drew the attention of many nearby.</p>
+<p>The mages passing by would cast amused glances at the small parrot. Despite its low life level, the parrot held its head high with unabashed pride...</p>
+</article>
+<article id="c330" data-label="330">
+<h2 class="chapter">Chapter 330: Good News from Old Grantt 🔒</h2>
+<p>The outburst of the foul-mouthed parrot did not impact the friendship between Sein and Grimm.</p>
+<p>The two walked around in the commercial area outside the divine tower with Selina, engaging in light conversation while browsing goods of interest.</p>
+<p>Meanwhile, the silent staring contest continued between Sev and the Flame Parrot, each perched on their respective mage’s shoulder.</p>
+<p>Neither was willing to back down, yet Sev appeared to have the upper hand.</p>
+<p>Every time Sev pretended to stretch its wings, the parrot would instinctively duck, fearing that Sev might be trying to hit it.</p>
+<p>When Sein was a magic initiate, he perceived the outer commercial area of the Divine Tower of Verdant Spring as...</p>
+</article>
+<article id="c331" data-label="331">
+<h2 class="chapter">Chapter 331: Gathering of Knights 🔒</h2>
+<p>After a year and a half, Sein found himself back in Grantt Territory.</p>
+<p>The visit was intended to be brief, as Sein’s experiment focusing on the Verdant Flame Body Tempering technique had reached a crucial phase.</p>
+<p>The Grantt Territory had seen expansion from its original borders.</p>
+<p>This was a development supported by many nobles in the Lysian Alliance. With House Grantt’s recent surge in influence, an increase in both territory and stature was deemed appropriate.</p>
+<p>Sein, being a Rank One mage, understood the dynamics behind such territorial adjustments.</p>
+<p>Lesser nobles often relinquished parts of their lands to more formidable houses,...</p>
+</article>
+<article id="c332" data-label="332">
+<h2 class="chapter">Chapter 332: Recommendation 🔒</h2>
+<p>The presence of Snape, the Rank Three knight, exerted significant pressure on Sein.</p>
+<p>It was not an intentional act but rather a natural consequence of Snape’s formidable strength and life level, affecting those around him of lower life level.</p>
+<p>Having recently participated in an interplanar war and frequently interacting with Rank Three grand mages, including the deans at the Divine Tower of Verdant Spring, Sein was no stranger to entities of Snape’s caliber.</p>
+<p>Yet, comparing all the Rank Three entities he had encountered, only his Master Andres and Master Holfson, the fifth and sixth apprentices of Grandmaster Feylis, stood on par with Snape.</p>
+<p>There were distinctions...</p>
+</article>
+<article id="c333" data-label="333">
+<h2 class="chapter">Chapter 333: Cunning Fox 🔒</h2>
+<p>Julius’ introduction of Sein to these knights served as an opportunity to expand his social network.</p>
+<p>Despite Sein’s naturally reserved and indifferent demeanor, fulfilling this social obligation allowed him to become acquainted with many ranked mages and knights.</p>
+<p>Sein’s traits did not sway his judgment. He was a mage skilled in assessing and weighing the advantages and disadvantages of each situation.</p>
+<p>Although Sein found himself somewhat averse to mingling with the rowdy Rank One knights, he engaged with them patiently, recognizing the potential benefits to both himself and House Grantt.</p>
+<p>Not every knight possessed the eloquence of Snape, the Rank Three knight. Many knights spoke crudely.</p>
+<p>Sein learned through...</p>
+</article>
+<article id="c334" data-label="334">
+<h2 class="chapter">Chapter 334: Alchemy Experiment 🔒</h2>
+<p>Sein spent nearly half a month in the Grantt Territory, with the banquet continuing right until his departure.</p>
+<p>The emergence of a Rank One knight was a monumental event for House Grantt, heralding a new era of prominence and expanding influence.</p>
+<p>The family’s ascent was palpable, with expectations set high for its burgeoning stature within the Magus World.</p>
+<p>Anticipating further growth, House Grantt stood at the precipice of extending its lineage. The banquet was subtly abuzz with guests hoping to form matrimonial alliances with them.</p>
+<p>Targets of these matrimonial ambitions included not just Sein but also his father, Old Grantt, along...</p>
+</article>
+<article id="c335" data-label="335">
+<h2 class="chapter">Chapter 335: Risks and Rewards 🔒</h2>
+<p>Body tempering was far from straightforward, a sentiment true for many pursuits in this world.</p>
+<p>Sein had previously thought that the knights of the Magus World led easy lives, at least on the surface.</p>
+<p>However, the process of body tempering had revealed to Sein the unseen struggles that knights faced, which went unnoticed by most mages.</p>
+<p>Sweat was not the only thing the knights shed, but also blood.</p>
+<p>Sein realized that the knights must have dedicated immense effort and time to tempering their bodies, far more than himself.</p>
+<p>While on his journey of body tempering through elemental power, Sein admitted to taking numerous shortcuts.</p>
+<p>Firstly, he could not afford to spend a huge amount of...</p>
+</article>
+<article id="c336" data-label="336">
+<h2 class="chapter">Chapter 336: Significant Increase In Constitution 🔒</h2>
+<p>Eileen’s prolonged silence was a clear indication that she understood Sein&#39;s perspective.</p>
+<p>Their views on life and values, shaped by distinct early experiences, diverged significantly.</p>
+<p>Sein valued Eileen’s individuality and refrained from imposing his philosophies on her. He cared about her and did not wish for her to mirror his ways.</p>
+<p>Sein’s voice softened as he offered Eileen a new perspective.</p>
+<p>“The average lifespan of a Rank One knight in the Magus World is around a thousand years, similar to us mages. Yet, most knights only reach seven to eight hundred years due to the extensive physical strain and cellular damage they endure. My body tempering experiment mirrors the approach...</p>
+</article>
+<article id="c337" data-label="337">
+<h2 class="chapter">Chapter 337: All-Out Assault On The Neisse Star Domain 🔒</h2>
+<p>Sein was deeply immersed in his laboratory, tirelessly unraveling the mysteries of truth.</p>
+<p>Far away in the Viridian Venom Flame World, Master Lorianne remained even after most of the mages had evacuated.</p>
+<p>After staying nearly three years there, it was finally time for her to return to the Magus World.</p>
+<p>At this point, there were only less than three thousand mages left in the Viridian Venom Flame World, with the majority belonging to the Divine Tower of Verdant Flame and the Divine Tower of Whispering Flame.</p>
+<p>This demographic shift clearly showed which divine towers had garnered the most substantial profits within the Viridian Venom Flame World.</p>
+<p>Although the Divine Tower of Verdant Spring and the...</p>
+</article>
+<article id="c338" data-label="338">
+<h2 class="chapter">Chapter 338: The Most Dignified Woman In The Magus World 🔒</h2>
+<p>The invitation Feylis received from the Pyro Secret Society to join the decisive war on the Neisse Plane was timely.</p>
+<p>The fall of the Neisse Civilization was inevitable. The only reason that the conflict had not ended was the Magus Alliance’s refusal to abandon the remnants of Neisse’s forces.</p>
+<p>Yet, reality often diverged from expectations.</p>
+<p>After Neisse Civilization’s last bastion repeatedly rejected the Magus Civilization’s overtures of peace, the leaders of the Magus World’s patience finally reached its limit.</p>
+<p>A directive to obliterate the Neisse Civilization within three hundred years came directly from a soul overmage of the Magus World.</p>
+<p>Individuals of...</p>
+</article>
+<article id="c339" data-label="339">
+<h2 class="chapter">Chapter 339: Future and Immediate Concerns 🔒</h2>
+<p>The peak Rank Seven silver-robed soul overmage sighed and said, “My father once commented that among us three siblings, I was the least talented. He worried the most for me, but since I inherited the purest bloodline of the Magus World, he bestowed upon me with most of his inheritance.”</p>
+<p>“He was right. I have not lived up to his expectations, and I’m uncertain about the future I can secure for the Magus World,” she admitted.</p>
+<p>“Don’t be so hard on yourself, Bev. You’ve done great. Our Magus Civilization has achieved so much over the past hundred and seventy thousand years, and you deserve a significant share of the credit for that,” Zenasus responded earnestly.</p>
+<p>“A hundred and seventy thousand years, huh? It’s hard to believe so much time has...</p>
+</article>
+<article id="c340" data-label="340">
+<h2 class="chapter">Chapter 340: Lorianne’s Return 🔒</h2>
+<p>“Viktor is the best mechanic in the Magus World, and Rogge is the most talented Rank Seven necromancer from my Marmett Union Alliance. With the three of you overseeing the war in the Neisse Star Domain, I have nothing to worry about,” Bev stated.</p>
+<p>There was something else left unspoken by Bev. Rogge and Zenasus were two of the peak Rank Seven overmages and overlords in the Magus World that were on the cusp of attaining Rank Eight.</p>
+<p>Rogge’s promotion to Rank Seven might have come later than both Bev and Zenasus, but his swift progression after that was undeniable.</p>
+<p>In terms of raw power and potential, he even surpassed Zenasus.</p>
+<p>With capable men like Zenasus and Rogge, the fate...</p>
+</article>
+<article id="c341" data-label="341">
+<h2 class="chapter">Chapter 341: Challenges In Mentorship 🔒</h2>
+<p>“Even though Vlad has attained Rank Four, he still requires time to stabilize his newfound power. It won’t be easy to secure a divine tower establishment loan from the Magus Alliance either. At best, I’m looking at another two hundred years at the Divine Tower of Verdant Spring. Besides, there’s still seventy years left in our employment contract.”</p>
+<p>Dean Archimedes openly shared his thoughts.</p>
+<p>Lorianne nodded in agreement.</p>
+<p>Having experienced the journey to Rank Four and the loan application process with the Magus Alliance, she understood well the challenges involved.</p>
+<p>After ascending to Rank Four, a stabilization period...</p>
+</article>
+<article id="c342" data-label="342">
+<h2 class="chapter">Chapter 342: Generous Mentor 🔒</h2>
+<p>Sein was unaware of the burden he had imposed on his mentor, Lorianne, who had just spent an entire day and night imparting to him a wealth of profound knowledge on elemental magic.</p>
+<p>The information was undoubtedly advanced for Sein, far beyond what he could fully grasp in such a brief span.</p>
+<p>Thankfully, Sein had recorded Lorianne’s teachings in his crystal ball, planning to review and study them upon his return.</p>
+<p>Should any confusion persist, he knew he could always seek clarification from his mentor.</p>
+<p>That was the benefit of living together with a mentor. Sein felt a profound sense of belonging and care as he recalled Lorianne’s repeated invitations for...</p>
+</article>
+<article id="c343" data-label="343">
+<h2 class="chapter">Chapter 343: World Laboratory 🔒</h2>
+<p>Sein followed Lorianne and approached the Fire-Breathing Dragon King.</p>
+<p>In contrast to the dragon’s immense size, stretching tens of meters, Sein and Lorianne, each under two meters tall, seemed minuscule.</p>
+<p>Yet, it was these two seemingly insignificant human mages from the Magus World who compelled the Fire-Breathing Dragon King to simmer in silent fury, enduring the humiliating treatment usually reserved for enslaved captives.</p>
+<p>Lorianne flew toward a specific spot on the dragon’s neck with Sein following behind her, then examined it closely before pointing at a large crimson scale.</p>
+<p>“This spot will do for today,” she decided.</p>
+<p>The chosen...</p>
+</article>
+<article id="c344" data-label="344">
+<h2 class="chapter">Chapter 344: Arcanist 🔒</h2>
+<p>The legion of two hundred thousand plant creatures on the Viridian Venom Flame World battlefield definitely left a lasting impression on Sein.</p>
+<p>His ability to capture a living engineer from the Neisse Civilization was also made possible by the power of those plant creatures.</p>
+<p>After learning that those giant plant creatures had actually originated from this world laboratory before him, Sein’s admiration and yearning for Lorianne’s formidable capabilities and extensive knowledge deepened.</p>
+<p>So, this was the prowess of a divine tower master and a Rank Four mage.</p>
+<p>Compared to Sein, a mere Rank One mage, Lorianne existed on a plane far beyond his reach.</p>
+<p>To lesser beings, Lorianne’s power seemed almost...</p>
+</article>
+<article id="c345" data-label="345">
+<h2 class="chapter">Chapter 345: Travel Route 🔒</h2>
+<p>Sein had gained considerable benefits from his discussions with his mentor, Lorianne.</p>
+<p>This time, his gains were plentiful—both material goods as well as knowledge and information.</p>
+<p>Sein needed some time to process and assimilate all he had acquired.</p>
+<p>Before departing, he casually broached the subject of borrowing books from Lorianne’s private library once again.</p>
+<p>“I have given you access to my private library, you’re always welcome to visit whenever you wish,” Lorianne nodded, giving her consent.</p>
+<p>“But you can’t barge into here without my permission… I might not be able to come to your rescue in time if you were injured by one of my specimens,” she warned.</p>
+<p>The majority of the divine tower’s upper levels belonged to...</p>
+</article>
+<article id="c346" data-label="346">
+<h2 class="chapter">Chapter 346: Soul Enslavement Method 🔒</h2>
+<p>After receiving numerous resources and gifts from Master Lorianne, Sein did not rush to embark on his journey to the Western Archipelago. Instead, he chose to focus on improving himself as much as possible within a short amount of time.</p>
+<p>Having formidable power was a prerequisite for all ventures.</p>
+<p>While Rank One mages were indeed qualified to explore the Magus World, Sein’s intended destination, the notorious Blackhaven of the Western Archipelago, necessitated greater strength.</p>
+<p>Selina, having lived with Sein for many years, probably knew him the best, second only to Leena.</p>
+<p>Selina often had a feeling that she never truly understood Sein, especially sensing an elusive part of Sein that remained hidden from her.</p>
+<p>Despite...</p>
+</article>
+<article id="c347" data-label="347">
+<h2 class="chapter">Chapter 347: Arcane Points 🔒</h2>
+<p>The Arcane Light was situated in the most secluded part of the divine tower library, housed within a specially designed chamber that was rather spacious.</p>
+<p>The chamber’s ambiance was predominantly dark, illuminated solely by the ethereal blue glow of Arcane Light, a symbol of knowledge and truth.</p>
+<p>Upon Sein’s arrival at the chamber, he found it deserted.</p>
+<p>It appeared that the full-fledged mages in the Divine Tower of Verdant Spring seldom engaged with the Arcane Light.</p>
+<p>However, the cleanliness of the area suggested it was well-maintained on a regular basis.</p>
+<p>Sein approached the Arcane Light, then extended his hand into the light orb, connecting with the...</p>
+</article>
+<article id="c348" data-label="348">
+<h2 class="chapter">Chapter 348: Mirage’s Almanac of Souls 🔒</h2>
+<p>The rarity and complexity of soul magic likely surpassed ordinary elemental spells.</p>
+<p>Sein’s standards might have also been higher as he was not content with merely any spell but pursued advanced, sophisticated magic.</p>
+<p>The breadth of knowledge within Arcane Light was as vast as the ocean, presenting Sein with an overwhelming array of options.</p>
+<p>The Soul Enslavement category alone boasted hundreds of thousands of spells, tailored specifically for Rank One mages.</p>
+<p>Given Sein had yet to attain the title of a Rank One Arcanist, he could only access spells limited to magic initiates and Rank One mages.</p>
+<p>To access more advanced magic knowledge, one...</p>
+</article>
+<article id="c349" data-label="349">
+<h2 class="chapter">Chapter 349: Light In Eyes 🔒</h2>
+<p>After leaving the divine tower library, Sein headed straight back to his residence.</p>
+<p>The wisdom contained in Mirage’s Almanac of Souls, valued at 76 Arcane points, had been saved within Sein’s crystal ball, ready for him to navigate into its complexities.</p>
+<hr class="separator">
+<p>Three months later, in the laboratory…</p>
+<p>After poring over Mirage’s Almanac of Souls multiple times, Sein began to grasp the essence of soul magic and felt a deep respect for its author, Mirage.</p>
+<p>This admiration arose from one truth seeker’s recognition of the extensive wisdom of a more experienced mage.</p>
+<p>Mirage’s Almanac of Souls systematically introduced the fundamentals of soul...</p>
+</article>
+<article id="c350" data-label="350">
+<span id="last"></span>
+<h2 class="chapter">Chapter 350: Soul Binding 🔒</h2>
+<p>Given the usual schedule of Sein’s visits, he was not supposed to visit Yuri today.</p>
+<p>Therefore, his appearance in the laboratory today was a “pleasant surprise” for her.</p>
+<p>Upon entering, Sein failed to notice any subtle shifts in Yuri’s demeanor.</p>
+<p>To him, Yuri had maintained a consistent, withdrawn silence over the years.</p>
+<p>It was only when she was restrained on his experiment table, subjected to the scrutiny of experiment instruments that one could truly perceive her as a living, sentient humanoid being through the touch of her skin and the monitoring of her heartbeat.</p>
+<p>The coldness in Sein’s eyes when he cast a glance at Yuri caused her...</p>
+</article>
+</main>
+<nav class="page-end" aria-label="Pages">
+    <a class="next-page" href="351-400.html" rel="next">Next: Chs 351–400 &rarr;</a>
+    <p class="page-end-links"><a href="251-300.html" rel="prev">&larr; Chs 251–300</a> · <a href="../../index.html">Library</a></p>
+</nav>
+<dialog id="chapters" class="sheet" aria-labelledby="chapters-title">
+    <h2 id="chapters-title" class="sheet-title">Sovereign of the Ashes · Chs 301–350</h2>
+    <nav class="sheet-toc" aria-label="Chapters on this page">
+    <ol>
+        <li><a href="#c301">Chapter 301: Sinner of the Viridian Venom Flame World 🔒</a></li>
+        <li><a href="#c302">Chapter 302: The Guardian’s Decision 🔒</a></li>
+        <li><a href="#c303">Chapter 303: Small Trade Fair 🔒</a></li>
+        <li><a href="#c304">Chapter 304: Changes 🔒</a></li>
+        <li><a href="#c305">Chapter 305: Softness 🔒</a></li>
+        <li><a href="#c306">Chapter 306: Feelings 🔒</a></li>
+        <li><a href="#c307">Chapter 307: Conversation Between Master and Apprentice 🔒</a></li>
+        <li><a href="#c308">Chapter 308: A Worthy Opponent 🔒</a></li>
+        <li><a href="#c309">Chapter 309: All-Out Assault 🔒</a></li>
+        <li><a href="#c310">Chapter 310: Farce 🔒</a></li>
+        <li><a href="#c311">Chapter 311: Submission 🔒</a></li>
+        <li><a href="#c312">Chapter 312: The Conclusion of the War 🔒</a></li>
+        <li><a href="#c313">Chapter 313: Returning Soon 🔒</a></li>
+        <li><a href="#c314">Chapter 314: Sweet Air 🔒</a></li>
+        <li><a href="#c315">Chapter 315: Figures From The Past 🔒</a></li>
+        <li><a href="#c316">Chapter 316: Gift 🔒</a></li>
+        <li><a href="#c317">Chapter 317: Nostalgic Flavors 🔒</a></li>
+        <li><a href="#c318">Chapter 318: Study Plan 🔒</a></li>
+        <li><a href="#c319">Chapter 319: Offer 🔒</a></li>
+        <li><a href="#c320">Chapter 320: Letter from House Grantt 🔒</a></li>
+        <li><a href="#c321">Chapter 321: Plans to Travel 🔒</a></li>
+        <li><a href="#c322">Chapter 322: Offerings 🔒</a></li>
+        <li><a href="#c323">Chapter 323: Visit 🔒</a></li>
+        <li><a href="#c324">Chapter 324: Living Specimens 🔒</a></li>
+        <li><a href="#c325">Chapter 325: Marriage? 🔒</a></li>
+        <li><a href="#c326">Chapter 326: Yuri’s Fear 🔒</a></li>
+        <li><a href="#c327">Chapter 327: A Year 🔒</a></li>
+        <li><a href="#c328">Chapter 328: Activators 🔒</a></li>
+        <li><a href="#c329">Chapter 329: Spirit Familiar 🔒</a></li>
+        <li><a href="#c330">Chapter 330: Good News from Old Grantt 🔒</a></li>
+        <li><a href="#c331">Chapter 331: Gathering of Knights 🔒</a></li>
+        <li><a href="#c332">Chapter 332: Recommendation 🔒</a></li>
+        <li><a href="#c333">Chapter 333: Cunning Fox 🔒</a></li>
+        <li><a href="#c334">Chapter 334: Alchemy Experiment 🔒</a></li>
+        <li><a href="#c335">Chapter 335: Risks and Rewards 🔒</a></li>
+        <li><a href="#c336">Chapter 336: Significant Increase In Constitution 🔒</a></li>
+        <li><a href="#c337">Chapter 337: All-Out Assault On The Neisse Star Domain 🔒</a></li>
+        <li><a href="#c338">Chapter 338: The Most Dignified Woman In The Magus World 🔒</a></li>
+        <li><a href="#c339">Chapter 339: Future and Immediate Concerns 🔒</a></li>
+        <li><a href="#c340">Chapter 340: Lorianne’s Return 🔒</a></li>
+        <li><a href="#c341">Chapter 341: Challenges In Mentorship 🔒</a></li>
+        <li><a href="#c342">Chapter 342: Generous Mentor 🔒</a></li>
+        <li><a href="#c343">Chapter 343: World Laboratory 🔒</a></li>
+        <li><a href="#c344">Chapter 344: Arcanist 🔒</a></li>
+        <li><a href="#c345">Chapter 345: Travel Route 🔒</a></li>
+        <li><a href="#c346">Chapter 346: Soul Enslavement Method 🔒</a></li>
+        <li><a href="#c347">Chapter 347: Arcane Points 🔒</a></li>
+        <li><a href="#c348">Chapter 348: Mirage’s Almanac of Souls 🔒</a></li>
+        <li><a href="#c349">Chapter 349: Light In Eyes 🔒</a></li>
+        <li><a href="#c350">Chapter 350: Soul Binding 🔒</a></li>
+    </ol>
+
+    </nav>
+    <form class="goto" hidden data-toc="toc.json">
+        <label><span class="visually-hidden">Go to chapter</span><input type="number" inputmode="numeric" min="0" name="chapter" placeholder="Chapter #"></label>
+        <button>Go</button>
+        <p class="goto-status" role="status"></p>
+    </form>
+    <nav class="page-nav" aria-label="Pages">
+<a href="251-300.html" rel="prev">&larr; Chs 251–300</a>    <a href="../../index.html">Library</a>
+<a href="351-400.html" rel="next">Chs 351–400 &rarr;</a>
+    </nav>
+    <form method="dialog"><button class="sheet-done">Close</button></form>
+</dialog>
+<dialog id="settings" class="sheet" aria-labelledby="settings-title">
+    <form method="dialog">
+        <h2 id="settings-title" class="sheet-title">Text</h2>
+        <div class="sheet-row">
+            <span>Size</span>
+            <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+            <output aria-live="polite">100%</output>
+            <button type="button" data-size="1" aria-label="Larger text">A+</button>
+        </div>
+        <fieldset>
+            <legend>Theme</legend>
+            <label><input type="radio" name="theme" value="system"> System</label>
+            <label><input type="radio" name="theme" value="light"> Light</label>
+            <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+            <label><input type="radio" name="theme" value="dark"> Dark</label>
+        </fieldset>
+        <fieldset>
+            <legend>Font</legend>
+            <label><input type="radio" name="font" value="sans"> Sans</label>
+            <label><input type="radio" name="font" value="serif"> Serif</label>
+        </fieldset>
+        <fieldset>
+            <legend>Line spacing</legend>
+            <label><input type="radio" name="spacing" value="compact"> Compact</label>
+            <label><input type="radio" name="spacing" value="normal"> Normal</label>
+            <label><input type="radio" name="spacing" value="loose"> Loose</label>
+        </fieldset>
+        <fieldset class="width-setting">
+            <legend>Line width</legend>
+            <label><input type="radio" name="width" value="narrow"> Narrow</label>
+            <label><input type="radio" name="width" value="normal"> Normal</label>
+            <label><input type="radio" name="width" value="wide"> Wide</label>
+        </fieldset>
+        <button class="sheet-done">Done</button>
+    </form>
+</dialog>
+</div>
+</body>
+</html>
