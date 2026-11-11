@@ -1,3 +1,4 @@
+import sqlite3
 from dataclasses import replace
 
 import pytest
@@ -242,6 +243,16 @@ def test_sync_fills_what_the_novel_lacks_and_asks_for_the_cover(tmp_path, clock)
         report = sync(store, 1, covered)
         assert store.meta.author == "A. Writer"
     assert report.cover_wanted == "https://fake.test/covers/fake.jpg"
+
+
+def test_sync_replaces_a_stored_placeholder_author(tmp_path, clock):
+    novel_dir, site = blank_novel(tmp_path, clock)
+    with sqlite3.connect(novel_dir / "novel.sqlite") as conn:
+        conn.execute("UPDATE novel SET author = '<unknown>'")
+    conn.close()
+    with NovelStore.open(novel_dir) as store:
+        sync(store, 1, site)
+        assert store.meta.author == "A. Writer"
 
 
 def test_sync_keeps_what_the_novel_already_has(tmp_path, clock):

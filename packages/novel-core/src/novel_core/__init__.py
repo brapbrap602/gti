@@ -25,6 +25,7 @@ from novel_core.keys import (
     url_ref,
 )
 from novel_core.model import (
+    UNSET,
     AlignmentDiff,
     IndexDiff,
     Inserted,
@@ -39,7 +40,9 @@ from novel_core.model import (
     SourceItem,
     SourceSpec,
     Unchanged,
+    Unset,
     Version,
+    clean_author,
 )
 from novel_core.selection import PinFallback, Selected, SourceId
 from novel_core.store import NovelStore
@@ -51,6 +54,6 @@ __all__ = [
     "KeyRange", "Kind",
     "Moved", "NewVersion", "Note", "NovelMeta", "NovelStore", "NovelView", "NumberingRun", "OutputKind", "OutputRow",
     "Paragraph", "PinFallback", "PutResult", "RangeOverride", "RawChapter", "Run", "Selected", "Separator", "SourceId",
-    "SourceInfo", "SourceItem", "SourceSpec", "StoreError", "System", "Unchanged", "Version", "VolumeRow",
-    "chapter_heading", "parse_printed", "title_name", "title_number", "url_ref",
+    "SourceInfo", "SourceItem", "SourceSpec", "StoreError", "System", "UNSET", "Unchanged", "Unset", "Version",
+    "VolumeRow", "chapter_heading", "clean_author", "parse_printed", "title_name", "title_number", "url_ref",
 ]  # fmt: skip

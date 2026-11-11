@@ -3,7 +3,7 @@
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from datetime import datetime
-from enum import StrEnum
+from enum import Enum, StrEnum
 from typing import Literal
 
 from novel_core.alignment import AlignmentRules
@@ -19,6 +19,24 @@ class Kind(StrEnum):
     OFFICIAL_EN = "official-en"
     RAW_ZH = "raw-zh"
     MY_TRANSLATION = "my-translation"
+
+
+PLACEHOLDER_AUTHORS = frozenset({"<unknown>", "unknown"})  # casefolded; what importers write when they don't know
+
+
+def clean_author(value: str | None) -> str | None:
+    """The author as stored and shown: trimmed, and None for blank or a placeholder such as Calibre's `<unknown>`."""
+    value = (value or "").strip()
+    return None if not value or value.casefold() in PLACEHOLDER_AUTHORS else value
+
+
+class Unset(Enum):
+    """The type of UNSET: "leave this field as it is", where None is a value (no author)."""
+
+    UNSET = "unset"
+
+
+UNSET = Unset.UNSET
 
 
 @dataclass(frozen=True)

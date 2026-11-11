@@ -30,6 +30,7 @@ from novel_core.check import CheckReport
 from novel_core.finding import Finding
 from novel_core.keys import ChapterKey, ItemRef, KeyRange, parse_printed
 from novel_core.model import (
+    UNSET,
     AlignmentDiff,
     IndexDiff,
     Inserted,
@@ -44,7 +45,9 @@ from novel_core.model import (
     SourceItem,
     SourceSpec,
     Unchanged,
+    Unset,
     Version,
+    clean_author,
 )
 from novel_core.selection import Pin, Selected, SourceId, rank, unpinned
 from novel_core.view import CurrentVersion, NovelView, StoreError, StoredItem, derive
@@ -268,6 +271,21 @@ class NovelStore:
     def set_meta(self, meta: NovelMeta) -> None:
         with self._engine.begin() as conn:
             conn.execute(_novel.update().values(**_meta_row(meta)))
+
+    def update_meta(self, *, title: str | None = None, author: str | None | Unset = UNSET) -> NovelMeta:
+        """Change only the fields named (title when given, author unless UNSET; None clears it) and
+        return the new meta. A blank title raises ValueError and changes nothing."""
+        values: dict[str, str | None] = {}
+        if title is not None:
+            if not title.strip():
+                raise ValueError("A title can't be blank.")
+            values["title"] = title.strip()
+        if author is not UNSET:
+            values["author"] = clean_author(author)
+        with self._engine.begin() as conn:
+            if values:
+                conn.execute(_novel.update().values(**values))
+            return _load_meta(conn)
 
     @property
     def public(self) -> bool:
@@ -780,7 +798,7 @@ def _insert_findings(conn: sa.Connection, version_id: int, findings: Sequence[Fi
 def _meta_row(meta: NovelMeta) -> dict:
     return {
         "title": meta.title,
-        "author": meta.author,
+        "author": clean_author(meta.author),
         "language": meta.language,
         "status": meta.status,
         "cover_path": meta.cover_path,
@@ -802,7 +820,7 @@ def _volume_is(keys: KeyRange):
 
 def _load_meta(conn: sa.Connection) -> NovelMeta:
     r = conn.execute(sa.select(_novel)).one()
-    return NovelMeta(r.title, r.author, r.language, r.status, r.cover_path, tuple(json.loads(r.tags_json)))
+    return NovelMeta(r.title, clean_author(r.author), r.language, r.status, r.cover_path, tuple(json.loads(r.tags_json)))
 
 
 def _load_public(conn: sa.Connection) -> bool:

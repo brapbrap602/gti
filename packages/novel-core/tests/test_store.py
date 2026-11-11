@@ -861,6 +861,47 @@ def test_a_novel_starts_public_and_the_switch_survives_a_meta_change(tmp_path):
         assert store.public
 
 
+def write_raw_author(folder, author: str) -> None:
+    with sqlite3.connect(folder / "novel.sqlite") as conn:
+        conn.execute("UPDATE novel SET author = ?", (author,))
+    conn.close()
+
+
+@pytest.mark.parametrize("author", ["<unknown>", "  Unknown ", "", "   ", None])
+def test_placeholder_authors_count_as_no_author(tmp_path, author):
+    with NovelStore.create(tmp_path / "n", NovelMeta("N", author=author)) as store:
+        assert store.meta.author is None
+
+
+def test_a_stored_placeholder_author_is_cleaned_on_read(tmp_path):
+    NovelStore.create(tmp_path / "n", NovelMeta("N")).close()
+    write_raw_author(tmp_path / "n", "<unknown>")
+    with NovelStore.open(tmp_path / "n") as store:
+        assert store.meta.author is None
+
+
+def test_a_real_author_is_kept_trimmed(tmp_path):
+    with NovelStore.create(tmp_path / "n", NovelMeta("N", author=" Er Gen ")) as store:
+        assert store.meta.author == "Er Gen"
+
+
+def test_update_meta_changes_only_the_fields_named(tmp_path):
+    meta = NovelMeta("A", author="X", status="ongoing", tags=("cultivation",))
+    with NovelStore.create(tmp_path / "n", meta) as store:
+        assert store.update_meta(title=" B ") == replace(meta, title="B")
+        assert store.meta == replace(meta, title="B")
+        assert store.update_meta(author=None).author is None
+        assert store.update_meta(author="Y") == replace(meta, title="B", author="Y")
+        assert store.update_meta(author="<unknown>").author is None
+
+
+def test_update_meta_refuses_a_blank_title(tmp_path):
+    with NovelStore.create(tmp_path / "n", NovelMeta("A", author="X")) as store:
+        with pytest.raises(ValueError, match="title"):
+            store.update_meta(title="  ", author="Y")
+        assert store.meta == NovelMeta("A", author="X")
+
+
 def table_columns(folder, table):
     with sqlite3.connect(folder / "novel.sqlite") as conn:
         columns = conn.execute(f"PRAGMA table_info({table})").fetchall()
