@@ -9,14 +9,16 @@
 <span class="badge badge--{{ variant }}"{% if title %} title="{{ title }}"{% endif %}>{{ text }}</span>
 {%- endmacro %}
 
-{# A stat card: a label, a big value, an optional hint and an optional icon; help is its tooltip. #}
-{% macro stat(label, value, hint=None, icon_name=None, help=None) -%}
-<div class="stat"{% if help %} title="{{ help }}"{% endif %}>
+{# A stat card: a label, a big value, an optional hint and an optional icon; help is its tooltip.
+   With an href the card is a link; attrs are its extra attributes. #}
+{% macro stat(label, value, hint=None, icon_name=None, help=None, href=None, attrs={}) -%}
+{% set tag = "a" if href else "div" -%}
+<{{ tag }} class="stat{% if href %} stat--link{% endif %}"{% if href %} href="{{ href }}"{% endif %}{% if help %} title="{{ help }}"{% endif %}{{ attrs | xmlattr }}>
     <span class="stat-label">{{ label }}</span>
     {% if icon_name %}{{ icon(icon_name) }}{% endif %}
     <span class="stat-value">{{ value }}</span>
     {% if hint %}<span class="stat-hint">{{ hint }}</span>{% endif %}
-</div>
+</{{ tag }}>
 {%- endmacro %}
 
 {# An empty state; the caller's block is its text (and any action). #}

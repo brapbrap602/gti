@@ -38,15 +38,18 @@ from novel_app.jobs import JobPanel, JobRunning, JobState
 from novel_app.notation import parse_range
 from novel_app.pages import (
     CELL_LABELS,
+    LIBRARY_FILTERS,
+    LIBRARY_SORTS,
     LIBRARY_STATUSES,
     STATUS_LABELS,
     CellState,
     LibraryRow,
     NavRow,
-    NovelStatus,
+    active_label,
     align_range_command,
     findings_text,
     reclean_command,
+    sort_rows,
     source_label,
     state_counts,
 )
@@ -55,6 +58,9 @@ from novel_app.service import Service, UserError
 HERE = Path(__file__).parent
 log = logging.getLogger(__name__)
 STREAM_EVERY = 1.0
+LIBRARY_VIEWS = ("table", "cards")  # the first is the default
+SORT_COOKIE, VIEW_COOKIE = "lib_sort", "lib_view"
+COOKIE_AGE = 365 * 86400
 # Judgements are Markdown; raw HTML in them is shown as text, not run.
 MARKDOWN = MarkdownIt("commonmark", {"html": False}).enable("table")
 
@@ -101,6 +107,7 @@ def create_app(service: Service) -> FastAPI:
     templates.env.filters["markdown"] = lambda text: Markup(MARKDOWN.render(text))
     templates.env.globals.update(
         job_labels=JOB_LABELS, cell_labels=CELL_LABELS, status_labels=STATUS_LABELS, library_statuses=LIBRARY_STATUSES, CellState=CellState, Kind=Kind, JobState=JobState,
+        library_filters=LIBRARY_FILTERS, active_label=active_label,
         backends=BACKENDS, owns=service.runner.owns, source_label=source_label,
         contexts=CONTEXTS, reasoning_levels=REASONING, data_collection=DATA_COLLECTION,
         setup_name=setup_name, words=words, align_range_command=align_range_command,
@@ -114,8 +121,8 @@ def create_app(service: Service) -> FastAPI:
                 rows = service.library()
             except Exception:
                 log.exception("library rows for the sidebar")
-                return [NavRow(slug, slug) for slug in service.novels()]
-        return [NavRow.of(r) for r in rows]
+                return sorted((NavRow(slug, slug) for slug in service.novels()), key=_by_title)
+        return sorted(map(NavRow.of, rows), key=_by_title)
 
     async def page(request: Request, name: str, status: int = 200, **context) -> HTMLResponse:
         if "nav_rows" not in context:
@@ -160,13 +167,23 @@ def create_app(service: Service) -> FastAPI:
     # -- pages -----------------------------------------------------------------
 
     @app.get("/", response_class=HTMLResponse)
-    async def library(request: Request, status: str = ""):
+    async def library(request: Request, status: str = "", sort: str | None = None, view: str | None = None):
+        # Sort and view travel in cookies, so the live reload of main and a form's redirect back keep them.
+        order = _choice(sort, request.cookies.get(SORT_COOKIE), LIBRARY_SORTS)
+        layout = _choice(view, request.cookies.get(VIEW_COOKIE), LIBRARY_VIEWS)
         rows = await run_in_threadpool(service.library)
-        shown = NovelStatus(status) if status in NovelStatus else None  # anything else shows every novel
-        return await page(
-            request, "library.html", rows=rows, filter_status=shown, nav_rows=nav_rows(rows),
-            shown=[r for r in rows if shown in (None, r.status)],
+        panel = await run_in_threadpool(service.job_panel)
+        rows = sort_rows(rows, order, frozenset(j.target for j in panel.problem_jobs))
+        shown = status if status in LIBRARY_FILTERS else None  # anything else shows every novel
+        response = await page(
+            request, "library.html", rows=rows, filter_name=shown, sort=order, view=layout, job_panel=panel,
+            nav_rows=nav_rows(rows), shown=[r for r in rows if shown is None or LIBRARY_FILTERS[shown].test(r)],
+            filter_counts={name: sum(map(f.test, rows)) for name, f in LIBRARY_FILTERS.items()},
         )  # fmt: skip
+        for name, given, value in ((SORT_COOKIE, sort, order), (VIEW_COOKIE, view, layout)):
+            if given is not None:
+                response.set_cookie(name, value, max_age=COOKIE_AGE, httponly=True, samesite="lax")
+        return response
 
     @app.get("/novels/{novel}", response_class=HTMLResponse)
     async def novel(request: Request, novel: str):
@@ -437,6 +454,15 @@ async def job_events(
 def sse(event: str, data: str) -> str:
     lines = data.splitlines() or [""]
     return f"event: {event}\n" + "".join(f"data: {line}\n" for line in lines) + "\n"
+
+
+def _by_title(row: NavRow) -> tuple[str, str]:
+    return row.title.casefold(), row.slug
+
+
+def _choice(given: str | None, remembered: str | None, choices) -> str:
+    """The query's choice, else the cookie's, else the first; an unknown name counts as none."""
+    return next((c for c in (given, remembered) if c in choices), next(iter(choices)))
 
 
 def _span(form) -> str:

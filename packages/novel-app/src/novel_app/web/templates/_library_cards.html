@@ -1,0 +1,43 @@
+{% from "_ui.html" import icon, badge %}
+{% from "_macros.html" import job_button, build_menu, output_badge, job_progress, kind_badge %}
+{% import "_help.html" as help %}
+<ul class="novel-cards">
+    {% for r in shown %}
+    <li class="card novel-card" data-novel="{{ r.slug }}">
+        <div class="card-header">
+            <h2 class="card-title novel-card-title">
+                <a title="{{ r.title }}" href="/novels/{{ r.slug }}">{{ r.title }}</a>
+            </h2>
+            <p class="card-description">{{ r.slug }}{% if r.raw_only %} {{ badge("raw only", "warn") }}{% endif %}{% if not r.public %} {{ badge("off site", "secondary", help.off_site) }}{% endif %}</p>
+        </div>
+        <div class="card-content novel-card-body">
+            <dl class="metrics">
+                <div>
+                    <dt title="{{ help.stat.selected }}">Chapters</dt>
+                    <dd>{{ "{:,}".format(r.selected) }} selected
+                        <ul class="counts" title="{{ help.stat.by_kind }}">{% for kind, n in r.numbers.items() %}<li>{{ n }} {{ kind }}</li>{% endfor %}</ul></dd>
+                </div>
+                <div><dt title="{{ help.stat.gaps }}">Gaps</dt><dd{% if r.gaps %} class="stale"{% endif %}>{{ r.gaps or "none" }}</dd></div>
+                <div><dt title="{{ help.stat.new }}">New to fetch</dt><dd>{% if r.can_sync %}{{ r.new_items }}{% else %}<span class="muted">no web source</span>{% endif %}</dd></div>
+                <div><dt title="{{ help.stat.last_sync }}">Last sync</dt><dd>{{ r.last_sync | ago }}</dd></div>
+            </dl>
+            <div class="novel-card-row">
+                <span class="row-label" title="{{ help.sources.rank }}">Sources</span>
+                <ol class="sources">
+                {% for s in r.sources %}{% set label = source_label(s.info.spec) %}<li title="{{ label.full }}"><span class="source-host">{{ label.short }}</span> {{ kind_badge(s.info.spec.kind) }}</li>{% endfor %}
+                </ol>
+            </div>
+            <div class="novel-card-row">
+                <span class="row-label" title="{{ help.stat.outputs }}">Outputs</span>
+                <ul class="outputs">{% for o in r.outputs %}<li>{{ output_badge(o) }}</li>{% endfor %}</ul>
+            </div>
+        </div>
+        <div class="card-footer novel-card-footer">
+            {% if r.can_sync %}{{ job_button("sync", r.slug, r.job_of("sync"), icon_name="refresh-cw") }}{% endif %}
+            {{ build_menu(r.slug, r) }}
+            <a class="btn btn--ghost btn--sm open-link" href="/novels/{{ r.slug }}">Open{{ icon("chevron-right") }}</a>
+            {{ job_progress(r.jobs) }}
+        </div>
+    </li>
+    {% endfor %}
+</ul>

@@ -55,7 +55,7 @@ def test_empty_library(client):
 
 def test_library_row_and_novel_grid(client, service):
     added(service)
-    page = client.get("/").text
+    page = client.get("/", params={"view": "cards"}).text
     assert 'href="/novels/test-novel">Test Novel</a>' in page
     assert "3 selected" in page
     assert re.search(r'name="kind" value="sync"', page)
@@ -71,9 +71,12 @@ def test_terms_explain_themselves(client, service):
     """Every page's jargon carries its meaning: a source kind, a job button, a stat, a table column, a legend."""
     added(service)
     page = client.get("/").text
-    assert 'title="official-en: a published English translation; the book can use it">official-en<' in page
     assert re.search(r'name="kind" value="sync">.*?<button type="submit" class="[^"]*" title="Fetch the chapters', page, re.S)
-    assert '<div class="stat" title="Chapters a web source lists that no source has a text for yet' in page
+    assert '<a class="stat stat--link" href="/?status=new" title="Chapters a web source lists that no source has a text for yet' in page
+    assert '<div class="stat" title="Chapter numbers the books take a text for' in page
+    assert re.search(r'<th scope="col"[^>]* title="Numbers inside the book&#39;s range with nothing publishable', page)
+    cards = client.get("/", params={"view": "cards"}).text
+    assert 'title="official-en: a published English translation; the book can use it">official-en<' in cards
 
     novel = client.get("/novels/test-novel").text
     assert '<th scope="col" class="num" title="Listed chapters no source has a text for yet; Sync fetches them">To fetch</th>' in novel
@@ -86,7 +89,7 @@ def test_library_counts_leave_out_unpublished_sources(client, service):
         mine = store.upsert_source(SourceSpec("translate:test", "test:setup", "en", Kind.MY_TRANSLATION), published=False)
         store.record_index(mine, [SourceItem("n1", 1, "Chapter 1")])
         store.put_version(mine, "n1", NewVersion("Chapter 1", (Paragraph.of("one"),)))
-    page = client.get("/").text
+    page = client.get("/", params={"view": "cards"}).text  # remembered for the next look
     assert "<li>3 official-en</li>" in page and "<li>1 my-translation</li>" not in page
 
     with NovelStore.open(novel_dir("test-novel")) as store:
@@ -351,7 +354,7 @@ def test_sources_table_cells_carry_labels_for_phones(client, service):
 def test_library_cards_name_link_and_sync_each_novel(client, service, novels):
     added(service)
 
-    page = client.get("/").text
+    page = client.get("/", params={"view": "cards"}).text
     listed = page.split("</main>")[0].split('<li class="card novel-card" data-novel="')[1:]
     cards = {card.split('"', 1)[0]: card for card in listed}
     assert sorted(cards) == ["english-only", "raw-novel", "test-novel"]
@@ -361,8 +364,124 @@ def test_library_cards_name_link_and_sync_each_novel(client, service, novels):
     assert 'name="kind" value="sync"' in syncable and 'name="novel" value="test-novel"' in syncable
 
 
-def card_slugs(page: str) -> list[str]:
-    return re.findall(r'<li class="card novel-card" data-novel="([^"]+)"', page)
+def table_rows(page: str) -> dict[str, str]:
+    listed = page.split("</main>")[0].split('<tr class="novel-row" data-novel="')[1:]
+    return {r.split('"', 1)[0]: r.split("</tr>", 1)[0] for r in listed}
+
+
+def row_slugs(page: str) -> list[str]:
+    return re.findall(r'<tr class="novel-row" data-novel="([^"]+)"', page)
+
+
+def test_the_library_is_a_table_by_default(client, service):
+    added(service)
+
+    page = client.get("/").text
+
+    rows = table_rows(page)
+    assert list(rows) == ["test-novel"] and "novel-card" not in page
+    row = rows["test-novel"]
+    assert 'title="Test Novel" href="/novels/test-novel">Test Novel</a>' in row
+    assert re.search(r'<td class="num"[^>]*>3</td>', row)
+    assert 'name="kind" value="sync"' in row and 'name="novel" value="test-novel"' in row
+    assert len(re.findall(r'class="badge [^"]* out out--', row)) == 3
+    assert 'class="menu menu--end"' in row and '<table class="library-table">' in page
+
+
+def test_the_cards_view_is_remembered(client, service):
+    added(service)
+
+    first = client.get("/", params={"view": "cards"})
+    again = client.get("/")
+
+    assert "lib_view=cards" in first.headers["set-cookie"] and "set-cookie" not in again.headers
+    for page in (first.text, again.text):
+        assert '<li class="card novel-card" data-novel="test-novel"' in page and "novel-row" not in page
+    assert 'href="/?view=table"' in again.text
+
+
+def test_the_sort_is_remembered_and_tabs_keep_it(client, service):
+    titled(service, "a", "Ant", fetched=True)
+    titled(service, "z", "Zed", fetched=False)  # new chapters: first by attention
+    assert row_slugs(client.get("/").text) == ["z", "a"]
+
+    assert "lib_sort=title" in client.get("/", params={"sort": "title"}).headers["set-cookie"]
+    page = client.get("/", params={"status": "ok"}).text
+    assert row_slugs(page) == ["a", "z"]
+    assert '<a class="tab" href="/?status=ok"' in page and '<a class="tab" href="/?status=new"' in page
+    assert re.search(r'<th scope="col"[^>]* aria-sort="ascending"><a href="/\?sort=title&amp;status=ok"', page)
+
+
+def test_queued_jobs_are_counted_apart_from_running_ones(client, service, novels):
+    added(service)
+    board = service.runner.board
+    running = board.claim("raw-novel", "sync", {})
+    board.start(running)
+    queued = [board.claim(slug, "build-epub", {}) for slug in ("english-only", "test-novel")]
+
+    page = client.get("/").text
+
+    assert '<span class="pill-label">1 running · 2 queued</span>' in page
+    assert stat(page, "Jobs")[0] == "1 running · 2 queued"
+    assert row_slugs(client.get("/", params={"status": "running"}).text) == ["raw-novel"]
+    for job_id in (running, *queued):
+        board.finish(job_id, JobState.DONE)
+
+
+def test_a_novel_with_a_job_problem_comes_first_until_dismissed(client, service):
+    titled(service, "a", "Ant", fetched=True)
+    titled(service, "b", "Bee", fetched=True)
+    board = service.runner.board
+    failed = board.claim("b", "sync", {})
+    board.finish(failed, JobState.FAILED)
+
+    assert row_slugs(client.get("/").text) == ["b", "a"]
+    client.post(f"/jobs/{failed}/dismiss", data={"back": "/"})
+    assert row_slugs(client.get("/").text) == ["a", "b"]
+
+
+def test_the_stat_tiles_link_to_their_tabs(client, service):
+    added(service)
+
+    page = client.get("/").text
+
+    def tile(label: str) -> str:
+        return re.search(rf'<(a|div) class="stat[^"]*"([^>]*)>\s*<span class="stat-label">{label}<', page).group(0)
+
+    assert 'href="/"' in tile("Novels")
+    assert 'href="/?status=new"' in tile("New to fetch")
+    assert 'href="/?status=rebuild"' in tile("Needs rebuild")
+    assert 'href="#jobs"' in tile("Jobs") and "data-open-jobs" in tile("Jobs")
+    assert tile("Chapters").startswith('<div class="stat"')
+
+
+def test_the_rebuild_tile_and_tab_count_the_same_novels(client, service):
+    titled(service, "a", "Ant", fetched=True)
+    titled(service, "b", "Bee", fetched=True)
+    assert service.run("build-site", quiet)[0] is JobState.DONE
+    service.set_meta("a", "Ant 2")
+    service.set_meta("b", "Bee 2")  # both sites stale
+    board = service.runner.board
+    running = board.claim("a", "build-epub", {})
+    board.start(running)
+
+    assert stat(client.get("/").text, "Needs rebuild")[0] == "2"
+    assert sorted(row_slugs(client.get("/", params={"status": "rebuild"}).text)) == ["a", "b"]
+    board.finish(running, JobState.DONE)
+
+
+def test_build_site_shows_busy_however_many_jobs_are_active(client, service):
+    added(service)
+    board = service.runner.board
+    site = board.claim("_site", "build-site", {})
+    board.start(site)
+    others = [board.claim(f"n{i}", "sync", {}) for i in range(21)]  # newer, so jobs(limit=20) misses the build
+
+    page = client.get("/").text
+
+    assert re.search(rf'disabled title="Build site is running \(job {site}\)"', page)
+    for job_id in (site, *others):
+        board.finish(job_id, JobState.DONE)
 
 
 def test_library_filters_novels_by_status(client, service, novels):
@@ -372,13 +491,13 @@ def test_library_filters_novels_by_status(client, service, novels):
 
     for status in ("raw-only", "ok"):
         page = client.get("/", params={"status": status}).text
-        assert sorted(card_slugs(page)) == sorted(s for s, st in by_status.items() if st == status)
+        assert sorted(row_slugs(page)) == sorted(s for s, st in by_status.items() if st == status)
         assert re.findall(r'<a class="tab" href="([^"]*)"[^>]*aria-current="page"', page) == [f"/?status={status}"]
 
     running = client.get("/", params={"status": "running"}).text
-    assert card_slugs(running) == [] and "Show all novels" in running
+    assert row_slugs(running) == [] and "Show all novels" in running
     everything = client.get("/", params={"status": "bogus"}).text  # an unknown status shows every novel
-    assert sorted(card_slugs(everything)) == sorted(by_status)
+    assert sorted(row_slugs(everything)) == sorted(by_status)
 
 
 def compare_page(client, slug: str, number: int = 1) -> str:
@@ -491,6 +610,28 @@ def test_the_shell_has_the_sidebar_and_its_own_styles(client, novels):
     assert page.index('id="notice"') < page.index("<main")
 
 
+def titled(service, slug: str, title: str, fetched: bool) -> None:
+    """A novel on the test site under its own title; unfetched, it has 3 new chapters."""
+    assert service.run("add", quiet, url=f"{URL}/{slug}", novel=slug)[0] is JobState.DONE
+    if fetched:
+        assert service.run("sync", quiet, novel=slug)[0] is JobState.DONE
+    service.set_meta(slug, title)
+
+
+def nav_titles(page: str) -> list[str]:
+    return re.findall(r'<span class="nav-text">([^<]*)</span>', page)
+
+
+def test_the_sidebar_lists_novels_by_title_whatever_the_library_order(client, service):
+    titled(service, "a-zed", "Zed", fetched=False)
+    titled(service, "b-ant", "Ant", fetched=True)
+
+    page = client.get("/", params={"sort": "new"}).text
+
+    assert row_slugs(page) == ["a-zed", "b-ant"]
+    assert nav_titles(page) == ["Ant", "Zed"]
+
+
 def test_the_sidebar_falls_back_to_slugs_when_the_library_cannot_be_read(client, service, novels, monkeypatch):
     calls = []
 
@@ -526,7 +667,8 @@ def test_the_jobs_pill_shows_a_running_job_and_its_progress(client, novels, serv
     pill = re.search(r'<button type="button" class="jobs-toggle.*?</button>', page, re.S).group(0)
     assert "jobs-toggle--running" in pill and '<span class="pill-label">1 running</span>' in pill
     assert re.search(r'class="pill-progress"[^>]*max="7" value="2"', pill)
-    assert f'<div class="job-mirror" data-job-progress="{running}">' in page and "Sync 2/7" in page
+    row = table_rows(page)["raw-novel"]
+    assert f'<div class="job-mirror" data-job-progress="{running}">' in row and "Sync 2/7" in row
     beside = board.claim("raw-novel", "build-epub", {})  # a second kind on the same novel gets its own bar
     assert f'data-job-progress="{beside}"' in client.get("/").text
     board.finish(beside, JobState.DONE)

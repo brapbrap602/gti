@@ -342,6 +342,13 @@ def library_row(
     )
 
 
+def active_label(jobs: Iterable[JobRow]) -> str:
+    """Active jobs as "1 running · 29 queued", a zero part left out; "" for none (app.js says the same)."""
+    states = [j.state for j in jobs]
+    parts = [(states.count(s), s) for s in (JobState.RUNNING, JobState.QUEUED)]
+    return " · ".join(f"{n} {s}" for n, s in parts if n)
+
+
 def active_jobs(jobs: Sequence[JobRow], target: str) -> tuple[JobRow, ...]:
     return tuple(j for j in jobs if j.target == target and j.state.active)
 

@@ -1,0 +1,47 @@
+{% from "_ui.html" import icon, badge %}
+{% from "_macros.html" import job_button, build_menu, output_badge, job_progress %}
+{% import "_help.html" as help %}
+{# Not in a .table-wrap: its overflow would clip the Build menus. The app is desktop only. #}
+{% macro column(name, label, tip, num=False) -%}
+{% set link = "/?sort=" ~ name ~ ("&status=" ~ filter_name if filter_name else "") -%}
+<th scope="col"{% if num %} class="num"{% endif %} title="{{ tip }}"{% if name == sort %} aria-sort="{{ "ascending" if name == "title" else "descending" }}"{% endif %}><a href="{{ link }}" title="{{ help.library_sort[name] }}">{{ label }}</a></th>
+{%- endmacro %}
+<table class="library-table">
+    <thead>
+        <tr>
+            {{ column("title", "Novel", help.library_sort.title) }}
+            {{ column("chapters", "Chapters", help.stat.selected, num=True) }}
+            {{ column("gaps", "Gaps", help.stat.gaps, num=True) }}
+            {{ column("new", "New", help.stat.new, num=True) }}
+            {{ column("sync", "Last sync", help.stat.last_sync) }}
+            {{ column("outputs", "Outputs", help.stat.outputs) }}
+            <th scope="col" class="actions"><span class="visually-hidden">Actions</span>{% if sort != "attention" %}<a class="sort-reset" href="/?sort=attention{{ '&status=' ~ filter_name if filter_name }}" title="{{ help.library_sort.attention }}">{{ icon("rotate-ccw") }}Needs a look first</a>{% endif %}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for r in shown %}
+    <tr class="novel-row" data-novel="{{ r.slug }}">
+        <td class="novel-cell">
+            <div class="novel-name">
+                <a class="novel-title" title="{{ r.title }}" href="/novels/{{ r.slug }}">{{ r.title }}</a>
+                {% if r.raw_only %}{{ badge("raw only", "warn") }}{% endif %}
+                {% if not r.public %}{{ badge("off site", "secondary", help.off_site) }}{% endif %}
+            </div>
+            {{ job_progress(r.jobs) }}
+        </td>
+        <td class="num" title="{{ help.stat.by_kind }}: {% for kind, n in r.numbers.items() %}{{ n }} {{ kind }}{{ ", " if not loop.last }}{% endfor %}">{{ "{:,}".format(r.selected) }}</td>
+        <td class="num{% if r.gaps %} stale{% endif %}">{{ r.gaps }}</td>
+        <td class="num">{% if r.can_sync %}{{ r.new_items }}{% else %}<span class="muted" title="{{ help.no_web_source }}">—</span>{% endif %}</td>
+        <td class="when">{{ r.last_sync | ago }}</td>
+        <td><ul class="outputs">{% for o in r.outputs %}<li>{{ output_badge(o, short=True) }}</li>{% endfor %}</ul></td>
+        <td class="actions">
+            <div class="row-actions">
+                {% if r.can_sync %}{{ job_button("sync", r.slug, r.job_of("sync"), icon_name="refresh-cw") }}{% endif %}
+                {{ build_menu(r.slug, r, end=True) }}
+                <a class="btn btn--ghost btn--sm open-link" href="/novels/{{ r.slug }}">Open{{ icon("chevron-right") }}</a>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>

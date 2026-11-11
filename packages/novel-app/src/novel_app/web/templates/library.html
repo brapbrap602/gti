@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% from "_ui.html" import icon, badge, stat, empty %}
-{% from "_macros.html" import job_button, build_menu, output_badge, job_progress, kind_badge %}
+{% from "_ui.html" import icon, stat, empty %}
+{% from "_macros.html" import job_button %}
 {% import "_help.html" as help %}
 {% block main %}
 <div class="page-header">
@@ -9,7 +9,14 @@
         <p class="muted">Every novel, its sources and what has been built from them.</p>
     </div>
     <div class="page-actions">
-        {% if rows %}{{ job_button("build-site", None, jobs | selectattr("target", "equalto", "_site") | selectattr("state.active") | first, "/", icon_name="hammer", small=False) }}{% endif %}
+        {% if rows %}
+        <nav class="segmented" aria-label="Show novels as">
+            {% for v, tip in help.library_view.items() %}
+            <a class="segment" href="/?view={{ v }}" title="{{ tip }}"{% if v == view %} aria-current="true"{% endif %}>{{ v | capitalize }}</a>
+            {% endfor %}
+        </nav>
+        {{ job_button("build-site", None, job_panel.active | selectattr("target", "equalto", "_site") | first, "/", icon_name="hammer", small=False) }}
+        {% endif %}
         <a class="btn btn--outline" href="/add">{{ icon("plus") }}Add novel</a>
     </div>
 </div>
@@ -19,63 +26,26 @@
 {% set syncable = rows | selectattr("can_sync") | list %}
 {% set fetchable = syncable | selectattr("new_items") | list %}
 {% set raw_only = rows | selectattr("raw_only") | list | length %}
-{% set running = job_panel.active | length %}
 {% set problems = job_panel.problems %}
 <section class="stats" aria-label="Summary">
-    {{ stat("Novels", rows | length, (raw_only ~ " raw only") if raw_only else None, icon_name="library", help=help.stat.novels) }}
+    {{ stat("Novels", rows | length, (raw_only ~ " raw only") if raw_only else None, icon_name="library", help=help.stat.novels, href="/") }}
     {{ stat("Chapters", "{:,}".format(rows | sum(attribute="selected")), "selected for the books", icon_name="book-open", help=help.stat.chapters) }}
-    {{ stat("New to fetch", "{:,}".format(syncable | sum(attribute="new_items")), ("in " ~ fetchable | length ~ " novel" ~ ("s" if fetchable | length != 1)) if fetchable else "all caught up", icon_name="refresh-cw", help=help.stat.new) }}
-    {{ stat("Needs rebuild", rows | selectattr("needs_rebuild") | list | length, "novels with stale outputs", icon_name="hammer", help=help.stat.rebuild) }}
-    {{ stat("Jobs", running ~ " running", (problems ~ " problem" ~ ("s" if problems != 1)) if problems else "no problems", icon_name="activity", help=help.stat.jobs) }}
+    {{ stat("New to fetch", "{:,}".format(syncable | sum(attribute="new_items")), ("in " ~ fetchable | length ~ " novel" ~ ("s" if fetchable | length != 1)) if fetchable else "all caught up", icon_name="refresh-cw", help=help.stat.new, href="/?status=new") }}
+    {{ stat("Needs rebuild", filter_counts.rebuild, "novels with stale outputs", icon_name="hammer", help=help.stat.rebuild, href="/?status=rebuild") }}
+    {{ stat("Jobs", active_label(job_panel.active) or "0 running", (problems ~ " problem" ~ ("s" if problems != 1)) if problems else "no problems", icon_name="activity", help=help.stat.jobs, href="#jobs", attrs={"data-open-jobs": ""}) }}
 </section>
 <nav class="tabs library-filter" aria-label="Novels by status">
-    <a class="tab" href="/"{% if not filter_status %} aria-current="page"{% endif %}>All <span class="count">{{ rows | length }}</span></a>
-    {% for s, label in library_statuses.items() %}
-    <a class="tab" href="/?status={{ s }}" title="{{ status_labels[s] }}"{% if s == filter_status %} aria-current="page"{% endif %}><span class="dot dot--{{ s }}" aria-hidden="true"></span>{{ label }} <span class="count">{{ rows | selectattr("status", "equalto", s) | list | length }}</span></a>
+    <a class="tab" href="/"{% if not filter_name %} aria-current="page"{% endif %}>All <span class="count">{{ rows | length }}</span></a>
+    {% for name, f in library_filters.items() %}
+    <a class="tab" href="/?status={{ name }}" title="{{ help.library_tab[name] }}"{% if name == filter_name %} aria-current="page"{% endif %}><span class="dot dot--{{ name }}" aria-hidden="true"></span>{{ f.label }} <span class="count">{{ filter_counts[name] }}</span></a>
     {% endfor %}
 </nav>
 {% if not shown %}
-{% call empty("library") %}<p>No novel is “{{ library_statuses[filter_status] | lower }}” right now. <a href="/">Show all novels</a>.</p>{% endcall %}
+{% call empty("library") %}<p>No novel is “{{ library_filters[filter_name].label | lower }}” right now. <a href="/">Show all novels</a>.</p>{% endcall %}
+{% elif view == "cards" %}
+{% include "_library_cards.html" %}
+{% else %}
+{% include "_library_table.html" %}
 {% endif %}
-<ul class="novel-cards">
-    {% for r in shown %}
-    <li class="card novel-card" data-novel="{{ r.slug }}">
-        <div class="card-header">
-            <h2 class="card-title novel-card-title">
-                <a title="{{ r.title }}" href="/novels/{{ r.slug }}">{{ r.title }}</a>
-            </h2>
-            <p class="card-description">{{ r.slug }}{% if r.raw_only %} {{ badge("raw only", "warn") }}{% endif %}{% if not r.public %} {{ badge("off site", "secondary", help.off_site) }}{% endif %}</p>
-        </div>
-        <div class="card-content novel-card-body">
-            <dl class="metrics">
-                <div>
-                    <dt title="{{ help.stat.selected }}">Chapters</dt>
-                    <dd>{{ "{:,}".format(r.selected) }} selected
-                        <ul class="counts" title="{{ help.stat.by_kind }}">{% for kind, n in r.numbers.items() %}<li>{{ n }} {{ kind }}</li>{% endfor %}</ul></dd>
-                </div>
-                <div><dt title="{{ help.stat.gaps }}">Gaps</dt><dd{% if r.gaps %} class="stale"{% endif %}>{{ r.gaps or "none" }}</dd></div>
-                <div><dt title="{{ help.stat.new }}">New to fetch</dt><dd>{% if r.can_sync %}{{ r.new_items }}{% else %}<span class="muted">no web source</span>{% endif %}</dd></div>
-                <div><dt title="{{ help.stat.last_sync }}">Last sync</dt><dd>{{ r.last_sync | ago }}</dd></div>
-            </dl>
-            <div class="novel-card-row">
-                <span class="row-label" title="{{ help.sources.rank }}">Sources</span>
-                <ol class="sources">
-                {% for s in r.sources %}{% set label = source_label(s.info.spec) %}<li title="{{ label.full }}"><span class="source-host">{{ label.short }}</span> {{ kind_badge(s.info.spec.kind) }}</li>{% endfor %}
-                </ol>
-            </div>
-            <div class="novel-card-row">
-                <span class="row-label" title="{{ help.stat.outputs }}">Outputs</span>
-                <ul class="outputs">{% for o in r.outputs %}<li>{{ output_badge(o) }}</li>{% endfor %}</ul>
-            </div>
-        </div>
-        <div class="card-footer novel-card-footer">
-            {% if r.can_sync %}{{ job_button("sync", r.slug, r.job_of("sync"), icon_name="refresh-cw") }}{% endif %}
-            {{ build_menu(r.slug, r) }}
-            <a class="btn btn--ghost btn--sm open-link" href="/novels/{{ r.slug }}">Open{{ icon("chevron-right") }}</a>
-            {{ job_progress(r.jobs) }}
-        </div>
-    </li>
-    {% endfor %}
-</ul>
 {% endif %}
 {% endblock %}

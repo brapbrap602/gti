@@ -73,7 +73,7 @@
         <button type="button" class="jobs-toggle btn btn--outline btn--sm{% if active_jobs %} jobs-toggle--running{% endif %}{% if not active_jobs and problems %} jobs-toggle--problem{% endif %}"
                 aria-expanded="false" aria-controls="jobs-panel">
             {{ icon("activity") }}
-            <span class="pill-label">{% if active_jobs %}{{ active_jobs | length }} running{% elif problems %}{{ problems }} problem{{ "s" if problems != 1 }}{% else %}Jobs{% endif %}</span>
+            <span class="pill-label">{% if active_jobs %}{{ active_label(active_jobs) }}{% elif problems %}{{ problems }} problem{{ "s" if problems != 1 }}{% else %}Jobs{% endif %}</span>
             <progress class="pill-progress" aria-label="first running job"
                       {% if shown_progress %}max="{{ shown_progress.total }}" value="{{ shown_progress.done }}"{% else %}hidden{% endif %}></progress>
         </button>

@@ -38,11 +38,17 @@
         if (opening) document.querySelector(s.sheet).querySelector(s.close)?.focus();
     }
 
+    // The Jobs stat tile opened the jobs sheet: focus goes back to it, not to the pill. A live reload
+    // of main may have replaced the tile since, so it is found again by its attribute.
+    let openedFromTile = false;
+
     function closeSheets(returnFocus) {
         const s = openSheet();
         SHEETS.forEach((other) => setSheet(other, false));
         root.classList.remove('sheet-open');
-        if (s && returnFocus) document.querySelector(s.toggle)?.focus();
+        const back = openedFromTile && s === SHEETS[0] ? '[data-open-jobs]' : s && s.toggle;
+        openedFromTile = false;
+        if (s && returnFocus) document.querySelector(back)?.focus();
     }
 
     // -- the Jobs pill and progress mirrors -----------------------------------------
@@ -51,6 +57,10 @@
         const aside = document.querySelector('aside.jobs');
         if (!aside) return;
         const active = [...aside.querySelectorAll('#jobs li.job--running, #jobs li.job--queued')];
+        // "1 running · 29 queued", a zero part left out (the server's active_label says the same).
+        const counts = [['running', '#jobs li.job--running'], ['queued', '#jobs li.job--queued']]
+            .map(([state, selector]) => [aside.querySelectorAll(selector).length, state])
+            .filter(([n]) => n).map(([n, state]) => `${n} ${state}`).join(' · ');
         // Unresolved problems: what needs attention and is not active (the server counts the same).
         const problems = aside.querySelectorAll('#jobs li.job:not(.job--recent):not(.job--running):not(.job--queued)').length;
         const first = active.find((li) => li.querySelector('progress'));
@@ -61,7 +71,7 @@
             b.classList.toggle('jobs-toggle--problem', !active.length && problems > 0);
             const label = b.querySelector('.pill-label');
             if (label) {
-                label.textContent = active.length ? `${active.length} running`
+                label.textContent = active.length ? counts
                     : problems ? `${problems} problem${problems === 1 ? '' : 's'}` : 'Jobs';
             }
             const bar = b.querySelector('.pill-progress');
@@ -147,8 +157,16 @@
             if (!m.contains(t)) m.open = false;
         });
 
+        if (t.closest('[data-open-jobs]')) {
+            e.preventDefault();
+            if (!document.querySelector(SHEETS[0].sheet + '.open')) toggleSheet(SHEETS[0]);
+            openedFromTile = true;
+            sync();
+            return;
+        }
         const toggled = SHEETS.find((s) => t.closest(s.toggle));
         if (toggled) {
+            openedFromTile = false;
             toggleSheet(toggled);
             sync();
             return;

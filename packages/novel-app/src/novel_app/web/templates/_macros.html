@@ -58,9 +58,11 @@
 {{ badge(kind, "outline", help.kind[kind]) }}
 {%- endmacro %}
 
-{# An output's state as a badge: up to date, stale (needs a rebuild), never built, or nothing to build. #}
-{% macro output_badge(o) %}
+{# An output's state as a badge: up to date, stale (needs a rebuild), never built, or nothing to build.
+   Short: the kind and any stale count only, the color and tooltip saying the rest (the library table). #}
+{% macro output_badge(o, short=False) %}
 {% set text, state = o.badge %}
+{% if short %}{% set text = o.kind ~ ((" " ~ o.stale) if state == "stale" else "") %}{% endif %}
 <span class="badge badge--{{ {"fresh": "ok", "stale": "warn", "missing": "outline", "none": "muted"}[state] }} out out--{{ state }}" title="{{ o.kind }}: {{ {"fresh": "up to date", "stale": o.stale ~ " stale", "missing": "not built", "none": "nothing to build"}[state] }}">{{ text }}</span>
 {%- endmacro %}
 

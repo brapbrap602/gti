@@ -13,15 +13,40 @@
     "selected": "Chapter numbers the book takes a text for, from the best-ranked source that has one",
     "new": "Chapters a web source lists that no source has a text for yet; Sync fetches them",
     "rebuild": "Novels with an EPUB, audio or site output built from chapters that have changed since",
-    "jobs": "Jobs running now, and finished jobs that failed or had errors; open Jobs at the top right",
+    "jobs": "Jobs running or waiting their turn, and finished jobs that failed or had errors; click to open Jobs",
     "by_kind": "Chapter numbers each kind of source has a text for; the book only uses official-en and published my-translation",
     "gaps": "Numbers inside the book's range with nothing publishable: the reader skips from one side of a gap to the other",
     "last_sync": "When Sync last fetched from this novel's web sources",
     "outputs": "What has been built from the chapters; stale means a chapter changed after it was built",
 } %}
 
+{% set library_tab = {
+    "running": "Novels with a job running now; a job waiting its turn does not count",
+    "rebuild": "Novels with an EPUB, audio or site output built from chapters that have changed since",
+    "new": "Novels whose web sources list chapters no source has a text for yet",
+    "raw-only": "Novels with Chinese chapters and no English text yet",
+    "ok": "Novels with nothing running, no stale output and English text",
+} %}
+
+{% set library_sort = {
+    "attention": "Novels wanting a look first: running, then a job problem, a stale output, chapters to fetch, gaps",
+    "title": "By title, A to Z",
+    "chapters": "Most chapters first",
+    "gaps": "Most gaps first",
+    "new": "Most chapters to fetch first",
+    "sync": "Most recently synced first; never synced last",
+    "outputs": "Most stale output chapters first",
+} %}
+
+{% set library_view = {
+    "table": "One row per novel",
+    "cards": "A card per novel, with its sources",
+} %}
+
+{% set no_web_source = "No web source: this novel is never synced" %}
+
 {% set action = {
-    "sync": "Fetch the chapters the web sources list that no source has yet; a failed chapter is retried, a locked one is not",
+    "sync":"Fetch the chapters the web sources list that no source has yet; a failed chapter is retried, a locked one is not",
     "build-site": "Rebuild the reader site from every novel; only changed pages are written",
     "build-epub": "EPUB volumes, each holding the chapter numbers set beside it",
     "epub-size": "Chapter numbers per EPUB volume; changing it rebuilds every volume and deletes the old ones",
