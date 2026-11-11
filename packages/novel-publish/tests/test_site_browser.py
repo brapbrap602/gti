@@ -13,20 +13,34 @@ COLOR_SCHEME = "layout.css.prefers-color-scheme.content-override"  # 0 dark, 1 l
 PARAGRAPHS = 12  # per chapter, each several lines on a phone
 
 
+def _novel(root, slug: str, title: str, titles: list[str], paragraphs: int, kind: Kind = Kind.OFFICIAL_EN) -> NovelStore:
+    store = NovelStore.create(root / "data" / slug, NovelMeta(title))
+    source = store.upsert_source(SourceSpec("custom:a", "https://a.test/novel", "en", kind))
+    items = [SourceItem(f"/c{i}", i, t) for i, t in enumerate(titles, start=1)]
+    store.record_index(source, items)
+    for item in items:
+        n = item.title.split()[1].rstrip(":") if " " in item.title else item.number
+        body = tuple(Paragraph.of(f"Ch{n} p{i}. " + "Words to fill a line on a phone. " * 6) for i in range(paragraphs))
+        store.put_version(source, item.ref, NewVersion(item.title, body))
+    return store
+
+
 @pytest.fixture(scope="module")
 def site(tmp_path_factory):
-    """Base URL of a built site: novel "n" with chapters 1-3 (page 1-50) and 51-53 (page 51-100)."""
+    """Base URL of a built site with three novels:
+    "n" (Test Novel): chapters 1-3 (page 1-50) and 51-53 (page 51-100);
+    "z-first" (Alpha Tale, so title order differs from slug order): one page, chapters 1-49, 50 pt 1, 50 pt 2;
+    "raw": a raw-zh source only."""
     root = tmp_path_factory.mktemp("built")
-    store = NovelStore.create(root / "data" / "n", NovelMeta("Test Novel"))
-    source = store.upsert_source(SourceSpec("custom:a", "https://a.test/novel", "en", Kind.OFFICIAL_EN))
-    numbers = [1, 2, 3, 51, 52, 53]
-    items = [SourceItem(f"/c{n}", i, f"Chapter {n}: Title {n}") for i, n in enumerate(numbers, start=1)]
-    store.record_index(source, items)
-    for n, item in zip(numbers, items):
-        body = tuple(Paragraph.of(f"Ch{n} p{i}. " + "Words to fill a line on a phone. " * 6) for i in range(PARAGRAPHS))
-        store.put_version(source, item.ref, NewVersion(item.title, body))
-    build_site({"n": store}, root / "site")
-    store.close()
+    stores = {
+        "n": _novel(root, "n", "Test Novel", [f"Chapter {n}: Title {n}" for n in (1, 2, 3, 51, 52, 53)], PARAGRAPHS),
+        "z-first": _novel(root, "z-first", "Alpha Tale",
+                          [f"Chapter {n}" for n in range(1, 50)] + ["Chapter 50 (part 1)", "Chapter 50 (part 2)"], 3),
+        "raw": _novel(root, "raw", "修真聊天群", ["第1章"], 3, Kind.RAW_ZH),
+    }
+    build_site(stores, root / "site")
+    for store in stores.values():
+        store.close()
     with serve(root / "site") as base:
         yield base
 
@@ -44,6 +58,26 @@ def page(browser, site):
     browser.js("localStorage.clear()")
     yield browser
     browser.assert_no_errors()
+
+
+@pytest.fixture(scope="module")
+def desktop_browser(tmp_path_factory):
+    with firefox(tmp_path_factory.mktemp("desktop-profile"), size=(1280, 900)) as page:
+        yield page
+
+
+@pytest.fixture
+def desktop(desktop_browser, site):
+    """A desktop-sized tab (1280x900), storage cleared; asserts no page errors at the end."""
+    desktop_browser.goto(site + "index.html")
+    desktop_browser.js("localStorage.clear()")
+    yield desktop_browser
+    desktop_browser.assert_no_errors()
+
+
+def seed(page, key: str, value) -> None:
+    """Store value (JSON-encoded) under key in the open page's localStorage."""
+    page.js(f"localStorage.setItem({json.dumps(key)}, {json.dumps(json.dumps(value))})")
 
 
 def bar(page) -> dict:
@@ -67,8 +101,7 @@ def continue_link(page) -> dict | None:
 
 def save_position(page, site, file: str, anchor: str, para: int, label: str) -> None:
     page.goto(site + "index.html")
-    pos = {"file": file, "anchor": anchor, "para": para, "label": label, "t": 1}
-    page.js(f"localStorage.setItem('reader:pos:n', {json.dumps(json.dumps(pos))})")
+    seed(page, "reader:pos:n", {"file": file, "anchor": anchor, "para": para, "label": label, "t": 1})
 
 
 def back_to_library(page) -> None:
