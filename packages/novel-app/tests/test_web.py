@@ -386,6 +386,39 @@ def test_job_events_push_changes_and_starts_and_ends(service):
     assert events[1].split("\n") == ["event: jobs", f"data: {claimed[0]}:queued", "", ""]
 
 
+def test_an_open_job_stream_does_not_hold_the_server_when_it_stops(service):
+    """uvicorn waits for every open connection before it stops; an open tab's stream ends once `stopping` is set."""
+    import time
+
+    import httpx
+    import uvicorn
+
+    stopping = threading.Event()
+    server = uvicorn.Server(uvicorn.Config(create_app(service, stopping), host="127.0.0.1", port=0, log_level="warning"))
+    thread = threading.Thread(target=server.run, daemon=True)
+    thread.start()
+    deadline = time.monotonic() + 10
+    while not server.started:
+        assert time.monotonic() < deadline, "uvicorn did not start"
+        time.sleep(0.05)
+    port = server.servers[0].sockets[0].getsockname()[1]
+    opened, ended = threading.Event(), threading.Event()
+
+    def tab():
+        with httpx.stream("GET", f"http://127.0.0.1:{port}/jobs/stream", timeout=None) as r:
+            for _ in r.iter_lines():
+                opened.set()
+        ended.set()
+
+    threading.Thread(target=tab, daemon=True).start()
+    assert opened.wait(10)
+    stopping.set()  # what `nov serve` does on Ctrl-C, with uvicorn's own should_exit
+    server.should_exit = True
+    thread.join(10)
+    assert not thread.is_alive()
+    assert ended.wait(5)
+
+
 def test_main_reloads_when_a_queued_job_starts_too(service):
     board, polls, claimed = service.runner.board, [], []
 

@@ -650,13 +650,23 @@ def serve(
 ) -> None:
     """The web UI on http://127.0.0.1:<port>: library, chapter grids, compare and pin, jobs."""
     # Imported here: the web stack is not needed by the other commands.
+    import threading
+
     import uvicorn
 
     from novel_app.web.app import create_app
 
+    stopping = threading.Event()
+
+    class Server(uvicorn.Server):
+        def handle_exit(self, sig, frame) -> None:  # Ctrl-C: open tabs' job streams end, so the server can stop
+            stopping.set()
+            super().handle_exit(sig, frame)
+
     service = _service()
     typer.echo(f"serving the library on http://127.0.0.1:{port} (Ctrl-C stops; running jobs end as cancelled)")
-    uvicorn.run(create_app(service), host="127.0.0.1", port=port, log_level="warning")
+    config = uvicorn.Config(create_app(service, stopping), host="127.0.0.1", port=port, log_level="warning")
+    Server(config).run()
 
 
 def _parsed[T](parse: Callable[[str], T], text: str) -> T:

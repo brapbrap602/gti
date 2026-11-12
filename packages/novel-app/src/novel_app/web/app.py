@@ -12,6 +12,7 @@ refused, so a web page cannot start jobs through the visitor's browser.
 import asyncio
 import logging
 import mimetypes
+import threading
 import time
 from collections.abc import AsyncIterator, Callable
 from contextlib import asynccontextmanager
@@ -90,7 +91,11 @@ JOB_LABELS = {
 }
 
 
-def create_app(service: Service) -> FastAPI:
+def create_app(service: Service, stopping: threading.Event | None = None) -> FastAPI:
+    """`stopping` is set when the server begins to stop: open job streams end then, since the server waits
+    for every open connection before it stops, and each open tab holds one."""
+    stopping = stopping or threading.Event()
+
     @asynccontextmanager
     async def lifespan(_app: FastAPI):
         service.runner.board.reconcile()
@@ -431,8 +436,11 @@ def create_app(service: Service) -> FastAPI:
         def render(panel: JobPanel) -> str:
             return templates.get_template("_jobs.html").render(job_panel=panel, owns=service.runner.owns)
 
+        async def over() -> bool:
+            return stopping.is_set() or await request.is_disconnected()
+
         async def events() -> AsyncIterator[str]:
-            async for event in job_events(service, render, request.is_disconnected):
+            async for event in job_events(service, render, over):
                 yield event
 
         return StreamingResponse(events(), media_type="text/event-stream", headers={"Cache-Control": "no-store"})
