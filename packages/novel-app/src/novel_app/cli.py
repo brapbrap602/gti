@@ -650,6 +650,8 @@ def serve(
 ) -> None:
     """The web UI on http://127.0.0.1:<port>: library, chapter grids, compare and pin, jobs."""
     # Imported here: the web stack is not needed by the other commands.
+    import os
+    import signal
     import threading
 
     import uvicorn
@@ -659,12 +661,21 @@ def serve(
     stopping = threading.Event()
 
     class Server(uvicorn.Server):
-        def handle_exit(self, sig, frame) -> None:  # Ctrl-C: open tabs' job streams end, so the server can stop
+        def handle_exit(self, sig, frame) -> None:
+            """Ctrl-C: open tabs' job streams end and running jobs are asked to stop, so the server can.
+            Again: stop now. The jobs it was running are ended as interrupted (by the next process's
+            reconcile, once their heartbeat is stale)."""
+            if stopping.is_set() and sig == signal.SIGINT:
+                typer.echo("stopped at once; jobs it was running end as interrupted", err=True)
+                os._exit(130)
             stopping.set()
             super().handle_exit(sig, frame)
 
     service = _service()
-    typer.echo(f"serving the library on http://127.0.0.1:{port} (Ctrl-C stops; running jobs end as cancelled)")
+    typer.echo(
+        f"serving the library on http://127.0.0.1:{port}"
+        " (Ctrl-C stops; running jobs end as cancelled at their next item. Ctrl-C again stops at once)"
+    )
     config = uvicorn.Config(create_app(service, stopping), host="127.0.0.1", port=port, log_level="warning")
     Server(config).run()
 
