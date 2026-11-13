@@ -1,3 +1,5 @@
+from dataclasses import replace
+
 import pytest
 from novel_app.jobs import JobRow, JobState
 from novel_app.pages import (
@@ -174,3 +176,12 @@ def test_library_filters_may_overlap():
 def test_novel_status(r, status):
     assert r.status is status
     assert NavRow.of(r) == NavRow("n", "N", status)
+
+
+@pytest.mark.parametrize(
+    ("last_number", "audio_last", "expected"),
+    [(None, None, None), (50, None, None), (50, 49, 50), (50, 50, None), (50, 60, None), (50, 0, 1)],
+    ids=["no-chapters", "no-audio", "one-new", "caught-up", "audio-past-book", "prologue-only"],
+)
+def test_audio_next_starts_after_the_newest_mp3(last_number, audio_last, expected):
+    assert replace(row(), last_number=last_number, audio_last=audio_last).audio_next == expected

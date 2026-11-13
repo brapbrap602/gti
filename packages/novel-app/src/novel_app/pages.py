@@ -117,6 +117,15 @@ class LibraryRow:
     jobs: tuple[JobRow, ...]  # the novel's active jobs, newest first; at most one of each kind
     epub_size: int  # chapter numbers per EPUB volume, as the last EPUB build had it
     public: bool = True  # on the public reading site
+    last_number: int | None = None  # the highest selected chapter number; None with no chapters
+    audio_last: int | None = None  # the highest chapter number with built audio, legacy included; None for none
+
+    @property
+    def audio_next(self) -> int | None:
+        """Where audio for the chapters after the newest MP3 starts; None when none is built or none is newer."""
+        if self.audio_last is None or self.last_number is None or self.audio_last >= self.last_number:
+            return None
+        return self.audio_last + 1
 
     def job_of(self, kind: str) -> JobRow | None:
         """The novel's active job of this kind: what keeps another of that kind from starting."""
@@ -341,6 +350,8 @@ def library_row(
         jobs=active_jobs(jobs, slug),
         epub_size=epub_size,
         public=view.public,
+        last_number=max((s.key.number for s in view.selection), default=None),
+        audio_last=max((r.built_key.number for r in view.outputs(OutputKind.AUDIO)), default=None),
     )
 
 

@@ -1,52 +1,57 @@
 {% from "_ui.html" import icon, badge %}
 {% import "_help.html" as help %}
 
-{# A button that starts a job. Its tooltip says what the job does; while the novel has a job, it is disabled and says why. #}
-{% macro job_button(kind, novel, busy, back="/", label=None, icon_name=None, variant="outline", small=True) %}
+{# A button that starts a job. Its tooltip says what the job does; while the novel has a job, it is disabled and says why.
+   `fields` are further form fields the job takes; `tip` names the help.action entry for the tooltip (the kind's by
+   default); `hint` is muted text at the button's end, such as the chapters a menu item covers. #}
+{% macro job_button(kind, novel, busy, back="/", label=None, icon_name=None, variant="outline", small=True, fields={}, tip=None, hint=None) %}
+{% set tip = help.action[tip or kind] %}
 <form method="post" action="/jobs" hx-post="/jobs" hx-target="#notice" class="inline">
     <input type="hidden" name="kind" value="{{ kind }}">
     {% if novel %}<input type="hidden" name="novel" value="{{ novel }}">{% endif %}
     <input type="hidden" name="back" value="{{ back }}">
-    <button type="submit" class="btn btn--{{ variant }}{% if small %} btn--sm{% endif %}"{% if busy %} disabled title="{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }})"{% elif help.action[kind] %} title="{{ help.action[kind] }}"{% endif %}>{% if icon_name %}{{ icon(icon_name) }}{% endif %}{{ label or job_labels[kind] }}</button>
+    {% for name, value in fields.items() %}<input type="hidden" name="{{ name }}" value="{{ value }}">{% endfor %}
+    <button type="submit" class="btn btn--{{ variant }}{% if small %} btn--sm{% endif %}"{% if busy %} disabled title="{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }})"{% elif tip %} title="{{ tip }}"{% endif %}>{% if icon_name %}{{ icon(icon_name) }}{% endif %}{{ label or job_labels[kind] }}{% if hint %}<span class="menu-hint">{{ hint }}</span>{% endif %}</button>
 </form>
 {% endmacro %}
 
-{# Build EPUB volumes of `size` chapter numbers each; the field starts at the size the last build used. #}
-{% macro epub_button(novel, busy, size, back) %}
+{# A menu item whose job takes fields typed beside its button: the button, then `caller()`'s fields on the same line. #}
+{% macro range_item(kind, novel, busy, back, label, icon_name, fields_tip) %}
 <form method="post" action="/jobs" hx-post="/jobs" hx-target="#notice" class="menu-range">
-    <input type="hidden" name="kind" value="build-epub">
+    <input type="hidden" name="kind" value="{{ kind }}">
     <input type="hidden" name="novel" value="{{ novel }}">
     <input type="hidden" name="back" value="{{ back }}">
-    <button type="submit"{% if busy %} disabled title="{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }})"{% else %} title="{{ help.action['build-epub'] }}"{% endif %}>{{ icon("book-open") }}EPUB</button>
-    <label class="menu-range-fields" title="{{ help.action['epub-size'] }}">
-        <input name="size" type="number" min="1" inputmode="numeric" value="{{ size }}" required aria-label="Chapters per EPUB volume"{% if busy %} disabled{% endif %}>
-        <span>chapters each</span>
-    </label>
+    <button type="submit" class="btn btn--outline btn--sm"{% if busy %} disabled title="{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }})"{% else %} title="{{ help.action[kind] }}"{% endif %}>{{ icon(icon_name) }}{{ label }}</button>
+    <span class="menu-range-fields" title="{{ fields_tip }}">{{ caller() }}</span>
 </form>
 {% endmacro %}
 
-{# Build audio for chapters From-To; either left blank runs to that end of the book. #}
-{% macro audio_button(novel, busy, back) %}
-<form method="post" action="/jobs" hx-post="/jobs" hx-target="#notice" class="menu-range">
-    <input type="hidden" name="kind" value="build-audio">
-    <input type="hidden" name="novel" value="{{ novel }}">
-    <input type="hidden" name="back" value="{{ back }}">
-    <button type="submit"{% if busy %} disabled title="{{ job_labels.get(busy.kind, busy.kind) }} is {{ busy.state }} (job {{ busy.id }})"{% else %} title="{{ help.action['build-audio'] }}"{% endif %}>{{ icon("file-text") }}Audio</button>
-    <span class="menu-range-fields" title="{{ help.action['audio-range'] }}">
-        <input name="from" type="number" min="0" inputmode="numeric" placeholder="from" aria-label="Audio from chapter"{% if busy %} disabled{% endif %}>
-        <span aria-hidden="true">–</span>
-        <input name="to" type="number" min="0" inputmode="numeric" placeholder="to" aria-label="Audio to chapter"{% if busy %} disabled{% endif %}>
-    </span>
-</form>
-{% endmacro %}
-
-{# The Build menu; row is the novel's library row, whose running jobs grey out their own buttons. #}
+{# The Build menu, in an EPUB and an Audio section; row is the novel's library row, whose running jobs grey out
+   their own buttons. The EPUB size field starts at the size the last build used; a blank audio From or To runs to
+   that end of the book. #}
 {% macro build_menu(novel, row, back="/", small=True, end=False) %}
+{% set epub_busy, audio_busy = row.job_of("build-epub"), row.job_of("build-audio") %}
 <details class="menu{% if end %} menu--end{% endif %}">
     <summary class="btn btn--outline{% if small %} btn--sm{% endif %}">{{ icon("hammer") }}Build{{ icon("chevron-down") }}</summary>
     <div class="menu-items">
-        {{ epub_button(novel, row.job_of("build-epub"), row.epub_size, back) }}
-        {{ audio_button(novel, row.job_of("build-audio"), back) }}
+        <div class="menu-label">EPUB</div>
+        {% call range_item("build-epub", novel, epub_busy, back, "Volumes", "book-open", help.action["epub-size"]) %}
+            <input name="size" type="number" min="1" inputmode="numeric" value="{{ row.epub_size }}" required aria-label="Chapters per EPUB volume"{% if epub_busy %} disabled{% endif %}>
+            <span>each</span>
+        {% endcall %}
+        {% if row.last_number %}
+        {{ job_button("build-epub", novel, epub_busy, back, "Single file", icon_name="book-open", fields={"size": row.last_number}, tip="epub-one", hint="1–" ~ row.last_number) }}
+        {% endif %}
+        <div class="menu-sep" role="separator"></div>
+        <div class="menu-label">Audio</div>
+        {% call range_item("build-audio", novel, audio_busy, back, "Chapters", "headphones", help.action["audio-range"]) %}
+            <input name="from" type="number" min="0" inputmode="numeric" placeholder="from" aria-label="Audio from chapter"{% if audio_busy %} disabled{% endif %}>
+            <span aria-hidden="true">–</span>
+            <input name="to" type="number" min="0" inputmode="numeric" placeholder="to" aria-label="Audio to chapter"{% if audio_busy %} disabled{% endif %}>
+        {% endcall %}
+        {% if row.audio_next %}
+        {{ job_button("build-audio", novel, audio_busy, back, "New chapters", icon_name="headphones", fields={"from": row.audio_next}, tip="audio-next", hint=row.audio_next ~ " on") }}
+        {% endif %}
         {{ job_button("build-volumes", novel, row.job_of("build-volumes"), back, "M4B volumes", icon_name="layers") }}
         {{ job_button("audio-retag", novel, row.job_of("audio-retag"), back, "Retag MP3s", icon_name="rotate-ccw") }}
     </div>

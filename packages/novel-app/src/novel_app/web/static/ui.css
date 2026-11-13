@@ -321,7 +321,7 @@ tbody th { font-weight: 500; }
   left: 0;
   display: flex;
   flex-direction: column;
-  min-width: 11rem;
+  min-width: 15rem;
   padding: 0.25rem;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -340,10 +340,20 @@ tbody th { font-weight: 500; }
   font-weight: 400;
 }
 .menu-items button:hover:not(:disabled) { background: var(--accent); }
-/* A menu item with its own fields (Audio From-To): the button, then the fields on a line below. */
-.menu-items .menu-range { display: flex; flex-direction: column; gap: 0.25rem; padding-bottom: 0.25rem; }
-.menu-range-fields { display: flex; align-items: center; gap: 0.25rem; padding: 0 0.5rem; color: var(--muted-foreground); }
-.menu-range-fields input:not([type="checkbox"]) { width: 4.5rem; height: 1.75rem; padding: 0 0.375rem; font-size: 0.8125rem; }
+/* A section's name, and the rule between sections. */
+.menu-label { padding: 0.375rem 0.5rem 0.125rem; color: var(--muted-foreground); font-size: 0.75rem; font-weight: 500; }
+.menu-sep { height: 1px; margin: 0.25rem -0.25rem; background: var(--border); }
+/* Muted text at a menu item's end: the chapters it covers. */
+.menu-hint { margin-left: auto; padding-left: 1rem; color: var(--muted-foreground); font-size: 0.75rem; font-variant-numeric: tabular-nums; }
+/* A menu item with its own fields (EPUB size, audio From-To): the button, then the fields on the same line. */
+.menu-items .menu-range { display: flex; align-items: center; gap: 0.25rem; padding-right: 0.25rem; }
+.menu-range > button { flex: 1; width: auto; min-width: 0; white-space: nowrap; }
+.menu-range-fields { display: flex; align-items: center; gap: 0.25rem; color: var(--muted-foreground); font-size: 0.8125rem; }
+.menu-range-fields input:not([type="checkbox"]) { width: 3.75rem; height: 1.75rem; padding: 0 0.375rem; font-size: 0.8125rem; }
+/* No spinners: in a field this narrow they cover the placeholder; the arrow keys still step. */
+.menu-range-fields input[type="number"] { appearance: textfield; -moz-appearance: textfield; }
+.menu-range-fields input[type="number"]::-webkit-inner-spin-button,
+.menu-range-fields input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 
 /* -- sheets ------------------------------------------------------------------------ */
 

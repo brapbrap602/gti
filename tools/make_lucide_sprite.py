@@ -16,7 +16,7 @@ from pathlib import Path
 ICONS = (
     "activity", "arrow-down", "arrow-up", "book-open", "check", "chevron-down", "chevron-right",
     "circle-alert", "circle-check", "clock", "external-link", "file-text", "git-compare", "globe",
-    "hammer", "languages", "layers", "library", "list", "loader", "panel-left", "pin", "pin-off",
+    "hammer", "headphones", "languages", "layers", "library", "list", "loader", "panel-left", "pin", "pin-off",
     "plus", "refresh-cw", "rotate-ccw", "search", "square", "triangle-alert", "x",
 )  # fmt: skip
 OUT = Path(__file__).resolve().parent.parent / "packages/novel-app/src/novel_app/web/static/vendor/lucide.svg"

@@ -9,7 +9,7 @@ from novel_app.jobs import JobBoard, JobRunner, JobState
 from novel_app.service import Service, app_db
 from novel_app.web.app import create_app, job_events
 from novel_app.library import audio_dir, novel_dir
-from novel_core import Finding, Kind, NewVersion, NovelMeta, NovelStore, Paragraph, SourceItem, SourceSpec
+from novel_core import Finding, Kind, NewVersion, NovelMeta, NovelStore, OutputKind, Paragraph, SourceItem, SourceSpec
 from novel_sources.backends import zh_rules
 
 URL = "https://novelbuddy.me/test-novel"
@@ -206,7 +206,7 @@ def test_one_job_per_novel_and_kind(client, service):
     page = client.get("/").text
     assert re.search(r'<button type="submit"(?: class="[^"]*")? disabled title="Sync is queued \(job \d+\)"(?: class="[^"]*")?>.*?Sync</button>', page)
     assert "running in another process" in page
-    assert re.search(r'<button type="submit" title="[^"]*">.*?EPUB</button>', page)  # other kinds can start
+    assert re.search(r'<button type="submit" class="[^"]*" title="[^"]*">.*?Volumes</button>', page)  # other kinds can start
 
     started = client.post("/jobs", data={"kind": "build-site", "back": "/"}, follow_redirects=False)
     assert started.status_code == 303 and "started+job" in started.headers["location"]
@@ -974,6 +974,30 @@ def test_epub_volume_size_is_chosen_in_the_build_menu_and_remembered(client, ser
 
     bad = client.post("/jobs", data={"kind": "build-epub", "novel": "test-novel", "size": "0"})
     assert bad.status_code == 400 and "at least 1 chapter" in bad.text
+
+
+def test_one_epub_in_the_build_menu_sizes_a_volume_to_the_whole_book(client, service):
+    added(service)
+    menu = client.get("/novels/test-novel").text
+    one = re.search(r'<form[^>]*>(?:(?!</form>).)*Single file<span class="menu-hint">1–3</span>(?:(?!</form>).)*</form>', menu, re.S).group(0)
+    assert 'name="kind" value="build-epub"' in one and 'name="size" value="3"' in one
+
+    ok = client.post("/jobs", data={"kind": "build-epub", "novel": "test-novel", "size": "3"}, headers={"HX-Request": "true"})
+    job_id = int(re.search(r"started job (\d+)", ok.text).group(1))
+    assert finished(service, job_id).state is JobState.DONE
+    assert "1 of 1 volumes built" in client.get(f"/jobs/{job_id}/log").text
+
+
+def test_audio_after_the_newest_mp3_is_offered_once_some_audio_is_built(client, service):
+    added(service)
+    assert "New chapters<" not in client.get("/novels/test-novel").text  # nothing built: Chapters builds all
+
+    with NovelStore.open(novel_dir("test-novel")) as store:
+        first = next(s for s in store.selection() if s.key.number == 1)
+        store.record_output(OutputKind.AUDIO, first, "fp", "chapter_0001.mp3")
+    menu = client.get("/novels/test-novel").text
+    later = re.search(r'<form[^>]*>(?:(?!</form>).)*New chapters<span class="menu-hint">2 on</span>(?:(?!</form>).)*</form>', menu, re.S).group(0)
+    assert 'name="kind" value="build-audio"' in later and 'name="from" value="2"' in later
 
 
 def test_problems_are_cleared_one_at_a_time_or_all_at_once(client, service):
