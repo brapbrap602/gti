@@ -15,11 +15,20 @@
             <a class="segment" href="/?view={{ v }}{% if filter_name %}&amp;status={{ filter_name }}{% endif %}" title="{{ tip }}"{% if v == view %} aria-current="true"{% endif %}>{{ v | capitalize }}</a>
             {% endfor %}
         </nav>
-        {% if rows | selectattr("can_sync") | first %}
-        <form method="post" action="/jobs/sync-all" hx-post="/jobs/sync-all" hx-target="#notice" class="inline">
-            <input type="hidden" name="back" value="/">
-            <button type="submit" class="btn btn--outline" title="{{ help.action['sync-all'] }}">{{ icon("refresh-cw") }}Sync all</button>
-        </form>
+        {% set can_fetch, has_audio = rows | selectattr("can_sync") | first, rows | rejectattr("audio_last", "none") | first %}
+        {% if can_fetch or has_audio %}
+        <details class="menu menu--end">
+            <summary class="btn btn--outline">{{ icon("refresh-cw") }}Sync all{{ icon("chevron-down") }}</summary>
+            <div class="menu-items">
+                {% for what, label, icon_name, needs in (("fetch", "Fetch new chapters", "refresh-cw", can_fetch), ("audio", "Audio for new chapters", "headphones", has_audio), ("both", "Fetch, then audio", "refresh-cw", can_fetch and has_audio)) %}
+                <form method="post" action="/jobs/sync-all" hx-post="/jobs/sync-all" hx-target="#notice">
+                    <input type="hidden" name="back" value="/">
+                    <input type="hidden" name="what" value="{{ what }}">
+                    <button type="submit" class="btn btn--outline btn--sm" title="{{ help.action['sync-all-' ~ what] }}"{% if not needs %} disabled{% endif %}>{{ icon(icon_name) }}{{ label }}</button>
+                </form>
+                {% endfor %}
+            </div>
+        </details>
         {% endif %}
         {{ job_button("build-site", None, job_panel.active | selectattr("target", "equalto", "_site") | first, "/", icon_name="hammer", small=False) }}
         {% endif %}

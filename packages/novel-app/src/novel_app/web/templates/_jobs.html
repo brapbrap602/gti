@@ -48,12 +48,22 @@
 <p class="jobs-empty muted">No jobs yet.</p>
 {% else %}
 {% if job_panel.attention %}
-{% if job_panel.problems > 1 %}
-<form class="jobs-clear" method="post" action="/jobs/dismiss" hx-post="/jobs/dismiss" hx-target="#notice">
-    <input type="hidden" name="back" value="/">
-    {% for j in job_panel.problem_jobs %}<input type="hidden" name="job" value="{{ j.id }}">{% endfor %}
-    <button type="submit" class="btn btn--ghost btn--sm">Clear {{ job_panel.problems }} problems</button>
-</form>
+{% if job_panel.active | length > 1 or job_panel.problems > 1 %}
+<div class="jobs-clear">
+    {% if job_panel.active | length > 1 %}
+    <form method="post" action="/jobs/cancel-all" hx-post="/jobs/cancel-all" hx-target="#notice">
+        <input type="hidden" name="back" value="/">
+        <button type="submit" class="btn btn--ghost btn--sm" title="End every waiting job at once and ask every running one to stop after its current item">Cancel {{ job_panel.active | length }} jobs</button>
+    </form>
+    {% endif %}
+    {% if job_panel.problems > 1 %}
+    <form method="post" action="/jobs/dismiss" hx-post="/jobs/dismiss" hx-target="#notice">
+        <input type="hidden" name="back" value="/">
+        {% for j in job_panel.problem_jobs %}<input type="hidden" name="job" value="{{ j.id }}">{% endfor %}
+        <button type="submit" class="btn btn--ghost btn--sm">Clear {{ job_panel.problems }} problems</button>
+    </form>
+    {% endif %}
+</div>
 {% endif %}
 <ol class="job-list">
 {% for j in job_panel.attention %}

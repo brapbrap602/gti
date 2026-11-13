@@ -208,8 +208,17 @@ SYNC_ALL = Turn("sync")  # Sync all's syncs take turns; a single Sync click does
 
 @dataclass(frozen=True)
 class SyncAll:
-    queued: tuple[int, ...]  # job ids, in the order they run
-    skipped: tuple[tuple[str, str], ...]  # (slug, why)
+    queued: tuple[int, ...]  # sync job ids, in the order they run
+    skipped: tuple[tuple[str, str], ...]  # (slug, why) for syncs not queued
+    audio: tuple[int, ...] = ()  # audio build job ids, in the order they run
+    audio_skipped: tuple[tuple[str, str], ...] = ()  # (slug, why) for audio builds not queued
+
+
+@dataclass(frozen=True)
+class CancelAll:
+    removed: int  # were waiting their turn: ended at once
+    stopping: int  # had started: stop after their current item
+    elsewhere: int  # run by another process, so not this server's to cancel
 
 
 class Service:
@@ -265,20 +274,54 @@ class Service:
         """Novels with a web source (that source, if given): the ones Sync all syncs."""
         return [slug for slug in self.novels() if self.web_sources(slug, source)]
 
-    def sync_all(self) -> SyncAll:
-        """Queue a sync of every novel with a web source, to run one at a time; a novel already syncing
-        (here or in another process) is skipped. A Re-run of one of these syncs starts at once, like a click."""
-        queued, skipped = [], []
-        for slug in self.syncable_novels():
-            args = {"novel": slug}
-            try:
-                target, work = self._prepare("sync", args)
-                queued.append(self.runner.submit(target, "sync", args, work, lane=SYNC_ALL.lane))
-            except JobRunning:
-                skipped.append((slug, "already syncing"))
-            except UserError as e:
-                skipped.append((slug, str(e)))
-        return SyncAll(tuple(queued), tuple(skipped))
+    def sync_all(self, fetch: bool = True, audio: bool = False) -> SyncAll:
+        """Queue, for every novel, a sync (`fetch`: novels with a web source) and an audio build of the chapters
+        after its newest MP3 (`audio`: novels with audio built). Syncs run one at a time, and so do audio builds;
+        a novel's audio waits for its sync, so with both it covers the chapters that sync fetched. A novel already
+        doing that job (here or in another process) is skipped. A Re-run of one of these starts like a click."""
+        queued, skipped, syncing = [], [], set()
+        if fetch:
+            for slug in self.syncable_novels():
+                args = {"novel": slug}
+                try:
+                    target, work = self._prepare("sync", args)
+                    queued.append(self.runner.submit(target, "sync", args, work, lane=SYNC_ALL.lane))
+                    syncing.add(slug)
+                except JobRunning:  # its audio still waits for that sync, so it still counts
+                    skipped.append((slug, "already syncing"))
+                    syncing.add(slug)
+                except UserError as e:
+                    skipped.append((slug, str(e)))
+        built, audio_skipped = [], []
+        if audio:
+            for slug in self.novels():
+                row = self._read(slug)[1]
+                if row.audio_last is None:
+                    continue  # no audio built: the novel has not been taken up for audio
+                if row.audio_next is None and slug not in syncing:
+                    audio_skipped.append((slug, "audio up to date"))
+                    continue
+                try:  # an open end, so chapters a sync fetches before this runs are built too
+                    built.append(self.start("build-audio", novel=slug, range=f"{row.audio_last + 1}-"))
+                except JobRunning:
+                    audio_skipped.append((slug, "audio already building"))
+                except UserError as e:
+                    audio_skipped.append((slug, str(e)))
+        return SyncAll(tuple(queued), tuple(skipped), tuple(built), tuple(audio_skipped))
+
+    def cancel_all(self) -> CancelAll:
+        """Cancel every active job: those waiting their turn first, so a lane does not start one as another stops."""
+        active = sorted(self.job_panel().active, key=lambda j: j.state is JobState.RUNNING)
+        removed = stopping = elsewhere = 0
+        for job in active:
+            result = self.runner.cancel(job.id)
+            if result is None:
+                elsewhere += 1
+            elif result is CancelResult.REMOVED:
+                removed += 1
+            else:
+                stopping += 1
+        return CancelAll(removed, stopping, elsewhere)
 
     def rerun(self, job_id: int) -> int:
         """Start a job again with the same arguments (after it was interrupted or failed)."""

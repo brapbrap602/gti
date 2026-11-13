@@ -328,6 +328,78 @@ def test_sync_all_without_javascript_goes_back_with_a_notice(client, service):
     assert r.status_code == 303 and r.headers["location"] == "/?status=new&notice=Nothing+to+sync"
 
 
+def audio_built(slug: str, upto: int) -> None:
+    """Record MP3s for the novel's chapters 1..upto, as an audio build would."""
+    with NovelStore.open(novel_dir(slug)) as store:
+        for s in store.selection():
+            if s.key.number <= upto:
+                store.record_output(OutputKind.AUDIO, s, "fp", f"chapter_{s.key.number:04}.mp3")
+
+
+def waiting_for_sync(service, job_id):
+    gate = threading.Event()
+    while service.runner.board.job(job_id).current != "waiting for sync":
+        gate.wait(0.02)
+    return service.runner.board.job(job_id)
+
+
+def test_sync_all_audio_builds_the_chapters_after_the_newest_mp3_of_novels_with_audio(client, service):
+    titled(service, "a", "Ant", fetched=True)
+    titled(service, "b", "Bee", fetched=True)  # no audio: left alone
+    audio_built("a", 1)
+    board = service.runner.board
+    sync = board.claim("a", "sync", {"novel": "a"})  # say, a CLI sync, which the audio waits for
+
+    r = client.post("/jobs/sync-all", data={"back": "/", "what": "audio"}, headers={"HX-Request": "true"})
+
+    assert "Queued 1 audio build (one at a time)" in r.text and "nothing to sync" not in r.text.lower()
+    (audio,) = (j for j in board.jobs(limit=50) if j.kind == "build-audio")
+    assert audio.target == "a" and audio.args == {"novel": "a", "range": "2-"}
+    assert waiting_for_sync(service, audio.id).state is JobState.QUEUED
+    assert not [j for j in board.jobs(limit=50) if j.kind == "sync" and j.id > sync]  # no syncs queued
+
+    page = client.get("/").text
+    assert 'name="what" value="audio"' in page and "Cancel 2 jobs" in page
+    cancelled = client.post("/jobs/cancel-all", data={"back": "/"}, headers={"HX-Request": "true"})
+    assert "Cancelled 1 waiting job; 1 running in another process, left alone" in cancelled.text
+    assert board.job(audio.id).state is JobState.CANCELLED and board.job(sync).state.active
+    board.finish(sync, JobState.DONE)
+
+
+def test_sync_all_audio_skips_novels_whose_audio_is_up_to_date(client, service):
+    titled(service, "a", "Ant", fetched=True)
+    audio_built("a", 3)
+
+    r = client.post("/jobs/sync-all", data={"back": "/", "what": "audio"}, headers={"HX-Request": "true"})
+
+    assert "No audio to build; 1 audio up to date" in r.text
+
+
+def test_sync_all_both_queues_audio_behind_the_sync_even_when_audio_looks_up_to_date(client, service):
+    titled(service, "a", "Ant", fetched=True)
+    titled(service, "b", "Bee", fetched=True)
+    audio_built("a", 3)  # up to date now, but its sync may fetch more
+    board = service.runner.board
+    sync = board.claim("a", "sync", {"novel": "a"})
+
+    r = client.post("/jobs/sync-all", data={"back": "/", "what": "both"}, headers={"HX-Request": "true"})
+
+    assert "Queued 1 sync (one at a time); skipped 1 already syncing; queued 1 audio build (one at a time)" in r.text
+    (audio,) = (j for j in board.jobs(limit=50) if j.kind == "build-audio")
+    assert audio.args == {"novel": "a", "range": "4-"}
+    assert waiting_for_sync(service, audio.id).state is JobState.QUEUED
+    client.post("/jobs/cancel-all", data={"back": "/"})
+    assert finished(service, audio.id).state is JobState.CANCELLED
+    board.finish(sync, JobState.DONE)
+
+
+def test_sync_all_refuses_an_unknown_choice_and_cancel_all_with_nothing_running_says_so(client):
+    r = client.post("/jobs/sync-all", data={"back": "/", "what": "everything"}, headers={"HX-Request": "true"})
+    assert "Sync all cannot do" in r.text
+    r = client.post("/jobs/cancel-all", data={"back": "/"}, headers={"HX-Request": "true"})
+    assert "No jobs to cancel" in r.text
+
+
 def test_a_sync_click_or_a_rerun_starts_at_once_beside_a_sync_all_batch(client, service, site):
     for slug, title in (("a", "Ant"), ("b", "Bee"), ("f", "Fox")):
         titled(service, slug, title, fetched=True)

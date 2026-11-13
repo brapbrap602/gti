@@ -14,7 +14,7 @@ import logging
 import mimetypes
 import threading
 import time
-from collections.abc import AsyncIterator, Callable
+from collections.abc import AsyncIterator, Callable, Mapping
 from contextlib import asynccontextmanager
 from datetime import datetime
 from pathlib import Path
@@ -54,7 +54,7 @@ from novel_app.pages import (
     source_label,
     state_counts,
 )
-from novel_app.service import Service, SyncAll, UserError
+from novel_app.service import CancelAll, Service, SyncAll, UserError
 
 HERE = Path(__file__).parent
 log = logging.getLogger(__name__)
@@ -393,8 +393,18 @@ def create_app(service: Service, stopping: threading.Event | None = None) -> Fas
     @app.post("/jobs/sync-all")
     async def sync_all(request: Request):
         form = await request.form()
-        result = await run_in_threadpool(service.sync_all)
-        return done(request, _sync_all_notice(result), _back(form))
+        what = str(form.get("what", "fetch"))
+        if what not in SYNC_ALL_WHAT:
+            raise UserError(f"Sync all cannot do {what!r}")
+        fetch, audio = SYNC_ALL_WHAT[what]
+        result = await run_in_threadpool(lambda: service.sync_all(fetch=fetch, audio=audio))
+        return done(request, _sync_all_notice(result, fetch, audio), _back(form))
+
+    @app.post("/jobs/cancel-all")
+    async def cancel_all(request: Request):
+        form = await request.form()
+        result = await run_in_threadpool(service.cancel_all)
+        return done(request, _cancel_all_notice(result), _back(form))
 
     @app.post("/jobs/{job_id}/cancel")
     async def cancel(request: Request, job_id: int):
@@ -474,15 +484,48 @@ def sse(event: str, data: str) -> str:
     return f"event: {event}\n" + "".join(f"data: {line}\n" for line in lines) + "\n"
 
 
-def _sync_all_notice(result: SyncAll) -> str:
-    """Sync all's notice, like "Queued 7 syncs (one at a time); skipped 2 already syncing", then why any
-    other novel was skipped."""
-    n = len(result.queued)
-    parts = [f"Queued {n} sync{'s' if n != 1 else ''} (one at a time)" if n else "Nothing to sync"]
-    if busy := sum(why == "already syncing" for _, why in result.skipped):
-        parts.append(f"skipped {busy} already syncing")
-    parts += [f"skipped {slug}: {why}" for slug, why in result.skipped if why != "already syncing"]
-    return "; ".join(parts)
+# Sync all's choices: (fetch new chapters, build audio for the chapters after the newest MP3).
+SYNC_ALL_WHAT: Mapping[str, tuple[bool, bool]] = {"fetch": (True, False), "audio": (False, True), "both": (True, True)}
+
+
+def _sync_all_notice(result: SyncAll, fetch: bool = True, audio: bool = False) -> str:
+    """Sync all's notice, like "Queued 7 syncs (one at a time); skipped 2 already syncing; queued 3 audio builds
+    (one at a time)", then why any other novel was skipped."""
+    parts = []
+    if fetch:
+        parts += _queued_notice(result.queued, result.skipped, "sync", "syncs", "already syncing", "nothing to sync")
+    if audio:
+        parts += _queued_notice(
+            result.audio, result.audio_skipped, "audio build", "audio builds", "audio already building",
+            "no audio to build",
+            quiet="audio up to date",
+        )  # fmt: skip
+    text = "; ".join(parts)
+    return text[:1].upper() + text[1:]
+
+
+def _queued_notice(queued, skipped, one: str, many: str, busy_why: str, none: str, quiet: str | None = None) -> list[str]:
+    n = len(queued)
+    parts = [f"queued {n} {one if n == 1 else many} (one at a time)" if n else none]
+    if busy := sum(why == busy_why for _, why in skipped):
+        parts.append(f"skipped {busy} {busy_why}")
+    if quiet and (q := sum(why == quiet for _, why in skipped)):
+        parts.append(f"{q} {quiet}")
+    parts += [f"skipped {slug}: {why}" for slug, why in skipped if why not in (busy_why, quiet)]
+    return parts
+
+
+def _cancel_all_notice(result: CancelAll) -> str:
+    """Cancel all's notice, like "Cancelled 5 waiting jobs; 1 will stop after its current item"."""
+    parts = []
+    if result.removed:
+        parts.append(f"cancelled {result.removed} waiting job{'s' if result.removed != 1 else ''}")
+    if result.stopping:
+        parts.append(f"{result.stopping} will stop after {'its' if result.stopping == 1 else 'their'} current item")
+    if result.elsewhere:
+        parts.append(f"{result.elsewhere} running in another process, left alone")
+    text = "; ".join(parts) or "no jobs to cancel"
+    return text[:1].upper() + text[1:]
 
 
 def _by_title(row: NavRow) -> tuple[str, str]:
